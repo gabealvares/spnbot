@@ -1,0 +1,17 @@
+{
+  "start" "node index"
+  "name": "spnbot",
+  "version": "1.0.0",
+  "description": "um bot para la de sobrenatural",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  
+  "author": "Gabriel Alcalo",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.3.1"
+
+  }
+}
