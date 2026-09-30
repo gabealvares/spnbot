@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>GACO — Home</title>
+<style>
+/* ══ TOKENS ══ */
+:root {
+  --blue:#2563EB;--blue-deep:#1E3A8A;--blue-mid:#3B82F6;--blue-light:#93C5FD;
+  --blue-ghost:rgba(37,99,235,0.12);
+  --orange:#F97316;--orange-soft:#FB923C;--orange-ghost:rgba(249,115,22,0.12);
+  --bg:#080C1A;--surf:#0D1220;--surf2:#121930;--surf3:#171F3A;
+  --bdr:rgba(255,255,255,0.08);--bdr2:rgba(255,255,255,0.14);
+  --txt:#EBF0FA;--txt2:#9DADC4;--txt3:#5A6B84;
+  --grn:#22C55E;--grn-soft:rgba(34,197,94,0.12);
+  --yel:#F59E0B;--yel-soft:rgba(245,158,11,0.12);
+  --red:#EF4444;--red-soft:rgba(239,68,68,0.12);
+  --purple:#A78BFA;--purple-soft:rgba(167,139,250,0.12);
+  --topbar-h:54px;--r:8px;--r-lg:14px;--r-xl:20px;
+  --sh:0 8px 32px rgba(0,0,0,.45);
+  --t-bg:var(--bg);--t-surf:var(--surf);--t-surf2:var(--surf2);--t-surf3:var(--surf3);
+  --t-bdr:var(--bdr);--t-bdr2:var(--bdr2);
+  --t-txt:var(--txt);--t-txt2:var(--txt2);--t-txt3:var(--txt3);
+}
+
+/* ══ LIGHT MODE — contraste reforçado ══ */
+[data-theme="light"]{
+  --t-bg:#EAECF4;
+  --t-surf:#FFFFFF;
+  --t-surf2:#F0F2FA;
+  --t-surf3:#DDE1EF;
+  --t-bdr:rgba(0,0,0,0.10);
+  --t-bdr2:rgba(0,0,0,0.16);
+  --t-txt:#0A0F1E;
+  --t-txt2:#2D3A52;
+  --t-txt3:#5A6880;
+  --blue-ghost:rgba(37,99,235,0.10);
+  --orange-ghost:rgba(249,115,22,0.10);
+  --grn-soft:rgba(22,163,74,0.10);
+  --red-soft:rgba(220,38,38,0.10);
+  --yel-soft:rgba(202,138,4,0.10);
+  --grn:#16a34a;
+  --yel:#ca8a04;
+  --red:#dc2626;
+  --orange:#ea580c;
+  --blue-mid:#1d4ed8;
+  --purple:#7c3aed;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{background:var(--t-bg);color:var(--t-txt);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13px;transition:background .25s,color .25s;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--t-surf3);border-radius:99px;}
+
+/* ══ TOPBAR ══ */
+.topbar{
+  height:var(--topbar-h);background:var(--t-surf);
+  border-bottom:1px solid var(--t-bdr2);
+  display:flex;align-items:center;padding:0 20px;
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  box-shadow:0 1px 12px rgba(0,0,0,.12);
+}
+.logo{display:flex;align-items:center;gap:10px;margin-right:24px;flex-shrink:0;cursor:pointer;transition:opacity .15s;}
+.logo:hover{opacity:.82;}
+.logo-wordmark{font-size:17px;font-weight:800;letter-spacing:.1em;color:var(--t-txt);}
+.logo-wordmark .acc{color:var(--orange);}
+.topbar-nav{display:flex;align-items:center;gap:1px;flex:1;}
+.nav-group{position:relative;}
+.nav-btn{
+  display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:6px;
+  font-size:12.5px;font-weight:500;color:var(--t-txt2);
+  cursor:pointer;transition:all .15s;border:none;background:none;white-space:nowrap;position:relative;
+}
+.nav-btn:hover{background:var(--t-surf2);color:var(--t-txt);}
+.nav-btn.active{color:var(--orange);font-weight:600;}
+.nav-btn.active::after{content:'';position:absolute;bottom:-1px;left:10px;right:10px;height:2px;background:var(--orange);border-radius:2px 2px 0 0;}
+.nav-chevron{font-size:9px;opacity:.5;transition:transform .15s;margin-left:1px;}
+.nav-group:hover .nav-chevron{transform:rotate(180deg);}
+.dropdown{
+  position:absolute;top:calc(100% + 6px);left:0;min-width:200px;
+  background:var(--t-surf);border:1px solid var(--t-bdr2);
+  border-radius:var(--r-lg);padding:5px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:all .15s cubic-bezier(.16,1,.3,1);z-index:300;
+}
+.nav-group:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+.dd-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:6px;font-size:12.5px;color:var(--t-txt2);cursor:pointer;transition:all .1s;border:none;background:none;width:100%;text-align:left;}
+.dd-item:hover{background:var(--t-surf2);color:var(--t-txt);}
+.dd-item .di{font-size:14px;width:18px;text-align:center;}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.theme-toggle{width:32px;height:32px;border-radius:7px;background:var(--t-surf2);border:1px solid var(--t-bdr2);color:var(--t-txt2);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.theme-toggle:hover{background:var(--t-surf3);color:var(--t-txt);}
+.topbar-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#1E3A8A,#3B82F6);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;cursor:pointer;border:2px solid rgba(59,130,246,.4);}
+
+/* ══ TOOLTIP ══ */
+[data-tip]{position:relative;}
+[data-tip]::after{
+  content:attr(data-tip);
+  position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);
+  background:#0d1220;color:#dce4f5;border:1px solid rgba(255,255,255,.12);
+  font-size:10px;font-weight:600;padding:3px 9px;border-radius:5px;
+  white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;
+  box-shadow:0 4px 12px rgba(0,0,0,.4);z-index:999;letter-spacing:.03em;
+}
+[data-theme="light"] [data-tip]::after{background:#0a0f1e;border-color:rgba(0,0,0,.2);}
+[data-tip]:hover::after{opacity:1;}
+
+/* ══ BTN AUDITORIA ══ */
+.btn-audit{
+  position:relative;width:30px;height:30px;border-radius:7px;
+  background:var(--t-surf2);border:1px solid var(--t-bdr2);
+  color:var(--t-txt3);cursor:pointer;font-size:14px;
+  display:inline-flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;
+}
+.btn-audit:hover{background:var(--t-surf3);color:var(--blue-mid);border-color:rgba(37,99,235,.3);}
+.btn-audit::after{
+  content:'Auditoria';
+  position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);
+  background:#0d1220;color:#dce4f5;border:1px solid rgba(255,255,255,.12);
+  font-size:10px;font-weight:600;padding:3px 9px;border-radius:5px;
+  white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:999;
+}
+.btn-audit:hover::after{opacity:1;}
+
+/* ══ BUTTONS ══ */
+.btn{display:inline-flex;align-items:center;gap:6px;border:none;border-radius:7px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.btn-orange{background:var(--orange);color:#fff;}
+.btn-orange:hover{background:var(--orange-soft);transform:translateY(-1px);box-shadow:0 4px 14px rgba(249,115,22,.3);}
+.btn-ghost{background:var(--t-surf2);color:var(--t-txt2);border:1px solid var(--t-bdr2);}
+.btn-ghost:hover{background:var(--t-surf3);color:var(--t-txt);}
+.btn-sm{padding:5px 12px;font-size:12px;}
+
+/* ══ LAYOUT ══ */
+.main{margin-top:var(--topbar-h);height:calc(100vh - var(--topbar-h));overflow:hidden;}
+.home-grid{display:grid;grid-template-columns:1fr 360px;height:100%;overflow:hidden;}
+.home-left{overflow-y:auto;padding:20px 24px;border-right:1px solid var(--t-bdr2);}
+.home-right{display:flex;flex-direction:column;height:100%;overflow:hidden;background:var(--t-surf);}
+
+/* ══ CARTÃO DE PERFIL ══ */
+.profile-card{
+  background:var(--t-surf);border:1px solid var(--t-bdr2);
+  border-radius:16px;margin-bottom:14px;overflow:hidden;
+  position:relative;
+}
+.profile-banner{
+  height:72px;
+  background:linear-gradient(120deg,#0F1E4A 0%,#1E3A8A 40%,#1d4ed8 70%,#ea580c22 100%);
+  position:relative;
+}
+[data-theme="light"] .profile-banner{
+  background:linear-gradient(120deg,#1E3A8A 0%,#2563EB 50%,#3B82F6 100%);
+}
+.profile-banner-pattern{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+.profile-avatar-wrap{
+  position:absolute;bottom:-22px;left:18px;
+}
+.profile-avatar{
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,#1E3A8A,#3B82F6);
+  border:3px solid var(--t-surf);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:800;color:#fff;
+  box-shadow:0 4px 14px rgba(0,0,0,.35);
+  cursor:pointer;transition:transform .15s;
+  overflow:hidden;
+}
+.profile-avatar:hover{transform:scale(1.05);}
+.profile-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.profile-online{
+  position:absolute;bottom:2px;right:2px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--grn);border:2px solid var(--t-surf);
+}
+.profile-body{padding:30px 18px 16px;}
+.profile-name{font-size:15px;font-weight:700;color:var(--t-txt);margin-bottom:2px;}
+.profile-role{
+  font-size:11px;font-weight:600;
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--blue-ghost);color:var(--blue-mid);
+  border:1px solid rgba(37,99,235,.18);
+  padding:2px 9px;border-radius:99px;margin-bottom:10px;
+}
+[data-theme="light"] .profile-role{color:var(--blue-deep);border-color:rgba(37,99,235,.25);}
+.profile-info{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
+.profile-info-row{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--t-txt2);}
+.profile-info-row .pi-icon{font-size:13px;width:16px;text-align:center;flex-shrink:0;opacity:.7;}
+.profile-info-row a{color:var(--blue-mid);text-decoration:none;}
+.profile-info-row a:hover{text-decoration:underline;}
+[data-theme="light"] .profile-info-row{color:var(--t-txt2);}
+.profile-team{
+  display:flex;align-items:center;gap:8px;
+  background:var(--t-surf2);border:1px solid var(--t-bdr);
+  border-radius:10px;padding:9px 12px;
+}
+.profile-team-avatars{display:flex;}
+.pt-av{
+  width:22px;height:22px;border-radius:50%;
+  border:2px solid var(--t-surf);margin-left:-6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.pt-av:first-child{margin-left:0;}
+.profile-team-info{flex:1;}
+.pt-name{font-size:11px;font-weight:600;color:var(--t-txt);}
+.pt-sub{font-size:10px;color:var(--t-txt3);}
+.profile-actions{display:flex;gap:6px;margin-top:12px;}
+
+/* ══ FRASE DO DIA ══ */
+.frase-card{
+  background:linear-gradient(120deg,var(--t-surf2) 0%,var(--t-surf) 100%);
+  border:1px solid var(--t-bdr2);border-radius:12px;
+  padding:14px 16px;margin-bottom:14px;
+  position:relative;overflow:hidden;
+  cursor:default;
+}
+.frase-card::before{
+  content:'❝';
+  position:absolute;top:-6px;left:12px;
+  font-size:52px;color:var(--orange);opacity:.12;
+  font-family:Georgia,serif;line-height:1;pointer-events:none;
+}
+.frase-label{
+  font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--t-txt3);margin-bottom:7px;display:flex;align-items:center;gap:5px;
+}
+.frase-text{
+  font-size:13px;font-style:italic;font-weight:500;
+  color:var(--t-txt);line-height:1.6;
+  position:relative;z-index:1;
+}
+.frase-author{
+  font-size:11px;color:var(--t-txt3);margin-top:7px;
+  font-weight:600;
+}
+.frase-next{
+  position:absolute;top:10px;right:12px;
+  background:none;border:none;font-size:13px;
+  color:var(--t-txt3);cursor:pointer;padding:4px;border-radius:5px;
+  transition:all .12s;
+}
+.frase-next:hover{background:var(--t-surf3);color:var(--t-txt);}
+
+/* ══ ATALHOS ══ */
+.atalhos-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.atalho-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 13px;border-radius:7px;font-size:12px;font-weight:500;
+  background:var(--t-surf);border:1px solid var(--t-bdr2);
+  color:var(--t-txt2);cursor:pointer;transition:all .14s;white-space:nowrap;
+}
+.atalho-btn:hover{background:var(--t-surf2);border-color:var(--orange);color:var(--t-txt);transform:translateY(-1px);}
+[data-theme="light"] .atalho-btn{color:var(--t-txt2);}
+[data-theme="light"] .atalho-btn:hover{color:var(--t-txt);}
+
+/* ══ CENTRAL ══ */
+.section-label{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--t-txt3);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;}
+.central-card{background:var(--t-surf);border:1px solid var(--t-bdr2);border-radius:12px;margin-bottom:14px;overflow:hidden;}
+.central-hdr{display:flex;align-items:center;justify-content:space-between;padding:11px 15px;border-bottom:1px solid var(--t-bdr);}
+.central-hdr-title{font-size:13px;font-weight:600;color:var(--t-txt);}
+.central-hdr-acts{display:flex;gap:4px;align-items:center;}
+.central-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+.central-item{
+  padding:15px 13px;cursor:pointer;transition:background .12s;
+  position:relative;border-right:1px solid var(--t-bdr);
+}
+.central-item:last-child{border-right:none;}
+.central-item:hover{background:var(--t-surf2);}
+.central-item:hover .ci-arrow{opacity:1;}
+.ci-val{font-size:24px;font-weight:800;line-height:1;margin-bottom:4px;font-variant-numeric:tabular-nums;}
+.ci-lbl{font-size:10px;color:var(--t-txt3);font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+.ci-sub{font-size:10px;color:var(--t-txt3);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ci-arrow{position:absolute;top:12px;right:10px;font-size:12px;color:var(--t-txt3);opacity:0;transition:opacity .14s;}
+.ci-bar{height:2px;border-radius:99px;margin-top:8px;background:var(--t-surf3);overflow:hidden;}
+.ci-bar-fill{height:100%;border-radius:99px;}
+
+/* ══ MEU ESPAÇO DP ══ */
+.dp-section{background:var(--t-surf);border:1px solid var(--t-bdr2);border-radius:12px;overflow:hidden;margin-bottom:14px;}
+.dp-hdr{display:flex;align-items:center;justify-content:space-between;padding:11px 15px;border-bottom:1px solid var(--t-bdr);}
+.dp-hdr-title{font-size:13px;font-weight:600;color:var(--t-txt);}
+.dp-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 14px;}
+.dp-card{
+  background:var(--t-surf2);border:1px solid var(--t-bdr);
+  border-radius:10px;padding:12px;cursor:pointer;transition:all .14s;
+}
+.dp-card:hover{border-color:var(--t-bdr2);transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.15);}
+.dp-card-lbl{font-size:9.5px;color:var(--t-txt3);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;}
+.dp-card-val{font-size:13px;font-weight:600;color:var(--t-txt);}
+.dp-card-sub{font-size:11px;color:var(--t-txt3);margin-top:3px;}
+.dp-prog{height:4px;background:var(--t-surf3);border-radius:99px;overflow:hidden;margin-top:7px;}
+.dp-prog-fill{height:100%;border-radius:99px;}
+.dp-card-action{font-size:11px;color:var(--orange);margin-top:6px;font-weight:600;}
+[data-theme="light"] .dp-card{background:var(--t-surf2);}
+
+/* ══ COMUNICADOS (direita — EXPANDIDO) ══ */
+.com-hdr{
+  padding:13px 16px;border-bottom:1px solid var(--t-bdr2);
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+}
+.com-hdr-title{font-size:13px;font-weight:600;color:var(--t-txt);display:flex;align-items:center;gap:7px;}
+.com-unread-badge{background:var(--orange);color:#fff;font-size:9px;font-weight:800;padding:1px 7px;border-radius:99px;}
+.com-filters{
+  padding:8px 12px;border-bottom:1px solid var(--t-bdr);
+  display:flex;gap:4px;flex-wrap:wrap;flex-shrink:0;
+  background:var(--t-surf2);
+}
+.com-filter-btn{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;border:none;cursor:pointer;transition:all .12s;letter-spacing:.03em;}
+.com-filter-btn.active{background:var(--orange);color:#fff;}
+.com-filter-btn:not(.active){background:var(--t-surf);color:var(--t-txt3);border:1px solid var(--t-bdr2);}
+.com-filter-btn:not(.active):hover{background:var(--t-surf3);color:var(--t-txt2);}
+[data-theme="light"] .com-filter-btn:not(.active){color:var(--t-txt2);}
+
+/* Lista ocupa todo o espaço restante */
+.com-list{flex:1;overflow-y:auto;min-height:0;}
+.com-item{
+  padding:13px 16px;border-bottom:1px solid var(--t-bdr);
+  cursor:pointer;transition:background .12s;
+}
+.com-item:hover{background:var(--t-surf2);}
+.com-item:last-child{border-bottom:none;}
+.com-item-top{display:flex;align-items:center;gap:6px;margin-bottom:5px;}
+.com-dept-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;}
+.com-date{font-size:10px;color:var(--t-txt3);}
+.com-indicator{margin-left:auto;flex-shrink:0;}
+.com-dot{width:7px;height:7px;border-radius:50%;background:var(--orange);}
+.com-check{font-size:11px;color:var(--grn);font-weight:700;}
+.com-title{font-size:12.5px;font-weight:600;color:var(--t-txt);margin-bottom:3px;line-height:1.4;}
+.com-author{font-size:11px;color:var(--t-txt3);}
+.com-excerpt{font-size:11px;color:var(--t-txt3);margin-top:4px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.5;}
+[data-theme="light"] .com-title{color:var(--t-txt);}
+[data-theme="light"] .com-author{color:var(--t-txt3);}
+
+.com-footer{padding:10px 12px;border-top:1px solid var(--t-bdr);flex-shrink:0;background:var(--t-surf2);}
+.com-loadmore{
+  width:100%;background:none;border:1px dashed var(--t-bdr2);
+  border-radius:7px;padding:8px;font-size:11px;font-weight:600;
+  color:var(--t-txt3);cursor:pointer;transition:all .14s;
+}
+.com-loadmore:hover{background:var(--t-surf3);color:var(--t-txt2);border-style:solid;}
+[data-theme="light"] .com-loadmore{color:var(--t-txt3);}
+
+/* ══ MODAL ══ */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:800;
+  display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px);
+}
+.modal-overlay.open{display:flex;animation:fadeIn .15s ease;}
+.modal-box{
+  background:var(--t-surf);border:1px solid var(--t-bdr2);
+  border-radius:var(--r-xl);width:520px;max-height:82vh;
+  overflow:hidden;display:flex;flex-direction:column;
+  box-shadow:0 24px 64px rgba(0,0,0,.5);
+}
+.modal-hdr{padding:18px 22px 14px;border-bottom:1px solid var(--t-bdr);display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-shrink:0;}
+.modal-body{padding:20px 22px;overflow-y:auto;flex:1;}
+.modal-foot{padding:12px 22px;border-top:1px solid var(--t-bdr);display:flex;gap:8px;justify-content:flex-end;flex-shrink:0;}
+.modal-close{width:28px;height:28px;border-radius:6px;background:var(--t-surf2);border:none;color:var(--t-txt2);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .12s;}
+.modal-close:hover{background:var(--t-surf3);color:var(--t-txt);}
+.f-lbl{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t-txt3);margin-bottom:5px;display:block;}
+.f-inp,.f-sel,.f-ta{width:100%;background:var(--t-surf2);border:1px solid var(--t-bdr2);border-radius:7px;padding:8px 11px;color:var(--t-txt);font-size:13px;outline:none;transition:border .15s;}
+.f-inp:focus,.f-sel:focus,.f-ta:focus{border-color:var(--blue-mid);}
+.f-ta{resize:vertical;min-height:90px;}
+[data-theme="light"] .f-inp,[data-theme="light"] .f-sel,[data-theme="light"] .f-ta{color:var(--t-txt);}
+
+/* ══ AUDIT PANEL ══ */
+.audit-overlay{position:fixed;inset:0;z-index:699;display:none;}
+.audit-overlay.open{display:block;}
+.audit-panel{
+  position:fixed;top:0;right:0;height:100vh;width:370px;
+  background:var(--t-surf);border-left:1px solid var(--t-bdr2);
+  z-index:700;transform:translateX(100%);
+  transition:transform .22s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;box-shadow:-8px 0 32px rgba(0,0,0,.3);
+}
+.audit-panel.open{transform:translateX(0);}
+.audit-hdr{padding:18px 20px 14px;border-bottom:1px solid var(--t-bdr);display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.audit-title{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;flex:1;color:var(--t-txt);}
+.audit-close{width:28px;height:28px;border-radius:6px;background:var(--t-surf2);border:none;color:var(--t-txt2);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .12s;}
+.audit-close:hover{background:var(--t-surf3);}
+.audit-body{flex:1;overflow-y:auto;padding:14px 20px;}
+.audit-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--t-bdr);}
+.audit-item:last-child{border-bottom:none;}
+.audit-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.audit-action{font-size:12px;font-weight:600;color:var(--t-txt);margin-bottom:2px;}
+.audit-meta{font-size:10px;color:var(--t-txt3);}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.profile-card{animation:slideUp .3s ease both;}
+.frase-card{animation:slideUp .3s ease .06s both;}
+.central-card{animation:slideUp .3s ease .1s both;}
+.dp-section{animation:slideUp .3s ease .14s both;}
+</style>
+</head>
+<body>
+
+<!-- ══ TOPBAR ══ -->
+<div class="topbar">
+  <div class="logo">
+    <svg width="28" height="28" viewBox="0 0 72 72"><rect width="72" height="72" rx="14" fill="#1E3A8A"/><circle cx="36" cy="36" r="26" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><circle cx="36" cy="36" r="16" fill="none" stroke="#3B82F6" stroke-width="2"/><circle cx="36" cy="36" r="8" fill="none" stroke="#60A5FA" stroke-width="1.5"/><line x1="36" y1="10" x2="36" y2="28" stroke="white" stroke-width="1" stroke-dasharray="3 2" opacity=".5"/><line x1="54" y1="18" x2="41" y2="31" stroke="#F97316" stroke-width="1" stroke-dasharray="3 2"/><line x1="18" y1="54" x2="31" y2="41" stroke="#F97316" stroke-width="1" stroke-dasharray="3 2"/><circle cx="36" cy="10" r="2.5" fill="white" opacity=".7"/><circle cx="54" cy="18" r="2.5" fill="#F97316"/><circle cx="18" cy="54" r="2.5" fill="#F97316"/><circle cx="36" cy="36" r="5" fill="#F97316"/><circle cx="36" cy="36" r="2" fill="white"/></svg>
+    <span class="logo-wordmark">G<span class="acc">A</span>CO</span>
+  </div>
+  <nav class="topbar-nav">
+    <div class="nav-group"><button class="nav-btn active">🏠 Home</button></div>
+    <div class="nav-group">
+      <button class="nav-btn">🏢 Clientes <span class="nav-chevron">▾</span></button>
+      <div class="dropdown">
+        <button class="dd-item"><span class="di">📋</span>Lista de Clientes</button>
+        <button class="dd-item"><span class="di">➕</span>Novo Cliente</button>
+        <button class="dd-item"><span class="di">📁</span>Carteiras / CS</button>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-btn">⚡ Demandas <span class="nav-chevron">▾</span></button>
+      <div class="dropdown">
+        <button class="dd-item"><span class="di">📋</span>Kanban</button>
+        <button class="dd-item"><span class="di">➕</span>Nova Demanda</button>
+        <button class="dd-item"><span class="di">🗺️</span>Roadmap</button>
+      </div>
+    </div>
+    <div class="nav-group"><button class="nav-btn">💰 Financeiro <span class="nav-chevron">▾</span></button></div>
+    <div class="nav-group"><button class="nav-btn">📊 Dashboard</button></div>
+  </nav>
+  <div class="topbar-right">
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" data-tip="Alternar tema">🌙</button>
+    <div class="topbar-avatar" data-tip="Meu perfil">RM</div>
+  </div>
+</div>
+
+<!-- ══ MAIN ══ -->
+<div class="main">
+  <div class="home-grid">
+
+    <!-- ════ ESQUERDA ════ -->
+    <div class="home-left">
+
+      <!-- CARTÃO DE PERFIL -->
+      <div class="profile-card">
+        <div class="profile-banner">
+          <div class="profile-banner-pattern"></div>
+          <div class="profile-avatar-wrap">
+            <div class="profile-avatar" data-tip="Ver meu perfil">
+              RM
+              <div class="profile-online"></div>
+            </div>
+          </div>
+          <!-- Ações no canto direito do banner -->
+          <div style="position:absolute;top:10px;right:12px;display:flex;gap:6px;">
+            <button class="btn-audit" onclick="openAudit('Perfil')" style="background:rgba(0,0,0,.3);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.7);">🕐</button>
+            <button class="btn btn-ghost btn-sm" style="background:rgba(0,0,0,.3);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.8);font-size:11px;" data-tip="Editar perfil">✏️ Editar</button>
+          </div>
+        </div>
+
+        <div class="profile-body">
+          <!-- Nome + cargo -->
+          <div class="profile-name" id="profile-greeting">Boa tarde, Rafael Moura 👋</div>
+          <div style="margin-bottom:10px;">
+            <span class="profile-role">⚡ CS Sênior</span>
+          </div>
+
+          <!-- Informações de contato -->
+          <div class="profile-info">
+            <div class="profile-info-row" data-tip="E-mail corporativo">
+              <span class="pi-icon">✉️</span>
+              <a href="mailto:rafael.moura@gaco.com.br">rafael.moura@gaco.com.br</a>
+            </div>
+            <div class="profile-info-row" data-tip="Celular">
+              <span class="pi-icon">📱</span>
+              <span>(11) 99876-5432</span>
+            </div>
+            <div class="profile-info-row" data-tip="Localização">
+              <span class="pi-icon">📍</span>
+              <span>Santo André, SP</span>
+            </div>
+          </div>
+
+          <!-- Time / Equipe -->
+          <div class="profile-team" data-tip="Seu time na GACO">
+            <div class="profile-team-avatars">
+              <div class="pt-av" style="background:#1d4ed8;">LF</div>
+              <div class="pt-av" style="background:#0f6e56;">AC</div>
+              <div class="pt-av" style="background:#854f0b;">CL</div>
+              <div class="pt-av" style="background:#6d28d9;">BM</div>
+              <div class="pt-av" style="background:#374151;font-size:8px;">+3</div>
+            </div>
+            <div class="profile-team-info" style="margin-left:10px;">
+              <div class="pt-name">Time de Customer Success</div>
+              <div class="pt-sub">7 membros · Lider: Luana Ferreira</div>
+            </div>
+          </div>
+
+          <!-- Atalhos do perfil -->
+          <div class="profile-actions">
+            <button class="btn btn-ghost btn-sm" data-tip="Ver meu histórico de reuniões">📅 Reuniões</button>
+            <button class="btn btn-ghost btn-sm" data-tip="Meu plano de carreira">📈 Carreira</button>
+            <button class="btn btn-ghost btn-sm" data-tip="Reconhecimentos recebidos">🏆 Elogios</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FRASE DO DIA -->
+      <div class="frase-card" id="frase-card">
+        <div class="frase-label">
+          <span>✨ Frase do dia</span>
+          <span id="frase-date" style="font-weight:400;letter-spacing:.06em;"></span>
+        </div>
+        <div class="frase-text" id="frase-text">Carregando...</div>
+        <div class="frase-author" id="frase-author"></div>
+        <button class="frase-next" onclick="nextFrase()" data-tip="Próxima frase">↻</button>
+      </div>
+
+      <!-- ATALHOS -->
+      <div class="atalhos-row">
+        <button class="atalho-btn" data-tip="Registrar nova reunião">📅 Nova Reunião</button>
+        <button class="atalho-btn" data-tip="Abrir nova demanda de produto">⚡ Nova Demanda</button>
+        <button class="atalho-btn" data-tip="Cadastrar novo cliente">🏢 Novo Cliente</button>
+        <button class="atalho-btn" data-tip="Abrir ticket de suporte">🎫 Abrir Ticket</button>
+        <button class="atalho-btn" data-tip="Enviar elogio a um colega">🏆 Reconhecer</button>
+      </div>
+
+      <!-- MINHA CENTRAL -->
+      <div class="central-card">
+        <div class="central-hdr">
+          <span class="central-hdr-title">Minha Central</span>
+          <div class="central-hdr-acts">
+            <button class="btn-audit" onclick="openAudit('Central')" data-tip="Auditoria">🕐</button>
+            <button class="btn btn-ghost btn-sm" style="font-size:10px;padding:3px 9px;" data-tip="Ver reuniões">Processos</button>
+            <button class="btn btn-ghost btn-sm" style="font-size:10px;padding:3px 9px;" data-tip="Ver demandas">Demandas</button>
+            <button class="btn btn-ghost btn-sm" style="font-size:10px;padding:3px 9px;" data-tip="Ver tickets">Tickets</button>
+          </div>
+        </div>
+        <div class="central-grid">
+          <div class="central-item" data-tip="Ver minhas reuniões agendadas">
+            <span class="ci-arrow">→</span>
+            <div class="ci-val" style="color:var(--grn)">3</div>
+            <div class="ci-lbl">Reuniões</div>
+            <div class="ci-sub">Próxima: hoje 15h</div>
+            <div class="ci-bar"><div class="ci-bar-fill" style="width:60%;background:var(--grn)"></div></div>
+          </div>
+          <div class="central-item" data-tip="Ver demandas em desenvolvimento">
+            <span class="ci-arrow">→</span>
+            <div class="ci-val" style="color:var(--orange)">5</div>
+            <div class="ci-lbl">Demandas</div>
+            <div class="ci-sub">Em desenvolvimento</div>
+            <div class="ci-bar"><div class="ci-bar-fill" style="width:45%;background:var(--orange)"></div></div>
+          </div>
+          <div class="central-item" data-tip="Ver tickets abertos">
+            <span class="ci-arrow">→</span>
+            <div class="ci-val" style="color:var(--red)">2</div>
+            <div class="ci-lbl">Tickets</div>
+            <div class="ci-sub">1 urgente</div>
+            <div class="ci-bar"><div class="ci-bar-fill" style="width:20%;background:var(--red)"></div></div>
+          </div>
+          <div class="central-item" data-tip="Ver implantações ativas">
+            <span class="ci-arrow">→</span>
+            <div class="ci-val" style="color:var(--blue-mid)">4</div>
+            <div class="ci-lbl">Implantações</div>
+            <div class="ci-sub">Em andamento</div>
+            <div class="ci-bar"><div class="ci-bar-fill" style="width:80%;background:var(--blue-mid)"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEU ESPAÇO DP -->
+      <div class="dp-section">
+        <div class="dp-hdr">
+          <span class="dp-hdr-title">Meu Espaço</span>
+          <button class="btn-audit" onclick="openAudit('Espaço DP')" data-tip="Auditoria">🕐</button>
+        </div>
+        <div class="dp-cards">
+          <div class="dp-card" data-tip="Ver próximo 1:1 agendado">
+            <div class="dp-card-lbl">📅 Próximo 1:1</div>
+            <div class="dp-card-val">02/04/2026</div>
+            <div class="dp-card-sub">com Luana Ferreira</div>
+          </div>
+          <div class="dp-card" data-tip="Ver resumo do último 1:1">
+            <div class="dp-card-lbl">📝 Último 1:1</div>
+            <div class="dp-card-val">12/03/2026</div>
+            <div class="dp-card-sub" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Revisão metas Q1...</div>
+          </div>
+          <div class="dp-card" data-tip="Ver meu plano de carreira">
+            <div class="dp-card-lbl">📈 Carreira</div>
+            <div class="dp-card-val">CS Sênior</div>
+            <div class="dp-prog"><div class="dp-prog-fill" style="width:62%;background:var(--blue-mid)"></div></div>
+            <div class="dp-card-sub">62% concluído</div>
+          </div>
+          <div class="dp-card" data-tip="Ver elogios recebidos">
+            <div class="dp-card-lbl">🏆 Recebidos</div>
+            <div style="font-size:22px;font-weight:800;color:var(--orange);line-height:1.1">7</div>
+            <div class="dp-card-sub">Último: 🎯 Foco</div>
+          </div>
+          <div class="dp-card" data-tip="Ver elogios que você enviou">
+            <div class="dp-card-lbl">🎁 Enviados</div>
+            <div style="font-size:22px;font-weight:800;color:var(--grn);line-height:1.1">3</div>
+            <div class="dp-card-action">+ Elogiar alguém</div>
+          </div>
+          <div class="dp-card" data-tip="Suas metas do ciclo atual">
+            <div class="dp-card-lbl">🎯 Metas Q1</div>
+            <div class="dp-card-val">4 / 6</div>
+            <div class="dp-prog"><div class="dp-prog-fill" style="width:67%;background:var(--grn)"></div></div>
+            <div class="dp-card-sub">67% atingidas</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /home-left -->
+
+    <!-- ════ DIREITA: COMUNICADOS (expandido) ════ -->
+    <div class="home-right">
+      <div class="com-hdr">
+        <span class="com-hdr-title">
+          📢 Comunicados
+          <span class="com-unread-badge">3</span>
+        </span>
+        <div style="display:flex;gap:6px;align-items:center;">
+          <button class="btn-audit" onclick="openAudit('Comunicados')" data-tip="Auditoria">🕐</button>
+          <button class="btn btn-orange btn-sm" onclick="openComModal()" data-tip="Publicar novo comunicado">+ Publicar</button>
+        </div>
+      </div>
+
+      <div class="com-filters" id="com-filters">
+        <button class="com-filter-btn active" data-dept="" onclick="filterCom('',this)">Todos</button>
+        <button class="com-filter-btn" data-dept="Comercial" onclick="filterCom('Comercial',this)">Comercial</button>
+        <button class="com-filter-btn" data-dept="CS" onclick="filterCom('CS',this)">CS</button>
+        <button class="com-filter-btn" data-dept="DP" onclick="filterCom('DP',this)">DP</button>
+        <button class="com-filter-btn" data-dept="Financeiro" onclick="filterCom('Financeiro',this)">Financeiro</button>
+        <button class="com-filter-btn" data-dept="Dev" onclick="filterCom('Dev',this)">Dev</button>
+        <button class="com-filter-btn" data-dept="Geral" onclick="filterCom('Geral',this)">Geral</button>
+      </div>
+
+      <div class="com-list" id="com-list"></div>
+
+      <div class="com-footer">
+        <button class="com-loadmore" id="com-loadmore-btn" onclick="loadMoreCom()">Carregar mais</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL COMUNICADO -->
+<div class="modal-overlay" id="com-modal" onclick="if(event.target===this)closeComModal()">
+  <div class="modal-box" id="com-modal-box"></div>
+</div>
+
+<!-- AUDIT PANEL -->
+<div class="audit-overlay" id="audit-overlay" onclick="closeAudit()"></div>
+<div class="audit-panel" id="audit-panel">
+  <div class="audit-hdr">
+    <span style="font-size:16px;">🕐</span>
+    <span class="audit-title" id="audit-title">Auditoria</span>
+    <button class="audit-close" onclick="closeAudit()">✕</button>
+  </div>
+  <div class="audit-body" id="audit-body"></div>
+</div>
+
+<script>
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+/* ── FRASES DO DIA ── */
+const FRASES = [
+  {text:"O sucesso é a soma de pequenos esforços repetidos dia após dia.",author:"Robert Collier"},
+  {text:"Não espere por uma crise para descobrir o que é importante na sua vida.",author:"Platão"},
+  {text:"A única maneira de fazer um excelente trabalho é amar o que você faz.",author:"Steve Jobs"},
+  {text:"O futuro pertence àqueles que acreditam na beleza de seus sonhos.",author:"Eleanor Roosevelt"},
+  {text:"Comece onde você está. Use o que você tem. Faça o que pode.",author:"Arthur Ashe"},
+  {text:"Cada dia é uma nova chance de mudar sua vida.",author:"Anônimo"},
+  {text:"A excelência não é uma habilidade, é uma atitude.",author:"Ralph Marston"},
+  {text:"Pessoas de alto desempenho são movidas pelo propósito, não pela pressão.",author:"Brendon Burchard"},
+  {text:"Pequenas ações diárias são o segredo dos grandes resultados.",author:"Og Mandino"},
+  {text:"Colaboração é a chave que abre portas que nenhum de nós abriria sozinho.",author:"Anônimo"},
+  {text:"Trate cada cliente como se ele fosse o único.",author:"Anônimo"},
+  {text:"A gratidão transforma o que temos em suficiente.",author:"Melody Beattie"},
+  {text:"Seja a mudança que você quer ver no mundo.",author:"Mahatma Gandhi"},
+  {text:"O talento vence jogos, mas trabalho em equipe ganha campeonatos.",author:"Michael Jordan"},
+];
+
+let fraseIdx = new Date().getDay() % FRASES.length;
+
+function renderFrase(){
+  const f = FRASES[fraseIdx];
+  document.getElementById('frase-text').textContent = f.text;
+  document.getElementById('frase-author').textContent = '— ' + f.author;
+  const hoje = new Date();
+  const dias = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+  document.getElementById('frase-date').textContent = dias[hoje.getDay()];
+}
+function nextFrase(){
+  fraseIdx = (fraseIdx + 1) % FRASES.length;
+  const card = document.getElementById('frase-card');
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(4px)';
+  setTimeout(()=>{
+    renderFrase();
+    card.style.transition = 'opacity .25s,transform .25s';
+    card.style.opacity = '1';
+    card.style.transform = 'translateY(0)';
+  }, 180);
+}
+
+/* ── SAUDAÇÃO ── */
+function initGreeting(){
+  const h = new Date().getHours();
+  const saud = h<12?'Bom dia':h<18?'Boa tarde':'Boa noite';
+  const emoji = h<12?'☀️':h<18?'👋':'🌙';
+  document.getElementById('profile-greeting').textContent = `${saud}, Rafael Moura ${emoji}`;
+}
+
+/* ── COMUNICADOS ── */
+const DEPTS = {
+  Comercial:'#185FA5',CS:'#0F6E56',Dev:'#854F0B',
+  Financeiro:'#993C1D',Suporte:'#534AB7',DP:'#633806',Geral:'#5F5E5A'
+};
+const COMS = [
+  {id:1,dept:'CS',titulo:'Novo protocolo de onboarding para condomínios',autor:'Ana Costa',data:'26/03/2026',lido:false,corpo:'A partir desta semana, todos os onboardings de condomínios seguirão o novo roteiro padronizado. O material completo está no Drive. Dúvidas falar com a Ana.'},
+  {id:2,dept:'Dev',titulo:'Atualização v2.4.1 publicada em produção',autor:'Rafael Moura',data:'25/03/2026',lido:false,corpo:'A versão 2.4.1 foi deployada. Principais mudanças: assinatura digital OTP, melhorias no kanban, correção de bug no financeiro.'},
+  {id:3,dept:'Geral',titulo:'Reunião de resultados Q1 — quinta-feira 10h',autor:'Luana Ferreira',data:'24/03/2026',lido:false,corpo:'Confirmar presença para a reunião de apresentação dos resultados do Q1. Sala de reuniões principal.'},
+  {id:4,dept:'DP',titulo:'Avaliações de desempenho abertas até 01/04',autor:'Carla Souza',data:'23/03/2026',lido:true,corpo:'As avaliações de desempenho do ciclo Q1 estão abertas. Acesse o módulo de avaliação e preencha até dia 01 de abril.'},
+  {id:5,dept:'Financeiro',titulo:'Prazo para envio de notas fiscais — 28/03',autor:'Paulo Lima',data:'22/03/2026',lido:true,corpo:'Atenção: prazo final para envio de notas fiscais referentes ao mês de março é dia 28.'},
+  {id:6,dept:'Comercial',titulo:'Meta de prospecção revisada para abril',autor:'Marcos Alves',data:'21/03/2026',lido:true,corpo:'A meta de novos clientes prospectados foi revisada para 15 por mês.'},
+  {id:7,dept:'CS',titulo:'NPS do mês: 72 pontos — melhor resultado do ano',autor:'Ana Costa',data:'20/03/2026',lido:true,corpo:'Fechamos março com NPS 72, o melhor resultado desde janeiro de 2025!'},
+  {id:8,dept:'Geral',titulo:'Novo colaborador: Beatriz entra no time de produto',autor:'Luana Ferreira',data:'19/03/2026',lido:true,corpo:'Boas-vindas à Beatriz Mendes, que começa esta semana como Product Designer.'},
+  {id:9,dept:'Dev',titulo:'Janela de manutenção programada — domingo 2h',autor:'Rafael Moura',data:'18/03/2026',lido:true,corpo:'Haverá janela de manutenção no domingo à noite (2h–4h).'},
+  {id:10,dept:'DP',titulo:'Benefício de academia disponível a partir de abril',autor:'Carla Souza',data:'17/03/2026',lido:true,corpo:'A partir de abril todos os colaboradores têm acesso ao benefício de academia parceria.'},
+  {id:11,dept:'Comercial',titulo:'Workshop de vendas consultivas — 05/04',autor:'Marcos Alves',data:'16/03/2026',lido:true,corpo:'Temos um workshop de vendas consultivas agendado para o dia 05 de abril. Presença obrigatória para o time comercial.'},
+  {id:12,dept:'CS',titulo:'Treinamento: uso da nova funcionalidade de contratos',autor:'Ana Costa',data:'15/03/2026',lido:true,corpo:'Haverá treinamento sobre o módulo de assinatura digital. Link da gravação será enviado após.'},
+];
+
+let comDept = '';
+let comShown = 6;
+let filteredComs = [...COMS];
+
+function filterCom(dept, btn){
+  comDept = dept;
+  comShown = 6;
+  document.querySelectorAll('.com-filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.dept===dept));
+  filteredComs = dept ? COMS.filter(c=>c.dept===dept) : [...COMS];
+  renderComList();
+}
+
+function renderComList(){
+  const list = document.getElementById('com-list');
+  const shown = filteredComs.slice(0, comShown);
+  const hasMore = filteredComs.length > comShown;
+  if(!shown.length){
+    list.innerHTML=`<div style="padding:40px;text-align:center;color:var(--t-txt3);font-size:12px;">Nenhum comunicado${comDept?' em '+comDept:''}.</div>`;
+    document.getElementById('com-loadmore-btn').style.display='none';
+    return;
+  }
+  list.innerHTML = shown.map(c=>{
+    const cor = DEPTS[c.dept]||'#5F5E5A';
+    return `<div class="com-item" onclick="openComDetail(${c.id})" title="Ver comunicado completo">
+      <div class="com-item-top">
+        <span class="com-dept-badge" style="color:${cor};background:${cor}22">${esc(c.dept)}</span>
+        <span class="com-date">${esc(c.data)}</span>
+        <div class="com-indicator">
+          ${c.lido
+            ? '<span class="com-check">✓</span>'
+            : '<div class="com-dot" title="Não lido"></div>'}
+        </div>
+      </div>
+      <div class="com-title">${esc(c.titulo)}</div>
+      <div class="com-author">${esc(c.autor)}</div>
+      <div class="com-excerpt">${esc(c.corpo)}</div>
+    </div>`;
+  }).join('');
+  const btn = document.getElementById('com-loadmore-btn');
+  const remain = filteredComs.length - comShown;
+  btn.style.display = hasMore ? 'block' : 'none';
+  if(hasMore) btn.textContent = `Carregar mais (${remain} restante${remain>1?'s':''})`;
+}
+
+function loadMoreCom(){ comShown += 5; renderComList(); }
+
+function openComDetail(id){
+  const c = COMS.find(x=>x.id===id);
+  if(!c) return;
+  c.lido = true;
+  const cor = DEPTS[c.dept]||'#5F5E5A';
+  document.getElementById('com-modal-box').innerHTML = `
+    <div class="modal-hdr">
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px;">
+          <span style="font-size:11px;font-weight:700;padding:2px 9px;border-radius:6px;color:${cor};background:${cor}22">${esc(c.dept)}</span>
+          <span style="font-size:10px;color:var(--t-txt3)">${esc(c.data)}</span>
+        </div>
+        <div style="font-size:16px;font-weight:700;line-height:1.3;color:var(--t-txt)">${esc(c.titulo)}</div>
+      </div>
+      <button class="modal-close" onclick="closeComModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="font-size:13px;line-height:1.8;color:var(--t-txt2)">${esc(c.corpo)}</div>
+      <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--t-bdr);font-size:11px;color:var(--t-txt3)">
+        Publicado por <strong style="color:var(--t-txt2)">${esc(c.autor)}</strong>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost btn-sm" onclick="closeComModal()">Fechar</button>
+      <button class="btn btn-orange btn-sm" onclick="closeComModal();renderComList()">✓ Confirmar leitura</button>
+    </div>`;
+  document.getElementById('com-modal').classList.add('open');
+  renderComList();
+}
+
+function openComModal(){
+  document.getElementById('com-modal-box').innerHTML = `
+    <div class="modal-hdr">
+      <div style="font-size:14px;font-weight:700;color:var(--t-txt)">📢 Novo Comunicado</div>
+      <button class="modal-close" onclick="closeComModal()">✕</button>
+    </div>
+    <div class="modal-body" style="display:grid;gap:13px;">
+      <div><label class="f-lbl">Título *</label><input class="f-inp" placeholder="Título do comunicado"/></div>
+      <div><label class="f-lbl">Departamento</label>
+        <select class="f-sel"><option>Geral</option><option>Comercial</option><option>CS</option><option>Financeiro</option><option>DP</option><option>Dev</option><option>Suporte</option></select></div>
+      <div><label class="f-lbl">Mensagem *</label><textarea class="f-ta" placeholder="Conteúdo do comunicado..."></textarea></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost btn-sm" onclick="closeComModal()">Cancelar</button>
+      <button class="btn btn-orange btn-sm" onclick="closeComModal()">📢 Publicar</button>
+    </div>`;
+  document.getElementById('com-modal').classList.add('open');
+}
+
+function closeComModal(){ document.getElementById('com-modal').classList.remove('open'); }
+
+/* ── AUDIT ── */
+const AUDIT_MOCK = [
+  {a:'Leitura confirmada: "NPS do mês"',u:'Rafael Moura',t:'Hoje 14:32',c:'var(--grn)'},
+  {a:'Comunicado publicado: "Reunião Q1"',u:'Luana Ferreira',t:'Hoje 10:05',c:'var(--orange)'},
+  {a:'Acesso ao espaço de perfil',u:'Rafael Moura',t:'Ontem 16:48',c:'var(--t-txt3)'},
+  {a:'Filtro: departamento CS aplicado',u:'Rafael Moura',t:'Ontem 09:21',c:'var(--blue-mid)'},
+  {a:'Sessão iniciada',u:'Rafael Moura',t:'22/03 08:00',c:'var(--grn)'},
+];
+function openAudit(ctx){
+  document.getElementById('audit-title').textContent=`Auditoria · ${ctx}`;
+  document.getElementById('audit-body').innerHTML=AUDIT_MOCK.map(a=>`
+    <div class="audit-item">
+      <div class="audit-dot" style="background:${a.c}"></div>
+      <div><div class="audit-action">${a.a}</div><div class="audit-meta">${a.u} · ${a.t}</div></div>
+    </div>`).join('');
+  document.getElementById('audit-panel').classList.add('open');
+  document.getElementById('audit-overlay').classList.add('open');
+}
+function closeAudit(){
+  document.getElementById('audit-panel').classList.remove('open');
+  document.getElementById('audit-overlay').classList.remove('open');
+}
+
+/* ── THEME ── */
+function toggleTheme(){
+  const d = document.documentElement;
+  const isD = d.getAttribute('data-theme')==='dark';
+  d.setAttribute('data-theme',isD?'light':'dark');
+  document.getElementById('themeBtn').textContent = isD?'🌙':'☀️';
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded',()=>{
+  initGreeting();
+  renderFrase();
+  renderComList();
+});
+</script>
+</body>
+</html>

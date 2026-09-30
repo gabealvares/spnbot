@@ -1,0 +1,44 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<title>Protótipo — editor do site</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/grapesjs@0.22.4/dist/css/grapes.min.css">
+<script src="https://cdn.jsdelivr.net/npm/grapesjs@0.22.4/dist/grapes.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/grapesjs-blocks-basic@1.0.2/dist/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/grapesjs-preset-webpage@1.0.3/dist/index.js"></script>
+<style>body,html{margin:0;height:100%;overflow:hidden;font-family:-apple-system,Segoe UI,Roboto,sans-serif}
+.barra{height:48px;display:flex;align-items:center;gap:10px;padding:0 14px;background:#111318;color:#e6e8ec;border-bottom:1px solid #2a2e37}
+.barra b{font-size:14px} .barra span{font-size:12px;color:#9aa1ad} .barra .dir{margin-left:auto;display:flex;gap:8px}
+.barra button{background:#23272f;color:#e6e8ec;border:1px solid #363b46;border-radius:6px;padding:6px 12px;font-size:13px;cursor:pointer}
+.barra button.pri{background:#F97316;border-color:#F97316;color:#111}
+#gjs{height:calc(100% - 48px)}</style></head><body>
+<div class="barra"><b>Órbita · Site › Início</b><span>protótipo — clique em qualquer texto e digite; arraste blocos da lateral</span>
+<div class="dir"><button onclick="editor.runCommand('core:undo')">Desfazer</button><button onclick="editor.runCommand('core:redo')">Refazer</button><button onclick="ver()">Ver HTML gerado</button><button class="pri" onclick="alert('No protótipo, Salvar só mostra que gravaria. Integrado, grava a página e publica.')">Salvar</button></div></div>
+<div id="gjs">
+  <header class="topo"><div class="faixa">
+    <span class="marca"><img src="http://localhost:8520/api/v1/arquivos/publico/9c9c4515-33eb-4137-b4fe-b4ab94403420/midias/2026/09/9762a469783c.svg" alt="Órbita Serviços Digitais" class="site-logo">Órbita Serviços Digitais</span>
+    <nav><a href="#/orbita/inicio">Início</a><a href="#/orbita/precos">Preços</a><a href="#/orbita/contato">Contato</a></nav>
+  </div></header>
+  <main><h1>Atendimento que não deixa cliente sem resposta</h1>
+<p>A Órbita organiza filas, prazos e canais numa plataforma só, para a sua equipe responder no tempo que você prometeu.</p>
+<div class="bloco-chamada"><h2>Quer ver com a sua operação?</h2><p>Mostramos as filas, os prazos e os relatórios com o seu cenário.</p><a class="botao primario" href="#/orbita/contato">Falar com um especialista</a></div>
+<div class="bloco-colunas"><div><strong>Filas por unidade</strong><br>Cada unidade com a própria fila, sem misturar o atendimento de quem não é dela.</div><div><strong>Prazos que avisam</strong><br>O prazo combinado fica à vista, e o sistema avisa antes de estourar.</div></div>
+<div class="bloco-faq"><details><summary>Quanto tempo leva para começar?</summary><p>A implantação padrão leva de quatro a oito semanas, conforme o tamanho da equipe.</p></details><details><summary>Atende mais de uma unidade?</summary><p>Sim, com fila e relatório por unidade.</p></details></div>
+<div class="bloco-cursos"><h2>Cursos da Órbita</h2><article class="curso"><h3><a href="#/orbita/cursos/4-comece-a-usar-o-orbita-atende">Comece a usar o Órbita Atende</a></h3><p class="curso-detalhe">Implantação · 2 h · com certificado</p><p>Para a equipe do cliente: o essencial para atender pela plataforma desde o primeiro dia.</p></article></div></main>
+  <footer><div class="faixa">Órbita Serviços Digitais &copy; 2026 Órbita Serviços Digitais</div></footer>
+</div>
+<script>
+window.editor = grapesjs.init({
+  container:'#gjs', fromElement:true, height:'100%', storageManager:false,
+  plugins:['gjs-blocks-basic','grapesjs-preset-webpage'],
+  pluginsOpts:{'grapesjs-preset-webpage':{modalImportTitle:'Importar HTML'}},
+  canvas:{styles:[]},
+  deviceManager:{devices:[{name:'Desktop',width:''},{name:'Tablet',width:'768px',widthMedia:'992px'},{name:'Celular',width:'375px',widthMedia:'480px'}]},
+  protectedCss:''
+});
+editor.setStyle("\n  :root { --marca: #1D4ED8; --tinta: #16181D; --tinta2: #4A5160;\n          --linha: #E4E7EC; --fundo: #FFFFFF; --fundo2: #F7F8FA; }\n  * { box-sizing: border-box; }\n  body { margin: 0; font: 16px/1.6 -apple-system, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n         color: #16181D; background: #FFFFFF; }\n  img { max-width: 100%; height: auto; display: block; }\n  a { color: #1D4ED8; }\n  header.topo { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.94);\n                backdrop-filter: blur(6px); border-bottom: 1px solid #E4E7EC; }\n  .faixa { max-width: 1080px; margin: 0 auto; padding: 14px 20px; display: flex; gap: 16px;\n           align-items: center; flex-wrap: wrap; }\n  .marca { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .5px;\n           font-size: 20px; color: #16181D; text-decoration: none; }\n  .site-logo { height: 28px; width: auto; }\n  header nav { display: flex; gap: 14px; flex-wrap: wrap; margin-left: auto; }\n  header nav a { color: #4A5160; text-decoration: none; font-size: 14px; font-weight: 600; }\n  header nav a:hover { color: #1D4ED8; }\n  main { max-width: 1080px; margin: 0 auto; padding: 32px 20px 64px; }\n  h1 { font-size: 40px; line-height: 1.15; margin: 0 0 16px; letter-spacing: -.5px; }\n  h2 { font-size: 26px; margin: 40px 0 12px; }\n  h3 { font-size: 18px; margin: 0 0 8px; }\n  p, ul { color: #4A5160; }\n  p { margin: 0 0 14px; }\n  figure { margin: 24px 0; border: 1px solid #E4E7EC; border-radius: 12px; overflow: hidden;\n           box-shadow: 0 10px 30px rgba(16,24,40,.08); }\n  figcaption { padding: 10px 14px; font-size: 13px; color: #4A5160; background: #F7F8FA; }\n  .bloco-chamada { background: #F7F8FA; border: 1px solid #E4E7EC;\n                   border-left: 4px solid #1D4ED8; border-radius: 12px; padding: 24px; margin: 28px 0; }\n  .bloco-chamada h2 { margin: 0 0 8px; font-size: 22px; }\n  .bloco-chamada a, .bloco-preco a, .conteudo-publicado a.btn {\n      display: inline-block; margin-top: 10px; background: #1D4ED8; color: #fff;\n      text-decoration: none; padding: 12px 20px; border-radius: 10px; font-weight: 700; }\n  .bloco-colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }\n  .bloco-colunas > div { background: #F7F8FA; border: 1px solid #E4E7EC;\n                         border-radius: 12px; padding: 18px; }\n  .bloco-faq { border-top: 1px solid #E4E7EC; margin-top: 20px; }\n  .bloco-faq h3 { margin: 18px 0 4px; font-size: 16px; }\n  .bloco-preco { border: 1px solid #E4E7EC; border-radius: 12px; padding: 22px; margin: 20px 0; }\n  .bloco-depoimento { padding: 18px; }\n  .post { border-bottom: 1px solid #E4E7EC; padding: 14px 0; }\n  form { background: #F7F8FA; border: 1px solid #E4E7EC; border-radius: 12px;\n         padding: 20px; margin: 24px 0; }\n  form label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0 4px; }\n  form input, form textarea, form select { width: 100%; padding: 11px 12px; border: 1px solid #E4E7EC;\n      border-radius: 8px; font: inherit; background: #fff; }\n  form button { margin-top: 16px; background: #1D4ED8; color: #fff; border: 0; padding: 12px 22px;\n      border-radius: 10px; font-weight: 700; font-size: 15px; cursor: pointer; }\n  footer { border-top: 1px solid #E4E7EC; background: #F7F8FA; }\n  footer .faixa { display: block; color: #4A5160; font-size: 14px; padding: 24px 20px 40px; }\n  @media (max-width: 720px) {\n    h1 { font-size: 30px; }\n    .bloco-colunas { grid-template-columns: 1fr; }\n    .faixa { padding: 12px 16px; }\n    main { padding: 22px 16px 48px; }\n  }\n" + editor.getCss());
+editor.BlockManager.add('chamada',{label:'Chamada (destaque)',category:'Site',content:'<div class="bloco-chamada"><h2>Título da chamada</h2><p>Texto de apoio.</p><a class="botao primario" href="#">Falar com a gente</a></div>'});
+editor.BlockManager.add('colunas2',{label:'Duas colunas',category:'Site',content:'<div class="bloco-colunas"><div><strong>Benefício</strong><br>Descrição.</div><div><strong>Benefício</strong><br>Descrição.</div></div>'});
+editor.BlockManager.add('faq',{label:'Perguntas frequentes',category:'Site',content:'<div class="bloco-faq"><details><summary>Pergunta?</summary><p>Resposta.</p></details></div>'});
+editor.BlockManager.add('form',{label:'Formulário de contato',category:'Site',content:'<form><label>Nome</label><input><label>E-mail</label><input type="email"><button type="button">Enviar</button></form>'});
+editor.BlockManager.add('preco',{label:'Plano / preço',category:'Site',content:'<div class="bloco-preco"><h3>Plano Essencial</h3><p><strong>R$ 490/mês</strong></p><a href="#">Assinar</a></div>'});
+function ver(){ const w=window.open('','_blank'); w.document.write('<pre style="white-space:pre-wrap">'+editor.getHtml().replace(/</g,'&lt;')+'</pre>'); }
+</script></body></html>

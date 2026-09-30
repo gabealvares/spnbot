@@ -1,0 +1,3329 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)file:///Users/gabriel.alvares/Downloads/gaco_design_system_v3%20(1).html -->
+<html lang="pt-BR" data-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GACO — Design System v3 · Guia Completo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./GACO — Design System v3 · Guia Completo_files/css2" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════════
+   GACO DESIGN SYSTEM v3 — Guia de Referência Completo
+   Dark Mode (padrão) + Light Mode
+   Fontes: Syne (display/headings) · DM Sans (body) · IBM Plex Mono (code/dados)
+════════════════════════════════════════════════════════════ */
+
+/* ── TOKENS DARK (padrão) ──────────────────────────────── */
+:root {
+  /* === SUPERFÍCIES === */
+  --bg:    #060810;          /* fundo raiz da aplicação */
+  --s0:    #080b14;          /* camada 0 — abaixo do surf */
+  --s1:    #0d1120;          /* surf principal — cards, topbar */
+  --s2:    #121829;          /* surf secundário — inputs, hover bg */
+  --s3:    #18202e;          /* surf terciário — hover item, table head */
+  --s4:    #1e2840;          /* surf quaternário — selecionado */
+
+  /* === BORDAS === */
+  --e:     rgba(255,255,255,0.055);   /* border sutil */
+  --e2:    rgba(255,255,255,0.10);    /* border normal */
+  --e3:    rgba(255,255,255,0.17);    /* border forte / focus */
+  --e-focus: rgba(59,130,246,0.50);  /* border focus azul */
+
+  /* === TEXTO === */
+  --fg:    #dce4f5;           /* texto primário */
+  --fg2:   #7a8daa;           /* texto secundário */
+  --fg3:   #3e506a;           /* texto terciário / placeholder */
+  --fg-inv:#ffffff;           /* texto sobre fundos escuros sólidos */
+
+  /* === SOMBRAS === */
+  --shd-sm:  0 2px 8px rgba(0,0,0,0.40);
+  --shd-md:  0 4px 20px rgba(0,0,0,0.50);
+  --shd-lg:  0 8px 40px rgba(0,0,0,0.60);
+  --shd-xl:  0 16px 60px rgba(0,0,0,0.70);
+  --shd-glow-blue: 0 0 20px rgba(59,130,246,0.25);
+  --shd-glow-org:  0 0 20px rgba(249,115,22,0.25);
+
+  /* === CORES DE MARCA === */
+  --blue:    #3b82f6;
+  --blue-d:  #1d4ed8;
+  --blue-l:  #60a5fa;
+  --blue-g:  rgba(59,130,246,0.10);
+  --blue-b:  rgba(59,130,246,0.18);
+
+  --orange:  #f97316;
+  --orange-d:#c2410c;
+  --orange-l:#fb923c;
+  --orange-g:rgba(249,115,22,0.10);
+  --orange-b:rgba(249,115,22,0.18);
+
+  /* === CORES SEMÂNTICAS === */
+  --grn:     #10b981;
+  --grn-l:   #34d399;
+  --grn-g:   rgba(16,185,129,0.10);
+  --grn-b:   rgba(16,185,129,0.20);
+
+  --yel:     #f59e0b;
+  --yel-l:   #fbbf24;
+  --yel-g:   rgba(245,158,11,0.10);
+  --yel-b:   rgba(245,158,11,0.20);
+
+  --red:     #ef4444;
+  --red-l:   #f87171;
+  --red-g:   rgba(239,68,68,0.10);
+  --red-b:   rgba(239,68,68,0.20);
+
+  --purple:  #8b5cf6;
+  --purple-l:#a78bfa;
+  --purple-g:rgba(139,92,246,0.10);
+  --purple-b:rgba(139,92,246,0.20);
+
+  --cyan:    #06b6d4;
+  --cyan-g:  rgba(6,182,212,0.10);
+
+  /* === TIPOGRAFIA === */
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'IBM Plex Mono', monospace;
+
+  /* === ESCALAS DE FONTE === */
+  --text-2xs: 9px;
+  --text-xs:  10px;
+  --text-sm:  11px;
+  --text-base:13px;
+  --text-md:  14px;
+  --text-lg:  16px;
+  --text-xl:  20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 38px;
+
+  /* === RAIOS DE BORDA === */
+  --r-xs:  4px;
+  --r-sm:  6px;
+  --r:     8px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 18px;
+  --r-2xl:24px;
+
+  /* === ESPAÇAMENTO === */
+  --gap-xs:  4px;
+  --gap-sm:  8px;
+  --gap:    12px;
+  --gap-md: 16px;
+  --gap-lg: 20px;
+  --gap-xl: 28px;
+
+  /* === ALTURAS FIXAS === */
+  --topbar-h: 54px;
+  --filter-h: 52px;
+  --sidebar-w:300px;
+
+  /* === TRANSIÇÕES === */
+  --t-fast:  all 0.10s ease;
+  --t:       all 0.15s ease;
+  --t-slow:  all 0.22s cubic-bezier(0.4,0,0.2,1);
+  --t-spring:all 0.28s cubic-bezier(0.16,1,0.3,1);
+
+  /* === PAGINAÇÃO PADRÃO === */
+  --page-per-table: 20;    /* itens por página em tabelas */
+  --page-per-kanban: 50;   /* itens por coluna no kanban */
+  --page-per-cards: 12;    /* itens em grid de cards */
+}
+
+/* ── TOKENS LIGHT MODE ─────────────────────────────────── */
+[data-theme="light"] {
+  --bg:    #eaecf5;
+  --s0:    #e2e4f0;
+  --s1:    #ffffff;
+  --s2:    #f0f2fa;
+  --s3:    #e4e8f4;
+  --s4:    #d8ddf0;
+
+  --e:     rgba(0,0,0,0.06);
+  --e2:    rgba(0,0,0,0.11);
+  --e3:    rgba(0,0,0,0.18);
+  --e-focus: rgba(37,99,235,0.45);
+
+  --fg:    #080d1c;
+  --fg2:   #2c3e5a;
+  --fg3:   #68778a;
+  --fg-inv:#ffffff;
+
+  --shd-sm:  0 2px 8px rgba(0,0,0,0.08);
+  --shd-md:  0 4px 20px rgba(0,0,0,0.11);
+  --shd-lg:  0 8px 40px rgba(0,0,0,0.14);
+  --shd-xl:  0 16px 60px rgba(0,0,0,0.18);
+
+  --blue:    #1d4ed8;
+  --blue-d:  #1e40af;
+  --blue-l:  #3b82f6;
+  --blue-g:  rgba(29,78,216,0.08);
+  --blue-b:  rgba(29,78,216,0.16);
+
+  --orange:  #c2410c;
+  --orange-d:#9a3412;
+  --orange-l:#ea580c;
+  --orange-g:rgba(194,65,12,0.08);
+  --orange-b:rgba(194,65,12,0.16);
+
+  --grn:     #059669;
+  --grn-l:   #10b981;
+  --grn-g:   rgba(5,150,105,0.08);
+  --grn-b:   rgba(5,150,105,0.16);
+
+  --yel:     #b45309;
+  --yel-g:   rgba(180,83,9,0.09);
+  --yel-b:   rgba(180,83,9,0.18);
+
+  --red:     #b91c1c;
+  --red-l:   #ef4444;
+  --red-g:   rgba(185,28,28,0.08);
+  --red-b:   rgba(185,28,28,0.16);
+
+  --purple:  #6d28d9;
+  --purple-l:#8b5cf6;
+  --purple-g:rgba(109,40,217,0.08);
+  --purple-b:rgba(109,40,217,0.16);
+}
+
+/* ── RESET E BASE ──────────────────────────────────────── */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; font-size:100%; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--fg);
+  transition: background 0.2s, color 0.2s;
+}
+::-webkit-scrollbar { width:5px; height:5px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--s4); border-radius:99px; }
+a { color:var(--blue); text-decoration:none; }
+
+/* ════════════════════════════════════════════════════════════
+   NAVEGAÇÃO — Sticky sidebar de seções
+════════════════════════════════════════════════════════════ */
+.ds-topbar {
+  position: sticky; top:0; z-index:300;
+  height: var(--topbar-h);
+  background: var(--s1);
+  border-bottom: 1px solid var(--e2);
+  display: flex; align-items: center;
+  padding: 0 28px; gap: 16px;
+  box-shadow: var(--shd-sm);
+}
+.ds-logo {
+  font-family: var(--font-display);
+  font-size: 17px; font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--fg); flex-shrink:0;
+}
+.ds-logo span { color: var(--orange); }
+.ds-version {
+  font-family: var(--font-mono);
+  font-size: 10px; font-weight: 600;
+  background: var(--blue-g); color: var(--blue);
+  border: 1px solid var(--blue-b);
+  padding: 2px 8px; border-radius: 99px;
+}
+.ds-nav-links { display:flex; gap:2px; overflow-x:auto; }
+.ds-nav-link {
+  font-size: 11px; font-weight: 600;
+  color: var(--fg2); padding: 5px 11px;
+  border-radius: var(--r-sm); white-space:nowrap;
+  cursor: pointer; border:none; background:none;
+  transition: var(--t);
+}
+.ds-nav-link:hover { background:var(--s2); color:var(--fg); }
+.ds-nav-link.active { background:var(--orange-g); color:var(--orange); }
+.ds-topbar-right { margin-left:auto; display:flex; align-items:center; gap:8px; flex-shrink:0; }
+.theme-pill {
+  display: flex; gap:2px; background:var(--s2);
+  border: 1px solid var(--e2); border-radius:99px; padding:2px;
+}
+.tp-opt {
+  font-size:11px; font-weight:600; padding:4px 12px; border-radius:99px;
+  color:var(--fg2); cursor:pointer; border:none; background:none; transition:var(--t);
+}
+.tp-opt.active { background:var(--s1); color:var(--fg); box-shadow:var(--shd-sm); }
+
+/* ── LAYOUT DO GUIA ───────────────────────────────────── */
+.ds-body { display:flex; }
+.ds-aside {
+  width: 220px; flex-shrink:0;
+  position: sticky; top: var(--topbar-h);
+  height: calc(100vh - var(--topbar-h));
+  overflow-y: auto; padding: 20px 16px;
+  border-right: 1px solid var(--e);
+  background: var(--s0);
+}
+.ds-aside-group { margin-bottom: 20px; }
+.ds-aside-label {
+  font-size: 9px; font-weight:700;
+  letter-spacing: 0.18em; text-transform:uppercase;
+  color: var(--fg3); padding: 0 8px;
+  margin-bottom: 5px;
+}
+.ds-aside-item {
+  display:flex; align-items:center; gap:8px;
+  padding: 6px 8px; border-radius:var(--r-sm);
+  font-size: 12px; color: var(--fg2);
+  cursor:pointer; transition:var(--t);
+  border:none; background:none; width:100%; text-align:left;
+}
+.ds-aside-item:hover { background:var(--s2); color:var(--fg); }
+.ds-aside-item.active { background:var(--orange-g); color:var(--orange); font-weight:600; }
+.ds-aside-dot { width:5px; height:5px; border-radius:50%; background:currentColor; flex-shrink:0; }
+
+.ds-content { flex:1; min-width:0; }
+
+/* ── SEÇÃO ─────────────────────────────────────────────── */
+.ds-section {
+  padding: 48px 40px;
+  border-bottom: 1px solid var(--e);
+}
+.ds-section:last-child { border-bottom:none; }
+.ds-section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9px; font-weight:600;
+  letter-spacing: 0.22em; text-transform:uppercase;
+  color: var(--orange); margin-bottom:6px;
+}
+.ds-section-title {
+  font-family: var(--font-display);
+  font-size: 26px; font-weight:800;
+  color: var(--fg); margin-bottom:6px; line-height:1.2;
+}
+.ds-section-desc {
+  font-size: 13px; color: var(--fg2);
+  max-width: 620px; margin-bottom: 32px; line-height:1.65;
+}
+.ds-sep {
+  height: 1px; background: var(--e2);
+  margin: 28px 0;
+}
+.ds-subsection-title {
+  font-family: var(--font-display);
+  font-size: 14px; font-weight:700;
+  color: var(--fg); margin-bottom: 14px;
+  display:flex; align-items:center; gap:10px;
+}
+.ds-subsection-title::after {
+  content:''; flex:1; height:1px;
+  background: var(--e2);
+}
+
+/* ── GRID HELPERS ──────────────────────────────────────── */
+.ds-grid { display:grid; gap:16px; }
+.g2 { grid-template-columns:1fr 1fr; }
+.g3 { grid-template-columns:1fr 1fr 1fr; }
+.g4 { grid-template-columns:repeat(4,1fr); }
+.g5 { grid-template-columns:repeat(5,1fr); }
+.g6 { grid-template-columns:repeat(6,1fr); }
+.g-auto { grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); }
+
+/* ── SWATCH DE CÓDIGO ──────────────────────────────────── */
+.token-code {
+  font-family: var(--font-mono);
+  font-size: 10.5px; color: var(--blue-l);
+  background: var(--s2); border: 1px solid var(--e2);
+  padding: 1px 6px; border-radius: var(--r-xs);
+}
+.spec-label {
+  font-family: var(--font-mono);
+  font-size: 9px; color: var(--fg3);
+  letter-spacing:0.05em;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 1 — CORES
+════════════════════════════════════════════════════════════ */
+.color-row { display:flex; flex-direction:column; gap:6px; }
+.color-swatch {
+  height: 56px; border-radius: var(--r-md);
+  border: 1px solid var(--e2);
+  position:relative; overflow:hidden;
+}
+.color-swatch::after {
+  content:attr(data-val);
+  position:absolute; bottom:6px; right:10px;
+  font-family: var(--font-mono); font-size:9px;
+  font-weight:600; color:rgba(255,255,255,0.6);
+}
+.color-swatch-sm {
+  height:36px; border-radius:var(--r-sm);
+  border:1px solid var(--e);
+}
+.color-name { font-size:11px; font-weight:600; color:var(--fg); }
+.color-var  { font-size:9px; color:var(--fg3); font-family:var(--font-mono); }
+
+/* superfícies */
+.sw-bg    { background:#060810; }
+.sw-s0    { background:#080b14; }
+.sw-s1    { background:#0d1120; }
+.sw-s2    { background:#121829; }
+.sw-s3    { background:#18202e; }
+.sw-s4    { background:#1e2840; }
+/* texto */
+.sw-fg    { background:#dce4f5; }
+.sw-fg2   { background:#7a8daa; }
+.sw-fg3   { background:#3e506a; }
+/* marca */
+.sw-blue   { background:#3b82f6; }
+.sw-orange { background:#f97316; }
+/* semânticas */
+.sw-grn    { background:#10b981; }
+.sw-yel    { background:#f59e0b; }
+.sw-red    { background:#ef4444; }
+.sw-purple { background:#8b5cf6; }
+.sw-cyan   { background:#06b6d4; }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 2 — TIPOGRAFIA
+════════════════════════════════════════════════════════════ */
+.type-specimen { padding:16px 0; border-bottom:1px solid var(--e); display:flex; align-items:baseline; gap:20px; }
+.type-specimen:last-child { border-bottom:none; }
+.type-meta { min-width:160px; flex-shrink:0; }
+.type-role { font-size:9px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--fg3); }
+.type-details { font-size:9px; color:var(--fg3); font-family:var(--font-mono); margin-top:2px; }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 3 — BOTÕES
+════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items:center; gap:6px;
+  border-radius: var(--r); font-family: var(--font-body);
+  font-weight: 600; cursor:pointer;
+  transition: var(--t); white-space:nowrap;
+  border: 1px solid transparent;
+  position: relative; overflow:hidden;
+  user-select:none;
+}
+.btn::after {
+  content:''; position:absolute; inset:0;
+  background:rgba(255,255,255,0);
+  transition: background 0.1s;
+}
+.btn:hover::after { background:rgba(255,255,255,0.06); }
+.btn:active { transform:translateY(1px); }
+.btn:disabled { opacity:0.45; cursor:not-allowed; pointer-events:none; }
+
+/* Tamanhos */
+.btn-xs  { font-size:10px; padding:3px 9px; border-radius:var(--r-sm); gap:4px; }
+.btn-sm  { font-size:11px; padding:5px 12px; }
+.btn-md  { font-size:12px; padding:7px 16px; }           /* padrão */
+.btn-lg  { font-size:13px; padding:10px 22px; }
+.btn-xl  { font-size:14px; padding:12px 28px; }
+.btn-icon { padding:0; justify-content:center; flex-shrink:0; }
+.btn-icon.btn-xs  { width:24px; height:24px; }
+.btn-icon.btn-sm  { width:28px; height:28px; }
+.btn-icon.btn-md  { width:34px; height:34px; }
+.btn-icon.btn-lg  { width:40px; height:40px; }
+
+/* Variantes */
+.btn-primary { background:var(--blue); color:#fff; border-color:var(--blue); box-shadow:0 2px 8px rgba(59,130,246,0.3); }
+.btn-primary:hover { background:var(--blue-l); border-color:var(--blue-l); box-shadow:0 4px 14px rgba(59,130,246,0.4); }
+.btn-orange  { background:var(--orange); color:#fff; border-color:var(--orange); box-shadow:0 2px 8px rgba(249,115,22,0.30); }
+.btn-orange:hover { background:var(--orange-l); border-color:var(--orange-l); box-shadow:0 4px 14px rgba(249,115,22,0.40); }
+.btn-success { background:var(--grn); color:#fff; border-color:var(--grn); }
+.btn-success:hover { background:var(--grn-l); border-color:var(--grn-l); }
+.btn-danger  { background:transparent; color:var(--red); border-color:rgba(239,68,68,0.35); }
+.btn-danger:hover  { background:var(--red-g); border-color:var(--red); }
+.btn-ghost   { background:var(--s2); color:var(--fg2); border-color:var(--e2); }
+.btn-ghost:hover   { background:var(--s3); color:var(--fg); border-color:var(--e3); }
+.btn-outline-blue  { background:transparent; color:var(--blue); border-color:var(--blue-b); }
+.btn-outline-blue:hover { background:var(--blue-g); }
+.btn-soft-blue { background:var(--blue-g); color:var(--blue-l); border-color:var(--blue-b); }
+.btn-soft-blue:hover { background:var(--blue-b); }
+
+/* Estado de loading */
+.btn-loading { position:relative; color:transparent !important; pointer-events:none; }
+.btn-loading::before {
+  content:''; position:absolute; width:14px; height:14px;
+  border:2px solid rgba(255,255,255,0.3);
+  border-top-color:rgba(255,255,255,0.9);
+  border-radius:50%; animation:spin 0.7s linear infinite;
+  top:50%; left:50%; transform:translate(-50%,-50%);
+}
+@keyframes spin { to { transform:translate(-50%,-50%) rotate(360deg); } }
+
+/* Grupo de botões */
+.btn-group { display:flex; }
+.btn-group .btn { border-radius:0; border-right-width:0; }
+.btn-group .btn:first-child { border-radius:var(--r) 0 0 var(--r); }
+.btn-group .btn:last-child  { border-radius:0 var(--r) var(--r) 0; border-right-width:1px; }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 4 — CHIPS / BADGES / TAGS
+════════════════════════════════════════════════════════════ */
+.chip {
+  display: inline-flex; align-items:center; gap:4px;
+  padding: 2px 9px; border-radius:99px;
+  font-size:10.5px; font-weight:600; line-height:1.4;
+  white-space:nowrap;
+}
+.chip-dot { width:5px; height:5px; border-radius:50%; background:currentColor; flex-shrink:0; }
+.chip-grn    { background:var(--grn-g);    color:var(--grn-l);    border:1px solid var(--grn-b); }
+.chip-blue   { background:var(--blue-g);   color:var(--blue-l);   border:1px solid var(--blue-b); }
+.chip-orange { background:var(--orange-g); color:var(--orange-l); border:1px solid var(--orange-b); }
+.chip-red    { background:var(--red-g);    color:var(--red-l);    border:1px solid var(--red-b); }
+.chip-yel    { background:var(--yel-g);    color:var(--yel-l);    border:1px solid var(--yel-b); }
+.chip-purple { background:var(--purple-g); color:var(--purple-l); border:1px solid var(--purple-b); }
+.chip-cyan   { background:var(--cyan-g);   color:var(--cyan);     border:1px solid rgba(6,182,212,0.2); }
+.chip-gray   { background:var(--s3);       color:var(--fg2);      border:1px solid var(--e2); }
+
+/* Badge sólido (número, notificação) */
+.badge {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:18px; height:18px;
+  font-size:9.5px; font-weight:800;
+  padding:0 5px; border-radius:99px;
+}
+.badge-grn    { background:var(--grn);    color:#fff; }
+.badge-blue   { background:var(--blue);   color:#fff; }
+.badge-orange { background:var(--orange); color:#fff; }
+.badge-red    { background:var(--red);    color:#fff; }
+.badge-yel    { background:var(--yel);    color:#fff; }
+.badge-gray   { background:var(--s4);     color:var(--fg2); }
+
+/* Health Score Badge */
+.hs-badge {
+  display:inline-flex; align-items:center; gap:5px;
+  padding: 4px 12px; border-radius:99px;
+  font-size:12px; font-weight:700;
+}
+.hs-green  { background:var(--grn-g);    color:var(--grn-l);    border:1px solid var(--grn-b); }
+.hs-yellow { background:var(--yel-g);    color:var(--yel-l);    border:1px solid var(--yel-b); }
+.hs-red    { background:var(--red-g);    color:var(--red-l);    border:1px solid var(--red-b); }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 5 — INPUTS / FORMULÁRIOS
+════════════════════════════════════════════════════════════ */
+.f-group { display:flex; flex-direction:column; gap:5px; }
+.f-label {
+  font-size:9px; font-weight:700;
+  letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--fg3);
+}
+.f-label .f-req { color:var(--red); margin-left:2px; }
+.f-inp, .f-sel, .f-ta {
+  background: var(--s2);
+  border: 1px solid var(--e2);
+  border-radius: var(--r);
+  padding: 8px 11px;
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 13px;
+  outline: none;
+  transition: var(--t);
+  width: 100%;
+}
+.f-inp:hover, .f-sel:hover { border-color:var(--e3); }
+.f-inp:focus, .f-sel:focus, .f-ta:focus {
+  border-color: var(--e-focus);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+  background: var(--s1);
+}
+.f-inp::placeholder, .f-ta::placeholder { color:var(--fg3); }
+.f-inp-error { border-color:var(--red) !important; }
+.f-inp-error:focus { box-shadow:0 0 0 3px rgba(239,68,68,0.15) !important; }
+.f-inp-success { border-color:var(--grn) !important; }
+.f-error-msg { font-size:11px; color:var(--red-l); margin-top:3px; }
+.f-help-msg  { font-size:11px; color:var(--fg3); margin-top:3px; }
+.f-ta { resize:vertical; min-height:80px; line-height:1.6; }
+.f-sel option { background:var(--s2); }
+
+/* Input com ícone */
+.f-inp-wrap { position:relative; }
+.f-inp-icon-left  { padding-left:34px; }
+.f-inp-icon-right { padding-right:34px; }
+.f-inp-icon { position:absolute; top:50%; transform:translateY(-50%); color:var(--fg3); font-size:13px; pointer-events:none; }
+.f-inp-icon.left  { left:10px; }
+.f-inp-icon.right { right:10px; }
+
+/* Checkbox e Radio */
+.f-check-wrap { display:flex; align-items:center; gap:8px; cursor:pointer; }
+.f-check {
+  width:16px; height:16px; border-radius:4px;
+  border:1.5px solid var(--e3);
+  background:var(--s2); cursor:pointer;
+  flex-shrink:0; accent-color:var(--blue);
+}
+.f-radio { border-radius:50%; }
+.f-check-label { font-size:13px; color:var(--fg); }
+
+/* Toggle switch */
+.toggle-wrap { display:flex; align-items:center; gap:10px; cursor:pointer; }
+.toggle-track {
+  width:36px; height:20px; border-radius:99px;
+  background:var(--s3); border:1px solid var(--e2);
+  position:relative; transition:var(--t); cursor:pointer;
+}
+.toggle-track.on { background:var(--blue); border-color:var(--blue); }
+.toggle-thumb {
+  position:absolute; width:14px; height:14px; border-radius:50%;
+  background:#fff; top:2px; left:2px;
+  transition:var(--t-spring); box-shadow:0 1px 4px rgba(0,0,0,0.3);
+}
+.toggle-track.on .toggle-thumb { transform:translateX(16px); }
+
+/* Grid de formulário */
+.f-row { display:grid; gap:12px; margin-bottom:12px; }
+.f-row.c2 { grid-template-columns:1fr 1fr; }
+.f-row.c3 { grid-template-columns:1fr 1fr 1fr; }
+.f-section-label {
+  font-size:9px; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--fg3); padding:10px 0 7px;
+  border-bottom:1px solid var(--e); margin-bottom:14px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 6 — CARDS
+════════════════════════════════════════════════════════════ */
+/* Card base */
+.card {
+  background: var(--s1);
+  border: 1px solid var(--e2);
+  border-radius: var(--r-lg);
+  overflow:hidden;
+}
+.card-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:13px 16px; border-bottom:1px solid var(--e);
+}
+.card-title {
+  font-size:9px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--fg3);
+}
+.card-body { padding:16px; }
+
+/* KPI Card */
+.kpi-card {
+  background:var(--s1); border:1px solid var(--e2);
+  border-radius:var(--r-lg); padding:16px 18px;
+  position:relative; overflow:hidden;
+  transition:var(--t);
+}
+.kpi-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  border-radius:var(--r-lg) var(--r-lg) 0 0;
+}
+.kpi-card:hover { transform:translateY(-2px); box-shadow:var(--shd-md); border-color:var(--e3); }
+.kpi-card.kc-blue::before   { background:var(--blue); }   .kpi-card.kc-blue .kpi-val   { color:var(--blue-l); }
+.kpi-card.kc-orange::before { background:var(--orange); } .kpi-card.kc-orange .kpi-val { color:var(--orange-l); }
+.kpi-card.kc-grn::before    { background:var(--grn); }    .kpi-card.kc-grn .kpi-val    { color:var(--grn-l); }
+.kpi-card.kc-red::before    { background:var(--red); }    .kpi-card.kc-red .kpi-val    { color:var(--red-l); }
+.kpi-card.kc-purple::before { background:var(--purple); } .kpi-card.kc-purple .kpi-val { color:var(--purple-l); }
+.kpi-card.kc-yel::before    { background:var(--yel); }    .kpi-card.kc-yel .kpi-val    { color:var(--yel-l); }
+.kpi-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:15px; margin-bottom:10px; background:var(--s2); }
+.kpi-label { font-size:9px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--fg3); margin-bottom:3px; }
+.kpi-val { font-size:26px; font-weight:800; line-height:1; margin-bottom:4px; font-variant-numeric:tabular-nums; font-family:var(--font-display); }
+.kpi-sub { font-size:11px; color:var(--fg2); }
+.kpi-trend { font-size:10px; font-weight:600; }
+.kpi-trend-up   { color:var(--grn); }
+.kpi-trend-down { color:var(--red); }
+
+/* Entity Card (cliente, fornecedor, colaborador, lead) */
+.ent-card {
+  background:var(--s1); border:1px solid var(--e2);
+  border-radius:var(--r-xl); overflow:hidden;
+  cursor:pointer; transition:var(--t);
+  position:relative;
+}
+.ent-card:hover { transform:translateY(-3px); box-shadow:var(--shd-lg); border-color:var(--e3); }
+.ent-card-banner { height:60px; position:relative; }
+.ent-card-pattern {
+  position:absolute; inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:20px 20px;
+}
+.ent-card-av {
+  position:absolute; bottom:-20px; left:14px;
+  width:44px; height:44px; border-radius:50%;
+  border:3px solid var(--s1);
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:800; color:#fff;
+  box-shadow:var(--shd-sm);
+}
+.ent-card-status { position:absolute; top:8px; right:8px; }
+.ent-card-body { padding:26px 14px 14px; }
+.ent-card-name { font-size:14px; font-weight:700; color:var(--fg); margin-bottom:2px; }
+.ent-card-sub { font-size:11px; color:var(--fg3); margin-bottom:8px; }
+.ent-card-tags { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:10px; }
+.ent-card-info { display:flex; flex-direction:column; gap:4px; }
+.ent-card-row { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--fg2); }
+.ent-card-icon { width:14px; text-align:center; font-size:11px; opacity:.55; flex-shrink:0; }
+/* Ações aparecem no hover */
+.ent-card-acts { position:absolute; top:8px; left:8px; display:flex; gap:4px; opacity:0; transition:var(--t); }
+.ent-card:hover .ent-card-acts { opacity:1; }
+.ent-act-btn {
+  width:24px; height:24px; border-radius:5px;
+  background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.85); font-size:10px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:var(--t-fast);
+}
+.ent-act-btn:hover { background:rgba(0,0,0,0.75); color:#fff; }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 7 — TABELAS / LISTAGENS
+════════════════════════════════════════════════════════════ */
+.tbl-wrap {
+  background:var(--s1); border:1px solid var(--e2);
+  border-radius:var(--r-lg); overflow:hidden;
+}
+/* Barra de ferramentas da tabela */
+.tbl-toolbar {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:11px 16px; border-bottom:1px solid var(--e);
+  gap:12px; flex-wrap:wrap;
+}
+.tbl-toolbar-left { display:flex; align-items:center; gap:8px; }
+.tbl-toolbar-right { display:flex; align-items:center; gap:6px; margin-left:auto; flex-shrink:0; }
+.tbl-count { font-size:12px; color:var(--fg2); }
+.tbl-count strong { color:var(--fg); font-weight:600; }
+
+/* Cabeçalho da tabela */
+.tbl-head {
+  display:grid; padding:8px 16px;
+  background:var(--s2); border-bottom:1px solid var(--e2);
+}
+.tbl-th {
+  font-size:9px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--fg3); cursor:pointer; user-select:none;
+  display:flex; align-items:center; gap:4px;
+  transition:var(--t-fast);
+}
+.tbl-th:hover { color:var(--fg2); }
+.tbl-th.sorted { color:var(--blue-l); }
+.tbl-th-sort { font-size:9px; opacity:0.5; }
+
+/* Linhas da tabela */
+.tbl-row {
+  display:grid; padding:11px 16px;
+  border-bottom:1px solid var(--e);
+  align-items:center; cursor:pointer;
+  transition:var(--t-fast);
+}
+.tbl-row:last-child { border-bottom:none; }
+.tbl-row:hover { background:rgba(59,130,246,0.04); }
+.tbl-row:hover .tbl-acts { opacity:1; }
+.tbl-row.selected { background:var(--blue-g); border-color:var(--blue-b); }
+
+/* Ações da linha (visíveis no hover) */
+.tbl-acts { opacity:0; display:flex; gap:4px; transition:var(--t); }
+
+/* Células especiais */
+.cell-name { font-weight:600; font-size:13px; color:var(--fg); }
+.cell-sub  { font-size:10px; color:var(--fg3); margin-top:1px; }
+.cell-mono { font-family:var(--font-mono); font-size:11.5px; font-weight:600; font-variant-numeric:tabular-nums; }
+.cell-date { font-family:var(--font-mono); font-size:11px; color:var(--fg2); }
+
+/* Paginação */
+.tbl-pagination {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 16px; border-top:1px solid var(--e);
+  background:var(--s2);
+}
+.pagination-info { font-size:12px; color:var(--fg2); }
+.pagination-controls { display:flex; align-items:center; gap:4px; }
+.pg-btn {
+  width:30px; height:30px; border-radius:var(--r-sm);
+  background:transparent; border:1px solid var(--e2);
+  color:var(--fg2); cursor:pointer; font-size:12px;
+  display:flex; align-items:center; justify-content:center;
+  transition:var(--t-fast);
+}
+.pg-btn:hover { background:var(--s3); color:var(--fg); }
+.pg-btn.active { background:var(--blue); border-color:var(--blue); color:#fff; font-weight:700; }
+.pg-btn:disabled { opacity:0.3; cursor:not-allowed; }
+.pg-size {
+  font-size:11px; color:var(--fg2); margin-left:8px;
+  display:flex; align-items:center; gap:6px;
+}
+.pg-size select {
+  background:var(--s1); border:1px solid var(--e2);
+  border-radius:var(--r-sm); padding:3px 7px;
+  font-size:11px; color:var(--fg); outline:none;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 8 — FILTROS / FILTER BAR
+════════════════════════════════════════════════════════════ */
+.filter-bar {
+  background:var(--s1); border:1px solid var(--e2);
+  border-radius:var(--r-lg); padding:11px 15px;
+  display:flex; gap:10px; align-items:flex-end;
+  flex-wrap:wrap; margin-bottom:14px;
+  box-shadow:var(--shd-sm);
+}
+.fg { display:flex; flex-direction:column; gap:4px; }
+.fg.grow { flex:1; min-width:180px; }
+.fg-lbl {
+  font-size:9px; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--fg3);
+}
+.fg-input, .fg-select {
+  background:var(--s2); border:1px solid var(--e2);
+  border-radius:var(--r); padding:7px 10px;
+  color:var(--fg); font-size:12px; outline:none;
+  transition:var(--t); width:100%;
+  font-family:var(--font-body);
+}
+.fg-input:focus, .fg-select:focus { border-color:var(--e-focus); box-shadow:0 0 0 2px rgba(59,130,246,0.10); }
+.fg-select option { background:var(--s2); }
+
+/* Chips de filtro ativo */
+.filter-chips-row { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px; align-items:center; }
+.filter-active-chip {
+  display:inline-flex; align-items:center; gap:5px;
+  background:var(--blue-g); color:var(--blue-l);
+  border:1px solid var(--blue-b);
+  padding:3px 10px; border-radius:99px;
+  font-size:11px; font-weight:600;
+}
+.filter-active-chip .rm { cursor:pointer; opacity:.6; }
+.filter-active-chip .rm:hover { opacity:1; }
+.filter-clear-all {
+  font-size:11px; color:var(--fg3); cursor:pointer;
+  border:none; background:none; margin-left:4px;
+}
+.filter-clear-all:hover { color:var(--red); }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 9 — TOPBAR / LAYOUT PRINCIPAL
+════════════════════════════════════════════════════════════ */
+.topbar-demo {
+  background:var(--s1); border:1px solid var(--e2);
+  border-radius:var(--r-lg); overflow:hidden;
+  margin-bottom:20px;
+}
+.tb-inner {
+  height: var(--topbar-h);
+  display:flex; align-items:center;
+  padding:0 20px; gap:12px;
+  border-bottom:1px solid var(--e2);
+}
+.tb-logo-demo {
+  display:flex; align-items:center; gap:9px; flex-shrink:0;
+}
+.tb-logotype {
+  font-family:var(--font-display);
+  font-size:15px; font-weight:800;
+  letter-spacing:.08em; color:var(--fg);
+}
+.tb-logotype span { color:var(--orange); }
+.tb-sep { width:1px; height:20px; background:var(--e2); flex-shrink:0; }
+.tb-nav-demo { display:flex; gap:1px; flex:1; overflow-x:auto; }
+.tb-nav-btn {
+  display:flex; align-items:center; gap:5px;
+  padding:6px 11px; border-radius:var(--r-sm);
+  font-size:12px; font-weight:500; color:var(--fg2);
+  cursor:pointer; transition:var(--t); border:none; background:none;
+  white-space:nowrap; position:relative;
+}
+.tb-nav-btn:hover { background:var(--s2); color:var(--fg); }
+.tb-nav-btn.active { color:var(--orange); }
+.tb-nav-btn.active::after {
+  content:''; position:absolute; bottom:-1px; left:8px; right:8px;
+  height:2px; background:var(--orange); border-radius:2px 2px 0 0;
+}
+.tb-right-demo { margin-left:auto; display:flex; align-items:center; gap:8px; flex-shrink:0; }
+.tb-search {
+  background:var(--s2); border:1px solid var(--e2);
+  border-radius:var(--r); padding:6px 11px 6px 30px;
+  color:var(--fg); font-size:12px; outline:none; width:180px;
+  transition:var(--t);
+}
+.tb-search:focus { border-color:var(--e-focus); width:220px; }
+.tb-search-wrap { position:relative; }
+.tb-search-icon { position:absolute; left:9px; top:50%; transform:translateY(-50%); color:var(--fg3); font-size:12px; pointer-events:none; }
+.tb-icon-btn {
+  width:32px; height:32px; border-radius:var(--r);
+  background:var(--s2); border:1px solid var(--e2);
+  color:var(--fg2); cursor:pointer; font-size:14px;
+  display:flex; align-items:center; justify-content:center;
+  transition:var(--t); position:relative;
+}
+.tb-icon-btn:hover { background:var(--s3); color:var(--fg); }
+.tb-notif-dot {
+  position:absolute; top:4px; right:4px;
+  width:7px; height:7px; border-radius:50%;
+  background:var(--red); border:1.5px solid var(--s1);
+}
+.tb-avatar {
+  width:30px; height:30px; border-radius:50%;
+  background:linear-gradient(135deg,var(--blue-d),var(--purple));
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; color:#fff; cursor:pointer; flex-shrink:0;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 10 — LAYOUT: HOME / DASHBOARD (LEFT CONTENT + RIGHT SIDEBAR)
+════════════════════════════════════════════════════════════ */
+.layout-mock {
+  display:grid; grid-template-columns:1fr var(--sidebar-w);
+  gap:16px; align-items:start;
+}
+/* Sidebar direita — fixa enquanto conteúdo rola */
+.sidebar-right-demo {
+  background:var(--s1); border:1px solid var(--e2);
+  border-radius:var(--r-lg); overflow:hidden;
+  position:sticky; top:calc(var(--topbar-h) + 16px);
+}
+.sidebar-section { padding:14px 16px; }
+.sidebar-section + .sidebar-section { border-top:1px solid var(--e); }
+.sidebar-section-label {
+  font-size:9px; font-weight:700; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--fg3); margin-bottom:10px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+
+/* Health Score Visual */
+.hs-ring-wrap {
+  display:flex; align-items:center; gap:14px; margin-bottom:14px;
+}
+.hs-ring {
+  width:72px; height:72px; flex-shrink:0;
+  border-radius:50%; position:relative;
+  display:flex; align-items:center; justify-content:center;
+  background:conic-gradient(var(--grn) 288deg, var(--s3) 0deg);
+}
+.hs-ring-inner {
+  width:54px; height:54px; border-radius:50%;
+  background:var(--s1); display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+}
+.hs-ring-val { font-family:var(--font-display); font-size:18px; font-weight:800; color:var(--grn); line-height:1; }
+.hs-ring-lbl { font-size:8px; color:var(--fg3); font-weight:600; }
+.hs-detail-title { font-size:13px; font-weight:700; color:var(--fg); margin-bottom:3px; }
+.hs-metrics { display:flex; flex-direction:column; gap:6px; }
+.hs-metric { display:flex; align-items:center; justify-content:space-between; font-size:11px; }
+.hs-metric-label { color:var(--fg2); }
+.hs-metric-val { font-weight:600; color:var(--fg); font-family:var(--font-mono); }
+
+/* Separador de Equipes */
+.team-group { margin-bottom:14px; }
+.team-group-label {
+  font-size:8.5px; font-weight:700; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--fg3);
+  padding:4px 0 6px; border-bottom:1px solid var(--e);
+  margin-bottom:8px;
+}
+.team-member {
+  display:flex; align-items:center; gap:8px;
+  padding:6px 0; border-bottom:1px solid var(--e);
+}
+.team-member:last-child { border-bottom:none; }
+.team-av {
+  width:26px; height:26px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:9px; font-weight:700; color:#fff; flex-shrink:0;
+}
+.team-name { font-size:11px; font-weight:600; color:var(--fg); flex:1; }
+.team-role { font-size:9.5px; color:var(--fg3); }
+.team-status { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.status-online  { background:var(--grn); }
+.status-offline { background:var(--s4); border:1px solid var(--e2); }
+.status-away    { background:var(--yel); }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 11 — TABS
+════════════════════════════════════════════════════════════ */
+/* Variant A — underline (padrão para páginas de detalhe) */
+.tabs-underline {
+  display:flex; border-bottom:1px solid var(--e2);
+  margin-bottom:20px; overflow-x:auto; gap:0;
+}
+.tab-ul-btn {
+  padding:9px 18px; font-size:12px; font-weight:500;
+  color:var(--fg3); cursor:pointer; white-space:nowrap;
+  border:none; background:none;
+  border-bottom:2px solid transparent;
+  margin-bottom:-1px; transition:var(--t);
+}
+.tab-ul-btn:hover { color:var(--fg); }
+.tab-ul-btn.active { color:var(--orange); border-bottom-color:var(--orange); font-weight:600; }
+
+/* Variant B — pill/segment (para filtros rápidos) */
+.tabs-pill {
+  display:inline-flex; gap:2px;
+  background:var(--s2); border:1px solid var(--e2);
+  border-radius:var(--r-md); padding:3px;
+}
+.tab-pill-btn {
+  padding:5px 14px; border-radius:var(--r-sm);
+  font-size:11px; font-weight:500; color:var(--fg2);
+  cursor:pointer; white-space:nowrap; transition:var(--t);
+  border:none; background:none;
+}
+.tab-pill-btn:hover { color:var(--fg); }
+.tab-pill-btn.active { background:var(--s1); color:var(--fg); font-weight:600; box-shadow:var(--shd-sm); }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 12 — MODAIS
+════════════════════════════════════════════════════════════ */
+.modal-demo {
+  background:var(--s1); border:1px solid var(--e2);
+  border-radius:var(--r-xl); overflow:hidden;
+  width:100%; max-width:580px; margin:0 auto;
+  box-shadow:var(--shd-xl);
+}
+.modal-hdr {
+  padding:18px 20px 14px;
+  border-bottom:1px solid var(--e);
+  display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+}
+.modal-title {
+  font-family:var(--font-display);
+  font-size:16px; font-weight:700; color:var(--fg); margin-bottom:3px;
+}
+.modal-subtitle { font-size:12px; color:var(--fg2); }
+.modal-close {
+  width:28px; height:28px; border-radius:var(--r-sm);
+  background:var(--s2); border:1px solid var(--e2);
+  color:var(--fg2); cursor:pointer; font-size:14px;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; transition:var(--t);
+}
+.modal-close:hover { background:var(--s3); color:var(--fg); }
+.modal-body { padding:18px 20px; }
+.modal-footer {
+  padding:13px 20px;
+  border-top:1px solid var(--e);
+  display:flex; gap:8px; justify-content:flex-end;
+  background:var(--s2);
+}
+
+/* Modal de Detalhe — Demanda/Ticket/Tarefa */
+.modal-detail-demo {
+  background:var(--s1); border:1px solid var(--e2);
+  border-radius:var(--r-xl); overflow:hidden;
+  width:100%; max-width:760px; margin:0 auto;
+  box-shadow:var(--shd-xl);
+}
+.modal-det-hdr {
+  padding:16px 20px;
+  border-bottom:1px solid var(--e);
+  display:flex; align-items:center; gap:12px;
+}
+.modal-det-body {
+  display:grid; grid-template-columns:1fr 240px;
+}
+.modal-det-main { padding:18px; border-right:1px solid var(--e); }
+.modal-det-side { padding:16px; }
+.modal-det-section { margin-bottom:18px; }
+.modal-det-section-title {
+  font-size:9px; font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--fg3);
+  margin-bottom:10px; padding-bottom:7px;
+  border-bottom:1px solid var(--e);
+}
+/* Histórico/Log dentro do modal */
+.hist-item { display:flex; gap:10px; padding:8px 0; border-bottom:1px solid var(--e); font-size:12px; }
+.hist-item:last-child { border-bottom:none; }
+.hist-av { width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:700; color:#fff; flex-shrink:0; }
+.hist-content { flex:1; }
+.hist-name { font-weight:600; color:var(--fg); }
+.hist-action { color:var(--fg2); }
+.hist-time { font-size:10px; color:var(--fg3); margin-top:2px; font-family:var(--font-mono); }
+
+/* Documentos anexos */
+.doc-item {
+  display:flex; align-items:center; gap:10px;
+  padding:8px 11px; background:var(--s2);
+  border:1px solid var(--e2); border-radius:var(--r);
+  margin-bottom:7px; cursor:pointer; transition:var(--t-fast);
+}
+.doc-item:hover { border-color:var(--e3); background:var(--s3); }
+.doc-icon { width:28px; height:28px; border-radius:6px; background:var(--blue-g); display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; }
+.doc-name { font-size:12px; font-weight:600; color:var(--fg); flex:1; }
+.doc-meta { font-size:10px; color:var(--fg3); }
+.doc-action { font-size:13px; color:var(--fg3); }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 13 — DRAWER (painel lateral deslizante)
+════════════════════════════════════════════════════════════ */
+.drawer-demo {
+  background:var(--s1); border:1px solid var(--e2);
+  border-radius:var(--r-xl); overflow:hidden;
+  width:460px; max-width:100%;
+  box-shadow:var(--shd-xl);
+}
+.drawer-hdr {
+  padding:18px 20px 14px; border-bottom:1px solid var(--e);
+  position:sticky; top:0; background:var(--s1); z-index:1;
+  display:flex; align-items:flex-start; justify-content:space-between;
+}
+.drawer-title {
+  font-family:var(--font-display);
+  font-size:14px; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--fg);
+}
+.drawer-sub { font-size:12px; color:var(--fg2); margin-top:3px; }
+.drawer-body { padding:18px 20px; }
+.drawer-footer {
+  padding:13px 20px; border-top:1px solid var(--e);
+  display:flex; gap:8px; background:var(--s1);
+}
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 14 — KANBAN
+════════════════════════════════════════════════════════════ */
+.kanban-wrap { display:flex; gap:12px; overflow-x:auto; padding-bottom:12px; }
+.kanban-col { flex-shrink:0; width:265px; display:flex; flex-direction:column; }
+.kanban-col-hdr {
+  padding:10px 13px; border-radius:var(--r-md) var(--r-md) 0 0;
+  display:flex; align-items:center; justify-content:space-between;
+  border:1px solid var(--e2); border-bottom:none;
+}
+.kanban-col-label { font-size:9px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+.kanban-col-count {
+  font-size:10px; font-weight:700; padding:1px 7px;
+  border-radius:99px; background:rgba(255,255,255,0.10); color:var(--fg2);
+}
+.kanban-col-body {
+  flex:1; background:var(--s2); border:1px solid var(--e2);
+  border-top:none; border-radius:0 0 var(--r-md) var(--r-md);
+  padding:8px; min-height:100px;
+}
+.kanban-card {
+  background:var(--s1); border:1px solid var(--e2);
+  border-radius:var(--r); padding:11px 12px; margin-bottom:7px;
+  cursor:pointer; transition:var(--t); position:relative;
+}
+.kanban-card:hover { border-color:var(--e3); transform:translateY(-2px); box-shadow:var(--shd-md); }
+.kanban-card:last-child { margin-bottom:0; }
+.kanban-card-title { font-size:12px; font-weight:600; color:var(--fg); line-height:1.4; margin-bottom:7px; padding-right:24px; }
+.kanban-card-meta { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:5px; }
+.kanban-card-sub { font-size:10px; color:var(--fg3); }
+.kanban-card-prog { height:3px; background:var(--s3); border-radius:99px; overflow:hidden; margin-top:8px; }
+.kanban-prog-fill { height:100%; border-radius:99px; }
+.kanban-card-priority {
+  position:absolute; top:10px; right:9px;
+  width:7px; height:7px; border-radius:50%;
+}
+.prio-high   { background:var(--red); }
+.prio-med    { background:var(--yel); }
+.prio-low    { background:var(--grn); }
+.kanban-add-btn {
+  width:100%; padding:7px; border-radius:var(--r-sm);
+  background:transparent; border:1px dashed var(--e2);
+  color:var(--fg3); font-size:12px; cursor:pointer;
+  transition:var(--t); text-align:center;
+  display:flex; align-items:center; justify-content:center; gap:5px;
+}
+.kanban-add-btn:hover { border-color:var(--e3); color:var(--fg2); background:var(--s2); }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 15 — PÁGINA DE DETALHE (Cliente/Fornecedor/Colaborador/Lead)
+════════════════════════════════════════════════════════════ */
+.entity-page-demo {
+  background:var(--s1); border:1px solid var(--e2);
+  border-radius:var(--r-xl); overflow:hidden;
+}
+.ent-page-banner {
+  height:80px; position:relative;
+  background:linear-gradient(120deg,#0a1428 0%,#0f2042 45%,#1540a0 100%);
+}
+.ent-page-pattern {
+  position:absolute; inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+.ent-page-av-wrap { position:absolute; bottom:-22px; left:20px; }
+.ent-page-av {
+  width:56px; height:56px; border-radius:12px;
+  border:3px solid var(--s1); display:flex; align-items:center;
+  justify-content:center; font-size:22px; font-weight:800; color:#fff;
+  box-shadow:var(--shd-md);
+}
+.ent-page-actions { position:absolute; top:10px; right:14px; display:flex; gap:6px; }
+.ent-page-body { padding:32px 20px 18px; display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+.ent-page-name { font-family:var(--font-display); font-size:20px; font-weight:800; color:var(--fg); margin-bottom:6px; }
+.ent-page-tags { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
+.ent-page-meta { display:flex; flex-wrap:wrap; gap:14px; }
+.ent-page-meta-item { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--fg2); }
+.ent-page-meta-icon { font-size:12px; opacity:.6; }
+
+/* Info row dentro de card */
+.info-row {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:7px 0; border-bottom:1px solid var(--e); font-size:12px;
+}
+.info-row:last-child { border-bottom:none; }
+.info-key { color:var(--fg2); }
+.info-val { font-weight:500; color:var(--fg); }
+.info-val.mono { font-family:var(--font-mono); font-size:11px; }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 16 — LOG / AUDITORIA
+════════════════════════════════════════════════════════════ */
+.audit-log {
+  background:var(--s1); border:1px solid var(--e2);
+  border-radius:var(--r-lg); overflow:hidden;
+}
+.audit-toolbar {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 14px; border-bottom:1px solid var(--e);
+  background:var(--s2);
+}
+.audit-item {
+  display:grid; grid-template-columns:auto 1fr auto;
+  gap:12px; padding:11px 14px;
+  border-bottom:1px solid var(--e); align-items:start;
+  transition:var(--t-fast);
+}
+.audit-item:last-child { border-bottom:none; }
+.audit-item:hover { background:rgba(59,130,246,0.03); }
+.audit-av {
+  width:30px; height:30px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; color:#fff; flex-shrink:0;
+}
+.audit-content {}
+.audit-user { font-size:12px; font-weight:600; color:var(--fg); }
+.audit-action { font-size:12px; color:var(--fg2); line-height:1.5; }
+.audit-entity {
+  font-weight:600; color:var(--blue-l);
+  cursor:pointer;
+}
+.audit-entity:hover { text-decoration:underline; }
+.audit-detail {
+  margin-top:5px; padding:7px 10px;
+  background:var(--s2); border:1px solid var(--e);
+  border-radius:var(--r-sm); font-size:11px; color:var(--fg2);
+  font-family:var(--font-mono);
+}
+.audit-detail .chg-from { color:var(--red-l); text-decoration:line-through; }
+.audit-detail .chg-to   { color:var(--grn-l); }
+.audit-time {
+  font-family:var(--font-mono); font-size:10px; color:var(--fg3);
+  white-space:nowrap; padding-top:2px;
+}
+/* Tipos de evento de auditoria */
+.audit-type {
+  width:28px; height:28px; border-radius:6px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:12px;
+}
+.at-create { background:var(--grn-g); color:var(--grn-l); }
+.at-update { background:var(--blue-g); color:var(--blue-l); }
+.at-delete { background:var(--red-g);  color:var(--red-l); }
+.at-login  { background:var(--purple-g); color:var(--purple-l); }
+.at-comment { background:var(--cyan-g); color:var(--cyan); }
+.at-status  { background:var(--yel-g); color:var(--yel-l); }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 17 — MOUSEOVER / TOOLTIPS
+════════════════════════════════════════════════════════════ */
+[data-tooltip] { position:relative; cursor:help; }
+[data-tooltip]::after {
+  content:attr(data-tooltip);
+  position:absolute; bottom:calc(100% + 7px); left:50%;
+  transform:translateX(-50%) translateY(4px);
+  background:var(--s4); color:var(--fg);
+  border:1px solid var(--e3); border-radius:var(--r-sm);
+  font-size:11px; font-weight:500;
+  padding:5px 10px; white-space:nowrap;
+  box-shadow:var(--shd-md);
+  opacity:0; pointer-events:none;
+  transition:opacity 0.15s, transform 0.15s;
+  z-index:9999;
+  font-family:var(--font-body);
+}
+[data-tooltip]:hover::after {
+  opacity:1; transform:translateX(-50%) translateY(0);
+}
+/* Tooltip abaixo */
+[data-tooltip-pos="bottom"]::after {
+  bottom:auto; top:calc(100% + 7px);
+  transform:translateX(-50%) translateY(-4px);
+}
+[data-tooltip-pos="bottom"]:hover::after {
+  transform:translateX(-50%) translateY(0);
+}
+
+/* Tooltip demo visual */
+.tooltip-demo {
+  background:var(--s4); color:var(--fg);
+  border:1px solid var(--e3); border-radius:var(--r-sm);
+  font-size:11px; padding:6px 12px;
+  box-shadow:var(--shd-md); display:inline-block;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 18 — ESTADOS VAZIOS / EMPTY STATE
+════════════════════════════════════════════════════════════ */
+.empty-state {
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:48px 20px; text-align:center;
+}
+.empty-icon { font-size:40px; margin-bottom:14px; opacity:.4; }
+.empty-title { font-family:var(--font-display); font-size:16px; font-weight:700; color:var(--fg); margin-bottom:6px; }
+.empty-desc { font-size:13px; color:var(--fg2); max-width:320px; margin-bottom:18px; line-height:1.6; }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 19 — ALERTS / NOTICES
+════════════════════════════════════════════════════════════ */
+.alert {
+  padding:11px 14px; border-radius:var(--r);
+  font-size:12px; border:1px solid; margin-bottom:8px;
+  display:flex; align-items:flex-start; gap:10px;
+  line-height:1.55;
+}
+.alert-icon { font-size:14px; flex-shrink:0; margin-top:1px; }
+.alert-grn    { background:var(--grn-g);    border-color:var(--grn-b);    color:var(--grn-l); }
+.alert-blue   { background:var(--blue-g);   border-color:var(--blue-b);   color:var(--blue-l); }
+.alert-yel    { background:var(--yel-g);    border-color:var(--yel-b);    color:var(--yel-l); }
+.alert-red    { background:var(--red-g);    border-color:var(--red-b);    color:var(--red-l); }
+.alert-purple { background:var(--purple-g); border-color:var(--purple-b); color:var(--purple-l); }
+
+/* ════════════════════════════════════════════════════════════
+   SEÇÃO 20 — PROGRESS / LOADING
+════════════════════════════════════════════════════════════ */
+.prog { height:6px; background:var(--s3); border-radius:99px; overflow:hidden; }
+.prog.sm { height:4px; }
+.prog.lg { height:10px; }
+.prog-fill { height:100%; border-radius:99px; transition:width .5s ease; }
+.pg-blue   { background:var(--blue); }
+.pg-grn    { background:var(--grn); }
+.pg-orange { background:var(--orange); }
+.pg-red    { background:var(--red); }
+.pg-purple { background:var(--purple); }
+
+/* Skeleton loading */
+.skeleton {
+  background:linear-gradient(90deg, var(--s2) 25%, var(--s3) 50%, var(--s2) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.5s infinite; border-radius:var(--r-sm);
+}
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+/* ════════════════════════════════════════════════════════════
+   DEMO HELPERS
+════════════════════════════════════════════════════════════ */
+.demo-box {
+  background:var(--s2); border:1px solid var(--e2);
+  border-radius:var(--r-lg); padding:20px;
+  margin-bottom:0;
+}
+.demo-box.dark-bg { background:var(--bg); border-color:var(--e); }
+.demo-label {
+  font-size:9px; font-weight:700; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--fg3); margin-bottom:10px;
+}
+.spacer { height:14px; }
+.flex-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.flex-col { display:flex; flex-direction:column; gap:8px; }
+
+/* Nota de especificação */
+.spec-note {
+  background:var(--s2); border:1px solid var(--e);
+  border-left:3px solid var(--blue);
+  border-radius:var(--r-sm); padding:10px 14px;
+  font-size:11.5px; color:var(--fg2); line-height:1.6;
+  margin-top:12px;
+}
+.spec-note strong { color:var(--fg); }
+.spec-note code {
+  font-family:var(--font-mono); font-size:10.5px;
+  background:var(--s3); padding:1px 5px; border-radius:3px; color:var(--blue-l);
+}
+
+/* ════════════════════════════════════════════════════════════
+   PROTO: PÁGINA DE PROJETOS
+════════════════════════════════════════════════════════════ */
+.proto-proj {
+  background:var(--bg); border:1px solid var(--e2);
+  border-radius:var(--r-xl); overflow:hidden;
+}
+.proto-proj-topbar {
+  height:46px; background:var(--s1); border-bottom:1px solid var(--e2);
+  display:flex; align-items:center; padding:0 16px; gap:10px;
+}
+.proto-proj-content {
+  display:grid; grid-template-columns:1fr var(--sidebar-w);
+  height:auto; overflow:hidden;
+}
+.proto-proj-main { padding:20px; border-right:1px solid var(--e2); }
+.proto-proj-sidebar {
+  background:var(--s1);
+  overflow-y:auto;
+  position:sticky; top:0;
+}
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVIDADE — Breakpoints documentados
+════════════════════════════════════════════════════════════ */
+/*
+  Breakpoints GACO:
+  xs: < 480px  — mobile pequeno (não suportado no MVP)
+  sm: 480–767px— mobile
+  md: 768–1023px — tablet
+  lg: 1024–1279px— desktop small
+  xl: ≥ 1280px — desktop padrão (target principal)
+  2xl: ≥ 1440px — desktop largo
+
+  Grid de colunas por breakpoint:
+  KPIs: xl=6, lg=4, md=3, sm=2
+  Cards entity: xl=4, lg=3, md=2, sm=1
+  Sidebar direita: xl=visível, < lg=oculta ou drawer
+  Tabela: sempre 100% da largura disponível
+*/
+
+/* ════════════════════════════════════════════════════════════
+   ANIMAÇÕES PADRONIZADAS
+════════════════════════════════════════════════════════════ */
+@keyframes fadeIn { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeInScale { from{opacity:0;transform:scale(0.97)} to{opacity:1;transform:scale(1)} }
+@keyframes slideInRight { from{transform:translateX(100%)} to{transform:translateX(0)} }
+@keyframes slideInLeft  { from{transform:translateX(-100%)} to{transform:translateX(0)} }
+@keyframes slideDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+.anim-fade-in { animation:fadeIn 0.18s ease both; }
+.anim-fade-scale { animation:fadeInScale 0.18s ease both; }
+.anim-slide-right { animation:slideInRight 0.22s cubic-bezier(0.4,0,0.2,1) both; }
+
+/* ════════════════════════════════════════════════════════════
+   INTERATIVO — Toggle Dark/Light
+════════════════════════════════════════════════════════════ */
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TOPBAR DE NAVEGAÇÃO DO GUIA
+═══════════════════════════════════════════════════════════ -->
+<header class="ds-topbar">
+  <div class="ds-logo">G<span>A</span>CO</div>
+  <span class="ds-version">Design System v3</span>
+  <nav class="ds-nav-links">
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-tokens&#39;)">Tokens</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-typo&#39;)">Tipografia</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-btns&#39;)">Botões</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-chips&#39;)">Chips</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-forms&#39;)">Formulários</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-cards&#39;)">Cards / KPIs</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-tables&#39;)">Tabelas</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-filters&#39;)">Filtros</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-layout&#39;)">Layout</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-tabs&#39;)">Tabs</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-modals&#39;)">Modais</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-kanban&#39;)">Kanban</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-entity&#39;)">Detalhe Entidade</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-audit&#39;)">Auditoria</button>
+    <button class="ds-nav-link" onclick="scrollTo(&#39;sec-proto&#39;)">Protótipos</button>
+  </nav>
+  <div class="ds-topbar-right">
+    <div class="theme-pill">
+      <button class="tp-opt active" id="btn-dark" onclick="setTheme(&#39;dark&#39;)">🌙 Dark</button>
+      <button class="tp-opt" id="btn-light" onclick="setTheme(&#39;light&#39;)">☀️ Light</button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CORPO COM SIDEBAR + CONTEÚDO
+═══════════════════════════════════════════════════════════ -->
+<div class="ds-body">
+
+<!-- ASIDE: Índice de navegação -->
+<aside class="ds-aside">
+  <div class="ds-aside-group">
+    <div class="ds-aside-label">Fundamentos</div>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-tokens&#39;)"><span class="ds-aside-dot"></span>Tokens de Cor</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-typo&#39;)"><span class="ds-aside-dot"></span>Tipografia</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-shadow&#39;)"><span class="ds-aside-dot"></span>Sombras &amp; Bordas</button>
+  </div>
+  <div class="ds-aside-group">
+    <div class="ds-aside-label">Componentes</div>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-btns&#39;)"><span class="ds-aside-dot"></span>Botões</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-chips&#39;)"><span class="ds-aside-dot"></span>Chips &amp; Badges</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-forms&#39;)"><span class="ds-aside-dot"></span>Formulários</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-cards&#39;)"><span class="ds-aside-dot"></span>Cards &amp; KPIs</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-tables&#39;)"><span class="ds-aside-dot"></span>Tabelas</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-filters&#39;)"><span class="ds-aside-dot"></span>Filtros</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-tabs&#39;)"><span class="ds-aside-dot"></span>Tabs</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-modals&#39;)"><span class="ds-aside-dot"></span>Modais</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-drawer&#39;)"><span class="ds-aside-dot"></span>Drawer</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-kanban&#39;)"><span class="ds-aside-dot"></span>Kanban</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-audit&#39;)"><span class="ds-aside-dot"></span>Auditoria/Log</button>
+  </div>
+  <div class="ds-aside-group">
+    <div class="ds-aside-label">Páginas</div>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-layout&#39;)"><span class="ds-aside-dot"></span>Layout &amp; Topbar</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-entity&#39;)"><span class="ds-aside-dot"></span>Detalhe Entidade</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-proto&#39;)"><span class="ds-aside-dot"></span>Protótipos</button>
+  </div>
+  <div class="ds-aside-group">
+    <div class="ds-aside-label">Padrões</div>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-states&#39;)"><span class="ds-aside-dot"></span>Estados &amp; Feedback</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-motion&#39;)"><span class="ds-aside-dot"></span>Animações</button>
+    <button class="ds-aside-item" onclick="scrollTo(&#39;sec-rules&#39;)"><span class="ds-aside-dot"></span>Regras UX</button>
+  </div>
+</aside>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<main class="ds-content">
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 1 — TOKENS DE COR
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-tokens">
+  <div class="ds-section-eyebrow">01 — Fundamentos</div>
+  <h2 class="ds-section-title">Tokens de Cor</h2>
+  <p class="ds-section-desc">Paleta completa com variáveis CSS para dark e light mode. Todos os componentes devem usar exclusivamente estas variáveis — nunca valores de cor fixos no código de produção.</p>
+
+  <div class="ds-subsection-title">Superfícies (Dark Mode)</div>
+  <div class="ds-grid g6" style="margin-bottom:28px;">
+    <div class="color-row">
+      <div class="color-swatch sw-bg" data-val="#060810"></div>
+      <div class="color-name">Background</div>
+      <div class="color-var">--bg</div>
+      <div class="spec-label">Fundo raiz da app</div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch sw-s0" data-val="#080b14"></div>
+      <div class="color-name">Surface 0</div>
+      <div class="color-var">--s0</div>
+      <div class="spec-label">Abaixo do surf</div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch sw-s1" data-val="#0d1120"></div>
+      <div class="color-name">Surface 1</div>
+      <div class="color-var">--s1</div>
+      <div class="spec-label">Cards, topbar</div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch sw-s2" data-val="#121829"></div>
+      <div class="color-name">Surface 2</div>
+      <div class="color-var">--s2</div>
+      <div class="spec-label">Inputs, hover bg</div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch sw-s3" data-val="#18202e"></div>
+      <div class="color-name">Surface 3</div>
+      <div class="color-var">--s3</div>
+      <div class="spec-label">Hover item, th</div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch sw-s4" data-val="#1e2840"></div>
+      <div class="color-name">Surface 4</div>
+      <div class="color-var">--s4</div>
+      <div class="spec-label">Selecionado</div>
+    </div>
+  </div>
+
+  <div class="ds-subsection-title">Cores de Marca</div>
+  <div class="ds-grid g4" style="margin-bottom:28px;">
+    <div class="color-row">
+      <div class="color-swatch sw-blue" data-val="#3b82f6" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6,#60a5fa);"></div>
+      <div class="color-name">Blue (Primária)</div>
+      <div class="color-var">--blue / --blue-d / --blue-l</div>
+      <div class="spec-label">#1d4ed8 · #3b82f6 · #60a5fa — Ações principais, links, foco</div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch sw-orange" data-val="#f97316" style="background:linear-gradient(135deg,#c2410c,#f97316,#fb923c);"></div>
+      <div class="color-name">Orange (Acento)</div>
+      <div class="color-var">--orange / --orange-d / --orange-l</div>
+      <div class="spec-label">#c2410c · #f97316 · #fb923c — Nav ativo, CTAs, destaque</div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch" data-val="#dce4f5" style="background:linear-gradient(135deg,#3e506a,#7a8daa,#dce4f5);"></div>
+      <div class="color-name">Texto</div>
+      <div class="color-var">--fg / --fg2 / --fg3</div>
+      <div class="spec-label">#dce4f5 · #7a8daa · #3e506a — Hierarquia tipográfica</div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch" data-val="" style="background:linear-gradient(135deg,rgba(255,255,255,0.055),rgba(255,255,255,0.10),rgba(255,255,255,0.17)); border:1px solid rgba(255,255,255,0.2);"></div>
+      <div class="color-name">Bordas</div>
+      <div class="color-var">--e / --e2 / --e3</div>
+      <div class="spec-label">5.5% · 10% · 17% white — Hierarquia de bordas</div>
+    </div>
+  </div>
+
+  <div class="ds-subsection-title">Semânticas / Status</div>
+  <div class="ds-grid g5" style="margin-bottom:20px;">
+    <div class="color-row">
+      <div class="color-swatch sw-grn" data-val="#10b981"></div>
+      <div class="color-name">Success</div>
+      <div class="color-var">--grn</div>
+      <div class="spec-label">Ativo, aprovado, pago, ok</div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch sw-yel" data-val="#f59e0b"></div>
+      <div class="color-name">Warning</div>
+      <div class="color-var">--yel</div>
+      <div class="spec-label">Atenção, pendente, risco</div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch sw-red" data-val="#ef4444"></div>
+      <div class="color-name">Danger</div>
+      <div class="color-var">--red</div>
+      <div class="spec-label">Erro, cancelado, crítico</div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch sw-purple" data-val="#8b5cf6"></div>
+      <div class="color-name">Purple</div>
+      <div class="color-var">--purple</div>
+      <div class="spec-label">Milestones, premium</div>
+    </div>
+    <div class="color-row">
+      <div class="color-swatch sw-cyan" data-val="#06b6d4"></div>
+      <div class="color-name">Cyan</div>
+      <div class="color-var">--cyan</div>
+      <div class="spec-label">Info, comunicações</div>
+    </div>
+  </div>
+
+  <div class="spec-note">
+    <strong>Regra de uso de cores:</strong> Cada cor tem três variantes: base (<code>--blue</code>), ghost/fundo (<code>--blue-g</code>), e border (<code>--blue-b</code>). Chips e badges sempre usam a tríade completa. Nunca use cores sem variáveis — isso garante que o light mode funcione automaticamente.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 2 — TIPOGRAFIA
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-typo">
+  <div class="ds-section-eyebrow">02 — Fundamentos</div>
+  <h2 class="ds-section-title">Tipografia</h2>
+  <p class="ds-section-desc">Três famílias com papéis bem definidos. Nunca misture fora dos papéis. A hierarquia tipográfica é um dos pilares de legibilidade do sistema.</p>
+
+  <div class="ds-grid g3" style="margin-bottom:32px;">
+    <div class="demo-box">
+      <div class="demo-label">Display — Syne</div>
+      <div style="font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--fg);line-height:1.2;margin-bottom:8px;">GACO</div>
+      <div style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--fg);margin-bottom:6px;">Título de Página</div>
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--fg2);">Card Header</div>
+      <div class="spacer"></div>
+      <div class="spec-label">Uso: títulos, nomes de entidade, KPI values, logo</div>
+    </div>
+    <div class="demo-box">
+      <div class="demo-label">Body — DM Sans</div>
+      <div style="font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--fg);margin-bottom:5px;">Texto bold — ênfase</div>
+      <div style="font-family:var(--font-body);font-size:13px;font-weight:400;color:var(--fg);margin-bottom:5px;">Texto regular — corpo da aplicação</div>
+      <div style="font-family:var(--font-body);font-size:12px;font-weight:500;color:var(--fg2);margin-bottom:5px;">Texto médio — labels, metadados</div>
+      <div style="font-family:var(--font-body);font-size:11px;color:var(--fg3);">Texto pequeno — auxiliar</div>
+      <div style="font-family:var(--font-body);font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--fg3);margin-top:8px;">RÓTULO — 9PX / 700 / 0.16EM</div>
+      <div class="spacer"></div>
+      <div class="spec-label">Uso: todo texto de interface, formulários, tabelas</div>
+    </div>
+    <div class="demo-box">
+      <div class="demo-label">Mono — IBM Plex Mono</div>
+      <div style="font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--blue-l);margin-bottom:5px;">R$ 284.530,00</div>
+      <div style="font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--fg2);margin-bottom:5px;">2024-12-15 14:32:01</div>
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--fg3);margin-bottom:5px;">CLI-2024-0042</div>
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--fg3);">v3.0.0 · Build #1482</div>
+      <div class="spacer"></div>
+      <div class="spec-label">Uso: valores monetários, datas, IDs, código, versões</div>
+    </div>
+  </div>
+
+  <div class="ds-subsection-title">Escala de Tamanhos</div>
+  <div class="demo-box">
+    <div class="type-specimen">
+      <div class="type-meta"><div class="type-role">2XS — Micro</div><div class="type-details">9px / 700 / upper / 0.16em — var(--text-2xs)</div></div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--fg3);">RÓTULO DE CAMPO / CABEÇALHO DE TABELA</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta"><div class="type-role">XS — Extra Small</div><div class="type-details">10px / 600 — var(--text-xs)</div></div>
+      <div style="font-size:10px;font-weight:600;color:var(--fg2);">Metadados auxiliares, datas em lista</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta"><div class="type-role">SM — Small</div><div class="type-details">11px / 400–600 — var(--text-sm)</div></div>
+      <div style="font-size:11px;color:var(--fg2);">Texto secundário, sub-labels, chips, paginação</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta"><div class="type-role">BASE — Body</div><div class="type-details">13px / 400–600 — var(--text-base)</div></div>
+      <div style="font-size:13px;color:var(--fg);">Texto principal de interface: células de tabela, descrições, conteúdo de card</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta"><div class="type-role">MD — Medium</div><div class="type-details">14px / 600–700 — var(--text-md)</div></div>
+      <div style="font-size:14px;font-weight:600;color:var(--fg);">Nome em cards de entidade, tab labels ativas</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta"><div class="type-role">LG — Large</div><div class="type-details">16–18px / 700–800 — var(--text-lg)</div></div>
+      <div style="font-size:17px;font-weight:700;font-family:var(--font-display);color:var(--fg);">Títulos de modal, nome de entidade na página de detalhe</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta"><div class="type-role">XL–2XL — Display</div><div class="type-details">20–24px / 800 — var(--text-xl/2xl)</div></div>
+      <div style="font-size:22px;font-weight:800;font-family:var(--font-display);color:var(--fg);">KPI Values</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta"><div class="type-role">3XL–4XL — Hero</div><div class="type-details">30–38px / 800 — var(--text-3xl/4xl)</div></div>
+      <div style="font-size:32px;font-weight:800;font-family:var(--font-display);color:var(--fg);line-height:1.1;">Títulos de Seção</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 3 — SOMBRAS & BORDAS
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-shadow">
+  <div class="ds-section-eyebrow">03 — Fundamentos</div>
+  <h2 class="ds-section-title">Sombras &amp; Bordas</h2>
+  <p class="ds-section-desc">Sombras criam profundidade e hierarquia visual. Use a escala de forma consistente — elementos mais "próximos" do usuário (modais, tooltips) têm sombras maiores.</p>
+  <div class="ds-grid g4">
+    <div class="demo-box" style="box-shadow:var(--shd-sm); border:none;">
+      <div class="demo-label">shd-sm</div>
+      <div class="spec-label">0 2px 8px rgba(0,0,0,0.40)</div>
+      <div class="spec-label" style="margin-top:4px;">Uso: cards hover, filter bar</div>
+    </div>
+    <div class="demo-box" style="box-shadow:var(--shd-md); border:none;">
+      <div class="demo-label">shd-md</div>
+      <div class="spec-label">0 4px 20px rgba(0,0,0,0.50)</div>
+      <div class="spec-label" style="margin-top:4px;">Uso: dropdowns, entity cards hover</div>
+    </div>
+    <div class="demo-box" style="box-shadow:var(--shd-lg); border:none;">
+      <div class="demo-label">shd-lg</div>
+      <div class="spec-label">0 8px 40px rgba(0,0,0,0.60)</div>
+      <div class="spec-label" style="margin-top:4px;">Uso: modais, drawers</div>
+    </div>
+    <div class="demo-box" style="box-shadow:var(--shd-xl); border:none;">
+      <div class="demo-label">shd-xl</div>
+      <div class="spec-label">0 16px 60px rgba(0,0,0,0.70)</div>
+      <div class="spec-label" style="margin-top:4px;">Uso: modais principais</div>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <div class="ds-grid g3" style="margin-top:14px;">
+    <div class="demo-box" style="border-color:var(--e);">
+      <div class="demo-label">--e · Sutil (5.5%)</div>
+      <div class="spec-label">Bordas internas, separadores de seção dentro de cards</div>
+    </div>
+    <div class="demo-box" style="border-color:var(--e2);border-width:1.5px;">
+      <div class="demo-label">--e2 · Normal (10%)</div>
+      <div class="spec-label">Bordas de cards, inputs, tabelas — uso padrão</div>
+    </div>
+    <div class="demo-box" style="border-color:var(--e3);border-width:1.5px;">
+      <div class="demo-label">--e3 · Forte (17%)</div>
+      <div class="spec-label">Hover de cards, inputs ativos sem foco azul</div>
+    </div>
+  </div>
+  <div class="spec-note">
+    <strong>Raios de borda padronizados:</strong> <code>--r-xs: 4px</code> (badges inline) · <code>--r-sm: 6px</code> (botões, tags) · <code>--r: 8px</code> (inputs, botões padrão) · <code>--r-md: 10px</code> (kanban col) · <code>--r-lg: 14px</code> (cards, tabelas) · <code>--r-xl: 18px</code> (modais, entity page) · <code>--r-2xl: 24px</code> (painéis grandes)
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 4 — BOTÕES
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-btns">
+  <div class="ds-section-eyebrow">04 — Componentes</div>
+  <h2 class="ds-section-title">Botões</h2>
+  <p class="ds-section-desc">Sistema unificado com 6 variantes semânticas × 5 tamanhos × estados (default, hover, active, disabled, loading). <strong>Regra de posicionamento:</strong> CTAs primários sempre à direita. Ações destrutivas sempre isoladas (espaço ou separador visual).</p>
+
+  <div class="ds-subsection-title">Variantes</div>
+  <div class="demo-box dark-bg" style="margin-bottom:16px;">
+    <div class="flex-row" style="flex-wrap:wrap;gap:10px;">
+      <button class="btn btn-primary btn-md" data-tooltip="Ação principal — sempre uma por contexto">Primary</button>
+      <button class="btn btn-orange btn-md" data-tooltip="CTA de destaque — nova ação, criar">+ Novo</button>
+      <button class="btn btn-success btn-md" data-tooltip="Confirmar, aprovar, salvar com sucesso">✓ Confirmar</button>
+      <button class="btn btn-danger btn-md" data-tooltip="Ação destrutiva — requer confirmação">Excluir</button>
+      <button class="btn btn-ghost btn-md" data-tooltip="Ação secundária — cancelar, fechar">Cancelar</button>
+      <button class="btn btn-outline-blue btn-md" data-tooltip="Outline — ação de menor hierarquia">Ver Mais</button>
+      <button class="btn btn-soft-blue btn-md" data-tooltip="Soft — ação terciária com cor">Exportar</button>
+    </div>
+  </div>
+
+  <div class="ds-subsection-title">Tamanhos</div>
+  <div class="demo-box dark-bg" style="margin-bottom:16px;">
+    <div class="flex-row" style="align-items:center;">
+      <button class="btn btn-primary btn-xs">XS · 10px</button>
+      <button class="btn btn-primary btn-sm">SM · 11px</button>
+      <button class="btn btn-primary btn-md">MD · 12px</button>
+      <button class="btn btn-primary btn-lg">LG · 13px</button>
+      <button class="btn btn-primary btn-xl">XL · 14px</button>
+    </div>
+    <div class="spacer"></div>
+    <div class="spec-label">MD é o tamanho padrão. SM para tabelas/toolbars. XS apenas inline. LG/XL para CTAs de destaque em header de página.</div>
+  </div>
+
+  <div class="ds-subsection-title">Botões de Ícone (Icon Buttons)</div>
+  <div class="demo-box dark-bg" style="margin-bottom:16px;">
+    <div class="flex-row">
+      <button class="btn btn-ghost btn-icon btn-sm" data-tooltip="Editar">✏️</button>
+      <button class="btn btn-ghost btn-icon btn-sm" data-tooltip="Auditoria / Histórico">📋</button>
+      <button class="btn btn-ghost btn-icon btn-sm" data-tooltip="Exportar">⬇️</button>
+      <button class="btn btn-ghost btn-icon btn-sm" data-tooltip="Filtros">⚙️</button>
+      <button class="btn btn-ghost btn-icon btn-md" data-tooltip="Visualizações">☰</button>
+      <button class="btn btn-danger btn-icon btn-sm" data-tooltip="Excluir">🗑</button>
+      <button class="btn btn-primary btn-icon btn-md" data-tooltip="Adicionar">+</button>
+    </div>
+    <div class="spacer"></div>
+    <div class="spec-label">Icon buttons sempre têm tooltip. Posição: à direita na toolbar da tabela. Ações de linha aparecem apenas no hover (opacity 0→1).</div>
+  </div>
+
+  <div class="ds-subsection-title">Estado Desabilitado &amp; Loading</div>
+  <div class="demo-box dark-bg" style="margin-bottom:16px;">
+    <div class="flex-row">
+      <button class="btn btn-primary btn-md" disabled="">Desabilitado</button>
+      <button class="btn btn-orange btn-md btn-loading">Salvando...</button>
+      <button class="btn btn-ghost btn-md" disabled="">Ghost Disabled</button>
+    </div>
+  </div>
+
+  <div class="ds-subsection-title">Grupo de Botões (Button Group)</div>
+  <div class="demo-box dark-bg">
+    <div class="btn-group">
+      <button class="btn btn-ghost btn-sm">Lista</button>
+      <button class="btn btn-ghost btn-sm">Grid</button>
+      <button class="btn btn-ghost btn-sm">Kanban</button>
+    </div>
+  </div>
+
+  <div class="spec-note">
+    <strong>Posicionamento padrão de botões:</strong><br>
+    • <strong>Header de página:</strong> botão primário/orange à direita. Botões secundários ao lado.<br>
+    • <strong>Toolbar de tabela:</strong> count à esquerda · busca + filtros no meio · ações à direita.<br>
+    • <strong>Footer de modal/drawer:</strong> Cancelar à esquerda · Confirmar à direita.<br>
+    • <strong>Ações de linha de tabela:</strong> Editar, Ver, Excluir — aparecem no hover (opacity transition).<br>
+    • <strong>Gap entre botões:</strong> sempre <code>gap: 8px</code> em grupos. Ação destrutiva com <code>margin-left: auto</code> ou separador.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 5 — CHIPS & BADGES
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-chips">
+  <div class="ds-section-eyebrow">05 — Componentes</div>
+  <h2 class="ds-section-title">Chips, Badges &amp; Health Score</h2>
+  <p class="ds-section-desc">Chips indicam status e categorias. Sempre use a variante correta — a cor carrega significado semântico padronizado no sistema.</p>
+
+  <div class="ds-subsection-title">Chips de Status</div>
+  <div class="demo-box dark-bg" style="margin-bottom:16px;">
+    <div class="flex-row" style="flex-wrap:wrap;">
+      <span class="chip chip-grn"><span class="chip-dot"></span>Ativo</span>
+      <span class="chip chip-grn"><span class="chip-dot"></span>Aprovado</span>
+      <span class="chip chip-grn"><span class="chip-dot"></span>Pago</span>
+      <span class="chip chip-blue"><span class="chip-dot"></span>Em Andamento</span>
+      <span class="chip chip-blue"><span class="chip-dot"></span>Novo Lead</span>
+      <span class="chip chip-orange"><span class="chip-dot"></span>Em Revisão</span>
+      <span class="chip chip-orange"><span class="chip-dot"></span>Aguardando</span>
+      <span class="chip chip-yel"><span class="chip-dot"></span>Atenção</span>
+      <span class="chip chip-yel"><span class="chip-dot"></span>Pendente</span>
+      <span class="chip chip-red"><span class="chip-dot"></span>Cancelado</span>
+      <span class="chip chip-red"><span class="chip-dot"></span>Crítico</span>
+      <span class="chip chip-purple"><span class="chip-dot"></span>Milestone</span>
+      <span class="chip chip-cyan"><span class="chip-dot"></span>Comunicação</span>
+      <span class="chip chip-gray"><span class="chip-dot"></span>Inativo</span>
+      <span class="chip chip-gray"><span class="chip-dot"></span>Rascunho</span>
+    </div>
+  </div>
+
+  <div class="ds-subsection-title">Chips de Categoria (sem dot)</div>
+  <div class="demo-box dark-bg" style="margin-bottom:16px;">
+    <div class="flex-row flex-wrap">
+      <span class="chip chip-blue">Cliente</span>
+      <span class="chip chip-orange">Fornecedor</span>
+      <span class="chip chip-purple">Parceiro</span>
+      <span class="chip chip-grn">Colaborador</span>
+      <span class="chip chip-yel">Lead</span>
+      <span class="chip chip-cyan">Projeto</span>
+      <span class="chip chip-gray">Empresa</span>
+    </div>
+  </div>
+
+  <div class="ds-subsection-title">Badges (contador/notificação)</div>
+  <div class="demo-box dark-bg" style="margin-bottom:16px;">
+    <div class="flex-row">
+      <span class="badge badge-grn">12</span>
+      <span class="badge badge-blue">5</span>
+      <span class="badge badge-orange">3</span>
+      <span class="badge badge-red">99+</span>
+      <span class="badge badge-yel">7</span>
+      <span class="badge badge-gray">0</span>
+    </div>
+  </div>
+
+  <div class="ds-subsection-title">Health Score Badge</div>
+  <div class="demo-box dark-bg">
+    <div class="flex-row">
+      <span class="hs-badge hs-green">● 92 — Saudável</span>
+      <span class="hs-badge hs-yellow">⚠ 67 — Atenção</span>
+      <span class="hs-badge hs-red">✕ 34 — Crítico</span>
+    </div>
+    <div class="spacer"></div>
+    <div class="spec-label">Health Score: Verde ≥ 80 · Amarelo 50–79 · Vermelho &lt; 50</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 6 — FORMULÁRIOS
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-forms">
+  <div class="ds-section-eyebrow">06 — Componentes</div>
+  <h2 class="ds-section-title">Formulários &amp; Inputs</h2>
+  <p class="ds-section-desc">Todos os inputs seguem os mesmos tokens de tamanho e foco. Labels sempre em maiúsculas 9px/700. Campos obrigatórios marcados com asterisco vermelho.</p>
+
+  <div class="ds-grid g2" style="margin-bottom:20px;">
+    <!-- Coluna 1 -->
+    <div>
+      <div class="ds-subsection-title">Estados de Input</div>
+      <div class="demo-box">
+        <div class="f-group" style="margin-bottom:12px;">
+          <label class="f-label">Label padrão</label>
+          <input class="f-inp" placeholder="Placeholder text...">
+          <span class="f-help-msg">Texto de ajuda opcional aparece aqui</span>
+        </div>
+        <div class="f-group" style="margin-bottom:12px;">
+          <label class="f-label">Com Ícone à Esquerda</label>
+          <div class="f-inp-wrap">
+            <span class="f-inp-icon left">🔍</span>
+            <input class="f-inp f-inp-icon-left" placeholder="Buscar cliente...">
+          </div>
+        </div>
+        <div class="f-group" style="margin-bottom:12px;">
+          <label class="f-label">Campo Obrigatório <span class="f-req">*</span></label>
+          <input class="f-inp f-inp-error" value="valor inválido">
+          <span class="f-error-msg">⚠ Este campo é obrigatório</span>
+        </div>
+        <div class="f-group" style="margin-bottom:12px;">
+          <label class="f-label">Validado com Sucesso</label>
+          <input class="f-inp f-inp-success" value="usuario@empresa.com">
+        </div>
+        <div class="f-group" style="margin-bottom:12px;">
+          <label class="f-label">Select</label>
+          <select class="f-sel">
+            <option>Selecione uma opção...</option>
+            <option>Cliente PF</option>
+            <option>Cliente PJ</option>
+          </select>
+        </div>
+        <div class="f-group">
+          <label class="f-label">Textarea</label>
+          <textarea class="f-ta" rows="3" placeholder="Descrição detalhada..."></textarea>
+        </div>
+      </div>
+    </div>
+    <!-- Coluna 2 -->
+    <div>
+      <div class="ds-subsection-title">Controles Especiais</div>
+      <div class="demo-box">
+        <div class="f-group" style="margin-bottom:16px;">
+          <label class="f-label">Checkboxes</label>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <label class="f-check-wrap"><input type="checkbox" class="f-check" checked=""> <span class="f-check-label">Opção selecionada</span></label>
+            <label class="f-check-wrap"><input type="checkbox" class="f-check"> <span class="f-check-label">Opção disponível</span></label>
+            <label class="f-check-wrap"><input type="checkbox" class="f-check" disabled=""> <span class="f-check-label" style="color:var(--fg3)">Opção desabilitada</span></label>
+          </div>
+        </div>
+        <div class="f-group" style="margin-bottom:16px;">
+          <label class="f-label">Radio Buttons</label>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <label class="f-check-wrap"><input type="radio" name="r" class="f-check f-radio" checked=""> <span class="f-check-label">Opção A</span></label>
+            <label class="f-check-wrap"><input type="radio" name="r" class="f-check f-radio"> <span class="f-check-label">Opção B</span></label>
+          </div>
+        </div>
+        <div class="f-group" style="margin-bottom:16px;">
+          <label class="f-label">Toggles</label>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="toggle-wrap">
+              <div class="toggle-track on"><div class="toggle-thumb"></div></div>
+              <span class="f-check-label">Notificações ativas</span>
+            </div>
+            <div class="toggle-wrap">
+              <div class="toggle-track"><div class="toggle-thumb"></div></div>
+              <span class="f-check-label">Modo compacto</span>
+            </div>
+          </div>
+        </div>
+        <div class="f-group">
+          <label class="f-label">Grid 2 Colunas (f-row c2)</label>
+          <div class="f-row c2" style="margin-bottom:0;">
+            <div class="f-group"><label class="f-label">Nome</label><input class="f-inp" placeholder="João"></div>
+            <div class="f-group"><label class="f-label">Sobrenome</label><input class="f-inp" placeholder="Silva"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-note">
+    <strong>Regras de formulário:</strong> Labels sempre uppercase 9px acima do campo. Padding do input: <code>8px 11px</code>. Focus: border azul + box-shadow 3px rgba(59,130,246,0.12). Erro: border vermelho + mensagem 11px abaixo. Seções de formulário separadas por <code>f-section-label</code>. Grids: c2 para dados relacionados, c3 para endereços. Nunca use mais de 3 colunas em formulários.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 7 — CARDS & KPIs
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-cards">
+  <div class="ds-section-eyebrow">07 — Componentes</div>
+  <h2 class="ds-section-title">Cards &amp; KPIs</h2>
+  <p class="ds-section-desc">KPI cards sempre com barra colorida no topo (2px) indicando a cor da métrica. Entity cards usados em grids para listagem visual de entidades (clientes, leads, fornecedores).</p>
+
+  <div class="ds-subsection-title">KPI Cards — Grid 6 colunas (padrão dashboard)</div>
+  <div class="ds-grid g6" style="margin-bottom:24px;">
+    <div class="kpi-card kc-blue">
+      <div class="kpi-icon" style="background:var(--blue-g);">📊</div>
+      <div class="kpi-label">Projetos</div>
+      <div class="kpi-val" style="font-family:var(--font-display);">24</div>
+      <div class="kpi-sub">+3 este mês</div>
+    </div>
+    <div class="kpi-card kc-grn">
+      <div class="kpi-icon" style="background:var(--grn-g);">✓</div>
+      <div class="kpi-label">Concluídos</div>
+      <div class="kpi-val" style="font-family:var(--font-display);">18</div>
+      <div class="kpi-sub kpi-trend kpi-trend-up">↑ 12%</div>
+    </div>
+    <div class="kpi-card kc-orange">
+      <div class="kpi-icon" style="background:var(--orange-g);">💰</div>
+      <div class="kpi-label">Receita</div>
+      <div class="kpi-val" style="font-family:var(--font-display);font-size:20px;">284k</div>
+      <div class="kpi-sub">R$ este mês</div>
+    </div>
+    <div class="kpi-card kc-purple">
+      <div class="kpi-icon" style="background:var(--purple-g);">🎯</div>
+      <div class="kpi-label">Tarefas</div>
+      <div class="kpi-val" style="font-family:var(--font-display);">156</div>
+      <div class="kpi-sub">42 pendentes</div>
+    </div>
+    <div class="kpi-card kc-yel">
+      <div class="kpi-icon" style="background:var(--yel-g);">⚠</div>
+      <div class="kpi-label">Alertas</div>
+      <div class="kpi-val" style="font-family:var(--font-display);">7</div>
+      <div class="kpi-sub kpi-trend kpi-trend-down">↓ 2 críticos</div>
+    </div>
+    <div class="kpi-card kc-red">
+      <div class="kpi-icon" style="background:var(--red-g);">🔴</div>
+      <div class="kpi-label">Críticos</div>
+      <div class="kpi-val" style="font-family:var(--font-display);">2</div>
+      <div class="kpi-sub">Requer ação</div>
+    </div>
+  </div>
+
+  <div class="ds-subsection-title">Entity Cards — Clientes / Fornecedores / Colaboradores / Leads</div>
+  <div class="ds-grid g3" style="margin-bottom:16px;">
+    <div class="ent-card">
+      <div class="ent-card-banner" style="background:linear-gradient(135deg,#0f2042,#1d4ed8);">
+        <div class="ent-card-pattern"></div>
+        <div class="ent-card-av" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);">TS</div>
+        <div class="ent-card-status"><span class="chip chip-grn" style="font-size:9.5px;"><span class="chip-dot"></span>Ativo</span></div>
+        <div class="ent-card-acts">
+          <div class="ent-act-btn">✏</div>
+          <div class="ent-act-btn">📋</div>
+        </div>
+      </div>
+      <div class="ent-card-body">
+        <div class="ent-card-name">TechCorp Soluções</div>
+        <div class="ent-card-sub">CNPJ 12.345.678/0001-90</div>
+        <div class="ent-card-tags">
+          <span class="chip chip-blue" style="font-size:9.5px;">Cliente PJ</span>
+          <span class="chip chip-purple" style="font-size:9.5px;">Premium</span>
+        </div>
+        <div class="ent-card-info">
+          <div class="ent-card-row"><span class="ent-card-icon">📧</span>contato@techcorp.com.br</div>
+          <div class="ent-card-row"><span class="ent-card-icon">📱</span>(11) 9 8765-4321</div>
+          <div class="ent-card-row"><span class="ent-card-icon">🏙</span>São Paulo, SP</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ent-card">
+      <div class="ent-card-banner" style="background:linear-gradient(135deg,#1a0a06,#c2410c);">
+        <div class="ent-card-pattern"></div>
+        <div class="ent-card-av" style="background:linear-gradient(135deg,#c2410c,#f97316);">MO</div>
+        <div class="ent-card-status"><span class="chip chip-yel" style="font-size:9.5px;"><span class="chip-dot"></span>Lead</span></div>
+        <div class="ent-card-acts">
+          <div class="ent-act-btn">✏</div>
+          <div class="ent-act-btn">📋</div>
+        </div>
+      </div>
+      <div class="ent-card-body">
+        <div class="ent-card-name">Maria Oliveira</div>
+        <div class="ent-card-sub">CPF 987.654.321-00</div>
+        <div class="ent-card-tags">
+          <span class="chip chip-yel" style="font-size:9.5px;">Lead PF</span>
+          <span class="chip chip-orange" style="font-size:9.5px;">Qualificado</span>
+        </div>
+        <div class="ent-card-info">
+          <div class="ent-card-row"><span class="ent-card-icon">📧</span>maria@email.com</div>
+          <div class="ent-card-row"><span class="ent-card-icon">📅</span>Criado 12/12/2024</div>
+          <div class="ent-card-row"><span class="ent-card-icon">💡</span>Origem: LinkedIn</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ent-card">
+      <div class="ent-card-banner" style="background:linear-gradient(135deg,#0a1a0a,#059669);">
+        <div class="ent-card-pattern"></div>
+        <div class="ent-card-av" style="background:linear-gradient(135deg,#059669,#10b981);">RS</div>
+        <div class="ent-card-status"><span class="chip chip-grn" style="font-size:9.5px;"><span class="chip-dot"></span>Online</span></div>
+        <div class="ent-card-acts">
+          <div class="ent-act-btn">✏</div>
+          <div class="ent-act-btn">📋</div>
+        </div>
+      </div>
+      <div class="ent-card-body">
+        <div class="ent-card-name">Rafael Santos</div>
+        <div class="ent-card-sub">Desenvolvedor Sênior</div>
+        <div class="ent-card-tags">
+          <span class="chip chip-grn" style="font-size:9.5px;">Colaborador</span>
+          <span class="chip chip-blue" style="font-size:9.5px;">Dev</span>
+        </div>
+        <div class="ent-card-info">
+          <div class="ent-card-row"><span class="ent-card-icon">📧</span>rafael@empresa.com</div>
+          <div class="ent-card-row"><span class="ent-card-icon">🏢</span>Dep. Tecnologia</div>
+          <div class="ent-card-row"><span class="ent-card-icon">📅</span>Desde 03/2022</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="spec-note">
+    <strong>Entity Card:</strong> Banner de 60px com gradiente por tipo de entidade · Avatar 44px circular com iniciais · Ações (editar, auditoria) aparecem no hover (opacity 0→1 em 0.15s) · Hover: translateY(-3px) + shd-lg · Chip de status no canto superior direito do banner.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 8 — TABELAS / LISTAGENS
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-tables">
+  <div class="ds-section-eyebrow">08 — Componentes</div>
+  <h2 class="ds-section-title">Tabelas &amp; Listagens</h2>
+  <p class="ds-section-desc">Padrão para todas as listagens: toolbar superior, cabeçalho com ordenação, linhas com hover e ações visíveis, paginação inferior. <strong>Padrão de paginação: 20 itens por página</strong> com seletor 10/20/50/100.</p>
+
+  <div class="tbl-wrap" style="margin-bottom:16px;">
+    <!-- Toolbar -->
+    <div class="tbl-toolbar">
+      <div class="tbl-toolbar-left">
+        <span class="tbl-count">Mostrando <strong>20</strong> de <strong>148</strong> clientes</span>
+      </div>
+      <div class="tbl-toolbar-right">
+        <div style="position:relative;">
+          <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--fg3);font-size:12px;pointer-events:none;">🔍</span>
+          <input style="background:var(--s2);border:1px solid var(--e2);border-radius:var(--r);padding:6px 10px 6px 28px;color:var(--fg);font-size:12px;outline:none;width:180px;" placeholder="Buscar...">
+        </div>
+        <button class="btn btn-ghost btn-sm" data-tooltip="Exportar CSV">⬇ Exportar</button>
+        <button class="btn btn-orange btn-sm">+ Novo Cliente</button>
+      </div>
+    </div>
+    <!-- Cabeçalho -->
+    <div class="tbl-head" style="grid-template-columns:2fr 1.5fr 1fr 1fr 1fr 100px;">
+      <div class="tbl-th tbl-th sorted">Nome / Empresa ↑</div>
+      <div class="tbl-th">Contato</div>
+      <div class="tbl-th">Tipo</div>
+      <div class="tbl-th">Health Score</div>
+      <div class="tbl-th">Desde</div>
+      <div class="tbl-th">Ações</div>
+    </div>
+    <!-- Linhas -->
+    <div class="tbl-row" style="grid-template-columns:2fr 1.5fr 1fr 1fr 1fr 100px;">
+      <div><div class="cell-name">TechCorp Soluções Ltda</div><div class="cell-sub">CNPJ 12.345.678/0001-90</div></div>
+      <div><div class="cell-name" style="font-size:12px;">contato@techcorp.com</div><div class="cell-sub">(11) 9 8765-4321</div></div>
+      <div><span class="chip chip-blue" style="font-size:9.5px;">Cliente PJ</span></div>
+      <div><span class="hs-badge hs-green" style="font-size:10px;">● 92</span></div>
+      <div><span class="cell-date">03/2022</span></div>
+      <div class="tbl-acts">
+        <button class="btn btn-ghost btn-icon btn-sm" data-tooltip="Ver">👁</button>
+        <button class="btn btn-ghost btn-icon btn-sm" data-tooltip="Editar">✏</button>
+        <button class="btn btn-ghost btn-icon btn-sm" data-tooltip="Auditoria">📋</button>
+      </div>
+    </div>
+    <div class="tbl-row" style="grid-template-columns:2fr 1.5fr 1fr 1fr 1fr 100px;">
+      <div><div class="cell-name">Maria Aparecida Oliveira</div><div class="cell-sub">CPF 987.654.321-00</div></div>
+      <div><div class="cell-name" style="font-size:12px;">maria@email.com</div><div class="cell-sub">(21) 9 9876-5432</div></div>
+      <div><span class="chip chip-yel" style="font-size:9.5px;">Lead PF</span></div>
+      <div><span class="hs-badge hs-yellow" style="font-size:10px;">⚠ 61</span></div>
+      <div><span class="cell-date">11/2024</span></div>
+      <div class="tbl-acts">
+        <button class="btn btn-ghost btn-icon btn-sm" data-tooltip="Ver">👁</button>
+        <button class="btn btn-ghost btn-icon btn-sm" data-tooltip="Editar">✏</button>
+        <button class="btn btn-ghost btn-icon btn-sm" data-tooltip="Auditoria">📋</button>
+      </div>
+    </div>
+    <div class="tbl-row selected" style="grid-template-columns:2fr 1.5fr 1fr 1fr 1fr 100px;">
+      <div><div class="cell-name">Inovações BR EIRELI</div><div class="cell-sub">CNPJ 98.765.432/0001-10</div></div>
+      <div><div class="cell-name" style="font-size:12px;">ops@inovacoesbr.com</div><div class="cell-sub">(31) 3456-7890</div></div>
+      <div><span class="chip chip-red" style="font-size:9.5px;">Inadimplente</span></div>
+      <div><span class="hs-badge hs-red" style="font-size:10px;">✕ 29</span></div>
+      <div><span class="cell-date">07/2023</span></div>
+      <div class="tbl-acts" style="opacity:1;">
+        <button class="btn btn-ghost btn-icon btn-sm" data-tooltip="Ver">👁</button>
+        <button class="btn btn-ghost btn-icon btn-sm" data-tooltip="Editar">✏</button>
+        <button class="btn btn-ghost btn-icon btn-sm" data-tooltip="Auditoria">📋</button>
+      </div>
+    </div>
+    <!-- Paginação -->
+    <div class="tbl-pagination">
+      <span class="pagination-info">Página 1 de 8</span>
+      <div class="pagination-controls">
+        <button class="pg-btn" disabled="">«</button>
+        <button class="pg-btn" disabled="">‹</button>
+        <button class="pg-btn active">1</button>
+        <button class="pg-btn">2</button>
+        <button class="pg-btn">3</button>
+        <span style="font-size:12px;color:var(--fg3);padding:0 4px;">...</span>
+        <button class="pg-btn">8</button>
+        <button class="pg-btn">›</button>
+        <button class="pg-btn">»</button>
+      </div>
+      <div class="pg-size">
+        Por página:
+        <select><option>10</option><option selected="">20</option><option>50</option><option>100</option></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-note">
+    <strong>Especificações de tabela:</strong> Colunas de ação com largura fixa 80–120px. Ações visíveis apenas no hover (opacity: 0 → 1). Linha selecionada: fundo blue-g. Cabeçalho sortável: hover muda cor, coluna ativa com seta direcional. Linha de borda bottom 1px --e. Hover da linha: background rgba(59,130,246, 0.04). Paginação: sempre presente quando &gt; 20 itens. Seletor de tamanho de página: 10, 20, 50, 100.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 9 — FILTROS
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-filters">
+  <div class="ds-section-eyebrow">09 — Componentes</div>
+  <h2 class="ds-section-title">Filtros &amp; Barra de Busca</h2>
+  <p class="ds-section-desc">Filter bar sempre acima da tabela/lista. Filtros ativos são exibidos como chips removíveis. Busca textual sempre presente e em posição de destaque (grow).</p>
+
+  <div class="ds-subsection-title">Filter Bar Completa</div>
+  <div class="filter-bar" style="margin-bottom:10px;">
+    <div class="fg grow">
+      <div class="fg-lbl">Buscar</div>
+      <div style="position:relative;">
+        <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--fg3);font-size:12px;pointer-events:none;">🔍</span>
+        <input class="fg-input" style="padding-left:28px;" placeholder="Nome, CNPJ, e-mail...">
+      </div>
+    </div>
+    <div class="fg">
+      <div class="fg-lbl">Tipo</div>
+      <select class="fg-select" style="min-width:120px;">
+        <option>Todos</option>
+        <option>Cliente PJ</option>
+        <option>Cliente PF</option>
+        <option>Lead</option>
+      </select>
+    </div>
+    <div class="fg">
+      <div class="fg-lbl">Status</div>
+      <select class="fg-select" style="min-width:120px;">
+        <option>Todos</option>
+        <option>Ativo</option>
+        <option>Inativo</option>
+        <option>Pendente</option>
+      </select>
+    </div>
+    <div class="fg">
+      <div class="fg-lbl">Health Score</div>
+      <select class="fg-select" style="min-width:120px;">
+        <option>Todos</option>
+        <option>Saudável ≥80</option>
+        <option>Atenção 50–79</option>
+        <option>Crítico &lt;50</option>
+      </select>
+    </div>
+    <div class="fg">
+      <div class="fg-lbl">Período</div>
+      <input type="date" class="fg-input" style="width:130px;">
+    </div>
+    <div style="display:flex;gap:6px;align-items:flex-end;">
+      <button class="btn btn-primary btn-sm">Filtrar</button>
+      <button class="btn btn-ghost btn-sm">Limpar</button>
+    </div>
+  </div>
+
+  <div class="filter-chips-row">
+    <span style="font-size:11px;color:var(--fg3);">Filtros ativos:</span>
+    <span class="filter-active-chip">Tipo: Cliente PJ <span class="rm">×</span></span>
+    <span class="filter-active-chip">Status: Ativo <span class="rm">×</span></span>
+    <span class="filter-active-chip">Health: Crítico <span class="rm">×</span></span>
+    <button class="filter-clear-all">Limpar tudo ×</button>
+  </div>
+
+  <div class="spec-note">
+    <strong>Posicionamento da filter bar:</strong> Sempre acima da tabela, dentro da área de conteúdo (não sticky). Padding <code>11px 15px</code>. Busca textual usa <code>flex:1; min-width:180px</code> (cresce). Selects com <code>min-width:120px</code>. Chips de filtro ativo: aparecem na linha abaixo, com × para remover individualmente. Botão "Limpar tudo" em cor de perigo ao hover. O botão "Filtrar" dispara a requisição; não use busca em tempo real para queries complexas.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 10 — LAYOUT & TOPBAR
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-layout">
+  <div class="ds-section-eyebrow">10 — Layout</div>
+  <h2 class="ds-section-title">Layout Principal &amp; Topbar</h2>
+  <p class="ds-section-desc">O sistema usa topbar fixo de 54px + conteúdo rolável. Páginas com sidebar direita (Home, Projetos) fixam o painel direito enquanto o conteúdo principal rola.</p>
+
+  <div class="ds-subsection-title">Topbar — Anatomia</div>
+  <div class="topbar-demo">
+    <div class="tb-inner">
+      <div class="tb-logo-demo">
+        <svg width="24" height="24" viewBox="0 0 72 72"><rect width="72" height="72" rx="14" fill="#1E3A8A"></rect><circle cx="36" cy="36" r="16" fill="none" stroke="#3B82F6" stroke-width="2"></circle><circle cx="36" cy="36" r="8" fill="none" stroke="#60A5FA" stroke-width="1.5"></circle><circle cx="36" cy="36" r="5" fill="#F97316"></circle><circle cx="36" cy="36" r="2" fill="white"></circle></svg>
+        <span class="tb-logotype">G<span>A</span>CO</span>
+      </div>
+      <div class="tb-sep"></div>
+      <nav class="tb-nav-demo">
+        <button class="tb-nav-btn active">🏠 Home</button>
+        <button class="tb-nav-btn">📁 Projetos</button>
+        <button class="tb-nav-btn">👥 Clientes ▾</button>
+        <button class="tb-nav-btn">🔧 Operações ▾</button>
+        <button class="tb-nav-btn">📊 Relatórios ▾</button>
+        <button class="tb-nav-btn">⚙️ Config ▾</button>
+      </nav>
+      <div class="tb-right-demo">
+        <div class="tb-search-wrap">
+          <span class="tb-search-icon">🔍</span>
+          <input class="tb-search" placeholder="Busca global...">
+        </div>
+        <button class="tb-icon-btn" data-tooltip="Notificações">🔔<span class="tb-notif-dot"></span></button>
+        <button class="tb-icon-btn" data-tooltip="Auditoria">📋</button>
+        <button class="tb-icon-btn" data-tooltip="Alternar tema">☀️</button>
+        <div class="tb-avatar" data-tooltip="Perfil do usuário">JS</div>
+      </div>
+    </div>
+    <!-- Breadcrumb (em subpáginas) -->
+    <div style="height:36px;background:var(--s2);border-top:1px solid var(--e);display:flex;align-items:center;padding:0 20px;gap:6px;font-size:11px;color:var(--fg3);">
+      <span>🏠 Home</span>
+      <span>›</span>
+      <span>Projetos</span>
+      <span>›</span>
+      <span style="color:var(--fg);font-weight:600;">TechCorp — Implementação Core</span>
+    </div>
+  </div>
+
+  <div class="ds-subsection-title">Layout: Página com Sidebar Direita (Home / Projetos)</div>
+  <div class="spec-note" style="margin-bottom:16px;">
+    <strong>Estrutura:</strong> <code>display: grid; grid-template-columns: 1fr 300px; gap: 16px; align-items: start</code><br>
+    Sidebar direita: <code>position: sticky; top: calc(54px + 16px)</code> — fica travada enquanto o conteúdo principal rola.<br>
+    Em telas &lt; 1200px: sidebar some ou vira drawer inferior.
+  </div>
+  <div class="layout-mock">
+    <div>
+      <!-- Conteúdo principal mock -->
+      <div class="card" style="margin-bottom:14px;">
+        <div class="card-header"><div class="card-title">KPIs Principais</div></div>
+        <div class="card-body">
+          <div class="ds-grid g3">
+            <div class="kpi-card kc-blue"><div class="kpi-label">Projetos Ativos</div><div class="kpi-val" style="font-family:var(--font-display);">24</div></div>
+            <div class="kpi-card kc-grn"><div class="kpi-label">Concluídos</div><div class="kpi-val" style="font-family:var(--font-display);">18</div></div>
+            <div class="kpi-card kc-orange"><div class="kpi-label">Receita Mês</div><div class="kpi-val" style="font-family:var(--font-display);font-size:20px;">284k</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Últimas Atividades</div><span style="font-size:11px;color:var(--blue-l);cursor:pointer;">Ver tudo</span></div>
+        <div class="card-body">
+          <div style="font-size:12px;color:var(--fg2);">Área de conteúdo principal — tabelas, gráficos, kanban. Rola independente do sidebar.</div>
+        </div>
+      </div>
+    </div>
+    <!-- Sidebar direita -->
+    <div class="sidebar-right-demo">
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Health Score Global <span style="font-size:10px;color:var(--blue-l);cursor:pointer;">Detalhes</span></div>
+        <div class="hs-ring-wrap">
+          <div class="hs-ring">
+            <div class="hs-ring-inner">
+              <div class="hs-ring-val">82</div>
+              <div class="hs-ring-lbl">score</div>
+            </div>
+          </div>
+          <div>
+            <div class="hs-detail-title">Saudável</div>
+            <div class="hs-metrics">
+              <div class="hs-metric"><span class="hs-metric-label">Entregas</span><span class="hs-metric-val" style="color:var(--grn-l);">94%</span></div>
+              <div class="hs-metric"><span class="hs-metric-label">SLA</span><span class="hs-metric-val" style="color:var(--grn-l);">88%</span></div>
+              <div class="hs-metric"><span class="hs-metric-label">Satisfação</span><span class="hs-metric-val" style="color:var(--yel-l);">74%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Equipes</div>
+        <div class="team-group">
+          <div class="team-group-label">🏢 Equipe Empresa</div>
+          <div class="team-member">
+            <div class="team-av" style="background:linear-gradient(135deg,var(--blue-d),var(--blue));">JS</div>
+            <div><div class="team-name">João Silva</div><div class="team-role">Gerente de Projeto</div></div>
+            <div class="team-status status-online"></div>
+          </div>
+          <div class="team-member">
+            <div class="team-av" style="background:linear-gradient(135deg,var(--purple),var(--blue));">AM</div>
+            <div><div class="team-name">Ana Martins</div><div class="team-role">Dev Sênior</div></div>
+            <div class="team-status status-away"></div>
+          </div>
+        </div>
+        <div class="team-group">
+          <div class="team-group-label">🤝 Equipe Cliente</div>
+          <div class="team-member">
+            <div class="team-av" style="background:linear-gradient(135deg,var(--orange-d),var(--orange));">CR</div>
+            <div><div class="team-name">Carlos Ramos</div><div class="team-role">Gerente Parceiro</div></div>
+            <div class="team-status status-online"></div>
+          </div>
+          <div class="team-member">
+            <div class="team-av" style="background:linear-gradient(135deg,var(--grn),var(--cyan));">LF</div>
+            <div><div class="team-name">Luiza Fernandes</div><div class="team-role">Analista Cliente</div></div>
+            <div class="team-status status-offline"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 11 — TABS
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-tabs">
+  <div class="ds-section-eyebrow">11 — Componentes</div>
+  <h2 class="ds-section-title">Tabs &amp; Segmentos</h2>
+  <p class="ds-section-desc">Duas variantes com papéis distintos. Tabs underline para navegação de conteúdo em páginas de detalhe. Tabs pill para troca de modo/filtro rápido em componentes.</p>
+
+  <div class="ds-grid g2">
+    <div>
+      <div class="demo-label">Variant A — Underline (páginas de detalhe)</div>
+      <div class="demo-box">
+        <div class="tabs-underline">
+          <button class="tab-ul-btn active">Visão Geral</button>
+          <button class="tab-ul-btn">Contratos</button>
+          <button class="tab-ul-btn">Financeiro</button>
+          <button class="tab-ul-btn">Projetos <span class="badge badge-blue" style="margin-left:4px;font-size:8px;min-width:16px;height:16px;">3</span></button>
+          <button class="tab-ul-btn">Histórico</button>
+          <button class="tab-ul-btn">Documentos</button>
+        </div>
+        <div style="padding:12px;background:var(--s2);border-radius:var(--r);font-size:12px;color:var(--fg2);">Conteúdo da aba ativa aparece aqui.</div>
+      </div>
+    </div>
+    <div>
+      <div class="demo-label">Variant B — Pill/Segment (filtros de modo)</div>
+      <div class="demo-box">
+        <div style="margin-bottom:14px;">
+          <div class="tabs-pill">
+            <button class="tab-pill-btn active">Lista</button>
+            <button class="tab-pill-btn">Grid</button>
+            <button class="tab-pill-btn">Kanban</button>
+          </div>
+        </div>
+        <div>
+          <div class="tabs-pill">
+            <button class="tab-pill-btn active">Todos</button>
+            <button class="tab-pill-btn">Ativos</button>
+            <button class="tab-pill-btn">Pendentes</button>
+            <button class="tab-pill-btn">Concluídos</button>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div style="padding:12px;background:var(--s2);border-radius:var(--r);font-size:12px;color:var(--fg2);">Usado em toolbars para alternar visualização ou filtro rápido.</div>
+      </div>
+    </div>
+  </div>
+  <div class="spec-note">
+    <strong>Regras de Tab:</strong> Underline usa <code>border-bottom: 2px</code> na cor laranja (--orange). Active tem font-weight: 600. O contêiner tem <code>overflow-x: auto</code> para scroll em telas menores. Badges de contagem ao lado do label. Pill usa box shadow para aba ativa — nunca border.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 12 — MODAIS
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-modals">
+  <div class="ds-section-eyebrow">12 — Componentes</div>
+  <h2 class="ds-section-title">Modais</h2>
+  <p class="ds-section-desc">Dois padrões: modal simples (formulários, confirmações) e modal de detalhe (demandas, tickets, tarefas). O modal de detalhe tem layout de duas colunas com histórico e documentos.</p>
+
+  <div class="ds-subsection-title">Modal Simples — Formulário / Confirmação (max-width: 580px)</div>
+  <div class="modal-demo" style="margin-bottom:28px;">
+    <div class="modal-hdr">
+      <div>
+        <div class="modal-title">Novo Cliente</div>
+        <div class="modal-subtitle">Preencha os dados para cadastrar um novo cliente no sistema.</div>
+      </div>
+      <button class="modal-close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="f-section-label">Informações Básicas</div>
+      <div class="f-row c2">
+        <div class="f-group"><label class="f-label">Nome / Razão Social <span class="f-req">*</span></label><input class="f-inp" placeholder="TechCorp Soluções Ltda"></div>
+        <div class="f-group"><label class="f-label">CNPJ / CPF <span class="f-req">*</span></label><input class="f-inp" placeholder="12.345.678/0001-90"></div>
+      </div>
+      <div class="f-row c2">
+        <div class="f-group"><label class="f-label">Tipo <span class="f-req">*</span></label><select class="f-sel"><option>Cliente PJ</option><option>Cliente PF</option><option>Lead</option></select></div>
+        <div class="f-group"><label class="f-label">Status</label><select class="f-sel"><option>Ativo</option><option>Inativo</option></select></div>
+      </div>
+      <div class="f-group">
+        <label class="f-label">Observações</label>
+        <textarea class="f-ta" rows="2" placeholder="Informações adicionais..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-md">Cancelar</button>
+      <button class="btn btn-orange btn-md">+ Cadastrar Cliente</button>
+    </div>
+  </div>
+
+  <div class="ds-subsection-title">Modal de Detalhe — Demanda / Ticket / Tarefa (max-width: 760px)</div>
+  <div class="modal-detail-demo">
+    <div class="modal-det-hdr">
+      <div style="width:32px;height:32px;border-radius:var(--r);background:var(--blue-g);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">📋</div>
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--fg3);">DMD-2024-0142</span>
+          <span class="chip chip-orange" style="font-size:9.5px;"><span class="chip-dot"></span>Em Andamento</span>
+          <span class="chip chip-red" style="font-size:9.5px;">Alta Prioridade</span>
+        </div>
+        <div style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--fg);">Implementação do módulo de relatórios</div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center;flex-shrink:0;">
+        <button class="btn btn-ghost btn-sm">Editar</button>
+        <button class="modal-close">×</button>
+      </div>
+    </div>
+    <div class="modal-det-body">
+      <!-- Lado esquerdo: conteúdo principal -->
+      <div class="modal-det-main">
+        <div class="modal-det-section">
+          <div class="modal-det-section-title">Descrição</div>
+          <div style="font-size:13px;color:var(--fg2);line-height:1.65;">
+            Desenvolvimento e implementação do módulo de relatórios analíticos, incluindo dashboards interativos, exportação em PDF/Excel e agendamento de envio automático por e-mail.
+          </div>
+        </div>
+        <div class="modal-det-section">
+          <div class="modal-det-section-title">Clientes Solicitantes</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:7px;background:var(--s2);border:1px solid var(--e2);border-radius:var(--r);padding:7px 10px;">
+              <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--blue-d),var(--blue));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;">TC</div>
+              <div><div style="font-size:12px;font-weight:600;color:var(--fg);">TechCorp</div><div style="font-size:10px;color:var(--fg3);">Principal</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:7px;background:var(--s2);border:1px solid var(--e2);border-radius:var(--r);padding:7px 10px;">
+              <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--orange-d),var(--orange));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;">IB</div>
+              <div><div style="font-size:12px;font-weight:600;color:var(--fg);">Inovações BR</div><div style="font-size:10px;color:var(--fg3);">Associado</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-det-section">
+          <div class="modal-det-section-title">Histórico de Atividades</div>
+          <div class="hist-item">
+            <div class="hist-av" style="background:linear-gradient(135deg,var(--blue-d),var(--blue));">JS</div>
+            <div class="hist-content">
+              <span class="hist-name">João Silva</span>
+              <span class="hist-action"> alterou o status de </span>
+              <span style="color:var(--red-l);font-weight:600;">Pendente</span>
+              <span class="hist-action"> para </span>
+              <span style="color:var(--orange-l);font-weight:600;">Em Andamento</span>
+              <div class="hist-time">há 2 horas · 15/12/2024 14:32</div>
+            </div>
+          </div>
+          <div class="hist-item">
+            <div class="hist-av" style="background:linear-gradient(135deg,var(--purple),var(--blue));">AM</div>
+            <div class="hist-content">
+              <span class="hist-name">Ana Martins</span>
+              <span class="hist-action"> adicionou um comentário</span>
+              <div class="audit-detail" style="margin-top:5px;">"Iniciando mapeamento dos requisitos do módulo."</div>
+              <div class="hist-time">há 5 horas · 15/12/2024 11:10</div>
+            </div>
+          </div>
+          <div class="hist-item">
+            <div class="hist-av" style="background:linear-gradient(135deg,var(--grn),var(--cyan));">CR</div>
+            <div class="hist-content">
+              <span class="hist-name">Carlos Ramos</span>
+              <span class="hist-action"> criou esta demanda</span>
+              <div class="hist-time">há 1 dia · 14/12/2024 09:00</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-det-section">
+          <div class="modal-det-section-title">Documentos Anexos</div>
+          <div class="doc-item">
+            <div class="doc-icon">📄</div>
+            <div><div class="doc-name">briefing_relatorios_v2.pdf</div><div class="doc-meta">PDF · 2.4 MB · 14/12/2024</div></div>
+            <span class="doc-action">⬇</span>
+          </div>
+          <div class="doc-item">
+            <div class="doc-icon" style="background:var(--grn-g);">📊</div>
+            <div><div class="doc-name">planilha_requisitos.xlsx</div><div class="doc-meta">XLSX · 890 KB · 14/12/2024</div></div>
+            <span class="doc-action">⬇</span>
+          </div>
+        </div>
+      </div>
+      <!-- Lado direito: dados do card -->
+      <div class="modal-det-side">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--fg3);margin-bottom:10px;">Detalhes</div>
+        <div class="info-row"><span class="info-key">Responsável</span><span class="info-val">João Silva</span></div>
+        <div class="info-row"><span class="info-key">Prazo</span><span class="info-val" style="color:var(--yel-l);">31/01/2025</span></div>
+        <div class="info-row"><span class="info-key">Estimativa</span><span class="info-val mono">40h</span></div>
+        <div class="info-row"><span class="info-key">Projeto</span><span class="info-val"><a href="file:///Users/gabriel.alvares/Downloads/gaco_design_system_v3%20(1).html#" style="color:var(--blue-l);">Impl. Core</a></span></div>
+        <div class="info-row"><span class="info-key">Sprint</span><span class="info-val">Sprint 12</span></div>
+        <div class="info-row" style="border-bottom:none;"><span class="info-key">Criado em</span><span class="info-val mono" style="font-size:10px;">14/12/2024</span></div>
+        <div class="ds-sep"></div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--fg3);margin-bottom:8px;">Progresso</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--fg2);margin-bottom:4px;"><span>Tarefas</span><span>8 / 15</span></div>
+        <div class="prog"><div class="prog-fill pg-blue" style="width:53%;"></div></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm">Fechar</button>
+      <button class="btn btn-ghost btn-sm">+ Comentário</button>
+      <button class="btn btn-orange btn-sm">Atualizar Status</button>
+    </div>
+  </div>
+
+  <div class="spec-note" style="margin-top:16px;">
+    <strong>Overlay de modal:</strong> <code>background: rgba(0,0,0,0.6); backdrop-filter: blur(3px)</code>. Animação de entrada: <code>fadeInScale 0.18s ease</code>. Fechar: botão × no canto + clique no overlay + tecla ESC. Z-index: modal-overlay = 1000, modal = 1001. Sempre centralizado vertical e horizontalmente.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 13 — DRAWER
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-drawer">
+  <div class="ds-section-eyebrow">13 — Componentes</div>
+  <h2 class="ds-section-title">Drawer (Painel Lateral)</h2>
+  <p class="ds-section-desc">Usado para formulários de criação/edição e visualizações rápidas que não necessitam de modal centralizado. Abre pela direita com animação de slide.</p>
+
+  <div class="drawer-demo">
+    <div class="drawer-hdr">
+      <div>
+        <div class="drawer-title">Editar Cliente</div>
+        <div class="drawer-sub">TechCorp Soluções Ltda · CLI-2022-0001</div>
+      </div>
+      <button class="modal-close">×</button>
+    </div>
+    <div class="drawer-body">
+      <div class="f-section-label">Dados Principais</div>
+      <div class="f-row c2">
+        <div class="f-group"><label class="f-label">Nome / Razão Social</label><input class="f-inp" value="TechCorp Soluções Ltda"></div>
+        <div class="f-group"><label class="f-label">CNPJ</label><input class="f-inp" value="12.345.678/0001-90"></div>
+      </div>
+      <div class="f-row c2">
+        <div class="f-group"><label class="f-label">Tipo</label><select class="f-sel"><option selected="">Cliente PJ</option><option>Cliente PF</option></select></div>
+        <div class="f-group"><label class="f-label">Status</label><select class="f-sel"><option selected="">Ativo</option><option>Inativo</option></select></div>
+      </div>
+      <div class="f-section-label">Contato</div>
+      <div class="f-row c2">
+        <div class="f-group"><label class="f-label">E-mail</label><input class="f-inp" value="contato@techcorp.com.br"></div>
+        <div class="f-group"><label class="f-label">Telefone</label><input class="f-inp" value="(11) 9 8765-4321"></div>
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <button class="btn btn-ghost btn-md">Cancelar</button>
+      <button class="btn btn-danger btn-sm" style="margin-right:auto;">Excluir</button>
+      <button class="btn btn-primary btn-md">Salvar Alterações</button>
+    </div>
+  </div>
+
+  <div class="spec-note" style="margin-top:16px;">
+    <strong>Drawer specs:</strong> Largura: <code>460px</code>. Posição: right 0, top 0, height 100vh. Animação: <code>translateX(100%) → translateX(0)</code> em 220ms cubic-bezier(0.4,0,0.2,1). Overlay: fundo semitransparente com blur. Header sticky dentro do drawer (não rola). Footer com borda-top e fundo do drawer (não transparente).
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 14 — KANBAN
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-kanban">
+  <div class="ds-section-eyebrow">14 — Componentes</div>
+  <h2 class="ds-section-title">Kanban Board</h2>
+  <p class="ds-section-desc">Layout horizontal com scroll. Colunas de largura fixa (265px). Cards com prioridade visual (dot colorido). Botão "+ Adicionar" ao final de cada coluna.</p>
+
+  <div class="kanban-wrap" style="padding-bottom:16px;min-height:340px;">
+    <!-- Backlog -->
+    <div class="kanban-col">
+      <div class="kanban-col-hdr" style="background:var(--s3);">
+        <span class="kanban-col-label" style="color:var(--fg2);">📋 Backlog</span>
+        <span class="kanban-col-count">8</span>
+      </div>
+      <div class="kanban-col-body">
+        <div class="kanban-card">
+          <div class="kanban-card-priority prio-med"></div>
+          <div class="kanban-card-title">Revisão do escopo de relatórios</div>
+          <div class="kanban-card-meta">
+            <span class="chip chip-yel" style="font-size:9px;">Média</span>
+            <span class="chip chip-gray" style="font-size:9px;">Design</span>
+          </div>
+          <div class="kanban-card-sub">Prazo: 20/01 · João S.</div>
+        </div>
+        <div class="kanban-card">
+          <div class="kanban-card-priority prio-low"></div>
+          <div class="kanban-card-title">Documentação da API v2</div>
+          <div class="kanban-card-meta"><span class="chip chip-grn" style="font-size:9px;">Baixa</span></div>
+          <div class="kanban-card-sub">Ana M.</div>
+        </div>
+        <button class="kanban-add-btn">+ Adicionar tarefa</button>
+      </div>
+    </div>
+    <!-- Em Andamento -->
+    <div class="kanban-col">
+      <div class="kanban-col-hdr" style="background:var(--blue-g);border-color:var(--blue-b);">
+        <span class="kanban-col-label" style="color:var(--blue-l);">🔵 Em Andamento</span>
+        <span class="kanban-col-count" style="background:var(--blue-g);color:var(--blue-l);">3</span>
+      </div>
+      <div class="kanban-col-body" style="border-color:var(--blue-b);">
+        <div class="kanban-card" style="border-color:var(--blue-b);">
+          <div class="kanban-card-priority prio-high"></div>
+          <div class="kanban-card-title">Módulo de relatórios analíticos</div>
+          <div class="kanban-card-meta">
+            <span class="chip chip-red" style="font-size:9px;">Alta</span>
+            <span class="chip chip-blue" style="font-size:9px;">Dev</span>
+          </div>
+          <div class="kanban-card-sub">Prazo: 31/01 · João S.</div>
+          <div class="kanban-card-prog"><div class="kanban-prog-fill" style="width:53%;background:var(--blue);"></div></div>
+        </div>
+        <button class="kanban-add-btn">+ Adicionar tarefa</button>
+      </div>
+    </div>
+    <!-- Revisão -->
+    <div class="kanban-col">
+      <div class="kanban-col-hdr" style="background:var(--yel-g);border-color:var(--yel-b);">
+        <span class="kanban-col-label" style="color:var(--yel-l);">🟡 Em Revisão</span>
+        <span class="kanban-col-count" style="background:var(--yel-g);color:var(--yel-l);">2</span>
+      </div>
+      <div class="kanban-col-body" style="border-color:var(--yel-b);">
+        <div class="kanban-card">
+          <div class="kanban-card-priority prio-med"></div>
+          <div class="kanban-card-title">Testes unitários do módulo de autenticação</div>
+          <div class="kanban-card-meta"><span class="chip chip-yel" style="font-size:9px;">Média</span></div>
+          <div class="kanban-card-sub">Rafael S.</div>
+          <div class="kanban-card-prog"><div class="kanban-prog-fill" style="width:80%;background:var(--yel);"></div></div>
+        </div>
+        <button class="kanban-add-btn">+ Adicionar tarefa</button>
+      </div>
+    </div>
+    <!-- Concluído -->
+    <div class="kanban-col">
+      <div class="kanban-col-hdr" style="background:var(--grn-g);border-color:var(--grn-b);">
+        <span class="kanban-col-label" style="color:var(--grn-l);">✅ Concluído</span>
+        <span class="kanban-col-count" style="background:var(--grn-g);color:var(--grn-l);">15</span>
+      </div>
+      <div class="kanban-col-body" style="border-color:var(--grn-b);">
+        <div class="kanban-card" style="opacity:.75;">
+          <div class="kanban-card-title" style="text-decoration:line-through;color:var(--fg3);">Setup inicial do ambiente</div>
+          <div class="kanban-card-meta"><span class="chip chip-grn" style="font-size:9px;">✓ Done</span></div>
+          <div class="kanban-card-sub">Rafael S. · 10/12</div>
+          <div class="kanban-card-prog"><div class="kanban-prog-fill" style="width:100%;background:var(--grn);"></div></div>
+        </div>
+        <button class="kanban-add-btn">+ Adicionar tarefa</button>
+      </div>
+    </div>
+  </div>
+  <div class="spec-note">
+    <strong>Kanban specs:</strong> Colunas: 265px fixas, overflow-x scroll no wrapper. Cabeçalho colorido por status. Cards: hover translateY(-2px) + shadow. Dot de prioridade no canto superior direito. Barra de progresso 3px. Limite de itens carregados: 50 por coluna (paginação lazy load ao rolar).
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 15 — PÁGINA DE DETALHE DE ENTIDADE
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-entity">
+  <div class="ds-section-eyebrow">15 — Página</div>
+  <h2 class="ds-section-title">Detalhe de Entidade</h2>
+  <p class="ds-section-desc">Padrão unificado para: Cliente, Fornecedor, Colaborador, Lead. Header com banner gradiente + avatar + tags. Tabs para navegação de seções. Layout: 2 colunas (conteúdo + sidebar de dados).</p>
+
+  <div class="entity-page-demo">
+    <div class="ent-page-banner">
+      <div class="ent-page-pattern"></div>
+      <div class="ent-page-av-wrap">
+        <div class="ent-page-av" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);">TC</div>
+      </div>
+      <div class="ent-page-actions">
+        <button class="btn btn-ghost btn-sm" style="background:rgba(0,0,0,0.4);border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.85);">✏ Editar</button>
+        <button class="btn btn-ghost btn-sm" style="background:rgba(0,0,0,0.4);border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.85);" data-tooltip="Auditoria completa">📋</button>
+        <button class="btn btn-ghost btn-sm" style="background:rgba(0,0,0,0.4);border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.85);">⋮</button>
+      </div>
+    </div>
+    <div class="ent-page-body">
+      <div>
+        <div class="ent-page-name">TechCorp Soluções Ltda</div>
+        <div class="ent-page-tags">
+          <span class="chip chip-blue"><span class="chip-dot"></span>Ativo</span>
+          <span class="chip chip-blue">Cliente PJ</span>
+          <span class="chip chip-purple">Premium</span>
+          <span class="hs-badge hs-green" style="font-size:10px;">● 92 — Saudável</span>
+        </div>
+        <div class="ent-page-meta" style="margin-top:10px;">
+          <span class="ent-page-meta-item"><span class="ent-page-meta-icon">📧</span>contato@techcorp.com.br</span>
+          <span class="ent-page-meta-item"><span class="ent-page-meta-icon">📱</span>(11) 9 8765-4321</span>
+          <span class="ent-page-meta-item"><span class="ent-page-meta-icon">🏙</span>São Paulo, SP</span>
+          <span class="ent-page-meta-item"><span class="ent-page-meta-icon">🔖</span>CNPJ 12.345.678/0001-90</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-shrink:0;">
+        <button class="btn btn-primary btn-sm">+ Nova Demanda</button>
+        <button class="btn btn-ghost btn-sm">💬 Mensagem</button>
+      </div>
+    </div>
+    <!-- Tabs de navegação -->
+    <div style="padding:0 20px;border-top:1px solid var(--e);">
+      <div class="tabs-underline" style="margin-bottom:0;">
+        <button class="tab-ul-btn active">Visão Geral</button>
+        <button class="tab-ul-btn">Projetos <span class="badge badge-blue" style="margin-left:4px;font-size:8px;min-width:14px;height:14px;">4</span></button>
+        <button class="tab-ul-btn">Contratos</button>
+        <button class="tab-ul-btn">Financeiro</button>
+        <button class="tab-ul-btn">Documentos</button>
+        <button class="tab-ul-btn">Histórico</button>
+        <button class="tab-ul-btn">NPS</button>
+      </div>
+    </div>
+    <!-- Conteúdo de aba -->
+    <div style="display:grid;grid-template-columns:1fr 260px;gap:0;">
+      <div style="padding:18px;border-right:1px solid var(--e);">
+        <div style="margin-bottom:14px;">
+          <div class="ds-grid g3" style="gap:10px;margin-bottom:14px;">
+            <div class="kpi-card kc-blue"><div class="kpi-label">Projetos</div><div class="kpi-val" style="font-family:var(--font-display);font-size:20px;">4</div><div class="kpi-sub">1 em andamento</div></div>
+            <div class="kpi-card kc-orange"><div class="kpi-label">Contratos</div><div class="kpi-val" style="font-family:var(--font-display);font-size:20px;">6</div><div class="kpi-sub">R$ 284k</div></div>
+            <div class="kpi-card kc-grn"><div class="kpi-label">NPS</div><div class="kpi-val" style="font-family:var(--font-display);font-size:20px;">87</div><div class="kpi-sub">Promotor</div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Últimas Demandas</div><span style="font-size:11px;color:var(--blue-l);cursor:pointer;">Ver todas →</span></div>
+            <div class="card-body">
+              <div style="font-size:12px;color:var(--fg2);">Lista das demandas mais recentes do cliente...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:16px;">
+        <div class="card-title" style="margin-bottom:12px;">Dados Cadastrais</div>
+        <div class="info-row"><span class="info-key">Segmento</span><span class="info-val">Tecnologia</span></div>
+        <div class="info-row"><span class="info-key">Responsável</span><span class="info-val">João Silva</span></div>
+        <div class="info-row"><span class="info-key">Origem</span><span class="info-val">Indicação</span></div>
+        <div class="info-row"><span class="info-key">Desde</span><span class="info-val mono">03/2022</span></div>
+        <div class="info-row"><span class="info-key">Último Contato</span><span class="info-val mono" style="color:var(--yel-l);">há 5 dias</span></div>
+        <div class="info-row" style="border-bottom:none;"><span class="info-key">Endereço</span><span class="info-val">Av. Paulista, 1000</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-note" style="margin-top:16px;">
+    <strong>Padrão de página de detalhe (idêntico para Cliente, Fornecedor, Colaborador, Lead):</strong><br>
+    Banner: 80px gradiente por tipo · Avatar 56px quadrado-arredondado (r-xl) com iniciais · Ações no canto do banner (fundo translúcido) · Health Score badge no header junto às tags · Tabs underline abaixo do header (não sticky) · Conteúdo: grid 1fr 260px · Sidebar de dados com info-rows.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 16 — AUDITORIA / LOGS
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-audit">
+  <div class="ds-section-eyebrow">16 — Componentes</div>
+  <h2 class="ds-section-title">Auditoria &amp; Logs</h2>
+  <p class="ds-section-desc">Log de auditoria padronizado para todas as entidades. Ícone de tipo de evento colorido + avatar do usuário + ação formatada com entidade linkável + timestamp mono.</p>
+
+  <div class="audit-log">
+    <div class="audit-toolbar">
+      <span style="font-size:12px;font-weight:600;color:var(--fg);">Log de Auditoria</span>
+      <div style="display:flex;gap:6px;">
+        <select class="fg-select" style="font-size:11px;padding:4px 8px;width:auto;">
+          <option>Todos os eventos</option>
+          <option>Criação</option>
+          <option>Atualização</option>
+          <option>Exclusão</option>
+          <option>Login</option>
+        </select>
+        <button class="btn btn-ghost btn-sm">⬇ Exportar</button>
+      </div>
+    </div>
+    <div class="audit-item">
+      <div class="audit-type at-update" data-tooltip="Atualização">✏</div>
+      <div class="audit-content">
+        <span class="audit-user">João Silva</span>
+        <span class="audit-action"> alterou o status de <span class="audit-entity">TechCorp Soluções</span></span>
+        <div class="audit-detail"><span class="chg-from">Inativo</span> → <span class="chg-to">Ativo</span></div>
+      </div>
+      <div class="audit-time">15/12/2024<br>14:32:01</div>
+    </div>
+    <div class="audit-item">
+      <div class="audit-type at-create" data-tooltip="Criação">+</div>
+      <div class="audit-content">
+        <span class="audit-user">Ana Martins</span>
+        <span class="audit-action"> criou a demanda <span class="audit-entity">DMD-2024-0142</span></span>
+        <div class="audit-detail">Módulo de relatórios analíticos · Prioridade: Alta</div>
+      </div>
+      <div class="audit-time">14/12/2024<br>09:15:33</div>
+    </div>
+    <div class="audit-item">
+      <div class="audit-type at-comment" data-tooltip="Comentário">💬</div>
+      <div class="audit-content">
+        <span class="audit-user">Carlos Ramos</span>
+        <span class="audit-action"> comentou em <span class="audit-entity">Projeto Impl. Core</span></span>
+        <div class="audit-detail">"Aprovado pela diretoria. Pode prosseguir."</div>
+      </div>
+      <div class="audit-time">13/12/2024<br>16:44:02</div>
+    </div>
+    <div class="audit-item">
+      <div class="audit-type at-delete" data-tooltip="Exclusão">🗑</div>
+      <div class="audit-content">
+        <span class="audit-user">Rafael Santos</span>
+        <span class="audit-action"> excluiu o documento <span class="audit-entity">contrato_v1.pdf</span></span>
+      </div>
+      <div class="audit-time">12/12/2024<br>11:20:55</div>
+    </div>
+    <div class="audit-item">
+      <div class="audit-type at-login" data-tooltip="Login">🔐</div>
+      <div class="audit-content">
+        <span class="audit-user">Luiza Fernandes</span>
+        <span class="audit-action"> fez login no sistema</span>
+        <div class="audit-detail">IP: 187.x.x.x · Chrome 120 · Windows 11</div>
+      </div>
+      <div class="audit-time">12/12/2024<br>08:05:11</div>
+    </div>
+    <div class="audit-item">
+      <div class="audit-type at-status" data-tooltip="Mudança de Status">🔄</div>
+      <div class="audit-content">
+        <span class="audit-user">João Silva</span>
+        <span class="audit-action"> moveu tarefa <span class="audit-entity">DMD-0142</span> para</span>
+        <div class="audit-detail"><span class="chg-from">Em Andamento</span> → <span class="chg-to">Em Revisão</span></div>
+      </div>
+      <div class="audit-time">11/12/2024<br>17:30:00</div>
+    </div>
+    <!-- Paginação do log -->
+    <div class="tbl-pagination">
+      <span class="pagination-info">Exibindo 6 de 284 registros</span>
+      <div class="pagination-controls">
+        <button class="pg-btn" disabled="">‹</button>
+        <button class="pg-btn active">1</button>
+        <button class="pg-btn">2</button>
+        <button class="pg-btn">3</button>
+        <button class="pg-btn">›</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-note" style="margin-top:14px;">
+    <strong>Tipos de evento:</strong> <span style="background:var(--grn-g);color:var(--grn-l);padding:1px 7px;border-radius:4px;font-size:10px;">+ Criação</span> · <span style="background:var(--blue-g);color:var(--blue-l);padding:1px 7px;border-radius:4px;font-size:10px;">✏ Atualização</span> · <span style="background:var(--red-g);color:var(--red-l);padding:1px 7px;border-radius:4px;font-size:10px;">🗑 Exclusão</span> · <span style="background:var(--purple-g);color:var(--purple-l);padding:1px 7px;border-radius:4px;font-size:10px;">🔐 Login</span> · <span style="background:var(--cyan-g);color:var(--cyan);padding:1px 7px;border-radius:4px;font-size:10px;">💬 Comentário</span> · <span style="background:var(--yel-g);color:var(--yel-l);padding:1px 7px;border-radius:4px;font-size:10px;">🔄 Status</span><br>
+    Timestamp: font-mono, alinhado à direita, formato DD/MM/YYYY / HH:MM:SS. Mudanças de valor: de em vermelho tachado → para em verde. Entidade linkável em azul.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 17 — ESTADOS & FEEDBACK
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-states">
+  <div class="ds-section-eyebrow">17 — Padrões</div>
+  <h2 class="ds-section-title">Estados &amp; Feedback</h2>
+  <p class="ds-section-desc">Alertas, empty states, loading skeletons e tooltips garantem feedback consistente ao usuário em todos os estados da aplicação.</p>
+
+  <div class="ds-subsection-title">Alerts / Notices</div>
+  <div class="demo-box" style="margin-bottom:20px;">
+    <div class="alert alert-grn"><span class="alert-icon">✓</span>Cliente cadastrado com sucesso! As notificações foram enviadas para os responsáveis.</div>
+    <div class="alert alert-blue"><span class="alert-icon">ℹ</span>Sincronização em andamento. Os dados serão atualizados em alguns instantes.</div>
+    <div class="alert alert-yel"><span class="alert-icon">⚠</span>Contrato vence em 15 dias. Renove para evitar interrupção do serviço.</div>
+    <div class="alert alert-red"><span class="alert-icon">✕</span>Erro ao salvar. Verifique sua conexão e tente novamente.</div>
+  </div>
+
+  <div class="ds-subsection-title">Empty States</div>
+  <div class="demo-box" style="margin-bottom:20px;">
+    <div class="empty-state">
+      <div class="empty-icon">📋</div>
+      <div class="empty-title">Nenhuma demanda encontrada</div>
+      <div class="empty-desc">Não há demandas com os filtros aplicados. Tente ajustar os critérios ou crie uma nova demanda.</div>
+      <button class="btn btn-orange btn-md">+ Nova Demanda</button>
+    </div>
+  </div>
+
+  <div class="ds-subsection-title">Skeletons (Loading)</div>
+  <div class="demo-box">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;">
+      <div class="kpi-card">
+        <div class="skeleton" style="width:32px;height:32px;border-radius:8px;margin-bottom:10px;"></div>
+        <div class="skeleton" style="width:60%;height:9px;margin-bottom:8px;"></div>
+        <div class="skeleton" style="width:40%;height:24px;margin-bottom:6px;"></div>
+        <div class="skeleton" style="width:80%;height:11px;"></div>
+      </div>
+      <div class="kpi-card">
+        <div class="skeleton" style="width:32px;height:32px;border-radius:8px;margin-bottom:10px;"></div>
+        <div class="skeleton" style="width:50%;height:9px;margin-bottom:8px;"></div>
+        <div class="skeleton" style="width:35%;height:24px;margin-bottom:6px;"></div>
+        <div class="skeleton" style="width:70%;height:11px;"></div>
+      </div>
+      <div class="kpi-card">
+        <div class="skeleton" style="width:32px;height:32px;border-radius:8px;margin-bottom:10px;"></div>
+        <div class="skeleton" style="width:55%;height:9px;margin-bottom:8px;"></div>
+        <div class="skeleton" style="width:45%;height:24px;margin-bottom:6px;"></div>
+        <div class="skeleton" style="width:65%;height:11px;"></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1px;background:var(--e);">
+      <div style="display:grid;grid-template-columns:2fr 1.5fr 1fr;gap:16px;padding:12px 16px;background:var(--s2);">
+        <div class="skeleton" style="height:9px;width:40%;"></div>
+        <div class="skeleton" style="height:9px;width:35%;"></div>
+        <div class="skeleton" style="height:9px;width:50%;"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1.5fr 1fr;gap:16px;padding:12px 16px;background:var(--s1);">
+        <div class="skeleton" style="height:13px;width:70%;"></div>
+        <div class="skeleton" style="height:13px;width:60%;"></div>
+        <div class="skeleton" style="height:13px;width:40%;"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1.5fr 1fr;gap:16px;padding:12px 16px;background:var(--s1);">
+        <div class="skeleton" style="height:13px;width:65%;"></div>
+        <div class="skeleton" style="height:13px;width:55%;"></div>
+        <div class="skeleton" style="height:13px;width:45%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-subsection-title" style="margin-top:20px;">Tooltips</div>
+  <div class="demo-box dark-bg">
+    <div class="flex-row" style="padding-top:30px;padding-bottom:30px;justify-content:center;gap:20px;">
+      <button class="btn btn-ghost btn-md" data-tooltip="Tooltip padrão (acima)">Hover aqui ↑</button>
+      <button class="btn btn-ghost btn-md" data-tooltip-pos="bottom" data-tooltip="Tooltip abaixo">Hover aqui ↓</button>
+      <div class="tooltip-demo">Tooltip visual: fundo --s4, border --e3, font 11px, shadow md</div>
+    </div>
+    <div class="spec-label" style="text-align:center;">Delay: 0ms. Animação: opacity 0→1 + translateY 4px→0 em 150ms. Sempre evitar quebra de linha.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 18 — ANIMAÇÕES
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-motion">
+  <div class="ds-section-eyebrow">18 — Padrões</div>
+  <h2 class="ds-section-title">Animações &amp; Transições</h2>
+  <p class="ds-section-desc">Sistema de movimento consistente e sutil. Todas as transições respeitam <code>prefers-reduced-motion</code>. Nunca use animações que causem layout shift.</p>
+
+  <div class="ds-grid g2">
+    <div class="demo-box">
+      <div class="demo-label">Transições de UI (CSS vars)</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-family:var(--font-mono);color:var(--fg2);">
+        <div><span style="color:var(--blue-l);">--t-fast:</span> all 0.10s ease</div>
+        <div><span style="color:var(--blue-l);">--t:</span> all 0.15s ease <span style="color:var(--fg3);font-size:10px;">← padrão</span></div>
+        <div><span style="color:var(--blue-l);">--t-slow:</span> all 0.22s cubic-bezier(0.4,0,0.2,1)</div>
+        <div><span style="color:var(--blue-l);">--t-spring:</span> all 0.28s cubic-bezier(0.16,1,0.3,1)</div>
+      </div>
+    </div>
+    <div class="demo-box">
+      <div class="demo-label">Keyframes Padronizados</div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--fg2);">
+        <div><strong style="color:var(--fg);">fadeIn</strong> — entrada de página/aba (opacity + translateY 5px)</div>
+        <div><strong style="color:var(--fg);">fadeInScale</strong> — abertura de modal (opacity + scale 0.97)</div>
+        <div><strong style="color:var(--fg);">slideInRight</strong> — abertura de drawer</div>
+        <div><strong style="color:var(--fg);">slideDown</strong> — dropdown/menu</div>
+        <div><strong style="color:var(--fg);">shimmer</strong> — skeleton loading</div>
+        <div><strong style="color:var(--fg);">spin</strong> — loading spinner em botão</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-note" style="margin-top:14px;">
+    <strong>Regras de movimento:</strong> Hover de card: <code>translateY(-2px) + box-shadow</code> em 150ms. Hover de entity card: <code>translateY(-3px)</code>. Dropdown: <code>opacity + translateY(-6px→0)</code>. Drawer: <code>translateX(100%→0)</code> em 220ms. Modal: <code>scale(0.97→1) + opacity</code> em 180ms. NUNCA use <code>transition: all</code> em elementos com layout complexo — especifique as propriedades (<code>background, color, border-color, box-shadow, transform</code>).
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 19 — REGRAS UX / BOAS PRÁTICAS
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-rules">
+  <div class="ds-section-eyebrow">19 — Padrões</div>
+  <h2 class="ds-section-title">Regras UX &amp; Convenções</h2>
+  <p class="ds-section-desc">Diretrizes para garantir consistência em toda a aplicação. Estas regras devem ser seguidas em todos os novos componentes e atualizações de frontend.</p>
+
+  <div class="ds-grid g2">
+    <div>
+      <div class="demo-label">Posicionamento de Botões</div>
+      <div class="demo-box" style="margin-bottom:14px;">
+        <div class="spec-label" style="margin-bottom:8px;">HEADER DE PÁGINA</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--s1);border-radius:var(--r);border:1px solid var(--e2);">
+          <div><div style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3);">CLIENTES</div><div style="font-size:14px;font-weight:700;color:var(--fg);">Gestão de Clientes</div></div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-ghost btn-sm">⬇ Exportar</button>
+            <button class="btn btn-ghost btn-sm">⚙ Filtros</button>
+            <button class="btn btn-orange btn-sm">+ Novo Cliente</button>
+          </div>
+        </div>
+        <div class="spec-label" style="margin-top:10px;margin-bottom:8px;">FOOTER DE MODAL/DRAWER</div>
+        <div style="display:flex;gap:8px;padding:10px;background:var(--s2);border-radius:var(--r);border:1px solid var(--e2);">
+          <button class="btn btn-danger btn-sm">Excluir</button>
+          <div style="flex:1;"></div>
+          <button class="btn btn-ghost btn-sm">Cancelar</button>
+          <button class="btn btn-primary btn-sm">Salvar</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="demo-label">Hierarquia de Ações</div>
+      <div class="demo-box">
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--fg2);">
+          <div style="display:flex;align-items:center;gap:8px;"><span class="badge badge-blue" style="min-width:20px;font-size:9px;">1°</span><span><strong style="color:var(--fg);">Primária</strong> — btn-orange ou btn-primary · 1 por contexto</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span class="badge badge-gray" style="min-width:20px;font-size:9px;">2°</span><span><strong style="color:var(--fg);">Secundária</strong> — btn-ghost · máx. 2–3 ao lado da primária</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span class="badge badge-gray" style="min-width:20px;font-size:9px;">3°</span><span><strong style="color:var(--fg);">Terciária</strong> — btn-icon ou link — em hover de linha</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span class="badge badge-red" style="min-width:20px;font-size:9px;">⚠</span><span><strong style="color:var(--red-l);">Destrutiva</strong> — btn-danger · separada, sempre com confirmação</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="ds-grid g3">
+    <div class="alert alert-blue" style="flex-direction:column;align-items:flex-start;">
+      <strong style="margin-bottom:5px;font-size:12px;">🔍 Busca &amp; Filtros</strong>
+      <div style="font-size:11px;line-height:1.6;">Busca textual sempre com ícone de lupa à esquerda. Placeholder descritivo ("Nome, CNPJ, e-mail..."). Filtros complexos em filter-bar acima da tabela. Filtros simples como tabs-pill inline. Filtros ativos sempre visíveis como chips removíveis.</div>
+    </div>
+    <div class="alert alert-blue" style="flex-direction:column;align-items:flex-start;">
+      <strong style="margin-bottom:5px;font-size:12px;">📋 Tabelas</strong>
+      <div style="font-size:11px;line-height:1.6;">Paginação padrão: 20 itens. Seletor de tamanho: 10/20/50/100. Colunas de ação: max 120px, visíveis no hover. Ordenação por coluna com indicador visual. Linha selecionada com fundo blue-g. Checkbox de seleção múltipla quando necessário.</div>
+    </div>
+    <div class="alert alert-blue" style="flex-direction:column;align-items:flex-start;">
+      <strong style="margin-bottom:5px;font-size:12px;">🖱 Mouseover</strong>
+      <div style="font-size:11px;line-height:1.6;">Todos os botões de ícone têm tooltip obrigatório (data-tooltip). Cards de entidade mostram ações no hover. Linhas de tabela mostram ações no hover. Itens de dropdown têm hover com transição 120ms. Cursor pointer em todos os elementos clicáveis.</div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="ds-grid g2">
+    <div class="alert alert-yel" style="flex-direction:column;align-items:flex-start;">
+      <strong style="margin-bottom:5px;font-size:12px;">⚡ Performance Visual</strong>
+      <div style="font-size:11px;line-height:1.6;">Skeleton loading em todo carregamento de dados. Botões com estado loading (spinner) em submits. Animações respeitam prefers-reduced-motion. Imagens lazy-loaded. Paginação ou infinite scroll — nunca carregar tudo de uma vez.</div>
+    </div>
+    <div class="alert alert-yel" style="flex-direction:column;align-items:flex-start;">
+      <strong style="margin-bottom:5px;font-size:12px;">🌓 Dark / Light Mode</strong>
+      <div style="font-size:11px;line-height:1.6;">Sempre usar variáveis CSS — nunca cores fixas. Toggle no topbar (canto direito). Persistir preferência em localStorage. Transição suave do body: background 0.2s, color 0.2s. Testar contraste mínimo 4.5:1 (WCAG AA) em ambos os modos.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 20 — PROTÓTIPOS
+═══════════════════════════════════════════ -->
+<section class="ds-section" id="sec-proto">
+  <div class="ds-section-eyebrow">20 — Protótipos</div>
+  <h2 class="ds-section-title">Protótipo: Página de Projetos</h2>
+  <p class="ds-section-desc">Layout idêntico à Home: conteúdo principal à esquerda + sidebar direita com health score e equipes por projeto. Sidebar travada enquanto conteúdo principal rola.</p>
+
+  <div class="proto-proj">
+    <!-- Topbar simplificado do protótipo -->
+    <div class="proto-proj-topbar">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="font-family:var(--font-display);font-size:13px;font-weight:800;letter-spacing:.08em;color:var(--fg);">G<span style="color:var(--orange);">A</span>CO</span>
+        <span style="width:1px;height:16px;background:var(--e2);"></span>
+        <span style="font-size:11px;color:var(--fg3);">Projetos</span>
+        <span style="font-size:10px;color:var(--fg3);">›</span>
+        <span style="font-size:11px;font-weight:700;color:var(--fg);">TechCorp — Implementação Core</span>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:6px;">
+        <button class="btn btn-ghost btn-sm">📋 Auditoria</button>
+        <button class="btn btn-orange btn-sm">+ Nova Tarefa</button>
+      </div>
+    </div>
+
+    <div class="proto-proj-content">
+      <!-- CONTEÚDO PRINCIPAL ROLÁVEL -->
+      <div class="proto-proj-main">
+        <!-- KPIs do projeto -->
+        <div class="ds-grid g4" style="gap:10px;margin-bottom:16px;">
+          <div class="kpi-card kc-blue"><div class="kpi-label">Progresso</div><div class="kpi-val" style="font-family:var(--font-display);">53%</div><div class="kpi-sub">22 de 42 tarefas</div></div>
+          <div class="kpi-card kc-grn"><div class="kpi-label">Concluídas</div><div class="kpi-val" style="font-family:var(--font-display);">22</div><div class="kpi-sub">tarefas</div></div>
+          <div class="kpi-card kc-yel"><div class="kpi-label">Prazo</div><div class="kpi-val" style="font-family:var(--font-display);font-size:18px;">18d</div><div class="kpi-sub">31/01/2025</div></div>
+          <div class="kpi-card kc-orange"><div class="kpi-label">Orçamento</div><div class="kpi-val" style="font-family:var(--font-display);font-size:18px;">68%</div><div class="kpi-sub">R$ 68k / 100k</div></div>
+        </div>
+
+        <!-- Tabs de conteúdo -->
+        <div class="tabs-underline" style="margin-bottom:16px;">
+          <button class="tab-ul-btn active">Kanban</button>
+          <button class="tab-ul-btn">Lista de Tarefas</button>
+          <button class="tab-ul-btn">Cronograma</button>
+          <button class="tab-ul-btn">Documentos</button>
+          <button class="tab-ul-btn">Comentários</button>
+        </div>
+
+        <!-- Mini Kanban do projeto -->
+        <div class="kanban-wrap" style="min-height:260px;">
+          <div class="kanban-col">
+            <div class="kanban-col-hdr" style="background:var(--s3);">
+              <span class="kanban-col-label" style="color:var(--fg2);">Backlog</span>
+              <span class="kanban-col-count">8</span>
+            </div>
+            <div class="kanban-col-body">
+              <div class="kanban-card"><div class="kanban-card-priority prio-med"></div><div class="kanban-card-title">Configurar pipeline CI/CD</div><div class="kanban-card-meta"><span class="chip chip-yel" style="font-size:9px;">Média</span></div></div>
+              <div class="kanban-card"><div class="kanban-card-priority prio-low"></div><div class="kanban-card-title">Documentação da API de relatórios</div></div>
+              <button class="kanban-add-btn">+ Adicionar</button>
+            </div>
+          </div>
+          <div class="kanban-col">
+            <div class="kanban-col-hdr" style="background:var(--blue-g);border-color:var(--blue-b);">
+              <span class="kanban-col-label" style="color:var(--blue-l);">Em Andamento</span>
+              <span class="kanban-col-count" style="background:var(--blue-g);color:var(--blue-l);">3</span>
+            </div>
+            <div class="kanban-col-body" style="border-color:var(--blue-b);">
+              <div class="kanban-card"><div class="kanban-card-priority prio-high"></div><div class="kanban-card-title">Módulo de relatórios analíticos</div><div class="kanban-card-meta"><span class="chip chip-red" style="font-size:9px;">Alta</span></div><div class="kanban-card-prog"><div class="kanban-prog-fill" style="width:53%;background:var(--blue);"></div></div></div>
+              <button class="kanban-add-btn">+ Adicionar</button>
+            </div>
+          </div>
+          <div class="kanban-col">
+            <div class="kanban-col-hdr" style="background:var(--grn-g);border-color:var(--grn-b);">
+              <span class="kanban-col-label" style="color:var(--grn-l);">Concluído</span>
+              <span class="kanban-col-count" style="background:var(--grn-g);color:var(--grn-l);">15</span>
+            </div>
+            <div class="kanban-col-body" style="border-color:var(--grn-b);">
+              <div class="kanban-card" style="opacity:.7;"><div class="kanban-card-title" style="text-decoration:line-through;color:var(--fg3);">Setup do ambiente</div><div class="kanban-card-prog"><div class="kanban-prog-fill" style="width:100%;background:var(--grn);"></div></div></div>
+              <button class="kanban-add-btn">+ Adicionar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR DIREITA FIXA -->
+      <div class="proto-proj-sidebar">
+        <!-- Health Score do Projeto -->
+        <div class="sidebar-section">
+          <div class="sidebar-section-label">Health Score do Projeto</div>
+          <div class="hs-ring-wrap">
+            <div class="hs-ring">
+              <div class="hs-ring-inner">
+                <div class="hs-ring-val">78</div>
+                <div class="hs-ring-lbl">score</div>
+              </div>
+            </div>
+            <div>
+              <div class="hs-detail-title" style="color:var(--yel-l);">Atenção</div>
+              <div class="hs-metrics">
+                <div class="hs-metric"><span class="hs-metric-label">Prazo</span><span class="hs-metric-val" style="color:var(--yel-l);">74%</span></div>
+                <div class="hs-metric"><span class="hs-metric-label">Entregas</span><span class="hs-metric-val" style="color:var(--grn-l);">91%</span></div>
+                <div class="hs-metric"><span class="hs-metric-label">Budget</span><span class="hs-metric-val" style="color:var(--grn-l);">68%</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="prog" style="margin-top:4px;"><div class="prog-fill" style="width:78%;background:linear-gradient(90deg,var(--yel),var(--grn));"></div></div>
+        </div>
+
+        <!-- Equipe Empresa -->
+        <div class="sidebar-section">
+          <div class="sidebar-section-label">🏢 Equipe Empresa</div>
+          <div class="team-member">
+            <div class="team-av" style="background:linear-gradient(135deg,var(--blue-d),var(--blue));">JS</div>
+            <div><div class="team-name">João Silva</div><div class="team-role">Gerente de Projeto</div></div>
+            <div class="team-status status-online"></div>
+          </div>
+          <div class="team-member">
+            <div class="team-av" style="background:linear-gradient(135deg,var(--purple),var(--blue));">AM</div>
+            <div><div class="team-name">Ana Martins</div><div class="team-role">Dev Sênior</div></div>
+            <div class="team-status status-away"></div>
+          </div>
+          <div class="team-member">
+            <div class="team-av" style="background:linear-gradient(135deg,var(--grn),var(--cyan));">RS</div>
+            <div><div class="team-name">Rafael Santos</div><div class="team-role">Dev Full Stack</div></div>
+            <div class="team-status status-online"></div>
+          </div>
+        </div>
+
+        <!-- Equipe Cliente -->
+        <div class="sidebar-section">
+          <div class="sidebar-section-label">🤝 Equipe Cliente</div>
+          <div class="team-member">
+            <div class="team-av" style="background:linear-gradient(135deg,var(--orange-d),var(--orange));">CR</div>
+            <div><div class="team-name">Carlos Ramos</div><div class="team-role">Gerente Parceiro</div></div>
+            <div class="team-status status-online"></div>
+          </div>
+          <div class="team-member">
+            <div class="team-av" style="background:linear-gradient(135deg,#6d28d9,#8b5cf6);">LF</div>
+            <div><div class="team-name">Luiza Fernandes</div><div class="team-role">Analista de Negócio</div></div>
+            <div class="team-status status-offline"></div>
+          </div>
+        </div>
+
+        <!-- Próximos Marcos -->
+        <div class="sidebar-section">
+          <div class="sidebar-section-label">📍 Próximos Marcos</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;align-items:center;gap:7px;font-size:11px;">
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--grn);flex-shrink:0;"></div>
+              <span style="flex:1;color:var(--fg);">Setup do Ambiente</span>
+              <span style="font-family:var(--font-mono);font-size:9px;color:var(--grn-l);">✓ Dez</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:7px;font-size:11px;">
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--purple);flex-shrink:0;"></div>
+              <span style="flex:1;color:var(--fg);">MVP do Módulo</span>
+              <span style="font-family:var(--font-mono);font-size:9px;color:var(--fg2);">15 Jan</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:7px;font-size:11px;">
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--s4);border:1px solid var(--e2);flex-shrink:0;"></div>
+              <span style="flex:1;color:var(--fg2);">Entrega Final</span>
+              <span style="font-family:var(--font-mono);font-size:9px;color:var(--fg3);">31 Jan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spec-note" style="margin-top:16px;">
+    <strong>Página de Projetos:</strong> Mesma estrutura da Home (grid 1fr 300px). Sidebar direita: Health Score do projeto em cima, depois Equipe Empresa, depois Equipe Cliente (separação clara), depois Marcos. Sidebar sticky. A separação das equipes é visual (label diferente) mas no mesmo painel. Dados de equipes vêm dos cadastros do sistema automaticamente.
+  </div>
+
+  <div class="ds-sep"></div>
+
+  <h3 class="ds-subsection-title">Resumo de Tokens de Paginação</h3>
+  <div class="demo-box">
+    <div class="ds-grid g3" style="gap:12px;">
+      <div>
+        <div class="demo-label">Tabelas / Listagens</div>
+        <div style="font-size:12px;color:var(--fg2);line-height:2;">
+          Padrão: <strong style="color:var(--fg);">20 itens/página</strong><br>
+          Opções: 10 · 20 · 50 · 100<br>
+          Info: "Mostrando X–Y de Z"<br>
+          Botões: « ‹ 1 2 3 … N › »
+        </div>
+      </div>
+      <div>
+        <div class="demo-label">Kanban</div>
+        <div style="font-size:12px;color:var(--fg2);line-height:2;">
+          Padrão: <strong style="color:var(--fg);">50 itens/coluna</strong><br>
+          Scroll lazy: carregar mais ao rolar<br>
+          Contador: badge no header da coluna<br>
+          Sem paginação explícita
+        </div>
+      </div>
+      <div>
+        <div class="demo-label">Grid de Cards</div>
+        <div style="font-size:12px;color:var(--fg2);line-height:2;">
+          Padrão: <strong style="color:var(--fg);">12 cards/página</strong><br>
+          Grid: auto-fill minmax(280px, 1fr)<br>
+          Load more ou paginação<br>
+          Skeleton: 12 placeholders
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div><!-- /ds-body -->
+
+<script>
+// Toggle dark/light
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('btn-dark').classList.toggle('active', t==='dark');
+  document.getElementById('btn-light').classList.toggle('active', t==='light');
+  localStorage.setItem('gaco-theme', t);
+}
+
+// Scroll suave às seções
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Atualiza nav links
+  document.querySelectorAll('.ds-nav-link').forEach(b => b.classList.remove('active'));
+  // Atualiza aside items
+  document.querySelectorAll('.ds-aside-item').forEach(b => b.classList.remove('active'));
+}
+
+// Intersection Observer para atualizar nav ativa
+const sections = document.querySelectorAll('.ds-section');
+const navLinks = document.querySelectorAll('.ds-nav-link');
+const asideItems = document.querySelectorAll('.ds-aside-item');
+
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      navLinks.forEach(l => l.classList.remove('active'));
+      asideItems.forEach(l => l.classList.remove('active'));
+    }
+  });
+}, { threshold: 0.15, rootMargin: '-60px 0px 0px 0px' });
+
+sections.forEach(s => obs.observe(s));
+
+// Carregar tema salvo
+const saved = localStorage.getItem('gaco-theme');
+if (saved) setTheme(saved);
+</script>
+
+
+</body></html>
