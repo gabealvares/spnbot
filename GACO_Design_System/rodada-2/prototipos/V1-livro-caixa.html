@@ -1,0 +1,1390 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GACO V1 Livro-caixa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:#F5F5F0; --sheet:#FFFFFF; --ledger:#FAFAF7; --rule:#E3E3DC; --line:#CFCFC6;
+  --ink:#1B1F24; --ink-2:#5B616B; --ink-3:#8A9099;
+  --carbon:#23408E; --carbon-tint:#E8ECF6; --carbon-ink:#23408E;
+  --ok:#1E6B45; --ok-tint:#E4EFE8; --warn:#8A5A00; --warn-tint:#F6EEDB; --err:#B42318; --err-tint:#F8E5E2;
+  --note:#FFF5CC; --note-line:#E6D27E; --chat:#EDEDE6;
+  --brand:#0E5E6F; --on-brand:#FFFFFF; --brand-tint:#E3EEF0;
+  --focus:#23408E;
+  --ui:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --paper:#15181B; --sheet:#1C2024; --ledger:#1F2428; --rule:#2B3036; --line:#3A4148;
+  --ink:#E6E8E6; --ink-2:#A3AAAD; --ink-3:#7D858A;
+  --carbon:#8FA8E8; --carbon-tint:#243049; --carbon-ink:#AFC2F0;
+  --ok:#5FB38A; --ok-tint:#1D3329; --warn:#E0A146; --warn-tint:#3A2E17; --err:#F0776B; --err-tint:#3D2220;
+  --note:#3A3420; --note-line:#6B5E2E; --chat:#171A1D;
+  --focus:#AFC2F0;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.45 var(--ui);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+input,textarea,select{font:inherit;color:inherit}
+a{color:var(--carbon-ink);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.ic{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:miter;flex:none;display:inline-block;vertical-align:middle}
+.ic.s16{width:16px;height:16px}
+.ic.s14{width:14px;height:14px}
+.ic.s24{width:24px;height:24px}
+.serif{font-family:var(--serif)}
+.muted{color:var(--ink-2)}
+.faint{color:var(--ink-3)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ============ PÁGINA ============ */
+.page{max-width:1520px;margin:0 auto;padding:40px 40px 80px}
+.doc-h1{font:600 40px/1.1 var(--serif);margin:0 0 6px;letter-spacing:-.01em}
+.doc-h2{font:600 30px/1.15 var(--serif);margin:0 0 10px;letter-spacing:-.005em}
+.lede{max-width:74ch;font-size:16px;line-height:1.55;color:var(--ink);margin:0 0 6px}
+.section{margin-top:72px}
+.proposal{max-width:88ch;margin:0 0 6px;font-size:15px;line-height:1.55}
+.proposal b{font-weight:600}
+.refs{max-width:88ch;margin:0 0 18px;font-size:15px;line-height:1.55;color:var(--ink-2)}
+.a11y{max-width:100ch;margin:14px 0 0;font-size:13px;color:var(--ink-2);line-height:1.6}
+.a11y p{margin:0}
+.a11y b{color:var(--ink);font-weight:600}
+.scroller{overflow-x:auto;overflow-y:hidden;border:1px solid var(--line);background:var(--paper)}
+
+/* ============ FOLHA DE IDENTIDADE ============ */
+.sheet-id{display:grid;grid-template-columns:1.15fr 1fr;gap:0;border:1px solid var(--line);background:var(--sheet);margin-top:28px}
+.sheet-id > div{padding:24px 28px}
+.sheet-id > div + div{border-left:1px solid var(--rule)}
+.sheet-id h3{font:600 15px/1.3 var(--ui);margin:22px 0 10px}
+.sheet-id h3:first-child{margin-top:0}
+.swatches{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.sw{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:0 0 8px;font-size:12px}
+.sw i{display:block;height:44px;border-bottom:1px solid var(--rule);margin-bottom:6px}
+.sw b{display:block;font-weight:600;padding:0 8px;font-size:12.5px}
+.sw span{display:block;padding:0 8px;color:var(--ink-2)}
+.specimen{border-top:1px solid var(--rule);padding:12px 0}
+.specimen .big-serif{font:600 32px/1.1 var(--serif)}
+.specimen .big-ui{font:500 22px/1.2 var(--ui)}
+.specimen small{display:block;color:var(--ink-2);font-size:12.5px;margin-top:4px}
+.ctrl-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--sheet)}
+.seg button{padding:7px 12px;font-size:13px;border-right:1px solid var(--line);display:flex;align-items:center;gap:8px}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--carbon-tint);color:var(--carbon-ink);font-weight:600}
+.seg .dot{width:12px;height:12px;border-radius:2px;display:inline-block}
+.wl-read{font-size:13px;color:var(--ink-2);margin-top:6px}
+.wl-read b{color:var(--ink);font-weight:600}
+.icon-row{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink)}
+.icon-row span{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:var(--ink-2);width:54px}
+.shape-demo{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.kv{display:grid;grid-template-columns:130px 1fr;gap:6px 14px;font-size:13.5px}
+.kv dt{color:var(--ink-2)} .kv dd{margin:0}
+
+/* ============ PEÇAS COMUNS ============ */
+.btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:1px solid var(--line);border-radius:3px;background:var(--sheet);font-size:13px;font-weight:500;white-space:nowrap;color:var(--ink)}
+.btn:hover{background:var(--ledger);border-color:var(--ink-3)}
+.btn.sm{height:28px;padding:0 10px;font-size:12.5px}
+.btn.p{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.btn.p:hover{filter:brightness(.93)}
+.btn.q{border-color:transparent;background:transparent;color:var(--ink-2)}
+.btn.q:hover{background:var(--ledger);color:var(--ink)}
+.btn.icon{width:32px;padding:0;justify-content:center}
+.split{display:inline-flex}
+.split .btn:first-child{border-radius:3px 0 0 3px}
+.split .btn:last-child{border-radius:0 3px 3px 0;border-left:1px solid color-mix(in srgb,var(--on-brand) 35%,transparent);width:30px;padding:0;justify-content:center}
+.av{border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:600;color:#fff;flex:none;position:relative;font-size:12px;width:32px;height:32px;letter-spacing:.01em}
+.av.s24{width:24px;height:24px;font-size:10px}
+.av.s40{width:40px;height:40px;font-size:14px}
+.av.s48{width:48px;height:48px;font-size:16px}
+.av.s72{width:72px;height:72px;font-size:24px;font-family:var(--serif)}
+.av.s96{width:96px;height:96px;font-size:30px;font-family:var(--serif)}
+.t1{background:#4A5B6E}.t2{background:#6B5A48}.t3{background:#3F6656}.t4{background:#7A4F5A}.t5{background:#55507A}.t6{background:#6E6A3E}.t7{background:#3E5F7A}.t8{background:#7A5E3A}
+.pres{position:absolute;right:-1px;bottom:-1px;width:11px;height:11px;border-radius:50%;border:2px solid var(--sheet)}
+.pres.on{background:#2E8B57}.pres.meet{background:#C98A12}.pres.off{background:var(--ink-3)}.pres.busy{background:#B42318}.pres.away{background:transparent;border-color:var(--sheet);box-shadow:inset 0 0 0 2px var(--ink-3)}
+.av.s72 .pres{width:16px;height:16px;border-width:3px}
+.state{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;white-space:nowrap}
+.state::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+.state.ok{color:var(--ok)} .state.warn{color:var(--warn)} .state.err{color:var(--err)} .state.info{color:var(--carbon-ink)} .state.grey{color:var(--ink-2)}
+.count{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--carbon);color:#fff;font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;line-height:1}
+:root[data-theme="dark"] .count{color:#15181B}
+/* Assinatura 1: dupla sublinha contábil */
+.total{border-bottom:3px double var(--ink);padding-bottom:1px;font-weight:600;white-space:nowrap}
+/* Assinatura 2: carimbo documental */
+.stamp{display:inline-flex;flex-direction:column;align-items:flex-start;border:3px double var(--ok);color:var(--ok);padding:4px 10px 5px;font:600 14px/1.15 var(--serif);border-radius:2px;white-space:nowrap}
+.stamp small{font:500 11px/1.2 var(--ui);color:inherit;opacity:.9}
+.stamp.carbon{border-color:var(--carbon-ink);color:var(--carbon-ink)}
+.stamp.ink{border-color:var(--ink-2);color:var(--ink-2)}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:12px;color:var(--ink-2)}
+.input{height:32px;border:1px solid var(--line);border-radius:3px;background:var(--sheet);padding:0 10px;display:flex;align-items:center;font-size:13.5px}
+.input.focus{outline:2px solid var(--focus);outline-offset:0;border-color:var(--focus)}
+.menu{position:absolute;background:var(--sheet);border:1px solid var(--line);border-radius:3px;box-shadow:0 8px 24px rgba(20,24,28,.14);z-index:20;min-width:240px;padding:4px 0}
+:root[data-theme="dark"] .menu{box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.menu button{display:flex;width:100%;text-align:left;padding:8px 14px;gap:10px;align-items:flex-start;font-size:13px}
+.menu button:hover,.menu button.hl{background:var(--carbon-tint)}
+.menu button small{display:block;color:var(--ink-2);font-size:12px}
+.menu hr{border:0;border-top:1px solid var(--rule);margin:4px 0}
+.kbd{display:inline-flex;align-items:center;border:1px solid var(--line);border-bottom-width:2px;border-radius:3px;padding:0 5px;font-size:11px;color:var(--ink-2);height:18px;background:var(--sheet)}
+
+/* ============ CASCA: trilho + barra do módulo ============ */
+.frame{width:1440px;height:900px;display:grid;grid-template-columns:72px 1fr;grid-template-rows:52px 1fr;background:var(--paper);position:relative;overflow:hidden}
+.rail{grid-row:1 / 3;background:var(--sheet);border-right:1px solid var(--rule);display:flex;flex-direction:column;align-items:center;padding:8px 0}
+.rail .logo{width:44px;height:44px;border-radius:4px;background:var(--brand);color:var(--on-brand);display:flex;align-items:center;justify-content:center;font:700 17px/1 var(--serif);margin-bottom:10px}
+.rail a,.rail button.ri{width:72px;height:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--ink-2);font-size:11px;font-weight:500;position:relative;text-decoration:none}
+.rail a:hover{color:var(--ink);background:var(--ledger)}
+.rail a[aria-current="page"]{color:var(--carbon-ink)}
+.rail a[aria-current="page"]::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;background:var(--carbon)}
+.rail a[aria-current="page"] .ic{stroke-width:1.9}
+.rail .count{position:absolute;top:6px;left:40px}
+.rail .sep{width:32px;height:1px;background:var(--rule);margin:6px 0}
+.rail .grow{flex:1}
+.top{background:var(--sheet);border-bottom:1px solid var(--rule);display:flex;align-items:stretch;padding:0 16px 0 20px;gap:4px}
+.top .mod{font:600 19px/52px var(--serif);margin-right:18px;white-space:nowrap}
+.top nav{display:flex;align-items:stretch}
+.top nav a{display:flex;align-items:center;gap:4px;padding:0 11px;color:var(--ink-2);font-size:13.5px;font-weight:500;position:relative;text-decoration:none;white-space:nowrap}
+.top nav a:hover{color:var(--ink)}
+.top nav a[aria-current="page"]{color:var(--ink)}
+.top nav a[aria-current="page"]::after{content:"";position:absolute;left:11px;right:11px;bottom:-1px;height:2px;background:var(--carbon)}
+.top .right{margin-left:auto;display:flex;align-items:center;gap:6px}
+.search{width:300px;height:34px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;gap:8px;padding:0 8px 0 10px;color:var(--ink-3);font-size:13px;background:var(--paper);margin-right:8px}
+.search > span:first-of-type{flex:1;white-space:nowrap}
+.top .ib{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:3px;color:var(--ink-2);position:relative}
+.top .ib:hover{background:var(--ledger);color:var(--ink)}
+.top .ib .count{position:absolute;top:2px;right:0;min-width:16px;height:16px;font-size:10px}
+.content{position:relative;overflow:hidden;min-height:0}
+
+/* ============ INÍCIO ============ */
+.home{display:grid;grid-template-columns:304px minmax(0,1fr) 320px;gap:24px;padding:20px 28px 0;height:100%}
+.home > div{overflow:hidden;min-height:0}
+.box{background:var(--sheet);border:1px solid var(--rule);border-radius:4px}
+.me-top{padding:20px 20px 16px;border-bottom:1px solid var(--rule)}
+.me-top .row{display:flex;gap:14px;align-items:center}
+.me-name{font:600 23px/1.15 var(--serif);margin:0}
+.me-role{font-size:13.5px;color:var(--ink);margin:3px 0 0}
+.me-team{font-size:13px;margin:2px 0 0}
+.status-sel{margin-top:14px;display:flex;align-items:center;gap:8px;height:32px;border:1px solid var(--line);border-radius:3px;padding:0 10px;font-size:13px;width:100%}
+.status-sel .ic{margin-left:auto;color:var(--ink-3)}
+.contacts{padding:12px 20px;border-bottom:1px solid var(--rule);display:grid;gap:6px;font-size:13px}
+.contacts div{display:flex;gap:10px;align-items:center;color:var(--ink)}
+.contacts .ic{color:var(--ink-3)}
+.foryou{padding:14px 20px 8px}
+.h-sec{font:600 14px/1.3 var(--ui);margin:0 0 8px;display:flex;align-items:center;gap:8px}
+.h-sec .aside{margin-left:auto;font-weight:400;font-size:12.5px;color:var(--ink-2)}
+.fy{list-style:none;margin:0;padding:0}
+.fy li{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-top:1px solid var(--rule);align-items:center}
+.fy li:first-child{border-top:0}
+.fy .what{font-size:13.5px;line-height:1.35}
+.fy .when{font-size:12px;grid-column:1}
+.fy .btn{grid-row:1 / 3;grid-column:2}
+.when.late{color:var(--err)} .when.today{color:var(--warn)} .when.soon{color:var(--ink-2)}
+.me-actions{display:flex;gap:8px;padding:0 20px 16px}
+.composer{padding:14px 16px;display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center}
+.composer .fake{height:40px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;padding:0 12px;color:var(--ink-2);font-size:13.5px}
+.composer .acts{grid-column:2;display:flex;gap:4px}
+.post{margin-top:12px}
+.post-h{display:flex;gap:12px;padding:14px 16px 0;align-items:flex-start}
+.post-h .who{font-size:13.5px;line-height:1.3}
+.post-h .who b{font-weight:600}
+.post-h .meta{font-size:12px;color:var(--ink-2)}
+.post-h .more{margin-left:auto}
+.post-b{padding:10px 16px 12px;font-size:14px;line-height:1.5}
+.post-b p{margin:0 0 8px;max-width:68ch}
+.post-title{font:600 19px/1.25 var(--serif);margin:0 0 6px}
+.attach{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--rule);padding:6px 10px;border-radius:3px;font-size:13px;background:var(--ledger)}
+.post-f{display:flex;align-items:center;gap:10px;padding:10px 16px;border-top:1px solid var(--rule);font-size:13px}
+.post-f .grow{flex:1}
+.recog{display:flex;align-items:center;gap:10px;padding:10px 12px;border-left:3px solid var(--carbon);background:var(--carbon-tint);margin:0 0 10px;font-size:13.5px}
+:root[data-theme="dark"] .recog{background:var(--ledger)}
+.recog .val{font-weight:600}
+.reacts{display:flex;align-items:center;gap:8px;padding:0 16px 10px;font-size:12.5px;color:var(--ink-2)}
+.rstack{display:inline-flex}
+.rstack span{width:22px;height:22px;border-radius:50%;background:var(--sheet);border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;margin-left:-5px;color:var(--carbon-ink)}
+.rstack span:first-child{margin-left:0}
+.ract{display:flex;border-top:1px solid var(--rule)}
+.ract button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;height:38px;color:var(--ink-2);font-size:13px;font-weight:500}
+.ract button:hover{background:var(--ledger);color:var(--ink)}
+.ract button[aria-pressed="true"]{color:var(--carbon-ink)}
+.comment{display:flex;gap:10px;padding:10px 16px 14px;border-top:1px solid var(--rule);font-size:13px}
+.comment .bub{background:var(--ledger);border:1px solid var(--rule);padding:6px 10px;border-radius:3px}
+.small-post{display:flex;gap:12px;padding:14px 16px;align-items:center}
+.small-post .txt{flex:1;font-size:13.5px;line-height:1.4}
+.small-post .txt b{font-weight:600}
+.small-post .ico{width:40px;height:40px;border:1px solid var(--rule);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--ink-2);flex:none}
+.team li{display:flex;gap:10px;align-items:center;padding:7px 0;font-size:13.5px}
+.team{list-style:none;margin:0;padding:4px 16px 10px}
+.team .st{font-size:12px;color:var(--ink-2);display:block;line-height:1.2}
+.team .nm{line-height:1.25}
+.agenda{list-style:none;margin:0;padding:0 16px 8px}
+.agenda li{display:grid;grid-template-columns:46px 1fr auto;gap:10px;padding:10px 0;border-top:1px solid var(--rule);align-items:center;font-size:13.5px}
+.agenda li:first-child{border-top:0}
+.agenda .hr{font-weight:600;font-size:13px}
+.agenda .sub{display:block;font-size:12px;color:var(--ink-2)}
+.agenda li.now .hr{color:var(--carbon-ink)}
+.box-h{padding:14px 16px 6px}
+
+/* ============ SUPORTE ============ */
+.sup{display:grid;grid-template-columns:356px minmax(0,1fr) 320px;height:100%}
+.sup.no-ficha{grid-template-columns:356px minmax(0,1fr) 0}
+.clist{background:var(--sheet);border-right:1px solid var(--rule);display:flex;flex-direction:column;min-height:0}
+.clist-h{display:flex;align-items:center;padding:12px 14px 8px 16px;gap:4px}
+.clist-h h2{font:600 20px/1.2 var(--serif);margin:0;flex:1}
+.csearch{margin:0 14px 8px;height:34px;border-radius:3px;background:var(--paper);display:flex;align-items:center;gap:8px;padding:0 10px;color:var(--ink-3);font-size:13px;border:1px solid var(--rule)}
+.cfilt{display:flex;gap:6px;padding:0 14px 10px;border-bottom:1px solid var(--rule);flex-wrap:wrap}
+.cfilt button{height:28px;padding:0 10px;border-radius:3px;border:1px solid var(--line);font-size:12.5px;color:var(--ink-2);display:flex;gap:6px;align-items:center}
+.cfilt button[aria-pressed="true"]{background:var(--carbon);border-color:var(--carbon);color:#fff;font-weight:600}
+:root[data-theme="dark"] .cfilt button[aria-pressed="true"]{color:#15181B}
+.convs{list-style:none;margin:0;padding:0;overflow:hidden;flex:1}
+.conv{display:grid;grid-template-columns:48px 1fr auto;gap:2px 12px;padding:10px 14px 10px 16px;border-bottom:1px solid var(--rule);cursor:pointer;align-items:center}
+.conv:hover{background:var(--ledger)}
+.conv[aria-selected="true"]{background:var(--carbon-tint)}
+:root[data-theme="dark"] .conv[aria-selected="true"]{background:#222A38}
+.conv .av{grid-row:1 / 4}
+.conv .nm{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conv .tm{font-size:12px;color:var(--ink-2);text-align:right}
+.conv .tm.new{color:var(--carbon-ink);font-weight:600}
+.conv .pv{font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:4px}
+.conv .rt{display:flex;gap:6px;justify-content:flex-end;align-items:center;color:var(--ink-3)}
+.conv .tk{grid-column:2 / 4;font-size:12px;color:var(--ink-2);display:flex;gap:12px}
+.conv .tk .sla-warn{color:var(--warn);font-weight:500}
+.conv .tk .sla-err{color:var(--err);font-weight:600}
+.conv .tk .sla-ok{color:var(--ink-2)}
+.tick{color:var(--ink-3)} .tick.read{color:var(--carbon-ink)}
+.chat{display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--chat);position:relative}
+.chat-h{height:64px;flex:none;background:var(--sheet);border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px;padding:0 12px 0 16px}
+.chat-h .who{display:flex;gap:12px;align-items:center;flex:1;text-align:left;min-width:0;height:100%}
+.chat-h .who:hover .nm{text-decoration:underline}
+.chat-h .nm{font-weight:600;font-size:15px}
+.chat-h .sub{font-size:12.5px;color:var(--ink-2);display:flex;gap:12px;white-space:nowrap}
+.ticketbar{flex:none;background:var(--sheet);border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:18px;padding:0 16px;height:40px;font-size:12.5px;color:var(--ink-2)}
+.ticketbar b{color:var(--ink);font-weight:600}
+.ticketbar .gap{flex:1}
+.msgs{flex:1;overflow:hidden;padding:14px 28px 10px;display:flex;flex-direction:column;gap:4px;min-height:0}
+.day{align-self:center;background:var(--sheet);border:1px solid var(--rule);font-size:12px;color:var(--ink-2);padding:3px 10px;border-radius:3px;margin:6px 0}
+.sys{align-self:center;font-size:12px;color:var(--ink-2);display:flex;gap:6px;align-items:center;margin:4px 0}
+.bub{max-width:62%;background:var(--sheet);border:1px solid var(--rule);border-radius:4px;padding:6px 9px 5px;font-size:14px;line-height:1.4;position:relative}
+.bub.in{align-self:flex-start}
+.bub.out{align-self:flex-end;background:color-mix(in srgb,var(--brand) 11%,var(--sheet));border-color:color-mix(in srgb,var(--brand) 22%,var(--sheet))}
+.bub.first.in{border-top-left-radius:0}
+.bub.first.out{border-top-right-radius:0}
+.bub .mt{float:right;margin:6px 0 -3px 12px;font-size:11px;color:var(--ink-2);display:inline-flex;gap:3px;align-items:center}
+.bub .author{font-size:12px;font-weight:600;color:var(--carbon-ink);display:block}
+.bub.note{align-self:flex-end;background:var(--note);border-color:var(--note-line);max-width:62%}
+.bub.note .nl{display:flex;gap:6px;align-items:center;font-size:12px;font-weight:600;color:var(--warn);margin-bottom:2px}
+.mention{color:var(--carbon-ink);font-weight:600}
+.photo{display:block;width:280px;height:176px;border-radius:2px;margin:-2px -5px 4px}
+.audio{display:flex;align-items:center;gap:10px;width:300px;padding:4px 0}
+.audio .play{width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--sheet);display:flex;align-items:center;justify-content:center;flex:none}
+.wave{display:flex;align-items:center;gap:2px;height:28px;flex:1}
+.wave i{display:block;width:3px;background:var(--ink-3);border-radius:0}
+.wave i.p{background:var(--carbon)}
+.linkcard{align-self:center;background:var(--sheet);border:1px solid var(--line);border-left:3px solid var(--ok);padding:8px 12px;font-size:13px;display:flex;gap:12px;align-items:center;margin:6px 0;width:440px}
+.linkcard b{font-weight:600}
+.compose{flex:none;background:var(--sheet);border-top:1px solid var(--rule);padding:8px 12px 12px;position:relative}
+.compose .mode{display:flex;gap:0;margin-bottom:8px}
+.compose .mode button{height:28px;padding:0 12px;font-size:12.5px;font-weight:500;color:var(--ink-2);border:1px solid var(--line)}
+.compose .mode button:first-child{border-radius:3px 0 0 3px}
+.compose .mode button:last-child{border-radius:0 3px 3px 0;border-left:0}
+.compose .mode button[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.compose .row{display:flex;gap:6px;align-items:flex-end}
+.compose .ta{flex:1;min-height:40px;border:1px solid var(--line);border-radius:3px;padding:9px 12px;font-size:14px;background:var(--sheet)}
+.compose .ta:focus-within{outline:2px solid var(--focus);outline-offset:-1px}
+.caret{display:inline-block;width:1px;height:17px;background:var(--ink);vertical-align:-3px;margin-left:1px}
+.qr{left:12px;bottom:66px;width:330px}
+.qr button{flex-direction:column;gap:0}
+.qr .qh{padding:8px 14px 6px;font-size:12px;color:var(--ink-2);border-bottom:1px solid var(--rule)}
+.qr button b{font-weight:600;margin-right:8px}
+.qr .qf{padding:6px 14px;font-size:12px;color:var(--ink-2);border-top:1px solid var(--rule);display:flex;gap:10px;align-items:center}
+.sendm{right:12px;bottom:58px;width:300px}
+.ficha{background:var(--sheet);border-left:1px solid var(--rule);display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.no-ficha .ficha{display:none}
+.ficha-h{height:64px;flex:none;display:flex;align-items:center;gap:10px;padding:0 12px 0 16px;border-bottom:1px solid var(--rule);font-weight:600;font-size:15px}
+.ficha-b{overflow:hidden;flex:1}
+.fsec{padding:14px 18px;border-bottom:1px solid var(--rule)}
+.fsec.center{text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px;padding:20px 18px 16px}
+.fsec.center .nm{font:600 20px/1.2 var(--serif);margin-top:6px}
+.fsec .lbl{font-size:12px;color:var(--ink-2);margin-bottom:6px;display:flex;justify-content:space-between}
+.path{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:4px 0 6px}
+.path span{height:26px;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:500;background:var(--ledger);color:var(--ink-2);border:1px solid var(--rule)}
+.path span.done{background:var(--carbon-tint);color:var(--carbon-ink);border-color:transparent}
+.path span.cur{background:var(--carbon);color:#fff;border-color:var(--carbon);font-weight:600}
+:root[data-theme="dark"] .path span.cur{color:#15181B}
+.props{display:grid;grid-template-columns:104px 1fr;gap:8px 10px;font-size:13px;align-items:center}
+.props dt{color:var(--ink-2)} .props dd{margin:0;display:flex;align-items:center;gap:6px}
+.prio{display:inline-flex;gap:2px;align-items:flex-end;height:12px}
+.prio i{width:3px;background:var(--ink-3)}
+.prio i:nth-child(1){height:5px}.prio i:nth-child(2){height:8px}.prio i:nth-child(3){height:12px}
+.prio.hi i{background:var(--ink)}
+.media{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.media div{aspect-ratio:1;background:#8B8E86;border-radius:2px;overflow:hidden}
+.rel{display:flex;gap:10px;align-items:center;font-size:13px;padding:6px 0}
+.rel .grow{flex:1}
+
+/* ============ CS ============ */
+.cs{display:flex;flex-direction:column;height:100%}
+.rec-h{background:var(--sheet);border-bottom:1px solid var(--rule);padding:10px 24px 0}
+.crumbs{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2)}
+.crumbs .pager{margin-left:auto;display:flex;align-items:center;gap:6px;color:var(--ink)}
+.crumbs .pager b{font-weight:600}
+.rec-title{display:flex;align-items:center;gap:14px;margin-top:8px}
+.rec-title h2{font:600 30px/1.15 var(--serif);margin:0;letter-spacing:-.005em}
+.rec-title .star{color:var(--warn)}
+.rec-title .acts{margin-left:auto;display:flex;gap:8px;align-items:center}
+.rec-meta{display:flex;gap:22px;align-items:center;font-size:13px;color:var(--ink-2);margin:6px 0 12px}
+.rec-meta .health{display:flex;align-items:center;gap:8px;color:var(--ink)}
+.hdot{width:10px;height:10px;border-radius:50%;background:#C98A12;display:inline-block}
+.health b{font-size:15px;font-weight:700}
+.stages{display:flex;align-items:stretch;gap:0;border-top:1px solid var(--rule);margin:0 -24px;padding:0 24px}
+.stage{flex:1;display:flex;align-items:center;gap:8px;height:42px;font-size:13px;color:var(--ink-2);border-bottom:3px solid var(--rule);margin-right:3px;padding-left:2px}
+.stage.done{color:var(--ink);border-bottom-color:var(--ok)}
+.stage.cur{color:var(--ink);font-weight:600;border-bottom-color:var(--carbon)}
+.stage.cur small{font-weight:400;color:var(--ink-2)}
+.stage-act{display:flex;align-items:center;gap:8px;padding-left:12px}
+.cs-cols{display:grid;grid-template-columns:330px minmax(0,1fr) 340px;flex:1;min-height:0}
+.cs-cols > section{overflow:hidden;min-height:0}
+.about{border-right:1px solid var(--rule);background:var(--sheet)}
+.psec{border-bottom:1px solid var(--rule);padding:12px 20px 14px}
+.psec-h{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.psec-h h3{font:600 14px/1.3 var(--ui);margin:0;flex:1}
+.psec-h .ic{color:var(--ink-3)}
+.pen{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:3px;color:var(--ink-2)}
+.pen:hover{background:var(--ledger);color:var(--ink)}
+.pl{display:grid;grid-template-columns:118px 1fr;gap:6px 10px;font-size:13px;margin:0}
+.pl dt{color:var(--ink-2)} .pl dd{margin:0}
+.psec.editing{background:var(--sheet);box-shadow:inset 3px 0 0 var(--carbon);outline:1px solid var(--carbon);outline-offset:-1px}
+.psec.editing .fields{display:grid;gap:10px}
+.was{font-size:12px;color:var(--ink-2)}
+.was s{color:var(--ink-3)}
+.edit-flag{font-size:12px;color:var(--warn);font-weight:600;display:flex;align-items:center;gap:6px}
+.hb{display:grid;grid-template-columns:1fr auto;gap:6px 10px;font-size:13px}
+.hb .neg{color:var(--err)} .hb .pos{color:var(--ok)}
+.timeline{background:var(--paper);display:flex;flex-direction:column}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--rule);padding:0 24px;background:var(--paper)}
+.tabs button{height:42px;padding:0 14px;font-size:13.5px;font-weight:500;color:var(--ink-2);position:relative;display:flex;align-items:center;gap:6px}
+.tabs button[aria-selected="true"]{color:var(--ink)}
+.tabs button[aria-selected="true"]::after{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:2px;background:var(--carbon)}
+.tabs .n{font-size:12px;color:var(--ink-3);font-weight:400}
+.tl-body{padding:14px 24px 80px;overflow:hidden}
+.tl-comp{background:var(--sheet);border:1px solid var(--rule);border-radius:4px}
+.tl-comp .types{display:flex;border-bottom:1px solid var(--rule)}
+.tl-comp .types button{height:36px;padding:0 14px;font-size:13px;color:var(--ink-2);display:flex;gap:6px;align-items:center}
+.tl-comp .types button[aria-pressed="true"]{color:var(--ink);font-weight:600;box-shadow:inset 0 -2px 0 var(--ink)}
+.tl-comp .area{padding:10px 14px;color:var(--ink-3);font-size:13.5px;height:44px}
+.month{font:600 16px/1.3 var(--serif);margin:18px 0 8px;color:var(--ink)}
+.ev{display:grid;grid-template-columns:32px 1fr;gap:12px;position:relative;padding-bottom:12px}
+.ev::before{content:"";position:absolute;left:15px;top:32px;bottom:0;width:1px;background:var(--line)}
+.ev:last-child::before{display:none}
+.node{width:32px;height:32px;border:1px solid var(--line);background:var(--sheet);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--ink-2)}
+.evc{background:var(--sheet);border:1px solid var(--rule);border-radius:4px;padding:10px 14px}
+.evc .eh{display:flex;gap:10px;align-items:baseline;font-size:13.5px}
+.evc .eh b{font-weight:600}
+.evc .eh .tm{margin-left:auto;font-size:12px;color:var(--ink-2);white-space:nowrap}
+.evc .eb{font-size:13.5px;color:var(--ink);margin-top:4px;line-height:1.45}
+.evc .ef{font-size:12.5px;color:var(--ink-2);margin-top:6px;display:flex;gap:14px;align-items:center}
+.nps{display:inline-flex;align-items:center;justify-content:center;width:26px;height:22px;border:1px solid var(--warn);color:var(--warn);font-weight:700;border-radius:2px;font-size:13px}
+.assoc{border-left:1px solid var(--rule);background:var(--sheet)}
+.asec{border-bottom:1px solid var(--rule);padding:12px 18px}
+.asec-h{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.asec-h h3{margin:0;font:600 14px/1.3 var(--ui);flex:1}
+.asec-h .n{font-weight:400;color:var(--ink-3)}
+.arow{display:flex;gap:10px;align-items:center;padding:6px 0;font-size:13px}
+.arow .grow{flex:1;min-width:0}
+.arow .s{font-size:12px;color:var(--ink-2);display:block}
+.money{white-space:nowrap;text-align:right}
+.tot{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--rule);padding-top:8px;margin-top:4px;font-size:13px}
+.savebar{position:absolute;left:0;right:0;bottom:0;height:60px;background:var(--sheet);border-top:2px solid var(--warn);display:flex;align-items:center;gap:12px;padding:0 24px;z-index:10}
+.savebar .msg{display:flex;align-items:center;gap:10px;font-size:13.5px}
+.savebar .msg .ic{color:var(--warn)}
+.savebar .grow{flex:1}
+.savem{right:24px;bottom:66px;width:300px}
+
+/* ============ ACADEMY ============ */
+.acad{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:24px;padding:18px 28px 0;height:100%}
+.acad > div{overflow:hidden;min-height:0}
+.acad-h{display:flex;align-items:flex-end;gap:18px;margin-bottom:14px}
+.acad-h h2{font:600 28px/1.15 var(--serif);margin:0}
+.acad-h .sub{font-size:13px;color:var(--ink-2);margin-top:4px;display:flex;gap:18px}
+.acad-h .period{margin-left:auto;display:flex;flex-direction:column;gap:4px}
+.period .sel{height:34px;border:1px solid var(--line);border-radius:3px;background:var(--sheet);display:flex;align-items:center;gap:10px;padding:0 10px;font-size:13.5px}
+.period .sel b{font-weight:700}
+table.grid{width:100%;border-collapse:collapse;background:var(--sheet);border:1px solid var(--rule);font-size:13px}
+table.grid th{font-weight:600;text-align:left;font-size:12px;color:var(--ink-2);padding:8px 10px;border-bottom:1px solid var(--line);background:var(--sheet);white-space:nowrap}
+table.grid td{padding:0 10px;height:44px;border-bottom:1px solid var(--rule);vertical-align:middle}
+table.grid tbody tr:nth-child(even) td{background:var(--ledger)}
+table.grid .num{text-align:right}
+table.grid .ctr{text-align:center}
+table.grid tfoot td{height:40px;border-bottom:0;font-weight:600;background:var(--sheet)}
+.disc b{font-weight:600;display:block;line-height:1.25}
+.disc span{font-size:12px;color:var(--ink-2)}
+.freq{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.freq .bar{width:54px;height:6px;background:var(--rule);position:relative}
+.freq .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--ink-2)}
+.freq .bar::after{content:"";position:absolute;left:75%;top:-3px;bottom:-3px;width:1px;background:var(--ink)}
+.freq.low{color:var(--err);font-weight:600}
+.freq.low .bar i{background:var(--err)}
+.sec-t{font:600 17px/1.3 var(--serif);margin:0 0 8px;display:flex;align-items:baseline;gap:10px}
+.sec-t .aside{margin-left:auto;font:400 12.5px var(--ui);color:var(--ink-2)}
+.week{display:grid;grid-template-columns:78px repeat(5,1fr);border:1px solid var(--rule);background:var(--sheet);font-size:12.5px}
+.week > div{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);min-height:52px;padding:6px 8px}
+.week > div:nth-child(6n){border-right:0}
+.week .wh{min-height:0;font-weight:600;color:var(--ink-2);padding:7px 8px;background:var(--sheet)}
+.week .wh.today{color:var(--carbon-ink);box-shadow:inset 0 -2px 0 var(--carbon)}
+.week .tm{color:var(--ink-2);font-size:12px}
+.week .cls{border-left:3px solid var(--ink-2);padding-left:7px;line-height:1.3}
+.week .cls b{font-weight:600;display:block}
+.week .cls span{color:var(--ink-2);font-size:11.5px}
+.week .cls.now{border-left-color:var(--carbon)}
+.week .col-today{background:color-mix(in srgb,var(--carbon) 5%,var(--sheet))}
+.aviso{padding:12px 16px;border-top:1px solid var(--rule)}
+.aviso:first-of-type{border-top:0}
+.aviso .ah{display:flex;gap:10px;align-items:center;font-size:13px}
+.aviso .ah b{font-weight:600}
+.aviso .ah .d{margin-left:auto;font-size:12px;color:var(--ink-2)}
+.aviso p{margin:6px 0 0 42px;font-size:13.5px;line-height:1.45}
+.cal{list-style:none;margin:0;padding:0 16px 6px}
+.cal li{display:grid;grid-template-columns:44px 1fr auto;gap:12px;padding:9px 0;border-top:1px solid var(--rule);align-items:center}
+.cal li:first-child{border-top:0}
+.cal .dd{text-align:center;line-height:1}
+.cal .dd b{font:600 21px/1 var(--serif);display:block}
+.cal .dd span{font-size:11px;color:var(--ink-2)}
+.cal .ev-t{font-size:13.5px;line-height:1.3}
+.cal .ev-t span{display:block;font-size:12px;color:var(--ink-2)}
+.cal .kind{font-size:12px;color:var(--ink-2);text-align:right}
+.cal .kind.prova{color:var(--err);font-weight:600}
+.cal .kind.entrega{color:var(--warn);font-weight:600}
+.hist{display:grid;grid-template-columns:1fr 1.25fr}
+.hist .cert{border-top:0}
+.hist .cert + .cert{border-left:1px solid var(--rule)}
+.cert{display:flex;gap:14px;align-items:center;padding:12px 16px;border-top:1px solid var(--rule)}
+.cert .txt{flex:1;font-size:13.5px;line-height:1.35}
+.cert .txt b{font-weight:600}
+.cert .txt span{display:block;font-size:12px;color:var(--ink-2)}
+
+/* ============ PORTAL ============ */
+.phone-wrap{display:flex;gap:48px;align-items:flex-start;padding:28px;background:var(--paper)}
+.phone{width:390px;height:800px;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column;position:relative;flex:none;font-size:15px}
+.pstatus{height:36px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:13px;font-weight:600;background:var(--brand);color:var(--on-brand)}
+.phead{background:var(--brand);color:var(--on-brand);padding:6px 16px 14px}
+.phead .r1{display:flex;align-items:center;gap:10px}
+.phead .lg{width:32px;height:32px;border-radius:3px;background:var(--on-brand);color:var(--brand);font:700 14px/32px var(--serif);text-align:center}
+.phead .bn{font-weight:600;font-size:15px;flex:1}
+.phead .un{margin-top:10px;font-size:13.5px;display:flex;align-items:center;gap:6px;opacity:.95}
+.pbody{flex:1;overflow:hidden;padding:18px 16px}
+.pbody h3{font:600 24px/1.2 var(--serif);margin:0}
+.pbody .due{font-size:14px;color:var(--ink-2);margin:4px 0 14px}
+.pval{font:600 36px/1 var(--serif);margin:0 0 16px;display:inline-block}
+.pbtn{width:100%;height:50px;border-radius:4px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:16px;font-weight:600}
+.pbtn.p{background:var(--brand);color:var(--on-brand)}
+.pbtn.s{border:1px solid var(--line);background:var(--sheet);height:46px;font-size:15px;font-weight:500;margin-top:8px}
+.pix{border:1px dashed var(--line);background:var(--sheet);padding:10px 12px;font-size:12.5px;color:var(--ink-2);word-break:break-all;line-height:1.35;margin:0 0 10px;border-radius:3px}
+.prow{display:flex;gap:8px;margin-top:8px}
+.prow .pbtn{margin:0}
+.comp{margin-top:18px;background:var(--sheet);border:1px solid var(--rule);font-size:14px}
+.comp div{display:flex;justify-content:space-between;padding:8px 12px;border-bottom:1px solid var(--rule)}
+.comp div:nth-child(even){background:var(--ledger)}
+.comp div.t{border-bottom:0;background:var(--sheet);padding:10px 12px}
+.prev{margin-top:18px}
+.prev h4{margin:0 0 8px;font:600 15px/1.3 var(--ui)}
+.prev .it{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--rule);font-size:14px}
+.prev .it .grow{flex:1}
+.ptabs{height:64px;border-top:1px solid var(--rule);background:var(--sheet);display:grid;grid-template-columns:repeat(5,1fr);flex:none}
+.ptabs a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11.5px;color:var(--ink-2);text-decoration:none;font-weight:500}
+.ptabs a[aria-current="page"]{color:var(--brand)}
+:root[data-theme="dark"] .ptabs a[aria-current="page"]{color:var(--ink)}
+.toast{position:absolute;left:16px;right:16px;bottom:78px;background:var(--ink);color:var(--sheet);padding:12px 14px;border-radius:4px;font-size:14px;display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(8px);transition:opacity .18s, transform .18s;pointer-events:none}
+.toast.on{opacity:1;transform:none}
+.phone-notes{max-width:520px;font-size:14px;line-height:1.55}
+.phone-notes h3{font:600 18px/1.3 var(--serif);margin:0 0 8px}
+.phone-notes ol{padding-left:20px;margin:0 0 16px}
+.phone-notes li{margin-bottom:6px}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:900px){
+  .page{padding:24px 16px 60px}
+  .sheet-id{grid-template-columns:1fr}
+  .sheet-id > div + div{border-left:0;border-top:1px solid var(--rule)}
+  .swatches{grid-template-columns:repeat(2,1fr)}
+  .doc-h1{font-size:30px}
+  .phone-wrap{flex-direction:column;padding:16px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ===================== FOLHA DE IDENTIDADE ===================== -->
+<header>
+  <h1 class="doc-h1">GACO, versão V1: Livro-caixa</h1>
+  <p class="lede">A administradora de condomínio vive de documento: balancete, ata, circular, boleto, protocolo. A interface do GACO é um livro contábil bem-feito, com papel levemente cinza, tinta azul-preta, filetes de pauta e números alinhados à direita. O que é valor consolidado ganha a dupla sublinha dos balancetes, e o que é estado de documento ganha carimbo; o resto fica quieto para o trabalho aparecer.</p>
+</header>
+
+<div class="sheet-id" aria-label="Folha de identidade">
+  <div>
+    <h3>Paleta do sistema (não muda com o cliente)</h3>
+    <div class="swatches">
+      <div class="sw"><i style="background:#F5F5F0"></i><b>Papel</b><span>#F5F5F0, fundo</span></div>
+      <div class="sw"><i style="background:#FFFFFF"></i><b>Folha</b><span>#FFFFFF, superfície</span></div>
+      <div class="sw"><i style="background:#E3E3DC"></i><b>Pauta</b><span>#E3E3DC, filete</span></div>
+      <div class="sw"><i style="background:#1B1F24"></i><b>Tinta</b><span>#1B1F24, texto 15,1:1</span></div>
+      <div class="sw"><i style="background:#23408E"></i><b>Azul-carbono</b><span>#23408E, seleção e lida</span></div>
+      <div class="sw"><i style="background:#1E6B45"></i><b>Verde-livro</b><span>#1E6B45, pago, concluído</span></div>
+      <div class="sw"><i style="background:#8A5A00"></i><b>Âmbar</b><span>#8A5A00, atenção</span></div>
+      <div class="sw"><i style="background:#B42318"></i><b>Tinta de estorno</b><span>#B42318, vencido, erro</span></div>
+    </div>
+    <h3>Par tipográfico</h3>
+    <div class="specimen">
+      <div class="big-serif">Condomínio Parque das Águas</div>
+      <small>Source Serif 4, 600, com tamanho óptico. Só em títulos de registro, títulos de página e documentos gerados (ata, circular, recibo).</small>
+    </div>
+    <div class="specimen">
+      <div class="big-ui">Boleto de outubro, R$ 1.284,37, vence 10/10</div>
+      <small>Schibsted Grotesk 400 a 700 em toda a interface. Algarismos sempre tabulares; valores alinhados à direita nas tabelas.</small>
+    </div>
+    <h3>Forma</h3>
+    <dl class="kv">
+      <dt>Raio</dt><dd>3px em controles, 4px em superfícies, 0 em tabelas; avatar de pessoa redondo.</dd>
+      <dt>Borda</dt><dd>Filete de 1px. Nenhuma sombra, exceto em menus suspensos (que flutuam de verdade).</dd>
+      <dt>Densidade</dt><dd>Linha de tabela de 44px com pautado alternado #FAFAF7; texto de 13 a 14px.</dd>
+      <dt>Estado</dt><dd>Sempre ponto + palavra. Verde concluído, âmbar atenção, vermelho vencido, azul em andamento, cinza encerrado.</dd>
+    </dl>
+  </div>
+  <div>
+    <h3>Detalhe assinatura</h3>
+    <div class="shape-demo" style="margin-bottom:10px">
+      <span style="font-size:14px">Total do contrato <span class="total">R$ 4.820,00</span></span>
+      <span class="stamp">Pago em 08/09/26<small>Boleto de setembro</small></span>
+      <span class="stamp carbon">Protocolado<small>Chamado 4.812, 30/09/26 08:14</small></span>
+    </div>
+    <p class="muted" style="margin:0 0 4px;font-size:13.5px;max-width:60ch">Dupla sublinha contábil em todo valor consolidado. Carimbo com filete duplo só em estado de documento (pago, protocolado, aprovado em assembleia, ciente, emitido), nunca como etiqueta genérica.</p>
+    <h3>Ícones</h3>
+    <div class="icon-row">
+      <span><i data-i="house"></i>Início</span><span><i data-i="headset"></i>Suporte</span><span><i data-i="heart-handshake"></i>CS</span><span><i data-i="graduation-cap"></i>Academy</span><span><i data-i="users"></i>Cultura</span><span><i data-i="chart"></i>Relatórios</span><span><i data-i="check-check"></i>Lida</span><span><i data-i="paperclip"></i>Anexar</span>
+    </div>
+    <p class="muted" style="margin:8px 0 0;font-size:13px">Traço de 1,5px, ponta e junção quadradas, desenho a partir dos nomes do Lucide. Todo ícone isolado tem nome acessível.</p>
+    <h3>White label: troque a marca do cliente</h3>
+    <div class="ctrl-row">
+      <div class="seg" role="group" aria-label="Marca do cliente" id="brandSeg"></div>
+    </div>
+    <div class="wl-read" id="wlRead" aria-live="polite"></div>
+    <p class="muted" style="margin:8px 0 0;font-size:13px;max-width:62ch">A cor do cliente entra em três lugares: logo do trilho, botão principal e cabeçalho do portal. Passa por ajuste automático de contraste (como a Salesforce faz) e não entra em estado, alerta, seleção nem gráfico. Papel, tinta, fontes, filetes, carimbo e dupla sublinha são do GACO.</p>
+    <h3>Tema</h3>
+    <div class="seg" role="group" aria-label="Tema">
+      <button type="button" data-theme-btn="light" aria-pressed="true"><i data-i="sun" class="s16"></i>Claro</button>
+      <button type="button" data-theme-btn="dark" aria-pressed="false"><i data-i="moon" class="s16"></i>Escuro</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== INÍCIO ===================== -->
+<section class="section" aria-labelledby="h-home">
+  <h2 class="doc-h2" id="h-home">Início</h2>
+  <p class="proposal"><b>O que esta versão propõe:</b> a Início é a sua página numa rede profissional. À esquerda, quem você é e o que o trabalho real pede de você hoje, em frases com prazo e um botão cada. No centro, o mural da empresa: reconhecimentos, comunicados que pedem ciência (e viram carimbo quando você dá ciência), aniversários e quem chegou. À direita, a sua equipe com presença e o seu dia. Nenhum indicador em cartão.</p>
+  <p class="refs">Resolvemos fazer assim porque LinkedIn (perfil à esquerda, feed no centro), Workvivo (reconhecimento como publicação) e Feedz (comunicado com "Li e estou ciente") utilizam dessa forma. Enviamos para aprovação.</p>
+  <div class="scroller">
+  <div class="frame" data-frame="home">
+    <nav class="rail" aria-label="Módulos">
+      <div class="logo brand-mono" aria-label="Administradora Alpha" role="img">A</div>
+      <a href="#" aria-label="Favoritos e recentes"><i data-i="star"></i>Favoritos</a>
+      <div class="sep"></div>
+      <a href="#" aria-current="page"><i data-i="house"></i>Início</a>
+      <a href="#"><i data-i="headset"></i>Suporte<span class="count" aria-label="7 conversas esperando">7</span></a>
+      <a href="#"><i data-i="heart-handshake"></i>CS<span class="count" aria-label="3 clientes precisam de você">3</span></a>
+      <a href="#"><i data-i="graduation-cap"></i>Academy<span class="count" aria-label="1 entrega pendente">1</span></a>
+      <a href="#"><i data-i="users"></i>Cultura</a>
+      <a href="#"><i data-i="chart"></i>Relatórios</a>
+      <div class="grow"></div>
+      <a href="#"><i data-i="settings"></i>Ajustes</a>
+    </nav>
+    <header class="top">
+      <div class="mod">Início</div>
+      <nav aria-label="Seções de Início"><a href="#" aria-current="page">Mural</a><a href="#">Minhas tarefas</a><a href="#">Pessoas</a><a href="#">Comunicados</a></nav>
+      <div class="right">
+        <div class="search" role="button" tabindex="0" aria-label="Pesquisar em tudo, atalho Command K"><i data-i="search" class="s16"></i><span>Pesquisar em tudo</span><span class="kbd">⌘K</span></div>
+        <button class="ib" aria-label="Ajuda"><i data-i="help"></i></button>
+        <button class="ib" aria-label="Notificações, 4 novas"><i data-i="bell"></i><span class="count">4</span></button>
+        <button class="ib" aria-label="Sua conta, Letícia Araújo"><span class="av s24 t3">LA</span></button>
+      </div>
+    </header>
+    <main class="content">
+      <div class="home">
+        <!-- Eu -->
+        <div>
+          <div class="box">
+            <div class="me-top">
+              <div class="row">
+                <span class="av s72 t3" role="img" aria-label="Foto de Letícia Araújo, disponível">LA<span class="pres on"></span></span>
+                <div>
+                  <p class="me-name">Letícia Araújo</p>
+                  <p class="me-role">Coordenadora de Relacionamento</p>
+                  <p class="me-team"><a href="#">Relacionamento com Condomínios</a></p>
+                </div>
+              </div>
+              <button class="status-sel" aria-label="Seu status: Disponível. Alterar"><span class="state ok">Disponível</span><span class="muted">até 18h</span><i data-i="chevron-down" class="s16"></i></button>
+            </div>
+            <div class="contacts">
+              <div><i data-i="phone" class="s16"></i>Ramal 2041, (11) 97412-0831</div>
+              <div><i data-i="mail" class="s16"></i>leticia.araujo@alpha.adm.br</div>
+              <div><i data-i="building" class="s16"></i><span>Na <span class="brand-name">Administradora Alpha</span> desde mar/2021</span></div>
+            </div>
+            <div class="foryou">
+              <h3 class="h-sec">Para você <span class="aside">5 itens</span></h3>
+              <ul class="fy">
+                <li><span class="what">7 conversas esperando você; a mais antiga há 38 min</span><span class="when late">SLA vencido em 1 conversa</span><button class="btn sm">Abrir conversas</button></li>
+                <li><span class="what">Parque das Águas espera a proposta de portaria remota</span><span class="when today">Hoje, até 17h</span><button class="btn sm">Abrir cliente</button></li>
+                <li><span class="what">Comunicado do plantão pede sua ciência</span><span class="when today">Até 02/10</span><button class="btn sm">Ler</button></li>
+                <li><span class="what">Trabalho de Legislação condominial</span><span class="when soon">Entrega 03/10, 23h59</span><button class="btn sm">Continuar</button></li>
+                <li><span class="what">Reembolso de Juliana Prado, R$ 86,40</span><span class="when soon">Aprovar até 06/10</span><button class="btn sm">Revisar</button></li>
+              </ul>
+            </div>
+            <div class="me-actions"><button class="btn"><i data-i="award" class="s16"></i>Reconhecer</button><button class="btn"><i data-i="calendar" class="s16"></i>Pedir férias</button></div>
+          </div>
+        </div>
+        <!-- Feed -->
+        <div>
+          <div class="box composer">
+            <span class="av s40 t3">LA</span>
+            <button class="fake">Reconhecer alguém ou publicar para a equipe</button>
+            <div class="acts"><button class="btn q sm"><i data-i="award" class="s16"></i>Reconhecimento</button><button class="btn q sm"><i data-i="image" class="s16"></i>Foto</button><button class="btn q sm"><i data-i="megaphone" class="s16"></i>Comunicado</button></div>
+          </div>
+
+          <article class="box post" aria-label="Comunicado de Ricardo Tavares">
+            <div class="post-h">
+              <span class="av s40 t1">RT</span>
+              <div><div class="who"><b>Ricardo Tavares</b> publicou um comunicado</div><div class="meta">Diretor de Operações, hoje às 08:02, para toda a empresa</div></div>
+              <button class="btn q icon more" aria-label="Mais opções"><i data-i="more"></i></button>
+            </div>
+            <div class="post-b">
+              <h3 class="post-title">O plantão de fim de semana muda a partir de 05/10</h3>
+              <p>O plantão passa a ser por região. Quem atende a zona leste (inclui o Parque das Águas) fica com o número de emergência aos sábados, das 8h às 20h. A escala de outubro está no anexo.</p>
+              <span class="attach"><i data-i="file" class="s16"></i>Escala de plantão, outubro de 2026.pdf</span>
+            </div>
+            <div class="post-f" id="cienciaRow">
+              <span class="muted">Pede ciência até 02/10</span><span class="grow"></span>
+              <span class="muted">31 de 48 pessoas já deram ciência</span>
+              <button class="btn p" id="btnCiencia">Li e estou ciente</button>
+            </div>
+          </article>
+
+          <article class="box post" aria-label="Reconhecimento">
+            <div class="post-h">
+              <span class="av s40 t2">CL</span>
+              <div><div class="who"><b>Carlos Lima</b> reconheceu <b>Beatriz Nogueira</b></div><div class="meta">Ontem às 17:40</div></div>
+              <button class="btn q icon more" aria-label="Mais opções"><i data-i="more"></i></button>
+            </div>
+            <div class="post-b">
+              <div class="recog"><i data-i="award"></i><span>Valor da empresa: <span class="val">Resolver de ponta a ponta</span></span></div>
+              <p>A Beatriz ficou até o técnico sair do Vila Serena na terça, com o portão da garagem travado e 40 carros esperando. Ligou para cada morador que tinha reclamado. A síndica mandou elogio por escrito.</p>
+            </div>
+            <div class="reacts"><span class="rstack"><span><i data-i="thumbs-up" class="s14"></i></span><span><i data-i="party" class="s14"></i></span><span><i data-i="heart" class="s14"></i></span></span><span>Ana Paula, Diego e mais 12 pessoas</span><span style="margin-left:auto">3 comentários</span></div>
+            <div class="ract">
+              <button aria-pressed="true"><i data-i="thumbs-up" class="s16"></i>Curtir</button>
+              <button aria-pressed="false"><i data-i="party" class="s16"></i>Parabéns</button>
+              <button><i data-i="message" class="s16"></i>Comentar</button>
+            </div>
+            <div class="comment"><span class="av s24 t6">JP</span><div class="bub"><b>Juliana Prado</b> Merecido. Ela me mostrou o sistema inteiro no meu primeiro dia.</div></div>
+          </article>
+
+          <article class="box post" aria-label="Aniversários de hoje">
+            <div class="small-post">
+              <span class="ico"><i data-i="cake"></i></span>
+              <div class="txt"><b>Diego Ramos</b> (Financeiro) e <b>Sônia Freitas</b> (Portaria remota) fazem aniversário hoje.</div>
+              <button class="btn sm">Dar parabéns</button>
+            </div>
+          </article>
+          <article class="box post" aria-label="Entrada na empresa">
+            <div class="small-post">
+              <span class="av s40 t6">JP</span>
+              <div class="txt"><b>Juliana Prado</b> entrou na equipe de Atendimento como assistente. Trabalhou três anos em portaria de condomínio.</div>
+              <button class="btn sm">Dar boas-vindas</button>
+            </div>
+          </article>
+        </div>
+        <!-- Equipe e dia -->
+        <div>
+          <div class="box">
+            <div class="box-h"><h3 class="h-sec">Minha equipe <span class="aside">6 de 8 online</span></h3></div>
+            <ul class="team">
+              <li><span class="av t4">BN<span class="pres busy"></span></span><span class="nm">Beatriz Nogueira<span class="st">Em atendimento, 3 conversas</span></span></li>
+              <li><span class="av t2">CL<span class="pres meet"></span></span><span class="nm">Carlos Lima<span class="st">Em reunião até 11h</span></span></li>
+              <li><span class="av t6">JP<span class="pres on"></span></span><span class="nm">Juliana Prado<span class="st">Disponível</span></span></li>
+              <li><span class="av t7">RA<span class="pres on"></span></span><span class="nm">Rogério Alves<span class="st">Em vistoria, Ed. Aurora</span></span></li>
+              <li><span class="av t5">MT<span class="pres on"></span></span><span class="nm">Márcio Tanaka<span class="st">Disponível</span></span></li>
+              <li><span class="av t8">AP<span class="pres on"></span></span><span class="nm">Ana Paula Souza<span class="st">Disponível</span></span></li>
+              <li><span class="av t1">FM<span class="pres away"></span></span><span class="nm">Felipe Moura<span class="st">De férias até 10/10</span></span></li>
+              <li><span class="av t3">SF<span class="pres off"></span></span><span class="nm">Sônia Freitas<span class="st">Folga hoje</span></span></li>
+            </ul>
+          </div>
+          <div class="box" style="margin-top:12px">
+            <div class="box-h"><h3 class="h-sec">Hoje, quarta-feira, 30/09</h3></div>
+            <ul class="agenda">
+              <li class="now"><span class="hr">09:30</span><span>Reunião com a síndica Marina Costa<span class="sub">Parque das Águas, videochamada</span></span><button class="btn sm p">Entrar</button></li>
+              <li><span class="hr">11:00</span><span>1:1 com Carlos Lima<span class="sub">Sala 3</span></span><button class="btn sm">Preparar</button></li>
+              <li><span class="hr">14:00</span><span>Prévia da assembleia de 14/10<span class="sub">Com o conselho do Parque das Águas</span></span><button class="btn sm">Preparar</button></li>
+              <li><span class="hr">19:00</span><span>Aula: Assembleias, editais e atas<span class="sub">Academy, turma T01</span></span><button class="btn sm">Abrir</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  </div>
+  <div class="a11y">
+    <p><b>Ordem de foco:</b> trilho (Favoritos, módulos de cima para baixo, Ajustes), barra do módulo (seções, pesquisa, ajuda, notificações, conta), depois "Para você" item a item, o feed publicação por publicação e a coluna da equipe. Pular para o conteúdo é o primeiro Tab.</p>
+    <p><b>O que é anunciado:</b> os contadores do trilho em frase ("Suporte, 7 conversas esperando"); presença junto do nome ("Carlos Lima, em reunião até 11h"); ao dar ciência, "Ciência registrada em 30/09 às 09:12" numa região viva.</p>
+    <p><b>Nome do que é só ícone:</b> Favoritos, Ajuda, Notificações (com a contagem), Mais opções da publicação, reações (Curtir, Parabéns, Amei, Genial, Apoio), foto da pessoa com o status.</p>
+  </div>
+</section>
+
+<!-- ===================== SUPORTE ===================== -->
+<section class="section" aria-labelledby="h-sup">
+  <h2 class="doc-h2" id="h-sup">Suporte</h2>
+  <p class="proposal"><b>O que esta versão propõe:</b> o Suporte é o WhatsApp Web, sem tirar nem pôr no gesto: conversas à esquerda, conversa à direita, e a ficha do chamado abre ao clicar no cabeçalho, como "Dados do contato". Toda conversa já nasce chamado (número, estado, SLA e responsável ficam na faixa sob o cabeçalho). O "Enviar ▾" lembra a próxima ação: enviar e aguardar, enviar e resolver, ou resolver e abrir o próximo da fila.</p>
+  <p class="refs">Resolvemos fazer assim porque WhatsApp Web (duas colunas, tiques, "/" para respostas rápidas), Zendesk (estados e nota interna amarela) e Help Scout (enviar com ação seguinte) utilizam dessa forma. Enviamos para aprovação.</p>
+  <div class="scroller">
+  <div class="frame" data-frame="suporte">
+    <nav class="rail" aria-label="Módulos">
+      <div class="logo brand-mono" role="img" aria-label="Administradora Alpha">A</div>
+      <a href="#"><i data-i="star"></i>Favoritos</a>
+      <div class="sep"></div>
+      <a href="#"><i data-i="house"></i>Início</a>
+      <a href="#" aria-current="page"><i data-i="headset"></i>Suporte<span class="count">7</span></a>
+      <a href="#"><i data-i="heart-handshake"></i>CS<span class="count">3</span></a>
+      <a href="#"><i data-i="graduation-cap"></i>Academy<span class="count">1</span></a>
+      <a href="#"><i data-i="users"></i>Cultura</a>
+      <a href="#"><i data-i="chart"></i>Relatórios</a>
+      <div class="grow"></div>
+      <a href="#"><i data-i="settings"></i>Ajustes</a>
+    </nav>
+    <header class="top">
+      <div class="mod">Suporte</div>
+      <nav aria-label="Seções de Suporte"><a href="#" aria-current="page">Conversas</a><a href="#">Chamados</a><a href="#">Respostas rápidas</a><a href="#">Filas <i data-i="chevron-down" class="s14"></i></a><a href="#">Canais <i data-i="chevron-down" class="s14"></i></a></nav>
+      <div class="right">
+        <div class="search" role="button" tabindex="0" aria-label="Pesquisar em tudo"><i data-i="search" class="s16"></i><span>Pesquisar em tudo</span><span class="kbd">⌘K</span></div>
+        <button class="ib" aria-label="Ajuda"><i data-i="help"></i></button>
+        <button class="ib" aria-label="Notificações, 4 novas"><i data-i="bell"></i><span class="count">4</span></button>
+        <button class="ib" aria-label="Sua conta"><span class="av s24 t3">LA</span></button>
+      </div>
+    </header>
+    <main class="content">
+      <div class="sup" id="sup">
+        <section class="clist" aria-label="Conversas">
+          <div class="clist-h"><h2>Conversas</h2><button class="btn q icon" aria-label="Nova conversa"><i data-i="plus"></i></button><button class="btn q icon" aria-label="Mais filtros"><i data-i="filter"></i></button></div>
+          <div class="csearch"><i data-i="search" class="s16"></i>Pesquisar nome, unidade ou chamado</div>
+          <div class="cfilt" role="group" aria-label="Filtros">
+            <button aria-pressed="true">Minhas <span>7</span></button><button aria-pressed="false">Sem dono 4</button><button aria-pressed="false">Aguardando</button><button aria-pressed="false">Todas</button>
+          </div>
+          <ul class="convs" role="listbox" aria-label="Lista de conversas">
+            <li class="conv" role="option" aria-selected="true">
+              <span class="av s48 t5">MC</span>
+              <span class="nm">Marina Costa</span><span class="tm">09:47</span>
+              <span class="pv">Obrigada! Fico no aguardo.</span><span class="rt"><i data-i="pin" class="s14" aria-label="Fixada"></i></span>
+              <span class="tk"><span>Chamado 4.812</span><span class="sla-ok">Responder até 10:42</span></span>
+            </li>
+            <li class="conv" role="option" aria-selected="false">
+              <span class="av s48 t7">PR</span>
+              <span class="nm">Paulo Reis</span><span class="tm new">09:41</span>
+              <span class="pv"><i data-i="mic" class="s14"></i>Mensagem de voz (0:31)</span><span class="rt"><span class="count">2</span></span>
+              <span class="tk"><span>Chamado 4.815</span><span class="sla-warn">Responder em 4 min</span></span>
+            </li>
+            <li class="conv" role="option" aria-selected="false">
+              <span class="av s48 t8">VS</span>
+              <span class="nm">Portaria, Vila Serena</span><span class="tm new">09:30</span>
+              <span class="pv"><i data-i="camera" class="s14"></i>O portão da garagem travou de novo</span><span class="rt"><span class="count">1</span></span>
+              <span class="tk"><span>Chamado 4.814</span><span class="sla-err">SLA vencido há 6 min</span></span>
+            </li>
+            <li class="conv" role="option" aria-selected="false">
+              <span class="av s48 t4">RD</span>
+              <span class="nm">Renata Duarte</span><span class="tm new">09:12</span>
+              <span class="pv">Consigo reservar o salão para o dia 18/10?</span><span class="rt"><span class="count">3</span></span>
+              <span class="tk"><span>Chamado 4.811</span><span class="sla-ok">Responder até 11:12</span></span>
+            </li>
+            <li class="conv" role="option" aria-selected="false">
+              <span class="av s48 t1">SM</span>
+              <span class="nm">Sérgio Matos</span><span class="tm">08:55</span>
+              <span class="pv"><i data-i="check-check" class="s16 tick"></i>Segue a 2ª via do boleto de setembro.</span><span class="rt"></span>
+              <span class="tk"><span>Chamado 4.809</span><span>Aguardando cliente</span></span>
+            </li>
+            <li class="conv" role="option" aria-selected="false">
+              <span class="av s48 t2">LF</span>
+              <span class="nm">Luciana Ferraz</span><span class="tm">08:31</span>
+              <span class="pv"><i data-i="mail" class="s14"></i>Ata da assembleia de 14/10, minuta</span><span class="rt"></span>
+              <span class="tk"><span>Chamado 4.806</span><span>E-mail</span></span>
+            </li>
+            <li class="conv" role="option" aria-selected="false">
+              <span class="av s48 t6">EA</span>
+              <span class="nm">Conselho, Ed. Aurora</span><span class="tm">Ontem</span>
+              <span class="pv"><i data-i="check-check" class="s16 tick read"></i>Você: Enviei os três orçamentos da pintura.</span><span class="rt"></span>
+              <span class="tk"><span>Chamado 4.790</span><span>Em espera</span></span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="chat" aria-label="Conversa com Marina Costa">
+          <div class="chat-h">
+            <button class="who" id="openFicha" aria-expanded="true" aria-controls="ficha">
+              <span class="av s40 t5">MC</span>
+              <span><span class="nm">Marina Costa</span><span class="sub"><span>Síndica, Parque das Águas, pelo WhatsApp</span></span></span>
+            </button>
+            <button class="btn q icon" aria-label="Pesquisar na conversa"><i data-i="search"></i></button>
+            <button class="btn sm"><i data-i="share" class="s16"></i>Encaminhar para</button>
+            <button class="btn q icon" aria-label="Mais ações da conversa"><i data-i="more"></i></button>
+          </div>
+          <div class="ticketbar" role="group" aria-label="Chamado">
+            <span><b>Chamado 4.812</b></span>
+            <span class="state info">Aberto</span>
+            <span>Responder até <b>10:42</b></span>
+            <span class="gap"></span>
+            <span style="display:flex;align-items:center;gap:6px">Responsável <span class="av s24 t3">LA</span><b>Letícia</b></span>
+          </div>
+          <div class="msgs">
+            <span class="day">Hoje</span>
+            <div class="bub in first">Bom dia, Letícia. Tem água descendo pela parede da garagem do bloco B, do lado da vaga 32. Já molhou o carro do morador do 304.<span class="mt">08:12</span></div>
+            <div class="bub in"><svg class="photo" viewBox="0 0 280 176" role="img" aria-label="Foto: parede de concreto da garagem com mancha de umidade escorrendo até o piso, vaga 32"><rect width="280" height="176" fill="#9A9C94"/><rect y="118" width="280" height="58" fill="#6F716B"/><rect x="176" y="0" width="40" height="176" fill="#B3B5AD"/><path d="M60 0h58v60c-6 20-4 40 6 58H52c10-22 12-40 8-58z" fill="#6A7470" opacity=".85"/><path d="M76 118c-30 6-40 20-10 26 36 8 80 4 94-6 10-8-20-18-84-20z" fill="#5A6663" opacity=".9"/><path d="M0 150h280" stroke="#E8E6D8" stroke-width="3" stroke-dasharray="26 18"/><text x="226" y="36" fill="#3B3D38" font-family="Arial" font-size="18" font-weight="700">32</text></svg>Parede ao lado da vaga 32<span class="mt">08:12</span></div>
+            <div class="bub in"><div class="audio"><button class="play" aria-label="Ouvir mensagem de voz, 42 segundos"><i data-i="play" class="s16"></i></button><div class="wave" id="wave" aria-hidden="true"></div><span class="muted" style="font-size:12px">0:42</span></div><span class="mt"><i data-i="mic" class="s14 tick read"></i>08:13</span></div>
+            <span class="sys"><i data-i="ticket" class="s14"></i>Chamado 4.812 aberto pelo WhatsApp às 08:14. Letícia assumiu às 08:20.</span>
+            <div class="bub out first">Bom dia, Marina. Recebi as fotos e o áudio. Vou mandar o encanador ainda hoje para ver de onde vem a água. Pode pedir para o morador do 304 tirar o carro da vaga?<span class="mt">08:24 <i data-i="check-check" class="s16 tick read" aria-label="Lida"></i></span></div>
+            <div class="bub note"><span class="nl"><i data-i="lock" class="s14"></i>Nota interna. Só a equipe vê.</span><span class="mention">@Rogério Alves</span> dá para mandar alguém hoje até meio-dia? A síndica autorizou abrir o forro da garagem.<span class="mt">08:26</span></div>
+            <div class="linkcard"><i data-i="wrench"></i><span><b>Manutenção, OS 482</b><br><span class="muted">Visita do encanador hoje, 11h. Responsável: Rogério Alves.</span></span><span class="state ok" style="margin-left:auto">Agendada</span></div>
+            <div class="bub in first">Obrigada! Fico no aguardo.<span class="mt">09:47</span></div>
+          </div>
+          <div class="compose">
+            <div class="menu qr" role="listbox" aria-label="Respostas rápidas">
+              <div class="qh">Respostas rápidas que começam com "/vi"</div>
+              <button role="option" class="hl"><span><b>/visita</b>Confirmação de visita técnica<small>"Marina, o técnico chega hoje às {hora}. Ele vai se identificar na portaria."</small></span></button>
+              <button role="option"><span><b>/vistoria</b>Agendamento de vistoria de área comum</span></button>
+              <button role="option"><span><b>/vizinho</b>Orientação sobre infiltração vinda de unidade vizinha</span></button>
+              <div class="qf"><span class="kbd">↑</span><span class="kbd">↓</span>escolher<span class="kbd">Enter</span>inserir<span class="kbd">Esc</span>fechar</div>
+            </div>
+            <div class="mode" role="group" aria-label="Tipo de mensagem"><button aria-pressed="true">Responder</button><button aria-pressed="false"><i data-i="lock" class="s14"></i> Nota interna</button></div>
+            <div class="row">
+              <button class="btn q icon" aria-label="Anexar arquivo, foto ou boleto"><i data-i="paperclip"></i></button>
+              <div class="ta" role="textbox" aria-label="Mensagem para Marina Costa" tabindex="0">O Rogério confirmou: o encanador chega às 11h. /vi<span class="caret"></span></div>
+              <button class="btn q icon" aria-label="Gravar áudio"><i data-i="mic"></i></button>
+              <div class="split">
+                <button class="btn p" style="height:40px">Enviar <i data-i="send" class="s16"></i></button>
+                <button class="btn p" style="height:40px" aria-label="Escolher o que acontece depois de enviar" aria-expanded="true" aria-haspopup="menu" id="sendCaret"><i data-i="chevron-down" class="s16"></i></button>
+              </div>
+            </div>
+            <div class="menu sendm" role="menu" id="sendMenu" aria-label="Enviar e">
+              <button role="menuitem"><i data-i="send" class="s16"></i><span>Enviar<small>Mantém o chamado Aberto</small></span><span class="kbd" style="margin-left:auto">Enter</span></button>
+              <button role="menuitem"><i data-i="clock" class="s16"></i><span>Enviar e aguardar cliente<small>Estado vai para Pendente; o SLA pausa</small></span></button>
+              <hr>
+              <button role="menuitem" class="hl"><i data-i="check" class="s16"></i><span>Enviar e resolver<small>Marina recebe o pedido de avaliação</small></span></button>
+              <button role="menuitem"><i data-i="skip" class="s16"></i><span>Enviar, resolver e abrir o próximo<small>Próximo: Portaria, Vila Serena (SLA vencido)</small></span></button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="ficha" id="ficha" aria-label="Dados do chamado">
+          <div class="ficha-h"><button class="btn q icon" id="closeFicha" aria-label="Fechar dados do chamado"><i data-i="x"></i></button>Dados do chamado</div>
+          <div class="ficha-b">
+            <div class="fsec center">
+              <span class="av s96 t5">MC</span>
+              <span class="nm">Marina Costa</span>
+              <span class="muted" style="font-size:13px">Síndica, mandato até 03/2027</span>
+              <span class="muted" style="font-size:13px">Parque das Águas, bloco B, apto 1102</span>
+              <span class="stamp carbon" style="margin-top:8px">Protocolado<small>Chamado 4.812, 30/09/26 08:14</small></span>
+            </div>
+            <div class="fsec">
+              <div class="lbl"><span>Estado</span><span>há 1h33</span></div>
+              <div class="path" aria-label="Etapa atual: Aberto"><span class="done">Novo</span><span class="cur">Aberto</span><span>Pendente</span><span>Resolvido</span></div>
+            </div>
+            <div class="fsec">
+              <dl class="props">
+                <dt>Responsável</dt><dd><span class="av s24 t3">LA</span>Letícia Araújo</dd>
+                <dt>Prioridade</dt><dd><span class="prio hi"><i></i><i></i><i></i></span>Alta</dd>
+                <dt>Fila</dt><dd>Condomínios, zona leste</dd>
+                <dt>Canal</dt><dd>WhatsApp</dd>
+                <dt>SLA</dt><dd>Primeira resposta cumprida; solução até 01/10 18h</dd>
+              </dl>
+            </div>
+            <div class="fsec">
+              <div class="lbl"><span>Ligados a este chamado</span></div>
+              <div class="rel"><i data-i="wrench" class="s16"></i><span class="grow">OS 482, encanador</span><span class="state ok">Agendada</span></div>
+              <div class="rel"><i data-i="ticket" class="s16"></i><span class="grow">Chamado 4.690, infiltração bloco B</span><span class="state grey">Fechado</span></div>
+            </div>
+            <div class="fsec">
+              <div class="lbl"><span>Mídia, links e documentos</span><a href="#">Ver 6</a></div>
+              <div class="media"><div style="background:#8F918A"></div><div style="background:#767A73"></div><div style="background:#A7A89F"></div></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+  </div>
+  <div class="a11y">
+    <p><b>Ordem de foco:</b> filtros, lista de conversas (setas sobem e descem, Enter abre), cabeçalho da conversa (abre a ficha), mensagens, alternador Responder/Nota interna, caixa de texto, Enviar e o menu de ação seguinte; Esc fecha a ficha e devolve o foco ao cabeçalho.</p>
+    <p><b>O que é anunciado:</b> cada conversa como "Paulo Reis, 2 não lidas, chamado 4.815, responder em 4 minutos"; o tique como "Lida" ou "Entregue"; a nota interna como "Nota interna, só a equipe vê"; a lista de respostas rápidas como caixa de opções com a contagem.</p>
+    <p><b>Nome do que é só ícone:</b> Anexar, Gravar áudio, Nova conversa, Mais filtros, Fixada, Ouvir mensagem de voz, Escolher o que acontece depois de enviar, Fechar dados do chamado.</p>
+  </div>
+</section>
+
+<!-- ===================== CS ===================== -->
+<section class="section" aria-labelledby="h-cs">
+  <h2 class="doc-h2" id="h-cs">CS</h2>
+  <p class="proposal"><b>O que esta versão propõe:</b> a ficha do cliente é a do HubSpot, com o título do registro em serifa como a capa de uma pasta: sobre o cliente à esquerda (lápis por seção; a seção do contrato está em edição), linha do tempo única no centro, associações à direita, com o total dos contratos na dupla sublinha. A barra de etapas mostra onde o cliente está; "14 de 63" percorre a carteira sem voltar à lista; a barra de salvar só aparece quando algo mudou, e o "Salvar ▾" já oferece ir para o próximo.</p>
+  <p class="refs">Resolvemos fazer assim porque HubSpot (registro em três colunas e linha do tempo), Salesforce (Path e lápis por campo) e Gainsight (saúde em verde, amarelo e vermelho com tendência) utilizam dessa forma. Enviamos para aprovação.</p>
+  <div class="scroller">
+  <div class="frame" data-frame="cs">
+    <nav class="rail" aria-label="Módulos">
+      <div class="logo brand-mono" role="img" aria-label="Administradora Alpha">A</div>
+      <a href="#"><i data-i="star"></i>Favoritos</a>
+      <div class="sep"></div>
+      <a href="#"><i data-i="house"></i>Início</a>
+      <a href="#"><i data-i="headset"></i>Suporte<span class="count">7</span></a>
+      <a href="#" aria-current="page"><i data-i="heart-handshake"></i>CS<span class="count">3</span></a>
+      <a href="#"><i data-i="graduation-cap"></i>Academy<span class="count">1</span></a>
+      <a href="#"><i data-i="users"></i>Cultura</a>
+      <a href="#"><i data-i="chart"></i>Relatórios</a>
+      <div class="grow"></div>
+      <a href="#"><i data-i="settings"></i>Ajustes</a>
+    </nav>
+    <header class="top">
+      <div class="mod">CS</div>
+      <nav aria-label="Seções de CS"><a href="#" aria-current="page">Minha carteira</a><a href="#">Clientes</a><a href="#">Contratos</a><a href="#">Minhas ações</a><a href="#">Saúde do cliente</a><a href="#">Voz do cliente <i data-i="chevron-down" class="s14"></i></a></nav>
+      <div class="right">
+        <div class="search" role="button" tabindex="0" aria-label="Pesquisar em tudo"><i data-i="search" class="s16"></i><span>Pesquisar em tudo</span><span class="kbd">⌘K</span></div>
+        <button class="ib" aria-label="Ajuda"><i data-i="help"></i></button>
+        <button class="ib" aria-label="Notificações, 4 novas"><i data-i="bell"></i><span class="count">4</span></button>
+        <button class="ib" aria-label="Sua conta"><span class="av s24 t3">LA</span></button>
+      </div>
+    </header>
+    <main class="content">
+      <div class="cs">
+        <div class="rec-h">
+          <div class="crumbs"><a href="#">Minha carteira</a><i data-i="chevron-right" class="s14"></i><a href="#">Renovam em 90 dias</a>
+            <div class="pager"><button class="btn icon sm" aria-label="Cliente anterior, 13 de 63"><i data-i="chevron-left" class="s16"></i></button><span><b>14</b> de 63</span><button class="btn icon sm" aria-label="Próximo cliente, 15 de 63"><i data-i="chevron-right" class="s16"></i></button></div>
+          </div>
+          <div class="rec-title">
+            <h2>Condomínio Parque das Águas</h2>
+            <button class="btn q icon star" aria-label="Remover dos favoritos" aria-pressed="true"><i data-i="star-f"></i></button>
+            <div class="acts">
+              <button class="btn"><i data-i="plus" class="s16"></i>Registrar atividade</button>
+              <button class="btn p">Enviar proposta de renovação</button>
+              <button class="btn icon" aria-label="Mais ações"><i data-i="more"></i></button>
+              <button class="btn icon" aria-label="Histórico de alterações"><i data-i="history"></i></button>
+            </div>
+          </div>
+          <div class="rec-meta">
+            <span class="health"><span class="hdot" aria-hidden="true"></span>Saúde <b>62</b> Atenção <span class="muted" style="display:inline-flex;align-items:center;gap:4px"><i data-i="trend-down" class="s16"></i>caiu 9 pontos em 30 dias</span></span>
+            <span>São José dos Campos, SP</span><span>248 unidades em 4 blocos</span><span>Cliente desde abril de 2019</span>
+            <span style="display:flex;align-items:center;gap:6px">Gerente de conta <span class="av s24 t3">LA</span>Letícia Araújo</span>
+          </div>
+          <div class="stages" aria-label="Ciclo do cliente">
+            <div class="stage done"><i data-i="check" class="s16"></i>Implantação</div>
+            <div class="stage done"><i data-i="check" class="s16"></i>Ativo</div>
+            <div class="stage cur">Renovação <small>há 12 dias nesta etapa</small></div>
+            <div class="stage">Renovado</div>
+            <div class="stage-act"><button class="btn sm">Avançar para Renovado</button><button class="btn sm q">Encerrar contrato</button></div>
+          </div>
+        </div>
+
+        <div class="cs-cols">
+          <section class="about" aria-label="Sobre o cliente">
+            <div class="psec">
+              <div class="psec-h"><h3>Dados do condomínio</h3><button class="pen" aria-label="Editar dados do condomínio"><i data-i="pencil" class="s16"></i></button></div>
+              <dl class="pl">
+                <dt>CNPJ</dt><dd>12.345.678/0001-90</dd>
+                <dt>Endereço</dt><dd>Rua das Palmeiras, 1.450, Jardim Aquarius</dd>
+                <dt>Síndica</dt><dd><a href="#">Marina Costa</a>, até 03/2027</dd>
+                <dt>Próxima assembleia</dt><dd>14/10/2026, 19h30, AGE</dd>
+              </dl>
+            </div>
+            <div class="psec editing" aria-label="Contrato de administração, em edição">
+              <div class="psec-h"><h3>Contrato de administração</h3><span class="edit-flag"><span class="hdot" style="width:8px;height:8px"></span>Editando</span></div>
+              <div class="fields">
+                <div class="field"><label for="vm">Valor mensal</label><div class="input focus" id="vm">R$ 4.620,00<span class="caret"></span></div><span class="was">Antes: <s>R$ 4.380,00</s>. Reajuste de 5,48% pelo IGP-M.</span></div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                  <div class="field"><label>Início da vigência</label><div class="input">01/11/2024</div></div>
+                  <div class="field"><label>Fim da vigência</label><div class="input">31/10/2026</div></div>
+                </div>
+                <div class="field"><label>Índice de reajuste</label><div class="input" style="justify-content:space-between">IGP-M <i data-i="chevron-down" class="s16"></i></div></div>
+              </div>
+            </div>
+            <div class="psec">
+              <div class="psec-h"><h3>Saúde do cliente</h3><button class="pen" aria-label="Ver como a saúde é calculada"><i data-i="help" class="s16"></i></button></div>
+              <div class="hb">
+                <span>Última nota de NPS (Marina)</span><span class="neg">6</span>
+                <span>Chamados abertos</span><span class="neg">2</span>
+                <span>Arrecadação de setembro</span><span class="pos">94,8%</span>
+                <span>Moradores usando o portal</span><span>41%</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="timeline" aria-label="Linha do tempo">
+            <div class="tabs" role="tablist">
+              <button role="tab" aria-selected="true">Atividade</button>
+              <button role="tab" aria-selected="false">E-mails <span class="n">12</span></button>
+              <button role="tab" aria-selected="false">Chamados <span class="n">9</span></button>
+              <button role="tab" aria-selected="false">Notas <span class="n">4</span></button>
+            </div>
+            <div class="tl-body">
+              <div class="tl-comp">
+                <div class="types" role="group" aria-label="Tipo de registro"><button aria-pressed="true"><i data-i="file" class="s16"></i>Nota</button><button aria-pressed="false"><i data-i="mail" class="s16"></i>E-mail</button><button aria-pressed="false"><i data-i="phone" class="s16"></i>Ligação</button><button aria-pressed="false"><i data-i="calendar" class="s16"></i>Reunião</button><button aria-pressed="false"><i data-i="check" class="s16"></i>Tarefa</button></div>
+                <div class="area">Escreva uma nota sobre o Parque das Águas. Use @ para mencionar alguém.</div>
+              </div>
+              <div class="month">Setembro de 2026</div>
+              <div class="ev"><span class="node"><i data-i="ticket" class="s16"></i></span>
+                <div class="evc"><div class="eh"><b>Chamado 4.812 aberto pelo WhatsApp</b><span class="state info">Aberto</span><span class="tm">Hoje, 08:14</span></div>
+                <div class="eb">Vazamento na garagem do bloco B, perto da vaga 32. Encanador agendado para hoje às 11h (OS 482).</div>
+                <div class="ef"><span>Responsável: Letícia Araújo</span><a href="#">Abrir conversa</a></div></div></div>
+              <div class="ev"><span class="node"><i data-i="message" class="s16"></i></span>
+                <div class="evc"><div class="eh"><span class="nps" aria-label="Nota 6">6</span><b>Resposta de NPS de Marina Costa</b><span class="tm">Ontem, 16:20</span></div>
+                <div class="eb">"O atendimento é bom, mas a obra da fachada está um mês atrasada e ninguém me avisa nada."</div>
+                <div class="ef"><button class="btn sm">Registrar retorno</button><span>Sem retorno há 17 horas</span></div></div></div>
+              <div class="ev"><span class="node"><i data-i="mail" class="s16"></i></span>
+                <div class="evc"><div class="eh"><b>E-mail enviado: proposta de portaria remota</b><span class="tm">26/09, 10:05</span></div>
+                <div class="eb">De Letícia Araújo para Marina Costa e Paulo Reis (conselho). Aberto 3 vezes, a última ontem às 21:12.</div></div></div>
+              <div class="ev"><span class="node"><i data-i="calendar" class="s16"></i></span>
+                <div class="evc"><div class="eh"><b>Reunião: prévia da assembleia de 14/10</b><span class="tm">22/09, 15:00</span></div>
+                <div class="eb">Pauta: prestação de contas do 1º semestre, orçamento da pintura e portaria remota. Próximo passo: comparar três orçamentos até 05/10.</div></div></div>
+            </div>
+          </section>
+
+          <section class="assoc" aria-label="Associações">
+            <div class="asec">
+              <div class="asec-h"><h3>Contatos <span class="n">3</span></h3><button class="btn q sm"><i data-i="plus" class="s14"></i>Adicionar</button></div>
+              <div class="arow"><span class="av t5">MC</span><span class="grow">Marina Costa<span class="s">Síndica</span></span><button class="btn q icon sm" aria-label="Ligar para Marina Costa"><i data-i="phone" class="s16"></i></button></div>
+              <div class="arow"><span class="av t7">PR</span><span class="grow">Paulo Reis<span class="s">Conselho fiscal</span></span><button class="btn q icon sm" aria-label="Ligar para Paulo Reis"><i data-i="phone" class="s16"></i></button></div>
+              <div class="arow"><span class="av t2">SL</span><span class="grow">Sônia Lima<span class="s">Zeladora</span></span><button class="btn q icon sm" aria-label="Ligar para Sônia Lima"><i data-i="phone" class="s16"></i></button></div>
+            </div>
+            <div class="asec">
+              <div class="asec-h"><h3>Contratos <span class="n">2</span></h3><button class="btn q sm"><i data-i="plus" class="s14"></i>Adicionar</button></div>
+              <div class="arow"><span class="grow">Administração condominial<span class="s">Vigente até 31/10/2026</span></span><span class="money">R$ 4.380,00</span></div>
+              <div class="arow"><span class="grow">Assessoria de assembleias<span class="s">Vigente até 31/03/2027</span></span><span class="money">R$ 440,00</span></div>
+              <div class="tot"><span class="muted">Total por mês</span><span class="total">R$ 4.820,00</span></div>
+            </div>
+            <div class="asec">
+              <div class="asec-h"><h3>Negócios <span class="n">1</span></h3><button class="btn q sm"><i data-i="plus" class="s14"></i>Adicionar</button></div>
+              <div class="arow"><span class="grow">Portaria remota, 4 blocos<span class="s">Proposta enviada, há 4 dias nesta etapa</span></span><span class="money">R$ 9.600,00</span></div>
+            </div>
+            <div class="asec">
+              <div class="asec-h"><h3>Documentos</h3></div>
+              <div class="arow"><i data-i="file" class="s16"></i><span class="grow">Ata da AGO de 14/03/2026</span></div>
+              <div style="padding:2px 0 4px 26px"><span class="stamp">Aprovada em assembleia<small>14/03/2026, 132 votos</small></span></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="savebar" role="region" aria-label="Alterações não salvas">
+          <div class="msg"><i data-i="alert"></i><span><b>1 alteração não salva</b> em Contrato de administração: valor mensal.</span></div>
+          <span class="grow"></span>
+          <button class="btn">Descartar</button>
+          <div class="split">
+            <button class="btn p">Salvar</button>
+            <button class="btn p" aria-label="Mais opções de salvar" aria-expanded="true" aria-haspopup="menu"><i data-i="chevron-down" class="s16"></i></button>
+          </div>
+          <div class="menu savem" role="menu">
+            <button role="menuitem"><span>Salvar<small>Continua nesta ficha</small></span><span class="kbd" style="margin-left:auto">⌘S</span></button>
+            <button role="menuitem" class="hl"><span>Salvar e ir para o próximo<small>15 de 63: Residencial Jardim Botânico</small></span></button>
+            <button role="menuitem"><span>Salvar e registrar nota<small>Abre a nota com a alteração descrita</small></span></button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  </div>
+  <div class="a11y">
+    <p><b>Ordem de foco:</b> trilha, anterior/próximo, título e favorito, ações do cabeçalho (principal, mais, histórico), barra de etapas, coluna Sobre (seção por seção, o lápis depois do título), abas da linha do tempo, compositor, eventos, associações, e por último a barra de salvar quando ela aparece.</p>
+    <p><b>O que é anunciado:</b> "Saúde 62, Atenção, caiu 9 pontos em 30 dias"; "Etapa atual: Renovação, há 12 dias"; ao editar, "Contrato de administração em edição" e, quando algo muda, a barra "1 alteração não salva" entra numa região viva.</p>
+    <p><b>Nome do que é só ícone:</b> Cliente anterior, Próximo cliente (com a posição), Favorito, Mais ações, Histórico de alterações, Editar (com o nome da seção), Ligar para (com o nome do contato).</p>
+  </div>
+</section>
+
+<!-- ===================== ACADEMY ===================== -->
+<section class="section" aria-labelledby="h-ac">
+  <h2 class="doc-h2" id="h-ac">Academy</h2>
+  <p class="proposal"><b>O que esta versão propõe:</b> o Academy é o portal do aluno de uma faculdade brasileira. O período letivo manda na tela; as disciplinas matriculadas ficam num boletim com professor, carga horária, frequência (com a marca dos 75%), N1, N2 e média parcial; embaixo, a grade da semana. À direita, avisos da coordenação e dos professores, o calendário acadêmico com provas e entregas, e o histórico com certificados verificáveis. Nada de ranking nem medalha.</p>
+  <p class="refs">Resolvemos fazer assim porque os portais do aluno das universidades brasileiras (boletim, notas e frequências, grade horária), o Canvas (painel com pendências e calendário) e o Moodle (grade de notas por avaliação) utilizam dessa forma. Enviamos para aprovação.</p>
+  <div class="scroller">
+  <div class="frame" data-frame="academy">
+    <nav class="rail" aria-label="Módulos">
+      <div class="logo brand-mono" role="img" aria-label="Administradora Alpha">A</div>
+      <a href="#"><i data-i="star"></i>Favoritos</a>
+      <div class="sep"></div>
+      <a href="#"><i data-i="house"></i>Início</a>
+      <a href="#"><i data-i="headset"></i>Suporte<span class="count">7</span></a>
+      <a href="#"><i data-i="heart-handshake"></i>CS<span class="count">3</span></a>
+      <a href="#" aria-current="page"><i data-i="graduation-cap"></i>Academy<span class="count">1</span></a>
+      <a href="#"><i data-i="users"></i>Cultura</a>
+      <a href="#"><i data-i="chart"></i>Relatórios</a>
+      <div class="grow"></div>
+      <a href="#"><i data-i="settings"></i>Ajustes</a>
+    </nav>
+    <header class="top">
+      <div class="mod">Academy</div>
+      <nav aria-label="Seções do Academy"><a href="#" aria-current="page">Portal do aluno</a><a href="#">Disciplinas</a><a href="#">Notas e frequência</a><a href="#">Grade horária</a><a href="#">Calendário acadêmico</a><a href="#">Histórico</a><a href="#">Biblioteca</a></nav>
+      <div class="right">
+        <div class="search" style="width:240px" role="button" tabindex="0" aria-label="Pesquisar em tudo"><i data-i="search" class="s16"></i><span>Pesquisar em tudo</span><span class="kbd">⌘K</span></div>
+        <button class="ib" aria-label="Notificações, 4 novas"><i data-i="bell"></i><span class="count">4</span></button>
+        <button class="ib" aria-label="Sua conta"><span class="av s24 t3">LA</span></button>
+      </div>
+    </header>
+    <main class="content">
+      <div class="acad">
+        <div>
+          <div class="acad-h">
+            <div>
+              <h2>Formação em Gestão Condominial</h2>
+              <div class="sub"><span>Letícia Araújo, matrícula 2025.1.0417</span><span>3º período de 4</span><span>Coeficiente 8,4</span></div>
+            </div>
+            <div class="period">
+              <label class="muted" style="font-size:12px">Período letivo</label>
+              <button class="sel" aria-label="Período letivo 2026.2, de 04/08 a 12/12. Trocar"><b>2026.2</b><span class="muted">04/08 a 12/12</span><i data-i="chevron-down" class="s16"></i></button>
+            </div>
+          </div>
+          <h3 class="sec-t">Disciplinas matriculadas <span class="aside">Frequência mínima: 75%. Média para aprovação: 7,0.</span></h3>
+          <table class="grid">
+            <thead><tr><th>Disciplina</th><th>Professor</th><th>Turma</th><th class="num">CH</th><th class="num">Frequência</th><th class="num">N1</th><th class="num">N2</th><th class="num">Parcial</th><th>Situação</th></tr></thead>
+            <tbody>
+              <tr><td class="disc"><b>Legislação condominial e convenção</b><span>GC-201</span></td><td>Dra. Helena Vasconcelos</td><td>T01</td><td class="num">40 h</td><td class="num"><span class="freq"><span class="bar"><i style="width:92%"></i></span>92%</span></td><td class="num">8,5</td><td class="num faint">03/10</td><td class="num">8,5</td><td><span class="state info">Em curso</span></td></tr>
+              <tr><td class="disc"><b>Rotinas financeiras e rateio</b><span>GC-204</span></td><td>Prof. Márcio Tanaka</td><td>T02</td><td class="num">60 h</td><td class="num"><span class="freq"><span class="bar"><i style="width:88%"></i></span>88%</span></td><td class="num">7,0</td><td class="num faint">08/10</td><td class="num">7,0</td><td><span class="state info">Em curso</span></td></tr>
+              <tr><td class="disc"><b>Atendimento ao condômino</b><span>GC-207</span></td><td>Profa. Beatriz Nogueira</td><td>T01</td><td class="num">30 h</td><td class="num"><span class="freq"><span class="bar"><i style="width:100%"></i></span>100%</span></td><td class="num">9,0</td><td class="num">9,5</td><td class="num">9,3</td><td><span class="state info">Em curso</span></td></tr>
+              <tr><td class="disc"><b>Assembleias, editais e atas</b><span>GC-210</span></td><td>Prof. Ricardo Tavares</td><td>T01</td><td class="num">40 h</td><td class="num"><span class="freq low"><span class="bar"><i style="width:72%"></i></span>72%</span></td><td class="num">6,5</td><td class="num faint">14/10</td><td class="num">6,5</td><td><span class="state err">Risco por falta</span></td></tr>
+              <tr><td class="disc"><b>Manutenção predial preventiva</b><span>GC-212</span></td><td>Eng. Rogério Alves</td><td>T03</td><td class="num">40 h</td><td class="num"><span class="freq"><span class="bar"><i style="width:85%"></i></span>85%</span></td><td class="num">7,8</td><td class="num faint">06/11</td><td class="num">7,8</td><td><span class="state info">Em curso</span></td></tr>
+              <tr><td class="disc"><b>LGPD no condomínio</b><span>GC-215, a distância</span></td><td>Profa. Camila Rezende</td><td>EAD</td><td class="num">30 h</td><td class="num"><span class="freq"><span class="bar"><i style="width:100%"></i></span>100%</span></td><td class="num">10,0</td><td class="num">9,0</td><td class="num">9,5</td><td><span class="state ok">Aprovada</span></td></tr>
+            </tbody>
+            <tfoot><tr><td>6 disciplinas</td><td></td><td></td><td class="num"><span class="total">240 h</span></td><td></td><td></td><td></td><td class="num"><span class="total">8,1</span></td><td class="muted" style="font-weight:400;font-size:12px;white-space:nowrap">Média do período</td></tr></tfoot>
+          </table>
+          <h3 class="sec-t" style="margin-top:18px">Grade da semana <span class="aside">28/09 a 02/10</span></h3>
+          <div class="week" role="table" aria-label="Grade da semana">
+            <div class="wh"></div><div class="wh">Seg 28</div><div class="wh">Ter 29</div><div class="wh today">Qua 30, hoje</div><div class="wh">Qui 01</div><div class="wh">Sex 02</div>
+            <div class="tm">08:00<br>09:40</div><div><div class="cls"><b>Legislação</b><span>Sala 2</span></div></div><div></div><div class="col-today"></div><div><div class="cls"><b>Atendimento</b><span>Sala 2</span></div></div><div></div>
+            <div class="tm">14:00<br>15:40</div><div></div><div><div class="cls"><b>Rotinas financeiras</b><span>Laboratório</span></div></div><div class="col-today"></div><div></div><div><div class="cls"><b>Manutenção</b><span>Visita, Ed. Aurora</span></div></div>
+            <div class="tm">19:00<br>20:40</div><div></div><div></div><div class="col-today"><div class="cls now"><b>Assembleias</b><span>Online, link na turma</span></div></div><div><div class="cls"><b>Rotinas financeiras</b><span>Online</span></div></div><div><div class="cls"><b>Assembleia simulada</b><span>Salão, Parque das Águas</span></div></div>
+          </div>
+          <div class="box hist" style="margin-top:14px">
+            <div class="cert"><i data-i="book" class="s24"></i><span class="txt"><b>Histórico escolar</b><span>2025.1 a 2026.1, 11 disciplinas concluídas, 420 h</span></span><button class="btn sm"><i data-i="download" class="s16"></i>Baixar PDF</button></div>
+            <div class="cert"><span class="stamp">Emitido em 18/07/26<small>Verificação GC-7Q4K-2M9P</small></span><span class="txt"><b>Atendimento e comunicação com o condômino</b><span>Certificado de módulo, 120 h</span></span><button class="btn sm icon" aria-label="Baixar certificado"><i data-i="download" class="s16"></i></button></div>
+          </div>
+        </div>
+        <div>
+          <div class="box">
+            <div class="box-h"><h3 class="sec-t" style="margin:0">Avisos</h3></div>
+            <div class="aviso"><div class="ah"><span class="av t4">HV</span><span><b>Dra. Helena Vasconcelos</b><br><span class="muted" style="font-size:12px">Legislação condominial</span></span><span class="d">29/09</span></div><p>O trabalho sobre alteração de convenção vai até 03/10, 23h59, em PDF. Quem citar o art. 1.351 do Código Civil precisa explicar o quórum.</p></div>
+            <div class="aviso"><div class="ah"><span class="av t1">CO</span><span><b>Coordenação do curso</b><br><span class="muted" style="font-size:12px">Para todas as turmas</span></span><span class="d">26/09</span></div><p>Rematrícula para 2027.1 de 16/11 a 27/11. Quem estiver abaixo de 75% de frequência em alguma disciplina deve falar com a coordenação antes.</p></div>
+          </div>
+          <div class="box" style="margin-top:12px">
+            <div class="box-h"><h3 class="sec-t" style="margin:0">Calendário acadêmico <span class="aside"><a href="#">Ver o período</a></span></h3></div>
+            <ul class="cal">
+              <li><span class="dd"><b>03</b><span>out</span></span><span class="ev-t">Entrega do trabalho<span>Legislação condominial</span></span><span class="kind entrega">Entrega</span></li>
+              <li><span class="dd"><b>08</b><span>out</span></span><span class="ev-t">Prova N2<span>Rotinas financeiras e rateio</span></span><span class="kind prova">Prova</span></li>
+              <li><span class="dd"><b>12</b><span>out</span></span><span class="ev-t">Feriado, sem aulas<span>Nossa Senhora Aparecida</span></span><span class="kind">Feriado</span></li>
+              <li><span class="dd"><b>14</b><span>out</span></span><span class="ev-t">Assembleia simulada, vale a N2<span>Assembleias, editais e atas</span></span><span class="kind prova">Avaliação</span></li>
+              <li><span class="dd"><b>16</b><span>nov</span></span><span class="ev-t">Abre a rematrícula 2027.1<span>Até 27/11</span></span><span class="kind">Secretaria</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  </div>
+  <div class="a11y">
+    <p><b>Ordem de foco:</b> seletor de período letivo, tabela de disciplinas linha por linha (o nome da disciplina é o link), grade da semana, avisos, calendário, histórico e certificados.</p>
+    <p><b>O que é anunciado:</b> a tabela com cabeçalhos de coluna ("Frequência, 72%, abaixo do mínimo de 75%"); a situação sempre em palavra; a coluna de hoje na grade como "quarta-feira 30, hoje"; o certificado com o código de verificação.</p>
+    <p><b>Nome do que é só ícone:</b> Baixar certificado, Trocar período letivo; a barra de frequência não tem nome próprio porque o percentual está escrito ao lado.</p>
+  </div>
+</section>
+
+<!-- ===================== PORTAL ===================== -->
+<section class="section" aria-labelledby="h-portal">
+  <h2 class="doc-h2" id="h-portal">Portal no celular</h2>
+  <p class="proposal"><b>O que esta versão propõe:</b> o síndico ou morador abre o portal e o boleto do mês é a primeira coisa: valor, vencimento e o botão "Copiar código Pix" no alcance do polegar. Dois toques do aviso ao Pix copiado. A composição do valor vem em pauta de balancete, com o total na dupla sublinha; os meses anteriores mostram o carimbo de pago. O portal inteiro usa a marca do cliente no cabeçalho e no botão; o resto é GACO.</p>
+  <p class="refs">Resolvemos fazer assim porque Nubank e os apps de banco (Pix copia e cola num toque), TownSq e a Área do Condômino da Superlógica (2ª via e código de barras no celular) utilizam dessa forma. Enviamos para aprovação.</p>
+  <div class="scroller">
+  <div class="phone-wrap">
+    <div class="phone" data-frame="portal">
+      <div class="pstatus"><span>9:41</span><span style="display:flex;gap:6px;align-items:center"><i data-i="signal" class="s16"></i><i data-i="battery" class="s16"></i></span></div>
+      <div class="phead">
+        <div class="r1"><span class="lg brand-mono" aria-hidden="true">A</span><span class="bn brand-name">Administradora Alpha</span><button aria-label="Notificações" style="color:inherit"><i data-i="bell"></i></button></div>
+        <div class="un"><i data-i="building" class="s16"></i>Parque das Águas, bloco B, apto 304<i data-i="chevron-down" class="s16"></i></div>
+      </div>
+      <div class="pbody">
+        <h3>Boleto de outubro</h3>
+        <p class="due">Vence em 10/10/2026, daqui a 10 dias</p>
+        <div class="pval total">R$ 1.284,37</div>
+        <div class="pix" aria-label="Código Pix copia e cola">00020126580014BR.GOV.BCB.PIX0136a1f4c2e0-7d3b-4f6a-9c21-3b8e0d5f7a120520400005303986540712 84.375802BR5925COND PARQUE DAS AGUAS...</div>
+        <button class="pbtn p" id="copyPix"><i data-i="copy"></i>Copiar código Pix</button>
+        <button class="pbtn s" id="copyLinha"><i data-i="barcode"></i>Copiar linha digitável</button>
+        <div class="prow"><button class="pbtn s"><i data-i="download" class="s16"></i>Baixar PDF</button><button class="pbtn s"><i data-i="share" class="s16"></i>Compartilhar</button></div>
+        <div class="comp" aria-label="Composição do valor">
+          <div><span>Taxa condominial</span><span>R$ 980,00</span></div>
+          <div><span>Fundo de reserva (10%)</span><span>R$ 98,00</span></div>
+          <div><span>Obra da fachada, parcela 4 de 10</span><span>R$ 162,50</span></div>
+          <div><span>Consumo de água, setembro</span><span>R$ 43,87</span></div>
+          <div class="t"><b>Total</b><span class="total">R$ 1.284,37</span></div>
+        </div>
+        <div class="prev">
+          <h4>Meses anteriores</h4>
+          <div class="it"><span class="grow">Setembro<br><span class="muted" style="font-size:13px">R$ 1.271,90</span></span><span class="stamp">Pago em 08/09/26</span></div>
+        </div>
+      </div>
+      <nav class="ptabs" aria-label="Portal">
+        <a href="#"><i data-i="house"></i>Início</a>
+        <a href="#" aria-current="page"><i data-i="receipt"></i>Boletos</a>
+        <a href="#"><i data-i="message"></i>Chamados</a>
+        <a href="#"><i data-i="calendar"></i>Reservas</a>
+        <a href="#"><i data-i="menu"></i>Mais</a>
+      </nav>
+      <div class="toast" id="toast" role="status" aria-live="polite"><i data-i="check"></i><span id="toastTxt">Código Pix copiado. Cole no app do seu banco.</span></div>
+    </div>
+    <div class="phone-notes">
+      <h3>O caminho, em toques</h3>
+      <ol>
+        <li>O aviso chega no WhatsApp ou no celular: "Boleto de outubro disponível". Toque abre esta tela.</li>
+        <li>"Copiar código Pix". O aviso confirma e diz o próximo passo (colar no banco).</li>
+      </ol>
+      <p class="muted">Se o boleto vencer, o botão principal vira "Atualizar boleto" e gera a 2ª via com juros até hoje, sem ligar para a administradora. Alvos de 46 a 50px, corpo de 15px, contraste AA na marca de cada cliente (a cor passa pelo mesmo ajuste da folha de identidade). Experimente trocar a marca no topo da página.</p>
+    </div>
+  </div>
+  </div>
+  <div class="a11y">
+    <p><b>Ordem de foco:</b> notificações, unidade, título do boleto, valor, Copiar código Pix, Copiar linha digitável, Baixar PDF, Compartilhar, composição, meses anteriores, abas do pé.</p>
+    <p><b>O que é anunciado:</b> "Boleto de outubro, R$ 1.284,37, vence em 10/10"; ao copiar, "Código Pix copiado. Cole no app do seu banco" numa região de status; a aba atual como "Boletos, página atual".</p>
+    <p><b>Nome do que é só ícone:</b> Notificações; os ícones das abas e dos botões sempre vêm com texto, então não precisam de nome à parte.</p>
+  </div>
+</section>
+
+</div>
+
+<script>
+/* ---------- ícones: traço 1,5, ponta e junção quadradas ---------- */
+const I = {
+  house:'<path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/>',
+  headset:'<path d="M4 15v-3a8 8 0 0 1 16 0v3"/><path d="M4 14h3v6H4zM17 14h3v6h-3z"/><path d="M20 20c0 1.5-2 2.5-5 2.5h-2"/>',
+  'heart-handshake':'<path d="M12 20S3.5 15.5 3.5 9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8.5 2.5C20.5 15.5 12 20 12 20z"/><path d="M8.5 11.5 11.5 9l4 3.5"/>',
+  'graduation-cap':'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/><path d="M22 9v6"/>',
+  users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.2.6 3.5 2.8 3.5 6"/>',
+  chart:'<path d="M3 3v18h18"/><path d="M8 17v-5M13 17V8M18 17v-9"/>',
+  settings:'<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/><circle cx="12" cy="12" r="6.5"/>',
+  star:'<path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1.1 6.2L12 17.4l-5.6 2.9 1.1-6.2L3 9.7l6.2-.9z"/>',
+  'star-f':'<path fill="currentColor" d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1.1 6.2L12 17.4l-5.6 2.9 1.1-6.2L3 9.7l6.2-.9z"/>',
+  search:'<circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/>',
+  bell:'<path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/>',
+  help:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><path d="M12 17v.5"/>',
+  check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  'check-check':'<path d="M2 12.5l4.5 4.5L16 7.5"/><path d="M11.5 16.5l.5.5L22 7.5"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
+  paperclip:'<path d="M20 11.5l-8.2 8.2a5 5 0 0 1-7-7L13 4.5a3.3 3.3 0 0 1 4.7 4.7l-8.3 8.3a1.7 1.7 0 0 1-2.4-2.4L14.5 7.6"/>',
+  send:'<path d="M21 3 10 14"/><path d="M21 3l-7 18-4-7-7-4z"/>',
+  camera:'<path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/>',
+  lock:'<rect x="5" y="11" width="14" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+  pin:'<path d="M12 16v6"/><path d="M9 3h6l-1 6 4 4v3H6v-3l4-4z"/>',
+  pencil:'<path d="M16 3l5 5L8 21H3v-5z"/><path d="M13 6l5 5"/>',
+  phone:'<path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/>',
+  mail:'<rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/>',
+  calendar:'<rect x="3" y="5" width="18" height="16"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  file:'<path d="M5 2h9l5 5v15H5z"/><path d="M14 2v5h5M8.5 13h7M8.5 17h7"/>',
+  'chevron-down':'<path d="M6 9l6 6 6-6"/>',
+  'chevron-left':'<path d="M15 6l-6 6 6 6"/>',
+  'chevron-right':'<path d="M9 6l6 6-6 6"/>',
+  x:'<path d="M6 6l12 12M18 6 6 18"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  more:'<path d="M5 12h.5M11.75 12h.5M18.5 12h.5" stroke-width="2.6"/>',
+  'thumbs-up':'<path d="M7 10v11H3V10z"/><path d="M7 10l4-8c1.7 0 3 1.3 3 3v4h6.5l-2 12H7"/>',
+  party:'<path d="M4 20l5-14 9 9z"/><path d="M14 5l1-2.5M19 10l2.5-1M16 8l3-3"/>',
+  heart:'<path d="M12 20S3.5 15.5 3.5 9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8.5 2.5C20.5 15.5 12 20 12 20z"/>',
+  message:'<path d="M3 4h18v13H8l-5 4z"/>',
+  play:'<path d="M7 4l13 8-13 8z" fill="currentColor"/>',
+  filter:'<path d="M3 4h18l-7 8v7l-4 2v-9z"/>',
+  history:'<path d="M3.5 12a8.5 8.5 0 1 0 2.5-6L3.5 8.5"/><path d="M3.5 3.5v5h5"/><path d="M12 7.5V12l3 2"/>',
+  building:'<path d="M5 21V3h10v18M15 8h4v13M3 21h18"/><path d="M8 7h1.5M11 7h1.5M8 11h1.5M11 11h1.5M8 15h1.5M11 15h1.5"/>',
+  cake:'<path d="M4 21v-8h16v8M2 21h20"/><path d="M4 16c2 1.5 4 1.5 6 0s4-1.5 6 0 3 1 4 0"/><path d="M12 13V9M12 5.5v.5"/>',
+  megaphone:'<path d="M3 10v4h4l9 5V5L7 10z"/><path d="M7 14l1.5 6h3L10 15"/><path d="M19 9.5a3 3 0 0 1 0 5"/>',
+  book:'<path d="M2 4h7a3 3 0 0 1 3 3v14a2 2 0 0 0-2-2H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v14a2 2 0 0 1 2-2h8z"/>',
+  award:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/>',
+  download:'<path d="M12 3v12M7 10l5 5 5-5M4 21h16"/>',
+  copy:'<rect x="8" y="8" width="13" height="13"/><path d="M16 8V3H3v13h5"/>',
+  'trend-down':'<path d="M3 7l6 6 4-4 8 8"/><path d="M15 17h6v-6"/>',
+  alert:'<path d="M12 3 2 21h20z"/><path d="M12 10v5M12 17.5v.5"/>',
+  share:'<path d="M4 12v9h16v-9"/><path d="M12 3v13M7 8l5-5 5 5"/>',
+  image:'<rect x="3" y="3" width="18" height="18"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/>',
+  ticket:'<path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10"/>',
+  wrench:'<path d="M14.5 4a5 5 0 0 0 5.5 5.5L11 18.5a2.1 2.1 0 0 1-3-3l9-9"/><path d="M14.5 4 12 6.5l1 3 3 1 2.5-2.5"/>',
+  skip:'<path d="M5 5l9 7-9 7z"/><path d="M18 5v14"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/>',
+  moon:'<path d="M20 14A8 8 0 1 1 10 4a6.5 6.5 0 0 0 10 10z"/>',
+  receipt:'<path d="M5 2h14v20l-3-2-2 2-2-2-2 2-2-2-3 2z"/><path d="M9 8h6M9 12h6"/>',
+  menu:'<path d="M3 6h18M3 12h18M3 18h18"/>',
+  barcode:'<path d="M4 5v14M7 5v14M11 5v14M14 5v14M18 5v14M20.5 5v14"/>',
+  signal:'<path d="M4 20v-3M9 20v-7M14 20V9M19 20V4" stroke-width="2.4"/>',
+  battery:'<rect x="2" y="7" width="18" height="10"/><path d="M22 10v4" /><path d="M5 10h10v4H5z" fill="currentColor"/>'
+};
+document.querySelectorAll('i[data-i]').forEach(el=>{
+  const n=el.dataset.i, cls=el.className;
+  const svg=`<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${I[n]||''}</svg>`;
+  el.outerHTML=svg;
+});
+
+/* ---------- onda do áudio ---------- */
+(function(){const w=document.getElementById('wave');if(!w)return;const h=[6,10,14,9,18,22,12,8,16,24,20,11,7,13,19,26,15,9,6,12,17,22,14,8,10,18,13,7,5,9,14,11,6,8];
+w.innerHTML=h.map((v,i)=>`<i class="${i<12?'p':''}" style="height:${v}px"></i>`).join('');})();
+
+/* ---------- white label com ajuste de contraste ---------- */
+const BRANDS=[
+  {id:'alpha',name:'Administradora Alpha',mono:'A',color:'#0E5E6F'},
+  {id:'orbita',name:'Órbita Condomínios',mono:'Ó',color:'#7A2E3A'},
+  {id:'sol',name:'Sol Nascente Gestão',mono:'S',color:'#E08A1E'}
+];
+function hex2rgb(h){h=h.replace('#','');return [0,2,4].map(i=>parseInt(h.substr(i,2),16));}
+function rgb2hex(r){return '#'+r.map(v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,'0')).join('').toUpperCase();}
+function lum(rgb){const c=rgb.map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2];}
+function contrast(a,b){const L1=lum(a),L2=lum(b);return (Math.max(L1,L2)+.05)/(Math.min(L1,L2)+.05);}
+function clamp(hex){let rgb=hex2rgb(hex);let k=0;while(contrast(rgb,[255,255,255])<4.5&&k<60){rgb=rgb.map(v=>v*0.96);k++;}return rgb2hex(rgb);}
+function applyBrand(b){
+  const applied=clamp(b.color);
+  const root=document.documentElement.style;
+  root.setProperty('--brand',applied);root.setProperty('--on-brand','#FFFFFF');
+  document.querySelectorAll('.brand-mono').forEach(e=>{e.textContent=b.mono;if(e.getAttribute('role')==='img')e.setAttribute('aria-label',b.name);});
+  document.querySelectorAll('.brand-name').forEach(e=>e.textContent=b.name);
+  const c=contrast(hex2rgb(applied),[255,255,255]).toFixed(1).replace('.',',');
+  document.getElementById('wlRead').innerHTML = applied===b.color.toUpperCase()
+    ? `<b>${b.name}</b>: cor enviada ${b.color}, usada sem ajuste. Texto branco sobre ela: ${c}:1.`
+    : `<b>${b.name}</b>: cor enviada ${b.color} daria contraste insuficiente com texto branco. Cor aplicada ${applied}, ${c}:1.`;
+  document.querySelectorAll('#brandSeg button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.id===b.id));
+}
+const seg=document.getElementById('brandSeg');
+BRANDS.forEach(b=>{const bt=document.createElement('button');bt.type='button';bt.dataset.id=b.id;bt.innerHTML=`<span class="dot" style="background:${b.color}"></span>${b.name}`;bt.onclick=()=>applyBrand(b);seg.appendChild(bt);});
+applyBrand(BRANDS[0]);
+
+/* ---------- tema ---------- */
+document.querySelectorAll('[data-theme-btn]').forEach(b=>b.addEventListener('click',()=>{
+  const t=b.dataset.themeBtn;document.documentElement.dataset.theme=t;
+  document.querySelectorAll('[data-theme-btn]').forEach(x=>x.setAttribute('aria-pressed',x===b));
+}));
+
+/* ---------- ciência vira carimbo ---------- */
+document.getElementById('btnCiencia').addEventListener('click',function(){
+  const row=document.getElementById('cienciaRow');
+  row.innerHTML='<span class="stamp carbon">Ciente<small>Letícia Araújo, 30/09/26 09:12</small></span><span class="grow"></span><span class="muted" role="status">Ciência registrada. 32 de 48 pessoas já deram ciência</span>';
+});
+
+/* ---------- reações alternam ---------- */
+document.querySelectorAll('.ract button[aria-pressed]').forEach(b=>b.addEventListener('click',()=>b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true')));
+
+/* ---------- ficha do chamado ---------- */
+const sup=document.getElementById('sup'), op=document.getElementById('openFicha');
+op.addEventListener('click',()=>{const open=sup.classList.toggle('no-ficha');op.setAttribute('aria-expanded',!open);});
+document.getElementById('closeFicha').addEventListener('click',()=>{sup.classList.add('no-ficha');op.setAttribute('aria-expanded','false');op.focus();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!sup.classList.contains('no-ficha')){sup.classList.add('no-ficha');op.setAttribute('aria-expanded','false');}});
+
+/* ---------- Pix ---------- */
+const toast=document.getElementById('toast'),tt=document.getElementById('toastTxt');let tmr;
+function showToast(m){tt.textContent=m;toast.classList.add('on');clearTimeout(tmr);tmr=setTimeout(()=>toast.classList.remove('on'),2600);}
+document.getElementById('copyPix').onclick=()=>{try{navigator.clipboard&&navigator.clipboard.writeText('00020126580014BR.GOV.BCB.PIX0136a1f4c2e0')}catch(e){};showToast('Código Pix copiado. Cole no app do seu banco.');};
+document.getElementById('copyLinha').onclick=()=>showToast('Linha digitável copiada.');
+</script>
+</body>
+</html>

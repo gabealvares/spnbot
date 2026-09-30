@@ -1,0 +1,1392 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GACO V3 Azulejo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAF7; --surface:#FFFFFF; --ink:#111111; --ink-2:#55585E; --ink-3:#74777D;
+  --line:#E3E3DD; --line-2:#CFCFC8; --hover:#F1F1EC; --sel:#EEF1FB;
+  --cobalto:#1A3DB8; --info:#1A3DB8;
+  --ok:#12804F; --warn:#A15C00; --err:#C02A1D;
+  --ok-bg:#E7F3EC; --warn-bg:#FBF1E0; --err-bg:#FBE9E7; --note:#FFF6D6; --note-line:#E9D48A;
+  --f-ges:#1A3DB8; --f-rel:#12804F; --f-atd:#B8860B; --f-pes:#111111;
+  --brand:#1A3DB8; --brand-ink:#FFFFFF;
+  --brand-tint:color-mix(in oklab, var(--brand) 18%, #FAFAF7);
+  --brand-soft:color-mix(in oklab, var(--brand) 9%, #FFFFFF);
+  --display:"Bricolage Grotesque", "Instrument Sans", system-ui, sans-serif;
+  --ui:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#ECECE6;color:var(--ink);font-family:var(--ui);font-size:13.5px;line-height:1.45;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--cobalto);outline-offset:2px}
+svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:square;stroke-linejoin:miter;flex:none}
+svg.i.s14{width:14px;height:14px}
+svg.i.s20{width:20px;height:20px}
+.tnum{font-variant-numeric:tabular-nums}
+.muted{color:var(--ink-2)}
+.small{font-size:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- página de apresentação ---------- */
+.page{max-width:1500px;margin:0 auto;padding:40px 30px 80px}
+.intro{background:var(--bg);border:1px solid var(--ink);display:grid;grid-template-columns:420px 1fr;min-height:420px}
+.intro-panel{border-right:1px solid var(--ink);display:flex;flex-direction:column}
+.intro-panel .painel{flex:1}
+.intro-name{padding:22px 24px;border-top:1px solid var(--ink)}
+.intro-name h1{font-family:var(--display);font-stretch:82%;font-weight:760;font-size:64px;line-height:.9;margin:0;letter-spacing:-.02em}
+.intro-name p{margin:8px 0 0;color:var(--ink-2)}
+.intro-body{padding:26px 30px;display:grid;grid-template-columns:1fr 1fr;gap:26px 36px;align-content:start}
+.intro-body h2{font-family:var(--display);font-weight:650;font-size:17px;margin:0 0 8px}
+.intro-body p{margin:0 0 6px;max-width:62ch}
+.swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--ink)}
+.sw{height:74px;padding:6px 8px;font-size:11.5px;display:flex;flex-direction:column;justify-content:flex-end;border-right:1px solid var(--ink)}
+.sw:nth-child(4n){border-right:0}
+.sw:nth-child(n+5){border-top:1px solid var(--ink)}
+.sw b{font-weight:600}
+.typo .d{font-family:var(--display);font-stretch:85%;font-weight:720;font-size:38px;line-height:1;letter-spacing:-.01em}
+.typo .u{font-size:14px;margin-top:8px}
+.glyph-row{display:flex;flex-wrap:wrap;gap:10px 14px}
+.glyph-row figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11.5px;color:var(--ink-2);width:64px}
+.icon-row{display:flex;gap:14px;color:var(--ink)}
+.wl{display:flex;gap:0;border:1px solid var(--ink);width:max-content}
+.wl button{background:var(--surface);border:0;border-right:1px solid var(--ink);padding:8px 12px;display:flex;align-items:center;gap:8px;font-size:13px}
+.wl button:last-child{border-right:0}
+.wl button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.wl i{width:14px;height:14px;display:block}
+.forms{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.forms .b-demo{border:1px solid var(--line-2);border-radius:2px;padding:6px 10px;background:#fff}
+
+.screen-head{margin:64px 0 12px;max-width:1100px}
+.screen-head h2{font-family:var(--display);font-stretch:85%;font-weight:720;font-size:34px;line-height:1.05;margin:0 0 10px;letter-spacing:-.01em}
+.screen-head p{margin:0 0 6px;max-width:100ch}
+.screen-head .ref{color:var(--ink-2)}
+.a11y{margin-top:10px;font-size:12.5px;color:var(--ink-2);max-width:120ch}
+.a11y p{margin:0 0 3px}
+.scroller{overflow-x:auto;padding-bottom:4px}
+.frame{width:1440px;height:900px;overflow:hidden;background:var(--bg);border:1px solid var(--ink);display:flex;position:relative}
+
+/* ---------- menu lateral ---------- */
+.side{width:240px;flex:none;background:var(--surface);border-right:1px solid var(--ink);display:flex;flex-direction:column;height:100%}
+.side .org{display:flex;align-items:center;gap:10px;padding:12px 12px 10px;border:0;background:none;text-align:left;width:100%}
+.org-logo{width:32px;height:32px;background:var(--brand);color:var(--brand-ink);display:grid;place-items:center;font-weight:700;font-size:13px;flex:none;border-radius:2px}
+.side .org-name,.side .org-sub{display:block}
+.org-name{font-weight:650;font-size:13.5px;line-height:1.2}
+.org-sub{font-size:11.5px;color:var(--ink-2)}
+.side .strip{height:24px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.side-search{margin:10px 10px 6px;border:1px solid var(--line-2);border-radius:2px;padding:6px 8px;display:flex;align-items:center;gap:8px;color:var(--ink-2);background:var(--bg);width:calc(100% - 20px);text-align:left}
+.side-search kbd{margin-left:auto;font:inherit;font-size:11px;border:1px solid var(--line-2);padding:0 4px;border-radius:2px;background:#fff}
+.nav{flex:1;overflow:hidden;padding:4px 8px}
+.nav a{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:2px;color:var(--ink);text-decoration:none;font-size:13.5px;min-height:32px}
+.nav a:hover{background:var(--hover)}
+.nav a .cnt{margin-left:auto;font-size:11.5px;font-weight:650;min-width:20px;height:18px;padding:0 5px;display:grid;place-items:center;background:var(--brand);color:var(--brand-ink);border-radius:9px}
+.nav a .cnt.q{background:transparent;color:var(--ink-2);font-weight:500}
+.nav .grp{font-size:12px;color:var(--ink-2);padding:12px 8px 4px}
+.nav a.mod-on{font-weight:650}
+.nav a.cur{background:var(--sel)}
+.nav .sub{margin:2px 0 6px 19px;border-left:1px solid var(--ink);padding-left:10px}
+.nav .sub a{min-height:28px;padding:4px 8px;font-size:13px;color:var(--ink-2)}
+.nav .sub a.cur{color:var(--ink);font-weight:600;background:var(--sel);box-shadow:inset 2px 0 0 var(--brand)}
+.nav .chev{margin-left:auto;color:var(--ink-2)}
+.side-foot{border-top:1px solid var(--line);padding:6px 8px}
+.side-foot button{display:flex;align-items:center;gap:10px;width:100%;padding:6px 8px;border:0;background:none;border-radius:2px;font-size:13px;color:var(--ink-2)}
+.side-foot button:hover{background:var(--hover)}
+.frame.collapsed .side{width:64px}
+.frame.collapsed .side .org-name,.frame.collapsed .side .org-sub,.frame.collapsed .nav .lbl,.frame.collapsed .nav .grp,.frame.collapsed .nav .sub,.frame.collapsed .side-search span,.frame.collapsed .side-search kbd,.frame.collapsed .side-foot .lbl,.frame.collapsed .nav .chev{display:none}
+.frame.collapsed .nav a{justify-content:center;position:relative}
+.frame.collapsed .nav a .cnt{position:absolute;top:1px;right:1px;min-width:16px;height:15px;font-size:10px}
+.frame.collapsed .nav a .cnt.q{display:none}
+.frame.collapsed .side-search{justify-content:center}
+.frame.collapsed .side-foot button{justify-content:center}
+
+/* ---------- área principal ---------- */
+.main{flex:1;min-width:0;display:flex;flex-direction:column;height:100%}
+.phead{height:64px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px 0 0;border-bottom:1px solid var(--ink);background:var(--surface)}
+.phead .cover{width:64px;height:63px;flex:none;border-right:1px solid var(--ink)}
+.phead .crumbs{font-size:12px;color:var(--ink-2)}
+.phead h1{font-family:var(--display);font-stretch:88%;font-weight:700;font-size:23px;line-height:1.05;margin:0;letter-spacing:-.005em}
+.phead .spacer{flex:1}
+.phead .tools{display:flex;align-items:center;gap:6px}
+.ibtn{width:32px;height:32px;display:grid;place-items:center;border:0;background:none;border-radius:2px;color:var(--ink);position:relative}
+.ibtn:hover{background:var(--hover)}
+.ibtn .dot{position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--err);border:1.5px solid #fff}
+.btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:2px;border:1px solid var(--line-2);background:var(--surface);font-size:13px;font-weight:550;white-space:nowrap}
+.btn:hover{background:var(--hover)}
+.btn.pri{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.btn.pri:hover{filter:brightness(.93)}
+.btn.sm{height:28px;padding:0 10px;font-size:12.5px}
+.btn.ghost{border-color:transparent;background:none}
+.btn.danger-outline{border-color:var(--err);color:var(--err)}
+.split{display:inline-flex}
+.split .btn:first-child{border-radius:2px 0 0 2px}
+.split .btn:last-child{border-radius:0 2px 2px 0;border-left:1px solid color-mix(in oklab,var(--brand-ink) 45%, var(--brand));padding:0 8px}
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:2px;overflow:hidden}
+.seg button{border:0;background:var(--surface);height:30px;padding:0 10px;display:flex;align-items:center;gap:6px;font-size:13px;border-right:1px solid var(--line-2)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:650;flex:none;position:relative;background:#DCE1EE;color:var(--ink)}
+.av.s24{width:24px;height:24px;font-size:10px}
+.av.s28{width:28px;height:28px;font-size:11px}
+.av.s40{width:40px;height:40px;font-size:14px}
+.av.s56{width:56px;height:56px;font-size:19px}
+.av.c1{background:#DCE1EE}.av.c2{background:#DDEADF}.av.c3{background:#F0E5CB}.av.c4{background:#E7E2EB}.av.c5{background:#E9E4DC}.av.c6{background:#D8E6E8}
+.pres{position:absolute;right:-1px;bottom:-1px;width:10px;height:10px;border-radius:50%;border:2px solid #fff}
+.av.s56 .pres{width:14px;height:14px}
+.pres.on{background:var(--ok)}.pres.away{background:#D69A18}.pres.busy{background:var(--err)}.pres.off{background:#fff;border-color:#9A9DA2;box-shadow:inset 0 0 0 1.5px #fff}
+.st{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:550;white-space:nowrap}
+.st::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+.st.ok{color:var(--ok)}.st.warn{color:var(--warn)}.st.err{color:var(--err)}.st.info{color:var(--info)}.st.neu{color:var(--ink-2)}
+.lab{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--ink);white-space:nowrap}
+.lab i{width:9px;height:9px;display:block;flex:none;transform:rotate(45deg)}
+.l-novo i{background:#3B6FD9}.l-bol i{background:#C98A12}.l-man i{background:#1E8A5A}.l-res i{background:#7A5BC7}.l-ass i{background:#C0472F}
+
+/* ---------- HOME ---------- */
+.home{flex:1;overflow:hidden;display:flex;flex-direction:column}
+.home-cover{height:128px;flex:none;border-bottom:1px solid var(--ink)}
+.team-bar{display:flex;align-items:center;gap:16px;padding:14px 28px;background:var(--surface);border-bottom:1px solid var(--line)}
+.team-bar h2{font-family:var(--display);font-stretch:85%;font-weight:720;font-size:28px;line-height:1;margin:0}
+.team-bar .meta{color:var(--ink-2);font-size:12.5px;margin-top:4px}
+.stack{display:flex}
+.stack .av{border:2px solid #fff;margin-left:-6px}
+.stack .av:first-child{margin-left:0}
+.home-cols{flex:1;display:grid;grid-template-columns:1fr 360px;gap:24px;padding:20px 28px;overflow:hidden}
+.feed{display:flex;flex-direction:column;gap:14px;min-width:0}
+.box{background:var(--surface);border:1px solid var(--line)}
+.composer{padding:12px 14px}
+.composer .row{display:flex;gap:10px;align-items:center}
+.composer .fake{flex:1;border:1px solid var(--line-2);border-radius:2px;padding:8px 10px;color:var(--ink-2);background:var(--bg)}
+.composer .acts{display:flex;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.post{padding:14px 16px 0}
+.post-h{display:flex;gap:10px;align-items:flex-start}
+.post-h .who{font-weight:650}
+.post-h .when{font-size:12px;color:var(--ink-2)}
+.post-h .ibtn{margin-left:auto;margin-top:-4px}
+.post-body{margin:10px 0 0;max-width:72ch}
+.kudo{display:grid;grid-template-columns:72px 1fr;border:1px solid var(--ink);margin-top:10px}
+.kudo .painel{border-right:1px solid var(--ink)}
+.kudo .k{padding:10px 14px}
+.kudo .k b{font-family:var(--display);font-weight:680;font-size:18px;font-stretch:88%}
+.kudo .k p{margin:4px 0 0}
+.react-sum{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:12.5px;color:var(--ink-2)}
+.react-sum .ico{display:flex}
+.react-sum .ico span{width:20px;height:20px;border-radius:50%;background:var(--surface);border:1px solid var(--line-2);display:grid;place-items:center;margin-left:-4px;color:var(--ink)}
+.react-sum .ico span:first-child{margin-left:0}
+.post-acts{display:flex;border-top:1px solid var(--line);margin-top:10px}
+.post-acts button{flex:1;border:0;background:none;padding:8px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;color:var(--ink-2);font-weight:550}
+.post-acts button:hover{background:var(--hover)}
+.post-acts button.on{color:var(--brand)}
+.cmts{border-top:1px solid var(--line);padding:10px 0 12px;display:flex;flex-direction:column;gap:8px}
+.cmt{display:flex;gap:8px}
+.cmt .bub{background:var(--bg);border:1px solid var(--line);padding:6px 10px;max-width:60ch}
+.cmt .bub b{font-weight:650;font-size:12.5px}
+.cmt .cm{font-size:11.5px;color:var(--ink-2);margin:3px 0 0 10px}
+.ciencia{display:flex;align-items:center;gap:12px;margin-top:12px;padding:10px 12px;border:1px solid var(--line);background:var(--bg)}
+.ciencia .bar{flex:1;height:6px;background:var(--line);position:relative}
+.ciencia .bar i{position:absolute;inset:0 auto 0 0;background:var(--ok)}
+.aside{display:flex;flex-direction:column;gap:14px;min-width:0}
+.me{padding:14px 16px;display:grid;grid-template-columns:56px 1fr;gap:12px}
+.me h3{font-family:var(--display);font-stretch:88%;font-weight:700;font-size:20px;margin:0;line-height:1.1}
+.me dl{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin:0;font-size:12.5px;border-top:1px solid var(--line);padding-top:10px}
+.me dt{color:var(--ink-2)}
+.me dd{margin:0}
+.status-sel{display:inline-flex;align-items:center;gap:6px;margin-top:6px;border:1px solid var(--line-2);border-radius:2px;padding:2px 8px;font-size:12.5px;background:#fff}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;padding:12px 16px 6px}
+.sec-h h3{font-family:var(--display);font-weight:680;font-size:16px;margin:0;font-stretch:90%}
+.sec-h a{font-size:12.5px;color:var(--brand);text-decoration:none;font-weight:550}
+.fy{list-style:none;margin:0;padding:0 0 4px}
+.fy li{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:8px 16px;border-top:1px solid var(--line)}
+.fy li .t{font-size:13px;line-height:1.35}
+.fy li .d{font-size:12px;color:var(--ink-2)}
+.fy li .d.late{color:var(--err);font-weight:550}
+.fy li .d.today{color:var(--warn);font-weight:550}
+.ppl{list-style:none;margin:0;padding:0 0 6px}
+.ppl li{display:flex;align-items:center;gap:10px;padding:7px 16px}
+.ppl .n{font-weight:600;font-size:13px;line-height:1.2}
+.ppl .r{font-size:12px;color:var(--ink-2)}
+.ppl .btn{margin-left:auto}
+
+/* ---------- SUPORTE ---------- */
+.sup{flex:1;min-height:0;display:grid;grid-template-columns:360px minmax(0,1fr) 312px;grid-template-rows:minmax(0,1fr);overflow:hidden}
+.clist{border-right:1px solid var(--line-2);background:var(--surface);display:flex;flex-direction:column;overflow:hidden}
+.clist-top{padding:10px 12px 8px;border-bottom:1px solid var(--line)}
+.search{display:flex;align-items:center;gap:8px;border:1px solid var(--line-2);border-radius:2px;padding:6px 9px;color:var(--ink-2);background:var(--bg)}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.filters button{border:1px solid var(--line-2);background:#fff;border-radius:2px;height:26px;padding:0 8px;font-size:12.5px;display:flex;align-items:center;gap:5px}
+.filters button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.filters button[aria-pressed="true"] .lab{color:var(--brand-ink)}
+.conv{display:grid;grid-template-columns:40px 1fr auto;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);position:relative}
+.conv:hover{background:var(--hover)}
+.conv.cur{background:var(--sel);box-shadow:inset 3px 0 0 var(--brand)}
+.conv .n{font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conv .c{font-size:12px;color:var(--ink-2)}
+.conv .pv{font-size:12.5px;color:var(--ink-2);display:flex;align-items:center;gap:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.conv .pv span{overflow:hidden;text-overflow:ellipsis}
+.conv .r{display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-size:11.5px;color:var(--ink-2)}
+.conv .r .unr{color:var(--brand);font-weight:650}
+.badge{min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:var(--brand);color:var(--brand-ink);font-size:11.5px;font-weight:700;display:grid;place-items:center}
+.conv .tags{display:flex;gap:10px;margin-top:5px}
+.tick{color:var(--ink-3)}
+.tick.read{color:var(--info)}
+.chat{display:flex;flex-direction:column;background:var(--bg);min-width:0;position:relative;z-index:2}
+.chat-h{display:flex;align-items:center;gap:10px;padding:8px 14px;background:var(--surface);border-bottom:1px solid var(--line-2);min-height:58px}
+.chat-h .n{font-weight:650}
+.chat-h .c{font-size:12px;color:var(--ink-2)}
+.ticket-strip{white-space:nowrap;display:flex;align-items:center;gap:14px;padding:6px 14px;border-bottom:1px solid var(--line);background:var(--surface);font-size:12.5px}
+.ticket-strip .num{font-weight:650}
+.sla{display:inline-flex;align-items:center;gap:5px;color:var(--warn);font-weight:600}
+.msgs{flex:1;min-height:0;overflow:hidden;padding:14px 22px;display:flex;flex-direction:column;gap:6px}
+.day{align-self:center;font-size:11.5px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);padding:2px 10px;margin:4px 0}
+.m{max-width:74%;padding:7px 10px 5px;border:1px solid var(--line);background:var(--surface);position:relative;font-size:13.5px}
+.m.in{align-self:flex-start;border-radius:0 6px 6px 6px}
+.m.out{align-self:flex-end;background:var(--brand-soft);border-color:color-mix(in oklab,var(--brand) 22%, #fff);border-radius:6px 0 6px 6px}
+.m .meta{display:flex;justify-content:flex-end;align-items:center;gap:4px;font-size:11px;color:var(--ink-2);margin-top:2px}
+.m .who{font-size:12px;font-weight:650;color:var(--brand);margin-bottom:2px}
+.photo{width:240px;height:150px;margin:2px 0 4px;position:relative;overflow:hidden;background:#C9CCC4}
+.audio{display:flex;align-items:center;gap:10px;width:270px}
+.audio .play{width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;border:0}
+.wave{flex:1;display:flex;align-items:center;gap:2px;height:26px}
+.wave i{display:block;width:3px;background:var(--ink-3)}
+.wave i.p{background:var(--ink)}
+.note{align-self:stretch;background:var(--note);border:1px solid var(--note-line);padding:8px 12px;font-size:13px;margin:4px 40px}
+.note .nh{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:650;color:#6B5200;margin-bottom:2px}
+.sys{align-self:center;font-size:12px;color:var(--ink-2);display:flex;align-items:center;gap:6px}
+.compose{background:var(--surface);border-top:1px solid var(--line-2);padding:8px 12px 10px;position:relative}
+.compose-tabs{display:flex;gap:2px;margin-bottom:6px}
+.compose-tabs button{border:0;background:none;font-size:12.5px;padding:3px 8px;border-radius:2px;color:var(--ink-2);font-weight:550}
+.compose-tabs button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.compose-row{display:flex;align-items:flex-end;gap:6px}
+.input{flex:1;border:1px solid var(--brand);border-radius:2px;padding:8px 10px;min-height:38px;background:#fff;box-shadow:0 0 0 1px var(--brand)}
+.caret{display:inline-block;width:1px;height:15px;background:var(--ink);vertical-align:-3px;margin-left:1px}
+.pop{position:absolute;background:#fff;border:1px solid var(--ink);box-shadow:0 8px 24px rgba(17,17,17,.14);z-index:5}
+.qr{left:12px;bottom:58px;width:360px}
+.qr .qh{padding:7px 12px;font-size:12px;color:var(--ink-2);border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+.qr ul{list-style:none;margin:0;padding:4px 0}
+.qr li{padding:6px 12px;display:grid;grid-template-columns:110px 1fr;gap:10px;font-size:13px}
+.qr li b{font-weight:650}
+.qr li span{color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qr li.hi{background:var(--sel);box-shadow:inset 2px 0 0 var(--brand)}
+.sendmenu{left:calc(100% - 132px);bottom:58px;width:280px}
+.sendmenu ul{list-style:none;margin:0;padding:4px 0}
+.sendmenu li{padding:7px 12px;display:flex;align-items:center;gap:8px;font-size:13px}
+.sendmenu li.hi{background:var(--sel)}
+.sendmenu li .k{margin-left:auto;font-size:11.5px;color:var(--ink-2)}
+.menu-list{list-style:none;margin:0;padding:4px 0}.menu-list li{padding:7px 12px;display:flex;align-items:center;gap:8px;font-size:13px}.menu-list li.hi{background:var(--sel)}.menu-list li .k{margin-left:auto;font-size:11.5px;color:var(--ink-2)}
+.sendmenu .sep{border-top:1px solid var(--line);margin:4px 0}
+.ficha{background:var(--surface);border-left:1px solid var(--line-2);overflow:hidden;display:flex;flex-direction:column}
+.ficha-h{padding:12px 16px;border-bottom:1px solid var(--line)}
+.ficha-h h3{font-family:var(--display);font-stretch:88%;font-weight:700;font-size:20px;margin:0}
+.props{display:grid;grid-template-columns:100px 1fr;gap:0;font-size:13px}
+.props dt{color:var(--ink-2);padding:7px 0 7px 16px;border-bottom:1px solid var(--line)}
+.props dd{margin:0;padding:6px 16px 6px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;min-height:34px}
+.fsec{padding:10px 16px;border-bottom:1px solid var(--line)}
+.fsec h4{font-size:12.5px;font-weight:650;margin:0 0 6px;display:flex;justify-content:space-between}
+.hist{list-style:none;margin:0;padding:0;font-size:12.5px}
+.hist li{display:grid;grid-template-columns:52px 1fr;gap:8px;padding:4px 0}
+.hist .dt{color:var(--ink-2)}
+.prio{display:inline-flex;align-items:flex-end;gap:2px;height:12px}
+.prio i{width:3px;background:var(--ink);display:block}
+.prio i.off{background:var(--line-2)}
+
+/* quadro */
+.board{flex:1;display:grid;grid-template-columns:repeat(5,1fr);gap:0;overflow:hidden}
+.col{border-right:1px solid var(--line-2);display:flex;flex-direction:column;overflow:hidden}
+.col:last-child{border-right:0}
+.col-h{padding:10px 12px;border-bottom:1px solid var(--ink);background:var(--surface);display:flex;align-items:center;gap:8px}
+.col-h b{font-weight:650}
+.col-h .n{color:var(--ink-2);font-size:12.5px}
+.col-b{padding:10px;display:flex;flex-direction:column;gap:8px;overflow:hidden}
+.card{background:var(--surface);border:1px solid var(--line-2);padding:9px 10px;display:flex;flex-direction:column;gap:6px}
+.card.cur{border-color:var(--brand);box-shadow:inset 3px 0 0 var(--brand)}
+.card .top{display:flex;gap:8px;align-items:center}
+.card .n{font-weight:650;font-size:13px;line-height:1.2}
+.card .c{font-size:11.5px;color:var(--ink-2)}
+.card .pv{font-size:12.5px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .foot{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--ink-2)}
+.card .foot .av{margin-left:auto}
+.empty{margin:10px;border:1px dashed var(--line-2);display:flex;flex-direction:column;align-items:center;text-align:center;padding:18px 14px;gap:10px;background:var(--surface)}
+.empty .painel{width:96px;height:96px;border:1px solid var(--ink)}
+.empty b{font-family:var(--display);font-weight:680;font-size:16px;font-stretch:90%}
+.empty p{margin:0;font-size:12.5px;color:var(--ink-2)}
+
+/* ---------- CS ---------- */
+.cs{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 392px;grid-template-rows:minmax(0,1fr);overflow:hidden}
+.cs-left{display:flex;flex-direction:column;overflow:hidden;position:relative}
+.views{display:flex;align-items:center;gap:0;padding:0 20px;border-bottom:1px solid var(--line-2);background:var(--surface)}
+.views a{padding:11px 12px 9px;font-size:13px;color:var(--ink-2);text-decoration:none;border-bottom:2px solid transparent;font-weight:550;white-space:nowrap}
+.views a.cur{color:var(--ink);border-bottom-color:var(--ink)}
+.views a .n{font-weight:500;color:var(--ink-3);margin-left:4px}
+.toolbar{display:flex;align-items:center;gap:8px;padding:10px 20px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;background:var(--surface);table-layout:fixed}
+.tbl th{text-align:left;font-weight:600;font-size:12px;color:var(--ink-2);padding:7px 8px;border-bottom:1px solid var(--ink);border-top:1px solid var(--ink);background:var(--surface);white-space:nowrap}
+.tbl td{padding:0 8px;height:44px;border-bottom:1px solid var(--line);vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbl tr:hover td{background:#F7F7F3}
+.tbl tr.cur td{background:var(--sel)}
+.tbl tr.cur td:first-child{box-shadow:inset 3px 0 0 var(--brand)}
+.tbl .nm{font-weight:650;display:block;overflow:hidden;text-overflow:ellipsis}
+.tbl .sub{font-size:11.5px;color:var(--ink-2);display:block}
+.tbl td.ed{cursor:text}
+.tbl td.ed:hover{box-shadow:inset 0 0 0 1px var(--line-2)}
+.tbl td.editing{padding:0 4px;overflow:visible}
+.tbl td.editing .ei{border:1px solid var(--brand);box-shadow:0 0 0 1px var(--brand);background:#fff;padding:5px 7px;border-radius:2px;display:flex;align-items:center;gap:6px}
+.tbl td.dirty{background:var(--warn-bg) !important}
+.tbl .missing{color:var(--err);display:inline-flex;align-items:center;gap:5px;font-weight:550}
+.cold{color:var(--warn);font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.hs{display:inline-flex;align-items:center;gap:4px}
+.hs .num{font-weight:650}
+.savebar{position:absolute;left:0;right:0;bottom:0;background:var(--ink);color:#fff;display:flex;align-items:center;gap:12px;padding:10px 20px}
+.savebar .btn{border-color:#6B6E73;background:transparent;color:#fff}
+.savebar .split .btn{background:#fff;color:var(--ink);border-color:#fff}
+.savebar .split .btn:last-child{border-left:1px solid var(--line-2)}
+.savebar .dirty-dot{width:8px;height:8px;background:#E2A93A;border-radius:50%}
+.savemenu{right:20px;bottom:54px;width:340px}
+.peek{border-left:1px solid var(--ink);background:var(--surface);display:flex;flex-direction:column;overflow:hidden}
+.peek-top{display:flex;align-items:center;gap:6px;padding:8px 10px 8px 14px;border-bottom:1px solid var(--line)}
+.peek-top .pos{font-size:12.5px;color:var(--ink-2);margin-right:auto}
+.peek-h{padding:14px 16px 10px;display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:start}
+.peek-h h3{font-family:var(--display);font-stretch:86%;font-weight:720;font-size:23px;margin:0;line-height:1.05}
+.peek-h .sub{font-size:12.5px;color:var(--ink-2);margin-top:3px}
+.alert-cold{margin:0 16px 10px;border:1px solid #E2BD7A;background:var(--warn-bg);padding:8px 10px;display:flex;gap:8px;font-size:12.5px;color:#5B3A00}
+.alert-cold b{color:var(--warn)}
+.health{padding:8px 16px 12px;border-bottom:1px solid var(--line)}
+.hbar{display:grid;grid-template-columns:50fr 25fr 25fr;height:8px;margin:8px 0 4px;position:relative}
+.hbar i{display:block}
+.hbar i:nth-child(1){background:#F0C9C4}.hbar i:nth-child(2){background:#F2DDAF}.hbar i:nth-child(3){background:#C9E3D4}
+.hbar .mk{position:absolute;top:-4px;width:3px;height:16px;background:var(--ink)}
+.hscale{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-2)}
+.path{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:8px}
+.path span{font-size:11.5px;padding:5px 6px;background:var(--line);color:var(--ink-2);text-align:center;white-space:nowrap}
+.path span.done{background:var(--ink);color:#fff}
+.path span.now{background:var(--brand);color:var(--brand-ink);font-weight:650}
+.nextstep{margin:12px 16px;border:1.5px solid var(--err);padding:10px 12px;background:#fff}
+.nextstep .h{display:flex;align-items:center;gap:6px;font-weight:650;color:var(--err);font-size:13px}
+.nextstep p{margin:4px 0 8px;font-size:12.5px;color:var(--ink-2)}
+.psec{padding:10px 16px;border-top:1px solid var(--line)}
+.psec h4{margin:0 0 6px;font-size:12.5px;font-weight:650}
+.readonly{margin-top:auto;padding:9px 16px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-2);display:flex;gap:6px;align-items:center;background:var(--bg)}
+
+/* ---------- ACADEMY ---------- */
+.acad{flex:1;display:grid;grid-template-columns:1fr 330px;gap:24px;padding:20px 24px;overflow:hidden}
+.turmas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-content:start}
+.turma{background:var(--surface);border:1px solid var(--line-2);display:flex;flex-direction:column;position:relative}
+.turma .band{height:84px;border-bottom:1px solid var(--ink)}
+.turma .body{padding:12px 14px 10px;flex:1}
+.turma h3{font-family:var(--display);font-stretch:86%;font-weight:700;font-size:17px;line-height:1.08;margin:0 0 4px;padding-right:48px}
+.turma .t{font-size:12.5px;color:var(--ink-2)}
+.turma .prof{position:absolute;right:12px;top:62px}
+.turma .prof .av{border:2px solid #fff}
+.turma .due{margin-top:10px;font-size:12.5px;display:flex;flex-direction:column;gap:3px}
+.turma .due .late{color:var(--err);font-weight:550}
+.turma .foot{border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:2px;padding:4px 6px}
+.turma .fam{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-2);margin-top:8px}
+.turma .fam i{width:8px;height:8px;display:block}
+.boletim{width:100%;border-collapse:collapse;font-size:12.5px}
+.boletim th{text-align:left;font-weight:600;color:var(--ink-2);font-size:11.5px;padding:6px 16px 6px 0;border-bottom:1px solid var(--ink)}
+.boletim th:first-child,.boletim td:first-child{padding-left:16px}
+.boletim td{padding:6px 16px 6px 0;border-bottom:1px solid var(--line)}
+.cal{list-style:none;margin:0;padding:0 0 6px}
+.cal li{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:7px 16px;border-top:1px solid var(--line);align-items:center}
+.cal .dd{font-family:var(--display);font-weight:700;font-size:20px;line-height:1;text-align:center;font-stretch:85%}
+.cal .dd small{display:block;font-family:var(--ui);font-size:10.5px;font-weight:550;color:var(--ink-2)}
+.turma-cover{height:150px;flex:none;border-bottom:1px solid var(--ink);position:relative}
+.turma-cover .ttl{position:absolute;left:28px;bottom:16px;background:var(--surface);border:1px solid var(--ink);padding:10px 16px 10px}
+.turma-cover h2{font-family:var(--display);font-stretch:84%;font-weight:740;font-size:30px;line-height:1;margin:0}
+.turma-cover .ttl p{margin:4px 0 0;font-size:12.5px;color:var(--ink-2)}
+.tabs{display:flex;gap:0;padding:0 28px;border-bottom:1px solid var(--line-2);background:var(--surface)}
+.tabs a{padding:11px 14px 9px;font-weight:600;text-decoration:none;color:var(--ink-2);border-bottom:3px solid transparent}
+.tabs a.cur{color:var(--ink);border-bottom-color:var(--f-pes)}
+.mural{flex:1;display:grid;grid-template-columns:250px 1fr;gap:22px;padding:20px 28px;overflow:hidden;max-width:1060px}
+.upcoming{padding:12px 14px}
+.upcoming h3{font-size:13px;font-weight:650;margin:0 0 8px}
+.upcoming ul{list-style:none;margin:0;padding:0;font-size:12.5px}
+.upcoming li{padding:6px 0;border-top:1px solid var(--line)}
+.upcoming li .d{color:var(--ink-2);font-size:12px}
+.ok-t{color:var(--ok);font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.pend-t{color:var(--warn);font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.late-t{color:var(--err);font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.aviso{border-left:3px solid var(--ink)}
+.pinned{font-size:12px;color:var(--ink-2);display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.newact{display:flex;gap:12px;align-items:center;padding:12px 16px}
+.newact .ic{width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;flex:none}
+.acts{flex:1;padding:18px 28px;overflow:hidden;max-width:1000px}
+.unit{margin-bottom:18px}
+.unit h3{font-family:var(--display);font-stretch:88%;font-weight:700;font-size:20px;margin:0 0 6px;padding-bottom:6px;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:baseline}
+.unit h3 span{font-family:var(--ui);font-size:12.5px;font-weight:500;color:var(--ink-2)}
+.arow{display:grid;grid-template-columns:36px 1fr 160px 150px 90px;gap:12px;align-items:center;padding:9px 6px;border-bottom:1px solid var(--line);background:var(--surface)}
+.arow .ic{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line-2)}
+.arow .t{font-weight:600}
+.arow .s{font-size:12px;color:var(--ink-2)}
+
+/* ---------- PORTAL ---------- */
+.phone-wrap{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap}
+.phone{width:390px;height:800px;border:1px solid var(--ink);background:var(--bg);position:relative;overflow:hidden;display:flex;flex-direction:column;flex:none}
+.p-top{background:var(--surface);padding:12px 16px 10px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--ink)}
+.p-strip{height:28px;border-bottom:1px solid var(--ink)}
+.p-body{flex:1;padding:16px;overflow:hidden;display:flex;flex-direction:column;gap:14px}
+.p-body h2{font-family:var(--display);font-stretch:86%;font-weight:720;font-size:26px;line-height:1.05;margin:0}
+.bol{background:var(--surface);border:1px solid var(--ink)}
+.bol .hd{padding:14px 16px 12px;border-bottom:1px solid var(--line)}
+.bol .val{font-family:var(--display);font-weight:720;font-size:38px;line-height:1;font-stretch:85%;margin:6px 0 4px}
+.bol .row{display:flex;justify-content:space-between;padding:8px 16px;border-bottom:1px solid var(--line);font-size:13px}
+.bigbtn{height:52px;width:100%;border:0;border-radius:2px;background:var(--brand);color:var(--brand-ink);font-size:16px;font-weight:650;display:flex;align-items:center;justify-content:center;gap:10px}
+.bigbtn.sec{background:var(--surface);color:var(--ink);border:1px solid var(--ink)}
+.pixcode{font-size:12px;color:var(--ink-2);word-break:break-all;background:var(--bg);border:1px dashed var(--line-2);padding:8px 10px;margin:12px 16px 0}
+.toast{position:absolute;left:16px;right:16px;bottom:84px;background:var(--ink);color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:14px}
+.tabbar{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--ink);background:var(--surface);height:64px}
+.tabbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11px;color:var(--ink-2);text-decoration:none}
+.tabbar a.cur{color:var(--ink);font-weight:650;box-shadow:inset 0 3px 0 var(--brand)}
+.phone-notes{max-width:520px}
+.phone-notes h3{font-family:var(--display);font-weight:680;font-size:18px;margin:0 0 6px}
+.phone-notes p{margin:0 0 10px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:900px){.intro{grid-template-columns:1fr}.intro-panel{border-right:0;border-bottom:1px solid var(--ink)}.intro-panel .painel{height:180px}.intro-body{grid-template-columns:1fr}.page{padding:20px 16px}}
+</style>
+</head>
+<body>
+
+<!-- ícones: traço 1.6, ponta e junção quadradas (base Lucide, redesenhados) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V10a6 6 0 0 1 12 0v6l2 2H4z"/><path d="M10 21h4"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.5V14"/><path d="M12 17.5v.5"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></symbol>
+<symbol id="i-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+<symbol id="i-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+<symbol id="i-checks" viewBox="0 0 24 24"><path d="M1.5 12.5l5 5L17 7"/><path d="M11 16.5l1 1L22.5 7"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-clip" viewBox="0 0 24 24"><path d="M20 11l-8.5 8.5a5 5 0 0 1-7-7L13 4a3.3 3.3 0 0 1 4.7 4.7L9.2 17.2a1.7 1.7 0 0 1-2.4-2.4L14.5 7"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8z"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+<symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5L5 20"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1.1 6.3L12 17.4l-5.6 3 1.1-6.3L3 9.7l6.2-.9z"/></symbol>
+<symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></symbol>
+<symbol id="i-more" viewBox="0 0 24 24"><path d="M5 12h.01M12 12h.01M19 12h.01" stroke-width="3"/></symbol>
+<symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></symbol>
+<symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 3h9l9 9-9 9-9-9z"/><circle cx="8" cy="8" r="1.5"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h1M3 12h1M3 18h1"/></symbol>
+<symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/><path d="M9 3v18M15 3v18"/></symbol>
+<symbol id="i-table" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16"/><path d="M3 10h18M3 15h18M9 10v10"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-cake" viewBox="0 0 24 24"><path d="M4 21V12h16v9M2 21h20M4 16c2 1.5 4 1.5 5.3 0 1.4 1.5 4 1.5 5.4 0 1.3 1.5 3.3 1.5 5.3 0M12 12V8M12 5v.5"/></symbol>
+<symbol id="i-userplus" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M19 8v6M16 11h6"/></symbol>
+<symbol id="i-thumb" viewBox="0 0 24 24"><path d="M7 10v11H3V10zM7 10l4-8a3 3 0 0 1 3 3v4h6l-2 12H7"/></symbol>
+<symbol id="i-party" viewBox="0 0 24 24"><path d="M3 21l5-14 9 9z"/><path d="M14 4v1M20 10h1M16 8l3-3M11 3c1 1 1 2 0 3M21 13c-1-1-2-1-3 0"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20S3 14.5 3 8.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 9 2.5C21 14.5 12 20 12 20z"/></symbol>
+<symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M8 14a6 6 0 1 1 8 0c-1 1-1 2-1 4H9c0-2 0-3-1-4z"/></symbol>
+<symbol id="i-handheart" viewBox="0 0 24 24"><path d="M2 14h4l4 2h4a2 2 0 0 1 0 4H9M16 18l5-3a1.8 1.8 0 0 0-2-3l-4 2"/><path d="M14 9s-4-2.3-4-5a2 2 0 0 1 4-.5A2 2 0 0 1 18 4c0 2.7-4 5-4 5z"/></symbol>
+<symbol id="i-msg" viewBox="0 0 24 24"><path d="M4 4h16v12H9l-5 4z"/></symbol>
+<symbol id="i-mega" viewBox="0 0 24 24"><path d="M3 10v4h3l8 5V5L6 10zM18 9a4 4 0 0 1 0 6"/></symbol>
+<symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13"/><path d="M16 8V3H3v13h5"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M5 2h10l4 4v16H5z"/><path d="M14 2v5h5M8 12h8M8 16h8"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.5 6.5a4.5 4.5 0 0 0 5.9 5.9L21 13l-8 8-3-3 8-8M14.5 6.5L10 2 7 5l4.5 4.5M3 21l6-6"/></symbol>
+<symbol id="i-sidebar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16"/><path d="M9 4v16M15 10l-2 2 2 2"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/></symbol>
+<symbol id="i-trend-dn" viewBox="0 0 24 24"><path d="M3 7l7 7 4-4 7 7M21 11v6h-6"/></symbol>
+<symbol id="i-trend-up" viewBox="0 0 24 24"><path d="M3 17l7-7 4 4 7-7M21 13V7h-6"/></symbol>
+<symbol id="i-trend-flat" viewBox="0 0 24 24"><path d="M3 12h16M15 8l4 4-4 4"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M3 4h7a2 2 0 0 1 2 2v15a2 2 0 0 0-2-2H3zM21 4h-7a2 2 0 0 0-2 2v15a2 2 0 0 1 2-2h7z"/></symbol>
+<symbol id="i-clipcheck" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="18"/><path d="M9 2h6v4H9zM9 14l2 2 4-4"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 5h7l2 3h9v12H3z"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M16 4a4 4 0 0 1 0 8M18 14a6 6 0 0 1 4 7"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M9 3h6l-1 6 4 4H6l4-4zM12 13v8"/></symbol>
+<symbol id="i-reply" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 5 5v6"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V3h11v18M15 9h5v12M2 21h20M8 7h3M8 11h3M8 15h3"/></symbol>
+<symbol id="i-barcode" viewBox="0 0 24 24"><path d="M3 5v14M6 5v14M10 5v14M13 5v14M17 5v14M21 5v14M8 5v14M19 5v14"/></symbol>
+<symbol id="i-cash" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></symbol>
+<symbol id="i-edit-note" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h5"/></symbol>
+</defs>
+</svg>
+
+<main class="page">
+
+<!-- ================= FOLHA DE IDENTIDADE ================= -->
+<section class="intro" aria-labelledby="t-intro">
+  <div class="intro-panel">
+    <div class="painel" data-painel data-cols="7" data-rows="5" data-mods="suporte,cs,academy,financeiro,cultura,operacoes,comercial" data-scheme="brand" role="img" aria-label="Painel de azulejos gerado pelos módulos contratados pela Administradora Alpha"></div>
+    <div class="intro-name">
+      <h1 id="t-intro">Azulejo</h1>
+      <p>Versão 3 do GACO, a mais ousada. Menu lateral expandido, Home como rede interna, Suporte no motor do WhatsApp Business.</p>
+    </div>
+  </div>
+  <div class="intro-body">
+    <div>
+      <h2>Conceito</h2>
+      <p>Cada módulo do GACO é uma peça quadrada desenhada sobre a mesma grade 2×2, com quartos de círculo, diagonais e meias-luas.</p>
+      <p>Os módulos que o cliente contrata montam um painel próprio, que vira a capa da empresa, da equipe e do portal.</p>
+      <p>A moldura é gráfica e chapada; o miolo de trabalho é sóbrio, denso e de filete fino, para quem passa o dia inteiro nele.</p>
+    </div>
+    <div>
+      <h2>Paleta</h2>
+      <div class="swatches" role="list">
+        <div class="sw" role="listitem" style="background:#FAFAF7"><b>Fundo</b>#FAFAF7</div>
+        <div class="sw" role="listitem" style="background:#FFFFFF"><b>Superfície</b>#FFFFFF</div>
+        <div class="sw" role="listitem" style="background:#111111;color:#fff"><b>Tinta</b>#111111</div>
+        <div class="sw" role="listitem" style="background:#55585E;color:#fff"><b>Texto 2</b>#55585E</div>
+        <div class="sw" role="listitem" style="background:#1A3DB8;color:#fff"><b>Cobalto, Gestão</b>#1A3DB8</div>
+        <div class="sw" role="listitem" style="background:#12804F;color:#fff"><b>Garrafa, Relação</b>#12804F</div>
+        <div class="sw" role="listitem" style="background:#B8860B;color:#111"><b>Ocre, Atendimento</b>#B8860B</div>
+        <div class="sw" role="listitem" style="background:#111111;color:#fff"><b>Preto, Pessoas</b>#111111</div>
+      </div>
+      <p class="small muted" style="margin-top:6px">Estado: verde #12804F, âmbar #A15C00, vermelho #C02A1D, azul #1A3DB8, sempre com palavra. A cor da família só aparece no glifo e na capa do módulo; botão e estado nunca mudam por módulo.</p>
+    </div>
+    <div class="typo">
+      <h2>Par tipográfico</h2>
+      <div class="d">Parque das Águas</div>
+      <div class="u">Bricolage Grotesque, estreita e pesada, só em títulos de página, nomes e capas. Instrument Sans em toda a interface, 13,5px, números tabulares: R$ 1.284,50 vence 10/10.</div>
+    </div>
+    <div>
+      <h2>Forma e ícones</h2>
+      <div class="forms">
+        <span class="b-demo">Controle 2px</span>
+        <span class="b-demo" style="border-radius:0;border-color:#111">Azulejo e superfície 0px</span>
+        <span class="av c2 s28">MC</span><span class="small muted">pessoa sempre redonda</span>
+      </div>
+      <div class="icon-row" style="margin-top:12px" aria-label="Amostra de ícones de ação">
+        <svg class="i s20"><use href="#i-search"/></svg><svg class="i s20"><use href="#i-bell"/></svg><svg class="i s20"><use href="#i-clip"/></svg><svg class="i s20"><use href="#i-checks"/></svg><svg class="i s20"><use href="#i-pencil"/></svg><svg class="i s20"><use href="#i-cal"/></svg><svg class="i s20"><use href="#i-copy"/></svg><svg class="i s20"><use href="#i-wrench"/></svg>
+      </div>
+      <p class="small muted" style="margin-top:6px">Ações: traço de 1,6px, ponta e junção quadradas, nomes do Lucide. Módulos: glifo-azulejo cheio.</p>
+    </div>
+    <div style="grid-column:1/-1">
+      <h2>Glifo-azulejo por módulo, grade 2×2</h2>
+      <div class="glyph-row" id="glyph-row"></div>
+    </div>
+    <div>
+      <h2>Detalhe assinatura</h2>
+      <p>O painel de azulejos é gerado a partir dos módulos contratados: cada cliente tem o seu, rodado e alternado por posição. Ele aparece em quatro lugares e só neles: faixa sob o logo no menu, capa da equipe na Home, capa da turma no Academy e estados vazios. Nunca em tabela, conversa ou formulário.</p>
+    </div>
+    <div>
+      <h2>White label</h2>
+      <p>A marca do cliente entra em três vagas: logo, tinta do painel e botão principal. Tipografia, grade, glifos, filetes e cores de estado ficam do GACO.</p>
+      <div class="wl" role="group" aria-label="Marca do cliente">
+        <button aria-pressed="true" data-brand="#1A3DB8" data-ini="AA" data-name="Administradora Alpha"><i style="background:#1A3DB8"></i>Alpha</button>
+        <button aria-pressed="false" data-brand="#0E6B5C" data-ini="HZ" data-name="Horizonte Administração"><i style="background:#0E6B5C"></i>Horizonte</button>
+        <button aria-pressed="false" data-brand="#8E2344" data-ini="PG" data-name="Prisma Gestão Predial"><i style="background:#8E2344"></i>Prisma</button>
+      </div>
+      <p class="small muted" style="margin-top:6px">Só tema claro nesta direção. O escuro, se aprovado, vem da direção B.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 1. HOME ================= -->
+<header class="screen-head">
+  <h2>Home: a rede interna da equipe</h2>
+  <p><b>O que esta versão propõe.</b> A Home abre na capa da equipe, desenhada pelo painel de azulejos, e segue como rede interna: publicador com "Reconhecer alguém" e "Publicar comunicado", feed com reações nomeadas, comentários e ciência. À direita, quem está logado com os dados dele, "Para você" com prazo e um botão por item, aniversários e novos colegas. Nenhum número solto.</p>
+  <p class="ref">Referências: Workplace, LinkedIn, Workvivo, Feedz. Resolvemos fazer assim porque Workplace e Workvivo abrem na capa do grupo com feed, o LinkedIn nomeia reações e põe o perfil ao lado do feed, e a Feedz pede ciência em comunicado. Enviamos para aprovação.</p>
+</header>
+<div class="scroller"><div class="frame" id="f-home">
+  <div data-side="inicio"></div>
+  <div class="main">
+    <div class="home">
+      <div class="home-cover painel" data-painel data-cols="19" data-rows="2" data-mods="suporte,cs,academy,cultura,operacoes,financeiro,comercial" data-scheme="brand" role="img" aria-label="Capa da equipe: painel de azulejos da Administradora Alpha"></div>
+      <div class="team-bar">
+        <div>
+          <h2>Relacionamento com Condomínios</h2>
+          <div class="meta">Equipe de 14 pessoas da <span data-org-name>Administradora Alpha</span>, Pinheiros. Gestora: Juliana Reis.</div>
+        </div>
+        <div class="stack" style="margin-left:auto" aria-label="Pessoas da equipe: 9 disponíveis">
+          <span class="av c1">BN<i class="pres on"></i></span><span class="av c2">MS<i class="pres on"></i></span><span class="av c3">RA<i class="pres busy"></i></span><span class="av c4">CM<i class="pres on"></i></span><span class="av c5">PA<i class="pres away"></i></span><span class="av c6">LS<i class="pres on"></i></span><span class="av c1">TF<i class="pres off"></i></span>
+        </div>
+        <span class="small muted">9 disponíveis agora</span>
+        <button class="btn">Ver equipe</button>
+      </div>
+      <div class="home-cols">
+        <div class="feed">
+          <div class="box composer">
+            <div class="row"><span class="av c1">JR</span><div class="fake">Compartilhe algo com a equipe, Juliana</div></div>
+            <div class="acts">
+              <button class="btn ghost sm"><svg class="i"><use href="#i-award"/></svg>Reconhecer alguém</button>
+              <button class="btn ghost sm"><svg class="i"><use href="#i-mega"/></svg>Publicar comunicado</button>
+              <button class="btn ghost sm"><svg class="i"><use href="#i-image"/></svg>Foto</button>
+            </div>
+          </div>
+
+          <article class="box post">
+            <div class="post-h">
+              <span class="av c4">MS</span>
+              <div><div class="who">Marcos Silva reconheceu Beatriz Nunes</div><div class="when">Hoje, 9:12, para Relacionamento com Condomínios</div></div>
+              <button class="ibtn" aria-label="Mais ações da publicação"><svg class="i"><use href="#i-more"/></svg></button>
+            </div>
+            <div class="kudo">
+              <div class="painel" data-painel data-cols="1" data-rows="1" data-mods="suporte" data-scheme="brand" aria-hidden="true"></div>
+              <div class="k"><b>Resolveu com calma o que era urgente</b><p>O vazamento na garagem do Parque das Águas foi contido em 3 horas. A Beatriz chamou a Hidro Serviços, manteve a síndica Marina Costa informada pelo WhatsApp e deixou as fotos no chamado 1.204.</p></div>
+            </div>
+            <div class="react-sum">
+              <span class="ico"><span title="Parabéns"><svg class="i s14"><use href="#i-party"/></svg></span><span title="Amei"><svg class="i s14"><use href="#i-heart"/></svg></span><span title="Apoio"><svg class="i s14"><use href="#i-handheart"/></svg></span></span>
+              <span>Parabéns de Juliana, Rafael e mais 10</span>
+              <span style="margin-left:auto">2 comentários</span>
+            </div>
+            <div class="post-acts">
+              <button class="on" aria-pressed="true"><svg class="i"><use href="#i-party"/></svg>Parabéns</button>
+              <button><svg class="i"><use href="#i-msg"/></svg>Comentar</button>
+              <button><svg class="i"><use href="#i-award"/></svg>Reconhecer também</button>
+            </div>
+            <div class="cmts">
+              <div class="cmt"><span class="av s28 c2">RA</span><div><div class="bub"><b>Rafael Andrade</b><br>A Marina ligou elogiando. Vou registrar na ficha do Parque das Águas.</div><div class="cm">9:30, Curtir, Responder</div></div></div>
+              <div class="cmt"><span class="av s28 c3">BN</span><div><div class="bub"><b>Beatriz Nunes</b><br>Obrigada, gente. O Otávio da Hidro também ajudou muito.</div><div class="cm">9:41, Curtir, Responder</div></div></div>
+            </div>
+          </article>
+
+          <article class="box post">
+            <div class="post-h">
+              <span class="av c5">DA</span>
+              <div><div class="who">Diretoria publicou um comunicado</div><div class="when">Ontem, 17:05, para toda a <span data-org-name>Administradora Alpha</span></div></div>
+            </div>
+            <p class="post-body"><b>Plantão da assembleia de 14/10 no Parque das Águas.</b> A assembleia de prestação de contas começa às 19h no salão de festas. Precisamos de duas pessoas do Relacionamento no local e uma no WhatsApp até as 22h.</p>
+            <div class="ciencia">
+              <span class="small">23 de 31 pessoas deram ciência</span>
+              <span class="bar" aria-hidden="true"><i style="width:74%"></i></span>
+              <button class="btn pri sm"><svg class="i"><use href="#i-check"/></svg>Li e estou ciente</button>
+            </div>
+            <div class="post-acts"><button><svg class="i"><use href="#i-thumb"/></svg>Curtir</button><button><svg class="i"><use href="#i-msg"/></svg>Comentar</button></div>
+          </article>
+        </div>
+
+        <aside class="aside">
+          <section class="box me" aria-label="Você">
+            <span class="av s56 c1">JR<i class="pres on"></i></span>
+            <div>
+              <h3>Juliana Reis</h3>
+              <div class="small muted">Coordenadora de Relacionamento</div>
+              <button class="status-sel" aria-label="Seu status: Disponível. Alterar"><span class="st ok">Disponível</span><svg class="i s14"><use href="#i-down"/></svg></button>
+            </div>
+            <dl>
+              <dt>Equipe</dt><dd>Relacionamento com Condomínios</dd>
+              <dt>Carteira</dt><dd>63 condomínios, 11 renovam até dezembro</dd>
+              <dt>Ramal</dt><dd class="tnum">2214, WhatsApp (11) 97654-2214</dd>
+              <dt>Na empresa</dt><dd>desde março de 2021</dd>
+            </dl>
+          </section>
+          <section class="box" aria-labelledby="h-fy">
+            <div class="sec-h"><h3 id="h-fy">Para você</h3><a href="#">Ver tudo</a></div>
+            <ul class="fy">
+              <li><div><div class="t">7 conversas esperando você no Suporte</div><div class="d late">A mais antiga há 38 min</div></div><button class="btn sm pri">Abrir conversas</button></li>
+              <li><div><div class="t">Cond. Vila Serena sem próximo passo</div><div class="d today">Esfriando há 12 dias</div></div><button class="btn sm">Definir</button></li>
+              <li><div><div class="t">Comunicado da assembleia pede sua ciência</div><div class="d today">Até hoje, 18h</div></div><button class="btn sm">Ler</button></li>
+              <li><div><div class="t">Férias de Paulo Alves para aprovar</div><div class="d">Pedido de 29/09, início em 20/10</div></div><button class="btn sm">Revisar</button></li>
+              <li><div><div class="t">Atividade de LGPD para condomínios</div><div class="d">Entrega até sexta, 03/10</div></div><button class="btn sm">Continuar</button></li>
+            </ul>
+          </section>
+          <section class="box" aria-labelledby="h-niver">
+            <div class="sec-h"><h3 id="h-niver">Aniversários e chegadas</h3></div>
+            <ul class="ppl">
+              <li><span class="av s28 c4">CM<i class="pres on"></i></span><div><div class="n">Carla Mendes</div><div class="r"><svg class="i s14" style="vertical-align:-2px"><use href="#i-cake"/></svg> faz aniversário hoje</div></div><button class="btn sm">Dar parabéns</button></li>
+              <li><span class="av s28 c6">PA<i class="pres away"></i></span><div><div class="n">Pedro Alves</div><div class="r">entrou no Suporte na segunda</div></div><button class="btn sm">Dar boas-vindas</button></li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div></div>
+<div class="a11y">
+  <p><b>Foco:</b> menu lateral, busca, cabeçalho, publicador, publicações na ordem do feed (cabeçalho, ciência, reações, comentários), depois a coluna "Você", "Para você", aniversários.</p>
+  <p><b>Anunciado:</b> "Parabéns, selecionado, 12 reações: Juliana, Rafael e mais 10"; na ciência, "23 de 31 pessoas deram ciência"; a presença é lida como texto ("Beatriz Nunes, disponível").</p>
+  <p><b>Só ícone:</b> "Mais ações da publicação", "Notificações, 3 novas", "Recolher menu"; a capa de azulejos é imagem com rótulo "Capa da equipe".</p>
+</div>
+
+<!-- ================= 2A. SUPORTE LISTA ================= -->
+<header class="screen-head">
+  <h2>Suporte: a conversa é o chamado</h2>
+  <p><b>O que esta versão propõe.</b> O motor é o WhatsApp Business: lista de conversas com etiquetas coloridas e filtros por etiqueta, bolhas, foto, áudio, tiques de entregue e lida no desenho do WhatsApp com a cor do GACO. Cada conversa já nasce como chamado, com número, estado, SLA e responsável na faixa de cima. "/" abre as respostas rápidas; nota interna em amarelo; "Enviar ▾" guarda a ação seguinte.</p>
+  <p class="ref">Referências: WhatsApp Business, Zendesk, Freshdesk. Resolvemos fazer assim porque o WhatsApp Business usa etiquetas e respostas rápidas com "/", o Zendesk usa "Enviar como" com o próximo da fila e o Freshdesk usa "Enviar e marcar como". Enviamos para aprovação.</p>
+</header>
+<div class="scroller"><div class="frame" id="f-sup">
+  <div data-side="suporte" data-section="Conversas"></div>
+  <div class="main">
+    <div class="phead">
+      <div class="cover painel" data-painel data-cols="2" data-rows="2" data-mods="suporte" data-scheme="atd" aria-hidden="true"></div>
+      <div><div class="crumbs">Suporte</div><h1>Conversas</h1></div>
+      <div class="seg" role="group" aria-label="Visão" style="margin-left:18px"><button aria-pressed="true"><svg class="i"><use href="#i-list"/></svg>Lista</button><button aria-pressed="false"><svg class="i"><use href="#i-board"/></svg>Quadro</button></div>
+      <div class="spacer"></div>
+      <button class="btn pri"><svg class="i"><use href="#i-plus"/></svg>Nova conversa</button>
+      <div class="tools"><button class="ibtn" aria-label="Ajuda"><svg class="i s20"><use href="#i-help"/></svg></button><button class="ibtn" aria-label="Notificações, 3 novas"><svg class="i s20"><use href="#i-bell"/></svg><span class="dot"></span></button><span class="av s28 c1">JR<i class="pres on"></i></span></div>
+    </div>
+    <div class="sup">
+      <div class="clist">
+        <div class="clist-top">
+          <div class="search"><svg class="i"><use href="#i-search"/></svg>Pesquisar conversa, unidade ou chamado</div>
+          <div class="filters" role="group" aria-label="Filtrar por">
+            <button aria-pressed="false">Todas</button>
+            <button aria-pressed="false">Não lidas 4</button>
+            <button aria-pressed="false">Minhas</button>
+            <button aria-pressed="true"><span class="lab l-man"><i></i>Manutenção</span></button>
+            <button aria-pressed="false"><span class="lab l-bol"><i></i>Aguardando boleto</span></button>
+            <button aria-pressed="false"><span class="lab l-novo"><i></i>Novo cliente</span></button>
+            <button aria-pressed="false"><span class="lab l-res"><i></i>Reserva</span></button>
+            <button aria-pressed="false" aria-label="Mais etiquetas"><svg class="i s14"><use href="#i-tag"/></svg>+2</button>
+          </div>
+        </div>
+        <div class="conv cur">
+          <span class="av s40 c2">MC</span>
+          <div style="min-width:0"><div class="n">Marina Costa</div><div class="c">Síndica, Cond. Parque das Águas</div><div class="pv"><svg class="i s14 tick"><use href="#i-mic"/></svg><span>Áudio 0:42</span></div><div class="tags"><span class="lab l-man"><i></i>Manutenção</span></div></div>
+          <div class="r"><span class="unr">10:14</span><span class="badge">2</span></div>
+        </div>
+        <div class="conv">
+          <span class="av s40 c3">OP</span>
+          <div style="min-width:0"><div class="n">Otávio Prado</div><div class="c">Síndico, Cond. Vila Serena</div><div class="pv"><svg class="i s14 tick read"><use href="#i-checks"/></svg><span>A bomba da cisterna voltou a desarmar</span></div><div class="tags"><span class="lab l-man"><i></i>Manutenção</span></div></div>
+          <div class="r"><span>09:58</span></div>
+        </div>
+        <div class="conv">
+          <span class="av s40 c5">AL</span>
+          <div style="min-width:0"><div class="n">Ana Lúcia, bloco B, 1204</div><div class="c">Moradora, Res. Solar do Itaim</div><div class="pv"><span>O portão da garagem está travando de novo</span></div><div class="tags"><span class="lab l-man"><i></i>Manutenção</span><span class="lab l-novo"><i></i>Novo cliente</span></div></div>
+          <div class="r"><span class="unr">09:41</span><span class="badge">1</span></div>
+        </div>
+        <div class="conv">
+          <span class="av s40 c6">HS</span>
+          <div style="min-width:0"><div class="n">Hidro Serviços</div><div class="c">Fornecedor</div><div class="pv"><svg class="i s14 tick"><use href="#i-checks"/></svg><span>Visita confirmada para 14h</span></div><div class="tags"><span class="lab l-man"><i></i>Manutenção</span></div></div>
+          <div class="r"><span>09:20</span></div>
+        </div>
+        <div class="conv">
+          <span class="av s40 c4">RF</span>
+          <div style="min-width:0"><div class="n">Roberto Farias</div><div class="c">Conselheiro, Ed. Jardins de Monet</div><div class="pv"><svg class="i s14 tick read"><use href="#i-checks"/></svg><span>Orçamento do telhado em anexo</span></div><div class="tags"><span class="lab l-man"><i></i>Manutenção</span></div></div>
+          <div class="r"><span>Ontem</span></div>
+        </div>
+        <div class="conv">
+          <span class="av s40 c1">SL</span>
+          <div style="min-width:0"><div class="n">Sônia Lacerda</div><div class="c">Síndica, Cond. Bosque Imperial</div><div class="pv"><svg class="i s14 tick"><use href="#i-check"/></svg><span>Enviamos o laudo do elevador</span></div><div class="tags"><span class="lab l-man"><i></i>Manutenção</span></div></div>
+          <div class="r"><span>Ontem</span></div>
+        </div>
+      </div>
+
+      <div class="chat">
+        <div class="chat-h">
+          <span class="av s40 c2">MC<i class="pres on"></i></span>
+          <div><div class="n">Marina Costa</div><div class="c">Síndica, Cond. Parque das Águas, (11) 98812-4410</div></div>
+          <div class="spacer" style="flex:1"></div>
+          <button class="ibtn" aria-label="Pesquisar na conversa"><svg class="i"><use href="#i-search"/></svg></button>
+          <button class="ibtn" aria-label="Ligar"><svg class="i"><use href="#i-phone"/></svg></button>
+          <button class="ibtn" aria-label="Mais ações da conversa"><svg class="i"><use href="#i-more"/></svg></button>
+        </div>
+        <div class="ticket-strip">
+          <span class="num tnum">Chamado 1.204</span>
+          <span class="st info">Aberto</span>
+          <span class="sla"><svg class="i s14"><use href="#i-clock"/></svg>Responder em 22 min</span>
+          <span style="display:flex;align-items:center;gap:6px;margin-left:auto"><span class="av s24 c3">BN</span>Beatriz Nunes</span>
+        </div>
+        <div class="msgs">
+          <span class="day">Hoje</span>
+          <div class="m in">Bom dia! Tem água descendo pela parede da garagem, perto da vaga 37. Já está fazendo poça.<div class="meta">08:02</div></div>
+          <div class="m in">
+            <div class="photo" role="img" aria-label="Foto enviada: parede da garagem com mancha de água perto da vaga 37">
+              <svg viewBox="0 0 240 150" width="240" height="150" aria-hidden="true"><rect width="240" height="150" fill="#BDC1B8"/><rect y="104" width="240" height="46" fill="#8E928A"/><path d="M0 104h240" stroke="#6E726A" stroke-width="2"/><path d="M96 0c4 30 -6 50 4 70s-2 34 6 34h30c6 0 -4-20 4-40s-4-40 2-64z" fill="#8FA0A8" opacity=".85"/><ellipse cx="118" cy="120" rx="54" ry="9" fill="#7C8C94" opacity=".8"/><rect x="170" y="40" width="44" height="22" fill="#F2D34A"/><text x="192" y="56" font-size="13" text-anchor="middle" font-family="sans-serif" font-weight="700" fill="#111">37</text></svg>
+            </div>
+            <div class="meta">08:03</div>
+          </div>
+          <div class="m out"><div class="who">Beatriz Nunes</div>Bom dia, Marina. Abri o chamado 1.204 e acionei a Hidro Serviços. Eles chegam até as 11h. Pode pedir ao porteiro para isolar a vaga 37?<div class="meta">08:09 <svg class="i s14 tick read" aria-label="Lida"><use href="#i-checks"/></svg></div></div>
+          <div class="sys"><svg class="i s14"><use href="#i-wrench"/></svg>Ordem de serviço 3.318 criada a partir desta conversa, Hidro Serviços</div>
+          <div class="note"><div class="nh"><svg class="i s14"><use href="#i-lock"/></svg>Nota interna, só a equipe vê</div>@Juliana a Hidro confirmou 14h, não 11h. Consegue avisar a Marina? Estou na vistoria do Solar do Itaim.</div>
+          <div class="m in">
+            <div class="audio"><button class="play" aria-label="Ouvir áudio de 42 segundos"><svg class="i s14"><use href="#i-play"/></svg></button><div class="wave" aria-hidden="true" id="wave"></div><span class="small muted tnum">0:42</span></div>
+            <div class="meta">10:13</div>
+          </div>
+          <div class="m in">Eles vêm que horas afinal? O zelador sai às 13h.<div class="meta">10:14</div></div>
+        </div>
+        <div class="compose">
+                    <div class="pop qr" role="listbox" aria-label="Respostas rápidas">
+            <div class="qh"><span>Respostas rápidas: /vis</span><span>Enter insere</span></div>
+            <ul>
+              <li class="hi" role="option" aria-selected="true"><b>/visita-hora</b><span>A visita técnica foi confirmada para {hora}. O técnico…</span></li>
+              <li role="option"><b>/visita-zelador</b><span>Peça ao zelador para acompanhar o técnico e liberar…</span></li>
+              <li role="option"><b>/vistoria</b><span>Vamos agendar uma vistoria no local. Qual o melhor…</span></li>
+            </ul>
+          </div>
+          <div class="pop sendmenu" role="menu" aria-label="Enviar e depois">
+            <ul>
+              <li role="menuitem"><svg class="i"><use href="#i-send"/></svg>Enviar</li>
+              <li role="menuitem" class="hi"><svg class="i"><use href="#i-check"/></svg>Enviar e marcar como Resolvido<span class="k">Ctrl+Enter</span></li>
+              <li role="menuitem"><svg class="i"><use href="#i-clock"/></svg>Enviar e aguardar cliente</li>
+              <li class="sep" role="separator"></li>
+              <li role="menuitem"><svg class="i"><use href="#i-right"/></svg>Enviar e abrir a próxima da fila</li>
+            </ul>
+          </div>
+          <div class="compose-row">
+            <button class="ibtn" aria-label="Anexar arquivo ou foto"><svg class="i s20"><use href="#i-clip"/></svg></button><button class="ibtn" aria-label="Escrever nota interna, só a equipe vê" aria-pressed="false"><svg class="i s20"><use href="#i-lock"/></svg></button>
+            <div class="input">/vis<span class="caret"></span></div>
+            <div class="split"><button class="btn pri" style="height:38px">Enviar</button><button class="btn pri" style="height:38px" aria-label="Escolher o que acontece depois de enviar" aria-expanded="true"><svg class="i"><use href="#i-down"/></svg></button></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="ficha" aria-label="Dados do chamado">
+        <div class="ficha-h"><div class="small muted tnum">Chamado 1.204, aberto hoje às 08:02</div><h3>Vazamento na garagem</h3></div>
+        <dl class="props">
+          <dt>Estado</dt><dd><span class="st info">Aberto</span><svg class="i s14 muted" style="margin-left:auto"><use href="#i-down"/></svg></dd>
+          <dt>Prioridade</dt><dd><span class="prio" aria-hidden="true"><i style="height:5px"></i><i style="height:8px"></i><i style="height:12px"></i></span>Alta</dd>
+          <dt>Tipo</dt><dd>Manutenção predial</dd>
+          <dt>Responsável</dt><dd><span class="av s24 c3">BN</span>Beatriz Nunes</dd>
+          <dt>SLA</dt><dd><span class="sla">1ª resposta em 22 min</span></dd>
+          <dt>Etiquetas</dt><dd><span class="lab l-man"><i></i>Manutenção</span></dd>
+          <dt>Unidade</dt><dd>Garagem, subsolo 1, vaga 37</dd>
+        </dl>
+        <div class="fsec">
+          <h4>Cond. Parque das Águas <a href="#" class="small" style="color:var(--brand);font-weight:550;text-decoration:none">Espiar</a></h4>
+          <div class="small muted">312 unidades, Vila Mariana. Saúde <span class="st ok">82 Boa</span></div>
+        </div>
+        <div class="fsec">
+          <h4>Outros chamados de Marina</h4>
+          <ul class="hist">
+            <li><span class="dt tnum">22/09</span><span>1.187 Reserva do salão, <span class="st neu">Fechado</span></span></li>
+            <li><span class="dt tnum">10/09</span><span>1.152 2ª via do boleto de setembro, <span class="st neu">Fechado</span></span></li>
+            <li><span class="dt tnum">28/08</span><span>1.099 Convocação da assembleia, <span class="st neu">Fechado</span></span></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div></div>
+<div class="a11y">
+  <p><b>Foco:</b> busca, filtros de etiqueta, lista de conversas (setas sobem e descem, Enter abre), faixa do chamado, mensagens, caixa de resposta, Enviar, menu "Enviar e depois", ficha do chamado.</p>
+  <p><b>Anunciado:</b> cada conversa como "Marina Costa, 2 não lidas, 10:14, etiqueta Manutenção"; tiques como "Lida" e "Entregue"; a nota interna começa com "Nota interna, só a equipe vê"; o SLA como "Responder em 22 minutos".</p>
+  <p><b>Só ícone:</b> "Anexar arquivo ou foto", "Ligar", "Ouvir áudio de 42 segundos", "Escolher o que acontece depois de enviar"; a foto tem descrição.</p>
+</div>
+
+<!-- ================= 2B. SUPORTE QUADRO ================= -->
+<header class="screen-head">
+  <h2>Suporte: as mesmas conversas em quadro</h2>
+  <p><b>O que esta versão propõe.</b> O alternador Lista | Quadro fica no cabeçalho e não muda de lugar em nenhum módulo. No quadro, cada coluna é um estado do chamado; arrastar o cartão muda o estado e grava na conversa uma linha de sistema. A coluna sem conversa mostra o estado vazio com o azulejo do módulo e o que fazer.</p>
+  <p class="ref">Referências: Kommo, RD Station Conversas, Trello. Resolvemos fazer assim porque Kommo e RD Conversas mostram as conversas do WhatsApp em colunas por etapa e o Trello consagrou o arrastar entre listas. Enviamos para aprovação.</p>
+</header>
+<div class="scroller"><div class="frame" id="f-board" style="height:760px">
+  <div data-side="suporte" data-section="Conversas"></div>
+  <div class="main">
+    <div class="phead">
+      <div class="cover painel" data-painel data-cols="2" data-rows="2" data-mods="suporte" data-scheme="atd" aria-hidden="true"></div>
+      <div><div class="crumbs">Suporte</div><h1>Conversas</h1></div>
+      <div class="seg" role="group" aria-label="Visão" style="margin-left:18px"><button aria-pressed="false"><svg class="i"><use href="#i-list"/></svg>Lista</button><button aria-pressed="true"><svg class="i"><use href="#i-board"/></svg>Quadro</button></div>
+      <div class="filters" style="margin:0 0 0 12px"><button aria-pressed="false">Todas as etiquetas<svg class="i s14"><use href="#i-down"/></svg></button><button aria-pressed="false">Responsável: todos<svg class="i s14"><use href="#i-down"/></svg></button></div>
+      <div class="spacer"></div>
+      <button class="btn pri"><svg class="i"><use href="#i-plus"/></svg>Nova conversa</button>
+      <div class="tools"><button class="ibtn" aria-label="Notificações, 3 novas"><svg class="i s20"><use href="#i-bell"/></svg><span class="dot"></span></button><span class="av s28 c1">JR<i class="pres on"></i></span></div>
+    </div>
+    <div class="board">
+      <section class="col"><div class="col-h"><b>Novo</b><span class="n">3</span></div><div class="col-b">
+        <div class="card"><div class="top"><span class="av s28 c5">AL</span><div><div class="n">Ana Lúcia, B 1204</div><div class="c">Res. Solar do Itaim</div></div></div><div class="pv">O portão da garagem está travando de novo, alguém pode olhar hoje?</div><div class="foot"><span class="lab l-man"><i></i>Manutenção</span><span class="sla"><svg class="i s14"><use href="#i-clock"/></svg>8 min</span></div></div>
+        <div class="card"><div class="top"><span class="av s28 c6">GT</span><div><div class="n">Gustavo Teles</div><div class="c">Ed. Aurora</div></div></div><div class="pv">Quero entender como funciona a administração de vocês</div><div class="foot"><span class="lab l-novo"><i></i>Novo cliente</span><span>12 min</span></div></div>
+        <div class="card"><div class="top"><span class="av s28 c2">LF</span><div><div class="n">Lúcia Fontes, 51</div><div class="c">Cond. Horto Florestal</div></div></div><div class="pv">Posso reservar o salão para 18/10?</div><div class="foot"><span class="lab l-res"><i></i>Reserva</span><span>25 min</span></div></div>
+      </div></section>
+      <section class="col"><div class="col-h"><b>Aberto</b><span class="n">4</span></div><div class="col-b">
+        <div class="card cur"><div class="top"><span class="av s28 c2">MC</span><div><div class="n">Marina Costa</div><div class="c">Cond. Parque das Águas</div></div></div><div class="pv">Eles vêm que horas afinal? O zelador sai às 13h.</div><div class="foot"><span class="lab l-man"><i></i>Manutenção</span><span class="sla">22 min</span><span class="av s24 c3">BN</span></div></div>
+        <div class="card"><div class="top"><span class="av s28 c3">OP</span><div><div class="n">Otávio Prado</div><div class="c">Cond. Vila Serena</div></div></div><div class="pv"><svg class="i s14 tick read" style="vertical-align:-3px"><use href="#i-checks"/></svg> A bomba da cisterna voltou a desarmar</div><div class="foot"><span class="lab l-man"><i></i>Manutenção</span><span class="av s24 c1">JR</span></div></div>
+        <div class="card"><div class="top"><span class="av s28 c4">KM</span><div><div class="n">Kátia Moura, 302</div><div class="c">Ed. Portal da Lapa</div></div></div><div class="pv">Não recebi o boleto de setembro por e-mail</div><div class="foot"><span class="lab l-bol"><i></i>Aguardando boleto</span><span class="av s24 c6">PA</span></div></div>
+        <div class="card"><div class="top"><span class="av s28 c1">SL</span><div><div class="n">Sônia Lacerda</div><div class="c">Cond. Bosque Imperial</div></div></div><div class="pv"><svg class="i s14 tick" style="vertical-align:-3px"><use href="#i-check"/></svg> Enviamos o laudo do elevador</div><div class="foot"><span class="lab l-man"><i></i>Manutenção</span><span class="av s24 c3">BN</span></div></div>
+      </div></section>
+      <section class="col"><div class="col-h"><b>Aguardando cliente</b><span class="n">3</span></div><div class="col-b">
+        <div class="card"><div class="top"><span class="av s28 c5">JP</span><div><div class="n">João Pedro, 88</div><div class="c">Res. Villa Lobos</div></div></div><div class="pv"><svg class="i s14 tick read" style="vertical-align:-3px"><use href="#i-checks"/></svg> Enviamos a 2ª via, confirma se abriu?</div><div class="foot"><span class="lab l-bol"><i></i>Aguardando boleto</span><span>há 1 dia</span></div></div>
+        <div class="card"><div class="top"><span class="av s28 c4">RF</span><div><div class="n">Roberto Farias</div><div class="c">Ed. Jardins de Monet</div></div></div><div class="pv">Precisamos da aprovação do conselho para o telhado</div><div class="foot"><span class="lab l-ass"><i></i>Assembleia</span><span>há 2 dias</span></div></div>
+        <div class="card"><div class="top"><span class="av s28 c2">VN</span><div><div class="n">Vera Nogueira</div><div class="c">Cond. Recanto das Palmeiras</div></div></div><div class="pv">Aguardando o comprovante do Pix</div><div class="foot"><span class="lab l-bol"><i></i>Aguardando boleto</span><span>há 3 h</span></div></div>
+      </div></section>
+      <section class="col"><div class="col-h"><b>Em espera</b><span class="n">0</span></div>
+        <div class="empty">
+          <div class="painel" data-painel data-cols="2" data-rows="2" data-mods="suporte,operacoes" data-scheme="atd" aria-hidden="true"></div>
+          <b>Nada esperando terceiros</b>
+          <p>Arraste para cá a conversa que depende de fornecedor ou de outra equipe. O SLA pausa enquanto ela estiver aqui.</p>
+        </div>
+      </section>
+      <section class="col"><div class="col-h"><b>Resolvido hoje</b><span class="n">5</span></div><div class="col-b">
+        <div class="card"><div class="top"><span class="av s28 c6">HS</span><div><div class="n">Hidro Serviços</div><div class="c">Fornecedor</div></div></div><div class="foot"><span class="st ok">Resolvido 09:20</span></div></div>
+        <div class="card"><div class="top"><span class="av s28 c3">MA</span><div><div class="n">Marta Alves, 71</div><div class="c">Res. Alto da Boa Vista</div></div></div><div class="foot"><span class="st ok">Resolvido 08:55</span></div></div>
+        <div class="card"><div class="top"><span class="av s28 c1">FB</span><div><div class="n">Fábio Borges</div><div class="c">Ed. Mirante do Sul</div></div></div><div class="foot"><span class="st ok">Resolvido 08:31</span></div></div>
+        <button class="btn ghost sm" style="align-self:flex-start">Ver mais 2</button>
+      </div></section>
+    </div>
+  </div>
+</div></div>
+<div class="a11y">
+  <p><b>Foco:</b> alternador Lista | Quadro, filtros, colunas da esquerda para a direita e cartões de cima para baixo; mover sem arrastar pelo menu do cartão ("Mover para…").</p>
+  <p><b>Anunciado:</b> cada coluna como "Aberto, 4 conversas"; ao mover, "Marina Costa movida para Aguardando cliente"; estado vazio lido como texto.</p>
+  <p><b>Só ícone:</b> os tiques são "Enviada", "Entregue" e "Lida"; o relógio do SLA tem texto ao lado; o azulejo do vazio é decorativo e fica oculto do leitor de tela.</p>
+</div>
+
+<!-- ================= 3. CS ================= -->
+<header class="screen-head">
+  <h2>CS: a carteira é a tela de trabalho</h2>
+  <p><b>O que esta versão propõe.</b> O CS abre na carteira como tabela editável, com visões salvas, saúde com palavra e seta, renovação, último contato e próximo passo obrigatório; a célula se edita ali mesmo e a barra de salvar só aparece com alteração. Clicar no nome abre a prévia à direita, só leitura, com "esfriando há 12 dias", barra de saúde, etapas da renovação, histórico, "14 de 63" e "Abrir ficha completa".</p>
+  <p class="ref">Referências: Pipedrive, Attio, RD Station CRM, Linear. Resolvemos fazer assim porque Pipedrive e Attio editam direto na tabela e exigem a próxima atividade, o RD Station CRM marca o negócio que está "esfriando", e o Linear abre a prévia ao lado sem sair da lista. Enviamos para aprovação.</p>
+</header>
+<div class="scroller"><div class="frame" id="f-cs">
+  <div data-side="cs" data-section="Minha carteira"></div>
+  <div class="main">
+    <div class="phead">
+      <div class="cover painel" data-painel data-cols="2" data-rows="2" data-mods="cs" data-scheme="rel" aria-hidden="true"></div>
+      <div><div class="crumbs">CS</div><h1>Minha carteira</h1></div>
+      <div class="seg" role="group" aria-label="Visão" style="margin-left:18px"><button aria-pressed="true"><svg class="i"><use href="#i-table"/></svg>Tabela</button><button aria-pressed="false"><svg class="i"><use href="#i-board"/></svg>Quadro</button></div>
+      <div class="spacer"></div>
+      <button class="btn pri"><svg class="i"><use href="#i-plus"/></svg>Novo cliente</button>
+      <div class="tools"><button class="ibtn" aria-label="Notificações, 3 novas"><svg class="i s20"><use href="#i-bell"/></svg><span class="dot"></span></button><span class="av s28 c1">JR<i class="pres on"></i></span></div>
+    </div>
+    <div class="cs">
+      <div class="cs-left">
+        <nav class="views" aria-label="Visões salvas">
+          <a href="#" class="cur">Precisam de mim hoje<span class="n">7</span></a>
+          <a href="#">Renovam em 90 dias<span class="n">11</span></a>
+          <a href="#">Sem contato há 30 dias<span class="n">4</span></a>
+                    <a href="#">Todos<span class="n">63</span></a>
+          <a href="#" aria-label="Nova visão"><svg class="i s14" style="vertical-align:-2px"><use href="#i-plus"/></svg></a>
+        </nav>
+        <div class="toolbar">
+          <div class="search" style="width:220px;flex:none;white-space:nowrap"><svg class="i"><use href="#i-search"/></svg>Pesquisar condomínio</div>
+          <button class="btn sm"><svg class="i"><use href="#i-filter"/></svg>Saúde: Atenção e Risco</button>
+          <button class="btn sm">Ordenar: renovação</button>
+          <span class="small muted" style="margin-left:auto;white-space:nowrap">Clique na célula para editar</span>
+        </div>
+        <table class="tbl" aria-label="Carteira de condomínios">
+          <colgroup><col style="width:170px"><col style="width:130px"><col style="width:80px"><col style="width:124px"><col><col style="width:36px"><col style="width:76px"></colgroup>
+          <thead><tr><th>Condomínio</th><th>Saúde</th><th>Renova em</th><th>Último contato</th><th>Próximo passo</th><th><span class="sr">Responsável</span></th><th style="text-align:right">Taxa/mês</th></tr></thead>
+          <tbody>
+            <tr><td><span class="nm">Res. Solar do Itaim</span><span class="sub">Renata Alves, síndica</span></td><td><span class="hs"><span class="st err">41 Risco</span><svg class="i s14" style="color:var(--err)" aria-label="piorando"><use href="#i-trend-dn"/></svg></span></td><td class="tnum">12/10/26</td><td class="tnum">25/09, NPS 3</td><td class="editing dirty"><div class="ei">Ligar para Renata<span class="caret"></span><span class="small muted" style="margin-left:auto">01/10</span></div></td><td><span class="av s24 c1">JR</span></td><td class="tnum" style="text-align:right">R$ 6.100</td></tr>
+            <tr class="cur"><td><span class="nm">Cond. Vila Serena</span><span class="sub">Otávio Prado, síndico</span></td><td><span class="hs"><span class="st warn">58 Atenção</span><svg class="i s14" style="color:var(--warn)" aria-label="piorando"><use href="#i-trend-dn"/></svg></span></td><td class="tnum">30/11/26</td><td><span class="tnum" style="display:block">18/09, há 12 dias</span><span class="cold small"><svg class="i s14"><use href="#i-clock"/></svg>esfriando</span></td><td class="ed"><span class="missing"><svg class="i s14"><use href="#i-alert"/></svg>Definir próximo passo</span></td><td><span class="av s24 c1">JR</span></td><td class="tnum" style="text-align:right">R$ 3.200</td></tr>
+            <tr><td><span class="nm">Cond. Bosque Imperial</span><span class="sub">Sônia Lacerda, síndica</span></td><td><span class="hs"><span class="st warn">69 Atenção</span><svg class="i s14 muted" aria-label="estável"><use href="#i-trend-flat"/></svg></span></td><td class="tnum">08/12/26</td><td class="tnum">29/09, e-mail</td><td class="ed">Apresentar laudo do elevador, 06/10</td><td><span class="av s24 c1">JR</span></td><td class="tnum" style="text-align:right">R$ 4.400</td></tr>
+            <tr><td><span class="nm">Cond. Parque das Águas</span><span class="sub">Marina Costa, síndica</span></td><td><span class="hs"><span class="st ok">82 Boa</span><svg class="i s14" style="color:var(--ok)" aria-label="melhorando"><use href="#i-trend-up"/></svg></span></td><td class="tnum">15/03/27</td><td class="tnum">Hoje, WhatsApp</td><td class="ed">Enviar ata da assembleia de 14/10</td><td><span class="av s24 c1">JR</span></td><td class="tnum" style="text-align:right">R$ 4.850</td></tr>
+            <tr><td><span class="nm">Ed. Jardins de Monet</span><span class="sub">Paulo Figueira, síndico</span></td><td><span class="hs"><span class="st ok">76 Boa</span><svg class="i s14 muted" aria-label="estável"><use href="#i-trend-flat"/></svg></span></td><td class="tnum">02/02/27</td><td class="tnum">24/09, reunião</td><td class="ed">Orçamento do telhado ao conselho, 10/10</td><td><span class="av s24 c2">RA</span></td><td class="tnum" style="text-align:right">R$ 2.900</td></tr>
+            <tr><td><span class="nm">Ed. Portal da Lapa</span><span class="sub">Kátia Moura, síndica</span></td><td><span class="hs"><span class="st warn">63 Atenção</span><svg class="i s14" style="color:var(--warn)" aria-label="piorando"><use href="#i-trend-dn"/></svg></span></td><td class="tnum">19/12/26</td><td class="tnum">26/09, ligação</td><td class="ed">Revisar envio de boletos por e-mail, 02/10</td><td><span class="av s24 c1">JR</span></td><td class="tnum" style="text-align:right">R$ 2.350</td></tr>
+            <tr><td><span class="nm">Cond. Recanto das Palmeiras</span><span class="sub">Vera Nogueira, síndica</span></td><td><span class="hs"><span class="st ok">79 Boa</span><svg class="i s14" style="color:var(--ok)" aria-label="melhorando"><use href="#i-trend-up"/></svg></span></td><td class="tnum">21/01/27</td><td class="tnum">23/09, reunião</td><td class="ed">Proposta de renovação, 15/10</td><td><span class="av s24 c1">JR</span></td><td class="tnum" style="text-align:right">R$ 3.700</td></tr>
+            <tr><td><span class="nm">Res. Alto da Boa Vista</span><span class="sub">Marta Alves, síndica</span></td><td><span class="hs"><span class="st err">47 Risco</span><svg class="i s14 muted" aria-label="estável"><use href="#i-trend-flat"/></svg></span></td><td class="tnum">05/11/26</td><td><span class="tnum" style="display:block">21/09, há 9 dias</span><span class="cold small"><svg class="i s14"><use href="#i-clock"/></svg>esfriando</span></td><td class="ed">Visita com o conselho, 08/10</td><td><span class="av s24 c2">RA</span></td><td class="tnum" style="text-align:right">R$ 5.200</td></tr>
+            <tr><td><span class="nm">Cond. Horto Florestal</span><span class="sub">Lúcia Fontes, síndica</span></td><td><span class="hs"><span class="st ok">88 Boa</span><svg class="i s14 muted" aria-label="estável"><use href="#i-trend-flat"/></svg></span></td><td class="tnum">30/06/27</td><td class="tnum">30/09, WhatsApp</td><td class="ed">Confirmar reserva do salão, 18/10</td><td><span class="av s24 c1">JR</span></td><td class="tnum" style="text-align:right">R$ 3.050</td></tr>
+            <tr><td><span class="nm">Res. Villa Lobos</span><span class="sub">João Pedro Lins, síndico</span></td><td><span class="hs"><span class="st warn">66 Atenção</span><svg class="i s14" style="color:var(--ok)" aria-label="melhorando"><use href="#i-trend-up"/></svg></span></td><td class="tnum">14/01/27</td><td class="tnum">29/09, WhatsApp</td><td class="ed">Acompanhar 2ª via do boleto, 01/10</td><td><span class="av s24 c1">JR</span></td><td class="tnum" style="text-align:right">R$ 2.600</td></tr>
+          </tbody>
+        </table>
+        <div class="pop savemenu" role="menu" aria-label="Salvar e depois">
+          <ul class="menu-list">
+            <li role="menuitem">Salvar</li>
+            <li role="menuitem" class="hi">Salvar e abrir o próximo da visão<span class="k">Ctrl+Enter</span></li>
+            <li role="menuitem">Salvar e registrar a ligação</li>
+          </ul>
+        </div>
+        <div class="savebar" role="region" aria-label="Alterações não salvas">
+          <span class="dirty-dot" aria-hidden="true"></span>
+          <span><b>1 alteração não salva</b> em Res. Solar do Itaim: próximo passo.</span>
+          <span style="flex:1"></span>
+          <button class="btn sm">Descartar</button>
+          <div class="split"><button class="btn sm">Salvar</button><button class="btn sm" aria-label="Escolher o que acontece depois de salvar" aria-expanded="true"><svg class="i s14"><use href="#i-down"/></svg></button></div>
+        </div>
+      </div>
+
+      <aside class="peek" aria-label="Prévia do cliente, só leitura">
+        <div class="peek-top">
+          <span class="pos tnum">14 de 63</span>
+          <button class="ibtn" aria-label="Cliente anterior"><svg class="i"><use href="#i-up"/></svg></button>
+          <button class="ibtn" aria-label="Próximo cliente"><svg class="i"><use href="#i-down"/></svg></button>
+          <button class="btn sm">Abrir ficha completa</button>
+          <button class="ibtn" aria-label="Fechar prévia"><svg class="i"><use href="#i-x"/></svg></button>
+        </div>
+        <div class="peek-h">
+          <div class="painel" data-painel data-cols="2" data-rows="2" data-mods="cs,suporte" data-scheme="brand" style="width:48px;height:48px;border:1px solid var(--ink)" aria-hidden="true"></div>
+          <div><h3>Cond. Vila Serena</h3><div class="sub">184 unidades, Moema. Cliente desde 2019. Síndico Otávio Prado.</div></div>
+        </div>
+        <div class="alert-cold" role="status"><svg class="i" style="color:var(--warn)"><use href="#i-clock"/></svg><div><b>Esfriando há 12 dias.</b> Último contato em 18/09, ligação de Juliana com Otávio sobre o reajuste de 2027.</div></div>
+        <div class="health">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:12.5px">Saúde</b><span><span class="st warn">58 Atenção</span> <span class="small muted">caiu 9 pontos em 30 dias</span></span></div>
+          <div class="hbar" aria-hidden="true"><i></i><i></i><i></i><span class="mk" style="left:58%"></span></div>
+          <div class="hscale small"><span>Risco até 50</span><span>Atenção até 75</span><span>Boa</span></div>
+          <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:12.5px">Renovação 2027</b><span class="small muted">vence 30/11, há 6 dias em Proposta</span></div>
+          <div class="path" aria-label="Etapa atual: Proposta"><span class="done">Contato</span><span class="now">Proposta</span><span>Negociação</span><span>Assinado</span></div>
+        </div>
+        <div class="nextstep">
+          <div class="h"><svg class="i"><use href="#i-alert"/></svg>Sem próximo passo</div>
+          <p>Todo cliente da carteira precisa de um próximo passo com data. Defina na tabela ou na ficha.</p>
+          <button class="btn sm pri"><svg class="i"><use href="#i-plus"/></svg>Definir próximo passo</button>
+        </div>
+        <div class="psec">
+          <h4>Contatos</h4>
+          <div style="display:flex;gap:10px;align-items:center;font-size:12.5px;margin-bottom:6px"><span class="av s24 c3">OP</span><span><b>Otávio Prado</b>, síndico, (11) 99402-1188</span></div>
+          <div style="display:flex;gap:10px;align-items:center;font-size:12.5px"><span class="av s24 c5">LP</span><span><b>Laura Pinheiro</b>, conselheira fiscal</span></div>
+        </div>
+        <div class="psec">
+          <h4>Histórico</h4>
+          <ul class="hist">
+            <li><span class="dt tnum">Hoje</span><span>Chamado 1.209 aberto: bomba da cisterna desarmando</span></li>
+            <li><span class="dt tnum">18/09</span><span>Ligação de Juliana: Otávio pediu revisão do reajuste</span></li>
+            <li><span class="dt tnum">11/09</span><span>NPS 6: "A 2ª via do boleto demora"</span></li>
+            <li><span class="dt tnum">02/09</span><span>Proposta de renovação enviada, R$ 3.350/mês</span></li>
+          </ul>
+        </div>
+        <div class="readonly"><svg class="i s14"><use href="#i-eye"/></svg>Prévia só leitura. Para editar, use a tabela ou abra a ficha completa.</div>
+      </aside>
+    </div>
+  </div>
+</div></div>
+<div class="a11y">
+  <p><b>Foco:</b> visões salvas, busca e filtros, tabela (setas entre células, Enter edita, Esc cancela), barra de salvar quando existe alteração, depois a prévia (anterior, próximo, abrir ficha, fechar).</p>
+  <p><b>Anunciado:</b> saúde como "58, Atenção, piorando"; a célula em edição como "Próximo passo, alterado, não salvo"; a barra como região "1 alteração não salva"; o alerta como status "Esfriando há 12 dias".</p>
+  <p><b>Só ícone:</b> "Cliente anterior", "Próximo cliente", "Fechar prévia", "Nova visão", "Escolher o que acontece depois de salvar"; setas de tendência têm rótulo.</p>
+</div>
+
+<!-- ================= 4A. ACADEMY TURMAS ================= -->
+<header class="screen-head">
+  <h2>Academy: turmas do semestre 2026.2</h2>
+  <p><b>O que esta versão propõe.</b> O Academy é uma faculdade: período letivo no cabeçalho, cartões de turma com o glifo da disciplina na cor da família do módulo a que ela serve, professora e o que falta entregar. À direita, boletim com N1, frequência e situação, e o calendário acadêmico. Sem ranking e sem medalha.</p>
+  <p class="ref">Referências: Google Classroom, Canvas, portais do aluno de universidades brasileiras. Resolvemos fazer assim porque o Classroom organiza o aluno em cartões de turma, o Canvas junta pendências ao lado e os portais do aluno mostram boletim com nota e frequência por disciplina. Enviamos para aprovação.</p>
+</header>
+<div class="scroller"><div class="frame" id="f-acad">
+  <div data-side="academy" data-section="Minhas turmas"></div>
+  <div class="main">
+    <div class="phead">
+      <div class="cover painel" data-painel data-cols="2" data-rows="2" data-mods="academy" data-scheme="pes" aria-hidden="true"></div>
+      <div><div class="crumbs">Academy</div><h1>Minhas turmas</h1></div>
+      <button class="btn" style="margin-left:18px">Período 2026.2<svg class="i s14"><use href="#i-down"/></svg></button>
+      <div class="spacer"></div>
+      <button class="btn"><svg class="i"><use href="#i-plus"/></svg>Entrar com código</button>
+      <div class="tools"><button class="ibtn" aria-label="Notificações, 3 novas"><svg class="i s20"><use href="#i-bell"/></svg><span class="dot"></span></button><span class="av s28 c1">JR<i class="pres on"></i></span></div>
+    </div>
+    <div class="acad">
+      <div class="turmas" id="turmas"></div>
+      <aside class="aside">
+        <section class="box" aria-labelledby="h-bol">
+          <div class="sec-h"><h3 id="h-bol">Boletim 2026.2</h3><a href="#">Histórico</a></div>
+          <table class="boletim">
+            <thead><tr><th>Disciplina</th><th>N1</th><th>Freq.</th><th>Situação</th></tr></thead>
+            <tbody>
+              <tr><td>Assembleias e atas</td><td class="tnum">8,5</td><td class="tnum">92%</td><td><span class="st info">Em curso</span></td></tr>
+              <tr><td>WhatsApp com condôminos</td><td class="tnum">9,0</td><td class="tnum">100%</td><td><span class="st info">Em curso</span></td></tr>
+              <tr><td>Rateio e inadimplência</td><td class="tnum">6,0</td><td class="tnum">78%</td><td><span class="st warn">Atenção</span></td></tr>
+              <tr><td>LGPD no condomínio</td><td class="tnum">–</td><td class="tnum">100%</td><td><span class="st info">Em curso</span></td></tr>
+              <tr><td>Manutenção preventiva</td><td class="tnum">9,5</td><td class="tnum">100%</td><td><span class="st ok">Aprovada</span></td></tr>
+            </tbody>
+          </table>
+          <div style="padding:10px 16px" class="small muted">Frequência mínima de 75% por disciplina. Certificado liberado ao fim do período.</div>
+        </section>
+        <section class="box" aria-labelledby="h-cal">
+          <div class="sec-h"><h3 id="h-cal">Calendário acadêmico</h3><a href="#">Ver semestre</a></div>
+          <ul class="cal">
+            <li><span class="dd">03<small>out</small></span><span><b>Entrega:</b> Termo de consentimento LGPD</span></li>
+            <li><span class="dd">14<small>out</small></span><span>Aula prática na assembleia do Parque das Águas</span></li>
+            <li><span class="dd">17<small>out</small></span><span>Fim das avaliações N1</span></li>
+            <li><span class="dd">05<small>dez</small></span><span>Encerramento do período 2026.2</span></li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </div>
+</div></div>
+<div class="a11y">
+  <p><b>Foco:</b> seletor de período, "Entrar com código", cartões de turma na ordem de leitura (título é o link, depois os atalhos Atividades e Pasta), boletim, calendário.</p>
+  <p><b>Anunciado:</b> cartão como "Assembleias e atas condominiais, Prof.ª Helena Duarte, 1 atividade atrasada"; no boletim, a situação é texto ("Atenção"), nunca só cor.</p>
+  <p><b>Só ícone:</b> "Atividades da turma", "Pasta de materiais da turma"; a faixa de azulejos do cartão é decorativa.</p>
+</div>
+
+<!-- ================= 4B. ACADEMY TURMA MURAL ================= -->
+<header class="screen-head">
+  <h2>Academy: dentro da turma, o Mural</h2>
+  <p><b>O que esta versão propõe.</b> Dentro da turma, as quatro abas do Classroom: Mural, Atividades, Pessoas e Notas. O Mural traz o aviso fixado da professora com comentários da turma e as atividades novas; à esquerda, as próximas entregas com prazo e estado. A capa da turma é o painel de azulejos da disciplina, o único ponto gráfico da tela.</p>
+  <p class="ref">Referências: Google Classroom, Moodle, Canvas. Resolvemos fazer assim porque o Classroom usa Mural, Atividades, Pessoas e Notas e fixa avisos no topo, o Moodle marca cada atividade como concluída e o Canvas mostra "próximas" ao lado do conteúdo. Enviamos para aprovação.</p>
+</header>
+<div class="scroller"><div class="frame" id="f-turma">
+  <div data-side="academy" data-section="Minhas turmas"></div>
+  <div class="main">
+    <div class="turma-cover painel" data-painel data-cols="24" data-rows="3" data-mods="academy,cs,cultura" data-scheme="rel">
+      <div class="ttl"><div class="small muted">Academy › Minhas turmas</div><h2>Assembleias e atas condominiais</h2><p>Turma 2026.2 A, noite. Prof.ª Helena Duarte. 28 alunos.</p></div>
+    </div>
+    <nav class="tabs" aria-label="Seções da turma"><a href="#" class="cur" aria-current="page">Mural</a><a href="#">Atividades</a><a href="#">Pessoas</a><a href="#">Notas</a></nav>
+    <div class="mural">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <section class="box upcoming" aria-labelledby="h-up">
+          <h3 id="h-up">Próximas entregas</h3>
+          <ul>
+            <li><div>Ata simulada da assembleia de 14/10</div><div class="d">até 16/10, 23:59</div><span class="pend-t"><svg class="i s14"><use href="#i-clock"/></svg>Pendente</span></li>
+            <li><div>Quórum e votação: questionário</div><div class="d">venceu 29/09</div><span class="late-t"><svg class="i s14"><use href="#i-alert"/></svg>Atrasada</span></li>
+            <li><div>Leitura: convocação e edital</div><div class="d">entregue 22/09</div><span class="ok-t"><svg class="i s14"><use href="#i-check"/></svg>Entregue, 8,5</span></li>
+          </ul>
+          <a href="#" class="small" style="color:var(--brand);font-weight:550;text-decoration:none;display:block;margin-top:8px">Ver todas as atividades</a>
+        </section>
+        <section class="box upcoming">
+          <h3>Frequência</h3>
+          <div class="small">11 de 12 aulas, <b>92%</b></div>
+          <div class="small muted">Próxima aula: quinta, 02/10, 19h, sala virtual</div>
+        </section>
+      </div>
+      <div class="feed">
+        <div class="box composer"><div class="row"><span class="av c1">JR</span><div class="fake">Escreva algo para a turma</div></div></div>
+        <article class="box post aviso">
+          <div class="pinned"><svg class="i s14"><use href="#i-pin"/></svg>Aviso fixado pela professora</div>
+          <div class="post-h"><span class="av c6">HD</span><div><div class="who">Helena Duarte</div><div class="when">Ontem, 20:14</div></div><button class="ibtn" aria-label="Mais ações do aviso"><svg class="i"><use href="#i-more"/></svg></button></div>
+          <p class="post-body">Turma, a aula de 14/10 será na assembleia real do Cond. Parque das Águas, com autorização da síndica Marina Costa. Levem o modelo de ata impresso. Quem não puder ir presencialmente acompanha pela transmissão e entrega a mesma ata até 16/10.</p>
+          <div class="react-sum"><span>Ciência de 24 de 28 alunos</span><span style="margin-left:auto">2 comentários da turma</span></div>
+          <div class="cmts">
+            <div class="cmt"><span class="av s28 c3">BN</span><div><div class="bub"><b>Beatriz Nunes</b><br>Professora, podemos usar o livro de atas digital do GACO?</div><div class="cm">20:31, Responder</div></div></div>
+            <div class="cmt"><span class="av s28 c6">HD</span><div><div class="bub"><b>Helena Duarte</b><br>Pode sim, Beatriz. Exporte em PDF antes de entregar.</div><div class="cm">20:40, Responder</div></div></div>
+            <div class="cmt"><span class="av s28 c1">JR</span><div class="fake" style="flex:1;border:1px solid var(--line-2);padding:6px 10px;color:var(--ink-2);background:var(--bg)">Adicionar comentário à turma</div></div>
+          </div>
+        </article>
+        <article class="box newact">
+          <span class="ic"><svg class="i"><use href="#i-clipcheck"/></svg></span>
+          <div><b>Helena Duarte publicou uma nova atividade: Ata simulada da assembleia de 14/10</b><div class="small muted">28/09, prazo 16/10, vale 10 pontos na N1</div></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div></div>
+<div class="a11y">
+  <p><b>Foco:</b> abas da turma (setas trocam de aba), próximas entregas, frequência, caixa "Escreva algo para a turma", aviso fixado, comentários, nova atividade.</p>
+  <p><b>Anunciado:</b> abas como "Mural, aba 1 de 4, selecionada"; entregas como "Quórum e votação, venceu em 29/09, atrasada"; o aviso começa com "Aviso fixado pela professora".</p>
+  <p><b>Só ícone:</b> "Mais ações do aviso"; os estados Pendente, Atrasada e Entregue sempre com palavra; a capa de azulejos é decorativa e o título da turma é um h2 real.</p>
+</div>
+
+<!-- ================= 4C. ACADEMY ATIVIDADES ================= -->
+<header class="screen-head">
+  <h2>Academy: aba Atividades</h2>
+  <p><b>O que esta versão propõe.</b> As atividades aparecem agrupadas por unidade da disciplina, cada uma com prazo, estado e nota. Entregue, pendente e atrasada usam a semântica única de cor do GACO e sempre levam a palavra.</p>
+  <p class="ref">Referências: Google Classroom, Moodle. Resolvemos fazer assim porque o Classroom agrupa atividades por tópico com prazo, e o Moodle mostra a conclusão ao lado de cada item. Enviamos para aprovação.</p>
+</header>
+<div class="scroller"><div class="frame" id="f-ativ" style="height:640px">
+  <div data-side="academy" data-section="Minhas turmas"></div>
+  <div class="main">
+    <div class="phead">
+      <div class="cover painel" data-painel data-cols="2" data-rows="2" data-mods="academy" data-scheme="rel" aria-hidden="true"></div>
+      <div><div class="crumbs">Academy › Assembleias e atas condominiais</div><h1>Atividades</h1></div>
+      <div class="spacer"></div>
+      <button class="btn">Ver meu trabalho</button>
+    </div>
+    <nav class="tabs" aria-label="Seções da turma"><a href="#">Mural</a><a href="#" class="cur" aria-current="page">Atividades</a><a href="#">Pessoas</a><a href="#">Notas</a></nav>
+    <div class="acts">
+      <section class="unit"><h3>Unidade 1. Convocação e quórum<span>3 atividades, 2 entregues</span></h3>
+        <div class="arow"><span class="ic"><svg class="i"><use href="#i-book"/></svg></span><div><div class="t">Leitura: convocação e edital</div><div class="s">Material, 18 páginas</div></div><span class="small muted">Prazo 22/09</span><span class="ok-t"><svg class="i s14"><use href="#i-check"/></svg>Entregue</span><span class="tnum" style="text-align:right">8,5 / 10</span></div>
+        <div class="arow"><span class="ic"><svg class="i"><use href="#i-clipcheck"/></svg></span><div><div class="t">Quórum e votação: questionário</div><div class="s">12 questões</div></div><span class="small" style="color:var(--err)">Venceu 29/09</span><span class="late-t"><svg class="i s14"><use href="#i-alert"/></svg>Atrasada</span><span style="text-align:right"><button class="btn sm pri">Fazer agora</button></span></div>
+        <div class="arow"><span class="ic"><svg class="i"><use href="#i-file"/></svg></span><div><div class="t">Modelo de edital de convocação</div><div class="s">Envio de arquivo</div></div><span class="small muted">Prazo 26/09</span><span class="ok-t"><svg class="i s14"><use href="#i-check"/></svg>Entregue</span><span class="small muted" style="text-align:right">Sem nota ainda</span></div>
+      </section>
+      <section class="unit"><h3>Unidade 2. A assembleia e a ata<span>2 atividades</span></h3>
+        <div class="arow"><span class="ic"><svg class="i"><use href="#i-edit-note"/></svg></span><div><div class="t">Ata simulada da assembleia de 14/10</div><div class="s">Envio de arquivo, vale 10 pontos na N1</div></div><span class="small muted">Prazo 16/10, 23:59</span><span class="pend-t"><svg class="i s14"><use href="#i-clock"/></svg>Pendente</span><span style="text-align:right"><button class="btn sm">Abrir</button></span></div>
+        <div class="arow"><span class="ic"><svg class="i"><use href="#i-msg"/></svg></span><div><div class="t">Fórum: o que fazer quando falta quórum</div><div class="s">Participação no fórum da turma</div></div><span class="small muted">Prazo 24/10</span><span class="pend-t"><svg class="i s14"><use href="#i-clock"/></svg>Pendente</span><span style="text-align:right"><button class="btn sm">Abrir</button></span></div>
+      </section>
+    </div>
+  </div>
+</div></div>
+<div class="a11y">
+  <p><b>Foco:</b> abas, unidades como títulos (h3), cada atividade como uma linha com link no nome e botão de ação no fim.</p>
+  <p><b>Anunciado:</b> "Quórum e votação, questionário, venceu em 29/09, atrasada, Fazer agora"; a nota como "8,5 de 10".</p>
+  <p><b>Só ícone:</b> o ícone do tipo de atividade (leitura, questionário, envio, fórum) é repetido em texto na segunda linha, então fica oculto do leitor de tela.</p>
+</div>
+
+<!-- ================= 5. PORTAL ================= -->
+<header class="screen-head">
+  <h2>Portal no celular: boleto com Pix copiável</h2>
+  <p><b>O que esta versão propõe.</b> A síndica abre o portal na marca da administradora, vê o boleto de outubro na primeira tela e copia o Pix com um toque; a confirmação aparece embaixo, perto do polegar. O painel de azulejos da administradora faz a faixa do topo: a marca é do cliente, a forma é do GACO.</p>
+  <p class="ref">Referências: Nubank, apps de banco brasileiros, TownSq. Resolvemos fazer assim porque os apps de banco e o Nubank põem o Pix copiável como botão principal com aviso de copiado, e o TownSq abre o app do condômino direto no boleto. Enviamos para aprovação.</p>
+</header>
+<div class="phone-wrap">
+  <div class="phone" id="f-portal">
+    <div class="p-top">
+      <span class="org-logo" data-org-ini>AA</span>
+      <div><div class="org-name" data-org-name>Administradora Alpha</div><div class="org-sub">Cond. Parque das Águas, bloco A, 1402</div></div>
+      <button class="ibtn" style="margin-left:auto" aria-label="Notificações"><svg class="i s20"><use href="#i-bell"/></svg></button>
+    </div>
+    <div class="p-strip painel" data-painel data-cols="14" data-rows="1" data-mods="financeiro,suporte,operacoes,cs,cultura" data-scheme="brand" aria-hidden="true"></div>
+    <div class="p-body">
+      <div><div class="small muted">Olá, Marina</div><h2>Boleto de outubro</h2></div>
+      <section class="bol" aria-label="Boleto de outubro">
+        <div class="hd">
+          <div class="small muted">Taxa condominial e fundo de obras</div>
+          <div class="val tnum">R$ 1.284,50</div>
+          <span class="st warn">Vence em 10 dias, 10/10</span>
+        </div>
+        <div class="row"><span class="muted">Condomínio</span><span class="tnum">R$ 1.112,00</span></div>
+        <div class="row"><span class="muted">Fundo de obras</span><span class="tnum">R$ 142,50</span></div>
+        <div class="row"><span class="muted">Rateio da bomba da cisterna</span><span class="tnum">R$ 30,00</span></div>
+        <div class="pixcode" aria-label="Código Pix copia e cola">00020126580014br.gov.bcb.pix0136a1f4c2e8-7b3d-4e21-9c55-alpha2026100052040000530398654071284.505802BR5925ADM ALPHA</div>
+        <div style="padding:12px 16px 16px;display:flex;flex-direction:column;gap:8px">
+          <button class="bigbtn"><svg class="i s20"><use href="#i-copy"/></svg>Copiar código Pix</button>
+          <button class="bigbtn sec"><svg class="i s20"><use href="#i-barcode"/></svg>Copiar linha digitável</button>
+          <button class="btn ghost" style="align-self:center"><svg class="i"><use href="#i-download"/></svg>Baixar PDF do boleto</button>
+        </div>
+      </section>
+      <div class="small muted">Setembro pago em 08/09. <a href="#" style="color:var(--ink);font-weight:600">Ver todos os boletos</a></div>
+    </div>
+    <div class="toast" role="status"><svg class="i s20"><use href="#i-check"/></svg>Código Pix copiado. Cole no app do seu banco.</div>
+    <nav class="tabbar" aria-label="Portal">
+      <a href="#"><svg class="i s20"><use href="#i-home"/></svg>Início</a>
+      <a href="#" class="cur" aria-current="page"><svg class="i s20"><use href="#i-cash"/></svg>Boletos</a>
+      <a href="#"><svg class="i s20"><use href="#i-cal"/></svg>Reservas</a>
+      <a href="#"><svg class="i s20"><use href="#i-wrench"/></svg>Chamados</a>
+      <a href="#"><svg class="i s20"><use href="#i-grid"/></svg>Mais</a>
+    </nav>
+  </div>
+  <div class="phone-notes">
+    <h3>Dois toques até o Pix</h3>
+    <p>Abrir o portal (ou o link do aviso no WhatsApp) e tocar em "Copiar código Pix". O aviso "Código Pix copiado" fica 4 segundos e é anunciado pelo leitor de tela.</p>
+    <p>O valor vem detalhado em três linhas porque a pergunta mais comum no Suporte é "por que meu boleto veio mais caro": o rateio da bomba da cisterna aparece com nome.</p>
+    <p>Troque a marca no seletor da folha de identidade: logo, faixa de azulejos e botão principal mudam; tipografia, glifos e estados continuam do GACO.</p>
+    <div class="a11y">
+      <p><b>Foco:</b> notificações, título, valor, itens, "Copiar código Pix", "Copiar linha digitável", "Baixar PDF", barra inferior.</p>
+      <p><b>Anunciado:</b> "R$ 1.284,50, vence em 10 dias, 10 de outubro"; depois do toque, "Código Pix copiado".</p>
+      <p><b>Só ícone:</b> "Notificações"; os itens da barra inferior têm rótulo em texto; toques de 52px de altura.</p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+/* ---------- glifos-azulejo ---------- */
+const FAM = {ges:'var(--f-ges)', rel:'var(--f-rel)', atd:'var(--f-atd)', pes:'var(--f-pes)'};
+const MODS = {
+  inicio:     {name:'Início', fam:'pes', g:['q2','q3','q1','q0']},
+  suporte:    {name:'Suporte', fam:'atd', g:['q2','h2','t2','d']},
+  operacoes:  {name:'Operações', fam:'atd', g:['t1','q2','q0','t3']},
+  comercial:  {name:'Comercial', fam:'rel', g:['t2','t3','h0','h0']},
+  cs:         {name:'CS', fam:'rel', g:['q0','h3','h1','q2']},
+  marketing:  {name:'Marketing', fam:'rel', g:['h1','q3','o','h0']},
+  cultura:    {name:'Cultura', fam:'pes', g:['d','q3','q1','d']},
+  academy:    {name:'Academy', fam:'pes', g:['h2','h2','t1','t0']},
+  financeiro: {name:'Financeiro', fam:'ges', g:['h3','q3','q1','h1']},
+  projetos:   {name:'Projetos', fam:'ges', g:['t0','o','t2','h3']},
+  relatorios: {name:'Relatórios', fam:'ges', g:['o','h2','q1','t3']}
+};
+function cell(code,x,y,s){
+  const r=s/2;
+  switch(code){
+    case 'f': return `<rect x="${x}" y="${y}" width="${s}" height="${s}"/>`;
+    case 'q0': return `<path d="M${x} ${y}H${x+s}A${s} ${s} 0 0 1 ${x} ${y+s}Z"/>`;
+    case 'q1': return `<path d="M${x+s} ${y}V${y+s}A${s} ${s} 0 0 1 ${x} ${y}Z"/>`;
+    case 'q2': return `<path d="M${x+s} ${y+s}H${x}A${s} ${s} 0 0 1 ${x+s} ${y}Z"/>`;
+    case 'q3': return `<path d="M${x} ${y+s}V${y}A${s} ${s} 0 0 1 ${x+s} ${y+s}Z"/>`;
+    case 't0': return `<path d="M${x} ${y}H${x+s}L${x} ${y+s}Z"/>`;
+    case 't1': return `<path d="M${x} ${y}H${x+s}V${y+s}Z"/>`;
+    case 't2': return `<path d="M${x+s} ${y}V${y+s}H${x}Z"/>`;
+    case 't3': return `<path d="M${x} ${y}L${x+s} ${y+s}H${x}Z"/>`;
+    case 'h0': return `<path d="M${x} ${y}H${x+s}A${r} ${r} 0 0 1 ${x} ${y}Z"/>`;
+    case 'h1': return `<path d="M${x+s} ${y}V${y+s}A${r} ${r} 0 0 1 ${x+s} ${y}Z"/>`;
+    case 'h2': return `<path d="M${x+s} ${y+s}H${x}A${r} ${r} 0 0 1 ${x+s} ${y+s}Z"/>`;
+    case 'h3': return `<path d="M${x} ${y+s}V${y}A${r} ${r} 0 0 1 ${x} ${y+s}Z"/>`;
+    case 'd': return `<circle cx="${x+r}" cy="${y+r}" r="${s*.3}"/>`;
+    default: return '';
+  }
+}
+function glyphShapes(g){ return cell(g[0],0,0,12)+cell(g[1],12,0,12)+cell(g[2],0,12,12)+cell(g[3],12,12,12); }
+function glyph(mod,size,opts={}){
+  const m=MODS[mod]; const bg=opts.bg||FAM[m.fam]; const fg=opts.fg||'#FAFAF7';
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" aria-hidden="true" style="display:block;flex:none"><rect width="24" height="24" fill="${bg}"/><g fill="${fg}">${glyphShapes(m.g)}</g></svg>`;
+}
+/* painel gerativo: módulos contratados, rodados e alternados por posição */
+function schemeColors(s){
+  if(s==='brand') return [['var(--brand)','#FAFAF7'],['#FAFAF7','var(--brand)'],['var(--brand-tint)','var(--brand)'],['var(--brand)','var(--brand-tint)'],['#111111','#FAFAF7']];
+  const c=FAM[s];
+  const tint=`color-mix(in oklab, ${c} 20%, #FAFAF7)`;
+  return [[c,'#FAFAF7'],['#FAFAF7',c],[tint,c],[c,tint],['#111111','#FAFAF7']];
+}
+function buildPainel(el){
+  const cols=+el.dataset.cols, rows=+el.dataset.rows, mods=el.dataset.mods.split(','), sc=schemeColors(el.dataset.scheme);
+  let out=''; const S=24;
+  for(let r=0;r<rows;r++) for(let c=0;c<cols;c++){
+    const i=(r*cols+c);
+    const m=MODS[mods[(c*3+r*5+ (c>>1)) % mods.length]];
+    const k=((c+r)%2===0)?0:1;
+    let pal=sc[k];
+    if((c*7+r*11)%9===4) pal=sc[2];
+    if((c*5+r*3)%13===6) pal=sc[3];
+    if((c*3+r*7)%17===8 && el.dataset.scheme==='brand') pal=sc[4];
+    const rot=((c+r*2)%4)*90;
+    out+=`<g transform="translate(${c*S} ${r*S}) rotate(${rot} 12 12)"><rect x="-.4" y="-.4" width="24.8" height="24.8" fill="${pal[0]}"/><g fill="${pal[1]}">${glyphShapes(m.g)}</g></g>`;
+  }
+  const svg=`<svg viewBox="0 0 ${cols*S} ${rows*S}" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;display:block" aria-hidden="true">${out}</svg>`;
+  if(getComputedStyle(el).position==='static') el.style.position='relative';
+  el.insertAdjacentHTML('afterbegin',svg);
+  el.style.overflow='hidden';
+}
+
+/* ---------- menu lateral ---------- */
+const SECTIONS = {
+  suporte:['Conversas','Chamados','Respostas rápidas','Etiquetas','Canais','Relatórios do suporte'],
+  cs:['Minha carteira','Precisam de mim','Renovações','Voz do cliente','Reuniões','Pesos da saúde'],
+  academy:['Minhas turmas','Pendentes','Calendário acadêmico','Boletim','Certificados','Biblioteca']
+};
+const ORDER=['suporte','comercial','cs','marketing','cultura','academy','financeiro','operacoes','projetos','relatorios'];
+const COUNTS={suporte:7,cs:3,academy:2};
+function sidebar(active,section){
+  let h=`<nav class="side" aria-label="Menu principal">
+    <button class="org" aria-label="Trocar de empresa. Atual: Administradora Alpha"><span class="org-logo" data-org-ini>AA</span><span><span class="org-name" data-org-name>Administradora Alpha</span><span class="org-sub">Sistema interno</span></span></button>
+    <div class="strip painel" data-painel data-cols="10" data-rows="1" data-mods="suporte,cs,academy,cultura,financeiro,operacoes,comercial" data-scheme="brand" aria-hidden="true"></div>
+    <button class="side-search"><svg class="i"><use href="#i-search"/></svg><span>Pesquisar</span><kbd>Ctrl K</kbd></button>
+    <div class="nav">
+      <a href="#" class="${active==='inicio'?'cur mod-on':''}" ${active==='inicio'?'aria-current="page"':''}><svg class="i s20"><use href="#i-home"/></svg><span class="lbl">Início</span></a>
+      <a href="#"><svg class="i s20"><use href="#i-clipcheck"/></svg><span class="lbl">Para você</span><span class="cnt">5</span></a>
+      <a href="#"><svg class="i s20"><use href="#i-star"/></svg><span class="lbl">Favoritos</span></a>
+      <div class="grp">Módulos</div>`;
+  const shown = active==='inicio' ? ORDER.slice(0,9) : ORDER.filter(m=>m!=='marketing' && m!=='projetos');
+  for(const m of shown){
+    const on=m===active;
+    const cnt=COUNTS[m]?`<span class="cnt">${COUNTS[m]}</span>`:'';
+    h+=`<a href="#" class="${on?'mod-on':''}" ${on?'aria-expanded="true"':''}>${glyph(m,20)}<span class="lbl">${MODS[m].name}</span>${cnt}${on?'<svg class="i s14 chev"><use href="#i-up"/></svg>':''}</a>`;
+    if(on && SECTIONS[m]){
+      h+='<div class="sub">'+SECTIONS[m].map(s=>`<a href="#" class="${s===section?'cur':''}" ${s===section?'aria-current="page"':''}>${s}</a>`).join('')+'</div>';
+    }
+  }
+  h+=`</div><div class="side-foot"><button><svg class="i s20"><use href="#i-settings"/></svg><span class="lbl">Configurações</span></button><button data-collapse aria-label="Recolher menu"><svg class="i s20"><use href="#i-sidebar"/></svg><span class="lbl">Recolher menu</span></button></div></nav>`;
+  return h;
+}
+document.querySelectorAll('[data-side]').forEach(el=>{ el.outerHTML=sidebar(el.dataset.side, el.dataset.section); });
+document.querySelectorAll('[data-collapse]').forEach(b=>b.addEventListener('click',()=>{
+  const f=b.closest('.frame'); const c=f.classList.toggle('collapsed');
+  b.setAttribute('aria-label', c?'Expandir menu':'Recolher menu');
+  b.querySelector('.lbl').textContent = c?'Expandir menu':'Recolher menu';
+}));
+
+/* ---------- glifos na folha ---------- */
+document.getElementById('glyph-row').innerHTML = Object.keys(MODS).map(k=>`<figure>${glyph(k,44)}<figcaption>${MODS[k].name}</figcaption></figure>`).join('');
+
+/* ---------- turmas ---------- */
+const TURMAS=[
+  {t:'Assembleias e atas condominiais', turma:'2026.2 A, noite', prof:'HD', pc:'c6', profN:'Prof.ª Helena Duarte', mod:'cs', fam:'rel', famN:'Relacionamento', due:[['late','Quórum e votação venceu 29/09'],['','Ata simulada até 16/10']]},
+  {t:'WhatsApp com condôminos', turma:'2026.2 B', prof:'MS', pc:'c4', profN:'Prof. Marcos Silva', mod:'suporte', fam:'atd', famN:'Atendimento', due:[['','Roteiro de respostas rápidas até 09/10']]},
+  {t:'Rateio e inadimplência', turma:'2026.2 A', prof:'LS', pc:'c2', profN:'Prof.ª Lívia Santos', mod:'financeiro', fam:'ges', famN:'Gestão', due:[['late','Exercício de rateio venceu 26/09'],['','Acordo de parcelamento até 13/10']]},
+  {t:'LGPD no condomínio', turma:'2026.2 única', prof:'TF', pc:'c1', profN:'Prof. Tiago Freitas', mod:'cultura', fam:'pes', famN:'Pessoas e saber', due:[['','Termo de consentimento até 03/10']]},
+  {t:'Manutenção preventiva predial', turma:'2026.2 A', prof:'OH', pc:'c3', profN:'Eng. Otávio Hidalgo', mod:'operacoes', fam:'atd', famN:'Atendimento', due:[['','Tudo entregue. Aprovada com 9,5']]},
+  {t:'Relacionamento com síndicos', turma:'2026.2 C, eletiva', prof:'JR', pc:'c5', profN:'Prof.ª Renata Guedes', mod:'comercial', fam:'rel', famN:'Relacionamento', due:[['','Começa em 13/10']]}
+];
+document.getElementById('turmas').innerHTML = TURMAS.map(x=>`
+  <article class="turma">
+    <div class="band painel" data-painel data-cols="6" data-rows="2" data-mods="${x.mod}" data-scheme="${x.fam}" aria-hidden="true"></div>
+    <span class="prof"><span class="av s40 ${x.pc}">${x.prof}</span></span>
+    <div class="body">
+      <h3><a href="#" style="color:inherit;text-decoration:none">${x.t}</a></h3>
+      <div class="t">Turma ${x.turma}. ${x.profN}</div>
+      <div class="due">${x.due.map(d=>`<span class="${d[0]}">${d[1]}</span>`).join('')}</div>
+      <div class="fam"><i style="background:${FAM[x.fam]}"></i>Família ${x.famN}</div>
+    </div>
+    <div class="foot"><button class="ibtn" aria-label="Atividades da turma"><svg class="i"><use href="#i-clipcheck"/></svg></button><button class="ibtn" aria-label="Pasta de materiais da turma"><svg class="i"><use href="#i-folder"/></svg></button></div>
+  </article>`).join('');
+
+/* ---------- painéis ---------- */
+document.querySelectorAll('[data-painel]').forEach(buildPainel);
+
+/* ---------- onda do áudio ---------- */
+const w=document.getElementById('wave');
+if(w){ const hs=[6,10,16,22,14,8,12,20,24,18,10,6,14,20,12,8,16,22,18,12,8,6,10,14,18,12,8,6,10,8,6,12]; w.innerHTML=hs.map((h,i)=>`<i class="${i<9?'p':''}" style="height:${h}px"></i>`).join(''); }
+
+/* ---------- white label ---------- */
+function contrastInk(hex){ const n=parseInt(hex.slice(1),16); const r=(n>>16)/255,g=(n>>8&255)/255,b=(n&255)/255; const f=v=>v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4); const L=.2126*f(r)+.7152*f(g)+.0722*f(b); return (1.05/(L+.05))>=4.5?'#FFFFFF':'#111111'; }
+document.querySelectorAll('.wl button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.wl button').forEach(x=>x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  const root=document.documentElement.style;
+  root.setProperty('--brand', b.dataset.brand);
+  root.setProperty('--brand-ink', contrastInk(b.dataset.brand));
+  document.querySelectorAll('[data-org-ini]').forEach(e=>e.textContent=b.dataset.ini);
+  document.querySelectorAll('[data-org-name]').forEach(e=>e.textContent=b.dataset.name);
+}));
+/* alternador Lista | Quadro e filtros (só estado visual) */
+document.querySelectorAll('.seg').forEach(s=>s.addEventListener('click',e=>{const t=e.target.closest('button'); if(!t) return; s.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed', x===t?'true':'false'));}));
+/* permite forçar marca pela URL para capturas: ?brand=1 */
+const q=new URLSearchParams(location.search).get('brand'); if(q){ const bs=document.querySelectorAll('.wl button'); bs[+q] && bs[+q].click(); }
+</script>
+</body>
+</html>
