@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal, ocorrências e obras</title>
+<meta name="description" content="Portal: livro de ocorrências do morador, decisão do síndico com advertência, comunicado de obra na unidade com ART (NBR 16.280) e agendamento de mudança.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .p-oc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+  @media (max-width:1023px){.p-oc{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body data-moldura='{"contexto":"portal","secao":"Ocorrências","papel":"morador","cliente":{"nome":"Administradora Alpha","sigla":"A"},"unidade":"Bloco B, apto 1204"}'>
+<main id="conteudo" class="lc-pagina">
+<section class="lc-sobre-tela" aria-label="Sobre o livro de ocorrências">
+  <div class="lc-sobre-tela__nome"><b>Livro de ocorrências</b><span>Morador registra; síndico decide (orientar, advertir, multar). Substitui o livro da portaria.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Registrar um problema de convivência com prova (data, hora, foto) sem expor o vizinho no grupo, e acompanhar o que o síndico decidiu.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Tipo, unidade envolvida (opcional), data e hora, descrição e foto.</li><li>"Registrar" protocola; o morador acompanha em "Minhas ocorrências".</li><li>O síndico vê as ocorrências da unidade agrupadas e decide; a decisão vira notificação em PDF para a unidade envolvida.</li><li>O nome de quem registrou nunca vai para a unidade notificada.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o livro de ocorrências em papel é exigido por muitos regimentos e é o signo que todos conhecem; o Colab e o SP156 dão protocolo ao cidadão; e o anonimato para o vizinho segue a prática da Superlógica e do TownSq, que reduz retaliação.</p></div>
+</section>
+<div class="lc-portal-cab"><div class="lc-portal-cab__txt"><h1>Ocorrências</h1><p>Visível só para você e para a síndica. A unidade envolvida não vê quem registrou.</p></div></div>
+<div class="p-oc">
+  <section class="lc-caixa" aria-labelledby="nova-t"><div class="lc-caixa__cab"><h2 id="nova-t">Registrar ocorrência</h2></div><div class="lc-caixa__corpo lc-pilha">
+    <fieldset class="lc-escolhas"><legend>Tipo</legend>
+      <label class="lc-escolha"><input type="radio" name="tp" checked><i data-i="volume"></i>Barulho</label>
+      <label class="lc-escolha"><input type="radio" name="tp"><i data-i="vaga"></i>Vaga ocupada</label>
+      <label class="lc-escolha"><input type="radio" name="tp"><i data-i="pet"></i>Animal</label>
+      <label class="lc-escolha"><input type="radio" name="tp"><i data-i="coleta-de-lixo"></i>Lixo fora do lugar</label></fieldset>
+    <div class="lc-form-grade">
+      <div class="lc-campo"><label class="lc-rotulo" for="un">Unidade envolvida <span class="lc-opcional">(se souber)</span></label><input id="un" class="lc-entrada" value="Bloco B, apto 1104"></div>
+      <div class="lc-campo"><label class="lc-rotulo" for="qd">Quando</label><input id="qd" class="lc-entrada" type="datetime-local" value="2026-09-30T23:40"></div>
+      <div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="ds">O que aconteceu</label><textarea id="ds" class="lc-area-texto" rows="3">Música alta e arrastar de móveis das 23h40 à 1h10. Interfonei à portaria às 0h15.</textarea></div>
+    </div>
+    <label class="lc-upload"><i data-i="nuvem-envio"></i><span><b>Anexar foto, vídeo ou áudio</b> ou arraste aqui</span><span class="lc-legenda">Até 50 MB. Áudio ajuda em barulho.</span><input type="file"></label>
+    <div><button class="lc-btn lc-btn--principal" type="button" data-toast="Ocorrência 0388 registrada. A síndica foi avisada.">Registrar ocorrência</button></div>
+  </div></section>
+  <section class="lc-caixa" aria-labelledby="mo-t"><div class="lc-caixa__cab"><h2 id="mo-t">Minhas ocorrências</h2></div><ul class="lc-lista">
+    <li><span class="lc-cresce"><b>Barulho, apto 1104</b><span class="lc-lista__sub">Ocorrência 0371, 22/09. Síndica decidiu: advertência por escrito, entregue em 24/09.</span></span><span class="lc-carimbo lc-carimbo--protocolado">Notificado<small>24/09/26</small></span></li>
+    <li><span class="lc-cresce"><b>Vaga 37 ocupada</b><span class="lc-lista__sub">Ocorrência 0352, 03/09. Visitante do 804 orientado pela portaria.</span></span><span class="lc-estado lc-estado--sucesso">Resolvida</span></li>
+    <li><span class="lc-cresce"><b>Barulho, apto 1104</b><span class="lc-lista__sub">Ocorrência 0388, hoje. Aguardando a síndica.</span></span><span class="lc-estado lc-estado--aviso">Em análise</span></li></ul></section>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Tipo (setas), unidade, quando, descrição, anexar, Registrar, lista.</p></div><div><h3>O que é anunciado</h3><p>"Ocorrência 0388 registrada. A síndica foi avisada." (toast). Aviso de privacidade lido no cabeçalho.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+
+<section class="lc-sobre-tela" aria-label="Sobre a decisão do síndico">
+  <div class="lc-sobre-tela__nome"><b>Decisão do síndico sobre ocorrência</b><span>Papel síndico. Histórico da unidade, regimento e a notificação gerada.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Decidir com base no regimento e no histórico, de forma igual para todos, e gerar a notificação sem escrever do zero.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Ocorrência com anexos e o histórico da unidade envolvida (quantas vezes, que decisões).</li><li>Artigo do regimento sugerido; a escala (orientação, advertência, multa) vem dele.</li><li>"Emitir advertência" gera o PDF, envia à unidade por e-mail e portal e marca "Notificado".</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o art. 1.337 do Código Civil exige reiteração para multa maior, então o histórico tem de estar à vista; e o modelo de notificação dos escritórios de direito condominial é o que a administradora já usa.</p></div>
+</section>
+<div class="p-oc">
+  <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Ocorrência 0388: barulho, apto 1104</h2><span class="lc-estado lc-estado--aviso">Em análise</span></div><div class="lc-caixa__corpo lc-pilha">
+    <p class="lc-pequeno">Registrada por um morador do bloco B em 01/10, 08:02. Fato: 30/09, das 23h40 à 1h10. 1 áudio de 0:38.</p>
+    <div class="lc-alerta lc-alerta--aviso"><i data-i="aviso"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">3ª ocorrência da unidade em 30 dias</span>Orientação em 08/09 e advertência em 24/09. Pelo art. 47 do regimento, a próxima medida é multa de 1 taxa condominial (R$ 1.096,40).</div></div>
+    <fieldset class="lc-grupo-opcoes"><legend class="lc-rotulo">Decisão</legend><label class="lc-radio"><input type="radio" name="dc"><span class="lc-radio__bola"></span>Arquivar</label><label class="lc-radio"><input type="radio" name="dc"><span class="lc-radio__bola"></span>Advertência</label><label class="lc-radio"><input type="radio" name="dc" checked><span class="lc-radio__bola"></span>Multa de R$ 1.096,40, no boleto de novembro</label></fieldset>
+    <div class="lc-grupo-btn"><button class="lc-btn lc-btn--principal" type="button" data-toast="Notificação de multa emitida e enviada ao apto 1104.">Emitir notificação de multa</button><a class="lc-btn" href="61-documentos-gerados.html#notificacao">Ver prévia</a></div>
+  </div></section>
+  <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Histórico do apto 1104</h2></div><div class="lc-caixa__corpo"><ul class="lc-atividade">
+    <li class="lc-atividade__ev"><span class="lc-atividade__no"><i data-i="documento"></i></span><div class="lc-atividade__cartao"><div class="lc-atividade__cab"><b>Advertência por escrito</b><span class="lc-atividade__hora">24/09</span></div><div class="lc-atividade__corpo">Ocorrência 0371. Recebida por Paulo Teixeira, morador.</div></div></li>
+    <li class="lc-atividade__ev"><span class="lc-atividade__no"><i data-i="conversa"></i></span><div class="lc-atividade__cartao"><div class="lc-atividade__cab"><b>Orientação verbal</b><span class="lc-atividade__hora">08/09</span></div><div class="lc-atividade__corpo">Ocorrência 0349. Portaria conversou no dia.</div></div></li></ul></div></section>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Texto, alerta, decisão (setas), Emitir, Ver prévia, histórico.</p></div><div><h3>O que é anunciado</h3><p>Alerta de reiteração lido ao entrar na região. Botão muda o verbo com a decisão ("Emitir advertência", "Emitir notificação de multa").</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+
+<section class="lc-sobre-tela" aria-label="Sobre obra e mudança">
+  <div class="lc-sobre-tela__nome"><b>Comunicar obra na unidade e agendar mudança</b><span>Obra pede plano e ART (NBR 16.280); mudança reserva elevador e horário.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Cumprir a norma de reforma sem papelada no balcão e evitar duas mudanças no mesmo elevador.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Obra: o que vai fazer, datas, empresa, responsável técnico e ART em PDF.</li><li>Se mexe em estrutura, hidráulica ou elétrica, ART é obrigatória; senão, só o plano.</li><li>Síndico aprova; a portaria recebe a lista de prestadores com datas.</li><li>Mudança: dia, turno e elevador de serviço; horário ocupado aparece desabilitado.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>a ABNT NBR 16.280 exige plano de reforma e responsável técnico; o app da Lello e o do Condomob já pedem o anexo da ART; e o agendamento de mudança por turno é o que os regimentos de São Paulo usam.</p></div>
+</section>
+<div class="p-oc">
+  <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Comunicar obra</h2></div><div class="lc-caixa__corpo lc-pilha">
+    <div class="lc-form-grade">
+      <div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="ob">O que vai fazer</label><input id="ob" class="lc-entrada" value="Troca do piso da sala e da cozinha; nova tomada na cozinha"></div>
+      <div class="lc-campo"><label class="lc-rotulo" for="ob-i">Início</label><input id="ob-i" class="lc-entrada" type="date" value="2026-10-13"></div>
+      <div class="lc-campo"><label class="lc-rotulo" for="ob-f">Fim</label><input id="ob-f" class="lc-entrada" type="date" value="2026-10-24"></div>
+    </div>
+    <fieldset class="lc-grupo-opcoes"><legend class="lc-rotulo">Mexe em</legend><label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span><span>Estrutura (paredes, lajes)</span></label><label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span><span>Hidráulica ou gás</span></label><label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>Elétrica</span></label></fieldset>
+    <ul class="lc-anexos"><li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="arquivo-aprovado"></i></span><span class="lc-anexo__nome">ART 2620261148732.pdf</span><span class="lc-anexo__info">Eng. Carlos Menezes, CREA-SP 5063214470</span><span class="lc-anexo__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Remover ART"><i data-i="fechar"></i></button></span></li></ul>
+    <div><button class="lc-btn lc-btn--principal" type="button" data-toast="Obra comunicada. A síndica responde em até 3 dias úteis.">Enviar para aprovação</button></div>
+  </div></section>
+  <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Agendar mudança</h2></div><div class="lc-caixa__corpo lc-pilha">
+    <div class="lc-campo" style="max-width:240px"><label class="lc-rotulo" for="md">Dia</label><input id="md" class="lc-entrada" type="date" value="2026-10-11"></div>
+    <fieldset class="lc-horarios"><legend class="lc-rotulo" style="grid-column:1/-1">Turno, elevador de serviço do bloco B</legend><label class="lc-horario"><input type="radio" name="mt" disabled>8h às 12h<small>Ocupado, apto 207</small></label><label class="lc-horario"><input type="radio" name="mt" checked>13h às 17h<small>Livre</small></label></fieldset>
+    <p class="lc-ajuda">Sábados só até 17h. Domingos e feriados não há mudança (regimento, art. 39).</p>
+    <div><button class="lc-btn" type="button" data-toast="Mudança agendada para 11/10, das 13h às 17h.">Agendar mudança</button></div>
+  </div></section>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Campos da obra, caixas "Mexe em", anexo (Remover), Enviar; dia, turnos, Agendar.</p></div><div><h3>O que é anunciado</h3><p>Ao marcar Elétrica: "ART obrigatória" na descrição do anexo. Turno ocupado: "8h às 12h, ocupado, apto 207, indisponível".</p></div><div><h3>Nome do que é só ícone</h3><p>X do anexo: "Remover ART".</p></div></div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

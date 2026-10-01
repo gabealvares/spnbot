@@ -8,6 +8,13 @@
 
 /* ============================== A. COMPONENTES ============================== */
 
+/* [tokens] CORREÇÃO: --borda-1/--borda-2 são compostos (var(--filete)) e, declarados só em :root,
+   ficam resolvidos com o filete do tema da raiz. Numa amostra .lc-tema-escuro dentro de página clara
+   (e vice-versa) a borda saía com a cor do outro tema. Redeclarar onde o tema muda resolve.
+   Fundir em tokens.css, no bloco ":root,.lc-tema-claro" e no do escuro. */
+.lc-tema-claro,.lc-tema-escuro{--borda-1:1px solid var(--filete);--borda-2:1px solid var(--filete-forte);--borda-controle-def:1px solid var(--borda-controle)}
+
+
 /* [03 Campos] rodapé do campo: ajuda à esquerda, contagem de caracteres à direita */
 .lc-campo__pe{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
 .lc-campo__pe>.lc-ajuda,.lc-campo__pe>.lc-erro{flex:1;min-width:0}
@@ -27,6 +34,10 @@
 .lc-editor[data-leitura="true"]{border-color:transparent;background:transparent}
 .lc-editor[data-leitura="true"] .lc-editor__barra,.lc-editor[data-leitura="true"] .lc-editor__pe{display:none}
 .lc-editor[data-leitura="true"] .lc-editor__area{padding-left:0;min-height:0}
+
+/* [05 Marcar] fieldset não pode crescer além do contêiner (o padrão do navegador é min-content) */
+.lc-grupo-opcoes,.lc-secao-form{min-width:0}
+.lc-seg--p{flex-wrap:wrap}
 
 /* [04 Combo] resultado vazio na lista de opções */
 .lc-opcoes__vazio{padding:10px 12px;font:var(--t-pequeno);color:var(--texto-2)}
@@ -74,6 +85,9 @@
 
 /* [15 Filtros] adicionar filtro e "Limpar" no fim dos chips */
 .lc-chips__limpar{font:500 12.5px/1 var(--fonte-ui);color:var(--link);text-decoration:underline;text-underline-offset:2px;padding:4px}
+
+/* [23 Feed] post fixado no topo do feed: filete do item atual, como a atividade fixada */
+.lc-post--fixado{border-left:var(--borda-marcador) solid var(--atual)}
 
 /* [09 Etiqueta] etiqueta longa: corta com reticências e mostra inteira na dica */
 .lc-etiqueta--corta{max-width:180px}

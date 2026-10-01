@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Celular: interno e portal</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q5.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q5.js" defer></script>
+<style>
+.doc{max-width:1440px;margin:0 auto;padding:16px 24px 72px}
+.doc-topo{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid var(--cm-filete)}
+.doc-topo h1{font-size:22px;font-weight:700;flex:1;min-width:240px}
+.doc h2.grupo{font-size:17px;font-weight:700;margin:28px 0 4px}
+@media (max-width:599px){ .doc{padding:12px 16px 56px} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<main id="conteudo">
+<div class="doc"><div class="doc-topo"><h1>Celular: interno e portal</h1><div data-cm-seletor data-sem-densidade></div></div>
+<details class="cm-anotacao" open>
+<summary><i data-i="informacao"></i>Sobre esta tela: Telas no celular (390 px)</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>O que esta tela resolve</h3><p>Cada quadro abaixo é a página real em 390 px, não um desenho: a moldura da fundação troca o menu pela barra inferior e pela gaveta, e as telas usam alvo de 44 px. O interno abre escuro e compacto nos dados, mas com toque de 44 px; o portal abre claro e confortável.</p></div>
+<div><h3>Fluxo</h3><ol><li>Interno: Início, Conversas, Pesquisar, Avisos e Menu na barra inferior.</li><li>Na conversa a barra some e o compositor fica acima do teclado; voltar fica no topo à esquerda.</li><li>Menus de botão dividido viram folha inferior; o sino e a pesquisa ocupam a tela.</li><li>Portal: Início, Boletos, Chamados, Reservas e Mais; o resto do portal fica no Mais.</li></ol></div>
+<div><h3>Resolvemos fazer assim porque</h3><p>o WhatsApp e o Slack escondem a barra inferior dentro da conversa, o Material e o iOS usam folha inferior para ações, e os apps de banco (Nubank, Itaú) põem quatro destinos e "Mais" na barra. Enviamos para aprovação.</p></div>
+</div></details>
+<h2 class="grupo">Sistema interno no celular</h2><div class="cm-quadros"><figure class="cm-quadro-celular"><iframe data-src="celular/home.html" title="Início"></iframe><figcaption><b>Início.</b> Para você com ação no item, equipe com presença, mural com reconhecimento e aniversário. Barra inferior: Início, Conversas, Pesquisar, Avisos, Menu.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="celular/conversas.html" title="Conversas"></iframe><figcaption><b>Conversas.</b> Abas Minhas, Fila e Aguardando. Linha de 68 px com prazo em palavra.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="celular/conversa.html" title="Conversa com compositor e teclado"></iframe><figcaption><b>Conversa com compositor e teclado.</b> Sem barra inferior: o compositor fica colado acima do teclado; a conversa rola até a última mensagem. Nota interna amarela e plaqueta só no vínculo da OS.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="celular/conversa.html?cena=folha" title="Folha inferior do "Enviar ▾""></iframe><figcaption><b>Folha inferior do "Enviar ▾".</b> No celular o menu do botão dividido vira folha com alvos de 48 px e o interruptor "abrir a próxima".</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="celular/chamado.html" title="Chamado"></iframe><figcaption><b>Chamado.</b> Estado em caixa que abre o menu, SLA com triângulo e palavra, abas e ficha com lápis. Plaqueta grande uma vez, no título.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="celular/ferias.html" title="Aprovar férias"></iframe><figcaption><b>Aprovar férias.</b> Pedido com saldo e o conflito da equipe em atenção; Recusar e Aprovar com alvo de 44 px.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="celular/registro-cs.html" title="Registro do CS"></iframe><figcaption><b>Registro do CS.</b> Tipo em botões grandes, resumo, humor da cliente e tarefa de seguimento num interruptor.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="celular/home.html?abrir=sino" title="Notificações"></iframe><figcaption><b>Notificações.</b> O sino abre em tela quase cheia, com abas e ação no item.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="celular/home.html?abrir=paleta" title="Pesquisa (Ctrl K)"></iframe><figcaption><b>Pesquisa (Ctrl K).</b> No celular a pesquisa vem pela barra inferior e abre a paleta inteira.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="celular/home.html?abrir=gaveta" title="Gaveta"></iframe><figcaption><b>Gaveta.</b> Menu com favoritos, grupos do papel e Configuração; fecha pelo X, pelo fundo ou Esc.</figcaption></figure></div>
+<h2 class="grupo">Portal no celular</h2><div class="cm-quadros"><figure class="cm-quadro-celular"><iframe data-src="40-portal.html" title="Portal: Início"></iframe><figcaption><b>Portal: Início.</b> Botão grande de chamado com foto, atalhos e "Sua unidade hoje". Barra inferior com Início, Boletos, Chamados, Reservas e Mais.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="40b-portal-chamados.html?cena=novo" title="Novo chamado: câmera"></iframe><figcaption><b>Novo chamado: câmera.</b> Toque 2 de 5: a câmera abre direto; galeria e "só descrever" nos lados.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="40b-portal-chamados.html?cena=enviado" title="Chamado aberto"></iframe><figcaption><b>Chamado aberto.</b> Número, etapas e "Acompanhar pelo WhatsApp".</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="40b-portal-chamados.html?cena=conversa" title="Chamado em conversa"></iframe><figcaption><b>Chamado em conversa.</b> Sem nota interna; a resposta também chega no WhatsApp.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="40c-portal-boletos.html?cena=pix" title="Boleto com Pix"></iframe><figcaption><b>Boleto com Pix.</b> Toque 2: "Copiar código Pix", largura toda, 52 px.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="40d-portal-reservas.html" title="Reservas"></iframe><figcaption><b>Reservas.</b> Áreas em faixa que rola, calendário com dias de 42 px e resumo abaixo.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="40e-portal-assembleias.html?cena=votacao" title="Votação online"></iframe><figcaption><b>Votação online.</b> Opções em linhas de 52 px e comprovante logo abaixo.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="40i-portal-portaria.html?cena=retirada" title="Código de retirada"></iframe><figcaption><b>Código de retirada.</b> Encomenda com QR e código lido dígito a dígito.</figcaption></figure><figure class="cm-quadro-celular"><iframe data-src="40-portal.html?abrir=gaveta" title="Portal: Mais"></iframe><figcaption><b>Portal: Mais.</b> A gaveta do portal com unidade, moradores, encomendas, visitantes e perfil.</figcaption></figure></div>
+<details class="cm-anotacao cm-anotacao--a11y">
+<summary><i data-i="teclado"></i>Acessibilidade desta tela</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>Ordem de foco</h3><ol><li>Barra inferior: da esquerda para a direita</li><li>Gaveta: busca, favoritos, grupos</li><li>Folha: itens, interruptor, Fechar</li></ol></div>
+<div><h3>O que é anunciado</h3><ul><li>Item atual da barra com aria-current</li><li>Contador do sino: "Avisos, 3 novos"</li><li>Na conversa: "Voltar às conversas"</li></ul></div>
+<div><h3>Nome do que é só ícone</h3><ul><li>"Ficha do cliente", "Mais ações da conversa", "Anexar", "Nota interna", "Outras formas de enviar"</li></ul></div>
+</div></details>
+</div>
+</main>
+<script>function carregar(){var t=document.documentElement.getAttribute('data-theme');document.querySelectorAll('iframe[data-src]').forEach(function(f){var s=f.getAttribute('data-src');f.src=s+(s.indexOf('?')>=0?'&':'?')+'theme='+t})}
+carregar();document.addEventListener('cm:tema',carregar);</script>
+</body>
+</html>

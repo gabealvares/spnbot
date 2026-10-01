@@ -179,10 +179,10 @@
 
 /* ============================== P8 PLAYER DE AULA ============================== */
 .lc-player{position:relative;aspect-ratio:16/9;background:#141816;color:#fff;overflow:hidden;border-radius:var(--raio-1);display:flex;flex-direction:column}
-.lc-player__quadro{flex:1;display:flex;flex-direction:column;justify-content:center;padding:6% 8%;gap:10px;background:linear-gradient(180deg,#1F2624,#141816)}
+.lc-player__quadro{flex:1;display:flex;flex-direction:column;justify-content:flex-start;padding:4% 5%;gap:10px;background:linear-gradient(180deg,#1F2624,#141816)}
 .lc-player__quadro small{font:500 13px/18px var(--fonte-ui);color:#AAB3AE}
 .lc-player__quadro strong{font:600 clamp(18px,3vw,30px)/1.2 var(--fonte-ui);max-width:24ch}
-.lc-player__tocar{position:absolute;left:50%;top:44%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(255,255,255,.92);color:#141816;display:flex;align-items:center;justify-content:center}
+.lc-player__tocar{position:absolute;left:50%;top:52%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(255,255,255,.92);color:#141816;display:flex;align-items:center;justify-content:center}
 .lc-player__tocar .lc-ic{width:28px;height:28px;margin-left:3px}
 .lc-player__tocar:focus-visible{outline:3px solid #A9BCF0;outline-offset:3px}
 .lc-player__legenda{position:absolute;left:50%;bottom:60px;transform:translateX(-50%);background:rgba(0,0,0,.72);padding:3px 10px;font:500 15px/22px var(--fonte-ui);max-width:80%;text-align:center}

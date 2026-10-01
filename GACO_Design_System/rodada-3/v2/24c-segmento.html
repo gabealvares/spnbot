@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Segmento: síndicos da Zona Sul</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-sg{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;align-items:start;margin-top:8px}
+.q3-grupo{border:1px solid var(--cm-filete-forte);background:var(--cm-camada-1);padding:12px 14px}
+.q3-grupo+.q3-e{display:flex;align-items:center;gap:8px;margin:8px 0;font-size:12.5px;font-weight:700;color:var(--cm-texto-2)}
+.q3-regra{display:grid;grid-template-columns:200px 180px minmax(0,1fr) 32px;gap:8px;align-items:center;padding:6px 0;border-bottom:1px dotted var(--cm-filete)}
+.q3-regra:last-of-type{border-bottom:0}
+.q3-contagem{font-size:32px;font-weight:700;line-height:38px;font-variant-numeric:tabular-nums}
+@media (max-width:1099px){.q3-sg{grid-template-columns:1fr}.q3-regra{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Segmento <small>Marketing, Campanhas e leads, Segmentação. Construtor de regras em frase ("Todos os contatos em que…"), com a contagem ao vivo e a amostra de quem entra.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>Montar o público sem SQL e sem medo de errar: cada regra é uma frase com campo, condição e valor; grupos com "todas" ou "qualquer uma"; a contagem atualiza a cada mudança e a amostra mostra pessoas reais. Quem pediu para não receber nunca entra (regra fixa, cadeado).</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>"Adicionar regra" abre o campo com busca (Contato, Condomínio, Atividade, Campanha).</li><li>Trocar "todas" por "qualquer uma" num grupo muda a contagem na hora.</li><li>"Adicionar grupo" cria um bloco ligado por E ao anterior.</li><li>Ao alterar, a barra de salvar aparece; segmento usado em campanha agendada avisa quantas campanhas serão afetadas.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o HubSpot (lists) e o Klaviyo (segments) escrevem a regra como frase com contagem ao vivo; o Mailchimp mostra a amostra de contatos; e a exclusão fixa de descadastrados é exigência da LGPD que o RD Station deixa explícita.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Segmento</button><button type="button" data-q3-estado="editando" aria-pressed="false">Com alteração</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Marketing","tela":"Segmentação","registro":"Síndicos da Zona Sul","papel":"Comercial","usuario":{"nome":"Paula Viana","iniciais":"PV","cargo":"Analista de marketing","presenca":"disponivel","tom":3}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Síndicos da Zona Sul</h1><span class="cm-t-legenda">Segmento dinâmico, usado em 2 campanhas</span></div></header>
+ <div class="q3-sg">
+  <div>
+   <p class="cm-t-corpo" style="margin-bottom:8px">Todos os contatos em que:</p>
+   <div class="q3-grupo"><div class="cm-linha" style="margin-bottom:6px"><span class="cm-t-rotulo">Grupo 1: atende</span><div class="cm-selecao" style="width:150px"><select aria-label="Grupo 1 combina"><option>todas as regras</option><option>qualquer regra</option></select><i data-i="chevron-baixo"></i></div></div>
+    <div class="q3-regra"><div class="cm-selecao"><select aria-label="Campo da regra 1"><option>Papel no condomínio</option></select><i data-i="chevron-baixo"></i></div><div class="cm-selecao"><select aria-label="Condição da regra 1"><option>é um de</option></select><i data-i="chevron-baixo"></i></div><div class="cm-multi"><span class="cm-etiqueta">Síndico<button class="cm-etiqueta__remover" type="button" aria-label="Remover Síndico"><i data-i="fechar"></i></button></span><span class="cm-etiqueta">Síndico profissional<button class="cm-etiqueta__remover" type="button" aria-label="Remover Síndico profissional"><i data-i="fechar"></i></button></span><input aria-label="Adicionar valor"></div><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Tirar regra 1"><i data-i="excluir"></i></button></div>
+    <div class="q3-regra"><div class="cm-selecao"><select aria-label="Campo da regra 2"><option>Bairro do condomínio</option></select><i data-i="chevron-baixo"></i></div><div class="cm-selecao"><select aria-label="Condição da regra 2"><option>é um de</option></select><i data-i="chevron-baixo"></i></div><div class="cm-multi"><span class="cm-etiqueta">Moema</span><span class="cm-etiqueta">Vila Mariana</span><span class="cm-etiqueta">Santo Amaro</span><span class="cm-multi__mais">e mais 9</span><input aria-label="Adicionar bairro"></div><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Tirar regra 2"><i data-i="excluir"></i></button></div>
+    <div class="q3-regra"><div class="cm-selecao"><select aria-label="Campo da regra 3"><option>Unidades do condomínio</option></select><i data-i="chevron-baixo"></i></div><div class="cm-selecao"><select aria-label="Condição da regra 3"><option>maior ou igual a</option></select><i data-i="chevron-baixo"></i></div><div class="cm-entrada cm-entrada--numero" id="r3"><input aria-label="Valor da regra 3" value="40" inputmode="numeric"><span class="cm-entrada__passo"><button type="button" aria-label="Aumentar"><i data-i="chevron-cima"></i></button><button type="button" aria-label="Diminuir"><i data-i="chevron-baixo"></i></button></span></div><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Tirar regra 3"><i data-i="excluir"></i></button></div>
+    <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" style="margin-top:6px"><i data-i="adicionar"></i>Adicionar regra</button>
+   </div>
+   <div class="q3-e">E</div>
+   <div class="q3-grupo"><div class="cm-linha" style="margin-bottom:6px"><span class="cm-t-rotulo">Grupo 2: atende</span><div class="cm-selecao" style="width:150px"><select aria-label="Grupo 2 combina"><option>qualquer regra</option></select><i data-i="chevron-baixo"></i></div></div>
+    <div class="q3-regra"><div class="cm-selecao"><select aria-label="Campo"><option>Cliente da Alpha</option></select><i data-i="chevron-baixo"></i></div><div class="cm-selecao"><select aria-label="Condição"><option>é</option></select><i data-i="chevron-baixo"></i></div><div class="cm-selecao"><select aria-label="Valor"><option>não</option></select><i data-i="chevron-baixo"></i></div><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Tirar regra"><i data-i="excluir"></i></button></div>
+    <div class="q3-regra"><div class="cm-selecao"><select aria-label="Campo"><option>Negócio perdido</option></select><i data-i="chevron-baixo"></i></div><div class="cm-selecao"><select aria-label="Condição"><option>há mais de</option></select><i data-i="chevron-baixo"></i></div><div class="cm-entrada"><input aria-label="Valor" value="12"><span class="cm-entrada__sufixo">meses</span></div><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Tirar regra"><i data-i="excluir"></i></button></div>
+   </div>
+   <div class="cm-linha" style="margin-top:10px"><button class="cm-botao" type="button"><i data-i="adicionar"></i>Adicionar grupo</button></div>
+   <div class="cm-alerta cm-alerta--neutro" style="margin-top:12px"><i data-i="bloquear"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Sempre fora: quem se descadastrou ou pediu exclusão (LGPD)</span><span class="cm-alerta__desc">Regra do sistema, não pode ser tirada. Hoje são 63 contatos.</span></span></div>
+  </div>
+  <aside class="cm-cartao" aria-labelledby="t-ct"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-ct">Quem entra</h2><span class="cm-carregando" data-se="editando">recontando</span></header>
+   <div class="cm-cartao__corpo"><div class="q3-contagem" aria-live="polite"><span data-se="padrao">1.240</span><span data-se="editando">1.026</span></div><p class="cm-t-legenda">contatos, de 3.918 na base. <span data-se="editando">Antes: 1.240.</span></p></div>
+   <ul class="cm-equipe">
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--5">SL</span><span><span class="cm-equipe__nome">Sandra Leme</span><span class="cm-equipe__status">Síndica, Cond. Jardim Europa, 180 un., Moema</span></span><span></span></li>
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--2">FN</span><span><span class="cm-equipe__nome">Fábio Nunes</span><span class="cm-equipe__status">Síndico profissional, 3 condomínios</span></span><span></span></li>
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--1">RA</span><span><span class="cm-equipe__nome">Ricardo Assis</span><span class="cm-equipe__status">Síndico, Ed. Mirante do Parque, 72 un.</span></span><span></span></li>
+   </ul>
+   <div class="cm-cartao__pe"><a class="cm-link" href="#">Ver os 1.240</a></div></aside>
+ </div>
+ <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" data-q3-barra hidden>
+  <div class="cm-barra-salvar__msg" aria-live="polite"><b data-q3-barra-n></b><span data-q3-barra-quais></span></div>
+  <span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Afeta 1 campanha agendada</span>
+  <button class="cm-botao cm-botao--discreto" type="button" data-q3-descartar>Descartar</button><button class="cm-botao cm-botao--principal" type="button" data-q3-salvar>Salvar segmento</button></div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título; grupo 1 (combina, regras: campo, condição, valor, Tirar), Adicionar regra; grupo 2; Adicionar grupo; regra fixa; contagem e amostra; barra de salvar.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>A contagem é região viva ("1.026 contatos, antes 1.240"). Cada regra é lida em ordem como frase. O cadeado da regra fixa diz "Regra do sistema".</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Tirar regra 1" (e cada regra), "Remover Síndico", "Aumentar", "Diminuir".</p></section>
+  </div>
+ </div>
+</footer>
+<script>document.addEventListener('q3:estado',function(e){if(e.detail!=='editando') return;var r=document.querySelector('#r3 input');r.value='80';r.parentNode.classList.add('is-editado');window.q3Registrar('Unidades: de 40 para 80',function(){r.value='40';r.parentNode.classList.remove('is-editado')},r.parentNode)});</script>
+</body>
+</html>

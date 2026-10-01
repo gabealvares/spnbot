@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-contexto="portal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal: acordo, mudança e notificação</title>
+<script>window.CM_LINKS={"Início": "40-portal.html", "Chamados": "40b-portal-chamados.html", "Boletos": "40c-portal-boletos.html", "Reservas": "40d-portal-reservas.html", "Assembleias": "40e-portal-assembleias.html", "Comunicados": "40f-portal-comunicados.html", "Documentos": "40f-portal-comunicados.html#documentos", "Minha unidade": "40h-portal-perfil.html", "Moradores e veículos": "40h-portal-perfil.html#moradores", "Meu perfil": "40h-portal-perfil.html", "Encomendas": "40i-portal-portaria.html#encomendas", "Visitantes": "40i-portal-portaria.html"}</script>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q5.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q5.js" defer></script>
+<style>
+
+.portal{max-width:1200px;margin:0 auto;padding:8px 24px 72px}
+.portal-grade{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.portal-estreito{max-width:var(--cm-largura-portal)}
+.portal-cabeca{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;padding:20px 0 14px}
+.portal-cabeca h1{font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em;margin:0}
+.portal-cabeca p{color:var(--cm-texto-2);margin-top:2px}
+.portal-cabeca .cm-empurra{display:flex;gap:8px;flex-wrap:wrap}
+.cm-tabela--simples td:not(.cm-num){white-space:normal}
+.sec-t{font-size:17px;line-height:24px;font-weight:700;margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+.sec-t .cm-link{margin-left:auto;font-size:14px}
+@media (max-width:899px){ .portal-grade{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:599px){ .portal{padding:4px 16px 56px} .portal-cabeca h1{font-size:20px;line-height:26px} .portal-cabeca .cm-empurra{width:100%} }
+
+.dois{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+.parcelas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.parcelas label{display:flex;flex-direction:column;gap:2px;padding:12px;border:1px solid var(--cm-borda-controle);border-radius:var(--cm-raio-2);background:var(--cm-camada-2);cursor:pointer}
+.parcelas label:has(input:checked){border:2px solid var(--cm-texto-1);padding:11px}
+.parcelas input{position:absolute;opacity:0}
+.parcelas b{font-size:17px}.parcelas span{font-size:13px;color:var(--cm-texto-2)}
+@media (max-width:899px){ .dois{grid-template-columns:minmax(0,1fr)} .parcelas{grid-template-columns:repeat(2,minmax(0,1fr))} }
+
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"contexto": "portal", "tela": "Boletos", "unidade": "Bl B Ap 1204", "sino": 3}'></div>
+<main id="conteudo">
+<div class="portal">
+<details class="cm-anotacao" open>
+<summary><i data-i="informacao"></i>Sobre esta tela: Mais telas do morador: acordo, mudança e notificação</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>O que esta tela resolve</h3><p>Três situações que todo portal de condomínio enfrenta: regularizar débito sem ligar para o financeiro, agendar mudança com elevador e portaria avisados, e receber uma notificação de multa com direito de defesa no próprio portal.</p></div>
+<div><h3>Fluxo</h3><ol><li>Acordo: tabela do débito, escolha das parcelas em botões, resumo à direita, aceite do termo e Pix da 1ª.</li><li>Mudança: tipo, dia, período livre, empresa; Agendar avisa portaria e zelador.</li><li>Notificação: fatos, regra, valor e prazo; "Apresentar defesa" abre painel lateral com texto e anexos.</li></ol></div>
+<div><h3>Resolvemos fazer assim porque</h3><p>o Serasa Limpa Nome e os apps de banco mostram as opções de parcelamento lado a lado com o total, o TownSq e o Superlógica agendam mudança com reserva de elevador, e o processo de multa segue a convenção com direito de defesa (C. Civil, art. 1.337), como a Lello e a Hubert fazem por carta. Enviamos para aprovação.</p></div>
+</div></details>
+<section class="cm-tela" id="acordo" aria-labelledby="acordo-t">
+<h2 class="cm-tela__titulo" id="acordo-t">Negociar débitos <small>Tela 1 de 3</small></h2>
+<div class="portal-cabeca"><div><h1>Negociar débitos</h1><p>Ed. Vila Serena, Ap 51 (exemplo de unidade com atraso). Você escolhe as parcelas; o acordo vale na hora.</p></div></div>
+<div class="dois"><div class="cm-pilha cm-pilha--6">
+<div class="cm-tabela-caixa"><table class="cm-tabela cm-tabela--simples" style="width:100%"><thead><tr><th>Boleto</th><th class="cm-num">Original</th><th class="cm-num">Com multa e juros</th></tr></thead><tbody><tr><td>Julho de 2026, venceu 10/07</td><td class="cm-num">R$ 712,00</td><td class="cm-num">R$ 745,94</td></tr><tr><td>Agosto de 2026, venceu 10/08</td><td class="cm-num">R$ 712,00</td><td class="cm-num">R$ 738,58</td></tr><tr><td>Setembro de 2026, venceu 10/09</td><td class="cm-num">R$ 712,00</td><td class="cm-num">R$ 731,22</td></tr></tbody><tfoot><tr><td><b>Total hoje</b></td><td class="cm-num">R$ 2.136,00</td><td class="cm-num"><b>R$ 2.215,74</b></td></tr></tfoot></table></div>
+<fieldset style="border:0;padding:0;margin:0"><legend class="cm-t-secao" style="margin-bottom:8px">Em quantas vezes?</legend><div class="parcelas">
+<label><input type="radio" name="pc"><b>1x</b><span>R$ 2.149,27, 3% de desconto</span></label><label><input type="radio" name="pc" checked><b>3x</b><span>R$ 738,58, sem juros</span></label><label><input type="radio" name="pc"><b>6x</b><span>R$ 382,34, total R$ 2.294,04</span></label><label><input type="radio" name="pc"><b>10x</b><span>R$ 233,94, total R$ 2.339,40</span></label></div></fieldset>
+<p class="cm-t-legenda">Regra aprovada pela síndica: até 3 parcelas sem juros; de 4 a 10, juros de 1% ao mês, mínimo de R$ 150,00 por parcela. As parcelas vêm junto com a taxa do mês.</p></div>
+<aside class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Seu acordo</h2></header><div class="cm-cartao__corpo"><dl class="cm-ficha"><div class="cm-ficha__linha"><dt>Parcelas</dt><dd>3 de R$ 738,58</dd><span></span></div><div class="cm-ficha__linha"><dt>1ª parcela</dt><dd>hoje, com Pix</dd><span></span></div><div class="cm-ficha__linha"><dt>Demais</dt><dd>10/11 e 10/12, no boleto</dd><span></span></div></dl>
+<label class="cm-marcar" style="margin-top:12px"><input type="checkbox" id="ac-li"><span class="cm-marcar__caixa"></span><span>Li o termo de acordo<span class="cm-marcar__desc">Se uma parcela atrasar 30 dias, o acordo cai e o débito volta ao valor de hoje.</span></span></label></div>
+<div class="cm-cartao__pe"><button class="cm-botao cm-botao--principal cm-botao--portal" type="button" onclick="if(!document.getElementById('ac-li').checked){q5Toast('Marque que leu o termo.','aviso');return}q5Toast('Acordo feito. Abrindo o Pix da 1ª parcela.','sucesso')">Fazer acordo e pagar a 1ª</button></div></aside></div>
+</section>
+<section class="cm-tela" id="mudanca" aria-labelledby="mudanca-t">
+<h2 class="cm-tela__titulo" id="mudanca-t">Agendar mudança <small>Tela 2 de 3</small></h2>
+<div class="dois"><section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Agendar mudança</h2></header><div class="cm-cartao__corpo cm-pilha cm-pilha--6">
+<fieldset class="cm-grupo-opcoes cm-grupo-opcoes--linha"><legend>Tipo</legend><label class="cm-radio"><input type="radio" name="mt" checked><span class="cm-radio__bola"></span><span>Saída</span></label><label class="cm-radio"><input type="radio" name="mt"><span class="cm-radio__bola"></span><span>Entrada</span></label><label class="cm-radio"><input type="radio" name="mt"><span class="cm-radio__bola"></span><span>Entrega de móvel</span></label></fieldset>
+<div class="cm-campo"><label class="cm-campo__rotulo" for="md-d">Dia</label><div class="cm-entrada"><i data-i="calendario"></i><input id="md-d" value="sábado, 24/10"></div><p class="cm-campo__ajuda">Segunda a sábado, das 8h às 17h. Domingo e feriado não.</p></div>
+<fieldset class="cm-grupo-opcoes cm-grupo-opcoes--linha"><legend>Período</legend><label class="cm-radio"><input type="radio" name="mp" checked><span class="cm-radio__bola"></span><span>8h às 12h</span></label><label class="cm-radio"><input type="radio" name="mp" disabled><span class="cm-radio__bola"></span><span>13h às 17h, ocupado</span></label></fieldset>
+<div class="cm-campo"><label class="cm-campo__rotulo" for="md-e">Empresa de mudança</label><div class="cm-entrada"><input id="md-e" value="Transportes Irmãos Lima, placa GHT-4D21"></div></div>
+<label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Reservar o elevador de serviço do Bloco B com proteção de parede</span></label>
+<button class="cm-botao cm-botao--principal cm-botao--portal" type="button" data-toast="Mudança agendada. A portaria e o zelador foram avisados.">Agendar</button></div></section>
+<aside class="cm-alerta cm-alerta--info"><i data-i="mudanca"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Antes da mudança</span><span class="cm-alerta__desc">O zelador faz a vistoria do elevador e do hall antes e depois. Danos são cobrados com fotos. Na saída, a administração confere se não há débito da unidade.</span></span></aside></div>
+</section>
+<section class="cm-tela" id="notificacao" aria-labelledby="notificacao-t">
+<h2 class="cm-tela__titulo" id="notificacao-t">Notificação com direito de defesa <small>Tela 3 de 3</small></h2>
+<div class="dois"><article class="cm-cartao"><header class="cm-cartao__cabeca"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Atenção: prazo de defesa até 08/10</span><h2 class="cm-cartao__titulo">Notificação por barulho, 2ª ocorrência</h2></header><div class="cm-cartao__corpo cm-pilha"><p>Em 26/09, das 23h10 às 0h40, a portaria registrou 3 reclamações de barulho vindo do Bl B Ap 1204 (Bl B Ap 1104 e 1304). O regimento (art. 18) proíbe ruído acima do normal entre 22h e 8h.</p><p>Como é a 2ª ocorrência em 12 meses, a convenção prevê multa de 1 taxa condominial, <b>R$ 986,00</b>, no boleto de novembro, se não houver defesa aceita.</p>
+<div class="cm-anexos"><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="pdf"></i></span><span><span class="cm-anexo__nome">livro-de-ocorrencias-2609.pdf</span><span class="cm-anexo__meta">Registro da portaria, 1 página</span></span><span></span></div></div></div>
+<div class="cm-cartao__pe"><button class="cm-botao" type="button" data-toast="Ciência registrada. O prazo de defesa continua até 08/10.">Estou ciente</button><button class="cm-botao cm-botao--principal" type="button" data-abrir="defesa">Apresentar defesa</button></div></article>
+<aside class="cm-pilha"><p class="cm-t-legenda">A síndica decide a defesa em até 10 dias, e você pode recorrer à assembleia. A multa só entra no boleto depois disso.</p></aside></div>
+<aside class="cm-painel cm-painel--g" id="defesa" data-janela hidden role="dialog" aria-labelledby="df-t"><header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="df-t">Defesa à notificação</h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></header><div class="cm-painel__corpo" style="padding:16px"><div class="cm-pilha cm-pilha--6"><div class="cm-campo"><label class="cm-campo__rotulo" for="df-x">Sua versão</label><textarea class="cm-area" id="df-x" rows="6">Recebemos parentes para o aniversário da minha filha e encerramos às 23h30.</textarea></div><label class="cm-upload"><i data-i="enviar-arquivo"></i><span><b>Anexar provas</b>, se tiver</span><span class="cm-t-legenda">Fotos, vídeos ou documentos até 50 MB</span><input type="file" hidden></label></div></div><footer class="cm-painel__pe"><button class="cm-botao" type="button" data-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-fechar data-toast="Defesa enviada à síndica. Resposta até 18/10.">Enviar defesa</button></footer></aside>
+</section>
+<details class="cm-anotacao cm-anotacao--a11y">
+<summary><i data-i="teclado"></i>Acessibilidade desta tela</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>Ordem de foco</h3><ol><li>Tabela, parcelas (grupo de rádio), termo, Fazer acordo</li><li>Mudança: campos na ordem</li><li>Notificação: Estou ciente, Apresentar defesa, painel</li></ol></div>
+<div><h3>O que é anunciado</h3><ul><li>Opção de parcela lida com valor e total</li><li>Período ocupado anunciado como indisponível</li></ul></div>
+<div><h3>Nome do que é só ícone</h3><ul><li>X do painel: "Fechar"</li></ul></div>
+</div></details>
+</div>
+</main>
+
+</body>
+</html>

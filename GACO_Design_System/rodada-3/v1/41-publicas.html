@@ -23,15 +23,15 @@
 <a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="lc-doc-cab">
   <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
-  <nav aria-label="Documentação"><a href="40-portal.html">Portal</a><a href="41-publicas.html" aria-current="page">Públicas, acesso</a><a href="41b-publicas.html">Públicas, site</a><a href="50-superadmin.html">Superadmin</a><a href="60-celular.html">Celular</a><a href="61-documentos-gerados.html">Documentos</a></nav>
+  <nav aria-label="Documentação"><a href="40-portal.html">Portal</a><a href="41-publicas.html" aria-current="page">Públicas, acesso</a><a href="41b-publicas.html">Públicas, site</a><a href="41c-publicas.html">Públicas, status</a><a href="50-superadmin.html">Superadmin</a><a href="60-celular.html">Celular</a><a href="61-documentos-gerados.html">Documentos</a></nav>
   <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
 </header>
 <main id="conteudo" class="pub-pagina">
 <p class="lc-legenda" style="margin-bottom:8px">Sem moldura do sistema: a página pública é da administradora (logo, cor e nome do cliente) e segue o tema do aparelho. O GACO aparece só no rodapé, em "Tecnologia GACO". Marca de exemplo: Administradora Alpha; troque com <code>?marca=orbita</code> ou <code>?marca=sol</code>.</p>
 
 <!-- ENTRAR -->
-<section class="lc-ficha-tela" aria-label="Sobre a tela Entrar">
-  <div class="lc-ficha-tela__nome"><b>Entrar</b><span>Mesmo endereço para equipe, síndico e morador: portal.alpha.com.br. O papel decide para onde vai depois.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre a tela Entrar">
+  <div class="lc-sobre-tela__nome"><b>Entrar</b><span>Mesmo endereço para equipe, síndico e morador: portal.alpha.com.br. O papel decide para onde vai depois.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Entrar sem pensar: e-mail ou CPF, senha, e pronto. O lado da marca diz o que a pessoa encontra lá dentro, sem números de vitrine.</p></div>
   <div><h2>Fluxo</h2><ol><li>E-mail ou CPF, senha com "Mostrar".</li><li>"Entrar" é o principal; Enter envia.</li><li>Erro de senha fica no campo, sem dizer se o e-mail existe.</li><li>Com 2 etapas ligadas, vai para o código; senão, para o Início do papel.</li><li>"Esqueci a senha" e "Primeiro acesso" ficam abaixo do botão.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o login do Google e o do gov.br pedem pouco por tela e explicam o erro no campo; o portal do Itaú Personnalité separa marca e formulário em duas colunas; e a orientação da OWASP manda não revelar se a conta existe.</p></div>
@@ -68,8 +68,8 @@
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>E-mail, Esqueci a senha, senha, Mostrar, Manter conectado, Entrar, Criar acesso.</p></div><div><h3>O que é anunciado</h3><p>Erro ligado à senha por <code>aria-describedby</code>, lido ao focar. Ao enviar com erro, o foco volta para a senha. "Mostrar" é botão alternável (<code>aria-pressed</code>).</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum. O olho tem texto "Mostrar".</p></div></div>
 
 <!-- 2 ETAPAS -->
-<section class="lc-ficha-tela" id="dois-fatores" aria-label="Sobre a tela Verificação em 2 etapas">
-  <div class="lc-ficha-tela__nome"><b>Verificação em 2 etapas</b><span>Código de 6 dígitos do app autenticador ou por SMS. Obrigatório para equipe e superadmin.</span></div>
+<section class="lc-sobre-tela" id="dois-fatores" aria-label="Sobre a tela Verificação em 2 etapas">
+  <div class="lc-sobre-tela__nome"><b>Verificação em 2 etapas</b><span>Código de 6 dígitos do app autenticador ou por SMS. Obrigatório para equipe e superadmin.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Proteger contas que veem dados de 120 famílias sem atrapalhar: o campo aceita colar, avança sozinho e confia no aparelho por 30 dias.</p></div>
   <div><h2>Fluxo</h2><ol><li>Seis caixas; colar o código preenche todas.</li><li>Ao completar, confere sozinho (sem botão a mais).</li><li>"Usar outro método" troca para SMS ou código de recuperação.</li><li>Código errado limpa as caixas e diz quantas tentativas restam.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o GitHub, o Google e o Nubank usam 6 caixas que avançam sozinhas e aceitam colar; o iOS sugere o código do SMS no teclado (<code>autocomplete="one-time-code"</code>).</p></div>
@@ -88,8 +88,8 @@
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Dígito 1 a 6 (Backspace volta), Confiar no aparelho, Conferir, Usar outro método.</p></div><div><h3>O que é anunciado</h3><p>Grupo "Código". Conferindo: botão ocupado (<code>aria-busy</code>). Erro: "Código não confere. Restam 2 tentativas." em <code>role="alert"</code>.</p></div><div><h3>Nome do que é só ícone</h3><p>Dígitos: "Dígito 1" a "Dígito 6". Ladrilho do escudo é decorativo.</p></div></div>
 
 <!-- RECUPERAR -->
-<section class="lc-ficha-tela" id="recuperar" aria-label="Sobre a tela Recuperar senha">
-  <div class="lc-ficha-tela__nome"><b>Recuperar senha</b><span>Pedido e confirmação de envio na mesma tela.</span></div>
+<section class="lc-sobre-tela" id="recuperar" aria-label="Sobre a tela Recuperar senha">
+  <div class="lc-sobre-tela__nome"><b>Recuperar senha</b><span>Pedido e confirmação de envio na mesma tela.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Voltar a entrar sem ligar para a administradora, sem revelar se o e-mail tem cadastro.</p></div>
   <div><h2>Fluxo</h2><ol><li>Informa e-mail ou CPF e toca "Enviar link".</li><li>A mesma tela mostra "Se houver cadastro, enviamos" com o e-mail mascarado e prazo do link (30 min).</li><li>"Reenviar" libera em 60 s; "Voltar para entrar" no topo.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o Gmail, o Mercado Livre e o gov.br trocam o formulário pela confirmação no mesmo lugar e mostram o e-mail parcialmente; o contador de reenvio evita cliques repetidos.</p></div>
@@ -103,8 +103,8 @@
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Voltar para entrar, campo, Enviar link. Depois do envio, o foco vai ao título "Confira seu e-mail".</p></div><div><h3>O que é anunciado</h3><p>Confirmação em <code>role="status"</code>. Reenviar desabilitado diz o tempo que falta.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
 
 <!-- PRIMEIRO ACESSO -->
-<section class="lc-ficha-tela" id="primeiro" aria-label="Sobre a tela Primeiro acesso">
-  <div class="lc-ficha-tela__nome"><b>Primeiro acesso</b><span>Morador novo com o código da carta de boas-vindas ou do convite por WhatsApp.</span></div>
+<section class="lc-sobre-tela" id="primeiro" aria-label="Sobre a tela Primeiro acesso">
+  <div class="lc-sobre-tela__nome"><b>Primeiro acesso</b><span>Morador novo com o código da carta de boas-vindas ou do convite por WhatsApp.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Criar a conta ligada à unidade certa, sem cadastro duplicado, e confirmar o telefone que vai receber avisos.</p></div>
   <div><h2>Fluxo</h2><ol><li>Código do convite (8 caracteres); ao validar, mostra condomínio e unidade para conferir.</li><li>Nome, celular, e-mail e senha com força medida em palavras.</li><li>Aceite dos termos e da política de privacidade (LGPD) com link.</li><li>"Criar acesso" leva ao Início da unidade com uma explicação de 3 linhas.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o convite com código é como o Slack e o Notion ligam a pessoa ao espaço certo; o 1Password mede a senha em palavras ("forte"), não só em barra; e a LGPD pede aceite separado e claro.</p></div>
@@ -126,8 +126,8 @@
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Código, nome, celular, e-mail, senha, aceite (e seus dois links), Criar acesso.</p></div><div><h3>O que é anunciado</h3><p>Validação do código em região viva: "Cond. Parque das Águas, Bloco B, apto 1204". Força da senha lida pela descrição do campo.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
 
 <!-- NPS -->
-<section class="lc-ficha-tela" id="nps" aria-label="Sobre a tela Pesquisa NPS">
-  <div class="lc-ficha-tela__nome"><b>Pesquisa NPS pública</b><span>Link do e-mail ou do WhatsApp, sem entrar. Uma pergunta, um porquê, obrigado.</span></div>
+<section class="lc-sobre-tela" id="nps" aria-label="Sobre a tela Pesquisa NPS">
+  <div class="lc-sobre-tela__nome"><b>Pesquisa NPS pública</b><span>Link do e-mail ou do WhatsApp, sem entrar. Uma pergunta, um porquê, obrigado.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Medir a satisfação da síndica e dos moradores com a administradora em 20 segundos, com resposta ligada ao cliente certo no CS.</p></div>
   <div><h2>Fluxo</h2><ol><li>Abre pelo link já com o condomínio identificado.</li><li>Toca a nota (0 a 10); o porquê aparece abaixo, com pergunta que muda pela nota.</li><li>"Enviar" agradece na mesma tela. Link usado não aceita segunda resposta.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o Delighted e o Typeform fazem uma pergunta por vez; a escala 0 a 10 com rótulos nas pontas é a da Bain (método NPS), que o CS já usa para comparar.</p></div>
@@ -147,8 +147,8 @@
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Grupo de notas (setas trocam), comentário, Enviar.</p></div><div><h3>O que é anunciado</h3><p>Grupo "Nota de 0 a 10"; cada opção é o número. A pergunta do porquê muda e é anunciada ("O que faltou para ser 10?").</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
 
 <!-- VERIFICAR CERTIFICADO -->
-<section class="lc-ficha-tela" id="verificar" aria-label="Sobre a tela Verificar certificado">
-  <div class="lc-ficha-tela__nome"><b>Verificação de certificado e documento</b><span>Público, pelo código impresso ou QR. Vale para certificado, ata e comprovante de voto.</span></div>
+<section class="lc-sobre-tela" id="verificar" aria-label="Sobre a tela Verificar certificado">
+  <div class="lc-sobre-tela__nome"><b>Verificação de certificado e documento</b><span>Público, pelo código impresso ou QR. Vale para certificado, ata e comprovante de voto.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Um terceiro (outro condomínio, um banco, um cartório) confirma que o documento é autêntico, sem conta e sem expor dados além do necessário.</p></div>
   <div><h2>Fluxo</h2><ol><li>Abre pelo QR (código já preenchido) ou digita.</li><li>Resultado: válido com quem, o quê, quando e quem emitiu; ou não encontrado; ou revogado.</li><li>"Baixar cópia autenticada" gera o PDF original.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o validador do ITI (assinatura gov.br), o da Receita Federal (certidões) e o do Coursera mostram resultado com palavra e os dados mínimos do documento.</p></div>

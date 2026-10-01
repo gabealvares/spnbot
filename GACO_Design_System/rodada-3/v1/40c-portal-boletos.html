@@ -20,8 +20,8 @@
 <body data-moldura='{"contexto":"portal","secao":"Boletos","papel":"morador","cliente":{"nome":"Administradora Alpha","sigla":"A"},"unidade":"Bloco B, apto 1204"}'>
 <main id="conteudo" class="lc-pagina">
 
-<section class="lc-ficha-tela" aria-label="Sobre a tela Boletos">
-  <div class="lc-ficha-tela__nome"><b>Boletos da unidade</b><span>Lista por competência, do mais recente. Em aberto e vencidos no topo.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre a tela Boletos">
+  <div class="lc-sobre-tela__nome"><b>Boletos da unidade</b><span>Lista por competência, do mais recente. Em aberto e vencidos no topo.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Ver o que está em aberto, pagar, e provar o que já foi pago (carimbo com data e forma) sem ligar para a administradora.</p></div>
   <div><h2>Fluxo</h2><ol><li>Aba Boletos.</li><li>Em aberto primeiro; vencido traz "Gerar 2ª via" na linha.</li><li>Tocar na linha abre o boleto com Pix e composição; voltar pela trilha.</li><li>"Declaração de quitação" gera o PDF do ano anterior (pedido comum para financiamento e venda).</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o app da Enel e o da Sabesp listam contas por mês com estado escrito e "2ª via" na própria linha; o Nubank mostra a fatura paga com data; e a declaração anual de quitação é exigida pela Lei 12.007/2009, então merece botão próprio.</p></div>
@@ -41,8 +41,8 @@
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Declaração, depois cada linha: competência (link), ação da linha.</p></div><div><h3>O que é anunciado</h3><p>Tabela com legenda "Boletos da unidade". Situação lida como texto: "Vencido há 73 dias", "Pago, Pix, 08/09/26".</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum botão é só ícone. Cabeçalho da coluna de ações tem nome oculto "Ação".</p></div></div>
 
 <!-- BOLETO -->
-<section class="lc-ficha-tela" id="boleto" aria-label="Sobre a tela Boleto">
-  <div class="lc-ficha-tela__nome"><b>Boleto do mês com Pix e composição</b><span>Pix primeiro, linha digitável depois, composição sempre aberta.</span></div>
+<section class="lc-sobre-tela" id="boleto" aria-label="Sobre a tela Boleto">
+  <div class="lc-sobre-tela__nome"><b>Boleto do mês com Pix e composição</b><span>Pix primeiro, linha digitável depois, composição sempre aberta.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Pagar em um toque e entender por que o valor mudou (rateio da obra, reajuste) sem precisar perguntar.</p></div>
   <div><h2>Fluxo</h2><ol><li>"Copiar código Pix" é o botão principal; o QR fica ao lado para pagar de outro aparelho.</li><li>Copiou: toast "Cole no app do seu banco" e a caixa fica verde por 2 s.</li><li>Linha digitável, PDF e compartilhar ficam abaixo, com menos peso.</li><li>Composição mostra cada parcela e, quando muda, o valor anterior.</li><li>Voltar: trilha "Boletos".</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o Nubank, o PicPay e o Mercado Pago põem "Copiar código" como ação principal do Pix; o app da Claro e o da Vivo mostram "por que minha conta mudou"; e a crítica C1 pediu tirar a serifa do valor no portal (aqui é a fonte da interface).</p></div>
@@ -56,7 +56,7 @@
         <span class="lc-passe__qr" role="img" aria-label="QR Code do Pix"></span>
         <p class="lc-pequeno lc-cor-2" style="flex:1;min-width:180px">Abra o app do seu banco, escolha Pix e "Ler QR Code", ou copie o código abaixo e use "Pix copia e cola".</p>
       </div>
-      <div class="lc-pix"><span class="lc-pix__rot"><i data-i="pix-copia-e-cola" class="lc-ic--14"></i>Pix copia e cola</span><span class="lc-pix__cod">00020101021226900014br.gov.bcb.pix2568qrpix.alpha.com.br/v2/cobv/9f2a0c1e5d6b4a8f8b1204</span>
+      <div class="lc-pix-copia"><span class="lc-pix-copia__rot"><i data-i="pix-copia-e-cola" class="lc-ic--14"></i>Pix copia e cola</span><span class="lc-pix-copia__cod">00020101021226900014br.gov.bcb.pix2568qrpix.alpha.com.br/v2/cobv/9f2a0c1e5d6b4a8f8b1204</span>
         <button class="lc-btn lc-btn--principal" type="button" data-copiar="00020101021226900014br.gov.bcb.pix2568qrpix.alpha.com.br/v2/cobv/9f2a0c1e5d6b4a8f8b1204" data-toast="Código Pix copiado. Cole no app do seu banco."><i data-i="copiar"></i><span data-rot>Copiar código Pix</span></button></div>
       <div class="lc-campo"><span class="lc-rotulo">Linha digitável</span><span class="lc-linha-digitavel">34191.79001 01043.510047 91020.150008 1 96210000128437</span></div>
       <div class="lc-boleto__secundarias"><button class="lc-btn" type="button" data-copiar="34191790010104351004791020150008196210000128437" data-toast="Linha digitável copiada."><i data-i="codigo-de-barras"></i>Copiar linha digitável</button><button class="lc-btn" type="button" data-toast="PDF baixado."><i data-i="baixar"></i>Baixar PDF</button><button class="lc-btn" type="button"><i data-i="compartilhar"></i>Compartilhar</button></div>
@@ -79,8 +79,8 @@
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Trilha, Copiar código Pix, linha digitável (texto selecionável), Copiar linha, PDF, Compartilhar, link do balancete.</p></div><div><h3>O que é anunciado</h3><p>"Código Pix copiado. Cole no app do seu banco." (toast, educado). O botão troca o rótulo para "Copiado" por 2 s.</p></div><div><h3>Nome do que é só ícone</h3><p>QR Code: imagem com nome "QR Code do Pix". Os demais botões têm texto.</p></div></div>
 
 <!-- 2ª VIA -->
-<section class="lc-ficha-tela" id="segunda-via" aria-label="Sobre a tela 2ª via">
-  <div class="lc-ficha-tela__nome"><b>2ª via de boleto vencido</b><span>Recalcula multa e juros para a data escolhida e mostra a conta.</span></div>
+<section class="lc-sobre-tela" id="segunda-via" aria-label="Sobre a tela 2ª via">
+  <div class="lc-sobre-tela__nome"><b>2ª via de boleto vencido</b><span>Recalcula multa e juros para a data escolhida e mostra a conta.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Pagar algo atrasado sem ligar: o morador escolhe quando vai pagar e vê exatamente o que foi acrescentado e por quê.</p></div>
   <div><h2>Fluxo</h2><ol><li>"Gerar 2ª via" na linha do vencido.</li><li>Escolhe a data de pagamento (hoje vem marcada; até o último dia útil do mês).</li><li>A composição recalcula na hora, com o valor original riscado.</li><li>"Gerar 2ª via" cria Pix e boleto novos. Se a dívida passa de 90 dias, aparece "Propor acordo".</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o portal do Bradesco e o da Superlógica recalculam com data escolhida; o Serasa Limpa Nome mostra o desconto e o acréscimo linha a linha; e o Código Civil (art. 1.336) limita a multa a 2%, o que precisa estar escrito para evitar reclamação.</p></div>

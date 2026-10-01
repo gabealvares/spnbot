@@ -14,8 +14,8 @@
 </head>
 <body data-moldura='{"modulo":"financeiro","secao":"Contas a receber","item":"Boletos","papel":"admin","trilha":["Contas a receber","Boletos"],"faixa":{"tipo":"superadmin","cliente":"Órbita Condomínios","motivo":"chamado 1.204, boleto duplicado","prazo":"48 min restantes","leitura":true},"cliente":{"nome":"Órbita Condomínios","sigla":"Ó"},"usuario":{"nome":"Bruno Tavares","iniciais":"BT","cor":"lc-av--c5","cargo":"Suporte da plataforma, em sessão"}}'>
 <main id="conteudo" class="lc-pagina">
-<section class="lc-ficha-tela" aria-label="Sobre a sessão de suporte">
-  <div class="lc-ficha-tela__nome"><b>Dentro do cliente: faixa de contexto</b><span>Sistema interno da Órbita visto por Bruno Tavares (plataforma), só leitura, 1 hora.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre a sessão de suporte">
+  <div class="lc-sobre-tela__nome"><b>Dentro do cliente: faixa de contexto</b><span>Sistema interno da Órbita visto por Bruno Tavares (plataforma), só leitura, 1 hora.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Quem é da plataforma nunca esquece onde está: a faixa âmbar fica fixa no topo, diz o cliente, o modo, o tempo e o motivo, e nada a cobre. Escrever exige permissão do cliente.</p></div>
   <div><h2>Fluxo</h2><ol><li>Entrou pelo modal (motivo e prazo).</li><li>Navega como a equipe do cliente; o trilho e a marca são da Órbita.</li><li>Botões de escrita ficam desabilitados com dica "Só leitura nesta sessão".</li><li>"Pedir permissão de alteração" manda pedido ao administrador do cliente.</li><li>"Sair do cliente" volta ao detalhe do cliente na plataforma; o prazo encerra sozinho.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o Salesforce ("Logged in as") e o Zendesk mostram uma faixa permanente durante a impersonação; o Google Workspace pede aprovação do cliente para o suporte acessar dados (Access Approval); e o âmbar é a cor que o white label não controla, então nenhuma marca de cliente a imita.</p></div>
@@ -31,8 +31,8 @@
   </tbody></table></div>
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Pular para o conteúdo, faixa (Pedir permissão, Sair do cliente), trilho, barra, conteúdo. A faixa é a primeira coisa que o leitor de tela encontra.</p></div><div><h3>O que é anunciado</h3><p>Faixa é região "Sessão de suporte da plataforma": "Você está em Órbita Condomínios como suporte da plataforma, só leitura, 48 min restantes". Aos 5 min do fim, aviso em região viva.</p></div><div><h3>Nome do que é só ícone</h3><p>Botões desabilitados têm dica "Só leitura nesta sessão" ligada por <code>aria-describedby</code>.</p></div></div>
 
-<section class="lc-ficha-tela" aria-label="Sobre pedido de permissão e fim de sessão">
-  <div class="lc-ficha-tela__nome"><b>Pedir permissão de alteração e fim da sessão</b><span>Modal na plataforma; aviso aos 5 minutos; tela de sessão encerrada.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre pedido de permissão e fim de sessão">
+  <div class="lc-sobre-tela__nome"><b>Pedir permissão de alteração e fim da sessão</b><span>Modal na plataforma; aviso aos 5 minutos; tela de sessão encerrada.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Alterar dado de cliente só com consentimento registrado, e nunca ficar dentro dele sem perceber.</p></div>
   <div><h2>Fluxo</h2><ol><li>"Pedir permissão": escolhe quem aprova (administradores do cliente) e escreve o que vai mudar.</li><li>O cliente aprova no sino dele; a faixa muda para "Pode alterar".</li><li>Aos 5 min do fim: alerta com "Pedir mais 30 min".</li><li>Fim: tela de sessão encerrada com resumo do que foi visto e alterado.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o Access Approval do Google Cloud e o "Grant account access" do Salesforce fazem o cliente aprovar; o aviso antes de expirar segue o critério 2.2.1 da WCAG (tempo ajustável).</p></div>

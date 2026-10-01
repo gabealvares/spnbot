@@ -259,3 +259,4 @@ button.cm-plaqueta.cm-sim-hover{border-color:var(--cm-texto-3)}
 .cm-portal-topo__nav a.cm-sim-hover{opacity:1}
 .cm-portal-topo .cm-ferramenta.cm-sim-hover{background:color-mix(in srgb,var(--cm-marca-sobre) 14%,transparent);color:inherit}
 .cm-portal-topo .cm-sim-foco{outline-color:var(--cm-marca-sobre)}
+.cm-entrada.cm-sim-foco,.cm-multi.cm-sim-foco,.cm-gatilho.cm-sim-foco:not(button){outline:none}

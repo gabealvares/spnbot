@@ -34,7 +34,8 @@
 .cad__pe{position:sticky;bottom:0;display:flex;align-items:center;gap:8px;padding:12px 0;margin-top:12px;border-top:1px solid var(--cm-filete);background:var(--cm-camada-1);flex-wrap:wrap}
 .cad__pe .cm-empurra{display:flex;gap:8px}
 .cad .cm-form-secao{grid-template-columns:minmax(180px,230px) 1fr;gap:12px 28px}
-.cad-revisao{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cad-revisao{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:start}
+@media (max-width:1180px){.cad-revisao{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* validação */
 .val-grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
 @media (max-width:1180px){ .ficha-grade{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} .ficha-grade>.ficha-col:last-child{grid-column:1/-1} }
@@ -619,11 +620,11 @@
         <section class="cm-cartao" aria-labelledby="fc-3"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo" id="fc-3">Síndica</h3></header><div class="cm-cartao__corpo"><dl class="cm-ficha">
           <div class="cm-ficha__linha" data-campo="sindica" data-rotulo="Nome da síndica"><dt>Nome</dt><dd>Marina Costa</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar nome da síndica"><i data-i="editar"></i></button></div>
           <div class="cm-ficha__linha" data-campo="tel" data-rotulo="WhatsApp" data-validar="tel" data-mascara="tel"><dt>WhatsApp</dt><dd>(41) 98765-4321</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar WhatsApp"><i data-i="editar"></i></button></div>
-          <div class="cm-ficha__linha" data-campo="email" data-rotulo="E-mail" data-validar="email"><dt>E-mail</dt><dd>marina.costa@parquedasaguas.com.br</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar e-mail"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-campo="email" data-rotulo="E-mail" data-validar="email"><dt>E-mail</dt><dd class="cm-quebra">marina.costa@parquedasaguas.com.br</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar e-mail"><i data-i="editar"></i></button></div>
           <div class="cm-ficha__linha" data-campo="mandato" data-rotulo="Mandato"><dt>Mandato</dt><dd>01/04/2024 até 31/03/2026</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar mandato"><i data-i="editar"></i></button></div>
         </dl></div></section>
         <section class="cm-cartao" aria-labelledby="fc-4"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo" id="fc-4">Contrato e cobrança</h3></header><div class="cm-cartao__corpo"><dl class="cm-ficha">
-          <div class="cm-ficha__linha"><dt>Contrato</dt><dd><span class="cm-plaqueta">CT-2024-0187</span></dd><span></span></div>
+          <div class="cm-ficha__linha is-leitura"><dt>Contrato</dt><dd>CT-2024-0187</dd><span></span></div>
           <div class="cm-ficha__linha" data-campo="mensalidade" data-rotulo="Mensalidade" data-mascara="moeda" data-validar="moeda"><dt>Mensalidade</dt><dd>R$ 4.380,00</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar mensalidade"><i data-i="editar"></i></button></div>
           <div class="cm-ficha__linha" data-campo="vencimento" data-rotulo="Vencimento" data-opcoes="Dia 5|Dia 10|Dia 15|Dia 20"><dt>Vencimento</dt><dd>Dia 10</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar vencimento"><i data-i="editar"></i></button></div>
           <div class="cm-ficha__linha" data-campo="responsavel" data-rotulo="Responsável no CS" data-opcoes="Rodrigo Mello|Juliana Reis|Beatriz Nogueira"><dt>Responsável</dt><dd>Rodrigo Mello</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar responsável no CS"><i data-i="editar"></i></button></div>
@@ -737,8 +738,8 @@
           </div></section>
       </div>
       <div data-etapa="6" hidden>
-        <section class="cm-form-secao"><div><h4 class="cm-form-secao__titulo">Revisão</h4><p class="cm-form-secao__desc">Confira antes de cadastrar. "Editar" volta à etapa.</p></div>
-          <div class="cad-revisao" data-revisao></div></section>
+        <section style="padding:20px 0 0"><h4 class="cm-form-secao__titulo">Revisão</h4><p class="cm-form-secao__desc" style="max-width:none">Confira antes de cadastrar. "Editar" volta à etapa.</p>
+          <div class="cad-revisao" data-revisao style="margin-top:12px"></div></section>
       </div>
 
       <div class="cad__pe">
@@ -749,3 +750,497 @@
   </div>
 </section>
 </section>
+
+<!-- ================================================================= VALIDAÇÃO -->
+<section class="doc-familia" id="validacao" aria-labelledby="f-val">
+<h2 id="f-val">A regra de validação</h2>
+<p>Quando o GACO confere, onde ele avisa e como ele fala. Vale para todo formulário do sistema interno e do portal.</p>
+<div class="doc-regras">
+  <div><h5>Quando conferir</h5><ul>
+    <li><b>Ao sair do campo:</b> formato (CPF, CEP, e-mail, data que não existe). Nunca enquanto a pessoa ainda digita.</li>
+    <li><b>Ao enviar:</b> obrigatórios e regras entre campos (fim antes do início).</li>
+    <li><b>Ao digitar, só para tirar o erro:</b> o erro já mostrado some assim que o valor fica certo.</li>
+    <li><b>No servidor, com giro no campo:</b> CNPJ já cadastrado, CEP, e-mail em uso.</li>
+  </ul></div>
+  <div><h5>Onde avisar</h5><ul>
+    <li>Embaixo do campo, com ícone, em vermelho, e a caixa com o filete vermelho.</li>
+    <li>Formulário com mais de 5 campos: resumo no topo, com um link para cada campo, e o foco vai para o resumo.</li>
+    <li>Formulário em etapas: a etapa fica vermelha com "2 campos com erro".</li>
+    <li>Edição no lugar: a barra de salvar fica vermelha e leva ao campo.</li>
+    <li>Erro de servidor que não é de um campo: alerta no topo; os dados continuam na tela.</li>
+  </ul></div>
+  <div><h5>Como falar</h5><ul>
+    <li>Diga o que fazer, não o que está errado: "Escreva o nome do condomínio", não "Campo obrigatório".</li>
+    <li>Diga quanto falta: "Falta 1 dígito. O CNPJ tem 14".</li>
+    <li>Diga o limite e de onde ele vem: "A multa vai até 2% (Código Civil, art. 1.336)".</li>
+    <li>Cite os dois campos na regra entre campos: "O fim (10/10) é antes do início (20/10)".</li>
+    <li>Sem "inválido", sem "erro", sem pedir desculpas, sem exclamação.</li>
+  </ul></div>
+  <div><h5>O que nunca fazer</h5><ul>
+    <li>Desabilitar o botão de enviar até tudo estar certo: a pessoa não sabe o que falta.</li>
+    <li>Apagar o que foi digitado por causa de um erro.</li>
+    <li>Erro só pela cor da borda.</li>
+    <li>Toast para erro de campo.</li>
+    <li>Validar o campo vazio no primeiro foco.</li>
+  </ul></div>
+</div>
+<div class="doc-rolar"><table class="doc-tab" style="margin-top:8px">
+  <thead><tr><th>Caso</th><th>Mensagem do GACO</th><th>Quando</th></tr></thead>
+  <tbody>
+    <tr><td>Obrigatório vazio</td><td>"Escreva o nome do condomínio" / "Escolha o tipo do chamado"</td><td>Ao enviar</td></tr>
+    <tr><td>Formato</td><td>"O CEP tem 8 números. Faltam 2."</td><td>Ao sair do campo</td></tr>
+    <tr><td>Dígito verificador</td><td>"O CPF tem 11 dígitos, mas o último não confere. Confira com o documento."</td><td>Ao sair do campo</td></tr>
+    <tr><td>Limite</td><td>"A multa vai até 2% (Código Civil, art. 1.336)."</td><td>Ao sair do campo</td></tr>
+    <tr><td>Entre campos</td><td>"O fim (10/10) é antes do início (20/10)."</td><td>Ao enviar</td></tr>
+    <tr><td>Duplicado</td><td>"Este CNPJ já é do Cond. Vila Serena." + "Abrir o cadastro"</td><td>No servidor, ao sair</td></tr>
+    <tr><td>Data impossível</td><td>"31/02/2025 não existe. Fevereiro de 2025 vai até 28."</td><td>Ao sair do campo</td></tr>
+    <tr><td>Regra do negócio</td><td>"Assembleia precisa de 8 dias de antecedência pela convenção. A primeira data possível é 09/10."</td><td>Ao sair do campo</td></tr>
+    <tr><td>Servidor caiu</td><td>"Não salvou: o servidor não respondeu. Suas alterações continuam aqui." + "Tentar de novo"</td><td>Ao salvar</td></tr>
+  </tbody>
+</table></div>
+
+<h4>Experimente: abrir chamado pelo portal</h4>
+<div class="val-grade">
+  <form class="cm-cartao" id="val-form" novalidate aria-labelledby="val-t" data-contexto="portal" style="border-color:var(--cm-filete-forte)">
+    <header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo" id="val-t">Abrir chamado</h3><span class="cm-t-legenda">Bl B Ap 1204</span></header>
+    <div class="cm-cartao__corpo cm-pilha">
+      <div class="cm-resumo-erros" tabindex="-1" role="alert" hidden data-resumo><div class="cm-resumo-erros__titulo"><i data-i="perigo"></i><span data-resumo-titulo></span></div><ul data-resumo-lista></ul></div>
+      <div class="cm-campo"><span class="cm-campo__rotulo" id="val-tipo-r">O que aconteceu? <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></span><div class="cm-opcoes-botao" role="group" aria-labelledby="val-tipo-r" id="val-tipo" data-obrigatorio-grupo data-msg="Escolha o que aconteceu"><button type="button" aria-pressed="false"><i data-i="vazamento"></i>Vazamento</button><button type="button" aria-pressed="false"><i data-i="barulho"></i>Barulho</button><button type="button" aria-pressed="false"><i data-i="elevador"></i>Elevador</button><button type="button" aria-pressed="false"><i data-i="mais-opcoes"></i>Outro</button></div></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="val-local">Onde? <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada cm-entrada--toque"><input id="val-local" required placeholder="Ex.: garagem, vaga 37" data-msg="Diga onde foi, como garagem, vaga 37"></div></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="val-desc">Conte o que viu <span class="cm-campo__obrigatorio" aria-hidden="true">*</span><span class="cm-campo__contagem" id="val-desc-c">0 de 500</span></label><textarea class="cm-area" id="val-desc" required maxlength="500" aria-describedby="val-desc-c" data-min="15" data-msg="Conte em pelo menos 15 letras o que aconteceu"></textarea></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="val-tel">WhatsApp para retorno</label><div class="cm-entrada cm-entrada--toque"><span class="cm-entrada__prefixo">+55</span><input id="val-tel" type="tel" placeholder="(41) 98765-4321" data-mascara="tel" data-validar="tel" value="(41) 9876"></div><p class="cm-campo__ajuda">Respondemos por lá também.</p></div>
+      <button class="cm-botao cm-botao--principal cm-botao--portal" type="submit">Enviar chamado</button>
+    </div>
+  </form>
+  <div class="cm-pilha">
+    <div class="doc-bloco"><h2>O que acontece</h2><ol><li>Apertar "Enviar chamado" com campos vazios: o resumo aparece no topo e recebe o foco; o leitor lê "Faltam 4 coisas para enviar".</li><li>Cada link do resumo leva ao campo.</li><li>Ao corrigir, o erro do campo some na hora e o resumo se atualiza.</li><li>O WhatsApp já vem incompleto: ele avisa ao sair do campo, sem esperar o envio.</li><li>Tudo certo: toast "Chamado enviado" e o formulário volta ao começo.</li></ol></div>
+    <p class="porque"><b>Resolvemos fazer assim porque</b> o GOV.UK testou o resumo de erros com links e foco no topo e mostrou que pessoas com leitor de tela e baixa visão terminam mais formulários; o Nielsen Norman Group recomenda validar ao sair do campo, e não a cada tecla. O botão nunca fica desabilitado, como pedem o GOV.UK e o Material. Enviamos para aprovação.</p>
+  </div>
+</div>
+</section>
+
+<!-- ================================================================= CASOS-LIMITE -->
+<section class="doc-familia" id="limites" aria-labelledby="f-lim">
+<h2 id="f-lim">Casos-limite</h2>
+<p>Rótulo comprido, valor que não cabe, opção renomeada, nenhuma e uma opção, e o plural das contagens.</p>
+<template class="doc-ex-t" data-titulo="<b>Texto longo e números grandes.</b> Rótulo quebra em duas linhas; valor longo rola dentro da caixa; na ficha, o valor quebra; moeda de oito dígitos cabe." data-layout="empilhado">
+<div class="doc-grade3">
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="li-1">Quantidade de vagas de garagem cobertas destinadas a visitantes</label><div class="cm-entrada"><input id="li-1" inputmode="numeric" value="12"></div></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="li-2">E-mail do conselho fiscal</label><div class="cm-entrada"><input id="li-2" type="email" value="conselho.fiscal.residencial.parquedasaguasclaras@administradoraalpha.com.br"></div></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="li-3">Fundo de reserva</label><div class="cm-entrada cm-entrada--moeda"><span class="cm-entrada__prefixo">R$</span><input id="li-3" value="12.480.000,00"></div></div>
+  <dl class="cm-ficha" style="grid-column:1/-1;max-width:520px"><div class="cm-ficha__linha"><dt>E-mail</dt><dd class="cm-quebra">conselho.fiscal.residencial.parquedasaguasclaras@administradoraalpha.com.br</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar e-mail"><i data-i="editar"></i></button></div></dl>
+</div>
+</template>
+<template class="doc-ex-t" data-titulo="<b>Renomeado, zero e uma opção.</b> Fornecedor que mudou de nome aparece com o nome novo e o antigo na descrição; combo sem resultado oferece criar; com uma opção só, a seleção vira texto com o motivo." data-layout="empilhado" data-codigo="nao">
+<div class="doc-grade3">
+  <div class="cm-lista-opcoes cm-flutuante" role="listbox" aria-label="Fornecedor"><div class="cm-lista-opcoes__busca"><div class="cm-entrada cm-entrada--p cm-entrada--busca"><i data-i="pesquisar"></i><input aria-label="Buscar fornecedor" value="hidro"></div></div><div class="cm-opcao is-ativa" role="option" aria-selected="true"><mark>Hidro</mark>tec Instalações<span class="cm-opcao__desc">antes Hidrotec Ltda.</span></div><div class="cm-opcao" role="option" aria-selected="false">Aqua<mark>hidro</mark> Bombas<span class="cm-opcao__desc">Curitiba</span></div></div>
+  <div class="cm-lista-opcoes cm-flutuante" role="listbox" aria-label="Pessoa"><div class="cm-lista-opcoes__busca"><div class="cm-entrada cm-entrada--p cm-entrada--busca"><i data-i="pesquisar"></i><input aria-label="Buscar pessoa" value="wellington"></div></div><div class="cm-lista-opcoes__vazio" role="status">Ninguém com "wellington" na equipe.</div><div class="cm-lista-opcoes__criar"><div class="cm-opcao" role="option"><i data-i="adicionar-pessoa"></i>Convidar Wellington</div></div></div>
+  <div class="cm-campo"><span class="cm-campo__rotulo">Conta bancária</span><p class="cm-t-corpo">Itaú, ag. 0412, cc 33190-2</p><p class="cm-campo__ajuda">É a única conta do condomínio. <a class="cm-link" href="#limites">Cadastrar outra</a></p></div>
+</div>
+</template>
+<template class="doc-ex-t" data-titulo="<b>Plural nas contagens.</b> Zero, um e muitos têm frase própria." data-layout="empilhado" data-codigo="nao">
+<div class="doc-grade3">
+  <div class="cm-pilha"><b class="cm-t-rotulo">Zero</b><span class="cm-campo__contagem" style="margin:0">Nenhum caractere restante</span><span class="cm-t-legenda">Nenhum arquivo enviado ainda</span><div class="cm-multi"><input aria-label="Etiquetas" placeholder="Sem etiquetas. Escreva e Enter"></div></div>
+  <div class="cm-pilha"><b class="cm-t-rotulo">Um</b><span class="cm-campo__contagem" style="margin:0">1 caractere restante</span><span class="cm-t-legenda">1 arquivo enviado</span><span class="cm-t-legenda">Falta 1 coisa nesta etapa</span></div>
+  <div class="cm-pilha"><b class="cm-t-rotulo">Muitos</b><span class="cm-campo__contagem" style="margin:0">138 caracteres restantes</span><span class="cm-t-legenda">12 arquivos enviados</span><div class="cm-multi"><span class="cm-etiqueta">Bloco A</span><span class="cm-etiqueta">Bloco B</span><span class="cm-multi__mais">+38</span><input aria-label="Blocos"></div></div>
+</div>
+</template>
+</section>
+
+<!-- ================================================================= A11Y -->
+<section class="doc-a11y" id="acessibilidade" aria-labelledby="f-a11y">
+<h2 id="f-a11y">Foco e leitores de tela nesta página</h2>
+<div class="doc-rolar"><table class="doc-tab">
+  <thead><tr><th>Onde</th><th>Ordem de foco</th><th>O que é anunciado</th></tr></thead>
+  <tbody>
+    <tr><td>Página</td><td>Pular para o conteúdo, moldura, páginas do sistema, seletor, índice, conteúdo</td><td>Como em 03-componentes.</td></tr>
+    <tr><td>Campo</td><td>Rótulo não recebe foco; a caixa recebe; ação interna (Consultar, Mostrar senha, Limpar) vem logo depois</td><td>"CNPJ, obrigatório, inválido, Falta 1 dígito. O CNPJ tem 14."</td></tr>
+    <tr><td>Novo contato</td><td>Nome, Papel, Unidade, WhatsApp, E-mail, caixa de marcar, Cancelar, Criar, seta do Criar, Fechar</td><td>"Novo contato, diálogo"; ao errar, "Escreva o nome do contato".</td></tr>
+    <tr><td>Ficha</td><td>Trilha, navegar, ações do cabeçalho, lápis de cada linha na ordem dos cartões (esquerda, depois direita), Editar seção, histórico, barra de salvar</td><td>"Editar telefone, botão"; ao confirmar, "Telefone alterado, 1 alteração não salva"; ao salvar, "2 alterações salvas".</td></tr>
+    <tr><td>Cadastro</td><td>Etapas (uma por Tab, a atual marcada), campos da etapa, Salvar rascunho, Anterior, Próximo</td><td>"Etapa 2 de 7, Endereço, atual"; erro: "Faltam 2 coisas nesta etapa", com o foco no resumo.</td></tr>
+    <tr><td>Abrir chamado</td><td>Opções em botão, Onde, Conte, WhatsApp, Enviar</td><td>Resumo "Faltam 3 coisas", com links.</td></tr>
+  </tbody>
+</table></div>
+<h4>Nome do que é só ícone</h4>
+<div class="doc-rolar"><table class="doc-tab"><thead><tr><th>Ícone</th><th>Nome acessível</th></tr></thead><tbody>
+  <tr><td><i data-i="calendario"></i> no campo de data</td><td>"Abrir calendário"</td></tr>
+  <tr><td><i data-i="ver"></i> / <i data-i="ocultar"></i></td><td>"Mostrar senha" / "Ocultar senha"</td></tr>
+  <tr><td><i data-i="fechar"></i> na busca, na etiqueta, no anexo</td><td>"Limpar busca", "Remover Manutenção", "Tirar video-garagem.mov"</td></tr>
+  <tr><td><i data-i="chevron-cima"></i> <i data-i="chevron-baixo"></i> no número</td><td>"Aumentar unidades", "Diminuir unidades"</td></tr>
+  <tr><td><i data-i="editar"></i> lápis da ficha</td><td>"Editar" + nome do campo</td></tr>
+  <tr><td><i data-i="bloquear"></i> cadeado</td><td>"Campo do sistema"</td></tr>
+  <tr><td><i data-i="negrito"></i> <i data-i="italico"></i> <i data-i="mencao"></i> <i data-i="hashtag"></i></td><td>"Negrito", "Itálico", "Mencionar pessoa", "Citar registro"</td></tr>
+</tbody></table></div>
+</section>
+
+</main>
+</div>
+
+<!-- ================================================================= DIÁLOGOS -->
+<template id="dlg-novo-contato">
+<div class="cm-sobreposicao">
+  <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="dn-t" data-novo-contato>
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="dn-t">Novo contato<span class="cm-modal__sub">Cond. Parque das Águas</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-doc-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo"><div class="cm-form-secao__campos" style="padding-top:4px">
+      <div class="cm-campo cm-col-6"><label class="cm-campo__rotulo" for="dn-n">Nome <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="dn-n" required autocomplete="off" data-msg="Escreva o nome do contato"></div></div>
+      <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="dn-p">Papel</label><div class="cm-selecao"><select id="dn-p"><option>Síndico</option><option>Subsíndico</option><option selected>Conselheiro</option><option>Morador</option><option>Funcionário</option></select><i data-i="chevron-baixo"></i></div></div>
+      <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="dn-u">Unidade <span class="cm-campo__opcional">opcional</span></label><div class="cm-entrada"><input id="dn-u" placeholder="Bl B Ap 1204"></div></div>
+      <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="dn-w">WhatsApp</label><div class="cm-entrada"><span class="cm-entrada__prefixo">+55</span><input id="dn-w" type="tel" placeholder="(41) 98765-4321" data-mascara="tel" data-validar="tel"></div></div>
+      <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="dn-e">E-mail</label><div class="cm-entrada"><input id="dn-e" type="email" placeholder="nome@email.com" data-validar="email"></div></div>
+      <label class="cm-marcar cm-col-6"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Mandar o link do portal pelo WhatsApp</span></label>
+    </div></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-doc-fechar>Cancelar</button><div class="cm-dividido" data-doc-ancora><button class="cm-botao cm-botao--principal" type="button" data-criar-contato>Criar <span class="cm-dividido__lembra">e fechar</span></button><button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de criar" data-doc-alterna><i data-i="chevron-baixo"></i></button>
+      <div class="cm-menu cm-flutuante doc-direita doc-acima" role="menu" aria-label="Formas de criar" data-doc-alvo hidden style="width:220px"><button class="cm-menu__item" role="menuitem" type="button" data-lembra="e fechar" data-toast="Próxima vez: Criar e fechar|info"><i data-i="marcar"></i><span>Criar e fechar</span><span class="cm-menu__atalho">Enter</span></button><button class="cm-menu__item" role="menuitem" type="button" data-lembra="e novo" data-toast="Próxima vez: Criar e novo|info"><i data-i="adicionar"></i><span>Criar e novo</span><span class="cm-menu__atalho">Ctrl Enter</span></button></div></div></div>
+  </div>
+</div>
+</template>
+<template id="dlg-sair">
+<div class="cm-sobreposicao">
+  <div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="ds-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="ds-t">Sair sem salvar?<span class="cm-modal__sub" data-sair-sub>Você tem alterações nesta ficha.</span></h2></div>
+    <div class="cm-modal__pe"><button class="cm-botao cm-botao--discreto" type="button" data-doc-fechar data-ficha-descartar>Descartar e sair</button><button class="cm-botao" type="button" data-doc-fechar autofocus>Continuar editando</button><button class="cm-botao cm-botao--principal" type="button" data-doc-fechar data-ficha-salvar>Salvar e sair</button></div>
+  </div>
+</div>
+</template>
+
+<script>
+/* ===== matrizes de estado dos campos ===== */
+(function(){
+var M_=window.DOC_MATRIZES=window.DOC_MATRIZES||{};
+var EST=['Vazio','Mouse por cima','Foco','Preenchido','Editado, sem salvar','Desabilitado','Carregando','Erro','Só leitura'];
+var uid=0;
+function NA(t){return {na:t}}
+function cel(s,i){
+  uid++;var id='mx'+uid,cls='cm-entrada'+(s.cls?' '+s.cls:''),val=s.valor,attrs='',msg='';
+  if(i===0||i===1) val='';
+  if(i===1) cls+=' cm-sim-hover';
+  if(i===2){cls+=' cm-sim-foco';val=s.digitando!=null?s.digitando:s.valor}
+  if(i===4){cls+=' is-editado';val=s.novo||s.valor;msg='<p class="cm-campo__antes">Antes: '+s.valor+'</p>'}
+  if(i===5) attrs+=' disabled';
+  if(i===6){if(s.semCarga) return NA(s.semCarga);cls+=' is-carregando';msg=s.carga?'<p class="cm-campo__ajuda">'+s.carga+'</p>':''}
+  if(i===7){attrs+=' aria-invalid="true" aria-describedby="'+id+'-e"';val=s.erroValor;msg='<p class="cm-campo__erro" id="'+id+'-e"><i data-i="perigo"></i>'+s.erroMsg+'</p>'}
+  if(i===8){attrs+=' readonly';msg='<p class="cm-campo__ajuda">'+(s.leitura||'Quem altera: o financeiro.')+'</p>'}
+  return '<div class="cm-campo ex-matriz-campo"><label class="cm-campo__rotulo" for="'+id+'">'+s.rot+'</label><div class="'+cls+'">'+(s.antes||'')+'<input id="'+id+'"'+(s.tipo?' type="'+s.tipo+'"':'')+(s.im?' inputmode="'+s.im+'"':'')+' placeholder="'+(s.ph||'')+'" value="'+val+'"'+attrs+'>'+(s.depois||'')+'</div>'+msg+'</div>';
+}
+function MC(specs){return docMatriz(specs.map(function(s){return s.col}),EST.map(function(e,i){return [e,specs.map(function(s){return cel(s,i)})]}))}
+M_.texto=function(){return MC([
+  {col:'Texto',rot:'Nome completo',valor:'Marina Costa',novo:'Marina Costa Albuquerque',digitando:'Marina C',erroValor:'',erroMsg:'Escreva o nome da síndica.',semCarga:'Texto livre não consulta nada.',leitura:'Vem do cadastro da pessoa.'},
+  {col:'E-mail',rot:'E-mail',tipo:'email',ph:'nome@email.com',valor:'marina@parquedasaguas.com.br',novo:'sindica@parquedasaguas.com.br',digitando:'marina@',erroValor:'marina.parquedasaguas.com.br',erroMsg:'Falta o @ no e-mail.',carga:'Conferindo se já está em uso',leitura:'É o login dela: só ela muda.'},
+  {col:'Telefone',rot:'WhatsApp',tipo:'tel',antes:'<span class="cm-entrada__prefixo">+55</span>',ph:'(41) 98765-4321',valor:'(41) 98765-4321',novo:'(41) 99812-3344',digitando:'(41) 987',erroValor:'(41) 9876-543',erroMsg:'Faltam 2 dígitos. Celular tem 11 com o DDD.',carga:'Conferindo se o número tem WhatsApp',leitura:'Confirmado pelo WhatsApp em 12/03.'}])};
+M_.area=function(){
+  function A(i){uid++;var id='ma'+uid,v='Tem água pingando do teto da garagem, em cima da vaga 37, desde ontem à noite.',a='',m='',st='';
+    if(i<2)v='';if(i===1)st=' cm-sim-hover';if(i===2)st=' cm-sim-foco';if(i===4)st+='" style="background:var(--cm-editado)';if(i===5)a=' disabled';if(i===6)return NA('Área não consulta nada.');
+    if(i===7){a=' aria-invalid="true" aria-describedby="'+id+'-e"';v='Vazou';m='<p class="cm-campo__erro" id="'+id+'-e"><i data-i="perigo"></i>Conte em pelo menos 15 letras o que aconteceu.</p>'}
+    if(i===8){a=' readonly';m='<p class="cm-campo__ajuda">Descrição de quem abriu. Não muda.</p>'}
+    return '<div class="cm-campo" style="width:420px;max-width:100%"><label class="cm-campo__rotulo" for="'+id+'">Descrição<span class="cm-campo__contagem">'+v.length+' de 500</span></label><textarea class="cm-area'+st+'" id="'+id+'" rows="3"'+a+' placeholder="O que aconteceu, onde e desde quando">'+v+'</textarea>'+m+'</div>'}
+  return docMatriz(['Área de texto'],EST.map(function(e,i){return [e,[A(i)]]}))};
+M_.numero=function(){return MC([
+  {col:'Número',rot:'Unidades',cls:'cm-entrada--numero',im:'numeric',depois:'<span class="cm-entrada__passo"><button type="button" aria-label="Aumentar" tabindex="-1"><i data-i="chevron-cima"></i></button><button type="button" aria-label="Diminuir" tabindex="-1"><i data-i="chevron-baixo"></i></button></span>',valor:'312',novo:'320',digitando:'31',erroValor:'0',erroMsg:'O condomínio tem pelo menos 1 unidade.',semCarga:'Não consulta nada.',leitura:'Soma das unidades cadastradas.'},
+  {col:'Moeda',rot:'Mensalidade',cls:'cm-entrada--moeda',im:'decimal',antes:'<span class="cm-entrada__prefixo">R$</span>',valor:'4.380,00',novo:'4.620,00',digitando:'4.38',erroValor:'0,00',erroMsg:'A mensalidade precisa ser maior que zero.',carga:'Calculando o rateio',leitura:'Muda pelo aditivo do contrato.'},
+  {col:'Porcentagem',rot:'Multa',cls:'cm-entrada--porcentagem',im:'decimal',depois:'<span class="cm-entrada__sufixo">%</span>',valor:'2,00',novo:'1,50',digitando:'2',erroValor:'10,00',erroMsg:'A multa vai até 2% (Código Civil, art. 1.336).',semCarga:'Não consulta nada.',leitura:'Definida na convenção.'}])};
+M_.data=function(){return MC([
+  {col:'Data',rot:'Vistoria',antes:'<i data-i="calendario"></i>',im:'numeric',ph:'dd/mm/aaaa',valor:'02/10/2025',novo:'09/10/2025',digitando:'02/1',erroValor:'31/02/2025',erroMsg:'31/02/2025 não existe. Fevereiro de 2025 vai até 28.',carga:'Conferindo a agenda da Hidrotec',leitura:'Marcada pela Hidrotec.'},
+  {col:'Data e hora',rot:'Assembleia',antes:'<i data-i="calendario"></i>',im:'numeric',ph:'dd/mm/aaaa hh:mm',valor:'23/10/2025 19:30',novo:'30/10/2025 19:30',digitando:'23/10/2025 1',erroValor:'03/10/2025 19:30',erroMsg:'A convenção pede 8 dias de antecedência. A primeira data possível é 09/10.',carga:'Conferindo se o salão está livre',leitura:'O edital já foi publicado.'},
+  {col:'Hora',rot:'Abre às',antes:'<i data-i="pendente"></i>',im:'numeric',ph:'hh:mm',valor:'07:00',novo:'06:30',digitando:'07:',erroValor:'25:00',erroMsg:'A hora vai de 00:00 a 23:59.',semCarga:'Não consulta nada.',leitura:'Horário do regimento.'}])};
+M_.documento=function(){return MC([
+  {col:'CPF',rot:'CPF da síndica',im:'numeric',ph:'000.000.000-00',valor:'529.982.247-25',novo:'111.444.777-35',digitando:'529.982.2',erroValor:'529.982.247-26',erroMsg:'O CPF tem 11 dígitos, mas o último não confere. Confira com o documento.',carga:'Conferindo na Receita',leitura:'Só a própria síndica altera.'},
+  {col:'CNPJ',rot:'CNPJ',im:'numeric',ph:'00.000.000/0000-00',valor:'12.345.678/0001-95',novo:'12.345.678/0002-76',digitando:'12.345.6',erroValor:'12.345.678/0001-9',erroMsg:'Falta 1 dígito. O CNPJ tem 14.',carga:'Buscando a razão social',leitura:'Confirmado na Receita em 12/03/2024.'},
+  {col:'CEP',rot:'CEP',im:'numeric',ph:'00000-000',valor:'80240-000',novo:'80420-090',digitando:'8024',erroValor:'80240-00',erroMsg:'O CEP tem 8 números. Falta 1.',carga:'Buscando o endereço',leitura:'Endereço do contrato.'}])};
+M_.senha=function(){
+  var linhas=EST.map(function(e,i){return [e,[cel({rot:'Nova senha',tipo:'password',cls:'cm-entrada--senha',depois:'<button class="cm-entrada__acao" type="button" aria-label="Mostrar senha" tabindex="-1"><i data-i="ver"></i></button>',valor:'parque das aguas 2025',novo:'portaria bloco b 1204',digitando:'parque d',erroValor:'agua',erroMsg:'Use 10 caracteres ou mais.',semCarga:'Não consulta nada.',leitura:'Senha não aparece em leitura: use "Trocar senha".'},i)]]});
+  [['Força: fraca',1,'Fraca. Use 10 caracteres ou mais.'],['Força: razoável',2,'Razoável. Mais alguns caracteres a deixam boa.'],['Força: boa',3,'Boa.'],['Força: forte',4,'Forte.']].forEach(function(f){linhas.push([f[0],['<div class="ex-matriz-campo"><div class="cm-forca" data-nivel="'+f[1]+'" aria-hidden="true"><i></i><i></i><i></i><i></i></div><p class="cm-campo__ajuda">'+f[2]+'</p></div>']])});
+  return docMatriz(['Senha'],linhas)};
+M_.selecao=function(){
+  function S(i){uid++;var id='ms'+uid,a='',m='',w='';
+    if(i===1)w=' cm-sim-hover';if(i===2)w=' cm-sim-foco';if(i===5)a=' disabled';if(i===6)return NA('Lista fixa: nada a carregar. Lista que carrega é combo.');
+    if(i===7){a=' aria-invalid="true" aria-describedby="'+id+'-e"';m='<p class="cm-campo__erro" id="'+id+'-e"><i data-i="perigo"></i>Escolha a prioridade.</p>'}
+    if(i===8)return '<div class="cm-campo ex-matriz-campo"><span class="cm-campo__rotulo">Prioridade</span><div class="cm-entrada is-leitura"><span>Alta</span></div><p class="cm-campo__ajuda">Definida pelo SLA do contrato.</p></div>';
+    var op=(i===0||i===1||i===7)?'<option value="" selected>Escolha</option>':'';
+    var sel=i===4?' style="background:var(--cm-editado)"':'';
+    if(i===4)m='<p class="cm-campo__antes">Antes: Normal</p>';
+    return '<div class="cm-campo ex-matriz-campo"><label class="cm-campo__rotulo" for="'+id+'">Prioridade</label><div class="cm-selecao"><select id="'+id+'" class="'+w.trim()+'"'+a+sel+'>'+op+'<option'+(op?'':' selected')+'>Alta</option><option>Normal</option><option>Baixa</option></select><i data-i="chevron-baixo"></i></div>'+m+'</div>'}
+  return docMatriz(['Seleção'],EST.map(function(e,i){return [e,[S(i)]]}))};
+M_.combo=function(){
+  function G(i){var a='',v='<span class="cm-avatar cm-avatar--p cm-avatar--2">BN</span><span class="cm-gatilho__valor">Beatriz Nogueira</span>',m='',w='';
+    if(i<2)v='<span class="cm-gatilho__valor cm-gatilho__vazio">Escolha uma pessoa</span>';
+    if(i===1)w=' cm-sim-hover';if(i===2)w=' cm-sim-foco';if(i===3)a=' aria-expanded="true"';if(i===5)a=' disabled';
+    if(i===4)w+='" style="background:var(--cm-editado)';
+    if(i===6)return '<button class="cm-gatilho ex-matriz-campo" type="button" aria-busy="true"><span class="cm-gatilho__valor cm-carregando">Carregando a equipe</span><i data-i="chevron-baixo"></i></button>';
+    if(i===7){a=' aria-invalid="true"';v='<span class="cm-gatilho__valor cm-gatilho__vazio">Escolha uma pessoa</span>';m='<p class="cm-campo__erro"><i data-i="perigo"></i>Escolha quem responde pelo chamado.</p>'}
+    if(i===8)return '<div class="cm-entrada is-leitura ex-matriz-campo"><span class="cm-avatar cm-avatar--p cm-avatar--2">BN</span>Beatriz Nogueira</div><p class="cm-campo__ajuda">Atribuído pela fila.</p>';
+    return '<div class="ex-matriz-campo"><button class="cm-gatilho'+w+'" type="button" aria-haspopup="listbox"'+a+'>'+v+'<i data-i="chevron-baixo"></i></button>'+(i===4?'<p class="cm-campo__antes">Antes: Diego Martins</p>':'')+m+(i===3?'<span class="doc-na">lista aberta (acima)</span>':'')+'</div>'}
+  return docMatriz(['Gatilho do combo'],EST.map(function(e,i){return [e,[G(i)]]}))};
+M_.multi=function(){
+  function U(i){var c='cm-multi',t='<span class="cm-etiqueta cm-etiqueta--1">Manutenção</span><span class="cm-etiqueta cm-etiqueta--4">Garagem</span>',a='',m='';
+    if(i<2)t='';if(i===1)c+=' cm-sim-hover';if(i===2)c+=' cm-sim-foco';
+    if(i===4){c+='" style="background:var(--cm-editado)';t+='<span class="cm-etiqueta cm-etiqueta--2">Urgente</span>';m='<p class="cm-campo__antes">Antes: Manutenção, Garagem</p>'}
+    if(i===5){c+='" style="background:var(--cm-fundo-desabilitado);border-color:var(--cm-filete)';a=' disabled'}
+    if(i===6)return NA('Sugestões carregam na lista, não na caixa.');
+    if(i===7){c+=' is-erro';m='<p class="cm-campo__erro"><i data-i="perigo"></i>Escolha pelo menos uma etiqueta.</p>';t=''}
+    if(i===8)return '<div class="ex-matriz-campo cm-linha" style="gap:4px;flex-wrap:wrap"><span class="cm-etiqueta cm-etiqueta--1">Manutenção</span><span class="cm-etiqueta cm-etiqueta--4">Garagem</span></div><p class="cm-campo__ajuda">Etiquetas da automação.</p>';
+    return '<div class="ex-matriz-campo"><div class="'+c+'">'+t+'<input aria-label="Etiquetas" placeholder="Acrescentar"'+a+'></div>'+m+'</div>'}
+  return docMatriz(['Multisseleção'],EST.map(function(e,i){return [e,[U(i)]]}))};
+M_.marcar=function(){
+  var R=['Desmarcado','Mouse por cima','Foco','Marcado','Indeterminado','Desabilitado','Desabilitado e marcado','Erro','Só leitura'];
+  function C(tipo,i){var inp='',cls='',lab='',ex='';
+    var chk=(i===3||i===6)?' checked':'',dis=(i===5||i===6)?' disabled':'',sim=i===1?' cm-sim-hover':'',foc=i===2?' class="cm-sim-foco"':'';
+    if(tipo==='m'){if(i===4)return '<label class="cm-marcar"><input type="checkbox" data-indeterminado aria-checked="mixed"><span class="cm-marcar__caixa"></span><span>Todos os blocos</span></label>';
+      if(i===7)return '<label class="cm-marcar"><input type="checkbox" aria-invalid="true"><span class="cm-marcar__caixa"></span><span>Li e aceito o regimento</span></label><p class="cm-campo__erro"><i data-i="perigo"></i>Aceite o regimento para reservar.</p>';
+      if(i===8)return '<span class="cm-linha" style="gap:6px"><i data-i="marcar"></i>Avisar a síndica: sim</span>';
+      return '<label class="cm-marcar'+sim+'"><input type="checkbox"'+chk+dis+foc+'><span class="cm-marcar__caixa"></span><span>Avisar a síndica</span></label>'}
+    if(tipo==='t'){if(i===4)return {na:'Tarefa não tem meio-termo.'};if(i===7)return {na:'Tarefa não tem erro.'};if(i===8)return '<span class="cm-texto-3"><s>Acionar manutenção</s>, feita por Beatriz</span>';
+      return '<label class="cm-marcar cm-marcar--tarefa'+sim+'"><input type="checkbox"'+chk+dis+foc+'><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Acionar manutenção</span></label>'}
+    if(tipo==='r'){if(i===4)return {na:'Rádio não tem meio-termo.'};uid++;
+      if(i===7)return '<label class="cm-radio"><input type="radio" name="rr'+uid+'" aria-invalid="true"><span class="cm-radio__bola" style="border-color:var(--cm-perigo-texto)"></span><span>Corretiva</span></label><p class="cm-campo__erro"><i data-i="perigo"></i>Escolha o tipo.</p>';
+      if(i===8)return '<span>Tipo: Corretiva</span>';
+      return '<label class="cm-radio'+sim+'"><input type="radio" name="rr'+uid+'"'+chk+dis+foc+'><span class="cm-radio__bola"></span><span>Corretiva</span></label>'}
+    if(i===4)return {na:'Interruptor não tem meio-termo.'};if(i===7)return {na:'Liga na hora: se falhar, volta e avisa por toast.'};if(i===8)return '<span>Mostrar no portal: <b>ligado</b></span>';
+    return '<label class="cm-interruptor'+sim+'"><input type="checkbox" role="switch"'+chk+dis+foc+'><span class="cm-interruptor__trilho"></span><span>Mostrar no portal</span></label>'}
+  return docMatriz(['Caixa de marcar','Tarefa','Rádio','Interruptor'],R.map(function(e,i){return [e,['m','t','r','s'].map(function(t){return C(t,i)})]}))};
+document.addEventListener('doc:pronto',function(){document.querySelectorAll('[data-indeterminado]').forEach(function(x){x.indeterminate=true})});
+})();
+
+/* ===== máscaras e validação ===== */
+(function(){
+var d=document;
+function dig(s){return String(s||'').replace(/\D/g,'')}
+function fmt(v,p){var r='',j=0;for(var i=0;i<p.length&&j<v.length;i++){if(p[i]==='9'){r+=v[j++]}else{r+=p[i]}}return r}
+var MASC={cpf:function(v){return fmt(dig(v).slice(0,11),'999.999.999-99')},cnpj:function(v){return fmt(dig(v).slice(0,14),'99.999.999/9999-99')},
+  doc:function(v){var x=dig(v);return x.length>11?MASC.cnpj(x):MASC.cpf(x)},cep:function(v){return fmt(dig(v).slice(0,8),'99999-999')},
+  tel:function(v){var x=dig(v).slice(0,11);return x.length>10?fmt(x,'(99) 99999-9999'):fmt(x,'(99) 9999-9999')},
+  data:function(v){return fmt(dig(v).slice(0,8),'99/99/9999')},datahora:function(v){return fmt(dig(v).slice(0,12),'99/99/9999 99:99')},hora:function(v){return fmt(dig(v).slice(0,4),'99:99')}};
+function moeda(v){var s=String(v).trim();if(!s)return '';if(s.indexOf(',')>-1)s=s.replace(/\./g,'').replace(',','.');else s=s.replace(/\./g,'');var n=parseFloat(s);if(isNaN(n))return v;return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}
+window.cmMoeda=moeda;
+function cpfOk(c){if(/^(\d)\1+$/.test(c))return false;var s=0,i;for(i=0;i<9;i++)s+=+c[i]*(10-i);var r=(s*10)%11%10;if(r!==+c[9])return false;s=0;for(i=0;i<10;i++)s+=+c[i]*(11-i);r=(s*10)%11%10;return r===+c[10]}
+function cnpjOk(c){if(/^(\d)\1+$/.test(c))return false;function dv(n){var p=n===12?[5,4,3,2,9,8,7,6,5,4,3,2]:[6,5,4,3,2,9,8,7,6,5,4,3,2],s=0;for(var i=0;i<n;i++)s+=+c[i]*p[i];var r=s%11;return r<2?0:11-r}return dv(12)===+c[12]&&dv(13)===+c[13]}
+function falta(n,total,nome){return (n===1?'Falta 1 dígito':'Faltam '+n+' dígitos')+'. '+nome+' tem '+total+'.'}
+var VAL={
+  cpf:function(v){var x=dig(v);if(x.length<11)return falta(11-x.length,11,'O CPF');return cpfOk(x)?'':'O CPF tem 11 dígitos, mas o último não confere. Confira com o documento.'},
+  cnpj:function(v){var x=dig(v);if(x.length<14)return falta(14-x.length,14,'O CNPJ');return cnpjOk(x)?'':'O CNPJ tem 14 dígitos, mas os dois últimos não conferem. Confira no cartão do CNPJ.'},
+  doc:function(v){var x=dig(v);if(x.length===11)return VAL.cpf(x);if(x.length===14)return VAL.cnpj(x);return x.length<11?'Faltam '+(11-x.length)+' para um CPF (11) ou '+(14-x.length)+' para um CNPJ (14).':'Faltam '+(14-x.length)+' para um CNPJ (14).'},
+  cep:function(v){var x=dig(v);return x.length<8?'O CEP tem 8 números. '+(8-x.length===1?'Falta 1.':'Faltam '+(8-x.length)+'.'):''},
+  tel:function(v){var x=dig(v);if(x.length<10){var f=10-x.length;return (f===1?'Falta 1 dígito':'Faltam '+f+' dígitos')+'. Telefone tem 10 com o DDD; celular, 11.'}return ''},
+  email:function(v){v=String(v).trim();if(v.indexOf('@')<0)return 'Falta o @ no e-mail.';if(!/@[^@\s]+\.[^@\s]{2,}$/.test(v))return 'O e-mail termina sem o domínio, como .com.br.';return ''},
+  numero:function(v){return /^\d+$/.test(dig(v))&&+dig(v)>0?'':'Use um número maior que zero.'},
+  moeda:function(v){var n=parseFloat(String(v).replace(/[^\d,]/g,'').replace(',','.'));return n>0?'':'O valor precisa ser maior que zero.'},
+  multa:function(v){var n=parseFloat(String(v).replace(',','.'));return n>2?'A multa vai até 2% (Código Civil, art. 1.336).':''}
+};
+window.cmValidar=VAL;window.cmMascara=MASC;
+function setErro(el,msg){
+  var campo=el.closest('.cm-campo')||el.parentNode;var old=campo.querySelector('.cm-campo__erro[data-gerado]');
+  var desc=(el.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean);
+  if(!msg){if(old){desc=desc.filter(function(x){return x!==old.id});old.remove()}el.removeAttribute('aria-invalid');if(desc.length)el.setAttribute('aria-describedby',desc.join(' '));else el.removeAttribute('aria-describedby');return}
+  if(!old){old=d.createElement('p');old.className='cm-campo__erro';old.setAttribute('data-gerado','');old.id=(el.id||'c'+Math.random().toString(36).slice(2,8))+'-erro';campo.appendChild(old)}
+  old.innerHTML=(window.cmIcone?cmIcone('perigo'):'')+msg;
+  if(el.matches('input,textarea,select'))el.setAttribute('aria-invalid','true');
+  if(desc.indexOf(old.id)<0){desc.push(old.id);el.setAttribute('aria-describedby',desc.join(' '))}
+}
+window.cmErro=setErro;
+d.addEventListener('input',function(e){
+  var t=e.target;
+  if(t.matches&&t.matches('[data-mascara]')&&MASC[t.getAttribute('data-mascara')]){var m=MASC[t.getAttribute('data-mascara')];var antes=t.value;var depois=m(antes);if(depois!==antes){t.value=depois}}
+  if(t.matches&&t.matches('[data-validar],[required]')&&t.getAttribute('aria-invalid')==='true'){
+    var k=t.getAttribute('data-validar');var msg=k&&VAL[k]&&t.value?VAL[k](t.value):(t.hasAttribute('required')&&!t.value.trim()?t.getAttribute('data-msg'):'');
+    if(t.dataset.min&&t.value.trim().length<+t.dataset.min)msg=t.getAttribute('data-msg');
+    if(!msg){setErro(t,'');d.dispatchEvent(new CustomEvent('cm:corrigido',{detail:t}))}
+  }
+  if(t.matches&&t.matches('[data-cep]')&&dig(t.value).length===8&&!t._consultado){t._consultado=dig(t.value);consultar(t)}
+  if(t.matches&&t.matches('[data-forca]'))forca(t);
+  if(t.id==='val-desc'){var c=d.getElementById('val-desc-c');if(c)c.textContent=t.value.length+' de 500'}
+});
+d.addEventListener('focusout',function(e){
+  var t=e.target;if(!t.matches)return;
+  if(t.matches('[data-mascara="moeda"]')&&t.value)t.value=moeda(t.value);
+  if(t.matches('[data-validar]')){if(t.closest('.cm-ficha__linha'))return;var k=t.getAttribute('data-validar');if(!t.value.trim()){if(!t.hasAttribute('required'))setErro(t,'');return}setErro(t,VAL[k]?VAL[k](t.value):'')}
+});
+/* número com passo */
+d.addEventListener('click',function(e){var b=e.target.closest('[data-passo-mais],[data-passo-menos]');if(!b)return;var inp=b.closest('.cm-entrada').querySelector('input');var n=parseInt(dig(inp.value)||'0',10)+(b.hasAttribute('data-passo-mais')?1:-1);inp.value=Math.max(0,n);inp.dispatchEvent(new Event('input',{bubbles:true}))});
+/* CEP */
+var CEPS={'80240000':['Av. Sete de Setembro','Batel','Curitiba, PR'],'01310100':['Av. Paulista','Bela Vista','São Paulo, SP'],'30130010':['Av. Afonso Pena','Centro','Belo Horizonte, MG'],'80420090':['R. Comendador Araújo','Centro','Curitiba, PR']};
+function consultar(inp){
+  var ent=inp.closest('.cm-entrada'),campo=inp.closest('.cm-campo'),grupo=inp.closest('[data-cep-grupo]');var said=campo.querySelector('[data-cep-saida]');var x=dig(inp.value);
+  if(x.length<8){setErro(inp,VAL.cep(inp.value));return}
+  setErro(inp,'');ent.classList.add('is-carregando');if(said){said.className='cm-campo__ajuda';said.setAttribute('role','status');said.textContent='Buscando o endereço'}
+  setTimeout(function(){ent.classList.remove('is-carregando');var r=CEPS[x]||(x==='00000000'?null:['R. das Palmeiras','Centro','Curitiba, PR']);
+    if(!r){if(said)said.textContent='';setErro(inp,'Os Correios não acharam este CEP. Confira ou preencha o endereço à mão.');return}
+    if(said){said.className='cm-cep-resultado';said.innerHTML=(window.cmIcone?cmIcone('sucesso'):'')+'Endereço preenchido: '+r.join(', ')}
+    if(grupo){var m={rua:r[0],bairro:r[1],cidade:r[2]};grupo.querySelectorAll('[data-cep-campo]').forEach(function(f){f.value=m[f.getAttribute('data-cep-campo')]||f.value;setErro(f,'')});
+      var vazio=[].slice.call(grupo.querySelectorAll('input')).filter(function(f){return !f.value&&!f.hasAttribute('data-cep-campo')&&!f.hasAttribute('data-cep')})[0];if(vazio)vazio.focus()}
+  },800);
+}
+window.cmConsultarCep=consultar;
+d.addEventListener('click',function(e){var b=e.target.closest('[data-cep-consultar]');if(!b)return;var inp=b.closest('.cm-entrada').querySelector('input');inp._consultado=dig(inp.value);consultar(inp)});
+/* força da senha */
+function forca(inp){var v=inp.value,n=v.length<8?1:v.length<10?2:v.length<14?3:4;if(!v)n=0;if(n>1&&/^(.)\1+$/.test(v))n=1;
+  var campo=inp.closest('.cm-campo');var f=campo.querySelector('.cm-forca');if(f)f.setAttribute('data-nivel',n);
+  var a=campo.querySelector('.cm-campo__ajuda');if(a)a.textContent=['Use 10 caracteres ou mais; uma frase funciona bem.','Fraca. Use 10 caracteres ou mais; uma frase funciona bem.','Razoável. Mais alguns caracteres a deixam boa.','Boa.','Forte.'][n]}
+/* combo */
+function norm(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()}
+d.addEventListener('input',function(e){var t=e.target;if(!t.matches('[data-combo-busca]'))return;var lista=t.closest('.cm-lista-opcoes');var q=norm(t.value),n=0,primeiro=null;
+  lista.querySelectorAll('.cm-opcao').forEach(function(o){if(o.closest('.cm-lista-opcoes__criar'))return;var ok=norm(o.textContent).indexOf(q)>-1;o.hidden=!ok;o.classList.remove('is-ativa');if(ok){n++;if(!primeiro)primeiro=o}});
+  if(primeiro)primeiro.classList.add('is-ativa');
+  lista.querySelectorAll('.cm-lista-opcoes__grupo').forEach(function(g){var x=g.nextElementSibling,vis=false;while(x&&x.classList.contains('cm-opcao')){if(!x.hidden)vis=true;x=x.nextElementSibling}g.hidden=!vis});
+  var v=lista.querySelector('[data-combo-vazio]');if(v){v.hidden=n>0;if(!n)v.textContent='Ninguém com "'+t.value+'" na equipe.'}});
+function escolher(o){var c=o.closest('[data-combo]');if(!c||o.closest('.cm-lista-opcoes__criar'))return false;
+  c.querySelectorAll('[role=option]').forEach(function(x){x.setAttribute('aria-selected',String(x===o))});
+  var g=c.querySelector('.cm-gatilho');g.querySelector('.cm-gatilho__valor').textContent=o.childNodes[1]?o.childNodes[1].textContent.trim():o.textContent.trim();
+  var av=g.querySelector('[data-combo-av]');if(av&&o.dataset.av){av.textContent=o.dataset.av;av.className='cm-avatar cm-avatar--p '+(o.querySelector('.cm-avatar').className.match(/cm-avatar--\d/)||[''])[0]}
+  window.docFecharTudo&&docFecharTudo();g.focus();return true}
+d.addEventListener('click',function(e){var o=e.target.closest('[data-combo] .cm-opcao[role=option]');if(o)escolher(o)});
+d.addEventListener('keydown',function(e){var t=e.target;if(!t.matches('[data-combo-busca]'))return;var l=t.closest('.cm-lista-opcoes');var ops=[].slice.call(l.querySelectorAll('.cm-opcao[role=option]')).filter(function(o){return !o.hidden});var a=l.querySelector('.cm-opcao.is-ativa'),i=ops.indexOf(a);
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){i=e.key==='ArrowDown'?Math.min(ops.length-1,i+1):Math.max(0,i-1);ops.forEach(function(o){o.classList.remove('is-ativa')});if(ops[i])ops[i].classList.add('is-ativa');e.preventDefault()}
+  if(e.key==='Enter'&&a){e.preventDefault();if(!escolher(a))a.click()}});
+/* multisseleção */
+d.addEventListener('keydown',function(e){var t=e.target;if(!t.matches('[data-multi]'))return;
+  if(e.key==='Enter'&&t.value.trim()){e.preventDefault();var s=d.createElement('span');s.className='cm-etiqueta';var v=t.value.trim();s.innerHTML='';s.appendChild(d.createTextNode(v));var b=d.createElement('button');b.type='button';b.className='cm-etiqueta__remover';b.setAttribute('aria-label','Remover '+v);b.innerHTML=window.cmIcone?cmIcone('fechar'):'';s.appendChild(b);t.parentNode.insertBefore(s,t);t.value='';t.dispatchEvent(new Event('change',{bubbles:true}))}
+  if(e.key==='Backspace'&&!t.value){var p=t.previousElementSibling;if(p&&p.classList.contains('cm-etiqueta')){p.remove();t.dispatchEvent(new Event('change',{bubbles:true}))}}});
+d.addEventListener('click',function(e){if(e.target.closest('.cm-multi')&&!e.target.closest('button')){var i=e.target.closest('.cm-multi').querySelector('input');if(i&&e.target!==i)i.focus()}});
+/* editor: @ e # */
+function fecharListas(ed){ed.querySelectorAll('[data-editor-lista]').forEach(function(l){l.hidden=true})}
+d.addEventListener('input',function(e){var a=e.target.closest&&e.target.closest('.cm-editor__area');if(!a)return;var ed=a.closest('[data-editor]');if(!ed)return;fecharListas(ed);
+  var s=getSelection();if(!s.rangeCount)return;var r=s.getRangeAt(0);var n=r.startContainer,o=r.startOffset;if(n.nodeType!==3||!o)return;var ch=n.textContent[o-1];
+  if(ch==='@'||ch==='#'){var l=ed.querySelector('[data-editor-lista="'+ch+'"]');if(!l)return;ed._gat={n:n,o:o};var rr=r.getBoundingClientRect(),eb=ed.getBoundingClientRect();l.style.left=Math.max(8,Math.min(rr.left-eb.left,eb.width-l.offsetWidth-8||0))+'px';l.style.top=(rr.bottom-eb.top+6)+'px';l.hidden=false}});
+d.addEventListener('keydown',function(e){var a=e.target.closest&&e.target.closest('.cm-editor__area');if(!a)return;var ed=a.closest('[data-editor]');var l=ed&&[].slice.call(ed.querySelectorAll('[data-editor-lista]')).filter(function(x){return !x.hidden})[0];if(!l)return;
+  var ops=[].slice.call(l.querySelectorAll('.cm-opcao')),at=l.querySelector('.is-ativa'),i=ops.indexOf(at);
+  if(e.key==='Escape'){fecharListas(ed);e.stopPropagation()}
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();i=(i+(e.key==='ArrowDown'?1:-1)+ops.length)%ops.length;ops.forEach(function(x){x.classList.remove('is-ativa')});ops[i].classList.add('is-ativa')}
+  if(e.key==='Enter'&&at){e.preventDefault();inserir(ed,at)}},true);
+function inserir(ed,op){var g=ed._gat;if(!g)return;var r=d.createRange();try{r.setStart(g.n,g.o-1);r.setEnd(g.n,g.o)}catch(_){return}var ch=g.n.textContent[g.o-1];r.deleteContents();var el;
+  if(ch==='@'){el=d.createElement('span');el.className='cm-mencao';el.contentEditable='false';el.textContent='@'+op.dataset.inserir}
+  else{el=d.createElement('a');el.className='cm-referencia';el.href='#editor';el.contentEditable='false';el.innerHTML=(window.cmIcone?cmIcone(op.dataset.icone||'chamado'):'')+op.dataset.inserir}
+  r.insertNode(el);var sp=d.createTextNode(' ');el.after(sp);var s=getSelection();var r2=d.createRange();r2.setStart(sp,1);r2.collapse(true);s.removeAllRanges();s.addRange(r2);fecharListas(ed);ed._gat=null;
+  if(ch==='@'&&window.docToast)docToast(op.dataset.inserir+' será avisada quando o comunicado sair.','info')}
+d.addEventListener('mousedown',function(e){var op=e.target.closest('[data-editor-lista] .cm-opcao');if(op){e.preventDefault();inserir(op.closest('[data-editor]'),op)}});
+d.addEventListener('click',function(e){var b=e.target.closest('[data-editor-inserir]');if(b){var ed=b.closest('[data-editor]'),a=ed.querySelector('.cm-editor__area');a.focus();var s=getSelection();var r=d.createRange();r.selectNodeContents(a.lastElementChild||a);r.collapse(false);s.removeAllRanges();s.addRange(r);d.execCommand('insertText',false,b.getAttribute('data-editor-inserir'));return}
+  var f=e.target.closest('.cm-editor__barra button[aria-pressed]');if(f){var cmd={'Negrito':'bold','Itálico':'italic','Sublinhado':'underline'}[f.getAttribute('aria-label')];if(cmd){f.closest('.cm-editor').querySelector('.cm-editor__area').focus();d.execCommand(cmd);f.setAttribute('aria-pressed',String(f.getAttribute('aria-pressed')!=='true'))}}});
+/* upload simulado */
+var ARQ={padrao:[['pdf','laudo-hidrotec.pdf','1,2 MB','ok'],['video','video-garagem.mov','68 MB: passa do limite de 20 MB','tam'],['arquivo','orcamento.docx','Tipo não aceito aqui. Salve como PDF.','tipo'],['imagem','pilar-p12.png','A conexão caiu no meio do envio.','rede']],
+  cadastro:[['pdf','convencao-condominial.pdf','2,8 MB','ok'],['pdf','regimento-interno-2023.pdf','640 KB','ok'],['pdf','ata-ago-2025.pdf','1,1 MB','ok']]};
+function I(n){return window.cmIcone?cmIcone(n):''}
+function anexo(a){var el=d.createElement('div');el.className='cm-anexo'+(a[3]!=='ok'?' is-erro':'');
+  var acao=a[3]==='rede'?'<button class="cm-botao cm-botao--p" type="button" data-upload-retry>Tentar de novo</button>':'<button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Tirar '+a[1]+'" data-upload-tirar>'+I('fechar')+'</button>';
+  el.innerHTML='<span class="cm-anexo__tipo">'+I(a[0])+'</span><span><span class="cm-anexo__nome">'+a[1]+'</span><span class="cm-anexo__meta">'+(a[3]==='ok'?a[2]+', enviando 0%':a[2])+'</span>'+(a[3]==='ok'?'<span class="cm-anexo__barra"><i style="width:0%"></i></span>':'')+'</span>'+acao;
+  if(a[3]==='ok')progresso(el,a[2]);return el}
+function progresso(el,tam){var p=0,b=el.querySelector('.cm-anexo__barra i'),m=el.querySelector('.cm-anexo__meta');var t=setInterval(function(){p+=20;if(b)b.style.width=p+'%';m.textContent=tam+', enviando '+p+'%';if(p>=100){clearInterval(t);m.textContent=tam+', enviado';var bb=el.querySelector('.cm-anexo__barra');if(bb)bb.remove()}},250)}
+d.addEventListener('click',function(e){var u=e.target.closest('[data-upload-demo] [data-upload]');if(u){e.preventDefault();var demo=u.closest('[data-upload-demo]');var lista=demo.querySelector('.cm-anexos');var set=ARQ[demo.getAttribute('data-upload-demo')]||ARQ.padrao;set.forEach(function(a){lista.appendChild(anexo(a))});return}
+  var r=e.target.closest('[data-upload-retry]');if(r){var el=r.closest('.cm-anexo');el.classList.remove('is-erro');var nome=el.querySelector('.cm-anexo__nome').textContent;el.querySelector('.cm-anexo__meta').insertAdjacentHTML('afterend','<span class="cm-anexo__barra"><i style="width:0%"></i></span>');r.outerHTML='<button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Tirar '+nome+'" data-upload-tirar>'+I('fechar')+'</button>';progresso(el,'2,1 MB');return}
+  var x=e.target.closest('[data-upload-tirar]');if(x){x.closest('.cm-anexo').remove()}});
+['dragenter','dragover'].forEach(function(ev){d.addEventListener(ev,function(e){var u=e.target.closest&&e.target.closest('[data-upload]');if(u){e.preventDefault();u.classList.add('is-arrastando')}})});
+['dragleave','drop'].forEach(function(ev){d.addEventListener(ev,function(e){var u=e.target.closest&&e.target.closest('[data-upload]');if(u){e.preventDefault();u.classList.remove('is-arrastando');if(ev==='drop')u.click()}})});
+
+/* ===== novo contato (modal) ===== */
+d.addEventListener('click',function(e){var b=e.target.closest('[data-criar-contato]');if(!b)return;var m=b.closest('.cm-modal');var erros=[];
+  m.querySelectorAll('input[required]').forEach(function(i){if(!i.value.trim()){setErro(i,i.getAttribute('data-msg'));erros.push(i)}});
+  m.querySelectorAll('input[data-validar]').forEach(function(i){if(i.value.trim()){var msg=VAL[i.getAttribute('data-validar')](i.value);setErro(i,msg);if(msg)erros.push(i)}});
+  if(erros.length){erros[0].focus();return}
+  var nome=m.querySelector('#dn-n').value.trim();var modo=m.querySelector('.cm-dividido__lembra').textContent;
+  if(modo==='e novo'){m.querySelectorAll('input[type=text],input:not([type]),input[type=tel],input[type=email]').forEach(function(i){i.value=''});m.querySelector('#dn-n').focus();docToast('Contato '+nome+' criado. Cadastre o próximo.','sucesso')}
+  else{docFechar();docToast('Contato '+nome+' criado.','sucesso','Abrir')}});
+
+/* ===== ficha do cliente ===== */
+var ficha=d.getElementById('ficha-palco'),barra=d.getElementById('ficha-barra'),mud={};
+var viva=d.createElement('span');viva.className='cm-sr';viva.setAttribute('aria-live','polite');d.body.appendChild(viva);
+function hora(){var t=new Date();return ('0'+t.getHours()).slice(-2)+':'+('0'+t.getMinutes()).slice(-2)}
+function linhas(){return [].slice.call(ficha.querySelectorAll('.cm-ficha__linha[data-campo]'))}
+function original(l){if(l.dataset.original==null){l.dataset.original=l.querySelector('dd').textContent.trim();l.dataset.valor=l.dataset.original}return l.dataset.original}
+function editar(l,focar){if(l.classList.contains('is-editando'))return;var orig=original(l),atual=l.dataset.valor,rot=l.dataset.rotulo,dd=l.querySelector('dd');
+  var ctl;if(l.dataset.opcoes){ctl='<div class="cm-selecao"><select aria-label="'+rot+'">'+l.dataset.opcoes.split('|').map(function(o){return '<option'+(o===atual?' selected':'')+'>'+o+'</option>'}).join('')+'</select><i data-i="chevron-baixo"></i></div>'}
+  else{ctl='<div class="cm-entrada cm-entrada--p is-editado"><input aria-label="'+rot+'" value="'+atual.replace(/"/g,'&quot;')+'"'+(l.dataset.mascara?' data-mascara="'+l.dataset.mascara+'"':'')+'></div>'}
+  dd.innerHTML='<div class="cm-campo cm-cresce">'+ctl+'<p class="cm-campo__antes">'+(orig!==atual?'Era '+orig+'. ':'')+'Enter confirma, Esc desfaz.</p></div>';
+  l.classList.add('is-editando');l.querySelector('.cm-ficha__lapis').hidden=true;
+  var c=dd.querySelector('input,select');if(focar){c.focus();if(c.select)c.select()}}
+function confirmar(l,cancelar,focarLapis){if(!l.classList.contains('is-editando'))return;var c=l.querySelector('dd input,dd select');var v=cancelar?l.dataset.valor:c.value.trim();
+  if(!cancelar&&l.dataset.mascara==='moeda'&&v)v='R$ '+moeda(v.replace(/^R\$\s*/,''));
+  l.dataset.valor=v;var dd=l.querySelector('dd');dd.textContent=v;l.classList.remove('is-editando');var lp=l.querySelector('.cm-ficha__lapis');lp.hidden=false;
+  var campo=l.dataset.campo;if(v!==l.dataset.original){l.classList.add('is-editado');dd.insertAdjacentHTML('beforeend',' <span class="cm-ficha__alterado">alterado</span>');mud[campo]={l:l,rot:l.dataset.rotulo,antes:l.dataset.original,depois:v}}else{l.classList.remove('is-editado');delete mud[campo]}
+  var esp=ficha.querySelector('[data-espelho="'+campo+'"]');if(esp)esp.textContent=v;
+  if(focarLapis)lp.focus();atualizar(true)}
+function lista(arr){return arr.length<2?arr.join(''):arr.slice(0,-1).join(', ')+' e '+arr[arr.length-1]}
+function atualizar(anunciar){var ks=Object.keys(mud),n=ks.length;barra.hidden=!n;barra.classList.remove('is-erro');
+  barra.querySelector('[data-barra-titulo]').textContent=n===1?'1 alteração não salva':n+' alterações não salvas';
+  barra.querySelector('[data-barra-quais]').textContent=lista(ks.map(function(k){return mud[k].rot}));
+  if(anunciar)viva.textContent=n?barra.querySelector('[data-barra-titulo]').textContent:'Nenhuma alteração'}
+function salvar(modo){ficha.querySelectorAll('.cm-ficha__linha.is-editando').forEach(function(l){confirmar(l)});var ks=Object.keys(mud);if(!ks.length)return;
+  var erros=ks.filter(function(k){var l=mud[k].l,vv=l.dataset.validar;return vv&&VAL[vv]&&VAL[vv](mud[k].depois)});
+  if(erros.length){barra.classList.add('is-erro');barra.querySelector('[data-barra-titulo]').textContent='Não salvou: '+(erros.length===1?'1 campo com erro':erros.length+' campos com erro');
+    var q=barra.querySelector('[data-barra-quais]');q.innerHTML=erros.map(function(k){return '<a class="cm-link" href="#" data-ir-campo="'+k+'">'+mud[k].rot+': '+VAL[mud[k].l.dataset.validar](mud[k].depois)+'</a>'}).join(' ');
+    erros.forEach(function(k){var l=mud[k].l;editar(l,false);setErro(l.querySelector('dd input'),VAL[l.dataset.validar](mud[k].depois))});
+    mud[erros[0]].l.querySelector('dd input').focus();viva.textContent=barra.querySelector('[data-barra-titulo]').textContent;return}
+  barra.classList.add('is-salvando');barra.querySelectorAll('button').forEach(function(b){b.disabled=true});var n=ks.length;barra.querySelector('[data-barra-titulo]').textContent='Salvando '+(n===1?'1 alteração':n+' alterações');
+  setTimeout(function(){var h=d.getElementById('ficha-historico');var primeiro=h.firstElementChild;if(!(primeiro&&primeiro.textContent==='Hoje')){primeiro=d.createElement('li');primeiro.className='cm-auditoria__dia';primeiro.textContent='Hoje';h.insertBefore(primeiro,h.firstChild)}
+    ks.forEach(function(k){var x=mud[k];var li=d.createElement('li');li.innerHTML='<time>'+hora()+'</time><b>Juliana Reis</b> mudou '+x.rot.charAt(0).toLowerCase()+x.rot.slice(1)+': <del>'+x.antes+'</del> → <ins>'+x.depois+'</ins>';primeiro.after(li);
+      x.l.dataset.original=x.depois;x.l.classList.remove('is-editado');var al=x.l.querySelector('.cm-ficha__alterado');if(al)al.remove()});
+    mud={};barra.classList.remove('is-salvando');barra.querySelectorAll('button').forEach(function(b){b.disabled=false});atualizar(false);
+    var sufixo={'e próximo':' Abrindo 15 de 63: Cond. Vila Serena.','e voltar':' Voltando à lista de clientes.','e novo':' Abrindo um cliente novo.'}[modo]||'';
+    docToast((n===1?'1 alteração salva.':n+' alterações salvas.')+sufixo,'sucesso');viva.textContent=n===1?'1 alteração salva':n+' alterações salvas'},900)}
+function descartar(){Object.keys(mud).forEach(function(k){var l=mud[k].l;if(l.classList.contains('is-editando'))confirmar(l,true);l.dataset.valor=l.dataset.original;var dd=l.querySelector('dd');dd.textContent=l.dataset.original;l.classList.remove('is-editado');var esp=ficha.querySelector('[data-espelho="'+k+'"]');if(esp)esp.textContent=l.dataset.original});mud={};atualizar(true);docToast('Alterações descartadas.','info')}
+d.addEventListener('click',function(e){
+  var x;if(!ficha)return;
+  if((x=e.target.closest('#ficha-palco .cm-ficha__lapis'))){editar(x.closest('.cm-ficha__linha'),true);return}
+  if((x=e.target.closest('#ficha-palco [data-editar-secao]'))){var ls=[].slice.call(x.closest('.cm-cartao').querySelectorAll('.cm-ficha__linha[data-campo]'));ls.forEach(function(l,i){editar(l,i===0)});return}
+  if((x=e.target.closest('[data-ficha-modo]'))){var lem=barra.querySelector('.cm-dividido__lembra');lem.textContent=x.getAttribute('data-ficha-modo');docFecharTudo();salvar(lem.textContent);return}
+  if((x=e.target.closest('[data-ficha-salvar]'))){salvar(barra.querySelector('.cm-dividido__lembra').textContent);return}
+  if((x=e.target.closest('[data-ficha-descartar]'))){descartar();return}
+  if((x=e.target.closest('[data-ir-campo]'))){e.preventDefault();var l=mud[x.getAttribute('data-ir-campo')];if(l){var c=l.l.querySelector('input,select');if(c)c.focus()}return}
+  if((x=e.target.closest('[data-ficha-sair]'))){e.preventDefault();var n=Object.keys(mud).length;if(n){docAbrir('dlg-sair',x);setTimeout(function(){var s=d.querySelector('[data-sair-sub]');if(s)s.textContent='Você tem '+(n===1?'1 alteração':n+' alterações')+' nesta ficha: '+lista(Object.keys(mud).map(function(k){return mud[k].rot}))+'.'},0)}else docToast('Sem alterações. Saindo da ficha.','info');return}
+});
+d.addEventListener('keydown',function(e){
+  var l=e.target.closest&&e.target.closest('#ficha-palco .cm-ficha__linha.is-editando');
+  if(l&&e.key==='Enter'){e.preventDefault();confirmar(l,false,true)}
+  if(l&&e.key==='Escape'){e.preventDefault();e.stopPropagation();confirmar(l,true,true)}
+  if((e.ctrlKey||e.metaKey)&&(e.key==='s'||e.key==='S')&&Object.keys(mud).length+ficha.querySelectorAll('.is-editando').length){e.preventDefault();salvar(barra.querySelector('.cm-dividido__lembra').textContent)}
+},true);
+d.addEventListener('focusout',function(e){var l=e.target.closest&&e.target.closest('#ficha-palco .cm-ficha__linha.is-editando');if(!l)return;setTimeout(function(){if(!l.contains(d.activeElement)&&l.classList.contains('is-editando')){var c=l.querySelector('dd input');if(c&&c.getAttribute('aria-invalid')==='true'&&l.dataset.validar&&VAL[l.dataset.validar](c.value))return;confirmar(l)}},120)});
+
+/* ===== cadastro em etapas ===== */
+var cad=d.getElementById('cad');
+if(cad){
+var etapa=0,lis=cad.querySelectorAll('.cm-etapas li'),pain=cad.querySelectorAll('[data-etapa]'),NOMES=['Identificação','Endereço','Síndico e conselho','Blocos e unidades','Cobrança','Documentos','Revisão'],SUBS=[].map.call(lis,function(l){return l.querySelector('.cm-etapas__sub').textContent}),tentou={};
+var resumo=cad.querySelector('[data-resumo]'),ant=cad.querySelector('[data-cad-anterior]'),prox=cad.querySelector('[data-cad-proximo]');
+function errosDe(i,mostrar){var e=[];pain[i].querySelectorAll('input,textarea,select').forEach(function(f){var msg='';if(f.hasAttribute('required')&&!f.value.trim())msg=f.getAttribute('data-msg')||'Preencha este campo';else if(f.getAttribute('data-validar')&&f.value.trim())msg=VAL[f.getAttribute('data-validar')](f.value);if(mostrar)setErro(f,msg);if(msg)e.push({f:f,msg:msg})});return e}
+function marcar(i,e){var li=lis[i];li.classList.toggle('is-erro',e.length>0);li.querySelector('.cm-etapas__sub').textContent=e.length?(e.length===1?'1 campo com erro':e.length+' campos com erro'):SUBS[i];if(!e.length&&i<6)li.classList.add('is-feito');var n=li.querySelector('.cm-etapas__n');n.innerHTML=e.length?'':(li.classList.contains('is-feito')?I('marcar'):'')}
+function mostrarResumo(e,titulo){if(!e.length){resumo.hidden=true;return}resumo.hidden=false;resumo.querySelector('[data-resumo-titulo]').textContent=titulo||(e.length===1?'Falta 1 coisa nesta etapa':'Faltam '+e.length+' coisas nesta etapa');
+  resumo.querySelector('[data-resumo-lista]').innerHTML=e.map(function(x){return '<li><a href="#'+x.f.id+'"'+(x.etapa!=null?' data-ir-etapa="'+x.etapa+'"':'')+'>'+(x.prefixo||'')+x.msg+'</a></li>'}).join('');resumo.focus()}
+function ir(i){etapa=i;pain.forEach(function(p,k){p.hidden=k!==i});lis.forEach(function(li,k){li.classList.toggle('is-atual',k===i);var b=li.querySelector('button');if(k===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')});
+  ant.disabled=i===0;prox.textContent=i<6?'Próximo: '+NOMES[i+1]:'Cadastrar condomínio';resumo.hidden=true;if(i===6)revisao();
+  var top=cad.getBoundingClientRect().top;if(top<0)cad.scrollIntoView({block:'start'});var h=pain[i].querySelector('.cm-form-secao__titulo');if(h){h.tabIndex=-1;h.focus({preventScroll:true})}}
+function valorDe(f){if(f.tagName==='SELECT')return f.value;if(f.type==='radio')return f.checked?f.value:null;var v=f.value.trim();if(!v)return v;if(f.closest('.cm-entrada--porcentagem'))return v+'%';if(f.closest('.cm-entrada--moeda'))return 'R$ '+v;return v}
+function revisao(){var box=cad.querySelector('[data-revisao]');box.innerHTML='';for(var i=0;i<5;i++){var e=errosDe(i,false);var rows='';pain[i].querySelectorAll('[data-rev]').forEach(function(f){var v=valorDe(f);rows+='<div class="cm-ficha__linha"><dt>'+f.getAttribute('data-rev')+'</dt><dd>'+(v?v:(f.hasAttribute('required')?'<span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Falta</span>':'<span class="cm-texto-3">Não preenchido</span>'))+'</dd><span></span></div>'});
+  if(i===4){var r=pain[4].querySelector('input[name=cd-rateio]:checked');rows+='<div class="cm-ficha__linha"><dt>Rateio</dt><dd>'+(r?r.value:'')+'</dd><span></span></div>'}
+  if(i===3){rows+='<div class="cm-ficha__linha"><dt>Total</dt><dd>'+cad.querySelector('[data-total]').textContent+'</dd><span></span></div>'}
+  box.insertAdjacentHTML('beforeend','<section class="cm-cartao"><header class="cm-cartao__cabeca"><h5 class="cm-cartao__titulo">'+NOMES[i]+'</h5>'+(e.length?'<span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>'+(e.length===1?'1 pendência':e.length+' pendências')+'</span>':'')+'<button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-ir-etapa="'+i+'"><i data-i="editar"></i>Editar</button></header><div class="cm-cartao__corpo"><dl class="cm-ficha">'+rows+'</dl></div></section>')}
+  var docs=pain[5].querySelectorAll('.cm-anexo:not(.is-erro)').length;box.insertAdjacentHTML('beforeend','<section class="cm-cartao"><header class="cm-cartao__cabeca"><h5 class="cm-cartao__titulo">Documentos</h5><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-ir-etapa="5"><i data-i="editar"></i>Editar</button></header><div class="cm-cartao__corpo">'+(docs?(docs===1?'1 arquivo':docs+' arquivos'):'<span class="cm-texto-3">Nenhum arquivo. Pode mandar depois pela ficha.</span>')+'</div></section>')}
+prox.addEventListener('click',function(){
+  if(etapa<6){var e=errosDe(etapa,true);tentou[etapa]=1;marcar(etapa,e);if(e.length){mostrarResumo(e);return}ir(etapa+1);return}
+  var todas=[];for(var i=0;i<5;i++){var e2=errosDe(i,true);marcar(i,e2);e2.forEach(function(x){x.etapa=i;x.prefixo=NOMES[i]+': '});todas=todas.concat(e2)}
+  if(todas.length){mostrarResumo(todas,todas.length===1?'Falta 1 coisa para cadastrar':'Faltam '+todas.length+' coisas para cadastrar');return}
+  var nome=d.getElementById('cd-nome').value.trim();lis[6].classList.add('is-feito');lis[6].querySelector('.cm-etapas__n').innerHTML=I('marcar');
+  docToast(nome+' cadastrado. Abrindo a ficha.','sucesso','Abrir');prox.disabled=true;prox.textContent='Cadastrado'});
+ant.addEventListener('click',function(){if(etapa>0)ir(etapa-1)});
+cad.addEventListener('click',function(e){var b=e.target.closest('[data-ir]');if(b&&b.closest('.cm-etapas')){var i=+b.getAttribute('data-ir');if(i!==etapa){var er=errosDe(etapa,!!tentou[etapa]);if(tentou[etapa]||!er.length)marcar(etapa,er);ir(i)}return}
+  var g=e.target.closest('[data-ir-etapa]');if(g){e.preventDefault();var k=+g.getAttribute('data-ir-etapa');ir(k);var alvo=g.getAttribute('href');if(alvo&&alvo.length>1){var f=d.getElementById(alvo.slice(1));if(f)setTimeout(function(){f.focus()},30)}return}
+  var a=e.target.closest('[data-resumo] a');if(a){e.preventDefault();var f2=d.getElementById(a.getAttribute('href').slice(1));if(f2)f2.focus()}});
+d.addEventListener('cm:corrigido',function(ev){if(!cad.contains(ev.detail))return;var e=errosDe(etapa,false);if(tentou[etapa])marcar(etapa,e);if(!resumo.hidden){if(e.length)mostrarResumoSemFoco(e);else resumo.hidden=true}});
+function mostrarResumoSemFoco(e){resumo.querySelector('[data-resumo-titulo]').textContent=e.length===1?'Falta 1 coisa nesta etapa':'Faltam '+e.length+' coisas nesta etapa';resumo.querySelector('[data-resumo-lista]').innerHTML=e.map(function(x){return '<li><a href="#'+x.f.id+'">'+x.msg+'</a></li>'}).join('')}
+var tRas;cad.addEventListener('input',function(){clearTimeout(tRas);var r=cad.querySelector('[data-rascunho]');r.textContent='Salvando rascunho';tRas=setTimeout(function(){r.textContent='Rascunho salvo às '+hora()},1200);total()});
+cad.addEventListener('change',total);
+function total(){var bl=Math.max(1,cad.querySelectorAll('[data-etapa="3"] .cm-multi .cm-etiqueta').length),a=+dig(d.getElementById('cd-and').value)||0,u=+dig(d.getElementById('cd-upa').value)||0,t=bl*a*u;cad.querySelector('[data-total]').textContent=(t===1?'1 unidade':t+' unidades')+' em '+(bl===1?'1 bloco':bl+' blocos')}
+total();
+}
+
+/* ===== validação: abrir chamado ===== */
+var vf=d.getElementById('val-form');
+if(vf){
+var vres=vf.querySelector('[data-resumo]');
+function vErros(mostrar){var e=[];var g=vf.querySelector('[data-obrigatorio-grupo]');var ok=g.querySelector('[aria-pressed="true"]');if(mostrar)setErro(g,ok?'':g.getAttribute('data-msg'));if(!ok)e.push({f:g.querySelector('button'),id:g.id,msg:g.getAttribute('data-msg')});
+  vf.querySelectorAll('input,textarea').forEach(function(f){var msg='';if(f.hasAttribute('required')&&!f.value.trim())msg=f.getAttribute('data-msg');else if(f.dataset.min&&f.value.trim().length<+f.dataset.min)msg=f.getAttribute('data-msg');else if(f.getAttribute('data-validar')&&f.value.trim())msg=VAL[f.getAttribute('data-validar')](f.value);if(mostrar)setErro(f,msg);if(msg)e.push({f:f,id:f.id,msg:msg})});return e}
+function vResumo(e,foco){if(!e.length){vres.hidden=true;return}vres.hidden=false;vres.querySelector('[data-resumo-titulo]').textContent=e.length===1?'Falta 1 coisa para enviar':'Faltam '+e.length+' coisas para enviar';vres.querySelector('[data-resumo-lista]').innerHTML=e.map(function(x){return '<li><a href="#'+x.id+'">'+x.msg+'</a></li>'}).join('');if(foco)vres.focus()}
+vf.addEventListener('submit',function(ev){ev.preventDefault();vf.dataset.tentou='1';var e=vErros(true);vResumo(e,true);if(!e.length){docToast('Chamado enviado. Acompanhe pelo WhatsApp.','sucesso');vf.reset();vf.querySelectorAll('[aria-pressed="true"]').forEach(function(b){b.setAttribute('aria-pressed','false')});delete vf.dataset.tentou;d.getElementById('val-desc-c').textContent='0 de 500'}});
+vf.addEventListener('click',function(ev){var a=ev.target.closest('[data-resumo] a');if(a){ev.preventDefault();var t=d.getElementById(a.getAttribute('href').slice(1));if(t){var f=t.matches('input,textarea')?t:t.querySelector('button');f.focus()}}
+  if(ev.target.closest('.cm-opcoes-botao')&&vf.dataset.tentou)setTimeout(function(){vErros(true);if(!vres.hidden)vResumo(vErros(false),false)},0)});
+vf.addEventListener('input',function(){if(vf.dataset.tentou&&!vres.hidden)setTimeout(function(){vResumo(vErros(false),false)},0)});
+}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cultura: rotinas de pessoas</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q4.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q4-icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q4.js" defer></script>
+<style>
+.cb-sol{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;margin-top:8px;align-items:start}
+.cb-catalogo{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr));gap:8px}
+.cb-catalogo button{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;padding:10px;border:1px solid var(--cm-filete);background:var(--cm-camada-1);text-align:left;font-size:13px}
+.cb-catalogo button:hover{border-color:var(--cm-filete-forte);background:var(--cm-camada-2)}
+.cb-catalogo b{display:block;font-weight:650}
+.cb-catalogo span span{color:var(--cm-texto-2);font-size:12px}
+.cb-1a1{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;margin-top:12px;align-items:start}
+.cb-pauta{list-style:none;margin:0;padding:0}
+.cb-pauta li{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:8px;align-items:start;padding:8px 0;border-bottom:1px solid var(--cm-filete);font-size:13.5px}
+.cb-aval{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;margin-top:12px;align-items:start}
+.cb-comp{border-bottom:1px solid var(--cm-filete);padding:12px 0}
+.cb-comp h3{font-size:14px;font-weight:700}
+.cb-comp p{font-size:12.5px;color:var(--cm-texto-2);margin:2px 0 8px;max-width:72ch}
+.cb-comp__linha{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center;margin-top:6px;font-size:12.5px}
+.cb-recr{overflow:hidden}
+.cb-com{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;margin-top:12px;align-items:start}
+.cb-clima{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:12px;align-items:start}
+@media (max-width:1099px){ .cb-sol,.cb-1a1,.cb-aval,.cb-com,.cb-clima{grid-template-columns:minmax(0,1fr)} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Cultura","tela":"Solicitações","papel":"RH","sino":3,"usuario":{"nome":"Marta Lins","iniciais":"ML","cargo":"Coordenadora de pessoas","presenca":"disponivel","tom":4},"links":{"Pessoas":"29-cultura.html","Férias":"29-cultura.html#t-ferias","Solicitações":"29b-cultura.html","Comunicados":"29b-cultura.html#t-comunicados","Vagas":"29b-cultura.html#t-recrutamento","Pesquisas de clima":"29b-cultura.html#t-clima","Reuniões 1:1":"29b-cultura.html#t-1a1","Avaliação 360°":"29b-cultura.html#t-avaliacao"}}'></div>
+
+<main id="conteudo" class="cm-doc">
+<header class="cm-doc-capa">
+  <div>
+    <h1>Cultura: solicitações, 1:1, avaliação, recrutamento, comunicados e clima</h1>
+    <p>As rotinas que o RH e os gestores repetem toda semana, cada uma no desenho que o mercado já ensinou.</p>
+    <p class="cm-doc-paginas" style="margin-top:8px">Páginas de Cultura: <a href="29-cultura.html">Pessoas e férias</a> <a href="29b-cultura.html" aria-current="page">Solicitações, 1:1, avaliação, recrutamento, comunicados e clima</a></p>
+  </div>
+  <div data-cm-seletor></div>
+  <nav class="cm-doc-indice" aria-label="Telas desta página">
+    <a href="#t-solicitacoes"><b>29.6</b>Solicitações</a><a href="#t-1a1"><b>29.7</b>Reunião 1:1</a><a href="#t-avaliacao"><b>29.8</b>Avaliação</a><a href="#t-recrutamento"><b>29.9</b>Recrutamento em quadro</a><a href="#t-comunicados"><b>29.10</b>Comunicados com ciência</a><a href="#t-clima"><b>29.11</b>Pesquisa de clima</a>
+  </nav>
+</header>
+
+<!-- 29.6 -->
+<section class="cm-doc-tela" id="t-solicitacoes" aria-labelledby="t-sol-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">29.6</span><h2 class="cm-doc-tela__titulo" id="t-sol-h">Solicitações</h2><span class="cm-doc-tela__sub">pedir ao RH sem e-mail, e acompanhar</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Declaração de vínculo, troca de conta bancária, atestado, reembolso: o colaborador pede pelo catálogo, sabe o prazo e acompanha cada passo; o RH atende numa fila com SLA, igual ao Suporte.</p></div>
+    <div><h3>Fluxo</h3><ol><li>"Nova solicitação" mostra o catálogo com o prazo de cada tipo.</li><li>O formulário pede só o que aquele tipo precisa (atestado: foto e dias).</li><li>Em "Minhas solicitações" cada pedido mostra o passo atual; o RH responde no próprio pedido.</li><li>Pronto, o documento fica para baixar e o pedido fecha sozinho em 7 dias.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Jira Service Management e o ServiceNow organizaram pedidos internos em catálogo com prazo; o Zendesk ensinou a acompanhar em passos; e o RH do GACO já atende pelo mesmo motor de filas do Suporte, então o colaborador vê a mesma forma.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Solicitações</h1><div class="cm-cabecalho-pagina__acoes"><button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Nova solicitação</button></div></div></header>
+      <div class="cb-sol">
+        <div>
+          <div class="cm-visoes" role="tablist" aria-label="Visões"><button role="tab" aria-selected="true">Minhas <span class="cm-contador">3</span></button><button role="tab" aria-selected="false" tabindex="-1">Fila do RH <span class="cm-contador cm-contador--novo">6</span></button><button role="tab" aria-selected="false" tabindex="-1">Fechadas</button></div>
+          <div class="cm-tabela-caixa" style="margin-top:8px"><table class="cm-tabela"><caption class="cm-sr">Minhas solicitações</caption><thead><tr><th>Nº</th><th>Solicitação</th><th>Aberta em</th><th>Passo</th><th>Prazo</th></tr></thead><tbody>
+            <tr aria-selected="true"><td class="cm-texto-2">RH-2291</td><td class="cm-tabela__principal"><a href="#">Declaração de vínculo para financiamento</a><span class="cm-tabela__sub">Caixa Econômica, com salário</span></td><td>30/09</td><td><span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Em preparo, Marta Lins</span></td><td>até 02/10</td></tr>
+            <tr><td class="cm-texto-2">RH-2284</td><td class="cm-tabela__principal"><a href="#">Reembolso de curso de Libras</a><span class="cm-tabela__sub">R$ 480,00, nota anexada</span></td><td>24/09</td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Aguardando você: falta o certificado</span></td><td>parado</td></tr>
+            <tr><td class="cm-texto-2">RH-2270</td><td class="cm-tabela__principal"><a href="#">Troca da conta para receber salário</a><span class="cm-tabela__sub">Nubank, agência 0001</span></td><td>15/09</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Feito, vale a partir de outubro</span></td><td></td></tr>
+          </tbody></table></div>
+          <h2 class="cm-t-secao" style="margin:16px 0 8px">Catálogo</h2>
+          <div class="cb-catalogo">
+            <button type="button"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="arquivo-texto"></i></span><span><b>Declaração</b><span>vínculo, salário, férias. Até 2 dias úteis</span></span></button>
+            <button type="button"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="atestado"></i></span><span><b>Atestado médico</b><span>foto do atestado. Registro no mesmo dia</span></span></button>
+            <button type="button"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="recibo"></i></span><span><b>Reembolso</b><span>curso, deslocamento, material. Pago na folha</span></span></button>
+            <button type="button"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="banco"></i></span><span><b>Dados bancários</b><span>vale na folha seguinte</span></span></button>
+            <button type="button"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="dinheiro"></i></span><span><b>Adiantamento salarial</b><span>até 40% do salário, dia 20</span></span></button>
+            <button type="button"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="notebook"></i></span><span><b>Equipamento</b><span>fone, monitor, notebook. Até 5 dias úteis</span></span></button>
+          </div>
+        </div>
+        <aside class="cm-cartao" aria-label="Solicitação aberta"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">RH-2291, declaração de vínculo</h2></header><div class="cm-cartao__corpo">
+          <ol class="cm-auditoria"><li class="is-criacao"><time>30/09 14:02</time>Você pediu: "com salário, para a Caixa"</li><li><time>30/09 16:40</time><b>Marta Lins</b> assumiu</li><li><time>hoje 09:05</time><b>Marta Lins</b>: "Sai hoje à tarde, assinada digitalmente."</li></ol>
+          <div class="cm-chat-compositor" style="margin:12px 0 0"><textarea aria-label="Responder ao RH" rows="2" placeholder="Escreva ao RH"></textarea><div class="cm-chat-compositor__barra"><button class="cm-botao cm-botao--icone cm-botao--p cm-botao--discreto" type="button" aria-label="Anexar"><i data-i="anexar"></i></button><span class="cm-cresce"></span><button class="cm-botao cm-botao--p" type="button" data-toast="Mensagem enviada ao RH.">Enviar</button></div></div>
+        </div></aside>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Nova solicitação</li><li>Visões, tabela</li><li>Catálogo</li><li>Solicitação aberta, resposta</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>"Reembolso de curso de Libras, atenção, aguardando você: falta o certificado".</li><li>Item do catálogo: "Reembolso, curso, deslocamento, material, pago na folha".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Clipe: "Anexar"</li></ul></div>
+  </div>
+</section>
+
+<!-- 29.7 -->
+<section class="cm-doc-tela" id="t-1a1" aria-labelledby="t-1a1-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">29.7</span><h2 class="cm-doc-tela__titulo" id="t-1a1-h">Reunião 1:1</h2><span class="cm-doc-tela__sub">pauta dos dois, combinados e o histórico das conversas</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>A gestora e a atendente chegam à 1:1 com a pauta escrita pelos dois durante a semana, registram o que combinaram com responsável e data, e os combinados abertos da reunião passada aparecem no topo para não se perderem.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Qualquer um dos dois acrescenta tópicos até a hora da reunião; o autor aparece ao lado.</li><li>Durante a conversa, marca o tópico como conversado e anota.</li><li>"Combinado" vira tarefa com responsável e prazo, e aparece no "Para você" da Home.</li><li>As notas privadas da gestora ficam marcadas com cadeado e não são vistas pela outra pessoa.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Lattice, o Fellow e o 15Five consagraram a pauta compartilhada com combinados que passam para a próxima reunião; e a nota privada com cadeado é o que os gestores pedem para registrar sem constranger.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" style="padding-top:16px">
+      <header class="cm-cabecalho-registro"><div class="cm-cabecalho-registro__topo"><span class="cm-avatares"><span class="cm-avatar cm-avatar--m cm-avatar--3">LA</span><span class="cm-avatar cm-avatar--m cm-avatar--2">BN</span></span><div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Reunião 1:1, a cada 2 semanas</span><h1 class="cm-cabecalho-registro__titulo">Letícia Araújo e Beatriz Nogueira</h1></div><div class="cm-grupo-botoes"><button class="cm-botao" type="button"><i data-i="video"></i>Entrar pelo Teams</button><button class="cm-botao cm-botao--principal" type="button" data-toast="1:1 encerrada. Combinados enviados para as duas.">Encerrar reunião</button></div></div>
+        <dl class="cm-destaques"><div><dt>Hoje</dt><dd>01/10, 10:00, 30 min</dd></div><div><dt>Anterior</dt><dd>17/09</dd></div><div><dt>Combinados abertos</dt><dd>1</dd></div></dl></header>
+      <div class="cb-1a1">
+        <div class="cm-pilha cm-pilha--6">
+          <div class="cm-alerta cm-alerta--info"><i data-i="informacao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Da reunião de 17/09: "Bia faz o módulo de acordos no Academy"</span><span class="cm-alerta__desc">Responsável Beatriz, prazo 30/09. 4 de 6 aulas feitas.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button">Adiar para 15/10</button><button class="cm-botao cm-botao--p" type="button">Marcar como feito</button></span></div>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Pauta</h2><span class="cm-t-legenda">os dois escrevem</span></header><div class="cm-cartao__corpo">
+            <ul class="cb-pauta">
+              <li><label class="cm-marcar cm-marcar--tarefa"><input type="checkbox" checked aria-label="Conversado: férias de novembro"><span class="cm-marcar__caixa"></span></label><div><b style="font-weight:600">Férias de novembro e a cobertura da fila</b><p class="cm-texto-2" style="font-size:12.5px;margin-top:2px">Combinamos 24/11 a 08/12; Letícia aprova hoje.</p></div><span class="cm-avatar cm-avatar--p cm-avatar--2" title="Beatriz">BN</span></li>
+              <li><label class="cm-marcar cm-marcar--tarefa"><input type="checkbox" aria-label="Conversado: elogios do Parque das Águas"><span class="cm-marcar__caixa"></span></label><div><b style="font-weight:600">Retorno da síndica do Parque das Águas</b></div><span class="cm-avatar cm-avatar--p cm-avatar--3" title="Letícia">LA</span></li>
+              <li><label class="cm-marcar cm-marcar--tarefa"><input type="checkbox" aria-label="Conversado: respostas rápidas"><span class="cm-marcar__caixa"></span></label><div><b style="font-weight:600">Revisar as respostas rápidas de 2ª via</b></div><span class="cm-avatar cm-avatar--p cm-avatar--2" title="Beatriz">BN</span></li>
+            </ul>
+            <div class="cm-entrada" style="margin-top:10px"><i data-i="adicionar"></i><input aria-label="Novo tópico da pauta" placeholder="Acrescentar tópico"></div>
+          </div></section>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Combinados de hoje</h2></header><div class="cm-cartao__corpo"><div class="cm-tabela-caixa" style="border:0"><table class="cm-tabela"><thead><tr><th>Combinado</th><th>Quem</th><th>Até</th></tr></thead><tbody><tr><td>Mandar as 5 respostas rápidas revisadas</td><td class="cm-celula-editavel" tabindex="0" aria-label="Responsável">Beatriz</td><td class="cm-celula-editavel" tabindex="0" aria-label="Prazo">08/10</td></tr><tr><td>Aprovar as férias de 24/11</td><td class="cm-celula-editavel" tabindex="0" aria-label="Responsável">Letícia</td><td class="cm-celula-editavel" tabindex="0" aria-label="Prazo">01/10</td></tr></tbody></table></div></div></section>
+        </div>
+        <aside class="cm-pilha cm-pilha--6">
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo"><i data-i="bloquear" class="cm-icone--14" data-rotulo="privada"></i> Nota da gestora</h2></header><div class="cm-cartao__corpo"><textarea class="cm-area" aria-label="Nota privada da gestora, só Letícia vê">Bia quer ir para a coordenação em 2027. Conversar sobre o PDI no ciclo de dezembro.</textarea><p class="cm-campo__ajuda" style="margin-top:4px">Só você vê. Não vai para o RH.</p></div></section>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Reuniões anteriores</h2></header><div class="cm-cartao__corpo"><ul class="cm-atividade" style="margin:-8px -12px"><li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="calendario"></i></span><div><div class="cm-atividade__titulo"><a href="#">17/09</a></div><div class="cm-atividade__desc">3 tópicos, 2 combinados</div></div><span></span></li><li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="calendario"></i></span><div><div class="cm-atividade__titulo"><a href="#">03/09</a></div><div class="cm-atividade__desc">4 tópicos, 1 combinado</div></div><span></span></li></ul></div></section>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Entrar pelo Teams, Encerrar</li><li>Combinado aberto: Adiar, Marcar como feito</li><li>Pauta: caixa, tópico; Acrescentar tópico</li><li>Combinados (células)</li><li>Nota privada, anteriores</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>"Nota privada da gestora, só Letícia vê".</li><li>Tópico: "Conversado: férias de novembro, marcado, autora Beatriz".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Cadeado: "privada"</li><li>Avatar do autor: nome na dica</li></ul></div>
+  </div>
+</section>
+
+<!-- 29.8 -->
+<section class="cm-doc-tela" id="t-avaliacao" aria-labelledby="t-av-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">29.8</span><h2 class="cm-doc-tela__titulo" id="t-av-h">Avaliação de desempenho</h2><span class="cm-doc-tela__sub">autoavaliação e avaliação da gestora, lado a lado</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>No ciclo 2026.2 a gestora avalia cada competência com uma escala descrita em palavras (não só número) e vê, ao lado, o que a própria pessoa marcou. Diferenças grandes ficam evidentes para conversar, e o comentário é obrigatório quando a nota é a mais baixa ou a mais alta.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Uma competência por bloco, com a descrição do que se espera no cargo.</li><li>A gestora escolhe a nota na escala; a autoavaliação aparece embaixo, só leitura.</li><li>Rascunho salva sozinho a cada mudança ("Salvo às 10:42").</li><li>"Enviar para calibração" fecha a avaliação; a pessoa vê depois da reunião de devolutiva.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>a Qulture.Rocks e o Lattice mostram autoavaliação e avaliação do gestor juntas por competência; a escala descrita em palavras é o que reduz a nota "3 para todo mundo"; e o rascunho com salvamento automático evita perder uma avaliação longa, padrão do Google Docs.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Avaliação de Beatriz Nogueira, ciclo 2026.2</h1><span class="cm-t-legenda" aria-live="polite">Rascunho salvo às 10:42</span><div class="cm-cabecalho-pagina__acoes"><button class="cm-botao cm-botao--principal" type="button" data-toast="Avaliação enviada para a calibração de 15/12.">Enviar para calibração</button></div></div></header>
+      <div class="cb-aval">
+        <div>
+          <div class="cb-comp"><h3>Atendimento ao condômino</h3><p>Resolve no primeiro contato quando pode, explica o próximo passo e registra tudo no chamado.</p>
+            <div class="cb-comp__linha"><span class="cm-forte">Letícia</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Nota da gestora em Atendimento ao condômino"><button type="button" aria-pressed="false">Abaixo</button><button type="button" aria-pressed="false">Em desenvolvimento</button><button type="button" aria-pressed="false">Atende</button><button type="button" aria-pressed="true">Supera</button><button type="button" aria-pressed="false">Referência</button></div></div>
+            <div class="cb-comp__linha"><span class="cm-texto-2">Beatriz</span><span class="cm-texto-2">Atende</span></div>
+            <textarea class="cm-area" style="margin-top:8px;min-height:60px" aria-label="Comentário da gestora em Atendimento ao condômino">Tempo da 1ª resposta abaixo da meta em 5 de 6 meses; a síndica do Parque das Águas citou o nome dela na assembleia.</textarea></div>
+          <div class="cb-comp"><h3>Uso do sistema e registro</h3><p>Usa respostas rápidas, vincula chamado à OS e ao boleto, não deixa conversa sem dono.</p>
+            <div class="cb-comp__linha"><span class="cm-forte">Letícia</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Nota da gestora em Uso do sistema"><button type="button" aria-pressed="false">Abaixo</button><button type="button" aria-pressed="false">Em desenvolvimento</button><button type="button" aria-pressed="true">Atende</button><button type="button" aria-pressed="false">Supera</button><button type="button" aria-pressed="false">Referência</button></div></div>
+            <div class="cb-comp__linha"><span class="cm-texto-2">Beatriz</span><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Referência, 2 níveis acima: conversar</span></div></div>
+          <div class="cb-comp"><h3>Trabalho em equipe</h3><p>Cobre a fila de quem está fora, passa o turno por escrito, ajuda quem chegou.</p>
+            <div class="cb-comp__linha"><span class="cm-forte">Letícia</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Nota da gestora em Trabalho em equipe"><button type="button" aria-pressed="false">Abaixo</button><button type="button" aria-pressed="false">Em desenvolvimento</button><button type="button" aria-pressed="false">Atende</button><button type="button" aria-pressed="false">Supera</button><button type="button" aria-pressed="false">Referência</button></div></div>
+            <div class="cb-comp__linha"><span class="cm-texto-2">Beatriz</span><span class="cm-texto-2">Supera</span></div></div>
+        </div>
+        <aside class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Progresso</h2></header><div class="cm-cartao__corpo cm-pilha">
+          <div class="cm-progresso cm-progresso--acao"><span class="cm-progresso__barra"><i style="--p:66%"></i></span><span class="cm-progresso__valor">2 de 3 competências</span></div>
+          <p class="cm-t-legenda">Calibração com Helena Vasques em 15/12. Devolutiva até 20/12.</p>
+          <dl class="cm-ficha"><div class="cm-ficha__linha is-leitura"><dt>Metas do ciclo</dt><dd>3 de 4 batidas</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Reconhecimentos</dt><dd>7 no ciclo</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Feedbacks 360</dt><dd>4 de 5 recebidos</dd><span></span></div></dl>
+        </div></aside>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Enviar para calibração</li><li>Por competência: escala da gestora (setas trocam), comentário</li><li>Progresso</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>"Nota da gestora em Atendimento ao condômino, Supera, pressionado".</li><li>"Rascunho salvo às 10:42" em região viva educada.</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Triângulo da diferença tem a palavra junto.</li></ul></div>
+  </div>
+</section>
+
+<!-- 29.9 -->
+<section class="cm-doc-tela" id="t-recrutamento" aria-labelledby="t-rec-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">29.9</span><h2 class="cm-doc-tela__titulo" id="t-rec-h">Recrutamento em quadro</h2><span class="cm-doc-tela__sub">uma vaga, as etapas e as pessoas candidatas</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>A vaga de atendente para a fila do WhatsApp tem 64 inscritas. O quadro mostra em que etapa cada pessoa está, há quanto tempo está parada e quem precisa de resposta, para ninguém ficar sem retorno (que é o que mais pesa na marca empregadora).</p></div>
+    <div><h3>Fluxo</h3><ol><li>Cabeçalho da vaga com os dados e o prazo.</li><li>Arrastar o cartão muda a etapa; "Mover para…" pelo teclado.</li><li>Reprovar pede o motivo e manda a mensagem padrão, com o nome da pessoa.</li><li>O cartão abre o painel da candidata com currículo, notas das entrevistas e agenda.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Greenhouse, o Lever e a Gupy consagraram o pipeline de vaga em colunas; o "parada há 5 dias" vem da regra de retorno que a Gupy cobra das empresas; e o quadro usa o mesmo componente do Comercial e de Projetos, então ninguém aprende de novo.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" style="padding-top:16px">
+      <header class="cm-cabecalho-registro"><div class="cm-cabecalho-registro__topo"><span class="cm-ladrilho"><i data-i="vaga-de-emprego"></i></span><div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Vaga aberta em 15/09</span><h1 class="cm-cabecalho-registro__titulo">Atendente de suporte, fila do WhatsApp</h1></div><div class="cm-grupo-botoes"><button class="cm-botao" type="button"><i data-i="compartilhar"></i>Divulgar</button><button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar-pessoa"></i>Adicionar candidata</button></div></div>
+        <dl class="cm-destaques"><div><dt>Inscritas</dt><dd>64</dd></div><div><dt>Gestora</dt><dd>Letícia Araújo</dd></div><div><dt>Salário</dt><dd>R$ 2.380,00 e benefícios</dd></div><div><dt>Regime</dt><dd>CLT, presencial, Vila Mariana</dd></div><div><dt>Fechar até</dt><dd>31/10</dd></div></dl></header>
+      <div class="cm-kanban cb-recr" id="recr" style="margin-top:12px"></div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Divulgar, Adicionar candidata</li><li>Colunas da esquerda para a direita, cartões em ordem</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>"Joana Prates, Entrevista com a gestora, quinta 10h, parada há 0 dias".</li><li>"Atenção: sem retorno há 5 dias".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Origem: "indicação", "LinkedIn", "Gupy"</li></ul></div>
+  </div>
+</section>
+
+<!-- 29.10 -->
+<section class="cm-doc-tela" id="t-comunicados" aria-labelledby="t-com-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">29.10</span><h2 class="cm-doc-tela__titulo" id="t-com-h">Comunicados com ciência</h2><span class="cm-doc-tela__sub">escrever, exigir leitura e saber quem falta</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Uma mudança de política (o novo horário da portaria remota, por exemplo) precisa de registro de que cada pessoa leu. O RH escreve, escolhe para quem, pede ciência com prazo, e acompanha quem confirmou; lembra só quem falta.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Editor com menção e anexo; público por equipe, cargo ou todos.</li><li>"Exigir ciência até" liga o botão "Li e estou ciente" no mural da Home.</li><li>Publicado, o painel da direita conta quem confirmou e lista quem falta, com "Lembrar 7 pessoas".</li><li>A ciência vira registro com data e hora, exportável para o RH.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Workplace e o Staffbase têm "confirmar leitura" com relatório de quem falta; o mural da Home do GACO já mostra o comunicado com ciência, então o mesmo objeto aparece dos dois lados; e o registro com data atende à exigência de política assinada.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Comunicado</h1><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Publicado em 29/09, 08:00</span></div></header>
+      <div class="cb-com">
+        <div class="cm-pilha cm-pilha--6">
+          <article class="cm-post"><header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--empresa" data-marca-inicial>A</span><div><div class="cm-post__autor">Administradora Alpha</div><div class="cm-post__sub">por Marta Lins, para toda a empresa</div></div><span class="cm-post__quando">29/09</span></header>
+            <div class="cm-post__tipo"><i data-i="comunicado"></i>Comunicado com ciência até 03/10</div><h3 class="cm-post__titulo">Novo horário do plantão de fim de semana</h3>
+            <p class="cm-post__corpo">A partir de 04/10, o plantão de sábado vai das 8h às 14h, e o de domingo passa a ser só por telefone, das 9h às 13h. A escala de outubro está anexada. Dúvidas com <span class="cm-mencao">@Letícia Araújo</span>.</p>
+            <div class="cm-anexos" style="margin-top:10px"><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="pdf"></i></span><span><span class="cm-anexo__nome">escala-plantao-outubro.pdf</span><span class="cm-anexo__meta">96 KB</span></span><span></span></div></div>
+            <div class="cm-ciencia is-confirmada"><span class="cm-ciencia__texto">Você confirmou em 29/09, 08:14</span></div></article>
+        </div>
+        <aside class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Ciência</h2><span class="cm-t-legenda">até 03/10</span></header><div class="cm-cartao__corpo cm-pilha">
+          <div class="cm-progresso cm-progresso--sucesso"><span class="cm-progresso__barra"><i style="--p:85%"></i></span><span class="cm-progresso__valor">41 de 48 confirmaram</span></div>
+          <h3 class="cm-t-subsecao">Faltam 7</h3>
+          <ul class="cm-pilha" style="gap:6px;list-style:none;margin:0;padding:0">
+            <li class="cm-pessoa"><span class="cm-avatar cm-avatar--3">CD</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Camila Duarte</span><span class="cm-pessoa__sub">de férias até 10/10, lembrete na volta</span></span></li>
+            <li class="cm-pessoa"><span class="cm-avatar cm-avatar--1">CA</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Carlos Antunes</span><span class="cm-pessoa__sub">abriu, não confirmou</span></span></li>
+            <li class="cm-pessoa"><span class="cm-avatar cm-avatar--5">PS</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Pedro Saraiva</span><span class="cm-pessoa__sub">não abriu</span></span></li>
+            <li class="cm-t-legenda">e mais 4</li></ul>
+          <div class="cm-linha"><button class="cm-botao cm-botao--principal" type="button" data-toast="Lembrete enviado para 6 pessoas. Camila recebe na volta.">Lembrar quem falta</button><button class="cm-botao" type="button"><i data-i="exportar"></i>Exportar registro</button></div>
+        </div></aside>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Comunicado (menção, anexo)</li><li>Ciência: lista de quem falta</li><li>Lembrar, Exportar</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Progresso: "41 de 48 confirmaram".</li><li>Confirmação: "Você confirmou em 29/09, 08:14".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Avatar da empresa: "Administradora Alpha"</li></ul></div>
+  </div>
+</section>
+
+<!-- 29.11 -->
+<section class="cm-doc-tela" id="t-clima" aria-labelledby="t-cli-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">29.11</span><h2 class="cm-doc-tela__titulo" id="t-cli-h">Pesquisa de clima</h2><span class="cm-doc-tela__sub">responder em 3 minutos e ler o resultado sem expor ninguém</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Duas pontas: o colaborador responde de forma anônima e rápida; o RH lê o resultado por tema e por equipe, com o eNPS, sem nunca abrir um grupo com menos de 5 respostas.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Responder: uma pergunta de recomendação (0 a 10) e afirmações com concordância em 5 pontos; comentário opcional.</li><li>O aviso de anonimato fica no topo, com a regra dos 5.</li><li>Resultado: barras divergentes por afirmação (discordo à esquerda, concordo à direita), com a tabela equivalente.</li><li>Comentários agrupados por tema, sem nome.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Culture Amp e o Peakon usam o eNPS e a escala de concordância de 5 pontos; a barra divergente é o jeito padrão de ler Likert (concordância de um lado, discordância do outro, neutro no meio); e o mínimo de 5 respostas por grupo é a prática do Culture Amp para manter o anonimato.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__barra"><span>Lado:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Lado"><button type="button" aria-pressed="true" data-estado="ambos">Responder e resultado</button><button type="button" aria-pressed="false" data-estado="fechado">Grupo pequeno demais</button></div></div>
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Clima, setembro de 2026</h1><span class="cm-t-legenda">aberta até 10/10, 39 de 48 responderam</span></div></header>
+      <div class="cb-clima" data-estado-painel="ambos">
+        <section class="cm-cartao" aria-labelledby="resp-t"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="resp-t">Responder</h2><span class="cm-t-legenda">2 de 8</span></header><div class="cm-cartao__corpo cm-pilha cm-pilha--6">
+          <div class="cm-alerta cm-alerta--info"><i data-i="privacidade"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Anônima de verdade</span><span class="cm-alerta__desc">Ninguém vê sua resposta. O RH só vê grupos com 5 respostas ou mais.</span></span></div>
+          <fieldset style="border:0;padding:0;margin:0"><legend class="cm-t-subsecao" style="margin-bottom:8px">De 0 a 10, quanto você recomendaria a Alpha como lugar para trabalhar?</legend><div class="cm-escala" id="esc"></div><div class="cm-escala__pontas"><span>nada provável</span><span>muito provável</span></div></fieldset>
+          <fieldset style="border:0;padding:0;margin:0"><legend class="cm-t-subsecao" style="margin-bottom:8px">"Tenho o que preciso para atender bem o condômino."</legend><div class="cm-segmentado" role="group" aria-label="Concordância" style="flex-wrap:wrap"><button type="button" aria-pressed="false">Discordo totalmente</button><button type="button" aria-pressed="false">Discordo</button><button type="button" aria-pressed="false">Neutro</button><button type="button" aria-pressed="true">Concordo</button><button type="button" aria-pressed="false">Concordo totalmente</button></div></fieldset>
+          <div class="cm-linha"><button class="cm-botao" type="button">Anterior</button><button class="cm-botao cm-botao--principal" type="button">Próxima</button></div>
+        </div></section>
+        <section class="cm-cartao" aria-labelledby="res-t"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="res-t">Resultado</h2><div class="cm-selecao"><select aria-label="Grupo"><option>Toda a empresa, 39</option><option>Suporte, 8</option><option>Financeiro, 4 (fechado)</option></select><i data-i="chevron-baixo"></i></div></header><div class="cm-cartao__corpo">
+          <div class="cm-kpis" style="border-top:0;padding-top:0"><div class="cm-kpi"><span class="cm-kpi__rotulo">eNPS</span><span class="cm-kpi__valor">+31</span><span class="cm-kpi__variacao is-melhor"><i data-i="alta" data-rotulo="aumento"></i>9 <span>contra março</span></span></div><div class="cm-kpi"><span class="cm-kpi__rotulo">Respostas</span><span class="cm-kpi__valor">81%</span></div></div>
+          <table class="cm-likert" style="margin-top:8px"><caption class="cm-sr">Concordância por afirmação, em porcentagem: discordo totalmente, discordo, neutro, concordo, concordo totalmente</caption><thead><tr><th>Afirmação</th><th>Distribuição</th><th class="cm-num">Concordam</th></tr></thead><tbody id="lik"></tbody></table>
+          <div class="cm-grafico__legenda"><span><i style="--c:var(--cm-grafico-3);opacity:.55"></i>Discordo totalmente</span><span><i style="--c:var(--cm-grafico-3)"></i>Discordo</span><span><i style="--c:var(--cm-camada-3)"></i>Neutro</span><span><i style="--c:var(--cm-grafico-2)"></i>Concordo</span><span><i style="--c:var(--cm-grafico-2);filter:brightness(.8)"></i>Concordo totalmente</span></div>
+          <h3 class="cm-t-subsecao" style="margin-top:14px">O que mais apareceu nos comentários</h3>
+          <ul class="cm-pilha" style="gap:6px;margin:6px 0 0;padding-left:18px;font-size:13px"><li>Plantão de domingo cansativo (11 comentários)</li><li>Elogios à nova tela de conciliação (6)</li><li>Pedido de mais treinamento em assembleia virtual (5)</li></ul>
+        </div></section>
+      </div>
+      <div data-estado-painel="fechado" hidden><div class="cm-bloqueio"><i data-i="privacidade"></i><div><h3>O Financeiro tem 4 respostas</h3><p>Para proteger quem respondeu, grupos com menos de 5 respostas não abrem. As respostas do Financeiro entram no total da empresa.</p></div></div></div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Escala de 0 a 10 (setas)</li><li>Concordância</li><li>Anterior, Próxima</li><li>Grupo do resultado, tabela</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Escala como grupo: "De 0 a 10…, 8, pressionado".</li><li>Linha da tabela: "Tenho o que preciso…, discordo totalmente 3%, discordo 8%, neutro 15%, concordo 49%, concordo totalmente 25%".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Escudo: decorativo, o título diz "Anônima de verdade".</li></ul></div>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+var C={'Inscritas':[['Rafaela Moura','Gupy','',''],['Kevin Santos','LinkedIn','',''],['Priscila Rocha','indicação de Beatriz','','']],
+ 'Triagem':[['Thaís Albuquerque','Gupy','sem retorno há 5 dias','aviso'],['Lucas Brandão','Gupy','','']],
+ 'Entrevista com o RH':[['Gabriela Freitas','LinkedIn','hoje 15h',''],['Mateus Lopes','Gupy','','']],
+ 'Entrevista com a gestora':[['Joana Prates','indicação de Letícia','quinta 10h','']],
+ 'Proposta':[['Vinícius Teles','Gupy','aceitou verbalmente','sucesso']],
+ 'Contratada':[]};
+var tot={'Inscritas':51,'Triagem':6,'Entrevista com o RH':4,'Entrevista com a gestora':2,'Proposta':1,'Contratada':0};
+document.getElementById('recr').innerHTML=Object.keys(C).map(function(k){return '<section class="cm-kanban__coluna" aria-label="'+k+'" style="width:220px"><header class="cm-kanban__cabeca"><h3 class="cm-kanban__titulo">'+k+'</h3><span class="cm-contador">'+tot[k]+'</span></header><div class="cm-kanban__cartoes">'+(C[k].length?C[k].map(function(c){return '<a class="cm-kanban-cartao'+(c[3]==='aviso'?' is-esfriando':'')+'" href="#" draggable="true"><span class="cm-kanban-cartao__titulo">'+c[0]+'</span><span class="cm-kanban-cartao__sub">'+c[1]+'</span>'+(c[2]?'<span class="cm-kanban-cartao__pe">'+(c[3]?'<span class="cm-estado cm-estado--'+c[3]+'"><i data-i="'+(c[3]==='aviso'?'atencao':'sucesso')+'"></i>'+c[2]+'</span>':'<i data-i="calendario"></i>'+c[2])+'</span>':'')+'</a>'}).join(''):'<p class="cm-t-legenda" style="padding:4px">Ninguém ainda</p>')+(tot[k]>C[k].length?'<button class="cm-kanban__adicionar" type="button">Mais '+(tot[k]-C[k].length)+'</button>':'')+'</div></section>'}).join('');
+var e='';for(var i=0;i<=10;i++) e+='<button type="button" aria-pressed="'+(i===8)+'">'+i+'</button>';
+var esc=document.getElementById('esc');esc.innerHTML=e;esc.setAttribute('role','group');esc.setAttribute('aria-label','De 0 a 10');
+esc.addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b) return;[].forEach.call(esc.children,function(x){x.setAttribute('aria-pressed',x===b)})});
+var L=[['Tenho o que preciso para atender bem o condômino',[3,8,15,49,25]],['Minha gestora me dá retorno com frequência',[2,5,13,44,36]],['O plantão de fim de semana é bem dividido',[18,26,21,26,9]],['Eu me vejo na Alpha daqui a dois anos',[5,10,23,38,24]]];
+document.getElementById('lik').innerHTML=L.map(function(l){return '<tr><td>'+l[0]+'</td><td><div class="cm-distribuicao" role="img" aria-label="discordo totalmente '+l[1][0]+'%, discordo '+l[1][1]+'%, neutro '+l[1][2]+'%, concordo '+l[1][3]+'%, concordo totalmente '+l[1][4]+'%">'+l[1].map(function(v){return '<i style="width:'+v+'%"></i>'}).join('')+'</div></td><td class="cm-num cm-forte">'+(l[1][3]+l[1][4])+'%</td></tr>'}).join('');
+})();
+</script>
+</body>
+</html>

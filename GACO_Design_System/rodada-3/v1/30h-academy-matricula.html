@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matrícula e rematrícula, Academy</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>.rm-grade{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}@media (max-width:1023px){.rm-grade{grid-template-columns:minmax(0,1fr)}}</style>
+</head>
+<body data-moldura='{"modulo":"academy","secao":"Secretaria","item":"Matrículas","papel":"rh","usuario":{"nome":"Fernanda Lopes","cargo":"Coordenação do Academy","iniciais":"FL","cor":"lc-av--c4"},"trilha":["Secretaria","Matrículas"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Matrícula (secretaria) e rematrícula (aluno), lado a lado nos estados.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Secretaria: matricular colaboradores e pessoas de clientes em turmas, ver pendências (frequência, aprovação do gestor, vaga) e liberar em lote. Aluno: escolher as disciplinas do próximo período sem choque de horário, com a carga horária somada.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Secretaria: lista com pendências em palavra; marcar várias e "Confirmar matrícula" ou "Pedir aprovação ao gestor".</li>
+      <li>"Matricular" abre o painel: pessoa, turma, origem (colaborador ou cliente), cobrança se for cliente.</li>
+      <li>Aluno: na janela de rematrícula, marca as disciplinas; choque de horário aparece na hora, com a alternativa de outra turma.</li>
+      <li>"Confirmar rematrícula" protocola o pedido; a coordenação aprova (carimbo Protocolado).</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>a rematrícula on-line das faculdades brasileiras (portais Totvs, Lyceum, Unimestre) é uma lista de disciplinas com caixa, carga e horário, e avisa choque; a Secretaria trabalha em fila com pendências, como qualquer backoffice. A palavra é "matrícula", não "inscrição".</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Estado</span><div class="lc-seg lc-seg--p" role="group" aria-label="Visão" data-p4-estados><button type="button" data-v="secretaria" aria-pressed="true">Secretaria</button><button type="button" data-v="aluno">Rematrícula do aluno</button></div>
+    <span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="academy"></div>
+</details>
+
+<div data-estado="secretaria">
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Matrículas</h1><p class="lc-cab-pagina__desc">Rematrícula 2027.1 aberta de 16/11 a 27/11. 143 pedidos, 18 com pendência.</p></div>
+  <div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="enviar-arquivo"></i>Importar lista</button><button class="lc-btn lc-btn--principal" type="button"><i data-i="adicionar-pessoa"></i>Matricular</button></div></div>
+<div class="lc-abas" role="tablist" aria-label="Filtro"><button role="tab" aria-selected="true">Com pendência <span class="lc-contagem">18</span></button><button role="tab" aria-selected="false">Prontas para confirmar <span class="lc-contagem">96</span></button><button role="tab" aria-selected="false">Confirmadas <span class="lc-contagem">29</span></button></div>
+<div class="lc-massa" id="mt-massa" hidden style="margin-top:12px"><b data-conta>0</b><div class="lc-massa__acoes"><button class="lc-btn lc-btn--discreto lc-btn--p" type="button" data-toast="Pedido de aprovação enviado aos gestores."><i data-i="enviar"></i>Pedir aprovação ao gestor</button><button class="lc-btn lc-btn--discreto lc-btn--p" type="button"><i data-i="confirmar"></i>Confirmar mesmo assim</button></div><div class="lc-massa__fim"><button class="lc-btn lc-btn--discreto lc-btn--p" type="button" data-limpar>Limpar</button></div></div>
+<div class="lc-tabela-cont" style="margin-top:12px"><table class="lc-tabela lc-com-sel" data-p4-massa="mt-massa">
+  <caption class="lc-sr">Pedidos de matrícula com pendência</caption>
+  <thead><tr><th class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar todos"><span class="lc-marcar__caixa"></span></label></th><th scope="col">Pessoa</th><th scope="col">Disciplinas pedidas</th><th scope="col">Pendência</th><th scope="col">Origem</th></tr></thead>
+  <tbody>
+    <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Ricardo Lemos"><span class="lc-marcar__caixa"></span></label></td><td><span class="lc-tabela__primaria">Ricardo Lemos</span><span class="lc-tabela__sub">matrícula 2026.1.0102</span></td><td>3 disciplinas, 120 h</td><td><span class="lc-estado lc-estado--perigo">Reprovado por falta em GC-201</span><span class="lc-tabela__sub">precisa refazer antes de GC-301</span></td><td>Sol Nascente Gestão (cliente)</td></tr>
+    <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Diego Ramos"><span class="lc-marcar__caixa"></span></label></td><td><span class="lc-tabela__primaria">Diego Ramos</span><span class="lc-tabela__sub">matrícula 2025.2.0311</span></td><td>4 disciplinas, 160 h</td><td><span class="lc-estado lc-estado--aviso">Falta aprovação do gestor</span><span class="lc-tabela__sub">cliente paga por pessoa matriculada</span></td><td>Órbita Condomínios (cliente)</td></tr>
+    <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Lucas Santos"><span class="lc-marcar__caixa"></span></label></td><td><span class="lc-tabela__primaria">Lucas Santos</span><span class="lc-tabela__sub">matrícula 2025.1.0420</span></td><td>4 disciplinas, 150 h</td><td><span class="lc-estado lc-estado--aviso">Turma cheia em GC-305 T01</span><span class="lc-tabela__sub">há vaga na T02, quartas 19:00</span></td><td>Administradora Alpha</td></tr>
+  </tbody></table></div>
+</div>
+
+<div data-estado="aluno" hidden>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Rematrícula 2027.1</h1><p class="lc-cab-pagina__desc">Ana Beatriz Souza, 4º período de 4. Aberta até 27/11. Mínimo 120 h, máximo 200 h.</p></div></div>
+<div class="rm-grade">
+  <div class="lc-tabela-cont"><table class="lc-tabela">
+    <caption class="lc-sr">Disciplinas disponíveis</caption>
+    <thead><tr><th class="lc-tabela__sel"><span class="lc-sr">Escolher</span></th><th scope="col">Disciplina</th><th scope="col">Turma e horário</th><th scope="col" class="lc-num">CH</th><th scope="col">Situação</th></tr></thead>
+    <tbody>
+      <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" checked aria-label="Escolher GC-301"><span class="lc-marcar__caixa"></span></label></td><td><b>GC-301 Gestão de conflitos e mediação</b></td><td><select class="lc-selecao" aria-label="Turma de GC-301" style="width:230px"><option>T01, seg 08:00</option></select></td><td class="lc-num">40 h</td><td><span class="lc-estado lc-estado--sucesso">Liberada</span></td></tr>
+      <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" checked aria-label="Escolher GC-305"><span class="lc-marcar__caixa"></span></label></td><td><b>GC-305 Contabilidade do condomínio</b></td><td><select class="lc-selecao" aria-label="Turma de GC-305" style="width:230px" aria-invalid="true" aria-describedby="ch-e"><option>T01, seg 08:00</option><option>T02, qua 19:00</option></select><p class="lc-erro" id="ch-e"><i data-i="erro"></i>Choca com GC-301 na segunda 08:00. Troque para T02.</p></td><td class="lc-num">60 h</td><td><span class="lc-estado lc-estado--aviso">Choque de horário</span></td></tr>
+      <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" checked aria-label="Escolher GC-310"><span class="lc-marcar__caixa"></span></label></td><td><b>GC-310 Obras e reformas no condomínio</b></td><td><select class="lc-selecao" aria-label="Turma de GC-310" style="width:230px"><option>T01, ter 19:00</option></select></td><td class="lc-num">40 h</td><td><span class="lc-estado lc-estado--sucesso">Liberada</span></td></tr>
+      <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" disabled aria-label="GC-320 bloqueada"><span class="lc-marcar__caixa"></span></label></td><td><b>GC-320 Trabalho de conclusão</b><span class="lc-tabela__sub">exige GC-210 aprovada</span></td><td>T01, a combinar</td><td class="lc-num">40 h</td><td><span class="lc-estado lc-estado--neutro">Depende de GC-210</span></td></tr>
+    </tbody>
+    <tfoot><tr><td></td><td colspan="2">Carga escolhida</td><td class="lc-num"><span class="lc-total">140 h</span></td><td></td></tr></tfoot></table></div>
+  <aside class="lc-caixa"><div class="lc-caixa__cab"><h2>Seu pedido</h2></div><div class="lc-caixa__corpo"><ul class="lc-resumo"><li><span>Disciplinas</span><b>3</b></li><li><span>Carga</span><b>140 h de 120 a 200</b></li><li><span>Custo</span><b>pago pela Alpha</b></li></ul>
+    <div class="lc-alerta lc-alerta--aviso" style="margin-top:12px"><i data-i="aviso"></i><div class="lc-alerta__corpo">Resolva o choque de horário para confirmar.</div></div></div>
+    <div class="lc-caixa__pe" style="justify-content:flex-end"><button class="lc-btn lc-btn--principal" type="button" disabled aria-describedby="ch-e">Confirmar rematrícula</button></div></aside>
+</div>
+</div>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Secretaria: Importar, Matricular, abas, seleção e linhas, barra de massa. Aluno: caixa de cada disciplina, turma (seleção), Confirmar.</dd>
+    <dt>O que é anunciado</dt><dd>Pendência é texto ("Falta aprovação do gestor"). O choque de horário é erro ligado à seleção da turma e ao botão desabilitado. A disciplina bloqueada diz do que depende.</dd>
+    <dt>Nome do que é só ícone</dt><dd>Não há botão só ícone.</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

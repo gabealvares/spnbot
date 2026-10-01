@@ -18,8 +18,8 @@
 </head>
 <body data-moldura='{"contexto":"portal","secao":"Minha unidade","papel":"morador","cliente":{"nome":"Administradora Alpha","sigla":"A"},"unidade":"Bloco B, apto 1204"}'>
 <main id="conteudo" class="lc-pagina">
-<section class="lc-ficha-tela" aria-label="Sobre a tela Perfil e unidades">
-  <div class="lc-ficha-tela__nome"><b>Perfil e unidades</b><span>Dados da pessoa, unidades vinculadas, quem mora, veículos e avisos.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre a tela Perfil e unidades">
+  <div class="lc-sobre-tela__nome"><b>Perfil e unidades</b><span>Dados da pessoa, unidades vinculadas, quem mora, veículos e avisos.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Manter o cadastro certo (telefone para o WhatsApp, quem pode entrar, placa do carro) sem formulário enviado por e-mail.</p></div>
   <div><h2>Fluxo</h2><ol><li>Conta (avatar) e "Perfil", ou Mais e "Minha unidade".</li><li>Lápis em cada seção abre a edição ali mesmo.</li><li>Ao mudar um campo, a barra de salvar aparece no pé com o que mudou; "Descartar" volta.</li><li>Morador novo e veículo passam pela aprovação da administradora (estado "Em aprovação").</li><li>Trocar de unidade fica no topo, para quem tem mais de uma.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o HubSpot e o Salesforce editam por seção com lápis; o Notion e o Figma mostram a barra de salvar só quando há alteração; e o app do Nubank lista cada dado com "Alterar" ao lado, o que o morador já sabe usar.</p></div>
@@ -53,8 +53,8 @@
 </div>
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Trocar unidade, campos de Seus dados, Adicionar morador, preferências, Trocar senha, Ligar 2 etapas; barra de salvar por último (Descartar, Salvar).</p></div><div><h3>O que é anunciado</h3><p>A barra é região "Alterações não salvas" e diz quantas e onde. Campos só leitura são anunciados como "somente leitura" com a ajuda.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum; os ícones de lista são decorativos.</p></div></div>
 
-<section class="lc-ficha-tela" id="visitante" aria-label="Sobre a tela Portaria">
-  <div class="lc-ficha-tela__nome"><b>Portaria: visitante e encomendas</b><span>Autorizar visitante com passe e ver o que chegou.</span></div>
+<section class="lc-sobre-tela" id="visitante" aria-label="Sobre a tela Portaria">
+  <div class="lc-sobre-tela__nome"><b>Portaria: visitante e encomendas</b><span>Autorizar visitante com passe e ver o que chegou.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Liberar a entrada sem interfone e saber que a encomenda chegou, com quem está e até quando retirar.</p></div>
   <div><h2>Fluxo</h2><ol><li>Mais e "Visitantes" (ou atalho do Início).</li><li>Nome, documento opcional, dia e janela de horário; recorrente para diarista.</li><li>"Gerar passe" cria código e QR; "Enviar por WhatsApp" manda ao visitante.</li><li>Encomendas: lista com o porteiro que recebeu e "Retirada" com carimbo quando sai.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o Gruvi e o Condomob geram QR de acesso para o visitante; o app dos Correios e o do Mercado Livre mostram "aguardando retirada" com prazo; e o livro da portaria registra quem entregou, que vira o carimbo.</p></div>

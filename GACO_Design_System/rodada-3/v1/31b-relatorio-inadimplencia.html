@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inadimplência da carteira, Relatórios</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>.rb-cab{display:flex;align-items:center;gap:12px;flex-wrap:wrap}</style>
+</head>
+<body data-moldura='{"modulo":"relatorios","secao":"Por módulo","item":"Inadimplência","papel":"diretor","usuario":{"nome":"Cláudio Prates","cargo":"Diretor","iniciais":"CP","cor":"lc-av--c2"},"trilha":["Todos os relatórios","Inadimplência da carteira"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Relatório com filtros, gráfico e a tabela equivalente; exportar e agendar.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Mostrar à diretoria se a inadimplência da carteira está subindo ou caindo, contra a meta de 4%, e em quais condomínios agir. O mesmo número aparece em gráfico (tendência) e em tabela (detalhe), e sai em PDF ou planilha, agora ou todo mês.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Filtros numa linha acima do gráfico: período, condomínios, gestor. Mudam gráfico e tabela juntos; ficam salvos para a próxima vez.</li>
+      <li>Passar o mouse ou focar uma barra mostra o mês e o valor; "Ver como tabela" abre os mesmos números.</li>
+      <li>Tabela por condomínio, ordenável; clicar no nome abre o Contas a receber filtrado (26).</li>
+      <li>"Exportar" (PDF, planilha) e "Agendar envio" (frequência, destinatários) em modais.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o Google Analytics e o Looker Studio põem os filtros numa linha acima do gráfico e a tabela abaixo; o Superlógica Relatórios exporta para o síndico em PDF; o agendamento de envio é o do Metabase e do HubSpot. Meta como linha tracejada com rótulo, uma só série, sem eixo duplo.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Estado</span><div class="lc-seg lc-seg--p" role="group" aria-label="Estado" data-p4-estados><button type="button" data-v="dados" aria-pressed="true">Com dados</button><button type="button" data-v="carregando">Calculando</button><button type="button" data-v="vazio">Filtro sem dados</button><button type="button" data-v="erro">Erro</button></div>
+    <span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="relatorios"></div>
+</details>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Inadimplência da carteira</h1><p class="lc-cab-pagina__desc">Valor vencido e não pago sobre o arrecadado no mês. 63 condomínios. Dados de hoje, 07:12.</p></div>
+  <div class="lc-cab-pagina__acoes"><button class="lc-btn lc-btn--icone lc-estrela" type="button" aria-pressed="true" aria-label="Favorito" data-alterna><i data-i="estrela"></i></button><button class="lc-btn" type="button" data-abrir="m-agendar"><i data-i="calendario"></i>Agendar envio</button><button class="lc-btn lc-btn--principal" type="button" data-abrir="m-exportar"><i data-i="baixar"></i>Exportar</button></div></div>
+<div class="lc-filtros">
+  <select class="lc-selecao" aria-label="Período" style="width:200px"><option>Últimos 12 meses</option><option>Este ano</option><option>Personalizado</option></select>
+  <button class="lc-filtro lc-filtro--ativo" type="button"><i data-i="filtrar"></i>Condomínios: <b>todos (63)</b></button>
+  <button class="lc-filtro" type="button">Gestor<i data-i="chevron-baixo"></i></button>
+  <button class="lc-filtro" type="button">Agrupar: mês<i data-i="chevron-baixo"></i></button>
+  <div class="lc-filtros__fim"><span class="lc-legenda">Filtros salvos para a próxima vez</span></div>
+</div>
+
+<div data-estado="carregando" hidden aria-busy="true"><p class="lc-sr" role="status">Calculando o relatório.</p><span class="lc-esqueleto lc-esqueleto--bloco" style="height:300px"></span></div>
+<div data-estado="vazio" hidden><div class="lc-caixa"><div class="lc-vazio lc-vazio--centro"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="filtrar"></i></span><h2 class="lc-vazio__titulo">Ed. Monte Verde não tem nada em atraso</h2><p class="lc-vazio__texto">Nos últimos 12 meses todas as cobranças foram pagas até 5 dias depois do vencimento.</p><div class="lc-grupo-btn"><button class="lc-btn" type="button">Voltar para todos os condomínios</button></div></div></div></div>
+<div data-estado="erro" hidden><div class="lc-alerta lc-alerta--perigo" role="alert"><i data-i="erro"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Não deu para calcular agora</span>O retorno do banco de 4 condomínios ainda está sendo lido. Os números ficariam errados. Tente em 10 minutos ou veja o relatório de ontem.<div class="lc-alerta__acoes"><button class="lc-btn lc-btn--p" type="button">Ver o de ontem, 23:00</button></div></div></div></div>
+
+<div data-estado="dados">
+<div class="lc-kpis" aria-label="Resumo">
+  <div class="lc-kpi"><span class="lc-kpi__rotulo">Inadimplência em setembro</span><span class="lc-kpi__valor">3,6%</span><span class="lc-kpi__var lc-kpi__var--pos"><i data-i="tendencia-baixa"></i>0,3 p.p. abaixo de agosto</span></div>
+  <div class="lc-kpi"><span class="lc-kpi__rotulo">Em aberto hoje</span><span class="lc-kpi__valor">R$ 118,4 mil</span><span class="lc-kpi__var">412 cobranças</span></div>
+  <div class="lc-kpi"><span class="lc-kpi__rotulo">Meta da carteira</span><span class="lc-kpi__valor">4,0%</span><span class="lc-kpi__var lc-kpi__var--pos">abaixo há 3 meses</span></div>
+</div>
+<figure class="lc-caixa" style="margin:20px 0">
+  <div class="lc-caixa__cab"><h2>Inadimplência por mês</h2><ul class="lc-graf-legenda" style="margin:0"><li><i class="lc-graf__s1" style="background:var(--grafico-1)"></i>% da arrecadação</li><li><i class="lc-graf__traco"></i>Meta, 4%</li></ul></div>
+  <div class="lc-caixa__corpo"><div class="lc-graf-cont"><svg class="lc-graf" viewBox="0 0 1240 280" role="img" aria-label="Inadimplência da carteira por mês, de outubro de 2025 a setembro de 2026, em porcentagem da arrecadação"><line class="lc-graf__base" x1="56" x2="1232" y1="252.0" y2="252.0"/><text class="lc-graf__eixo" x="48" y="256.0" text-anchor="end">0%</text><line class="lc-graf__grade" x1="56" x2="1232" y1="192.0" y2="192.0"/><text class="lc-graf__eixo" x="48" y="196.0" text-anchor="end">2%</text><line class="lc-graf__grade" x1="56" x2="1232" y1="132.0" y2="132.0"/><text class="lc-graf__eixo" x="48" y="136.0" text-anchor="end">4%</text><line class="lc-graf__grade" x1="56" x2="1232" y1="72.0" y2="72.0"/><text class="lc-graf__eixo" x="48" y="76.0" text-anchor="end">6%</text><line class="lc-graf__grade" x1="56" x2="1232" y1="12.0" y2="12.0"/><text class="lc-graf__eixo" x="48" y="16.0" text-anchor="end">8%</text><line class="lc-graf__meta" x1="56" x2="1232" y1="132.0" y2="132.0"/><path class="lc-graf__s1" d="M91.0 252.0V111.0q0 -3 3 -3h22.0q3 0 3 3V252.0z" tabindex="0" data-dado="out/25: <b>4,8% da arrecadação</b>"/><text class="lc-graf__eixo" x="105.0" y="272" text-anchor="middle">out/25</text><path class="lc-graf__s1" d="M189.0 252.0V117.0q0 -3 3 -3h22.0q3 0 3 3V252.0z" tabindex="0" data-dado="nov: <b>4,6% da arrecadação</b>"/><text class="lc-graf__eixo" x="203.0" y="272" text-anchor="middle">nov</text><path class="lc-graf__s1" d="M287.0 252.0V102.0q0 -3 3 -3h22.0q3 0 3 3V252.0z" tabindex="0" data-dado="dez: <b>5,1% da arrecadação</b>"/><text class="lc-graf__eixo" x="301.0" y="272" text-anchor="middle">dez</text><path class="lc-graf__s1" d="M385.0 252.0V69.0q0 -3 3 -3h22.0q3 0 3 3V252.0z" tabindex="0" data-dado="jan/26: <b>6,2% da arrecadação</b>"/><text class="lc-graf__eixo" x="399.0" y="272" text-anchor="middle">jan/26</text><path class="lc-graf__s1" d="M483.0 252.0V51.0q0 -3 3 -3h22.0q3 0 3 3V252.0z" tabindex="0" data-dado="fev: <b>6,8% da arrecadação</b>"/><text class="lc-graf__eixo" x="497.0" y="272" text-anchor="middle">fev</text><path class="lc-graf__s1" d="M581.0 252.0V78.0q0 -3 3 -3h22.0q3 0 3 3V252.0z" tabindex="0" data-dado="mar: <b>5,9% da arrecadação</b>"/><text class="lc-graf__eixo" x="595.0" y="272" text-anchor="middle">mar</text><path class="lc-graf__s1" d="M679.0 252.0V99.0q0 -3 3 -3h22.0q3 0 3 3V252.0z" tabindex="0" data-dado="abr: <b>5,2% da arrecadação</b>"/><text class="lc-graf__eixo" x="693.0" y="272" text-anchor="middle">abr</text><path class="lc-graf__s1" d="M777.0 252.0V108.0q0 -3 3 -3h22.0q3 0 3 3V252.0z" tabindex="0" data-dado="mai: <b>4,9% da arrecadação</b>"/><text class="lc-graf__eixo" x="791.0" y="272" text-anchor="middle">mai</text><path class="lc-graf__s1" d="M875.0 252.0V123.0q0 -3 3 -3h22.0q3 0 3 3V252.0z" tabindex="0" data-dado="jun: <b>4,4% da arrecadação</b>"/><text class="lc-graf__eixo" x="889.0" y="272" text-anchor="middle">jun</text><path class="lc-graf__s1" d="M973.0 252.0V132.0q0 -3 3 -3h22.0q3 0 3 3V252.0z" tabindex="0" data-dado="jul: <b>4,1% da arrecadação</b>"/><text class="lc-graf__eixo" x="987.0" y="272" text-anchor="middle">jul</text><path class="lc-graf__s1" d="M1071.0 252.0V138.0q0 -3 3 -3h22.0q3 0 3 3V252.0z" tabindex="0" data-dado="ago: <b>3,9% da arrecadação</b>"/><text class="lc-graf__eixo" x="1085.0" y="272" text-anchor="middle">ago</text><path class="lc-graf__s1" d="M1169.0 252.0V147.0q0 -3 3 -3h22.0q3 0 3 3V252.0z" tabindex="0" data-dado="set: <b>3,6% da arrecadação</b>"/><text class="lc-graf__eixo" x="1183.0" y="272" text-anchor="middle">set</text></svg></div>
+    <details style="margin-top:8px"><summary class="lc-btn lc-btn--link">Ver como tabela</summary>
+      <table class="lc-tabela" style="margin-top:8px;--_min-tab:0"><thead><tr><th>Mês</th><th class="lc-num">Inadimplência</th></tr></thead><tbody>
+      <tr><td>out/2025</td><td class="lc-num">4,8%</td></tr><tr><td>nov/2025</td><td class="lc-num">4,6%</td></tr><tr><td>dez/2025</td><td class="lc-num">5,1%</td></tr><tr><td>jan/2026</td><td class="lc-num">6,2%</td></tr><tr><td>fev/2026</td><td class="lc-num">6,8%</td></tr><tr><td>mar/2026</td><td class="lc-num">5,9%</td></tr><tr><td>abr/2026</td><td class="lc-num">5,2%</td></tr><tr><td>mai/2026</td><td class="lc-num">4,9%</td></tr><tr><td>jun/2026</td><td class="lc-num">4,4%</td></tr><tr><td>jul/2026</td><td class="lc-num">4,1%</td></tr><tr><td>ago/2026</td><td class="lc-num">3,9%</td></tr><tr><td>set/2026</td><td class="lc-num">3,6%</td></tr></tbody></table></details>
+    <p class="lc-legenda" style="margin-top:6px">Pico em janeiro e fevereiro: IPTU e material escolar, como todo ano.</p></div>
+</figure>
+<div class="lc-tabela-cont"><table class="lc-tabela" style="--_min-tab:860px">
+  <caption class="lc-sr">Inadimplência por condomínio em setembro</caption>
+  <thead><tr><th scope="col">Condomínio</th><th scope="col" class="lc-num">Unidades em atraso</th><th scope="col" class="lc-num">Em aberto</th><th scope="col" class="lc-num" aria-sort="descending"><button class="lc-ordenar" type="button">% da arrecadação</button></th><th scope="col" class="lc-num">Em 3 meses</th><th scope="col" class="lc-num">Atraso mais antigo</th></tr></thead>
+  <tbody>
+    <tr><td><a class="lc-tabela__primaria" href="#">Edifício Solar das Palmeiras</a><span class="lc-tabela__sub">Cláudia Nunes, síndica</span></td><td class="lc-num">5 de 48</td><td class="lc-num">R$ 6.112,40</td><td class="lc-num"><b>7,4%</b></td><td class="lc-num lc-valor-neg">+1,2 p.p.</td><td class="lc-num">94 dias</td></tr>
+    <tr><td><a class="lc-tabela__primaria" href="#">Residencial Aurora</a><span class="lc-tabela__sub">em implantação, herdado da Habitat</span></td><td class="lc-num">9 de 96</td><td class="lc-num">R$ 11.380,00</td><td class="lc-num"><b>6,9%</b></td><td class="lc-num">novo</td><td class="lc-num">210 dias</td></tr>
+    <tr><td><a class="lc-tabela__primaria" href="#">Cond. Bosque Imperial</a></td><td class="lc-num">12 de 180</td><td class="lc-num">R$ 14.950,20</td><td class="lc-num">5,1%</td><td class="lc-num lc-valor-pos">−0,4 p.p.</td><td class="lc-num">61 dias</td></tr>
+    <tr><td><a class="lc-tabela__primaria" href="26-financeiro.html">Cond. Parque das Águas</a><span class="lc-tabela__sub">Marina Costa, síndica</span></td><td class="lc-num">3 de 120</td><td class="lc-num">R$ 2.753,34</td><td class="lc-num">2,8%</td><td class="lc-num lc-valor-pos">−0,9 p.p.</td><td class="lc-num">52 dias</td></tr>
+    <tr><td><a class="lc-tabela__primaria" href="#">Residencial Jardim Botânico</a></td><td class="lc-num">2 de 86</td><td class="lc-num">R$ 1.640,80</td><td class="lc-num">2,3%</td><td class="lc-num lc-valor-pos">−0,3 p.p.</td><td class="lc-num">33 dias</td></tr>
+  </tbody>
+  <tfoot><tr><td>Carteira, 63 condomínios</td><td class="lc-num">412 cobranças</td><td class="lc-num"><span class="lc-total">R$ 118.420,55</span></td><td class="lc-num"><span class="lc-total">3,6%</span></td><td class="lc-num">−0,6 p.p.</td><td></td></tr></tfoot>
+</table></div>
+<div class="lc-paginacao"><span class="lc-paginacao__info">Mostrando <b>5</b> de <b>63</b></span><div class="lc-paginacao__pags"><button type="button" aria-current="page">1</button><button type="button">2</button><button type="button">…</button><button type="button">13</button></div></div>
+</div>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Favorito, Agendar envio, Exportar, filtros, barras do gráfico (Tab), Ver como tabela, tabela (ordenar, condomínio), paginação.</dd>
+    <dt>O que é anunciado</dt><dd>O gráfico tem nome descritivo; cada barra focável tem dica com mês e valor; a meta é dita na legenda em texto ("Meta, 4%"). Variação com sinal escrito ("+1,2 p.p."), não só cor. Erro com role=alert.</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Favorito" (estrela), "Fechar" nos modais.</dd></dl>
+</details>
+</main>
+<div class="lc-sobreposicao" id="m-exportar" hidden><div class="lc-modal" role="dialog" aria-modal="true" aria-labelledby="mx-t">
+  <div class="lc-modal__cab"><div style="flex:1"><h2 id="mx-t">Exportar relatório</h2><p>Com os filtros de agora: 12 meses, 63 condomínios.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+  <div class="lc-modal__corpo lc-pilha"><fieldset class="lc-grupo-opcoes"><legend class="lc-rotulo" style="margin-bottom:6px">Formato</legend>
+    <label class="lc-radio"><input type="radio" name="f" checked><span class="lc-radio__bola"></span><span>PDF<small>Gráfico, resumo e tabela, com a marca da Administradora Alpha</small></span></label>
+    <label class="lc-radio"><input type="radio" name="f"><span class="lc-radio__bola"></span><span>Planilha (.xlsx)<small>Só os números, uma linha por condomínio e mês</small></span></label></fieldset>
+    <label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span>Um arquivo por condomínio, para mandar a cada síndico</label></div>
+  <div class="lc-modal__pe"><span class="lc-modal__aux">Fica também em Relatórios, Exportações, por 30 dias.</span><button class="lc-btn" type="button" data-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-fechar data-toast="Exportação pronta: Inadimplencia-carteira-set-2026.pdf">Exportar</button></div></div></div>
+<div class="lc-sobreposicao" id="m-agendar" hidden><div class="lc-modal" role="dialog" aria-modal="true" aria-labelledby="ma-t">
+  <div class="lc-modal__cab"><div style="flex:1"><h2 id="ma-t">Agendar envio</h2><p>Já existe um envio todo dia 5 para a diretoria.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+  <div class="lc-modal__corpo"><div class="lc-form-grade">
+    <div class="lc-campo"><label class="lc-rotulo" for="fr">Frequência</label><select id="fr" class="lc-selecao"><option>Todo mês, dia 5</option><option>Toda segunda-feira</option><option>Todo dia útil</option></select></div>
+    <div class="lc-campo"><label class="lc-rotulo" for="hr">Horário</label><input id="hr" type="time" class="lc-entrada" value="08:00"></div>
+    <div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="pa">Para</label><div class="lc-multi"><span class="lc-etiqueta">Diretoria<button type="button" aria-label="Remover Diretoria"><i data-i="fechar"></i></button></span><span class="lc-etiqueta">Paula Mendes<button type="button" aria-label="Remover Paula Mendes"><i data-i="fechar"></i></button></span><input id="pa" placeholder="Pessoa, equipe ou e-mail"></div></div>
+    <div class="lc-campo lc-inteiro"><label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>Só enviar se passar da meta<small>Evita e-mail quando está tudo bem</small></span></label></div></div></div>
+  <div class="lc-modal__pe"><button class="lc-btn" type="button" data-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-fechar data-toast="Envio agendado. Veja em Relatórios, Agendados.">Agendar</button></div></div></div>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

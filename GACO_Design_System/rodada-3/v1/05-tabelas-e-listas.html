@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tabelas e listas V1 Livro-Caixa</title>
+<meta name="description" content="Tabelas e listas da V1 Livro-Caixa: padrão, compacta, seleção com barra de massa, coluna fixa, célula editável, agrupamento com total, ordenação, filtros, estados, paginação, carregar mais, cartões no celular e feed.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/doc.css">
+<link rel="stylesheet" href="sistema/extra-p1.css">
+<script src="sistema/marca.js"></script>
+<style>
+/* layout só desta página */
+.p1-celular{width:390px;max-width:100%;margin:0 auto;border:1px solid var(--filete-forte);background:var(--fundo);padding:12px 12px 0}
+.p1-celular__cab{display:flex;align-items:center;gap:8px;padding:4px 0 12px}
+.p1-celular__cab h3{font:var(--t-secao);flex:1;margin:0}
+.p1-feed{max-width:600px}
+.p1-estados{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:899px){.p1-estados{grid-template-columns:minmax(0,1fr)}}
+.p1-largo .lc-tabela th,.p1-largo .lc-tabela td{white-space:nowrap}
+</style>
+</head>
+<body>
+<a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="lc-doc-cab">
+  <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
+  <nav aria-label="Documentação"><a href="00-fundamentos.html">Fundamentos</a><a href="01-iconografia.html">Iconografia</a><a href="02-navegacao.html">Navegação</a><a href="03-componentes.html">Componentes</a><a href="04-formularios.html">Formulários</a><a href="05-tabelas-e-listas.html" aria-current="page">Tabelas e listas</a><a href="exemplo-moldura.html">Exemplo de tela</a></nav>
+  <div class="lc-doc-cab__fim">
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Densidade da documentação" data-doc-dens><button type="button" data-v="compacta" aria-pressed="false">Compacta</button><button type="button" data-v="padrao" aria-pressed="true">Padrão</button><button type="button" data-v="confortavel" aria-pressed="false">Confortável</button></div>
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div>
+  </div>
+</header>
+<div class="lc-doc">
+<nav class="lc-doc-indice lc-doc-indice--familias" aria-label="Tabelas e listas por família"><ol></ol></nav>
+<main id="conteudo" class="lc-doc-conteudo">
+<header>
+  <h1>Tabelas e listas</h1>
+  <p class="lc-doc-lede">A tabela é o livro-razão do GACO: boletos, unidades, despesas, contratos. Aqui ficam todas as formas dela, com dados de verdade e funcionando: ordenar, selecionar, editar na célula, agrupar com total em dupla sublinha, filtrar com chips, paginar e carregar mais. No celular, a mesma linha vira cartão.</p>
+  <div class="lc-doc-tres-blocos">
+    <div><h2>O que esta página resolve</h2><p>A administradora passa o dia em lista: cobrar quem atrasou, conferir rateio, achar a unidade. A tabela precisa ler rápido, agir em lote sem medo e lembrar onde a pessoa estava.</p></div>
+    <div><h2>Fluxo de uma lista</h2><ol><li>Filtros e busca em cima; visões salvas como abas.</li><li>Marcar linhas troca a barra de filtros pela barra de massa, com a soma.</li><li>A primeira coluna abre a ficha; "14 de 63" anda entre os registros sem voltar.</li><li>Voltar para a lista mantém filtro, página e rolagem.</li><li>Editar na célula salva com Enter e oferece Desfazer.</li></ol></div>
+    <div><h2>Resolvemos fazer assim porque</h2><p>o Airtable e o Notion ensinaram a célula editável; o Gmail e o Linear, a barra de massa que substitui os filtros; o Excel e o livro contábil, o total com dupla sublinha; o Superlógica e o Nubank, a lista em cartão no celular.</p></div>
+  </div>
+</header>
+
+<section class="lc-doc-secao" id="padrao" data-familia="Tabelas">
+  <h2>Tabela padrão</h2>
+  <p>Cabeçalho fixo ao rolar, primeira coluna é o nome que abre o registro, números à direita com separador, estado com palavra, ações da linha aparecem no hover e no foco (sempre visíveis no toque).</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="componente"></i>Anatomia</h3><ol><li><span class="lc-doc-n">1</span> Cabeçalho 12,5 px peso 600, fixo.</li><li><span class="lc-doc-n">2</span> Coluna primária: link em peso 600 + linha secundária.</li><li><span class="lc-doc-n">3</span> Valores à direita, com R$ e duas casas.</li><li><span class="lc-doc-n">4</span> Ações da linha no fim, só ícone com nome.</li></ol></div>
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Registros com os mesmos campos que se comparam: boletos, unidades, despesas.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Menos de 4 linhas ou 2 colunas (lista).</li><li>Conteúdo de texto longo (lista ou feed).</li><li>No celular com mais de 3 colunas (cartões).</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Cabeçalho é substantivo curto ("Vencimento", não "Data de vencimento do boleto").</li><li>Data dd/mm/aaaa; hoje e ontem por extenso.</li><li>Vazio na célula: "–" em cinza, nunca "null" ou "0" falso.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>caption</code> (pode ser <code>.lc-sr</code>), <code>th scope="col"</code>.</li><li>Ações com nome que cita a linha: "Enviar segunda via de Bl B, 1204".</li><li>Rolagem lateral com <code>tabindex="0"</code> e nome no contêiner.</li></ul></div>
+  </div>
+  <template data-ex="Boletos de setembro" data-temas="empilhado" data-gerar="tabela:padrao"></template>
+</section>
+
+<section class="lc-doc-secao" id="compacta" data-familia="Tabelas">
+  <h2>Densa (compacta) e pautada</h2>
+  <p>A mesma tabela na densidade compacta: linha de 36 px, para quem confere 200 linhas de rateio. A pauta alternada ajuda a seguir a linha quando há muitas colunas. A densidade é escolha da pessoa (menu da conta), igual em todo o sistema.</p>
+  <template data-ex="Troque a densidade no cabeçalho do quadro" data-temas="alternar" data-dens="alternar" data-gerar="tabela:compacta"></template>
+</section>
+
+<section class="lc-doc-secao" id="selecao" data-familia="Tabelas">
+  <h2>Seleção e barra de massa</h2>
+  <p>Marcar uma linha troca a barra de filtros pela barra de massa, que diz quantas e a soma. "Marcar todos" fica misto quando só parte está marcada. Ação destrutiva em massa pede confirmação com o número.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Cobrança em lote, exportar, mover, atribuir responsável.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Lista onde só se age em um registro por vez.</li><li>Barra de massa fixa visível sem seleção.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>"3 boletos selecionados de 10, soma R$ 3.671,14".</li><li>Ações com verbo; "Limpar seleção" no fim.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Caixa de cada linha com nome ("Selecionar Bl B, 1204").</li><li>A barra de massa é <code>region</code> com nome e anuncia a contagem.</li><li>Shift+clique seleciona intervalo.</li></ul></div>
+  </div>
+  <template data-ex="Marque linhas" data-temas="alternar" data-gerar="tabela:selecao"></template>
+</section>
+
+<section class="lc-doc-secao" id="coluna-fixa" data-familia="Tabelas">
+  <h2>Coluna fixa e rolagem lateral</h2>
+  <p>Com muitas colunas, a seleção e a unidade ficam paradas e o resto rola. A sombra na borda diz que há mais colunas.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Cadastro de unidades, conferência de leitura de água e gás, folha.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para esconder colunas que ninguém usa: tire a coluna (menu "Colunas").</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Ordem das colunas: identificação, quem, quanto, quando, situação.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Contêiner com <code>tabindex="0"</code> e <code>aria-label</code>: as setas rolam.</li></ul></div>
+  </div>
+  <template data-ex="Unidades do Cond. Parque das Águas (role para o lado)" data-temas="alternar" data-gerar="tabela:larga"></template>
+</section>
+
+<section class="lc-doc-secao" id="editavel" data-familia="Tabelas">
+  <h2>Célula editável</h2>
+  <p>Passar o mouse mostra o lápis; clicar ou Enter abre o campo no lugar. Enter salva (com Desfazer no toast), Esc cancela, sair do campo salva. Valor inválido não sai do campo: mostra o erro embaixo.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Ajuste rápido de um valor por linha: leitura de hidrômetro, valor da despesa, dia de vencimento.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Campo que muda outros campos ou pede justificativa (abra o registro).</li><li>Mais de 20 células alteradas de uma vez: use importação ou barra de salvar.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Toast: "Energia das áreas comuns: valor alterado de R$ 6.982,35 para R$ 7.104,80."</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>A célula é botão; o campo tem nome "Valor de Energia das áreas comuns".</li><li>A confirmação é anunciada pelo toast.</li></ul></div>
+  </div>
+  <template data-ex="Despesas de outubro: clique num valor" data-temas="lado" data-rola data-gerar="tabela:editavel"></template>
+  <template data-ex="Estados da célula">
+    <div class="lc-doc-estados" style="--_m:170px">
+      <figure><figcaption>Normal</figcaption><div class="lc-num" style="display:block"><button type="button" class="lc-celula-edit">R$ 6.982,35</button></div></figure>
+      <figure><figcaption>Hover</figcaption><div class="lc-num" style="display:block"><button type="button" class="lc-celula-edit lc-f-hover">R$ 6.982,35</button></div></figure>
+      <figure><figcaption>Editando</figcaption><div class="lc-celula-edit lc-celula-edit--editando"><input class="lc-entrada lc-entrada--num lc-f-foco" value="7.104,80" aria-label="Valor"></div></figure>
+      <figure><figcaption>Erro</figcaption><div class="lc-celula-edit lc-celula-edit--editando lc-celula-edit--erro"><input class="lc-entrada lc-entrada--num" value="7.10a" aria-label="Valor" aria-invalid="true" aria-describedby="ce-e1"><span class="lc-celula-edit__erro" id="ce-e1">Valor inválido. Use só números e vírgula.</span></div></figure>
+      <figure><figcaption>Salvo (realce 1,2 s)</figcaption><div class="lc-num" style="display:block"><button type="button" class="lc-celula-edit" style="background:var(--sucesso-fundo)">R$ 7.104,80</button></div></figure>
+      <figure><figcaption>Só leitura</figcaption><div class="lc-num" style="display:block;padding:0 6px">R$ 22.410,00</div></figure>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-secao" id="agrupamento" data-familia="Tabelas">
+  <h2>Agrupamento e total em dupla sublinha</h2>
+  <p>Grupos recolhíveis com contagem e soma; o total consolidado fica no rodapé fixo com dupla sublinha, o sinal contábil de "esta conta fecha aqui".</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Inadimplência por situação, despesas por centro de custo, unidades por bloco.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Dupla sublinha em subtotal de grupo (subtotal é uma linha).</li><li>Mais de um nível de grupo.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Cabeçalho do grupo: nome, contagem e soma.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>O botão do grupo tem <code>aria-expanded</code>; recolher não perde a seleção.</li></ul></div>
+  </div>
+  <template data-ex="Boletos de setembro por situação (recolha um grupo)" data-temas="lado" data-rola data-gerar="tabela:grupos"></template>
+</section>
+
+<section class="lc-doc-secao" id="ordenacao" data-familia="Tabelas">
+  <h2>Ordenação</h2>
+  <p>O cabeçalho é botão. Um clique ordena crescente, outro decrescente. A seta só aparece na coluna ordenada (e no hover das outras).</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Coluna que a pessoa compara: valor, vencimento, avaliação.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Coluna de ações ou de seleção.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>A ordem escolhida fica salva na visão.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>aria-sort</code> no <code>th</code>; a troca é anunciada ("Ordenado por Valor mensal, decrescente").</li></ul></div>
+  </div>
+  <template data-ex="Fornecedores: clique nos cabeçalhos" data-temas="empilhado" data-gerar="tabela:ordenar"></template>
+</section>
+
+<section class="lc-doc-secao" id="filtros" data-familia="Tabelas">
+  <h2>Filtros, chips e visões salvas</h2>
+  <p>Busca, botões de filtro que abrem a escolha, chips do que está aplicado (cada um com ×) e "Limpar". Visões salvas ficam como abas em cima. Quando o filtro não traz nada, a tabela diz isso e oferece limpar.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Lista com mais de 30 linhas.</li><li>Visões salvas para o que a pessoa olha toda semana.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Filtro aplicado escondido (sem chip).</li><li>Painel de filtro para dois critérios (use botões).</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Chip: "Estado: Vencido". Botão ativo diz o valor: "Bloco: B".</li><li>Contagem atualiza: "4 boletos".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Cada × tem nome ("Remover filtro Estado Vencido"); o resultado é anunciado.</li></ul></div>
+  </div>
+  <template data-ex="Filtre por estado e bloco, remova chips, busque" data-temas="alternar" data-alt="520px" data-gerar="tabela:filtros"></template>
+</section>
+
+<section class="lc-doc-secao" id="estados" data-familia="Estados">
+  <h2>Vazio, vazio por filtro, erro, carregando, sem permissão</h2>
+  <p>Cada estado tem texto próprio e uma saída. O cabeçalho da tabela continua visível para a pessoa saber onde está.</p>
+  <template data-ex="Cinco estados da tabela" data-temas="alternar" data-gerar="tabela:estados"></template>
+</section>
+
+<section class="lc-doc-secao" id="paginacao" data-familia="Navegação na lista">
+  <h2>Paginação completa</h2>
+  <p>148 boletos de verdade, 20 por página. Primeira, anterior, páginas com reticências, próxima, última e quantos por página. A página fica no endereço, e voltar da ficha volta para ela.</p>
+  <template data-ex="Boletos de setembro, com páginas" data-temas="alternar" data-gerar="tabela:paginada"></template>
+</section>
+
+<section class="lc-doc-secao" id="carregar-mais" data-familia="Navegação na lista">
+  <h2>Carregar mais</h2>
+  <p>Para lista que se lê em ordem (ocorrências, histórico, feed) e no celular. Diz quantos já vieram e quantos faltam; no fim, diz que acabou. O foco vai para o primeiro item novo.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Feed, histórico, celular, busca com muitos resultados.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Rolagem infinita sem botão (a pessoa perde o rodapé e o lugar).</li><li>Tabela de conferência (paginação).</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>"Mostrando 10 de 48"; botão "Carregar mais 10"; no fim, "Todos os 48 carregados".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Anuncia "10 itens carregados"; foco no primeiro novo.</li></ul></div>
+  </div>
+  <template data-ex="Ocorrências do Cond. Parque das Águas" data-temas="lado" data-gerar="lista:ocorrencias"></template>
+</section>
+
+<section class="lc-doc-secao" id="cartoes" data-familia="Listas">
+  <h2>Lista de cartões no celular</h2>
+  <p>Abaixo de 640 px, a linha da tabela vira cartão: título e valor em cima, quem e estado embaixo, uma ação. A linha inteira é alvo de toque. Seleção por toque longo.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Toda tabela no celular e no portal do síndico.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Tabela espremida com rolagem lateral no celular.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>No máximo 4 dados por cartão; o resto fica na ficha.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>O título é o link; a área toda clica por pseudo-elemento, sem link dentro de link.</li><li>Alvo de 44 px na ação.</li></ul></div>
+  </div>
+  <template data-ex="Boletos de setembro no celular (390 px)" data-temas="lado" data-gerar="lista:cartoes"></template>
+</section>
+
+<section class="lc-doc-secao" id="feed" data-familia="Listas">
+  <h2>Lista de feed</h2>
+  <p>Posts do Início em ordem do mais novo, com "Carregar mais" no fim. Comunicado fixado fica primeiro, com filete.</p>
+  <template data-ex="Feed da equipe" data-temas="lado" data-gerar="lista:feed"></template>
+</section>
+
+<section class="lc-doc-secao" id="lista-simples" data-familia="Listas">
+  <h2>Lista simples em caixa</h2>
+  <p>Para até 7 itens que não se comparam coluna a coluna: próximos vencimentos, aniversariantes, documentos do condomínio.</p>
+  <template data-ex="Três usos" data-gerar="lista:simples"></template>
+</section>
+
+<section class="lc-doc-secao" id="limites" data-familia="Casos-limite">
+  <h2>Casos-limite</h2>
+  <ul class="lc-doc-regras">
+    <li><b>Texto longo</b> na célula corta com reticências e mostra inteiro na dica (<code>title</code>) e na ficha. Nome da coluna primária quebra em 2 linhas no máximo.</li>
+    <li><b>Número grande</b>: a coluna de valor cresce até R$ 999.999.999,99 sem quebrar; a soma do grupo também.</li>
+    <li><b>Termo do cliente</b>: "Unidade" vira "Apartamento" ou "Sala" no cabeçalho, no chip e na contagem.</li>
+    <li><b>Zero, um, vários</b>: "Nenhum boleto", "1 boleto, R$ 1.284,37", "148 boletos". Tabela com 1 linha não mostra paginação nem "marcar todos".</li>
+  </ul>
+  <template data-ex="Pior caso real" data-temas="empilhado" data-gerar="tabela:limites"></template>
+</section>
+
+<section class="lc-doc-secao" id="acessibilidade" data-familia="Casos-limite">
+  <h2>Acessibilidade desta página</h2>
+  <div class="lc-doc-a11y">
+    <div><h3>Ordem de foco</h3><ol><li>Abas de visão, busca, filtros, colunas.</li><li>Marcar todos, depois por linha: caixa, link da unidade, células editáveis, ações.</li><li>Barra de massa (quando aparece) antes da tabela.</li><li>Paginação ou "Carregar mais" depois da última linha.</li></ol></div>
+    <div><h3>O que é anunciado</h3><ul><li>Ordenação ("Ordenado por Valor, crescente").</li><li>Resultado do filtro ("4 boletos com estes filtros").</li><li>Página ("Página 3 de 8") e itens carregados.</li><li>Seleção pela barra de massa; valor salvo pelo toast com Desfazer.</li></ul></div>
+    <div><h3>Só ícone, com nome</h3><ul><li>"Enviar segunda via de Bl B, 1204", "Abrir boleto de Bl B, 1204".</li><li>"Primeira página", "Página anterior", "Próxima página", "Última página".</li><li>"Remover filtro Estado Vencido", "Recolher Vencidos".</li></ul></div>
+  </div>
+</section>
+</main>
+</div>
+<script src="sistema/extra-p1-doc.js"></script>
+<script src="05-tabelas-e-listas.js"></script>
+<script src="sistema/icones.js"></script>
+<script src="sistema/doc.js"></script>
+</body>
+</html>

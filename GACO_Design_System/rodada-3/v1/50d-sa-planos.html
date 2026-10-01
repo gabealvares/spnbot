@@ -21,8 +21,8 @@
 </head>
 <body data-moldura='{"contexto":"superadmin","modulo":"clientes","secao":"Planos e cobrança","item":"Planos","usuario":{"nome":"Ivone Prates","iniciais":"IP","cor":"lc-av--c6","cargo":"Financeiro da plataforma"},"cliente":{"nome":"GACO Plataforma","sigla":"G"},"trilha":["Planos e cobrança","Planos"]}'>
 <main id="conteudo" class="lc-pagina">
-<section class="lc-ficha-tela" aria-label="Sobre planos e módulos">
-  <div class="lc-ficha-tela__nome"><b>Planos e módulos</b><span>Matriz do que cada plano inclui, preço e limites. Mudança vale para contratos novos.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre planos e módulos">
+  <div class="lc-sobre-tela__nome"><b>Planos e módulos</b><span>Matriz do que cada plano inclui, preço e limites. Mudança vale para contratos novos.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Ver e mudar, num só lugar, o que cada plano inclui e quanto custa, sabendo quantos clientes são afetados antes de salvar.</p></div>
   <div><h2>Fluxo</h2><ol><li>Matriz: módulos nas linhas, planos nas colunas; célula clicável liga ou desliga.</li><li>Preço e limites editáveis na própria célula.</li><li>A barra de salvar diz quantos clientes estão no plano e se a mudança vale só para novos.</li><li>"Salvar ▾": salvar, ou salvar e avisar os clientes por e-mail.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>a tabela de preços do Stripe Billing e a do Chargebee editam plano por linha; a página de preços do Notion e do Slack ensinou a ler planos em colunas; e editar na célula evita abrir um formulário por plano.</p></div>
@@ -51,8 +51,8 @@
 </div>
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Novo plano, células editáveis em ordem de leitura (Enter edita, Esc cancela, Tab salva e vai à próxima), barra de salvar.</p></div><div><h3>O que é anunciado</h3><p>Célula: "Mensalidade do Completo, R$ 9.800,00, editando". Ícone de incluído tem nome "Incluído".</p></div><div><h3>Nome do que é só ícone</h3><p>Visto: "Incluído". Chevron: "Outras formas de salvar".</p></div></div>
 
-<section class="lc-ficha-tela" id="cobranca" aria-label="Sobre a cobrança da plataforma">
-  <div class="lc-ficha-tela__nome"><b>Cobrança da plataforma</b><span>Faturas dos clientes do GACO, régua de cobrança e bloqueio parcial.</span></div>
+<section class="lc-sobre-tela" id="cobranca" aria-label="Sobre a cobrança da plataforma">
+  <div class="lc-sobre-tela__nome"><b>Cobrança da plataforma</b><span>Faturas dos clientes do GACO, régua de cobrança e bloqueio parcial.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Saber quem deve à plataforma, o que já foi feito (lembretes) e o que acontece se não pagar, com data, antes de qualquer bloqueio.</p></div>
   <div><h2>Fluxo</h2><ol><li>Faturas do mês com situação em palavra; vencidas no topo.</li><li>Clicar abre a régua da fatura à direita: lembretes enviados e próximos.</li><li>"Adiar bloqueio" pede motivo e nova data; "Emitir 2ª via" envia ao financeiro do cliente.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o "Dunning" do Stripe e do Chargebee mostra a régua de tentativas com datas; o Conta Azul exibe a situação da fatura por palavra; e bloqueio só parcial (novos convites e disparos) segue o contrato e não tira o síndico do ar.</p></div>

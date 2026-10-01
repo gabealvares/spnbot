@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plataforma, sessões e implantação</title>
+<meta name="description" content="Superadmin: sessões de suporte ativas, pedidos de acesso dos clientes e implantação de cliente novo em etapas com importação.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<script>(function(){var r=document.documentElement,f=function(){["--marca","--marca-txt","--marca-forte","--marca-suave"].forEach(function(v){r.style.removeProperty(v);});};f();document.addEventListener("lc:tema",f);document.addEventListener("lc:marca",f);})();</script>
+<style>.sa-imp{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}@media (max-width:1023px){.sa-imp{grid-template-columns:minmax(0,1fr)}}</style>
+</head>
+<body data-moldura='{"contexto":"superadmin","modulo":"sessoes","secao":"Sessões de suporte","usuario":{"nome":"Bruno Tavares","iniciais":"BT","cor":"lc-av--c5","cargo":"Suporte da plataforma"},"cliente":{"nome":"GACO Plataforma","sigla":"G"},"contadores":{"sessoes":1}}'>
+<main id="conteudo" class="lc-pagina">
+<section class="lc-sobre-tela" aria-label="Sobre sessões de suporte">
+  <div class="lc-sobre-tela__nome"><b>Sessões de suporte e pedidos de acesso</b><span>Quem da plataforma está dentro de qual cliente agora, e quem pediu ajuda.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Controle do acesso a dados de clientes: ninguém fica dentro sem prazo, e cada pedido do cliente é atendido por alguém com nome.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Pedidos no topo, por tempo de espera; "Assumir e entrar" abre o modal com o motivo já preenchido.</li><li>Sessões ativas com tempo restante; a dona da plataforma pode encerrar qualquer uma.</li><li>Encerrar pede confirmação simples e avisa quem estava dentro.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o "Support access" do Atlassian e o do Okta listam sessões com prazo e permitem revogar; a fila de pedidos segue o "Para você" da V1.</p></div>
+</section>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Sessões de suporte</h1><p class="lc-cab-pagina__desc">2 sessões ativas, 1 pedido esperando.</p></div></div>
+<section class="lc-caixa" aria-labelledby="pd-t"><div class="lc-caixa__cab"><h2 id="pd-t">Pedidos de acesso</h2></div><ul class="lc-lista">
+  <li><span class="lc-ladrilho">Ó</span><span class="lc-cresce"><b>Órbita Condomínios</b>, Carla Mendes<span class="lc-lista__sub">Chamado 1.204, boleto duplicado. Só leitura, 1 hora. Esperando há 22 min.</span></span><a class="lc-btn lc-btn--principal lc-btn--p" href="50b-sa-clientes.html#entrar">Assumir e entrar</a></li></ul></section>
+<div class="lc-tabela-cont" style="margin-top:16px"><table class="lc-tabela"><caption class="lc-sr">Sessões ativas</caption><thead><tr><th scope="col">Quem</th><th scope="col">Cliente</th><th scope="col">Modo</th><th scope="col">Motivo</th><th scope="col">Restante</th><th><span class="lc-sr">Ações</span></th></tr></thead><tbody>
+  <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c7">LS</span><span class="lc-pessoa__nome">Lucas Siqueira</span></span></td><td>Sol Nascente Gestão</td><td><span class="lc-estado lc-estado--neutro">Só leitura</span></td><td>Chamado 988, relatório de inadimplência</td><td>31 min</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--p lc-btn--perigo-contorno" type="button" data-toast="Sessão de Lucas encerrada. Ele foi avisado.">Encerrar</button></td></tr>
+  <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c3">HD</span><span class="lc-pessoa__nome">Helena Duarte</span></span></td><td>Prisma Condomínios</td><td><span class="lc-estado lc-estado--aviso">Pode alterar</span></td><td>Implantação, aprovado por Ivo Prates</td><td>1 h 12 min</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--p lc-btn--perigo-contorno" type="button">Encerrar</button></td></tr>
+</tbody></table></div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Assumir e entrar, linhas, Encerrar.</p></div><div><h3>O que é anunciado</h3><p>Modo em palavra ("Pode alterar"). Encerrar: toast com o nome.</p></div><div><h3>Nome do que é só ícone</h3><p>Ladrilho "Ó" é decorativo; o nome do cliente está escrito.</p></div></div>
+
+<section class="lc-sobre-tela" aria-label="Sobre a implantação">
+  <div class="lc-sobre-tela__nome"><b>Implantação de cliente novo</b><span>Clientes, Implantações. Barra de etapas clicável e importação com relatório de erros.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Levar uma administradora do contrato ao primeiro boleto emitido no GACO, com cada etapa visível para a plataforma e para o cliente.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Barra de etapas: Contrato, Marca, Condomínios, Plano de contas, Usuários, Primeiro boleto.</li><li>Etapa atual mostra o que pede e o que falta; erros de importação em lista com a linha da planilha.</li><li>"Importar de novo só as linhas com erro" corrige sem duplicar.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>a barra de etapas do Salesforce Path, já usada na V1, mostra onde a implantação está; o importador do HubSpot e o da Pipedrive devolvem a linha com erro e deixam reimportar só ela.</p></div>
+</section>
+<div class="lc-etapas-cont"><ol class="lc-etapas"><li class="lc-etapa--feita"><button type="button">Contrato<small>02/09</small></button></li><li class="lc-etapa--feita"><button type="button">Marca<small>05/09</small></button></li><li class="lc-etapa--feita"><button type="button">Condomínios<small>18 de 23</small></button></li><li class="lc-etapa--atual"><button type="button" aria-current="step">Plano de contas<small>há 4 dias</small></button></li><li><button type="button">Usuários</button></li><li><button type="button">Primeiro boleto</button></li></ol></div>
+<div class="sa-imp" style="margin-top:16px">
+  <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Plano de contas da Prisma</h2><span class="lc-estado lc-estado--aviso">Atrasada 4 dias</span></div><div class="lc-caixa__corpo lc-pilha">
+    <p class="lc-pequeno">Importação de <b>plano-de-contas-prisma.xlsx</b> em 30/09, 16:20: 142 contas lidas, 137 importadas, 5 com erro.</p>
+    <div class="lc-tabela-cont"><table class="lc-tabela"><caption class="lc-sr">Linhas com erro</caption><thead><tr><th scope="col">Linha</th><th scope="col">Conta</th><th scope="col">Problema</th></tr></thead><tbody>
+      <tr><td>14</td><td>4.1.07 Jardinagem</td><td class="lc-valor-neg">Conta-mãe 4.1 não existe na planilha</td></tr>
+      <tr><td>38</td><td>2.3.01 Fundo de obras</td><td class="lc-valor-neg">Código repetido na linha 37</td></tr>
+      <tr><td>91</td><td>(vazio)</td><td class="lc-valor-neg">Nome da conta em branco</td></tr></tbody></table></div>
+    <div class="lc-grupo-btn"><button class="lc-btn lc-btn--principal" type="button">Importar de novo só as 5 linhas</button><button class="lc-btn" type="button"><i data-i="baixar"></i>Baixar linhas com erro</button></div>
+  </div></section>
+  <aside class="lc-caixa"><div class="lc-caixa__cab"><h2>Responsáveis</h2></div><ul class="lc-lista"><li><span class="lc-av lc-av--32 lc-av--c3">HD</span><span class="lc-cresce"><b>Helena Duarte</b><span class="lc-lista__sub">Implantação, GACO</span></span></li><li><span class="lc-av lc-av--32 lc-av--c6">IP</span><span class="lc-cresce"><b>Ivo Prates</b><span class="lc-lista__sub">Diretor, Prisma</span></span></li></ul><div class="lc-caixa__pe">Primeira fatura em 10/11/2026</div></aside>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Etapas (cada uma é botão), tabela de erros, Importar de novo, Baixar.</p></div><div><h3>O que é anunciado</h3><p>Etapa atual com <code>aria-current="step"</code>; erro em texto com a linha da planilha.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova turma, Academy</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>.tu-grade{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}@media (max-width:1023px){.tu-grade{grid-template-columns:minmax(0,1fr)}}</style>
+</head>
+<body data-moldura='{"modulo":"academy","secao":"Secretaria","item":"Períodos letivos","papel":"rh","usuario":{"nome":"Fernanda Lopes","cargo":"Coordenação do Academy","iniciais":"FL","cor":"lc-av--c4"},"trilha":["Secretaria","Disciplinas","Nova turma"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Criar disciplina e turma. Papel: coordenação do Academy.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Abrir uma turma nova de uma disciplina (ou criar a disciplina junto) com professor, horário, sala, vagas e regras de avaliação, e ver na hora as datas de todos os encontros, já pulando feriados.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Escolhe a disciplina do catálogo (ou "Criar disciplina", que abre os campos de ementa e carga horária).</li>
+      <li>Preenche turma, professor e horário; os encontros à direita recalculam.</li>
+      <li>Avaliação vem dos parâmetros da Secretaria (média 7,0, frequência 75%); mudar aqui vale só para esta turma e fica marcado.</li>
+      <li>A barra de salvar aparece ao editar; "Salvar ▾" tem "Salvar e abrir matrícula" e "Salvar e criar outra turma".</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>sistemas acadêmicos (TOTVS Educacional, Lyceum, Sponte) separam disciplina (o que se ensina) de turma (quando, onde, com quem); o Google Agenda mostra a recorrência gerada antes de salvar. Formulário em seções com legenda, como a fundação manda.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="academy"></div>
+</details>
+<form data-p4-form data-p4-nome="Nova turma" onsubmit="return false">
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Nova turma</h1><p class="lc-cab-pagina__desc">Período letivo 2026.2, Formação em Gestão Condominial.</p></div></div>
+<div class="tu-grade">
+  <div>
+    <fieldset class="lc-secao-form"><legend>Disciplina</legend>
+      <div class="lc-form-grade">
+        <div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="disc">Disciplina <span class="lc-obrig" aria-hidden="true">*</span></label>
+          <button id="disc" class="lc-combo" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="lc-combo__valor">GC-201 Legislação condominial e convenção, 40 h</span><i data-i="chevron-baixo"></i></button>
+          <p class="lc-ajuda">Não achou? <button class="lc-btn lc-btn--link" type="button">Criar disciplina</button></p></div>
+      </div></fieldset>
+    <fieldset class="lc-secao-form"><legend>Turma</legend>
+      <div class="lc-form-grade lc-form-grade--3">
+        <div class="lc-campo"><label class="lc-rotulo" for="cod">Código</label><input id="cod" class="lc-entrada lc-entrada--cod" value="T03"><p class="lc-ajuda">T01 e T02 já existem.</p></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="mod">Modalidade</label><select id="mod" class="lc-selecao"><option>Presencial</option><option>Online ao vivo</option><option>A distância (gravada)</option></select></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="vag">Vagas</label><input id="vag" class="lc-entrada lc-entrada--num" inputmode="numeric" value="30"></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="prof">Professora ou professor <span class="lc-obrig" aria-hidden="true">*</span></label><button id="prof" class="lc-combo" type="button" aria-haspopup="listbox"><span class="lc-combo__valor"><span class="lc-av lc-av--20 lc-av--c4">HV</span>Helena Vasconcelos</span><i data-i="chevron-baixo"></i></button><p class="lc-ajuda">Já tem 2 turmas: segundas 08:00 e quartas 19:00.</p></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="mon">Monitoria <span class="lc-opcional">opcional</span></label><button id="mon" class="lc-combo" type="button" aria-haspopup="listbox"><span class="lc-combo__valor lc-combo__valor--vazio">Ninguém</span><i data-i="chevron-baixo"></i></button></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="sala">Sala</label><select id="sala" class="lc-selecao"><option>Sala 2, sede (30 lugares)</option><option>Laboratório, sede</option></select></div>
+      </div>
+      <div class="lc-form-grade lc-form-grade--3" style="margin-top:16px">
+        <fieldset class="lc-campo lc-inteiro" style="border:0;padding:0;margin:0"><legend class="lc-rotulo" style="margin-bottom:6px">Dias</legend>
+          <div class="lc-seg" role="group" aria-label="Dias da semana"><button type="button" aria-pressed="false" data-alterna>Seg</button><button type="button" aria-pressed="true" data-alterna>Ter</button><button type="button" aria-pressed="false" data-alterna>Qua</button><button type="button" aria-pressed="true" data-alterna>Qui</button><button type="button" aria-pressed="false" data-alterna>Sex</button><button type="button" aria-pressed="false" data-alterna>Sáb</button></div></fieldset>
+        <div class="lc-campo"><label class="lc-rotulo" for="hi">Começa às</label><input id="hi" type="time" class="lc-entrada" value="19:00"></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="hf">Termina às</label><input id="hf" type="time" class="lc-entrada" value="20:40"></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="ini">Primeiro encontro</label><input id="ini" type="date" class="lc-entrada" value="2026-10-06"></div>
+      </div></fieldset>
+    <fieldset class="lc-secao-form"><legend>Avaliação</legend>
+      <p class="lc-secao-form__desc">Vem dos parâmetros da Secretaria. O que mudar aqui vale só para esta turma.</p>
+      <div class="lc-form-grade lc-form-grade--3">
+        <div class="lc-campo"><label class="lc-rotulo" for="med">Média para aprovar</label><input id="med" class="lc-entrada lc-entrada--num" value="7,0"></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="fr">Frequência mínima</label><div class="lc-entrada-grupo"><input id="fr" class="lc-entrada lc-entrada--num" value="75"><span class="lc-entrada-grupo__fixo">%</span></div></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="pes">Pesos N1 e N2</label><input id="pes" class="lc-entrada" value="4 e 6"></div>
+      </div></fieldset>
+  </div>
+  <aside class="lc-caixa" aria-labelledby="tu-p-t" aria-live="polite" style="position:sticky;top:64px">
+    <div class="lc-caixa__cab"><h2 id="tu-p-t">Encontros gerados</h2><span class="lc-aux">20 de 1 h 40</span></div>
+    <div class="lc-caixa__corpo"><ul class="lc-resumo"><li><span>Primeiro</span><b>ter 06/10</b></li><li><span>Último</span><b>ter 15/12</b></li><li><span>Total</span><b>20 encontros, 33 h 20</b></li></ul>
+      <div class="lc-alerta lc-alerta--aviso" style="margin-top:10px"><i data-i="aviso"></i><div class="lc-alerta__corpo">A disciplina tem 40 h. Faltam 6 h 40: acrescente 4 encontros ou use as aulas gravadas da GC-201.</div></div>
+      <p class="lc-legenda" style="margin-top:10px">Pulado: qui 15/10, recesso do Dia do Professor. Os feriados de 02/11 e 20/11 não caem em terça nem quinta.</p></div></aside>
+</div>
+<div class="lc-barra-salvar" role="region" aria-label="Alterações não salvas"><p class="lc-barra-salvar__msg"><i data-i="aviso"></i><span></span></p>
+  <div class="lc-barra-salvar__acoes"><button class="lc-btn lc-btn--discreto" type="button" data-descartar>Descartar</button>
+    <span class="lc-dividido" style="position:relative"><button class="lc-btn lc-btn--principal" type="button" data-salvar="Turma T03 criada.">Criar turma</button><button class="lc-btn lc-btn--principal" type="button" aria-label="Outras formas de salvar" aria-haspopup="menu" aria-expanded="false" data-abrir="tu-menu"><i data-i="chevron-baixo"></i></button>
+      <ul class="lc-menu" id="tu-menu" role="menu" hidden style="right:0;bottom:calc(100% + 6px)"><li><a class="lc-menu__item" role="menuitem" href="30h-academy-matricula.html">Criar e abrir matrícula</a></li><li><button class="lc-menu__item" role="menuitem" type="button">Criar e fazer outra turma</button></li><li><button class="lc-menu__item" role="menuitem" type="button">Salvar como rascunho</button></li></ul></span></div></div>
+</form>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Disciplina, Criar disciplina, Código, Modalidade, Vagas, Professor, Monitoria, Sala, Dias (botões de alternância), horários, primeiro encontro, avaliação, barra de salvar.</dd>
+    <dt>O que é anunciado</dt><dd>Cada seção é fieldset com legenda. Os dias são botões com aria-pressed ("Ter, pressionado"). A prévia dos encontros é aria-live e lê o aviso das horas que faltam.</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Outras formas de salvar".</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

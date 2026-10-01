@@ -23,8 +23,8 @@
 <body data-moldura='{"contexto":"portal","secao":"Início","papel":"morador","cliente":{"nome":"Administradora Alpha","sigla":"A"},"unidade":"Bloco B, apto 1204"}'>
 <main id="conteudo" class="lc-pagina">
 
-<section class="lc-ficha-tela" aria-label="Sobre esta tela">
-  <div class="lc-ficha-tela__nome"><b>Portal do morador: Início</b><span>Contexto portal, papel morador, marca Administradora Alpha. Computador e celular na mesma página.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre esta tela">
+  <div class="lc-sobre-tela__nome"><b>Portal do morador: Início</b><span>Contexto portal, papel morador, marca Administradora Alpha. Computador e celular na mesma página.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Em 10 segundos o morador sabe se deve alguma coisa, como está o problema que ele relatou e o que a administradora pediu a ele. Pagar o boleto do mês sai daqui em um toque (Pix copiado), sem abrir outra tela.</p></div>
   <div><h2>Fluxo</h2><ol><li>Entra no portal e cai no Início da unidade (a última usada, se tiver mais de uma).</li><li>Boleto do mês no topo: "Copiar código Pix" é o único botão principal; "Ver boleto" abre a composição.</li><li>Próximos passos: cada linha tem o verbo da ação à direita ("Votar", "Dar ciência") e leva direto ao lugar.</li><li>Chamados abertos à direita com o passo atual; "Abrir chamado" fica no cabeçalho e na aba Chamados.</li><li>Comunicado com ciência: "Li e estou ciente" vira carimbo com nome e hora, salvo na hora. Voltar é a aba Início (pé no celular, topo no computador).</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>os apps do Nubank e do Itaú abrem com "o que vence" e o Pix pronto; o TownSq e o portal da Superlógica mostram o que chegou para a unidade (encomenda, comunicado) antes de qualquer menu; e o iFood ensinou a acompanhar um pedido por passos com hora. Juntamos os três sem cartões iguais: a tela é uma lista do que pede ação, na ordem de urgência.</p></div>
@@ -48,9 +48,9 @@
         </div>
       </div>
       <div class="lc-boleto__acoes">
-        <div class="lc-pix">
-          <span class="lc-pix__rot"><i data-i="pix-copia-e-cola" class="lc-ic--14"></i>Pix copia e cola, válido até o vencimento</span>
-          <span class="lc-pix__cod" id="pix-cod">00020101021226900014br.gov.bcb.pix2568qrpix.alpha.com.br/v2/cobv/9f2a0c1e5d6b4a8f8b1204520400005303986540 51284.375802BR5925COND PARQUE DAS AGUAS6009SAO PAULO62070503***6304B7E1</span>
+        <div class="lc-pix-copia">
+          <span class="lc-pix-copia__rot"><i data-i="pix-copia-e-cola" class="lc-ic--14"></i>Pix copia e cola, válido até o vencimento</span>
+          <span class="lc-pix-copia__cod" id="pix-cod">00020101021226900014br.gov.bcb.pix2568qrpix.alpha.com.br/v2/cobv/9f2a0c1e5d6b4a8f8b1204520400005303986540 51284.375802BR5925COND PARQUE DAS AGUAS6009SAO PAULO62070503***6304B7E1</span>
           <button class="lc-btn lc-btn--principal" type="button" data-copiar="00020101021226900014br.gov.bcb.pix2568qrpix.alpha.com.br/v2/cobv/9f2a0c1e5d6b4a8f8b1204" data-toast="Código Pix copiado. Cole no app do seu banco."><i data-i="copiar"></i><span data-rot>Copiar código Pix</span></button>
         </div>
         <div class="lc-boleto__secundarias">
@@ -134,8 +134,8 @@
 </div>
 
 <!-- ESTADOS -->
-<section class="lc-ficha-tela" aria-label="Estados do Início">
-  <div class="lc-ficha-tela__nome"><b>Estados do Início do portal</b><span>Carregando, tudo em dia, sem conexão e cadastro ainda não aprovado.</span></div>
+<section class="lc-sobre-tela" aria-label="Estados do Início">
+  <div class="lc-sobre-tela__nome"><b>Estados do Início do portal</b><span>Carregando, tudo em dia, sem conexão e cadastro ainda não aprovado.</span></div>
   <div><h2>O que esta tela resolve</h2><p>O morador nunca vê uma tela em branco nem um erro técnico. Cada estado diz o que aconteceu e qual é o próximo passo.</p></div>
   <div><h2>Fluxo</h2><ol><li>Carregando: esqueleto com o formato do boleto e da lista, nunca girador sozinho.</li><li>Tudo em dia: o boleto pago vira carimbo e a lista some com uma frase.</li><li>Sem conexão: alerta com "Tentar de novo"; o último boleto baixado continua visível.</li><li>Sem vínculo: explica que a administradora aprova o cadastro e quando.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o app do Itaú e o do Banco Inter mostram o esqueleto do extrato enquanto carregam, o Gmail diz "Tudo em dia" em vez de lista vazia, e o portal da Superlógica explica o cadastro pendente com o prazo de aprovação, o que diminui ligações para a administradora.</p></div>

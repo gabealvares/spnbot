@@ -30,8 +30,8 @@
 </head>
 <body data-moldura='{"contexto":"portal","secao":"Início","papel":"sindico","cliente":{"nome":"Administradora Alpha","sigla":"A"},"unidade":"Síndica, Cond. Parque das Águas"}'>
 <main id="conteudo" class="lc-pagina">
-<section class="lc-ficha-tela" aria-label="Sobre a tela Início do síndico">
-  <div class="lc-ficha-tela__nome"><b>Portal do síndico: Início</b><span>Papel síndico. Mesmo portal do morador, com o que pede a decisão dele em primeiro lugar.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre a tela Início do síndico">
+  <div class="lc-sobre-tela__nome"><b>Portal do síndico: Início</b><span>Papel síndico. Mesmo portal do morador, com o que pede a decisão dele em primeiro lugar.</span></div>
   <div><h2>O que esta tela resolve</h2><p>A síndica Marina abre o portal e vê, em ordem de prazo, o que só ela pode decidir: pagamentos, acordos, ordens de serviço. O resto (o próprio boleto, comunicados) fica abaixo.</p></div>
   <div><h2>Fluxo</h2><ol><li>Entra e cai no Início do condomínio (não da unidade).</li><li>"Aguardando sua aprovação" com valor, quem pediu e prazo; o verbo está na linha.</li><li>"Revisar" abre a aprovação com o documento ao lado; "Aprovar" grava com carimbo e passa para a próxima.</li><li>Abaixo: chamados do condomínio que pedem a síndica e o calendário de obrigações.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o "Aprovações" do Microsoft Teams e o do SAP Fiori mostram a fila de quem decide com o documento ao lado; o app do Itaú Empresas pede aprovação de pagamento com valor e favorecido na linha; e o síndico usa o portal poucas vezes por semana, então a tela tem de dizer o que fazer, não mostrar números.</p></div>
@@ -62,8 +62,8 @@
 </div>
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Publicar comunicado, Prestação de contas, cada aprovação (Revisar), ordens de serviço, obrigações, chamados (Decidir).</p></div><div><h3>O que é anunciado</h3><p>Prazos com palavra: "Vence hoje", "Atrasado 1 dia". A contagem "4" está ligada ao título "Aguardando sua aprovação".</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
 
-<section class="lc-ficha-tela" id="aprovacoes" aria-label="Sobre a tela Aprovações">
-  <div class="lc-ficha-tela__nome"><b>Aprovações: fila com documento ao lado</b><span>Pagamento, acordo, orçamento e mudança. Aprovar passa para a próxima.</span></div>
+<section class="lc-sobre-tela" id="aprovacoes" aria-label="Sobre a tela Aprovações">
+  <div class="lc-sobre-tela__nome"><b>Aprovações: fila com documento ao lado</b><span>Pagamento, acordo, orçamento e mudança. Aprovar passa para a próxima.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Decidir com a nota fiscal à vista, deixar registro (quem, quando, por quê) e não ter de abrir um e-mail para cada pagamento.</p></div>
   <div><h2>Fluxo</h2><ol><li>Fila à esquerda; a primeira já vem aberta.</li><li>À direita: valor, favorecido, centro de custo, documento e histórico.</li><li>"Aprovar" é o principal; "Recusar" pede o motivo (obrigatório) em linha.</li><li>Ao aprovar, aparece o carimbo e o foco vai para o próximo item da fila; toast com Desfazer por 10 s.</li><li>Fila vazia: frase e volta ao Início.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o Gmail e o Superhuman abrem o próximo item ao arquivar; o Concur e o SAP Fiori mostram o comprovante ao lado da decisão; e o Pipefy pede motivo só na recusa, o que mantém o "Aprovar" com um clique.</p></div>

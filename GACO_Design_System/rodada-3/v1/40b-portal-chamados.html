@@ -33,8 +33,8 @@
 <main id="conteudo" class="lc-pagina">
 
 <!-- ================= MEUS CHAMADOS ================= -->
-<section class="lc-ficha-tela" aria-label="Sobre a tela Meus chamados">
-  <div class="lc-ficha-tela__nome"><b>Meus chamados</b><span>Lista da unidade, abertos primeiro. Abas Abertos, Concluídos e Todos.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre a tela Meus chamados">
+  <div class="lc-sobre-tela__nome"><b>Meus chamados</b><span>Lista da unidade, abertos primeiro. Abas Abertos, Concluídos e Todos.</span></div>
   <div><h2>O que esta tela resolve</h2><p>O morador encontra o que relatou e vê, sem abrir, em que passo está e se alguém espera resposta dele.</p></div>
   <div><h2>Fluxo</h2><ol><li>Aba Chamados (pé no celular, topo no computador).</li><li>Abertos aparece primeiro; "Responda" sobe para o topo da lista.</li><li>Tocar na linha abre a conversa; voltar pela trilha "Chamados" ou pelo gesto de voltar, com a aba e a rolagem preservadas.</li><li>"Abrir chamado" é o botão principal, no cabeçalho (no celular ocupa a largura).</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o "Meus pedidos" do iFood e do Mercado Livre mostra o estado com palavra e a última novidade na própria linha; o Zendesk Help Center separa "abertas" de "resolvidas"; e o WhatsApp põe primeiro a conversa que espera você.</p></div>
@@ -64,8 +64,8 @@
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Abrir chamado, abas (setas trocam), linhas da lista na ordem.</p></div><div><h3>O que é anunciado</h3><p>Aba: "Abertos, 2, guia 1 de 2, selecionada". Linha: título, estado e a última novidade, num só link.</p></div><div><h3>Nome do que é só ícone</h3><p>Ladrilhos de tipo são decorativos; o tipo está no título.</p></div></div>
 
 <!-- ================= CONVERSA ================= -->
-<section class="lc-ficha-tela" id="conversa" aria-label="Sobre a tela Chamado em conversa">
-  <div class="lc-ficha-tela__nome"><b>Chamado em conversa</b><span>Visão do morador. Nunca mostra nota interna, nome de fila ou prazo interno.</span></div>
+<section class="lc-sobre-tela" id="conversa" aria-label="Sobre a tela Chamado em conversa">
+  <div class="lc-sobre-tela__nome"><b>Chamado em conversa</b><span>Visão do morador. Nunca mostra nota interna, nome de fila ou prazo interno.</span></div>
   <div><h2>O que esta tela resolve</h2><p>O morador conversa com a administradora como no WhatsApp, vê os passos do atendimento com hora e avalia quando termina.</p></div>
   <div><h2>Fluxo</h2><ol><li>Mensagens no centro; passos e dados à direita (abaixo no celular).</li><li>Escreve no compositor, anexa foto pelo clipe, envia com Enter ou o botão.</li><li>Mensagem que falhou fica marcada com "Tentar de novo".</li><li>Quando a administradora resolve, aparece "Isso resolveu?" com Sim e Não; Não reabre o chamado.</li><li>Voltar: trilha "Chamados" no topo da conversa.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o WhatsApp é o canal que o morador já usa (bolhas, tiques, áudio), o iFood mostra o andamento em passos com hora, e o Zendesk e o Intercom pedem a avaliação só quando o caso fecha, numa pergunta.</p></div>
@@ -109,8 +109,8 @@
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><ol><li>Trilha</li><li>Mensagens (região <code>role="log"</code>, rolável por teclado)</li><li>Tentar de novo</li><li>Anexar, caixa de texto, áudio, Enviar</li><li>Andamento, Isso resolveu?</li></ol></div><div><h3>O que é anunciado</h3><p>Mensagem nova da administradora é lida pelo <code>role="log"</code>. Tique: "Lida" ou "Não enviada". Passo atual: "Técnico a caminho, passo atual".</p></div><div><h3>Nome do que é só ícone</h3><p>Clipe: "Anexar foto ou arquivo". Microfone: "Gravar áudio". Tiques: "Lida", "Não enviada".</p></div></div>
 
 <!-- ================= NOVO CHAMADO ================= -->
-<section class="lc-ficha-tela" id="novo" aria-label="Sobre a tela Novo chamado">
-  <div class="lc-ficha-tela__nome"><b>Novo chamado com foto</b><span>Três passos curtos: o quê e onde, foto e frase, confirmação. Os passos são clicáveis para voltar.</span></div>
+<section class="lc-sobre-tela" id="novo" aria-label="Sobre a tela Novo chamado">
+  <div class="lc-sobre-tela__nome"><b>Novo chamado com foto</b><span>Três passos curtos: o quê e onde, foto e frase, confirmação. Os passos são clicáveis para voltar.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Relatar um problema em menos de um minuto, de pé no corredor, com o celular numa mão. A foto vale mais que a descrição.</p></div>
   <div><h2>Fluxo</h2><ol><li>Escolhe o tipo em botões grandes e o local (a unidade vem marcada).</li><li>Tira ou escolhe até 5 fotos; pode remover cada uma no X. Escreve uma frase. Marca "Há risco agora" se tiver.</li><li>Revisa e envia. O botão principal fica sempre no pé ("Continuar", depois "Enviar chamado").</li><li>Confirmação com número, prazo e passos; "Acompanhar" leva à conversa.</li><li>"Cancelar" no topo pergunta antes de descartar se já tem foto.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o app da Prefeitura de São Paulo (SP156) e o Colab pedem foto e local antes do texto; o iFood confirma o pedido com prazo e passos; e o TownSq usa tipo em botões para o morador não precisar saber o nome técnico do problema.</p></div>

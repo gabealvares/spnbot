@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relatórios</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.re-grade{display:grid;grid-template-columns:220px minmax(0,1fr);gap:28px;align-items:start}
+.re-cat{list-style:none;margin:0;padding:0;font-size:13.5px;position:sticky;top:64px}
+.re-cat a{display:flex;justify-content:space-between;padding:7px 10px;color:var(--texto-1);text-decoration:none}
+.re-cat a:hover{background:var(--sup-2)}
+.re-cat a[aria-current="page"]{background:var(--selecao);color:var(--selecao-texto);font-weight:600;box-shadow:inset var(--borda-marcador) 0 0 var(--atual)}
+.re-cat .lc-contagem{margin-left:8px}
+.re-grupo{margin-bottom:24px}
+.re-grupo h2{font:var(--t-secao);margin:0 0 8px}
+.re-item{display:grid;grid-template-columns:36px minmax(0,1fr) auto auto;gap:4px 14px;align-items:center}
+.re-item p{font:var(--t-legenda);color:var(--texto-2);margin:2px 0 0}
+@media (max-width:899px){.re-grade{grid-template-columns:minmax(0,1fr)}.re-cat{position:static;display:flex;overflow-x:auto;border-bottom:var(--borda-1)}.re-cat a{white-space:nowrap}}
+</style>
+</head>
+<body data-moldura='{"modulo":"relatorios","secao":"Todos os relatórios","papel":"diretor","usuario":{"nome":"Cláudio Prates","cargo":"Diretor","iniciais":"CP","cor":"lc-av--c2"},"trilha":["Todos os relatórios"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Catálogo de relatórios.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Achar o relatório certo pelo nome que a pessoa usa ("inadimplência", "chamados por condomínio"), saber o que ele responde antes de abrir, e voltar aos favoritos e aos mais usados sem procurar.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Busca no topo filtra pelo nome e pela pergunta que o relatório responde.</li>
+      <li>Áreas à esquerda; cada relatório diz em uma frase o que mostra e quando foi atualizado.</li>
+      <li>Estrela marca favorito (aparece em Relatórios, Favoritos e no ⌘K).</li>
+      <li>Clicar abre o relatório com os filtros da última vez (31b). "Agendado" mostra quem recebe.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o catálogo do HubSpot e do Salesforce Reports é lista com pasta, dono e favorito; o Metabase descreve cada pergunta em uma frase; o Google Analytics separa por área. Lista em vez de grade de cartões: lê-se o nome e a frase de uma vez.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Estado</span><div class="lc-seg lc-seg--p" role="group" aria-label="Estado" data-p4-estados><button type="button" data-v="dados" aria-pressed="true">Com dados</button><button type="button" data-v="vazio">Busca sem resultado</button></div>
+    <span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="relatorios"></div>
+</details>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Relatórios</h1><p class="lc-cab-pagina__desc">48 relatórios prontos. Os números são de ontem, 23:00, salvo onde diz "ao vivo".</p></div>
+  <div class="lc-cab-pagina__acoes"><label class="lc-busca" style="width:320px"><i data-i="pesquisar"></i><input type="search" placeholder="Nome ou pergunta, ex.: quem está atrasado" aria-label="Pesquisar relatórios"></label><button class="lc-btn" type="button">Pedir relatório novo</button></div></div>
+<div class="re-grade">
+  <nav aria-label="Áreas"><ul class="re-cat">
+    <li><a href="#" aria-current="page">Todos<span class="lc-contagem">48</span></a></li><li><a href="#">Favoritos<span class="lc-contagem">5</span></a></li><li><a href="#">Financeiro<span class="lc-contagem">12</span></a></li><li><a href="#">Operação<span class="lc-contagem">9</span></a></li><li><a href="#">Suporte<span class="lc-contagem">8</span></a></li><li><a href="#">CS e Comercial<span class="lc-contagem">10</span></a></li><li><a href="#">Pessoas e Academy<span class="lc-contagem">9</span></a></li></ul></nav>
+  <div>
+    <div data-estado="dados">
+    <section class="re-grupo" aria-labelledby="g1"><h2 id="g1">Financeiro</h2><ul class="lc-lista lc-caixa">
+      <li class="re-item"><span class="lc-ladrilho"><i data-i="inadimplencia"></i></span><div><a class="lc-tabela__primaria" href="31b-relatorio-inadimplencia.html">Inadimplência da carteira</a><p>Quanto está em atraso, em quais condomínios e blocos, mês a mês. Atualizado hoje, 07:12.</p></div><span class="lc-etiqueta lc-etiqueta--sistema"><i data-i="calendario"></i>Agendado, dia 5</span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-estrela" type="button" aria-pressed="true" aria-label="Favorito: Inadimplência da carteira" data-alterna><i data-i="estrela"></i></button></li>
+      <li class="re-item"><span class="lc-ladrilho"><i data-i="dre"></i></span><div><a class="lc-tabela__primaria" href="26g-financeiro-dre.html">DRE da administradora</a><p>Resultado da empresa por mês com margem. Só diretoria.</p></div><span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-estrela" type="button" aria-pressed="true" aria-label="Favorito: DRE" data-alterna><i data-i="estrela"></i></button></li>
+      <li class="re-item"><span class="lc-ladrilho"><i data-i="fluxo-de-caixa"></i></span><div><a class="lc-tabela__primaria" href="26i-financeiro-fluxo-de-caixa.html">Fluxo de caixa por condomínio</a><p>Entradas e saídas previstas para 90 dias, com saldo de cada conta.</p></div><span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-estrela" type="button" aria-pressed="false" aria-label="Favorito: Fluxo de caixa" data-alterna><i data-i="estrela"></i></button></li>
+    </ul></section>
+    <section class="re-grupo" aria-labelledby="g2"><h2 id="g2">Operação e Suporte</h2><ul class="lc-lista lc-caixa">
+      <li class="re-item"><span class="lc-ladrilho"><i data-i="chamado"></i></span><div><a class="lc-tabela__primaria" href="#">Chamados por condomínio</a><p>Volume, assunto e tempo de solução. Mostra quem mais chama e por quê. Ao vivo.</p></div><span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-estrela" type="button" aria-pressed="false" aria-label="Favorito: Chamados por condomínio" data-alterna><i data-i="estrela"></i></button></li>
+      <li class="re-item"><span class="lc-ladrilho"><i data-i="ordem-de-servico"></i></span><div><a class="lc-tabela__primaria" href="#">OS por fornecedor</a><p>Prazo cumprido, retrabalho e custo médio por fornecedor nos últimos 6 meses.</p></div><span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-estrela" type="button" aria-pressed="false" aria-label="Favorito: OS por fornecedor" data-alterna><i data-i="estrela"></i></button></li>
+      <li class="re-item"><span class="lc-ladrilho"><i data-i="prazo-estourado"></i></span><div><a class="lc-tabela__primaria" href="#">Tarefas atrasadas</a><p>O que passou do prazo em todos os módulos, por pessoa e equipe.</p></div><span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-estrela" type="button" aria-pressed="true" aria-label="Favorito: Tarefas atrasadas" data-alterna><i data-i="estrela"></i></button></li>
+    </ul></section>
+    <section class="re-grupo" aria-labelledby="g3"><h2 id="g3">Pessoas e Academy</h2><ul class="lc-lista lc-caixa">
+      <li class="re-item"><span class="lc-ladrilho"><i data-i="frequencia"></i></span><div><a class="lc-tabela__primaria" href="#">Risco por falta no Academy</a><p>Quem está abaixo de 75% em alguma disciplina, por turma e por empresa cliente.</p></div><span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-estrela" type="button" aria-pressed="false" aria-label="Favorito: Risco por falta" data-alterna><i data-i="estrela"></i></button></li>
+    </ul></section>
+    </div>
+    <div data-estado="vazio" hidden><div class="lc-caixa"><div class="lc-vazio lc-vazio--centro"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="grafico-colunas"></i></span><h2 class="lc-vazio__titulo">Nenhum relatório responde "consumo de gás por unidade"</h2><p class="lc-vazio__texto">O GACO ainda não lê medidores de gás. Peça o relatório: o time de produto recebe com a sua pergunta e responde em até 5 dias úteis.</p><div class="lc-grupo-btn"><button class="lc-btn lc-btn--principal" type="button">Pedir este relatório</button></div></div></div></div>
+  </div>
+</div>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Busca, Pedir relatório novo, áreas, e por relatório: nome (link), favorito.</dd>
+    <dt>O que é anunciado</dt><dd>Cada grupo tem título (h2). A frase de cada relatório é lida depois do nome. "Agendado, dia 5" é texto.</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Favorito: Inadimplência da carteira" (estrela com aria-pressed), um por relatório.</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

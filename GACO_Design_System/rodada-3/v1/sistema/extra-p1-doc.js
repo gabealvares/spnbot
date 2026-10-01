@@ -243,7 +243,7 @@ function rotuloDe(inp){var c=inp.closest(".lc-campo");var l=c&&$(".lc-rotulo",c)
 function validar(inp){
   var regras=(inp.getAttribute("data-valida")||"").split(" "),v=inp.value.trim(),nome=rotuloDe(inp),msg="";
   regras.some(function(r){
-    if(r==="obrig"&&!v){msg=nome+" está vazio. Este campo é obrigatório para salvar. "+(inp.getAttribute("data-exemplo")?"Exemplo: "+inp.getAttribute("data-exemplo")+".":"Preencha para continuar.");return true;}
+    if(r==="obrig"&&!v){msg="Campo “"+nome+"” vazio. É obrigatório para salvar. "+(inp.getAttribute("data-exemplo")?"Exemplo: "+inp.getAttribute("data-exemplo")+".":"Preencha para continuar.");return true;}
     if(!v)return false;
     if(r==="cpf"){var d=so(v);if(d.length<11){msg="CPF incompleto. O CPF tem 11 números e há "+d.length+". Confira os "+(11-d.length)+" que faltam.";return true;}
       if(!cpfOk(d)){msg="CPF não confere. Os dois últimos números não batem com os nove primeiros. Confira se não houve troca de dígitos.";return true;}}
@@ -387,10 +387,10 @@ function addEtiqueta(m,txt){txt=txt.trim();if(!txt)return;var ex=$$(".lc-etiquet
 function sugerirMulti(m,q){var cont=m.closest(".lc-multi-cont");if(!cont)return;var lb=$(".lc-opcoes",cont);if(!lb)return;lb.hidden=!q.trim();if(!q.trim())return;filtrarOpcoes(lb,q);}
 D.addEventListener("keydown",function(e){var m=e.target.closest&&e.target.closest(".lc-multi");if(!m||e.target.tagName!=="INPUT")return;
   if(e.key==="Enter"||e.key===","){e.preventDefault();var cont=m.closest(".lc-multi-cont"),lb=cont&&$(".lc-opcoes",cont);var pri=lb&&!lb.hidden&&$(".lc-opcao:not([hidden])",lb);
-    addEtiqueta(m,pri?pri.getAttribute("data-txt"):e.target.value);e.target.value="";if(lb)lb.hidden=true;}
+    addEtiqueta(m,pri?(pri.getAttribute("data-txt")||pri.textContent):e.target.value);e.target.value="";if(lb)lb.hidden=true;}
   if(e.key==="Backspace"&&!e.target.value){var l=$$(".lc-etiqueta",m).pop();if(l){anunciar(l.firstChild.textContent+" removido.");l.remove();}}});
 D.addEventListener("click",function(e){var x=e.target.closest(".lc-multi .lc-etiqueta button");if(x){var m=x.closest(".lc-multi");anunciar(x.parentNode.firstChild.textContent+" removido.");x.parentNode.remove();$("input",m).focus();return;}
-  var o=e.target.closest(".lc-multi-cont .lc-opcao");if(o){var m2=$(".lc-multi",o.closest(".lc-multi-cont"));addEtiqueta(m2,o.getAttribute("data-txt"));var i=$("input",m2);i.value="";o.closest(".lc-opcoes").hidden=true;i.focus();}
+  var o=e.target.closest(".lc-multi-cont .lc-opcao");if(o){var m2=$(".lc-multi",o.closest(".lc-multi-cont"));addEtiqueta(m2,o.getAttribute("data-txt")||o.textContent);var i=$("input",m2);i.value="";o.closest(".lc-opcoes").hidden=true;i.focus();}
   var mm=e.target.closest(".lc-multi");if(mm&&e.target===mm)$("input",mm).focus();});
 
 /* ---------------- 8. Upload ---------------- */
@@ -469,7 +469,7 @@ function selecao(inp){if(!inp)return;var tb=inp.closest("table"),body=tb.tBodies
   cbs.forEach(function(c){c.closest("tr").setAttribute("aria-selected",c.checked);});var n=cbs.filter(function(c){return c.checked;}).length;
   if(todos){todos.checked=n>0&&n===cbs.length;todos.indeterminate=n>0&&n<cbs.length;}
   var m=D.querySelector('[data-massa="'+tb.id+'"]'),fl=D.querySelector('[data-filtros-barra="'+tb.id+'"]');
-  if(m){m.hidden=!n;var bb=$("[data-massa-n]",m);if(bb)bb.innerHTML='<b>'+(n===1?"1 boleto selecionado":n+" boletos selecionados")+'</b> de '+cbs.length+(n?' · soma R$ '+moeda(cbs.filter(function(c){return c.checked;}).reduce(function(s,c){return s+(+c.closest("tr").getAttribute("data-valor")||0);},0)):"");}
+  if(m){m.hidden=!n;var bb=$("[data-massa-n]",m);if(bb)bb.innerHTML='<b>'+(n===1?"1 boleto selecionado":n+" boletos selecionados")+'</b> de '+cbs.length+(n?', soma R$ '+moeda(cbs.filter(function(c){return c.checked;}).reduce(function(s,c){return s+(+c.closest("tr").getAttribute("data-valor")||0);},0)):"");}
   if(fl)fl.hidden=!!n;}
 function editarCelula(b){var td=b.closest("td"),antigo=b.textContent.trim(),num=td.classList.contains("lc-num"),linha=b.closest("tr").querySelector(".lc-tabela__primaria");
   var w=D.createElement("div");w.className="lc-celula-edit lc-celula-edit--editando";w.innerHTML='<input class="lc-entrada'+(num?' lc-entrada--num':'')+'" aria-label="'+esc((td.closest("table").tHead.rows[0].cells[td.cellIndex].textContent.trim())+" de "+(linha?linha.textContent:""))+'" value="'+esc(antigo.replace("R$ ",""))+'">';
@@ -499,7 +499,7 @@ function carregarMais(b){var alvo=D.getElementById(b.getAttribute("data-carregar
   setTimeout(function(){b.removeAttribute("aria-busy");var f=DOC.geradores[b.getAttribute("data-gerador")];var novos=Math.min(pass,tot-tem);
     if(f)alvo.insertAdjacentHTML("beforeend",f(tem,tem+novos));var agora=alvo.children.length;$$(":scope>*",alvo).slice(tem).forEach(function(x){x.classList.add("lc-nova");});
     var info=$("[data-info]",cont);if(info)info.innerHTML='Mostrando <b>'+agora+'</b> de <b>'+tot+'</b>';
-    if(agora>=tot){b.disabled=true;b.textContent="Todos os "+tot+" carregados";}
+    if(agora>=tot){b.disabled=true;b.textContent="Todos os "+tot+" carregados";}else b.textContent="Carregar mais "+Math.min(pass,tot-agora);
     var pri=alvo.children[tem];var lk=pri&&$("a,button",pri);if(lk)lk.focus();anunciar(novos+" itens carregados. Mostrando "+agora+" de "+tot+".");},600);}
 
 /* ---------------- 11. Kanban (arrastar e teclado) ---------------- */

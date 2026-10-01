@@ -302,3 +302,7 @@ button.cm-linha-lista{width:100%;text-align:left}
 .cm-cabeca-celular{display:flex;align-items:center;gap:8px;min-height:52px;padding:0 6px;border-bottom:1px solid var(--cm-filete);background:var(--cm-camada-1)}
 .cm-cabeca-celular__titulo{flex:1;min-width:0;font-weight:700;font-size:15px;line-height:18px}
 .cm-cabeca-celular__titulo small{display:block;font-weight:400;font-size:12px;color:var(--cm-texto-2)}
+.cm-linha-lista[aria-current="true"]{background:var(--cm-selecao);box-shadow:inset 3px 0 0 var(--cm-selecao-filete)}
+
+/* ===== Q17 Portal: contador "novo, para você" não pode herdar a marca (regra 3.4) ===== */
+[data-contexto="portal"] .cm-contador--novo,[data-contexto="publica"] .cm-contador--novo{background:var(--cm-texto-1);color:var(--cm-fundo)}

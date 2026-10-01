@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diário de classe, Academy</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.di-barra{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin-bottom:12px}
+.di-barra .lc-campo{width:260px}
+.di-tab th small{display:block;font-weight:400;color:var(--texto-2)}
+</style>
+</head>
+<body data-moldura='{"modulo":"academy","secao":"Docência","item":"Diário de classe","papel":"rh","usuario":{"nome":"Helena Vasconcelos","cargo":"Professora, jurídico","iniciais":"HV","cor":"lc-av--c4"},"trilha":["Docência","Diário de classe"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Diário de classe: frequência e notas em tabela editável. Papel: professora.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Fazer a chamada da aula de hoje e lançar notas da turma sem abrir aluno por aluno: uma linha por pessoa, uma coluna por avaliação, com a frequência acumulada e o risco por falta já calculados.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Escolhe turma e aula (abre na aula de hoje). "Todos presentes" marca a turma inteira; depois troca só quem faltou.</li>
+      <li>P, F ou J por pessoa; a frequência recalcula na hora e acende "reprova se faltar mais" abaixo de 75%.</li>
+      <li>Nota: clica na célula, digita, Enter salva e desce; Tab vai para a coluna ao lado. Cada célula salva sozinha (brilho verde).</li>
+      <li>Notas ficam em rascunho até "Publicar notas", que avisa a turma e manda para o boletim (30).</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o "relatório do avaliador" do Moodle e o Gradebook do Canvas usam aluno na linha e avaliação na coluna, com edição direta; o diário de classe em papel das escolas brasileiras usa P e F; e a planilha (que os professores usam hoje) ensinou Enter para descer.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="academy"></div>
+</details>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Diário de classe</h1><p class="lc-cab-pagina__desc">Legislação condominial e convenção, turma T01, 28 pessoas. Aula 14 de 20.</p></div>
+  <div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="baixar"></i>Exportar diário</button><button class="lc-btn lc-btn--principal" type="button" data-toast="Notas do trabalho publicadas. 28 pessoas avisadas.">Publicar notas</button></div></div>
+<div class="di-barra">
+  <div class="lc-campo"><label class="lc-rotulo" for="turma">Turma</label><select id="turma" class="lc-selecao"><option>GC-201 T01, segundas 08:00</option><option>GC-201 T02, quartas 19:00</option></select></div>
+  <div class="lc-campo"><label class="lc-rotulo" for="aula">Chamada da aula</label><select id="aula" class="lc-selecao"><option>Aula 14, quinta 01/10 (hoje)</option><option>Aula 13, segunda 28/09</option></select></div>
+  <button class="lc-btn" type="button" data-toast="28 pessoas marcadas como presentes." data-toast-desfazer><i data-i="pessoa-aprovada"></i>Todos presentes</button>
+  <span class="lc-legenda" style="margin-left:auto" aria-live="polite">Tudo salvo, 10:47. Notas em rascunho: 3.</span>
+</div>
+<div class="lc-tabela-cont lc-tabela-cont--alta" style="--_alt:620px">
+<table class="lc-tabela lc-tabela--coluna-fixa di-tab" style="--_min-tab:980px">
+  <caption class="lc-sr">Diário da turma T01: presença de hoje, frequência e notas</caption>
+  <thead><tr><th scope="col">Pessoa</th><th scope="col">Hoje, 01/10</th><th scope="col" class="lc-num">Frequência<small>mínimo 75%</small></th><th scope="col" class="lc-num">N1<small>peso 4, publicada</small></th><th scope="col" class="lc-num">Trabalho<small>até 3,0, rascunho</small></th><th scope="col" class="lc-num">Simulada<small>até 3,0, em 02/10</small></th></tr></thead>
+  <tbody>
+<tr><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c6">AB</span><span><span class="lc-tabela__primaria">Ana Beatriz Souza</span><span class="lc-tabela__sub">Administradora Alpha</span></span></span></td>
+<td><span class="lc-presenca-cel" role="group" aria-label="Presença de Ana Beatriz Souza em 01/10"><button type="button" data-p="P" aria-pressed="true" aria-label="Presente: Ana Beatriz Souza">P</button><button type="button" data-p="F" aria-pressed="false" aria-label="Falta: Ana Beatriz Souza">F</button><button type="button" data-p="J" aria-pressed="false" aria-label="Falta justificada: Ana Beatriz Souza">J</button></span></td>
+<td class="lc-num"><span class="lc-frequencia"><span class="lc-frequencia__barra" style="--_v:93%"></span>93%</span></td>
+<td class="lc-num">8,5</td>
+<td class="lc-num"><button class="lc-celula-edit" type="button" aria-label="Trabalho de Ana Beatriz Souza: não lançado, editar"><span class="lc-cor-3">não entregue</span></button></td>
+<td class="lc-num"><button class="lc-celula-edit" type="button" aria-label="Assembleia simulada de Ana Beatriz Souza: não lançada, editar"><span class="lc-cor-3">02/10</span></button></td></tr>
+<tr aria-selected="true"><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c7">DR</span><span><span class="lc-tabela__primaria">Diego Ramos</span><span class="lc-tabela__sub">Órbita Condomínios</span></span></span></td>
+<td><span class="lc-presenca-cel" role="group" aria-label="Presença de Diego Ramos em 01/10"><button type="button" data-p="P" aria-pressed="false" aria-label="Presente: Diego Ramos">P</button><button type="button" data-p="F" aria-pressed="true" aria-label="Falta: Diego Ramos">F</button><button type="button" data-p="J" aria-pressed="false" aria-label="Falta justificada: Diego Ramos">J</button></span></td>
+<td class="lc-num"><span class="lc-frequencia lc-frequencia--baixa"><span class="lc-frequencia__barra" style="--_v:71%"></span>71%</span><span class="lc-tabela__sub lc-valor-neg">reprova se faltar mais</span></td>
+<td class="lc-num">6,0</td>
+<td class="lc-num"><button class="lc-celula-edit" type="button" aria-label="Trabalho de Diego Ramos: 2,1, editar">2,1</button></td>
+<td class="lc-num"><button class="lc-celula-edit" type="button" aria-label="Assembleia simulada de Diego Ramos: não lançada, editar"><span class="lc-cor-3">02/10</span></button></td></tr>
+<tr><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c3">JR</span><span><span class="lc-tabela__primaria">Júlia Rocha</span><span class="lc-tabela__sub">Administradora Alpha</span></span></span></td>
+<td><span class="lc-presenca-cel" role="group" aria-label="Presença de Júlia Rocha em 01/10"><button type="button" data-p="P" aria-pressed="true" aria-label="Presente: Júlia Rocha">P</button><button type="button" data-p="F" aria-pressed="false" aria-label="Falta: Júlia Rocha">F</button><button type="button" data-p="J" aria-pressed="false" aria-label="Falta justificada: Júlia Rocha">J</button></span></td>
+<td class="lc-num"><span class="lc-frequencia"><span class="lc-frequencia__barra" style="--_v:100%"></span>100%</span></td>
+<td class="lc-num">9,0</td>
+<td class="lc-num"><button class="lc-celula-edit lc-celula-edit--salvo" type="button" aria-label="Trabalho de Júlia Rocha: 2,8, editar">2,8</button></td>
+<td class="lc-num"><button class="lc-celula-edit" type="button" aria-label="Assembleia simulada de Júlia Rocha: não lançada, editar"><span class="lc-cor-3">02/10</span></button></td></tr>
+<tr><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c5">LS</span><span><span class="lc-tabela__primaria">Lucas Santos</span><span class="lc-tabela__sub">Administradora Alpha</span></span></span></td>
+<td><span class="lc-presenca-cel" role="group" aria-label="Presença de Lucas Santos em 01/10"><button type="button" data-p="P" aria-pressed="true" aria-label="Presente: Lucas Santos">P</button><button type="button" data-p="F" aria-pressed="false" aria-label="Falta: Lucas Santos">F</button><button type="button" data-p="J" aria-pressed="false" aria-label="Falta justificada: Lucas Santos">J</button></span></td>
+<td class="lc-num"><span class="lc-frequencia"><span class="lc-frequencia__barra" style="--_v:86%"></span>86%</span></td>
+<td class="lc-num">7,5</td>
+<td class="lc-num"><div class="lc-celula-edit lc-celula-edit--editando"><input class="lc-entrada lc-entrada--num lc-nota-cel" value="2,6" aria-label="Trabalho de Lucas Santos, de 0 a 3"></div></td>
+<td class="lc-num"><button class="lc-celula-edit" type="button" aria-label="Assembleia simulada de Lucas Santos: não lançada, editar"><span class="lc-cor-3">02/10</span></button></td></tr>
+<tr><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c4">PG</span><span><span class="lc-tabela__primaria">Patrícia Gomes</span><span class="lc-tabela__sub">Órbita Condomínios</span></span></span></td>
+<td><span class="lc-presenca-cel" role="group" aria-label="Presença de Patrícia Gomes em 01/10"><button type="button" data-p="P" aria-pressed="false" aria-label="Presente: Patrícia Gomes">P</button><button type="button" data-p="F" aria-pressed="false" aria-label="Falta: Patrícia Gomes">F</button><button type="button" data-p="J" aria-pressed="true" aria-label="Falta justificada: Patrícia Gomes">J</button></span></td>
+<td class="lc-num"><span class="lc-frequencia"><span class="lc-frequencia__barra" style="--_v:86%"></span>86%</span></td>
+<td class="lc-num">8,0</td>
+<td class="lc-num"><button class="lc-celula-edit" type="button" aria-label="Trabalho de Patrícia Gomes: 2,5, editar">2,5</button></td>
+<td class="lc-num"><button class="lc-celula-edit" type="button" aria-label="Assembleia simulada de Patrícia Gomes: não lançada, editar"><span class="lc-cor-3">02/10</span></button></td></tr>
+<tr><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c8">RL</span><span><span class="lc-tabela__primaria">Ricardo Lemos</span><span class="lc-tabela__sub">Sol Nascente Gestão</span></span></span></td>
+<td><span class="lc-presenca-cel" role="group" aria-label="Presença de Ricardo Lemos em 01/10"><button type="button" data-p="P" aria-pressed="false" aria-label="Presente: Ricardo Lemos">P</button><button type="button" data-p="F" aria-pressed="true" aria-label="Falta: Ricardo Lemos">F</button><button type="button" data-p="J" aria-pressed="false" aria-label="Falta justificada: Ricardo Lemos">J</button></span></td>
+<td class="lc-num"><span class="lc-frequencia lc-frequencia--baixa"><span class="lc-frequencia__barra" style="--_v:64%"></span>64%</span><span class="lc-tabela__sub lc-valor-neg">reprova se faltar mais</span></td>
+<td class="lc-num">5,5</td>
+<td class="lc-num"><button class="lc-celula-edit" type="button" aria-label="Trabalho de Ricardo Lemos: não lançado, editar"><span class="lc-cor-3">não entregue</span></button></td>
+<td class="lc-num"><button class="lc-celula-edit" type="button" aria-label="Assembleia simulada de Ricardo Lemos: não lançada, editar"><span class="lc-cor-3">02/10</span></button></td></tr>
+<tr><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c2">SA</span><span><span class="lc-tabela__primaria">Sônia Almeida</span><span class="lc-tabela__sub">Síndica, Jardim Botânico</span></span></span></td>
+<td><span class="lc-presenca-cel" role="group" aria-label="Presença de Sônia Almeida em 01/10"><button type="button" data-p="P" aria-pressed="true" aria-label="Presente: Sônia Almeida">P</button><button type="button" data-p="F" aria-pressed="false" aria-label="Falta: Sônia Almeida">F</button><button type="button" data-p="J" aria-pressed="false" aria-label="Falta justificada: Sônia Almeida">J</button></span></td>
+<td class="lc-num"><span class="lc-frequencia"><span class="lc-frequencia__barra" style="--_v:100%"></span>100%</span></td>
+<td class="lc-num">9,5</td>
+<td class="lc-num"><button class="lc-celula-edit" type="button" aria-label="Trabalho de Sônia Almeida: 3,0, editar">3,0</button></td>
+<td class="lc-num"><button class="lc-celula-edit" type="button" aria-label="Assembleia simulada de Sônia Almeida: não lançada, editar"><span class="lc-cor-3">02/10</span></button></td></tr>
+
+
+  </tbody>
+  <tfoot><tr><td>Média da turma (28)</td><td>23 presentes, 3 faltas, 2 justificadas</td><td class="lc-num">88%</td><td class="lc-num"><span class="lc-total">7,9</span></td><td class="lc-num">2,6</td><td></td></tr></tfoot>
+</table></div>
+<p class="lc-legenda" style="margin-top:8px">Mostrando 7 de 28. Enter salva e desce; Esc desfaz a célula; as setas andam pela tabela.</p>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Turma, Aula, Todos presentes, e dentro da tabela uma grade navegável por setas (roving tabindex): P/F/J, nota do trabalho, nota da simulada; Publicar notas no topo.</dd>
+    <dt>O que é anunciado</dt><dd>Cada botão de presença tem nome completo ("Falta: Diego Ramos") e estado pressionado. A célula de nota diz quem e o limite ("Trabalho de Lucas Santos, de 0 a 3"). Abaixo de 75% a frequência ganha a frase "reprova se faltar mais". "Tudo salvo" é aria-live.</dd>
+    <dt>Nome do que é só ícone</dt><dd>Não há botão só ícone.</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+<script>
+document.querySelectorAll(".lc-presenca-cel").forEach(function(g){ g.addEventListener("click",function(e){ var b=e.target.closest("button"); if(!b) return; g.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b);}); }); });
+</script>
+</body>
+</html>

@@ -15,18 +15,18 @@
 
 /* ============================== P1 FICHA DA TELA ============================== */
 /* Bloco de documentação que acompanha cada tela. Não faz parte do produto: fundo poço, filete forte. */
-.lc-ficha-tela{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) minmax(0,1.25fr);gap:0;margin:var(--esp-9) 0 var(--esp-5);
+.lc-sobre-tela{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) minmax(0,1.25fr);gap:0;margin:var(--esp-9) 0 var(--esp-5);
   border-top:2px solid var(--texto-1);border-bottom:var(--borda-2);background:var(--sup-2);font-size:13px;line-height:19px;color:var(--texto-1)}
-.lc-ficha-tela:first-child{margin-top:var(--esp-3)}
-.lc-ficha-tela>div{padding:12px 16px 14px;border-left:var(--borda-1);min-width:0}
-.lc-ficha-tela>div:first-child{border-left:0}
-.lc-ficha-tela h2,.lc-ficha-tela h3{font:600 12.5px/18px var(--fonte-ui);color:var(--texto-2);margin:0 0 4px}
-.lc-ficha-tela__nome{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:10px 16px!important;border-left:0!important;border-bottom:var(--borda-1)}
-.lc-ficha-tela__nome b{font:var(--t-secao)}
-.lc-ficha-tela__nome span{font:var(--t-legenda);color:var(--texto-2)}
-.lc-ficha-tela ol,.lc-ficha-tela ul{margin:0;padding-left:18px}
-.lc-ficha-tela li+li{margin-top:2px}
-@media (max-width:899px){.lc-ficha-tela{grid-template-columns:minmax(0,1fr)}.lc-ficha-tela>div{border-left:0;border-top:var(--borda-1)}.lc-ficha-tela>div:first-child{border-top:0}}
+.lc-sobre-tela:first-child{margin-top:var(--esp-3)}
+.lc-sobre-tela>div{padding:12px 16px 14px;border-left:var(--borda-1);min-width:0}
+.lc-sobre-tela>div:first-child{border-left:0}
+.lc-sobre-tela h2,.lc-sobre-tela h3{font:600 12.5px/18px var(--fonte-ui);color:var(--texto-2);margin:0 0 4px}
+.lc-sobre-tela__nome{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:10px 16px!important;border-left:0!important;border-bottom:var(--borda-1)}
+.lc-sobre-tela__nome b{font:var(--t-secao)}
+.lc-sobre-tela__nome span{font:var(--t-legenda);color:var(--texto-2)}
+.lc-sobre-tela ol,.lc-sobre-tela ul{margin:0;padding-left:18px}
+.lc-sobre-tela li+li{margin-top:2px}
+@media (max-width:899px){.lc-sobre-tela{grid-template-columns:minmax(0,1fr)}.lc-sobre-tela>div{border-left:0;border-top:var(--borda-1)}.lc-sobre-tela>div:first-child{border-top:0}}
 /* rodapé de acessibilidade */
 .lc-ficha-a11y{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:var(--esp-5) 0 var(--esp-3);border-top:var(--borda-2);border-bottom:var(--borda-2);font-size:12.5px;line-height:18px;color:var(--texto-2)}
 .lc-ficha-a11y>div{padding:10px 16px 12px;border-left:var(--borda-1);min-width:0}
@@ -63,10 +63,10 @@
 .lc-boleto__secundarias .lc-btn{flex:1 1 auto}
 .lc-boleto__pe{padding:10px 18px;border-top:var(--borda-1);background:var(--sup-2);font-size:12.5px;color:var(--texto-2);border-radius:0 0 var(--raio-3) var(--raio-3)}
 /* Pix copia e cola */
-.lc-pix{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:10px 12px;border:1px solid var(--borda-controle);border-radius:var(--raio-2);background:var(--sup-2)}
-.lc-pix__cod{font:var(--t-codigo);color:var(--texto-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
-.lc-pix__rot{grid-column:1/-1;font:var(--t-legenda);color:var(--texto-2);display:flex;gap:6px;align-items:center}
-.lc-pix[data-copiado="true"]{border-color:var(--sucesso-borda);background:var(--sucesso-fundo)}
+.lc-pix-copia{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:10px 12px;border:1px solid var(--borda-controle);border-radius:var(--raio-2);background:var(--sup-2)}
+.lc-pix-copia__cod{font:var(--t-codigo);color:var(--texto-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.lc-pix-copia__rot{grid-column:1/-1;font:var(--t-legenda);color:var(--texto-2);display:flex;gap:6px;align-items:center}
+.lc-pix-copia[data-copiado="true"]{border-color:var(--sucesso-borda);background:var(--sucesso-fundo)}
 .lc-linha-digitavel{font:var(--t-codigo);letter-spacing:.01em;word-break:break-all;color:var(--texto-1)}
 /* composição do valor (extrato curto) */
 .lc-composicao{width:100%;font-size:13.5px}
@@ -136,8 +136,8 @@
 .lc-horario:has(input:disabled){background:var(--sup-2);color:var(--texto-desab);cursor:not-allowed;border-style:dashed}
 .lc-horario:has(input:focus-visible){outline:2px solid var(--foco);outline-offset:2px}
 /* regras em texto curto numerado (são sequência do regimento) */
-.lc-regras{margin:0;padding-left:20px;font-size:13.5px;line-height:20px}
-.lc-regras li+li{margin-top:6px}
+.lc-regras-uso{margin:0;padding-left:20px;font-size:13.5px;line-height:20px}
+.lc-regras-uso li+li{margin-top:6px}
 /* portaria: cartão de acesso do visitante com código */
 .lc-passe{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;padding:16px;border:var(--borda-2);border-radius:var(--raio-3);background:var(--sup-1);align-items:center}
 .lc-passe__qr{grid-row:1/4;width:112px;height:112px;border:var(--borda-2);display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:6px;background:#fff}
@@ -295,13 +295,13 @@
 .lc-codigo-barras{height:52px;margin-top:10px;background:repeating-linear-gradient(90deg,#1B2023 0 2px,transparent 2px 3px,#1B2023 3px 4px,transparent 4px 7px,#1B2023 7px 10px,transparent 10px 11px);max-width:420px}
 @media (max-width:639px){.lc-ficha-comp__linha{grid-template-columns:minmax(0,1fr)}.lc-ficha-comp__linha>*{border-right:0;border-bottom:1px solid #1B2023}.lc-ficha-comp__grade{grid-template-columns:minmax(0,1fr) 110px}}
 /* certificado: paisagem */
-.lc-certificado{aspect-ratio:1.414/1;width:min(1000px,100%);margin:0 auto;background:#fff;color:#1B2023;border:1px solid var(--filete-forte);padding:5% 6%;display:flex;flex-direction:column;font-family:var(--fonte-doc);position:relative}
-.lc-certificado::before{content:"";position:absolute;inset:14px;border:3px double #1B2023;pointer-events:none}
-.lc-certificado h1{font:600 clamp(22px,3.4vw,38px)/1.15 var(--fonte-doc);margin:0}
-.lc-certificado__nome{font:600 clamp(22px,3vw,34px)/1.2 var(--fonte-doc);margin:12px 0 4px;border-bottom:1px solid #1B2023;display:inline-block;padding-bottom:4px}
-.lc-certificado p{font-size:clamp(13px,1.4vw,16px);line-height:1.55;max-width:62ch}
-.lc-certificado__pe{margin-top:auto;display:flex;gap:24px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;font:12px/17px var(--fonte-ui);color:#4A524E}
-@media (max-width:639px){.lc-certificado{aspect-ratio:auto;padding:36px 28px}}
+.lc-cert-folha{aspect-ratio:1.414/1;width:min(1000px,100%);margin:0 auto;background:#fff;color:#1B2023;border:1px solid var(--filete-forte);padding:5% 6%;display:flex;flex-direction:column;font-family:var(--fonte-doc);position:relative}
+.lc-cert-folha::before{content:"";position:absolute;inset:14px;border:3px double #1B2023;pointer-events:none}
+.lc-cert-folha h1{font:600 clamp(22px,3.4vw,38px)/1.15 var(--fonte-doc);margin:0}
+.lc-cert-folha__nome{font:600 clamp(22px,3vw,34px)/1.2 var(--fonte-doc);margin:12px 0 4px;border-bottom:1px solid #1B2023;display:inline-block;padding-bottom:4px}
+.lc-cert-folha p{font-size:clamp(13px,1.4vw,16px);line-height:1.55;max-width:62ch}
+.lc-cert-folha__pe{margin-top:auto;display:flex;gap:24px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;font:12px/17px var(--fonte-ui);color:#4A524E}
+@media (max-width:639px){.lc-cert-folha{aspect-ratio:auto;padding:36px 28px}}
 /* e-mail transacional: largura de 600 */
 .lc-email{width:min(var(--cont-publico),100%);margin:0 auto;background:#fff;color:#1B2023;border:1px solid var(--filete-forte);font:15px/23px var(--fonte-ui)}
 .lc-email__env{background:var(--sup-2);border:1px solid var(--filete-forte);border-bottom:0;width:min(var(--cont-publico),100%);margin:0 auto;padding:10px 16px;font-size:12.5px;line-height:19px;color:var(--texto-2)}
@@ -319,10 +319,10 @@
 .lc-email__rodape a{color:#4A524E}
 @media (max-width:639px){.lc-email__corpo{padding:20px}.lc-email__topo,.lc-email__rodape{padding-left:20px;padding-right:20px}}
 /* carimbo dentro da folha branca mantém tinta própria */
-.lc-folha-a4 .lc-carimbo,.lc-certificado .lc-carimbo,.lc-email .lc-carimbo{--carimbo-tinta:#1E6B45}
+.lc-folha-a4 .lc-carimbo,.lc-cert-folha .lc-carimbo,.lc-email .lc-carimbo{--carimbo-tinta:#1E6B45}
 
 /* ============================== P8 CORREÇÕES PROPOSTAS À FUNDAÇÃO ============================== */
 /* Faixa de contexto no celular: o nome do cliente pode quebrar linha (antes estourava 390 px). */
 @media (max-width:639px){.lc-faixa-contexto{gap:4px 12px}.lc-faixa-contexto__item{white-space:normal}.lc-faixa-contexto__fim{margin-left:0;width:100%}}
 /* modo "só a tela" (?limpo=1): esconde a documentação */
-.lc-limpo .lc-ficha-tela,.lc-limpo .lc-ficha-a11y,.lc-limpo .lc-variacao,.lc-limpo .lc-quadros{display:none!important}
+.lc-limpo .lc-sobre-tela,.lc-limpo .lc-ficha-a11y,.lc-limpo .lc-variacao,.lc-limpo .lc-quadros{display:none!important}

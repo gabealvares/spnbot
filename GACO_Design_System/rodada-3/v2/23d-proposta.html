@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposta comercial</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-pr{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:16px;align-items:start;margin-top:12px}
+.q3-pdf{background:#fff;color:#1d2326;border:1px solid var(--cm-filete);font-size:12px;line-height:1.5}
+.q3-pdf__topo{background:var(--cm-marca);color:var(--cm-marca-sobre);padding:16px 20px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}
+.q3-pdf__topo span{display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;background:var(--cm-marca-sobre);color:var(--cm-marca);font-weight:800}
+.q3-pdf__corpo{padding:16px 20px}
+.q3-pdf h3{font-size:15px;margin:0 0 6px}
+.q3-pdf table{width:100%;border-collapse:collapse;margin:10px 0}
+.q3-pdf td{border-bottom:1px solid #d8dddc;padding:5px 0}
+.q3-pdf td:last-child{text-align:right}
+@media (max-width:1099px){.q3-pr{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Proposta <small>Comercial, Propostas. Proposta para o Cond. Torres do Ibirapuera: itens, composição do valor, condições e a prévia do PDF na marca da Administradora Alpha.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>A proposta é o documento que vai para a assembleia. O executivo monta com itens do catálogo (plano por unidade, módulos, implantação), vê a composição do valor e a prévia exata do PDF. Desconto acima da alçada pede aprovação antes de enviar. O PDF leva a marca do cliente (Administradora Alpha), não a do GACO.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Itens: adicionar do catálogo; quantidade e desconto por linha editáveis; total recalcula.</li><li>Desconto acima de 8% mostra "Precisa de aprovação" e troca "Enviar" por "Pedir aprovação".</li><li>"Salvar ▾" (rascunho, e enviar, e nova versão); cada envio gera versão (v1, v2) com histórico.</li><li>"Enviar" manda link com aceite e acompanha aberturas; aceito, o negócio vai para Contrato.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o PandaDoc e o Proposify mostram editor e prévia lado a lado com rastreio de abertura; o Salesforce CPQ calcula a composição com alçada de desconto; e versões numeradas vêm do HubSpot Quotes.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Rascunho</button><button type="button" data-q3-estado="aprovacao" aria-pressed="false">Desconto pede aprovação</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Comercial","tela":"Propostas","registro":"Torres do Ibirapuera, v2","papel":"Comercial","usuario":{"nome":"Lucas Ferreira","iniciais":"LF","cargo":"Executivo comercial","presenca":"disponivel","tom":1}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Proposta: Cond. Torres do Ibirapuera</h1><span class="cm-estado cm-estado--neutro"><i data-i="rascunho"></i>Rascunho, versão 2</span>
+  <div class="cm-cabecalho-pagina__acoes">
+   <div class="cm-dividido cm-ancora cm-ancora--direita">
+    <button class="cm-botao cm-botao--principal" type="button" data-se="padrao" data-q3-toast="Proposta v2 enviada para Teresa Lima. Você será avisado na abertura.">Enviar <span class="cm-dividido__lembra">ao síndico</span></button>
+    <button class="cm-botao cm-botao--principal" type="button" data-se="aprovacao" data-q3-toast="Pedido de aprovação enviado para a diretoria comercial">Pedir aprovação</button>
+    <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de salvar e enviar" data-q3-menu="m-env"><i data-i="chevron-baixo"></i></button>
+    <div class="cm-menu cm-flutuante" id="m-env" role="menu" hidden style="width:260px"><button class="cm-menu__item cm-menu__item--sem-icone" role="menuitem" type="button" data-q3-toast="Rascunho salvo"><span>Salvar rascunho</span><span class="cm-menu__atalho">Ctrl S</span></button><button class="cm-menu__item cm-menu__item--sem-icone" role="menuitem" type="button"><span>Salvar como nova versão (v3)</span><span></span></button><button class="cm-menu__item cm-menu__item--sem-icone" role="menuitem" type="button"><span>Baixar PDF</span><span></span></button></div>
+   </div></div></div></header>
+ <div class="q3-pr">
+  <div class="cm-pilha">
+   <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Itens</h2><button class="cm-botao cm-botao--p" type="button"><i data-i="adicionar"></i>Do catálogo</button></header>
+    <div class="cm-tabela-caixa" style="border:0"><table class="cm-tabela">
+     <thead><tr><th>Item</th><th class="cm-num">Qtd.</th><th class="cm-num">Preço</th><th class="cm-num">Desconto</th><th class="cm-num">Total por mês</th></tr></thead>
+     <tbody>
+      <tr><td class="cm-tabela__principal">Administração, plano Completo<span class="cm-tabela__sub">por unidade</span></td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Quantidade, plano">270</td><td class="cm-num">R$ 36,00</td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Desconto, plano"><span data-se="padrao">5%</span><span data-se="aprovacao">12%</span></td><td class="cm-num"><span data-se="padrao">R$ 9.234,00</span><span data-se="aprovacao">R$ 8.553,60</span></td></tr>
+      <tr><td class="cm-tabela__principal">Módulo Portaria<span class="cm-tabela__sub">chaves, encomendas, visitantes</span></td><td class="cm-num">1</td><td class="cm-num">R$ 1.900,00</td><td class="cm-num">0%</td><td class="cm-num">R$ 1.900,00</td></tr>
+      <tr><td class="cm-tabela__principal">Implantação<span class="cm-tabela__sub">pagamento único, em 3 vezes</span></td><td class="cm-num">1</td><td class="cm-num">R$ 4.500,00</td><td class="cm-num">100%</td><td class="cm-num">isenta</td></tr>
+     </tbody>
+     <tfoot><tr><td colspan="4">Total por mês</td><td class="cm-num"><span data-se="padrao">R$ 11.134,00</span><span data-se="aprovacao">R$ 10.453,60</span></td></tr></tfoot></table></div>
+    <div class="cm-cartao__pe" data-se="aprovacao"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Desconto de 12% passa da sua alçada (8%). Precisa de aprovação.</span></div>
+   </section>
+   <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Condições</h2></header><div class="cm-cartao__corpo"><dl class="cm-ficha cm-ficha--larga">
+    <div class="cm-ficha__linha"><dt>Validade</dt><dd>até 13/10, véspera da assembleia</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar validade"><i data-i="editar"></i></button></div>
+    <div class="cm-ficha__linha"><dt>Início</dt><dd>01/12/2026</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar início"><i data-i="editar"></i></button></div>
+    <div class="cm-ficha__linha"><dt>Reajuste</dt><dd>IGP-M anual</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar reajuste"><i data-i="editar"></i></button></div>
+    <div class="cm-ficha__linha"><dt>Destinatário</dt><dd>Teresa Lima, síndica, e o conselho</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar destinatário"><i data-i="editar"></i></button></div>
+   </dl></div></section>
+   <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Versões</h2></header><div class="cm-cartao__corpo"><ol class="cm-auditoria"><li><time>30/09</time><b>v1</b> enviada; aberta 4 vezes por Teresa Lima; pediu Portaria</li><li><time>hoje</time><b>v2</b> rascunho com Portaria</li></ol></div></section>
+  </div>
+  <section aria-label="Prévia do PDF">
+   <div class="cm-linha" style="margin-bottom:6px"><h2 class="cm-t-subsecao cm-cresce">Prévia do PDF</h2><span class="cm-t-legenda">página 1 de 3</span></div>
+   <div class="q3-pdf"><div class="q3-pdf__topo"><span data-marca-inicial>A</span><span style="background:none;width:auto;color:inherit" data-marca-nome>Administradora Alpha</span></div>
+    <div class="q3-pdf__corpo"><h3>Proposta de administração condominial</h3><p>Cond. Torres do Ibirapuera, 270 unidades. São Paulo, 1 de outubro de 2026.</p>
+     <table><tr><td>Administração, plano Completo (270 unidades)</td><td>R$ 9.234,00</td></tr><tr><td>Módulo Portaria</td><td>R$ 1.900,00</td></tr><tr><td>Implantação</td><td>isenta</td></tr><tr><td><b>Total por mês</b></td><td><b>R$ 11.134,00</b></td></tr></table>
+     <p>Inclui prestação de contas mensal no portal, emissão de boletos com Pix, atendimento por WhatsApp das 8h às 20h e assessoria em assembleias.</p></div></div>
+  </section>
+ </div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título, estado, Enviar e o menu; itens (células editáveis), Do catálogo; condições (lápis); versões; prévia.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Total recalculado é lido no rodapé da tabela. O aviso de alçada é texto com ícone ao lado dos itens e o botão muda de nome para "Pedir aprovação".</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Outras formas de salvar e enviar", "Editar validade" (e cada lápis).</p></section>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>

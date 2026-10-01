@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fluxos de navegação</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q2.css">
+<script src="sistema/icones.js"></script>
+<script src="padroes/links-doc.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q2.js" defer></script>
+<style>
+.app-mini{border:1px solid var(--cm-filete-forte);background:var(--cm-fundo)}
+.app-mini__trilha{display:flex;align-items:center;gap:10px;min-height:36px;padding:0 12px;border-bottom:1px solid var(--cm-filete);background:var(--cm-camada-1)}
+.app-mini__lista{height:360px;overflow:auto}
+.app-mini__reg{padding:16px;min-height:360px}
+.app-mini .cm-tabela a{cursor:pointer}
+.url{font-family:var(--cm-fonte-plaqueta);font-size:12px;color:var(--cm-texto-2);overflow-wrap:anywhere}
+.aviso-lista{max-width:440px;border:1px solid var(--cm-filete);background:var(--cm-camada-2)}
+.comentario-alvo{animation:q2-realce 2.4s ease-out}
+@keyframes q2-realce{0%,40%{background:var(--cm-acao-suave);box-shadow:inset 3px 0 0 var(--cm-acao)}100%{background:transparent}}
+@media (prefers-reduced-motion:reduce){.comentario-alvo{animation:none;box-shadow:inset 3px 0 0 var(--cm-acao)}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"CS","tela":"Contratos","papel":"CS","trilha":false,"usuario":{"nome":"Rafael Lima","iniciais":"RL","cargo":"CS sênior","presenca":"disponivel","tom":3}}'></div>
+<main id="conteudo" class="cm-doc">
+  <nav class="cm-doc__indice" aria-label="Nesta página"><h2>Nesta página</h2><ol>
+    <li><a href="#volta">Lista, registro e volta</a></li>
+    <li><a href="#jk">14 de 63 com J e K</a></li>
+    <li><a href="#aba">Nova aba</a></li>
+    <li><a href="#trilha">Trilha</a></li>
+    <li><a href="#recentes">Recentes</a></li>
+    <li><a href="#ctrlk">Ctrl K</a></li>
+    <li><a href="#favoritos">Favoritos fixados</a></li>
+    <li><a href="#papel">Grupos do papel e Ajustar</a></li>
+    <li><a href="#notificacao">Notificação até o registro</a></li>
+    <li><a href="#mencao">Menção até o comentário</a></li>
+  </ol></nav>
+  <div class="cm-doc__corpo">
+    <header class="cm-doc__cabeca">
+      <h1>Fluxos de navegação</h1>
+      <p>Navegar bem é chegar em um passo e voltar sem perder nada. A V2 mantém o Modelo D (duas barras no topo, decisão de 24/09) e acrescenta o que A3 e A4 pediram: a lista lembra onde a pessoa estava, o registro sabe o anterior e o próximo, o Ctrl K faz tudo, e cada papel vê só os seus módulos com favoritos na frente.</p>
+      <div class="cm-doc__regras"><span><b>Todo nome de registro</b> é link real</span><span><b>Endereço</b> guarda filtro, página e posição</span><span><b>Voltar</b> nunca recarrega a lista do zero</span></div>
+    </header>
+
+    <section class="cm-doc-sec" id="volta">
+      <h2>Lista, registro e volta, mantendo o estado</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Revisar 63 contratos sem perder filtro, página, rolagem e a noção de quantos faltam.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Na lista filtrada, role e abra o contrato 14.</li><li>O registro mostra "Reajuste pendente em outubro, 14 de 63" com anterior e próximo.</li><li>Volte pelo primeiro elo da trilha, por G L ou pelo voltar do navegador.</li><li>A lista volta com o mesmo filtro, a mesma rolagem, e a linha 14 destacada por 2 segundos e com foco.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Jira volta ao navegador de issues na mesma posição, o Dynamics 365 navega pelo conjunto de registros sem perder o lugar e o Gmail devolve a caixa onde a pessoa estava. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco" id="jk"><div class="cm-palco__barra"><b>Contratos, Reajuste pendente em outubro</b><span>teste: role, abra um contrato, use J e K, volte pela trilha</span></div>
+        <div class="cm-palco__corpo">
+          <div class="app-mini">
+            <div class="app-mini__trilha"><nav aria-label="Trilha do exemplo"><ol class="cm-trilha" id="nv-trilha"></ol></nav><div class="cm-navegar-registro cm-empurra" id="nv-nav" hidden><b id="nv-pos"></b><button class="cm-botao cm-botao--discreto cm-botao--p cm-botao--icone" type="button" aria-label="Anterior (K)" id="nv-ant"><i data-i="chevron-cima"></i></button><button class="cm-botao cm-botao--discreto cm-botao--p cm-botao--icone" type="button" aria-label="Próximo (J)" id="nv-prox"><i data-i="chevron-baixo"></i></button></div></div>
+            <div id="nv-vlista">
+              <div class="cm-chips" style="padding:8px 12px;border-bottom:1px solid var(--cm-filete)"><span class="cm-chip"><span>Vence</span> outubro<button type="button" aria-label="Tirar filtro Vence"><i data-i="fechar"></i></button></span><span class="cm-chip"><span>Reajuste</span> pendente<button type="button" aria-label="Tirar filtro Reajuste"><i data-i="fechar"></i></button></span><span class="cm-t-legenda cm-empurra"><b>1–50</b> de 63</span></div>
+              <div class="app-mini__lista" id="nv-rolar"><table class="cm-tabela"><thead><tr><th>Nº</th><th>Cliente</th><th>Índice</th><th class="cm-num">Mensalidade</th></tr></thead><tbody id="nv-corpo"></tbody></table></div>
+            </div>
+            <div class="app-mini__reg" id="nv-vreg" hidden tabindex="-1"></div>
+          </div>
+          <p class="cm-palco__legenda" id="nv-estado">Estado guardado: nenhum.</p>
+        </div>
+      </div>
+      <table class="cm-especificacao">
+        <tr><th>O que a lista guarda</th><td>Visão, filtros, busca, ordenação, página, tamanho da página e colunas no endereço (para copiar e abrir em outra aba); rolagem e linha atual na sessão da aba.</td></tr>
+        <tr><th>Como volta</th><td>Elo da trilha com o nome da visão, G L, ou voltar do navegador: os três chegam ao mesmo estado. A linha visitada recebe o foco e um realce que some em 2 segundos.</td></tr>
+        <tr><th>Depois de salvar</th><td>Navegação de aplicação, sem recarregar a página: a lista não perde cache nem rolagem.</td></tr>
+      </table>
+      <h3>Cliques: revisar 3 contratos seguidos e voltar</h3>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>12 cliques, 7 trocas, posição perdida</span></h4><div class="cm-regua" data-regua="12,7,0"></div><ol><li>Por contrato: abrir (1, troca), trilha ao módulo (1, troca), refazer 2 filtros (2).</li><li>A rolagem volta ao topo; achar a linha de novo.</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>1 clique, 3 teclas, 2 trocas</span></h4><div class="cm-regua" data-regua="1,2,3"></div><ol><li>Abrir o 14 (1, troca). J, J (teclas) para o 15 e o 16.</li><li>G L (tecla) volta à lista na linha 16 (troca).</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Ao voltar, o foco vai para a linha visitada, não para o topo.</li><li>No registro, o foco vai ao título.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Contrato CT-2024-0412, 15 de 63, Reajuste pendente em outubro."</li><li>Ao voltar: "Contratos, Reajuste pendente em outubro. Linha 15 de 63."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>"Anterior (K)", "Próximo (J)".</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="aba">
+      <h2>Nova aba</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Comparar dois contratos, ou deixar um chamado aberto ao lado, com o que o navegador já faz de graça.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Ctrl e clique, ou botão do meio, em qualquer nome de registro abre outra aba.</li><li>A aba nova carrega com "14 de 63" porque o conjunto vai no endereço.</li><li>No Ctrl K, Ctrl Enter abre o resultado em nova aba.</li><li>"Copiar link" no ⋯ do registro copia o endereço limpo, sem o conjunto.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Salesforce, o HubSpot e o Fiori dão endereço próprio a cada registro, e o A3 mostrou que abas dentro do sistema (console do Salesforce) custam caro e duplicam o que o navegador já faz. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-rolar-x"><table class="cm-tabela-doc"><thead><tr><th>Situação</th><th>Endereço</th></tr></thead><tbody>
+        <tr><td>Lista com filtro</td><td class="url">/cs/contratos?visao=reajuste-outubro&amp;vence=2026-10&amp;reajuste=pendente&amp;pag=1&amp;por=50</td></tr>
+        <tr><td>Registro aberto da lista</td><td class="url">/cs/contratos/CT-2024-0187?de=reajuste-outubro&amp;pos=14</td></tr>
+        <tr><td>Copiar link</td><td class="url">/cs/contratos/CT-2024-0187</td></tr>
+        <tr><td>Comentário mencionado</td><td class="url">/cs/contratos/CT-2024-0187#comentario-88213</td></tr>
+      </tbody></table></div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>linha com clique por script</span></h4><div class="cm-regua" data-regua="4,2,0"></div><ol><li>Ctrl e clique não abria nada; era preciso abrir, copiar o endereço, abrir aba, colar (4).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>1 clique com Ctrl</span></h4><div class="cm-regua" data-regua="1,0,1"></div><ol><li>Ctrl e clique no nome.</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>O nome do registro é o link da linha; a linha não é um botão.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Link, Cond. Parque das Águas."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>"Abrir em tela cheia" e "Abrir em nova aba" sempre escritos.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="trilha">
+      <h2>Trilha</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Saber onde está e voltar um nível com um clique, levando em conta de onde a pessoa veio.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Sem lista de origem: grupo › bloco › tela › registro (hierarquia).</li><li>Vindo de uma lista filtrada: o elo da tela leva o nome da visão e volta para ela filtrada.</li><li>O último elo é o registro, sem link.</li><li>No celular, só o penúltimo e o último aparecem.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>a NN/g define trilha como hierarquia e não histórico, e o A3 mostrou que voltar ao módulo em vez da lista filtrada custava 3 cliques e a posição. Juntamos os dois papéis só no elo da tela. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__corpo cm-pilha">
+        <div><span class="cm-t-legenda">Abriu pelo menu ou pelo Ctrl K</span><nav aria-label="Trilha exemplo 1"><ol class="cm-trilha"><li><a href="#trilha">CS</a></li><li>Contratos</li><li><a href="#trilha">Contratos</a></li><li aria-current="page">CT-2024-0187, Parque das Águas</li></ol></nav></div>
+        <div><span class="cm-t-legenda">Veio da lista filtrada</span><nav aria-label="Trilha exemplo 2"><ol class="cm-trilha"><li><a href="#trilha">CS</a></li><li>Contratos</li><li><a href="#trilha">Contratos: Reajuste pendente em outubro</a></li><li aria-current="page">CT-2024-0187, Parque das Águas</li></ol></nav></div>
+        <div><span class="cm-t-legenda">Superadmin dentro de um cliente: a faixa vem antes da trilha e o cliente é o primeiro elo</span><nav aria-label="Trilha exemplo 3"><ol class="cm-trilha"><li><a href="#trilha">Administradora Alpha</a></li><li><a href="#trilha">Financeiro</a></li><li aria-current="page">Boleto 0412</li></ol></nav></div>
+      </div></div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Logo depois da moldura; os blocos (sem página) não recebem foco.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Trilha, navegação. CT-2024-0187, página atual."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Separador é decorativo.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="recentes">
+      <h2>Recentes</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Voltar ao que se abriu há pouco, tela ou registro, sem lembrar onde fica.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Ctrl K aberto e vazio mostra Recentes: 4 telas e 5 registros, mais novos primeiro.</li><li>Enter abre; Ctrl Enter abre em nova aba.</li><li>Recentes são por pessoa e acompanham o usuário em outro computador.</li><li>Registro excluído some dos recentes; arquivado aparece com a palavra "arquivado".</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Linear e o GitHub abrem a paleta com o que a pessoa viu por último, e o Salesforce mantém "itens recentes" por usuário. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__corpo"><button class="cm-botao" type="button" onclick="cmAbrirPaleta()"><i data-i="recentes"></i>Abrir o Ctrl K vazio</button></div></div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>voltar ao chamado de meia hora atrás: 5 cliques</span></h4><div class="cm-regua" data-regua="5,2,0"></div><ol><li>Menu, bloco, Chamados (3), buscar pelo número (1), abrir (1).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>2 teclas</span></h4><div class="cm-regua" data-regua="0,1,2"></div><ol><li>Ctrl K, Enter no primeiro recente.</li></ol></section>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="ctrlk">
+      <h2>Ctrl K: telas, registros, ações e criar</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Chegar a qualquer lugar e fazer qualquer ação sem conhecer o menu. É a peça central da barra de cima.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Ctrl K, ou clique na pesquisa no centro da barra, ou / fora de campo.</li><li>Digitar mistura telas, registros e ações, em grupos, com o atalho de cada ação ao lado.</li><li>"&gt;" no começo filtra só ações; "nova" ou "criar" traz as criações ("Nova OS", "Nova reserva").</li><li>Número de chamado, OS ou contrato vai direto: "48213" abre o chamado.</li><li>Enter abre, Ctrl Enter em nova aba, Esc fecha e devolve o foco.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Linear mostra o atalho de cada ação na paleta e assim ensina o teclado, o GitHub aceita "&gt;" para comandos, e o Slack e o Notion levaram a busca ao centro da barra. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__corpo cm-linha cm-linha--quebra" style="gap:8px">
+        <button class="cm-botao" type="button" onclick="cmAbrirPaleta('parque')">"parque" (registros)</button>
+        <button class="cm-botao" type="button" onclick="cmAbrirPaleta('concil')">"concil" (telas)</button>
+        <button class="cm-botao" type="button" onclick="cmAbrirPaleta('>')">"&gt;" (só ações)</button>
+        <button class="cm-botao" type="button" onclick="cmAbrirPaleta('abrir chamado')">"abrir chamado" (criar)</button>
+        <button class="cm-botao" type="button" onclick="cmAbrirPaleta('xyz123')">sem resultado</button>
+      </div></div>
+      <div class="cm-rolar-x"><table class="cm-tabela-doc"><thead><tr><th>Digita</th><th>Vem primeiro</th><th>Ordem dos grupos</th></tr></thead><tbody>
+        <tr><td>nada</td><td>Recentes</td><td>Recentes, Ações frequentes do papel</td></tr>
+        <tr><td>parque</td><td>Cond. Parque das Águas (cliente)</td><td>Registros, Telas, Ações</td></tr>
+        <tr><td>concil</td><td>Conciliação (tela)</td><td>Telas, Registros, Ações</td></tr>
+        <tr><td>48213</td><td>Chamado 48213</td><td>Registros (número exato abre com Enter)</td></tr>
+        <tr><td>&gt; tema</td><td>Alternar tema claro e escuro</td><td>só Ações</td></tr>
+        <tr><td>nova reserva</td><td>Nova reserva (abre a criação rápida)</td><td>Criar, Telas</td></tr>
+        <tr><td>lixeira</td><td>Lixeira (tela de Configuração)</td><td>Telas</td></tr>
+        <tr><td>xyz123</td><td>"Nada com xyz123." e a dica de buscar por número</td><td>vazio com orientação</td></tr>
+      </tbody></table></div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>chegar à conciliação de setembro: 4 cliques</span></h4><div class="cm-regua" data-regua="4,1,0"></div><ol><li>Financeiro, Operacional, Conciliação (3), escolher setembro (1).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>3 teclas</span></h4><div class="cm-regua" data-regua="0,1,3"></div><ol><li>Ctrl K, "concil", Enter.</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Campo (combobox), setas andam na lista sem tirar o foco do campo.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Pesquisar, caixa de combinação. Conciliação, Financeiro › Operacional, tela, 1 de 3."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Ladrilho de cada resultado é decorativo; o tipo vem escrito à direita.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="favoritos">
+      <h2>Favoritos fixados</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>As 3 a 8 telas que a pessoa usa todo dia ficam a um clique, no começo da barra de menu.</p></div>
+        <div><h3>Fluxo</h3><ol><li>O papel traz 3 favoritos de partida (Atendimento: Conversas, Chamados, Ordens de serviço).</li><li>Estrela ao lado do título de qualquer tela, ou na cascata do menu, fixa e desafixa.</li><li>Até 8. No nono, o sistema pede para tirar um.</li><li>Ordem por arrastar em Ajustar, ou com Alt e setas.</li><li>Em telas estreitas, os favoritos viram só ícone com nome na dica.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Jira tem "Starred", o Salesforce deixa a pessoa montar a própria barra e o A3 contou 3 cliques para chegar a uma tela no Modelo D, contra 1 com favoritos. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__corpo"><header class="cm-cabecalho-pagina" style="padding:0"><div class="cm-cabecalho-pagina__linha"><h3 class="cm-t-pagina" style="margin:0">Renovações</h3><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-pressed="false" aria-label="Fixar Renovações nos favoritos" data-dica="Fixar nos favoritos" id="fav"><i data-i="favorito"></i></button></div></header></div></div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>3 cliques por tela frequente</span></h4><div class="cm-regua" data-regua="3,1,0"></div><ol><li>Grupo, bloco, tela.</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>1 clique</span></h4><div class="cm-regua" data-regua="1,1,0"></div><ol><li>Favorito na barra.</li></ol></section>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="papel">
+      <h2>Grupos do papel e Ajustar</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>A analista de CS não precisa ver Desenvolvimento. A barra mostra os grupos do papel e diz quantos ficaram de fora.</p></div>
+        <div><h3>Fluxo</h3><ol><li>À direita da barra: "7 de 11 módulos" e Ajustar.</li><li>Ajustar lista todos os grupos; os do papel vêm marcados; os sem acesso aparecem cinza com "sem acesso".</li><li>Marcar mostra o grupo na barra na hora; desmarcar esconde (continua achável pelo Ctrl K).</li><li>"Voltar ao padrão do meu papel" no pé.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o SAP Fiori mostra os espaços do papel no topo e o Zoho One agrupa apps por "Spaces"; a NN/g lembra que barra horizontal com muitos itens degrada, então mostramos menos. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__corpo"><button class="cm-botao" type="button" onclick="var b=document.querySelector('.cm-moldura [data-acao=ajustar]');window.scrollTo(0,0);setTimeout(function(){b.click()},120)"><i data-i="ajustar"></i>Abrir o Ajustar da moldura</button></div></div>
+      <div class="cm-rolar-x"><table class="cm-tabela-doc"><thead><tr><th>Papel</th><th>Grupos na barra</th><th>Favoritos de partida</th><th>Celular, segundo botão</th></tr></thead><tbody>
+        <tr><td>Atendimento</td><td>Suporte, CS, Operações, Academy, Cultura, Relatórios</td><td>Conversas, Chamados, Ordens de serviço</td><td>Conversas</td></tr>
+        <tr><td>CS</td><td>CS, Suporte, Projetos, Comercial, Academy, Cultura, Relatórios</td><td>Clientes, Minhas ações, Saúde do cliente</td><td>Minhas ações</td></tr>
+        <tr><td>Comercial</td><td>Marketing, Comercial, CS, Academy, Cultura, Relatórios</td><td>Negócios, Propostas, Leads</td><td>Negócios</td></tr>
+        <tr><td>Financeiro</td><td>Financeiro, CS, Operações, Academy, Cultura, Relatórios</td><td>Contas a receber, Conciliação, Extrato</td><td>Contas a receber</td></tr>
+        <tr><td>RH</td><td>Cultura, Academy, Financeiro, Relatórios</td><td>Pessoas, Férias, Vagas</td><td>Pessoas</td></tr>
+        <tr><td>Diretoria</td><td>os 11</td><td>Painel executivo, Clientes, DRE</td><td>Painel executivo</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="cm-doc-sec" id="notificacao">
+      <h2>Notificação até o registro</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Do aviso ao lugar exato em um clique, e o aviso que pede ação se resolve no próprio sino.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Sino com abas Tudo, Menções, Aprovações, Sistema; contador em latão é "para você".</li><li>Clicar no aviso abre o registro no ponto certo (aba, comentário, campo) e marca como lido.</li><li>Aviso de ação (aceitar troca de plantão, aprovar férias) tem os botões no próprio item.</li><li>Shift e clique abre sem marcar como lido; "Marcar todos como lidos" no pé.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Linear separa o que pede ação do que informa e leva ao ponto do item, o GitHub abre a notificação na linha do comentário, e o monday.com resolve aprovações na própria lista. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__corpo">
+        <div class="aviso-lista">
+          <a class="cm-aviso-item is-novo" href="#mencao" onclick="realcar()"><span class="cm-avatar cm-avatar--m cm-avatar--4">CM</span><span><span class="cm-aviso-item__texto"><b>Carla Mendes</b> mencionou você em <b>CT-2024-0187, Parque das Águas</b>: “Rafael, confirma o índice antes de mandar?”</span><span class="cm-aviso-item__quando">há 12 min</span></span><span></span></a>
+          <div class="cm-aviso-item is-novo"><span class="cm-avatar cm-avatar--m cm-avatar--2">JP</span><span><span class="cm-aviso-item__texto"><b>Juliana Prado</b> pediu para trocar o plantão de sábado, 11/10</span><span class="cm-aviso-item__quando">há 1 h</span><span class="cm-aviso-item__acoes"><button class="cm-botao cm-botao--p" type="button" data-q2-toast="Troca recusada. Juliana foi avisada.|info">Recusar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q2-toast="Troca aceita. Agenda atualizada.|sucesso|Desfazer">Aceitar a troca</button></span></span><span></span></div>
+          <a class="cm-aviso-item" href="padroes/console.html"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="atencao"></i></span><span><span class="cm-aviso-item__texto">Atenção: o chamado 48213 responde em 6 min</span><span class="cm-aviso-item__quando">há 2 min</span></span><span></span></a>
+        </div>
+      </div></div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>6 cliques, 2 trocas</span></h4><div class="cm-regua" data-regua="6,2,0"></div><ol><li>Sino (1), notificação (1, troca), achar a aba do comentário (1), responder (2), voltar ao que fazia (1, troca).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>2 cliques, 1 troca</span></h4><div class="cm-regua" data-regua="2,1,0"></div><ol><li>Sino (1), aviso (1): o registro abre no comentário com a resposta pronta para digitar.</li></ol></section>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="mencao">
+      <h2>Menção até o comentário</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Quem foi mencionado chega no comentário, entende o contexto e responde ali, sem caçar a conversa.</p></div>
+        <div><h3>Fluxo</h3><ol><li>@ no compositor lista pessoas com presença; nota interna nunca vai ao portal.</li><li>A pessoa mencionada recebe aviso em Menções (sino e Para você).</li><li>O link abre o registro na aba Atividade, rola até o comentário e o realça por 2 segundos.</li><li>A caixa "Responder a Carla" abre embaixo, já com o foco.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Front e o Zendesk mencionam colegas em nota interna dentro da conversa, o Google Docs e o GitHub levam ao comentário exato com realce. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__corpo">
+        <ul class="cm-atividade" style="max-width:640px">
+          <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="documento-editavel"></i></span><div><div class="cm-atividade__titulo">Reajuste de 5,48% calculado pelo IGP-M</div><div class="cm-atividade__desc">Sistema, 15/09</div></div><span class="cm-atividade__quando">15/09</span></li>
+          <li id="comentario-88213"><span class="cm-avatar cm-avatar--p cm-avatar--4">CM</span><div><div class="cm-atividade__titulo">Carla Mendes</div><div class="cm-atividade__desc"><span class="cm-mencao">@Rafael Lima</span>, confirma o índice antes de mandar? A síndica pediu IPCA na assembleia.</div>
+            <div id="resp" hidden style="margin-top:8px"><div class="cm-compositor is-nota" style="padding:0;border:0;background:none"><div class="cm-compositor__caixa"><textarea aria-label="Responder a Carla Mendes" id="resp-t" placeholder="Responder a Carla" data-q2-ignora></textarea></div><div class="cm-compositor__barra"><span class="cm-cresce cm-t-legenda">Só a equipe vê.</span><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q2-toast="Resposta publicada. Carla recebe aviso.|sucesso">Responder</button></div></div></div>
+          </div><span class="cm-atividade__quando">há 12 min</span></li>
+        </ul>
+        <button class="cm-botao cm-botao--p" type="button" onclick="realcar()" style="margin-top:8px">Simular a chegada pelo aviso</button>
+      </div></div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>5 cliques</span></h4><div class="cm-regua" data-regua="5,1,0"></div><ol><li>Abrir o contrato (1, troca), aba Atividade (1), rolar e achar (1), clicar em responder (1), enviar (1).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>2 cliques</span></h4><div class="cm-regua" data-regua="2,1,0"></div><ol><li>Aviso (1, troca) já com a caixa aberta; Responder (1).</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Ao chegar, o foco vai direto à caixa de resposta; Shift Tab volta ao comentário.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Responder a Carla Mendes, caixa de texto. Comentário: Rafael Lima, confirma o índice…"</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Menção é texto, não ícone.</li></ul></div>
+      </div>
+    </section>
+  </div>
+</main>
+<script>
+function realcar(){var c=document.getElementById('comentario-88213');c.classList.remove('comentario-alvo');void c.offsetWidth;c.classList.add('comentario-alvo');c.scrollIntoView({block:'center'});document.getElementById('resp').hidden=false;setTimeout(function(){document.getElementById('resp-t').focus()},50)}
+(function(){
+  var d=document,nomes=['Cond. Vila Serena','Residencial Monte Verde','Edifício Solar do Batel','Cond. Jardim das Acácias','Residencial Bosque Imperial','Edifício Mirante do Juvevê','Cond. Terras de Santa Felicidade','Residencial Ecoville Park','Cond. Recanto dos Pinheiros','Edifício Batel Prime','Cond. Alto da Glória','Residencial Água Verde','Cond. Parque das Águas','Residencial Jardim Botânico','Edifício Champagnat','Cond. Portal do Cabral','Residencial Hugo Lange','Edifício Cristo Rei','Cond. Bairro Alto','Residencial Ahú','Edifício Mercês','Cond. Cabral Garden','Residencial São Lourenço','Edifício Juvevê Center','Cond. Boa Vista','Residencial Tarumã'];
+  var C=[];for(var i=0;i<50;i++){C.push(['CT-20'+(23+(i%3))+'-0'+(100+i*7),nomes[i%nomes.length]+(i>=nomes.length?' II':''),i%4?'IGP-M':'IPCA','R$ '+(2400+i*83).toLocaleString('pt-BR')+',00'])}
+  var corpo=d.getElementById('nv-corpo'),rolar=d.getElementById('nv-rolar'),atual=-1,salvo=null;
+  corpo.innerHTML=C.map(function(c,i){return '<tr data-i="'+i+'"><td class="cm-t-dado">'+c[0]+'</td><td class="cm-tabela__principal"><a href="#jk" data-i="'+i+'">'+c[1]+'</a></td><td>'+c[2]+'</td><td class="cm-num">'+c[3]+'</td></tr>'}).join('');
+  function trilha(reg){d.getElementById('nv-trilha').innerHTML='<li>CS</li><li>'+(reg?'<a href="#jk" id="nv-voltar">Contratos: Reajuste pendente em outubro</a>':'<span aria-current="page">Contratos: Reajuste pendente em outubro</span>')+'</li>'+(reg?'<li aria-current="page">'+reg+'</li>':'')}
+  function abrir(i){if(atual<0) salvo={rol:rolar.scrollTop};atual=i;var c=C[i];
+    d.getElementById('nv-vlista').hidden=true;var r=d.getElementById('nv-vreg');r.hidden=false;
+    r.innerHTML='<span class="cm-cabecalho-registro__tipo">Contrato</span><h3 class="cm-t-registro" style="margin:2px 0 10px">'+c[1]+' <span class="cm-plaqueta">'+c[0]+'</span></h3><dl class="cm-ficha" style="max-width:480px"><div class="cm-ficha__linha is-leitura"><dt>Índice</dt><dd>'+c[2]+'</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Mensalidade</dt><dd>'+c[3]+'</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Reajuste</dt><dd>pendente, vence em outubro</dd><span></span></div></dl><p class="cm-t-legenda" style="margin-top:12px">J próximo, K anterior, G e L ou o primeiro elo da trilha voltam à lista.</p>';
+    d.getElementById('nv-nav').hidden=false;d.getElementById('nv-pos').textContent=(i+1)+' de 63';trilha(c[1]);r.focus();
+    d.getElementById('nv-estado').textContent='Estado guardado: visão Reajuste pendente em outubro, página 1, rolagem '+Math.round(salvo.rol)+' px, linha '+(i+1)+'.'}
+  function voltar(){if(atual<0) return;d.getElementById('nv-vreg').hidden=true;d.getElementById('nv-vlista').hidden=false;d.getElementById('nv-nav').hidden=true;trilha();
+    var tr=corpo.querySelector('tr[data-i="'+atual+'"]');rolar.scrollTop=salvo.rol;tr.scrollIntoView({block:'nearest'});corpo.querySelectorAll('tr').forEach(function(x){x.classList.remove('is-atual')});tr.classList.add('is-atual');var a=tr.querySelector('a');a.focus({preventScroll:true});
+    cmQ2.toast('De volta à lista, linha '+(atual+1)+' de 63.','info');atual=-1}
+  corpo.addEventListener('click',function(e){var a=e.target.closest('a[data-i]');if(a&&!(e.ctrlKey||e.metaKey)){e.preventDefault();abrir(+a.getAttribute('data-i'))}});
+  d.getElementById('nv-trilha').addEventListener('click',function(e){if(e.target.closest('#nv-voltar')){e.preventDefault();voltar()}});
+  d.getElementById('nv-prox').onclick=function(){if(atual<49) abrir(atual+1)};d.getElementById('nv-ant').onclick=function(){if(atual>0) abrir(atual-1)};
+  var g=0;d.addEventListener('keydown',function(e){if(cmQ2.digitando(e)||e.ctrlKey||e.metaKey||e.altKey||atual<0) return;
+    if(e.key==='j'){e.preventDefault();e.stopImmediatePropagation();if(atual<49) abrir(atual+1)} else if(e.key==='k'){e.preventDefault();e.stopImmediatePropagation();if(atual>0) abrir(atual-1)}
+    else if(e.key==='g'){g=Date.now();e.stopImmediatePropagation()} else if(e.key==='l'&&Date.now()-g<900){e.preventDefault();e.stopImmediatePropagation();voltar()}},true);
+  trilha();
+  var f=d.getElementById('fav');f.onclick=function(){var on=f.getAttribute('aria-pressed')!=='true';f.setAttribute('aria-pressed',on);f.setAttribute('aria-label',(on?'Tirar Renovações dos favoritos':'Fixar Renovações nos favoritos'));
+    var fv=d.querySelector('.cm-favoritos');if(on){fv.insertAdjacentHTML('beforeend','<a href="#" id="fav-novo" title="Renovações">'+cmIcone('favorito')+'<span class="cm-fav-texto">Renovações</span></a>')}else{var x=d.getElementById('fav-novo');if(x) x.remove()}
+    cmQ2.toast(on?'Renovações fixada nos favoritos (4 de 8).':'Renovações saiu dos favoritos.','sucesso','Desfazer')};
+})();
+</script>
+</body>
+</html>

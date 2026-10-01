@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aula 14, Academy</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.au-grade{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.au-titulo{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin:16px 0 4px}
+.au-titulo h1{font:600 20px/28px var(--fonte-ui);margin:0;flex:1;min-width:240px}
+.au-trans p{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;font-size:14px;line-height:22px;padding:4px 0}
+.au-trans time{color:var(--link);font-variant-numeric:tabular-nums;font-size:13px}
+.au-trans .au-agora{background:var(--selecao)}
+@media (max-width:1023px){.au-grade{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body data-moldura='{"modulo":"academy","secao":"Cursos","item":"Meus cursos","papel":"atendente","usuario":{"nome":"Ana Beatriz Souza","cargo":"Atendente de suporte","iniciais":"AB","cor":"lc-av--c6"},"trilha":["Painel do aluno","Legislação condominial","Aula 14"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Aula gravada com player e a lista de aulas da disciplina.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Assistir à aula de onde parou, com legenda, velocidade e transcrição pesquisável, e seguir para a próxima sem voltar à disciplina. A frequência das aulas gravadas conta quando a pessoa assiste até o fim.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Abre parado em 22:14, onde a pessoa parou ("Continuar de 22:14").</li>
+      <li>Controles: tocar, voltar 10 s, linha do tempo, legenda, velocidade, tela inteira. Atalhos: Espaço, ← →, L, &gt; &lt;.</li>
+      <li>A transcrição acompanha o vídeo; clicar no horário pula para o trecho.</li>
+      <li>Ao terminar, a caixa da aula fica verde na lista e "Próxima aula" ganha foco.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o YouTube e o Coursera definiram os controles e atalhos que todo mundo usa, a Alura e a Udemy põem a lista de aulas ao lado com a caixa de concluída, e o Coursera oferece a transcrição clicável. O player é a única área escura da tela, como em qualquer vídeo.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="academy"></div>
+</details>
+<div class="au-grade">
+  <div>
+    <div class="lc-player" role="region" aria-label="Player da aula 14">
+      <div class="lc-player__quadro"><small>GC-201, semana 7</small><strong>Como redigir a alteração da convenção</strong><small>Dra. Helena Vasconcelos</small></div>
+      <button class="lc-player__tocar" type="button" aria-label="Continuar de 22:14" id="pl-tocar"><i data-i="tocar"></i></button>
+      <p class="lc-player__legenda" id="pl-leg">A alteração precisa de dois terços das frações ideais, não dos presentes.</p>
+      <div class="lc-player__controles">
+        <button type="button" aria-label="Tocar" id="pl-play"><i data-i="tocar"></i></button>
+        <button type="button" aria-label="Voltar 10 segundos"><i data-i="voltar-faixa"></i></button>
+        <span class="lc-player__tempo">22:14 / 51:06</span>
+        <span class="lc-player__linha" style="--_v:43%" role="slider" tabindex="0" aria-label="Posição na aula" aria-valuemin="0" aria-valuemax="3066" aria-valuenow="1334" aria-valuetext="22 minutos e 14 segundos de 51 minutos"></span>
+        <button type="button" aria-label="Volume" class="lc-so-largo"><i data-i="volume"></i></button>
+        <button type="button" aria-label="Legendas" aria-pressed="true" data-alterna id="pl-cc"><i data-i="legendas"></i></button>
+        <button type="button" class="lc-player__vel" aria-label="Velocidade 1x" id="pl-vel">1x</button>
+        <button type="button" aria-label="Tela inteira"><i data-i="tela-inteira"></i></button>
+      </div>
+    </div>
+    <div class="au-titulo"><h1>Aula 14: como redigir a alteração da convenção</h1>
+      <div class="lc-grupo-btn"><button class="lc-btn" type="button"><i data-i="chevron-esquerda"></i>Aula 13</button><button class="lc-btn lc-btn--principal" type="button">Próxima: Leitura<i data-i="chevron-direita"></i></button></div></div>
+    <p class="lc-legenda">Gravada em 28/09. Conta frequência quando assistida até o fim.</p>
+    <div class="lc-abas" role="tablist" aria-label="Sobre a aula" style="margin-top:12px"><button role="tab" aria-selected="true" aria-controls="au-tr">Transcrição</button><button role="tab" aria-selected="false" aria-controls="au-mat">Materiais <span class="lc-contagem">2</span></button><button role="tab" aria-selected="false" aria-controls="au-duv">Dúvidas <span class="lc-contagem">4</span></button></div>
+    <div id="au-tr" class="lc-caixa" style="border-top:0"><div class="lc-caixa__corpo au-trans" style="padding-top:12px">
+      <p><time>20:40</time><span>Vamos ao caso do Parque das Águas: a convenção de 1998 não fala de vaga rotativa.</span></p>
+      <p><time>21:32</time><span>Para incluir, é alteração de convenção, e não do regimento.</span></p>
+      <p class="au-agora"><time>22:14</time><span>A alteração precisa de dois terços das frações ideais, não dos presentes.</span></p>
+      <p><time>23:05</time><span>Na ata, escreva o resultado por fração, com a lista de quem votou.</span></p></div></div>
+    <div id="au-mat" hidden><ul class="lc-anexos"><li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="documento"></i></span><span class="lc-anexo__nome">Modelo de ata de alteração.docx</span><span class="lc-anexo__info">32 KB</span></li></ul></div>
+    <div id="au-duv" hidden><ul class="lc-lista lc-caixa"><li><span class="lc-av lc-av--24 lc-av--c5">LS</span><span class="lc-cresce">Em 22:14: e se a convenção exigir unanimidade?<span class="lc-lista__sub">Lucas Santos. Respondida pela professora</span></span></li><li><span class="lc-av lc-av--24 lc-av--c3">JR</span><span class="lc-cresce">Procuração pode ser digital?<span class="lc-lista__sub">Júlia Rocha. 2 respostas</span></span></li></ul></div>
+  </div>
+  <aside class="lc-caixa" aria-labelledby="au-l-t">
+    <div class="lc-caixa__cab"><h2 id="au-l-t">Aulas da disciplina</h2><span class="lc-aux">9 de 14</span></div>
+    <nav aria-labelledby="au-l-t"><ul class="lc-aulas">
+      <li class="lc-aulas__modulo">Semana 6</li>
+      <li><a href="#"><span class="lc-conclusao lc-conclusao--feita" role="img" aria-label="Feita"></span><span>Aula 11: penalidades e multas</span><small>44 min</small></a></li>
+      <li><a href="#"><span class="lc-conclusao lc-conclusao--feita" role="img" aria-label="Feita"></span><span>Aula 12: o condômino antissocial</span><small>39 min</small></a></li>
+      <li class="lc-aulas__modulo">Semana 7</li>
+      <li><a href="#"><span class="lc-conclusao lc-conclusao--feita" role="img" aria-label="Feita"></span><span>Aula 13: quóruns do Código Civil</span><small>48 min</small></a></li>
+      <li><a href="#" aria-current="page"><span class="lc-conclusao lc-conclusao--parcial" role="img" aria-label="Em parte"></span><span>Aula 14: como redigir a alteração</span><small>51 min</small></a></li>
+      <li><a href="#"><span class="lc-conclusao" role="img" aria-label="A fazer"></span><span>Leitura: Lei 14.309/2022</span><small>12 p.</small></a></li>
+      <li><a href="30d-academy-entrega.html"><span class="lc-conclusao" role="img" aria-label="A fazer"></span><span>Trabalho de convenção</span><small>até 03/10</small></a></li>
+      <li class="lc-aulas__modulo">Semana 8</li>
+      <li><a href="30e-academy-prova.html"><span class="lc-conclusao" role="img" aria-label="A fazer"></span><span>Questionário de revisão</span><small>abre 05/10</small></a></li>
+    </ul></nav>
+  </aside>
+</div>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Continuar (botão grande), controles na ordem (Tocar, Voltar 10 s, linha do tempo, volume, legendas, velocidade, tela inteira), Aula 13, Próxima, abas, transcrição, lista de aulas.</dd>
+    <dt>O que é anunciado</dt><dd>A linha do tempo é slider com texto ("22 minutos e 14 segundos de 51 minutos"). Legendas é botão de alternância (aria-pressed). Velocidade diz o valor ("Velocidade 1,5x"). A aula atual na lista tem aria-current.</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Tocar"/"Pausar", "Voltar 10 segundos", "Volume", "Legendas", "Tela inteira", "Continuar de 22:14".</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+<script>
+(function(){ var tocando=false, play=document.getElementById("pl-play"), grande=document.getElementById("pl-tocar"), vel=document.getElementById("pl-vel"), vs=["1x","1,25x","1,5x","2x"], k=0;
+  function alterna(){ tocando=!tocando; play.innerHTML=lcIcone(tocando?"pausar":"tocar"); play.setAttribute("aria-label",tocando?"Pausar":"Tocar"); grande.hidden=tocando; }
+  play.addEventListener("click",alterna); grande.addEventListener("click",function(){ alterna(); play.focus(); });
+  vel.addEventListener("click",function(){ k=(k+1)%vs.length; vel.textContent=vs[k]; vel.setAttribute("aria-label","Velocidade "+vs[k]); });
+  document.getElementById("pl-cc").addEventListener("click",function(){ var l=document.getElementById("pl-leg"); setTimeout(function(){ l.hidden=document.getElementById("pl-cc").getAttribute("aria-pressed")!=="true"; },0); });
+})();
+</script>
+</body>
+</html>

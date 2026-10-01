@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leads do comercial</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Leads <small>Comercial, Funil de vendas, Leads do comercial. Lucas Ferreira, executivo comercial. Condomínios que pediram proposta de administração, com origem, pontuação e o próximo passo.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>Lead que espera esfria. A tela ordena pelo tempo sem resposta, mostra de onde veio (site, indicação de síndico, assembleia, anúncio) e deixa qualificar ali: "Qualificar" vira negócio no funil com os dados já preenchidos; "Descartar" pede o motivo.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Visões: Novos sem contato, Meus em andamento, Indicações, Todos.</li><li>"Qualificar" abre o painel com unidades, administradora atual e data da assembleia; ao confirmar, o lead vira negócio na etapa Diagnóstico e o toast leva ao negócio.</li><li>"Descartar" pede o motivo (lista fixa) e some da visão com "Desfazer".</li><li>Seleção em massa: Atribuir e Descartar.</li><li>A distribuição automática (rodízio entre 3 executivos) está em Distribuição de leads.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Pipedrive e o RD Station tratam lead como fila com tempo sem resposta e conversão em negócio num clique; o HubSpot mostra origem e pontuação na linha; e o motivo de descarte obrigatório é o padrão do Salesforce. A indicação de síndico em destaque vem do mercado condominial, onde ela fecha 3 vezes mais.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Leads</button><button type="button" data-q3-estado="qualificar" aria-pressed="false">Qualificando</button><button type="button" data-q3-estado="vazio" aria-pressed="false">Sem leads novos</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Comercial","tela":"Leads do comercial","papel":"Comercial","usuario":{"nome":"Lucas Ferreira","iniciais":"LF","cargo":"Executivo comercial","presenca":"disponivel","tom":1}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Leads</h1><div class="cm-cabecalho-pagina__acoes"><button class="cm-botao" type="button"><i data-i="importar"></i>Importar</button><button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Novo lead</button></div></div></header>
+ <div class="cm-visoes" role="tablist" aria-label="Visões"><button role="tab" aria-selected="true" type="button">Novos sem contato <span class="cm-contador cm-contador--novo">5</span></button><button role="tab" aria-selected="false" type="button" tabindex="-1">Meus em andamento <span class="cm-contador">12</span></button><button role="tab" aria-selected="false" type="button" tabindex="-1">Indicações <span class="cm-contador">4</span></button><button role="tab" aria-selected="false" type="button" tabindex="-1">Todos <span class="cm-contador">86</span></button></div>
+ <div class="cm-filtros"><div class="cm-entrada cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar leads" placeholder="Condomínio, contato, telefone"></div><button class="cm-filtro" type="button">Origem<i data-i="chevron-baixo"></i></button><button class="cm-filtro" type="button">Região<i data-i="chevron-baixo"></i></button><button class="cm-filtro" type="button">Unidades<i data-i="chevron-baixo"></i></button></div>
+ <div class="cm-barra-massa" role="region" aria-label="Ações em massa" id="massa-l" hidden style="margin-bottom:6px"><b data-q3-massa-n></b><button class="cm-botao cm-botao--p" type="button">Atribuir</button><button class="cm-botao cm-botao--p" type="button">Descartar</button><span class="cm-empurra"><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-massa-cancelar>Cancelar</button></span></div>
+ <div data-se="padrao qualificar">
+ <div class="cm-tabela-caixa"><table class="cm-tabela" data-q3-massa="massa-l">
+  <thead><tr><th class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar todos"><span class="cm-marcar__caixa"></span></label></th><th>Condomínio</th><th>Contato</th><th>Origem</th><th class="cm-num">Unidades</th><th class="cm-num">Pontos</th><th aria-sort="descending"><button class="cm-ordenar" type="button">Sem resposta<i data-i="seta-baixo"></i></button></th><th><span class="cm-sr">Ações</span></th></tr></thead>
+  <tbody>
+   <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Cond. Jardim Europa"><span class="cm-marcar__caixa"></span></label></td><td class="cm-tabela__principal"><a href="#">Cond. Jardim Europa</a><span class="cm-tabela__sub">Moema, São Paulo</span></td><td>Sandra Leme, síndica</td><td><span class="cm-etiqueta cm-etiqueta--3">Indicação de síndico</span></td><td class="cm-num">180</td><td class="cm-num">86</td><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>26 h</span></td><td><div class="cm-grupo-botoes" style="gap:4px"><button class="cm-botao cm-botao--p" type="button">Descartar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q3-estado="qualificar">Qualificar</button></div></td></tr>
+   <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Ed. Mirante do Parque"><span class="cm-marcar__caixa"></span></label></td><td class="cm-tabela__principal"><a href="#">Ed. Mirante do Parque</a><span class="cm-tabela__sub">Vila Mariana, São Paulo</span></td><td>Ricardo Assis, conselheiro</td><td><span class="cm-etiqueta cm-etiqueta--1">Site, formulário</span></td><td class="cm-num">72</td><td class="cm-num">64</td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>5 h</span></td><td><div class="cm-grupo-botoes" style="gap:4px"><button class="cm-botao cm-botao--p" type="button">Descartar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q3-estado="qualificar">Qualificar</button></div></td></tr>
+   <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Res. Alto da Boa Vista"><span class="cm-marcar__caixa"></span></label></td><td class="cm-tabela__principal"><a href="#">Res. Alto da Boa Vista</a><span class="cm-tabela__sub">Santo Amaro, São Paulo</span></td><td>Fábio Nunes, síndico profissional</td><td><span class="cm-etiqueta cm-etiqueta--5">Anúncio Google</span></td><td class="cm-num">340</td><td class="cm-num">71</td><td>2 h</td><td><div class="cm-grupo-botoes" style="gap:4px"><button class="cm-botao cm-botao--p" type="button">Descartar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button">Qualificar</button></div></td></tr>
+   <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Ed. Bougainville"><span class="cm-marcar__caixa"></span></label></td><td class="cm-tabela__principal"><a href="#">Ed. Bougainville</a><span class="cm-tabela__sub">Perdizes, São Paulo</span></td><td>Lia Sampaio, moradora</td><td><span class="cm-etiqueta cm-etiqueta--4">Instagram</span></td><td class="cm-num">40</td><td class="cm-num">32</td><td>1 h</td><td><div class="cm-grupo-botoes" style="gap:4px"><button class="cm-botao cm-botao--p" type="button">Descartar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button">Qualificar</button></div></td></tr>
+   <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Cond. Villa Toscana"><span class="cm-marcar__caixa"></span></label></td><td class="cm-tabela__principal"><a href="#">Cond. Villa Toscana</a><span class="cm-tabela__sub">Granja Viana, Cotia</span></td><td>Alberto Prado, presidente do conselho</td><td><span class="cm-etiqueta cm-etiqueta--2">Feira Condomínio SP</span></td><td class="cm-num">96 casas</td><td class="cm-num">58</td><td>20 min</td><td><div class="cm-grupo-botoes" style="gap:4px"><button class="cm-botao cm-botao--p" type="button">Descartar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button">Qualificar</button></div></td></tr>
+  </tbody></table></div></div>
+ <div data-se="vazio"><div class="cm-vazio"><i data-i="funil"></i><p class="cm-vazio__titulo">Nenhum lead novo esperando</p><p class="cm-vazio__texto">Os 5 de hoje já receberam contato. Leads do site chegam aqui em segundos; indicações, quando o síndico preenche o link.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button">Copiar link de indicação</button></div></div></div>
+
+ <aside class="cm-painel cm-painel--g" role="dialog" aria-labelledby="t-q" data-se="qualificar">
+  <header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="t-q">Qualificar: Cond. Jardim Europa</h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-estado="padrao" aria-label="Fechar"><i data-i="fechar"></i></button></header>
+  <div class="cm-painel__corpo" style="padding:16px"><div class="cm-pilha">
+   <div class="cm-alerta cm-alerta--info"><i data-i="informacao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Indicada por Marina Costa, síndica do Parque das Águas</span><span class="cm-alerta__desc">Indicação dá 1 mês de desconto à Marina se fechar.</span></span></div>
+   <div class="cm-linha" style="gap:12px;align-items:flex-start"><div class="cm-campo cm-cresce"><label class="cm-campo__rotulo" for="q-u">Unidades</label><div class="cm-entrada cm-entrada--numero"><input id="q-u" value="180" inputmode="numeric"><span class="cm-entrada__passo"><button type="button" aria-label="Aumentar"><i data-i="chevron-cima"></i></button><button type="button" aria-label="Diminuir"><i data-i="chevron-baixo"></i></button></span></div></div><div class="cm-campo cm-cresce"><label class="cm-campo__rotulo" for="q-t">Torres</label><div class="cm-entrada"><input id="q-t" value="2"></div></div></div>
+   <div class="cm-campo"><label class="cm-campo__rotulo" for="q-a">Administradora atual</label><div class="cm-entrada"><input id="q-a" value="Lello Condomínios"></div></div>
+   <div class="cm-campo"><label class="cm-campo__rotulo" for="q-as">Assembleia que decide a troca</label><div class="cm-entrada"><i data-i="calendario"></i><input id="q-as" value="18/11/2026"></div><p class="cm-campo__ajuda">A proposta precisa chegar ao conselho até 10 dias antes.</p></div>
+   <div class="cm-campo"><label class="cm-campo__rotulo" for="q-d">Dor principal</label><div class="cm-selecao"><select id="q-d"><option>Prestação de contas atrasada</option><option>Inadimplência alta</option><option>Atendimento lento</option></select><i data-i="chevron-baixo"></i></div></div>
+   <div class="cm-campo"><label class="cm-campo__rotulo" for="q-v">Valor estimado</label><div class="cm-entrada cm-entrada--moeda"><span class="cm-entrada__prefixo">R$</span><input id="q-v" value="6.480,00" inputmode="decimal"><span class="cm-entrada__sufixo">por mês</span></div><p class="cm-campo__ajuda">Tabela: R$ 36,00 por unidade, plano Completo.</p></div>
+  </div></div>
+  <footer class="cm-painel__pe"><button class="cm-botao" type="button" data-q3-estado="padrao">Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-q3-estado="padrao" data-q3-toast="Negócio criado na etapa Diagnóstico" data-q3-toast-acao="Abrir">Criar negócio</button></footer>
+ </aside>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título, Importar, Novo lead; visões; busca e filtros; tabela (caixa, nome, Descartar, Qualificar); painel de qualificação (campos em ordem, Criar negócio).</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>"Sem resposta há 26 h" com ícone de perigo. O painel é diálogo com nome do condomínio; o alerta de indicação é lido no início do painel.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Fechar", "Aumentar", "Diminuir".</p></section>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>

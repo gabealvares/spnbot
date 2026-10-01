@@ -58,7 +58,7 @@ document.addEventListener("click",function(e){
   // copiar
   if((t=e.target.closest("[data-copiar]"))){
     var txt=t.getAttribute("data-copiar"); try{ navigator.clipboard && navigator.clipboard.writeText(txt); }catch(_){}
-    var box=t.closest(".lc-pix"); if(box) box.setAttribute("data-copiado","true");
+    var box=t.closest(".lc-pix-copia"); if(box) box.setAttribute("data-copiado","true");
     var rot=t.querySelector("[data-rot]"); if(rot){ var antes=rot.textContent; rot.textContent="Copiado"; setTimeout(function(){rot.textContent=antes;},2400); }
     toast(t.getAttribute("data-toast")||"Copiado."); return;
   }
@@ -112,7 +112,7 @@ window.LCP5 = {toast:toast};
   if(/[?&]limpo=1/.test(q)) document.documentElement.classList.add("lc-limpo");
   var m=q.match(/[?&]abrir=([a-z-]+)/);
   if(m) window.addEventListener("load",function(){ setTimeout(function(){ var b=document.querySelector('[data-acao="'+m[1]+'"]'); if(b){ b.click(); if(document.activeElement) document.activeElement.blur(); } },120); });
-  if(/[?&]limpo=1/.test(q) && location.hash) window.addEventListener("load",function(){ var a=document.querySelector(location.hash); if(a) setTimeout(function(){ var n=a; while(n && n.classList && n.classList.contains("lc-ficha-tela")) n=n.nextElementSibling; (n||a).scrollIntoView(); },60); });
+  if(/[?&]limpo=1/.test(q) && location.hash) window.addEventListener("load",function(){ var a=document.querySelector(location.hash); if(a) setTimeout(function(){ var n=a; while(n && n.classList && n.classList.contains("lc-sobre-tela")) n=n.nextElementSibling; (n||a).scrollIntoView(); },60); });
 })();
 
 })();

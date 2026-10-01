@@ -197,6 +197,13 @@ function ligarQuadro(raiz){
     k.addEventListener("dragover",function(e){ var c=e.target.closest(".lc-kanban__col"); if(c&&arr){ e.preventDefault(); $$(".lc-kanban__col",k).forEach(function(x){x.setAttribute("data-solta",x===c);}); } });
     k.addEventListener("drop",function(e){ var c=e.target.closest(".lc-kanban__col"); if(!c||!arr) return; e.preventDefault(); var de=arr.closest(".lc-kanban__col"); c.querySelector(".lc-kanban__lista").prepend(arr); somar(c); somar(de);
       var nome=(c.querySelector(".lc-kanban__cab h3")||{}).firstChild; toast((arr.querySelector(".lc-cartao-k__titulo")||arr).textContent.trim()+" foi para "+(nome?nome.textContent.trim():"a coluna"),{desfazer:function(){de.querySelector(".lc-kanban__lista").prepend(arr);somar(c);somar(de);}}); });
+    /* teclado: espaço pega e solta; setas esquerda e direita levam para a coluna vizinha */
+    k.addEventListener("keydown",function(e){
+      var cartao=e.target.closest(".lc-cartao-k"); if(!cartao) return;
+      var preso=cartao.getAttribute("aria-grabbed")==="true", cols=$$(".lc-kanban__col",k), col=cartao.closest(".lc-kanban__col"), i=cols.indexOf(col);
+      if(e.key===" "){ e.preventDefault(); cartao.setAttribute("aria-grabbed",preso?"false":"true"); anunciar(preso?"Solto em "+col.querySelector("h3").firstChild.textContent.trim():"Pegou "+(cartao.querySelector(".lc-cartao-k__titulo")||cartao).textContent.trim()+". Use as setas para mudar de coluna"); return; }
+      if(preso && (e.key==="ArrowRight"||e.key==="ArrowLeft")){ e.preventDefault(); var j=i+(e.key==="ArrowRight"?1:-1); if(j<0||j>=cols.length) return; cols[j].querySelector(".lc-kanban__lista").prepend(cartao); somar(cols[j]); somar(col); cartao.focus(); anunciar("Coluna "+cols[j].querySelector("h3").firstChild.textContent.trim()); }
+    });
   });
 }
 

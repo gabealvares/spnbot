@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Negócio: Res. Alto da Boa Vista</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-ng{display:grid;grid-template-columns:340px minmax(0,1fr);gap:16px;align-items:start;margin-top:12px}
+.q3-ng>*{min-width:0}
+@media (max-width:899px){.q3-ng{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Negócio com Path e motivo de perda <small>Comercial, Negócios, Res. Alto da Boa Vista (340 unidades). Esfriando há 12 dias na etapa Visita técnica. Mostra o Path, o guia da etapa, a atividade e o fluxo de perda com motivo obrigatório.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>O negócio precisa dizer em que pé está, o que falta para andar e o que fazer agora que esfriou. O Path tem o guia de cada etapa (campos que ela exige) e a perda pede o motivo de uma lista fixa, com concorrente e valor, para o relatório de perdas ser confiável.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Clique numa etapa futura: se faltam campos exigidos, a tela pede só eles num popover antes de mover.</li><li>"Marcar como ganho" leva à passagem para o CS (cria cliente e playbook de implantação).</li><li>"Marcar como perdido" abre o modal com motivo obrigatório, concorrente e valor dele; o negócio fica com a etapa em vermelho e entra no relatório.</li><li>Atividade: registrar ligação ou visita tira o "esfriando" na hora.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Salesforce usa o Path com campos-chave por etapa e "Closed Lost" com motivo; o Pipedrive exige motivo de perda e mostra "rotting" no negócio; e o HubSpot liga a passagem ganha ao onboarding do cliente.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Em Visita técnica, esfriando</button><button type="button" data-q3-estado="perdido" aria-pressed="false">Marcado como perdido</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Comercial","tela":"Negócios","registro":"Res. Alto da Boa Vista","navegar":"3 de 14","papel":"Comercial","usuario":{"nome":"Lucas Ferreira","iniciais":"LF","cargo":"Executivo comercial","presenca":"disponivel","tom":1}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-registro" style="margin-top:14px">
+  <div class="cm-cabecalho-registro__topo"><span class="cm-ladrilho"><i data-i="aperto-de-mao"></i></span>
+   <div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Negócio</span><h1 class="cm-cabecalho-registro__titulo">Res. Alto da Boa Vista</h1></div>
+   <div class="cm-grupo-botoes" data-se="padrao"><button class="cm-botao" type="button" data-q3-modal="modal-perda"><i data-i="fechar"></i>Marcar como perdido</button><button class="cm-botao cm-botao--principal" type="button" data-q3-toast="Negócio ganho. Passagem para o CS criada."><i data-i="sucesso"></i>Marcar como ganho</button></div>
+   <div class="cm-grupo-botoes" data-se="perdido"><button class="cm-botao" type="button" data-q3-estado="padrao"><i data-i="restaurar"></i>Reabrir</button></div>
+  </div>
+  <dl class="cm-destaques">
+   <div><dt>Valor</dt><dd>R$ 12.240,00 por mês</dd></div><div><dt>Unidades</dt><dd>340, 3 torres</dd></div><div><dt>Fecha em</dt><dd>30/11, assembleia</dd></div><div><dt>Probabilidade</dt><dd>40%</dd></div>
+   <div><dt>Situação</dt><dd><span data-se="padrao" class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Atenção: esfriando há 12 dias</span><span data-se="perdido" class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Perdido em 01/10: preço</span></dd></div>
+   <div><dt>Dono</dt><dd>Lucas Ferreira</dd></div></dl>
+ </header>
+ <div class="cm-cartao" style="padding:10px 12px;margin-top:12px">
+  <div class="cm-path"><ol aria-label="Etapas do negócio">
+   <li class="is-feito"><button type="button"><i data-i="marcar"></i>Diagnóstico</button></li>
+   <li class="is-atual" data-se="padrao"><button type="button" aria-current="step">Visita técnica, há 12 dias</button></li>
+   <li class="is-perdido" data-se="perdido"><button type="button" aria-current="step"><i data-i="fechar"></i>Perdido na Visita técnica</button></li>
+   <li><button type="button" data-q3-menu="pop-etapa">Proposta</button></li>
+   <li><button type="button">Assembleia</button></li>
+   <li><button type="button">Contrato</button></li></ol></div>
+  <div class="cm-path__orientacao" data-se="padrao"><span><b>O que a etapa pede:</b> laudo de visita, número de funcionários e o contrato atual (vence em 31/12).</span><span><b>Falta:</b> contrato atual</span></div>
+  <div class="cm-path__orientacao" data-se="perdido"><span><b>Motivo:</b> preço. <b>Concorrente:</b> Lello Condomínios, R$ 10.200,00 por mês. <b>Comentário:</b> o conselho priorizou o menor valor; pediu contato em um ano.</span></div>
+  <div class="cm-ancora" style="display:block"><div class="cm-popover cm-flutuante" id="pop-etapa" hidden style="left:40%"><div class="cm-popover__cabeca">Para ir para Proposta, falta 1 campo</div><div class="cm-popover__corpo"><div class="cm-campo"><label class="cm-campo__rotulo" for="ca">Contrato atual (PDF)</label><button class="cm-botao" type="button" id="ca"><i data-i="anexar"></i>Anexar</button></div></div><div class="cm-popover__pe"><button class="cm-botao cm-botao--p" type="button">Cancelar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button">Mover para Proposta</button></div></div></div>
+ </div>
+ <div class="q3-ng">
+  <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Detalhes</h2></header><div class="cm-cartao__corpo"><dl class="cm-ficha">
+   <div class="cm-ficha__linha"><dt>Contato</dt><dd>Fábio Nunes, síndico profissional</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar contato"><i data-i="editar"></i></button></div>
+   <div class="cm-ficha__linha"><dt>Telefone</dt><dd>(11) 99540-2210</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar telefone"><i data-i="editar"></i></button></div>
+   <div class="cm-ficha__linha"><dt>Administradora atual</dt><dd>Lello Condomínios</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar administradora atual"><i data-i="editar"></i></button></div>
+   <div class="cm-ficha__linha"><dt>Funcionários</dt><dd>14 (portaria 24 h terceirizada)</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar funcionários"><i data-i="editar"></i></button></div>
+   <div class="cm-ficha__linha"><dt>Origem</dt><dd>Anúncio Google</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar origem"><i data-i="editar"></i></button></div>
+  </dl></div></section>
+  <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Atividade</h2></header>
+   <div class="cm-cartao__corpo" style="border-bottom:1px solid var(--cm-filete)"><div class="cm-linha" style="gap:8px"><div class="cm-entrada cm-cresce"><input aria-label="Registrar atividade" placeholder="Registrar ligação, visita ou nota"></div><button class="cm-botao" type="button" data-q3-toast="Ligação registrada. O negócio deixou de esfriar.">Registrar</button></div></div>
+   <ul class="cm-atividade">
+    <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="local"></i></span><div><div class="cm-atividade__titulo">Visita técnica com o síndico e o zelador</div><div class="cm-atividade__desc">Casa de máquinas com 2 bombas de recalque, gerador sem manutenção há 14 meses. Laudo anexado.</div></div><span class="cm-atividade__quando">19/09</span></li>
+    <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="email"></i></span><div><div class="cm-atividade__titulo">E-mail: pedido do contrato atual</div><div class="cm-atividade__desc">Sem resposta</div></div><span class="cm-atividade__quando">19/09</span></li>
+    <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="telefone"></i></span><div><div class="cm-atividade__titulo">Ligação de diagnóstico, 22 min</div><div class="cm-atividade__desc">Insatisfeito com prestação de contas e inadimplência de 18%.</div></div><span class="cm-atividade__quando">12/09</span></li>
+   </ul></section>
+ </div>
+ <div class="cm-sobreposicao" id="modal-perda" hidden><div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="t-pe"><div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="t-pe">Marcar como perdido<span class="cm-modal__sub">O motivo entra no relatório de perdas. Dá para reabrir depois.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+  <div class="cm-modal__corpo cm-pilha">
+   <fieldset class="cm-grupo-opcoes"><legend>Motivo <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></legend>
+    <label class="cm-radio"><input type="radio" name="mp" checked><span class="cm-radio__bola"></span><span>Preço</span></label><label class="cm-radio"><input type="radio" name="mp"><span class="cm-radio__bola"></span><span>Ficou com a administradora atual</span></label><label class="cm-radio"><input type="radio" name="mp"><span class="cm-radio__bola"></span><span>Escolheu outra administradora</span></label><label class="cm-radio"><input type="radio" name="mp"><span class="cm-radio__bola"></span><span>Assembleia não aprovou a troca</span></label><label class="cm-radio"><input type="radio" name="mp"><span class="cm-radio__bola"></span><span>Sem resposta</span></label></fieldset>
+   <div class="cm-linha" style="gap:12px;align-items:flex-start"><div class="cm-campo cm-cresce"><label class="cm-campo__rotulo" for="pc">Concorrente</label><div class="cm-entrada"><input id="pc" value="Lello Condomínios"></div></div><div class="cm-campo cm-cresce"><label class="cm-campo__rotulo" for="pv">Valor do concorrente</label><div class="cm-entrada cm-entrada--moeda"><span class="cm-entrada__prefixo">R$</span><input id="pv" value="10.200,00"></div></div></div>
+   <div class="cm-campo"><label class="cm-campo__rotulo" for="pco">Comentário <span class="cm-campo__opcional">opcional</span></label><textarea class="cm-area" id="pco">O conselho priorizou o menor valor; pediu contato em um ano.</textarea></div>
+   <label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Lembrar de recontatar em 01/10/2027</span></label>
+  </div>
+  <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q3-fechar>Cancelar</button><button class="cm-botao cm-botao--perigo" type="button" data-q3-fechar data-q3-estado="perdido" data-q3-toast="Negócio marcado como perdido: preço" data-q3-toast-tipo="info" data-q3-toast-acao="Desfazer">Marcar como perdido</button></div></div></div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Trilha com "3 de 14"; título; Perdido, Ganho; campos-chave; etapas do Path (etapa futura abre o popover dos campos exigidos); detalhes; atividade.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>"Passo atual: Visita técnica, há 12 dias" e "Atenção: esfriando há 12 dias". Perdido: "Passo atual: perdido na Visita técnica". O motivo é grupo de rádio obrigatório com legenda.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Fechar"; "Editar contato" (e cada lápis).</p></section>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>

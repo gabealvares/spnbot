@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor de e-mail</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-cel .cm-email-folha{max-width:360px;font-size:14px}
+.q3-var{display:inline-block;padding:0 4px;border:1px dashed #8a6d2c;background:#fbf3dc;font-size:.9em}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Editor de e-mail em blocos <small>Marketing, E-mail, Modelos de e-mail. Rascunho "Reativação de leads perdidos em 2025": paleta de blocos à esquerda, a folha de 600 px na marca da Administradora Alpha no centro, as propriedades do bloco à direita.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>Quem faz marketing numa administradora não é designer. O e-mail é montado com blocos prontos (cabeçalho, texto, imagem, botão, depoimento de síndico, rodapé legal) que já respeitam a marca do cliente, contraste e largura. Arrasta, solta, edita no lugar. O rodapé com descadastro é fixo.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Arraste um bloco da paleta para a folha; a linha de latão mostra onde ele cai. Sem mouse: foque o bloco e Enter insere abaixo do selecionado.</li><li>Clique num bloco para selecionar; a barrinha mostra subir, descer, duplicar e excluir; à direita, as propriedades dele.</li><li>Variáveis ({primeiro_nome}, {condominio}) aparecem como etiqueta na folha e preenchidas na prévia.</li><li>"Prévia" alterna computador e celular; "Enviar teste" manda para você.</li><li>O rascunho salva sozinho; "Agendar" valida assunto, remetente e domínio antes.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Mailchimp, o Brevo e o Beefree usam paleta, folha de 600 px e painel de propriedades; o Notion e o Gutenberg do WordPress ensinaram a barrinha flutuante do bloco selecionado. O rodapé fixo com descadastro é obrigação legal e o RD Station o trava do mesmo jeito.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Editando</button><button type="button" data-q3-estado="celular" aria-pressed="false">Prévia no celular</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Marketing","tela":"Modelos de e-mail","registro":"Reativação de leads perdidos","papel":"Comercial","usuario":{"nome":"Paula Viana","iniciais":"PV","cargo":"Analista de marketing","presenca":"disponivel","tom":3}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Reativação de leads perdidos em 2025</h1><span class="cm-t-legenda">Salvo às 09:38</span>
+  <div class="cm-cabecalho-pagina__acoes"><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Prévia" data-q3-livre><button type="button" data-q3-estado="padrao"><i data-i="monitor"></i>Computador</button><button type="button" data-q3-estado="celular"><i data-i="celular"></i>Celular</button></div><button class="cm-botao" type="button" data-q3-toast="Teste enviado para paula.viana@alpha.adm.br">Enviar teste</button><button class="cm-botao cm-botao--principal" type="button"><i data-i="agendar"></i>Agendar</button></div></div>
+  <div class="cm-linha" style="gap:12px;flex-wrap:wrap"><div class="cm-campo" style="flex:1;min-width:280px"><label class="cm-campo__rotulo" for="ass">Assunto <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="ass" aria-invalid="true" aria-describedby="ass-e" placeholder="Ex.: {primeiro_nome}, a assembleia está chegando"></div><p class="cm-campo__erro" id="ass-e"><i data-i="perigo"></i>Falta o assunto para agendar.</p></div><div class="cm-campo" style="width:320px"><label class="cm-campo__rotulo" for="rem">Remetente</label><div class="cm-selecao"><select id="rem"><option>Lucas Ferreira, Administradora Alpha</option></select><i data-i="chevron-baixo"></i></div></div></div>
+ </header>
+ <div class="cm-email-editor">
+  <div class="cm-email-editor__blocos"><p class="cm-t-rotulo" style="margin-bottom:8px">Blocos</p>
+   <div class="cm-bloco-paleta" id="paleta">
+    <button type="button" draggable="true" data-bloco="texto"><i data-i="titulo"></i>Texto</button><button type="button" draggable="true" data-bloco="imagem"><i data-i="imagem"></i>Imagem</button><button type="button" draggable="true" data-bloco="botao"><i data-i="clique"></i>Botão</button><button type="button" draggable="true" data-bloco="colunas"><i data-i="painel-direito"></i>2 colunas</button><button type="button" draggable="true" data-bloco="depoimento"><i data-i="citacao"></i>Depoimento</button><button type="button" draggable="true" data-bloco="divisor"><i data-i="remover"></i>Divisor</button>
+   </div>
+   <p class="cm-t-rotulo" style="margin:16px 0 6px">Variáveis</p><div class="cm-variaveis"><button type="button">{primeiro_nome}</button><button type="button">{condominio}</button><button type="button">{unidades}</button></div>
+  </div>
+  <div class="cm-email-editor__tela" id="tela">
+   <div class="cm-email-folha" id="folha">
+    <div class="cm-email-cabeca"><span class="cm-testeira__logo" data-marca-inicial>A</span><span data-marca-nome>Administradora Alpha</span></div>
+    <div class="cm-email-bloco" tabindex="0"><p style="font-size:20px;font-weight:700;margin:0 0 8px">{primeiro_nome}, o que mudou desde a nossa conversa</p><p style="margin:0">No ano passado o <span class="q3-var">{condominio}</span> conversou com a gente sobre trocar de administradora. Desde então, levamos a prestação de contas para o celular do condômino e baixamos a inadimplência média da carteira para 4,8%.</p></div>
+    <div class="cm-email-soltar"></div>
+    <div class="cm-email-bloco is-selecionado" tabindex="0" aria-label="Bloco depoimento, selecionado">
+     <div class="cm-email-bloco__barra" role="toolbar" aria-label="Ações do bloco"><button type="button" aria-label="Subir bloco"><i data-i="seta-cima"></i></button><button type="button" aria-label="Descer bloco"><i data-i="seta-baixo"></i></button><button type="button" aria-label="Duplicar bloco"><i data-i="duplicar"></i></button><button type="button" aria-label="Excluir bloco" data-q3-toast="Bloco excluído" data-q3-toast-acao="Desfazer"><i data-i="excluir"></i></button></div>
+     <blockquote style="margin:0;padding:12px 16px;border-left:4px solid var(--cm-marca);background:#f1f3f2">"Em três meses a prestação de contas passou a sair no dia 5, com o extrato do banco junto. O conselho parou de pedir planilha."<br><b style="font-size:13px">Marina Costa, síndica do Cond. Parque das Águas, 312 unidades</b></blockquote></div>
+    <div class="cm-email-bloco" tabindex="0" style="text-align:center"><a class="cm-email-botao" href="#">Agendar um diagnóstico gratuito</a></div>
+    <div class="cm-email-rodape">Administradora Alpha, Av. Paulista, 1.842, São Paulo. Você recebe este e-mail porque conversou com a Alpha em 2025. <u>Não quero mais receber</u>.</div>
+   </div>
+  </div>
+  <div class="cm-email-editor__props">
+   <p class="cm-t-subsecao">Depoimento</p>
+   <div class="cm-campo"><label class="cm-campo__rotulo" for="dp-t">Texto</label><textarea class="cm-area" id="dp-t" rows="4">Em três meses a prestação de contas passou a sair no dia 5, com o extrato do banco junto. O conselho parou de pedir planilha.</textarea></div>
+   <div class="cm-campo"><label class="cm-campo__rotulo" for="dp-a">Autor</label><div class="cm-entrada"><input id="dp-a" value="Marina Costa, síndica do Cond. Parque das Águas"></div><p class="cm-campo__ajuda">Autorização de uso assinada em 12/09.</p></div>
+   <fieldset class="cm-grupo-opcoes cm-grupo-opcoes--linha"><legend>Alinhamento</legend><label class="cm-radio"><input type="radio" name="al" checked><span class="cm-radio__bola"></span><span>Esquerda</span></label><label class="cm-radio"><input type="radio" name="al"><span class="cm-radio__bola"></span><span>Centro</span></label></fieldset>
+   <label class="cm-interruptor"><input type="checkbox" role="switch" checked><span class="cm-interruptor__trilho"></span><span>Filete na cor da marca</span></label>
+   <div class="cm-alerta cm-alerta--sucesso"><i data-i="sucesso"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Contraste 7,2 para 1</span><span class="cm-alerta__desc">Texto escuro sobre cinza claro passa no AA.</span></span></div>
+  </div>
+ </div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título; Computador e Celular, Enviar teste, Agendar; assunto (com erro), remetente; paleta de blocos (Enter insere abaixo do selecionado); variáveis; blocos da folha em ordem (cada bloco focável; a barrinha do selecionado); propriedades do bloco.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Bloco selecionado tem nome ("Bloco depoimento, selecionado"); a barrinha é uma barra de ferramentas com nome. Ao soltar, "Bloco Botão inserido depois do depoimento". O assunto vazio é erro ligado ao campo.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Subir bloco", "Descer bloco", "Duplicar bloco", "Excluir bloco"; os blocos da paleta têm palavra.</p></section>
+  </div>
+ </div>
+</footer>
+<script>(function(){var folha=document.getElementById('folha');document.getElementById('paleta').addEventListener('dragstart',function(){folha.classList.add('is-arrastando')});document.addEventListener('dragend',function(){folha.classList.remove('is-arrastando')});
+folha.addEventListener('dragover',function(e){e.preventDefault()});folha.addEventListener('drop',function(e){e.preventDefault();folha.classList.remove('is-arrastando');var b=document.createElement('div');b.className='cm-email-bloco';b.tabIndex=0;b.innerHTML='<p style="margin:0">Novo bloco de texto. Clique para escrever.</p>';var s=folha.querySelector('.cm-email-soltar');s.parentNode.insertBefore(b,s.nextSibling);window.q3Toast('Bloco inserido depois do primeiro texto','sucesso','Desfazer',function(){b.remove()})});
+folha.addEventListener('click',function(e){var b=e.target.closest('.cm-email-bloco');if(!b) return;folha.querySelectorAll('.cm-email-bloco').forEach(function(x){x.classList.toggle('is-selecionado',x===b)})});
+document.addEventListener('q3:estado',function(e){document.getElementById('tela').classList.toggle('q3-cel',e.detail==='celular');document.querySelectorAll('[data-q3-livre] button').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-q3-estado')===e.detail))})});})();</script>
+</body>
+</html>

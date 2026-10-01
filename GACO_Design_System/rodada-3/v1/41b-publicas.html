@@ -26,14 +26,14 @@
 <a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="lc-doc-cab">
   <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
-  <nav aria-label="Documentação"><a href="40-portal.html">Portal</a><a href="41-publicas.html">Públicas, acesso</a><a href="41b-publicas.html" aria-current="page">Públicas, site</a><a href="50-superadmin.html">Superadmin</a><a href="60-celular.html">Celular</a><a href="61-documentos-gerados.html">Documentos</a></nav>
+  <nav aria-label="Documentação"><a href="40-portal.html">Portal</a><a href="41-publicas.html">Públicas, acesso</a><a href="41b-publicas.html" aria-current="page">Públicas, site</a><a href="41c-publicas.html">Públicas, status</a><a href="50-superadmin.html">Superadmin</a><a href="60-celular.html">Celular</a><a href="61-documentos-gerados.html">Documentos</a></nav>
   <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
 </header>
 <main id="conteudo" class="pub-pagina">
 
 <!-- CAPTURA -->
-<section class="lc-ficha-tela" aria-label="Sobre o formulário de captura">
-  <div class="lc-ficha-tela__nome"><b>Formulário de captura</b><span>Embutido na landing page da administradora (Marketing). O lead cai no Comercial com origem e campanha.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre o formulário de captura">
+  <div class="lc-sobre-tela__nome"><b>Formulário de captura</b><span>Embutido na landing page da administradora (Marketing). O lead cai no Comercial com origem e campanha.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Um síndico que procura administradora pede proposta em 4 campos, e o vendedor recebe com o tamanho do condomínio, sem ligar para perguntar.</p></div>
   <div><h2>Fluxo</h2><ol><li>Campos mínimos: nome, WhatsApp, condomínio e unidades.</li><li>"Receber proposta" é o principal; erro aparece no campo.</li><li>Depois: agradecimento no lugar do formulário, com prazo e nome de quem vai atender.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o RD Station e o HubSpot Forms mostram que cada campo a mais derruba a conversão; e o "quem vai falar com você" do iFood Empresas e da Loft dá confiança ao pedido.</p></div>
@@ -56,8 +56,8 @@
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Área do cliente, nome, WhatsApp, condomínio, unidades, sou síndico, Receber proposta, política.</p></div><div><h3>O que é anunciado</h3><p>Erro no campo, ligado por <code>aria-describedby</code>; ao enviar com erro, foco no primeiro campo errado. Sucesso em <code>role="status"</code>.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
 
 <!-- WEBCHAT -->
-<section class="lc-ficha-tela" aria-label="Sobre o webchat">
-  <div class="lc-ficha-tela__nome"><b>Webchat no site do cliente: janela e lançador</b><span>Script colado no site da administradora. Conversa cai em Suporte, canal "Chat do site".</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre o webchat">
+  <div class="lc-sobre-tela__nome"><b>Webchat no site do cliente: janela e lançador</b><span>Script colado no site da administradora. Conversa cai em Suporte, canal "Chat do site".</span></div>
   <div><h2>O que esta tela resolve</h2><p>O visitante pergunta sem sair do site; se for morador, entra e o chat já sabe a unidade. Fora do horário, deixa recado que vira chamado.</p></div>
   <div><h2>Fluxo</h2><ol><li>Lançador no canto com texto ("Fale com a gente"), não só o balão.</li><li>Abre a janela com respostas rápidas (2ª via, falar com atendente, sou síndico).</li><li>2ª via pede CPF e entrega Pix no chat; o resto vai para a fila humana com a previsão de espera.</li><li>Fechar minimiza (o lançador vira X); a conversa fica salva no navegador por 24 h.</li><li>No celular, a janela ocupa a tela inteira.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o Intercom e o Zendesk Messenger usam o lançador no canto inferior direito e respostas rápidas em pílula; o WhatsApp Business ensinou bolha, tique e horário; e a cor do cliente só pinta o topo e o lançador, nunca a bolha (regra do crítico).</p></div>
@@ -87,8 +87,8 @@
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Lançador; aberto: Minimizar, mensagens (log), respostas rápidas, caixa, Enviar. Esc minimiza e devolve o foco ao lançador.</p></div><div><h3>O que é anunciado</h3><p>Janela é <code>role="dialog"</code> não modal. Mensagem nova lida pelo log. Lançador com contador: "Fale com a gente, 1 mensagem nova".</p></div><div><h3>Nome do que é só ícone</h3><p>Seta: "Minimizar chat". X do lançador: "Fechar chat". Avião: "Enviar mensagem".</p></div></div>
 
 <!-- PROPOSTA -->
-<section class="lc-ficha-tela" aria-label="Sobre a proposta pública">
-  <div class="lc-ficha-tela__nome"><b>Proposta pública para aceite</b><span>Link enviado pelo Comercial. O síndico lê, escolhe o plano e aceita; o negócio vira "Ganho" no funil.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre a proposta pública">
+  <div class="lc-sobre-tela__nome"><b>Proposta pública para aceite</b><span>Link enviado pelo Comercial. O síndico lê, escolhe o plano e aceita; o negócio vira "Ganho" no funil.</span></div>
   <div><h2>O que esta tela resolve</h2><p>O síndico entende o que contrata, compara os planos lado a lado e aceita com registro (nome, CPF, data, IP), sem imprimir.</p></div>
   <div><h2>Fluxo</h2><ol><li>Cabeçalho com validade da proposta e quem enviou.</li><li>Escopo e planos; escolher um plano atualiza o total.</li><li>Barra de aceite fixa no pé: "Aceitar proposta" pede nome e CPF e confirma com código no e-mail.</li><li>"Tenho dúvidas" abre o WhatsApp do vendedor.</li><li>Aceita: carimbo "Aprovado" e o contrato segue para assinatura.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o PandaDoc e o Proposify põem o aceite fixo no pé com o total; o Pipedrive Proposals deixa o cliente escolher a opção; e o carimbo é o signo de documento que a V1 reserva para estado documental.</p></div>
@@ -98,7 +98,7 @@
   <div class="lc-proposta" style="padding:0 20px">
     <div class="prop-cab"><div class="lc-cresce"><h2>Proposta de administração para o Edifício Mirante do Ibirapuera</h2><p class="lc-pequeno lc-cor-2">64 unidades, Rua Tutóia, 1.157, São Paulo. Enviada por Fernanda Lopes em 28/09/2026.</p></div><span class="lc-estado lc-estado--aviso">Válida até 12/10/2026</span></div>
     <h3 class="lc-t-secao" style="margin:20px 0 8px">O que fazemos pelo condomínio</h3>
-    <ul class="lc-regras" style="list-style:disc"><li>Emissão de boletos, cobrança e acordos de inadimplência</li><li>Folha de pagamento da portaria e da limpeza</li><li>Prestação de contas mensal com balancete no portal até o dia 10</li><li>Assembleias com edital, votação online e ata registrada</li><li>Portal e aplicativo para moradores, com chamados e reservas</li></ul>
+    <ul class="lc-regras-uso" style="list-style:disc"><li>Emissão de boletos, cobrança e acordos de inadimplência</li><li>Folha de pagamento da portaria e da limpeza</li><li>Prestação de contas mensal com balancete no portal até o dia 10</li><li>Assembleias com edital, votação online e ata registrada</li><li>Portal e aplicativo para moradores, com chamados e reservas</li></ul>
     <h3 class="lc-t-secao" style="margin:20px 0 8px">Escolha o plano</h3>
     <fieldset class="lc-escolhas" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))"><legend class="lc-sr">Plano</legend>
       <label class="lc-escolha"><input type="radio" name="pl"><span>Essencial<small>R$ 2.240,00 por mês. Sem gerente dedicado.</small></span></label>
@@ -113,8 +113,8 @@
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Escopo (texto), planos (setas), composição, Tenho dúvidas, Aceitar proposta. A barra de aceite fica por último na ordem, mesmo fixa.</p></div><div><h3>O que é anunciado</h3><p>Trocar o plano atualiza a barra (região viva): "Plano Completo, R$ 2.880,00 por mês". Validade lida como texto.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
 
 <!-- ERROS -->
-<section class="lc-ficha-tela" aria-label="Sobre as páginas de erro">
-  <div class="lc-ficha-tela__nome"><b>Erro 404, erro 500 e manutenção</b><span>Mesma casca pública, marca do cliente, nenhuma mensagem técnica.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre as páginas de erro">
+  <div class="lc-sobre-tela__nome"><b>Erro 404, erro 500 e manutenção</b><span>Mesma casca pública, marca do cliente, nenhuma mensagem técnica.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Quem cai num link quebrado ou num problema nosso sabe o que aconteceu, que não perdeu nada, e para onde ir.</p></div>
   <div><h2>Fluxo</h2><ol><li>Código pequeno e discreto (para o suporte), frase humana grande.</li><li>404: "Ir para o início" e "Pesquisar".</li><li>500: "Tentar de novo" e o código do incidente para citar no suporte.</li><li>Manutenção: janela com hora de volta e link da página de status.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o GitHub e o Stripe mostram o identificador do erro para o suporte sem expor detalhe técnico; a página de status do Atlassian Statuspage informa a janela de manutenção com hora local.</p></div>

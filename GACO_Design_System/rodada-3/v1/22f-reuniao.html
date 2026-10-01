@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ata da reunião</title>
+<meta name="description" content="Reunião com ata: documento editável no lugar, encaminhamentos que viram tarefa, gravação e emissão com carimbo.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+.rn-lado{display:flex;flex-direction:column;gap:var(--esp-6)}
+.rn-lado h2{font:var(--t-subsecao);margin:0 0 8px}
+.rn-lado section+section{border-top:var(--borda-1);padding-top:var(--esp-5)}
+.lc-doc-folha [contenteditable="true"]{outline:1px dashed var(--borda-controle);outline-offset:4px}
+.lc-doc-folha [contenteditable="true"]:focus{outline:2px solid var(--foco)}
+.rn-doc-barra{display:flex;gap:8px;align-items:center;max-width:800px;margin:0 auto 8px;font:var(--t-legenda);color:var(--texto-2)}
+.rn-doc-barra .lc-cresce{flex:1}
+</style>
+</head>
+<body data-moldura='{"papel": "gerente-cs", "usuario": {"nome": "Letícia Araújo", "cargo": "Coordenadora de Relacionamento", "iniciais": "LA", "cor": "lc-av--c3"}, "contadores": {"suporte": 7, "cs": 3, "academy": 1}, "modulo": "cs", "secao": "Trabalho do CS", "item": "Reuniões", "trilha": ["Reuniões", "Prévia da assembleia de 14/10"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-nota-projeto" open>
+  <summary><b>Nota de projeto</b> Reunião com ata<span class="lc-nota-projeto__serie"><a href="22-cs.html">Carteira</a> <a href="22b-cliente.html">Ficha do cliente</a> <a href="22c-cs-renovacoes.html">Renovações</a> <a href="22d-cs-nps.html">NPS</a> <a href="22e-cs-playbooks.html">Playbooks</a> <a href="22f-reuniao.html" aria-current="page">Reunião e ata</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2><p>A reunião só termina quando vira ata e os encaminhamentos viram tarefa com dono e prazo. Esta tela é a ata como documento (a única parte em serifa, porque é documento gerado) com a reunião ao lado: quem estava, a gravação e as tarefas que nasceram dela.</p></section>
+    <section><h2>Fluxo</h2><ol><li>Rascunho: cada parágrafo da ata é editável no lugar; o rascunho salva sozinho ("Salvo às 15:42").</li><li>Cada linha da tabela de encaminhamentos vira tarefa para a pessoa, com o prazo, e aparece no Para você dela.</li><li>"Enviar aos participantes" (botão principal) gera o PDF, manda por e-mail e WhatsApp e carimba a ata como emitida, com nome, data e hora.</li><li>Depois de emitida, a ata fica só leitura; correção gera nova versão com o motivo.</li></ol></section>
+    <section><h2>Por que assim</h2><p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o Fellow e o Notion (ata com encaminhamentos que viram tarefa), o Google Meet e o tl;dv (gravação e transcrição junto da ata) e o DocuSign e o Clicksign (documento emitido com registro de quem e quando) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div><div class="lc-estados-tela" data-estados-para="tela-rn">Ver estado:<div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela"><button type="button" aria-pressed="true" data-estado="rascunho">Rascunho</button><button type="button" aria-pressed="false" data-estado="enviada">Emitida e enviada</button><button type="button" aria-pressed="false" data-estado="carregando">Carregando</button></div></div>
+</details><div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Prévia da assembleia de 14/10</h1><p class="lc-cab-pagina__desc">Reunião com o conselho do Parque das Águas, 22/09/2026.</p></div>
+<div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="baixar"></i>Baixar PDF</button><button class="lc-btn lc-btn--principal" type="button" data-so-estado="rascunho" data-toast="Ata enviada a 5 participantes e emitida" data-toast-desfazer><i data-i="enviar"></i>Enviar aos participantes</button><button class="lc-btn" type="button" data-so-estado="enviada" hidden><i data-i="duplicar"></i>Corrigir em nova versão</button></div></div>
+<div id="tela-rn" data-estado="rascunho">
+<div data-so-estado="carregando" hidden aria-busy="true" aria-label="Carregando ata"><span class="lc-esqueleto lc-esqueleto--bloco" style="height:600px;max-width:800px"></span></div>
+<div class="lc-doc-layout" data-so-estado="rascunho enviada"><div>
+<div class="rn-doc-barra"><span class="lc-estado lc-estado--neutro" data-so-estado="rascunho">Rascunho</span><span class="lc-estado lc-estado--sucesso" data-so-estado="enviada" hidden>Emitida. Lida por 4 de 5</span><span class="lc-cresce"></span><span class="lc-rascunho" data-so-estado="rascunho">Salvo às 15:42</span></div>
+<article class="lc-doc-folha" aria-label="Ata da reunião">
+<div class="lc-doc-folha__carimbo" data-so-estado="enviada" hidden><span class="lc-carimbo lc-carimbo--emitido lc-carimbo--g">Emitida<small>Letícia Araújo, 22/09/2026 às 17:10</small></span></div>
+<div class="lc-doc-folha__timbre"><span class="lc-ladrilho lc-ladrilho--marca lc-ladrilho--40" aria-hidden="true">A</span><div><b>Administradora Alpha</b>CNPJ 08.765.432/0001-10. Rua Vergueiro, 2.016, Vila Mariana, São Paulo, SP</div></div>
+<h1>Ata de reunião com o conselho</h1>
+<p class="lc-legenda" style="font-family:var(--fonte-ui)">Condomínio Parque das Águas. 22 de setembro de 2026, das 15h às 16h10, por videochamada.</p>
+<h2>Participantes</h2>
+<p data-edita>Marina Costa (síndica), Paulo Reis (conselho fiscal), Helena Ramos (conselho consultivo) e, pela Administradora Alpha, Letícia Araújo (gerente da conta) e Rogério Alves (manutenção).</p>
+<h2>Pauta</h2>
+<p data-edita>1. Prestação de contas do 1º semestre. 2. Orçamento da pintura da fachada. 3. Proposta de portaria remota. 4. Preparação da assembleia extraordinária de 14/10.</p>
+<h2>O que foi tratado</h2>
+<p data-edita><b>Prestação de contas.</b> O conselho aprovou as contas de janeiro a junho sem ressalvas. Paulo pediu que o balancete mensal chegue até o dia 10, e não 15.</p>
+<p data-edita><b>Pintura da fachada.</b> Há dois orçamentos (Pinturas Horizonte, R$ 186.400,00; Fachada Nova, R$ 171.900,00). Falta um terceiro. A obra está um mês atrasada porque o primeiro fornecedor desistiu.</p>
+<p data-edita><b>Portaria remota.</b> A Alpha apresentou a proposta para os 4 blocos, R$ 9.600,00 por mês, contra R$ 14.200,00 da portaria atual. O conselho quer visitar um condomínio que já usa.</p>
+<h2>Encaminhamentos</h2>
+<table><thead><tr><th>O quê</th><th>Quem</th><th>Até</th></tr></thead><tbody>
+<tr><td>Trazer o terceiro orçamento da pintura</td><td>Rogério Alves</td><td>05/10</td></tr>
+<tr><td>Marcar visita a condomínio com portaria remota</td><td>Letícia Araújo</td><td>02/10</td></tr>
+<tr><td>Enviar o edital da AGE de 14/10 para revisão</td><td>Letícia Araújo</td><td>29/09</td></tr>
+<tr><td>Antecipar o balancete mensal para o dia 10</td><td>Financeiro, Diego Ramos</td><td>10/10</td></tr></tbody></table>
+<div class="lc-doc-folha__assina"><div><b>Marina Costa</b>Síndica</div><div><b>Letícia Araújo</b>Gerente da conta, Administradora Alpha</div></div>
+</article></div><aside class="rn-lado" aria-label="Detalhes da reunião">
+<section><h2>Reunião</h2><dl class="lc-props"><dt>Quando</dt><dd>22/09/2026, 15h às 16h10</dd><dt>Onde</dt><dd>Videochamada</dd><dt>Cliente</dt><dd><a href="22b-cliente.html">Parque das Águas</a></dd><dt>Ligada a</dt><dd><a href="23c-comercial-negocio.html">Negócio: portaria remota</a></dd></dl></section>
+<section><h2>Participantes <span class="lc-contagem">5</span></h2><ul class="lc-equipe">
+<li><span class="lc-av lc-av--32 lc-av--c4" aria-hidden="true">MC</span><span><span class="lc-equipe__nome">Marina Costa</span><span class="lc-equipe__faz" data-so-estado="enviada" hidden>Leu a ata em 22/09, 18:02</span><span class="lc-equipe__faz" data-so-estado="rascunho carregando">Síndica</span></span><span></span></li>
+<li><span class="lc-av lc-av--32 lc-av--c5" aria-hidden="true">PR</span><span><span class="lc-equipe__nome">Paulo Reis</span><span class="lc-equipe__faz">Conselho fiscal</span></span><span></span></li>
+<li><span class="lc-av lc-av--32 lc-av--c2" aria-hidden="true">HR</span><span><span class="lc-equipe__nome">Helena Ramos</span><span class="lc-equipe__faz">Conselho consultivo</span></span><span></span></li>
+<li><span class="lc-av lc-av--32 lc-av--c3" aria-hidden="true">LA</span><span><span class="lc-equipe__nome">Letícia Araújo</span><span class="lc-equipe__faz">Alpha, quem escreveu</span></span><span></span></li>
+<li><span class="lc-av lc-av--32 lc-av--c8" aria-hidden="true">RA</span><span><span class="lc-equipe__nome">Rogério Alves</span><span class="lc-equipe__faz">Alpha, manutenção</span></span><span></span></li></ul></section>
+<section><h2>Gravação</h2><div class="lc-audio" style="width:100%"><button class="lc-audio__tocar" type="button" aria-label="Ouvir a gravação da reunião, 1 hora e 10 minutos"><i data-i="tocar"></i></button><span class="lc-audio__onda" aria-hidden="true"><i style="height:10px"></i><i style="height:16px"></i><i style="height:8px"></i><i style="height:20px"></i><i style="height:12px"></i><i style="height:18px"></i><i style="height:9px"></i><i style="height:14px"></i><i style="height:22px"></i><i style="height:10px"></i><i style="height:16px"></i><i style="height:12px"></i><i style="height:8px"></i><i style="height:18px"></i></span><span class="lc-audio__tempo">1:10:04</span></div>
+<button class="lc-btn lc-btn--link lc-btn--p" type="button"><i data-i="transcricao"></i>Ver transcrição</button></section>
+<section><h2>Viraram tarefas</h2><ul class="lc-lista" style="margin:0 -20px"><li><i data-i="checklist" class="lc-ic--16"></i><span class="lc-cresce">Terceiro orçamento da pintura<span class="lc-lista__sub">Rogério, até 05/10</span></span><span class="lc-estado lc-estado--andamento">Fazendo</span></li><li><i data-i="checklist" class="lc-ic--16"></i><span class="lc-cresce">Visita à portaria remota<span class="lc-lista__sub">Letícia, até 02/10</span></span><span class="lc-estado lc-estado--aviso">Amanhã</span></li><li><i data-i="checklist" class="lc-ic--16"></i><span class="lc-cresce">Edital da AGE<span class="lc-lista__sub">Letícia, até 29/09</span></span><span class="lc-estado lc-estado--sucesso">Feito</span></li></ul></section>
+</aside></div>
+</div><section class="lc-nota-a11y" aria-labelledby="a11y-tit">
+  <h2 id="a11y-tit">Acessibilidade desta tela</h2>
+  <dl><dt>Ordem de foco</dt><dd>Pular para o conteúdo; trilho; barra do módulo; Baixar PDF, Enviar aos participantes; estado da ata; ata (títulos h1 e h2 na ordem; no rascunho cada parágrafo é campo editável); lado: reunião, participantes, gravação, tarefas.</dd><dt>O que é anunciado</dt><dd>"Rascunho, salvo às 15:42" como texto vivo; ao enviar, "Ata emitida em 22/09 às 17:10"; o carimbo tem o texto completo ("Emitida por Letícia Araújo, 22/09/2026 às 17:10"); parágrafo em edição anuncia "campo de texto editável".</dd><dt>Nome do que é só ícone</dt><dd>Ouvir a gravação da reunião, 1 hora e 10 minutos. O logo da administradora é decorativo (o nome está ao lado).</dd></dl>
+</section>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+<script>function rnEdita(on){document.querySelectorAll(".lc-doc-folha [data-edita]").forEach(function(p){if(on){p.setAttribute("contenteditable","true");p.setAttribute("role","textbox");p.setAttribute("aria-multiline","true");}else{p.removeAttribute("contenteditable");p.removeAttribute("role");}});}
+document.addEventListener("DOMContentLoaded",function(){rnEdita(true);document.querySelectorAll("[data-estado]").forEach(function(b){b.addEventListener("click",function(){rnEdita(b.getAttribute("data-estado")==="rascunho");});});
+document.addEventListener("input",function(e){if(e.target.closest("[data-edita]")){var r=document.querySelector(".lc-rascunho");var d=new Date();r.textContent="Salvo às "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);}});});</script>
+</body>
+</html>

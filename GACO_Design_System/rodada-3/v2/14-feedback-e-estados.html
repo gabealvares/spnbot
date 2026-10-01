@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feedback e estados</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q2.css">
+<script src="sistema/icones.js"></script>
+<script src="padroes/links-doc.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q2.js" defer></script>
+<style>
+.tela-estado{border:1px solid var(--cm-filete-forte);background:var(--cm-fundo);min-height:340px}
+.tela-estado__cab{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--cm-filete);background:var(--cm-camada-1)}
+.tela-estado__cab h3{margin:0;font-size:16px;font-weight:700;flex:1}
+.tela-estado__corpo{padding:14px}
+.esq-linha{display:grid;grid-template-columns:24px 64px 1fr 120px 100px;gap:14px;align-items:center;padding:9px 0;border-bottom:1px solid var(--cm-filete)}
+.redacao td:nth-child(2){color:var(--cm-texto-1)}
+.redacao td:nth-child(3){color:var(--cm-texto-3);text-decoration:line-through;text-decoration-color:var(--cm-perigo-texto)}
+.offline-comp .cm-bolha{max-width:80%}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Suporte","tela":"Conversas","papel":"Atendimento","trilha":false}'></div>
+<main id="conteudo" class="cm-doc">
+  <nav class="cm-doc__indice" aria-label="Nesta página"><h2>Nesta página</h2><ol>
+    <li><a href="#matriz">Matriz de avisos</a></li>
+    <li><a href="#toasts">Toast ao vivo</a></li>
+    <li><a href="#estados">Estados de tela</a></li>
+    <li><a href="#registro">Estados do registro</a></li>
+    <li><a href="#offline">Sem conexão</a></li>
+    <li><a href="#sessao">Sessão expirando</a></li>
+    <li><a href="#redacao">Redação</a></li>
+  </ol></nav>
+  <div class="cm-doc__corpo">
+    <header class="cm-doc__cabeca">
+      <h1>Feedback e estados</h1>
+      <p>Cada coisa que acontece no GACO tem um lugar certo para avisar. O toast diz o que acabou de acontecer, o alerta fica perto do que precisa de atenção, a faixa vale para a tela inteira, o modal interrompe só quando não dá para seguir. Errar o lugar é o que transforma aviso em ruído.</p>
+      <div class="cm-doc__regras"><span><b>Estado</b> sempre com ícone e palavra</span><span><b>Erro</b> diz o que fazer, nunca pede desculpas</span><span><b>Vazio</b> convida a agir</span><span><b>Latão</b> nunca pinta aviso</span></div>
+    </header>
+
+    <section class="cm-doc-sec" id="matriz">
+      <h2>Matriz de avisos</h2>
+      <p>Leia pela pergunta: <i>a pessoa precisa parar o que está fazendo?</i> Se não, nada de modal. <i>O aviso é sobre um campo, uma seção ou a tela?</i> O lugar segue o alcance.</p>
+      <div class="cm-rolar-x"><table class="cm-tabela-doc">
+        <thead><tr><th>Peça</th><th>Quando</th><th>Onde</th><th>Some como</th><th>Interrompe?</th><th>Leitor de tela</th></tr></thead>
+        <tbody>
+          <tr><td><b>Toast</b></td><td>Resultado de uma ação da pessoa (salvou, moveu, excluiu)</td><td>Canto inferior esquerdo, acima do rodapé de atalhos</td><td>4 s; 8 s se tem Desfazer; não some com o mouse em cima</td><td>não</td><td>status, educado</td></tr>
+          <tr><td><b>Erro no campo</b></td><td>Valor que não serve</td><td>Embaixo do campo, ícone e texto</td><td>ao corrigir</td><td>não</td><td>ligado ao campo, inválido</td></tr>
+          <tr><td><b>Resumo de erros</b></td><td>Salvar falhou por 2 ou mais campos</td><td>Topo do formulário</td><td>ao salvar com sucesso</td><td>recebe o foco</td><td>título lido ao receber foco</td></tr>
+          <tr><td><b>Alerta</b></td><td>Algo nesta parte pede atenção (SLA vencendo, valor fora do comum)</td><td>Dentro do bloco a que se refere</td><td>quando a condição acaba</td><td>não</td><td>status; perigo é alerta</td></tr>
+          <tr><td><b>Faixa</b></td><td>Vale para a tela ou o sistema (sem conexão, manutenção, homologação, superadmin)</td><td>Logo abaixo da moldura, largura toda</td><td>Entendi, ou quando a condição acaba; contexto nunca some</td><td>não</td><td>status</td></tr>
+          <tr><td><b>Barra de salvar</b></td><td>Há alteração não gravada</td><td>Pé da área de trabalho</td><td>ao salvar ou descartar</td><td>não</td><td>região viva</td></tr>
+          <tr><td><b>Marca no item</b></td><td>Estado de um item na lista (atrasado, aguardando)</td><td>Na coluna de estado</td><td>com o estado</td><td>não</td><td>texto do estado</td></tr>
+          <tr><td><b>Sino</b></td><td>Algo aconteceu sem a pessoa estar olhando (menção, aprovação, SLA de outro)</td><td>Barra de cima, contador latão</td><td>ao abrir o item; marcar como lido</td><td>não</td><td>"Notificações, 3 novas"</td></tr>
+          <tr><td><b>Modal de confirmação</b></td><td>Irreversível, em cascata ou com efeito externo</td><td>Centro</td><td>escolha obrigatória</td><td>sim</td><td>diálogo de alerta</td></tr>
+          <tr><td><b>Status em linha</b></td><td>Processo em andamento perto do botão (gravando rascunho, importando)</td><td>Ao lado do botão que iniciou</td><td>ao terminar</td><td>não</td><td>status</td></tr>
+        </tbody></table></div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>confirmação em toda exclusão, toast genérico</span></h4><div class="cm-regua" data-regua="3,1,0"></div><ol><li>"Operação realizada com sucesso" sem dizer o quê; modal "Tem certeza?" em toda ação.</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>1 clique e o toast com o nome e Desfazer</span></h4><div class="cm-regua" data-regua="1,0,0"></div><ol><li>"Chamado 48190 foi para a lixeira. Desfazer."</li></ol></section>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="toasts">
+      <h2>Toast ao vivo</h2>
+      <div class="cm-palco"><div class="cm-palco__corpo cm-linha cm-linha--quebra" style="gap:8px">
+        <button class="cm-botao" type="button" data-q2-toast="Cliente salvo.|sucesso">Sucesso</button>
+        <button class="cm-botao" type="button" data-q2-toast="3 ordens atribuídas a Diego Martins.|sucesso|Desfazer">Sucesso com Desfazer</button>
+        <button class="cm-botao" type="button" data-q2-toast="Abrindo 15 de 63: Residencial Jardim Botânico.|info">Informação</button>
+        <button class="cm-botao" type="button" data-q2-toast="Atenção: 2 condomínios ficaram sem CNPJ e vão para a revisão.|aviso">Atenção</button>
+        <button class="cm-botao" type="button" data-q2-toast="Não foi possível enviar: o número do síndico não está no WhatsApp.|perigo|Copiar telefone">Erro com ação</button>
+      </div></div>
+      <table class="cm-especificacao">
+        <tr><th>Máximo na tela</th><td>3. O quarto empurra o mais antigo. Toast com Desfazer nunca é empurrado antes de 8 s.</td></tr>
+        <tr><th>Texto</th><td>O que aconteceu, com o nome da coisa. Uma frase. A ação do toast é um verbo: Desfazer, Abrir, Ver, Copiar.</td></tr>
+        <tr><th>Erro</th><td>Toast de erro só quando a ação foi em segundo plano (envio em massa). Erro de formulário vai no formulário.</td></tr>
+      </table>
+    </section>
+
+    <section class="cm-doc-sec" id="estados">
+      <h2>Estados de tela: Ordens de serviço</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Toda tela tem sete estados desenhados. Nenhum mostra tela branca, número zerado sem explicação ou erro técnico.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Carregando: esqueleto do formato real por até 10 s; depois, "Ainda carregando" com Tentar de novo.</li><li>Vazio de primeira vez: o que a tela faz e o primeiro passo.</li><li>Vazio de filtro: diz qual filtro e oferece limpar.</li><li>Erro de carga: o que falhou, o que continua funcionando, Tentar de novo.</li><li>Sem permissão: quem pode dar acesso e Pedir acesso.</li><li>Parcial: só o bloco que falhou mostra o erro.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Atlassian e o Carbon desenham estados vazios diferentes para primeira vez e para filtro, o Polaris usa esqueleto com o formato da página e o GitHub mostra quem administra quando falta permissão. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela" data-q2-alterna style="margin:6px 0 10px;flex-wrap:wrap">
+        <button type="button" aria-pressed="true" data-mostra="es-dados">Com dados</button>
+        <button type="button" aria-pressed="false" data-mostra="es-carregando">Carregando</button>
+        <button type="button" aria-pressed="false" data-mostra="es-primeira">Vazio, primeira vez</button>
+        <button type="button" aria-pressed="false" data-mostra="es-filtro">Vazio por filtro</button>
+        <button type="button" aria-pressed="false" data-mostra="es-erro">Erro de carga</button>
+        <button type="button" aria-pressed="false" data-mostra="es-permissao">Sem permissão</button>
+        <button type="button" aria-pressed="false" data-mostra="es-parcial">Parcial</button>
+      </div>
+      <div class="tela-estado">
+        <div class="tela-estado__cab"><h3>Ordens de serviço</h3><button class="cm-botao cm-botao--principal cm-botao--p" type="button"><i data-i="adicionar"></i>Nova OS</button></div>
+        <div class="tela-estado__corpo">
+          <div id="es-dados"><table class="cm-tabela"><thead><tr><th>Nº</th><th>Local e serviço</th><th>Prazo</th><th>Estado</th></tr></thead><tbody>
+            <tr><td>483</td><td class="cm-tabela__principal"><a href="padroes/listagem-densa.html">Interditar e vistoriar junta</a><span class="cm-tabela__sub">Subsolo 1, vagas 37 e 38</span></td><td>01/10</td><td><span class="cm-estado cm-estado--ponto cm-estado--perigo">Vence hoje</span></td></tr>
+            <tr><td>481</td><td class="cm-tabela__principal"><a href="padroes/listagem-densa.html">Motor travando ao fechar</a><span class="cm-tabela__sub">Portão da garagem, Bl B</span></td><td>02/10</td><td><span class="cm-estado cm-estado--ponto cm-estado--aviso">Aguardando fornecedor</span></td></tr>
+            <tr><td>478</td><td class="cm-tabela__principal"><a href="padroes/listagem-densa.html">Ruído no cabo de tração</a><span class="cm-tabela__sub">Casa de máquinas, elevador 2</span></td><td>03/10</td><td><span class="cm-estado cm-estado--ponto cm-estado--info">Agendada</span></td></tr>
+          </tbody></table></div>
+          <div id="es-carregando" hidden aria-busy="true"><span class="cm-carregando">Carregando ordens de serviço</span>
+            <div class="esq-linha"><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha"></span></div>
+            <div class="esq-linha"><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:70%"></span><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha"></span></div>
+            <div class="esq-linha"><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:84%"></span><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha"></span></div>
+          </div>
+          <div id="es-primeira" hidden><div class="cm-vazio"><i data-i="ordem-de-servico"></i><p class="cm-vazio__titulo">Nenhuma ordem de serviço ainda</p><p class="cm-vazio__texto">Aqui ficam os serviços dos condomínios: quem faz, até quando e quanto custa. Comece pela primeira, ou traga as que estão na planilha.</p><div class="cm-vazio__acoes"><button class="cm-botao cm-botao--principal" type="button">Nova OS</button><button class="cm-botao" type="button">Importar planilha</button></div></div></div>
+          <div id="es-filtro" hidden><div class="cm-vazio"><i data-i="filtrar"></i><p class="cm-vazio__titulo">Nenhuma OS com estes filtros</p><p class="cm-vazio__texto">Condomínio Parque das Águas, fornecedor Elevadores Atlas, vencendo esta semana. Sem o filtro de fornecedor há 6.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button">Tirar o filtro de fornecedor</button><button class="cm-botao cm-botao--link" type="button">Limpar todos os filtros</button></div></div></div>
+          <div id="es-erro" hidden><div class="cm-vazio"><i data-i="erro"></i><p class="cm-vazio__titulo">Não foi possível carregar as ordens de serviço</p><p class="cm-vazio__texto">O servidor de Operações não respondeu às 09:42. O resto do sistema funciona. Se repetir, o código para o suporte é OPS-504.</p><div class="cm-vazio__acoes"><button class="cm-botao cm-botao--principal" type="button" data-q2-toast="Carregando de novo.|info">Tentar de novo</button><button class="cm-botao" type="button">Ver o estado do sistema</button></div></div></div>
+          <div id="es-permissao" hidden><div class="cm-vazio"><i data-i="bloquear"></i><p class="cm-vazio__titulo">Você não tem acesso a Ordens de serviço</p><p class="cm-vazio__texto">Seu papel (Atendimento) vê as OS dentro dos chamados, mas não a lista. Quem libera é Diego Martins ou um administrador.</p><div class="cm-vazio__acoes"><button class="cm-botao cm-botao--principal" type="button" data-q2-toast="Pedido enviado para Diego Martins. Você recebe a resposta no sino.|sucesso">Pedir acesso</button></div></div></div>
+          <div id="es-parcial" hidden>
+            <div class="cm-alerta cm-alerta--aviso" style="margin-bottom:10px"><i data-i="atencao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Atenção: os valores orçados não carregaram</span><span class="cm-alerta__desc">A lista está certa; só a coluna Orçado está vazia. O Financeiro está fora do ar desde 09:40.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button">Tentar de novo</button></span></div>
+            <table class="cm-tabela"><thead><tr><th>Nº</th><th>Local e serviço</th><th class="cm-num">Orçado</th></tr></thead><tbody><tr><td>483</td><td>Interditar e vistoriar junta</td><td class="cm-num cm-texto-3">indisponível</td></tr><tr><td>481</td><td>Motor travando ao fechar</td><td class="cm-num cm-texto-3">indisponível</td></tr></tbody></table>
+          </div>
+        </div>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>O botão principal do estado vazio ou de erro é a primeira parada depois do cabeçalho.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Carregando: a área fica ocupada (aria-busy) e diz "Carregando ordens de serviço".</li><li>Ao chegar: "23 ordens de serviço".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Ícones dos estados vazios são decorativos; o título diz o estado.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="registro">
+      <h2>Estados do registro</h2>
+      <div class="cm-rolar-x"><table class="cm-tabela-doc"><thead><tr><th>Estado</th><th>O que aparece</th><th>Ação</th></tr></thead><tbody>
+        <tr><td>Carregando</td><td>Esqueleto do cabeçalho com os destaques e das três colunas; a trilha já mostra o nome que veio da lista.</td><td>—</td></tr>
+        <tr><td>Não existe</td><td>"O chamado 48777 não existe. Confira o número; os chamados de setembro vão de 47120 a 48230."</td><td>Buscar no Ctrl K</td></tr>
+        <tr><td>Na lixeira</td><td>"O chamado 48190 foi excluído por Juliana Reis hoje às 09:02. Fica na lixeira até 31/10."</td><td>Restaurar (se pode) ou Pedir para restaurar</td></tr>
+        <tr><td>Arquivado</td><td>Faixa "Arquivado por… em…", tudo só leitura.</td><td>Desarquivar</td></tr>
+        <tr><td>Sem permissão</td><td>"Este contrato é da carteira de Carla Mendes. Você vê o resumo; para editar, peça acesso."</td><td>Pedir acesso</td></tr>
+        <tr><td>Em edição por outra pessoa</td><td>Avatar no cabeçalho: "Carla Mendes está editando a seção Contrato e cobrança".</td><td>Seguir editando outras seções; conflito resolvido ao salvar</td></tr>
+        <tr><td>Bloqueado por processo</td><td>"Fechamento de setembro em andamento. Valores ficam só leitura até 18:00."</td><td>Ver o fechamento</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="cm-doc-sec" id="offline">
+      <h2>Sem conexão</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>A internet da administradora cai no meio do atendimento. Ninguém perde a mensagem que estava escrevendo nem acha que enviou o que não saiu.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Faixa abaixo da moldura: "Sem conexão desde 10:14".</li><li>Ler continua; o que foi carregado fica na tela.</li><li>Mensagem enviada fica "na fila", com relógio, e sai sozinha quando a conexão volta.</li><li>Salvar formulário: a barra diz "Sem conexão: vamos salvar assim que voltar" e guarda no navegador.</li><li>Voltou: a faixa vira toast "Conectado de novo. 2 mensagens enviadas".</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o WhatsApp mostra o relógio na mensagem que ainda não saiu, o Gmail avisa "sem conexão, tentando em 5 s" e o Google Docs deixa continuar e sincroniza depois. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Conversa com Marina Costa</b><span class="cm-empurra"><button class="cm-botao cm-botao--p" type="button" id="off-alt">Cair a conexão</button></span></div><div class="cm-palco__corpo cm-palco__corpo--sem-pad">
+        <div class="cm-faixa cm-faixa--perigo" id="off-faixa" hidden role="status"><i data-i="sem-wifi"></i><span class="cm-faixa__texto"><b>Sem conexão desde 10:14.</b> Você pode continuar lendo e escrevendo; o que enviar sai quando a conexão voltar.</span><button class="cm-botao cm-botao--p" type="button" data-q2-toast="Tentando conectar.|info">Tentar agora</button></div>
+        <div class="cm-conversa offline-comp" id="off-conv" style="min-height:160px"><div class="cm-bolha cm-bolha--entrada">A Hidrotec já chegou? <span class="cm-bolha__meta">10:12</span></div></div>
+        <div class="cm-compositor"><div class="cm-compositor__caixa" style="margin-top:10px"><textarea aria-label="Mensagem" id="off-t" data-q2-ignora>Chegaram às 10:05, estão na garagem agora.</textarea></div><div class="cm-compositor__barra"><span class="cm-cresce"></span><button class="cm-botao cm-botao--principal" type="button" id="off-env">Enviar</button></div></div>
+      </div></div>
+    </section>
+
+    <section class="cm-doc-sec" id="sessao">
+      <h2>Sessão expirando</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>A sessão vence por segurança (8 horas, ou 1 hora para superadmin) sem jogar fora uma ata pela metade.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Dois minutos antes: diálogo com contagem "Sua sessão termina em 1:59".</li><li>Continuar conectado renova; qualquer tecla na página também conta como atividade.</li><li>Se venceu com alteração não salva: entrar de novo no próprio diálogo, sem sair da página; a alteração continua.</li><li>Se venceu sem nada pendente: tela de entrada que volta para o mesmo endereço.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o WCAG 2.2.1 pede aviso e chance de estender antes de tempo limite, e o Microsoft 365 e o Salesforce pedem a senha de novo num diálogo sem perder a página. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__corpo cm-linha" style="gap:8px"><button class="cm-botao" type="button" id="ss-abrir">Simular aviso de 2 minutos</button><button class="cm-botao" type="button" data-q2-modal="ss-venceu">Simular sessão vencida com alteração</button></div></div>
+    </section>
+
+    <section class="cm-doc-sec" id="redacao">
+      <h2>Redação</h2>
+      <p>O GACO fala como uma colega experiente da administradora: direto, sem jargão de sistema, com o nome das coisas do condomínio. Frase curta, verbo no começo do botão, número sempre que ajudar.</p>
+      <div class="cm-rolar-x"><table class="cm-tabela-doc redacao"><thead><tr><th>Caso</th><th>Escreva</th><th>Não escreva</th></tr></thead><tbody>
+        <tr><td>Botão</td><td>Criar OS · Salvar seção · Mover para Renovação</td><td>Confirmar · OK · Submeter</td></tr>
+        <tr><td>Toast</td><td>Contrato salvo. Abrindo 15 de 63.</td><td>Operação realizada com sucesso!</td></tr>
+        <tr><td>Erro de campo</td><td>O CNPJ tem 14 dígitos. Falta 1.</td><td>Campo inválido</td></tr>
+        <tr><td>Erro de sistema</td><td>Não foi possível carregar as OS. O resto do sistema funciona.</td><td>Ops! Algo deu errado :(</td></tr>
+        <tr><td>Vazio</td><td>Nenhuma OS com estes filtros. Sem o fornecedor há 6.</td><td>Nenhum registro encontrado</td></tr>
+        <tr><td>Confirmação</td><td>Excluir o contrato CT-2025-0033? Vão junto 2 aditivos e 14 boletos.</td><td>Tem certeza que deseja continuar?</td></tr>
+        <tr><td>Prazo</td><td>Atenção: responde em 6 min</td><td>SLA: 00:06:00 restante</td></tr>
+        <tr><td>Data</td><td>hoje às 09:02 · ontem · 29/09 · 14/01/2027</td><td>2026-09-29T09:02:00Z</td></tr>
+        <tr><td>Dinheiro</td><td>R$ 4.380,00 · R$ 4.380,00 por mês</td><td>4380 · BRL 4,380.00</td></tr>
+        <tr><td>Pessoa</td><td>Carla Mendes salvou este cliente às 14:31</td><td>Usuário 2187 atualizou o registro</td></tr>
+        <tr><td>Permissão</td><td>Quem libera é Diego Martins.</td><td>Acesso negado (403)</td></tr>
+      </tbody></table></div>
+      <ul class="cm-doc-lista">
+        <li>Sem caixa alta, sem ponto de exclamação, sem emoji, sem "por favor" em erro.</li>
+        <li>Plural certo: "1 alteração", "2 alterações"; "1 OS", "3 OS".</li>
+        <li>Estado sempre em palavra que a pessoa usaria: "Aguardando fornecedor", não "Pendente_externo".</li>
+        <li>Mesma palavra do botão ao toast: Arquivar → "arquivado"; Restaurar → "restaurado".</li>
+      </ul>
+    </section>
+  </div>
+</main>
+<div class="cm-sobreposicao" id="ss-aviso" hidden data-q2-fixo>
+  <div class="cm-modal cm-modal--p" role="alertdialog" aria-modal="true" aria-labelledby="ss-t" aria-describedby="ss-d">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="ss-t">Sua sessão termina em <span id="ss-tempo">2:00</span><span class="cm-modal__sub" id="ss-d">Por segurança, o GACO sai sozinho depois de 8 horas. A ata que você está escrevendo está guardada como rascunho.</span></h2></div>
+    <div class="cm-modal__corpo"><div class="cm-barra-tempo" aria-hidden="true"><i id="ss-barra" style="width:100%"></i></div></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-fechar data-q2-toast="Você saiu. O rascunho fica guardado por 30 dias.|info">Sair agora</button><button class="cm-botao cm-botao--principal" type="button" data-q2-fechar data-q2-foco data-q2-toast="Sessão renovada por mais 8 horas.|sucesso">Continuar conectado</button></div>
+  </div>
+</div>
+<div class="cm-sobreposicao" id="ss-venceu" hidden data-q2-fixo>
+  <div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="sv-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="sv-t">Entre de novo para salvar<span class="cm-modal__sub">Sua sessão venceu às 18:02. As 3 alterações no contrato CT-2024-0187 continuam na tela.</span></h2></div>
+    <div class="cm-modal__corpo cm-pilha">
+      <div class="cm-pessoa"><span class="cm-avatar cm-avatar--m cm-avatar--3">RL</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Rafael Lima</span><span class="cm-pessoa__sub">rafael.lima@administradoraalpha.com.br</span></span></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="sv-s">Senha</label><div class="cm-entrada cm-entrada--senha"><input id="sv-s" type="password" autocomplete="current-password" data-q2-ignora data-q2-foco><button class="cm-entrada__acao" type="button" aria-label="Mostrar senha"><i data-i="ver"></i></button></div></div>
+    </div>
+    <div class="cm-modal__pe"><span class="cm-modal__pe-esq"><a class="cm-link" href="#">Entrar com outra conta</a></span><button class="cm-botao cm-botao--principal" type="button" data-q2-fechar data-q2-toast="Você entrou de novo. As 3 alterações continuam aqui, prontas para salvar.|sucesso">Entrar e continuar</button></div>
+  </div>
+</div>
+<script>
+(function(){
+  var d=document,off=false;
+  d.getElementById('off-alt').onclick=function(){off=!off;d.getElementById('off-faixa').hidden=!off;this.textContent=off?'Voltar a conexão':'Cair a conexão';
+    if(!off){var q=d.querySelectorAll('#off-conv .is-fila');q.forEach(function(b){b.classList.remove('is-fila');b.querySelector('.cm-bolha__meta').innerHTML='10:16'+cmIcone('marcar')});cmQ2.toast('Conectado de novo.'+(q.length?' '+(q.length===1?'1 mensagem enviada.':q.length+' mensagens enviadas.'):''),'sucesso')}};
+  d.getElementById('off-env').onclick=function(){var t=d.getElementById('off-t');if(!t.value.trim()) return;d.getElementById('off-conv').insertAdjacentHTML('beforeend','<div class="cm-bolha cm-bolha--saida'+(off?' is-fila':'')+'">'+t.value.replace(/</g,'&lt;')+' <span class="cm-bolha__meta">'+(off?'na fila'+cmIcone('pendente','','Na fila, sai quando a conexão voltar'):'10:15'+cmIcone('marcar'))+'</span></div>');t.value='';if(off) cmQ2.toast('Sem conexão: a mensagem sai quando voltar.','aviso')};
+  var timer;d.getElementById('ss-abrir').onclick=function(){var s=120;cmQ2.abrirModal('ss-aviso',this);clearInterval(timer);
+    timer=setInterval(function(){s--;d.getElementById('ss-tempo').textContent=Math.floor(s/60)+':'+(s%60<10?'0':'')+(s%60);d.getElementById('ss-barra').style.width=(s/120*100)+'%';if(s<=0||d.getElementById('ss-aviso').hidden) clearInterval(timer)},1000)};
+})();
+</script>
+</body>
+</html>

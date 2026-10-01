@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentos gerados</title>
+<meta name="description" content="Documentos que o GACO gera na marca do cliente: e-mail transacional, boleto em PDF, balancete, ata de assembleia, certificado, proposta e recibo, com a tipografia de documento da V1 (serifa) e carimbos.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/doc.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .dg-pagina{max-width:1376px;margin:0 auto;padding:24px 32px 64px}
+  @media (max-width:639px){.dg-pagina{padding:16px 16px 48px}}
+  .dg-mesa{background:var(--sup-3);padding:32px 16px;border:var(--borda-2);border-radius:var(--raio-3)}
+  @media (max-width:639px){.dg-mesa{padding:12px 0;border-radius:0;border-left:0;border-right:0;margin:0 -16px}}
+  .dg-ferr{display:flex;gap:8px;justify-content:flex-end;max-width:794px;margin:0 auto 10px;flex-wrap:wrap}
+  .dg-dois{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+  @media (max-width:1100px){.dg-dois{grid-template-columns:minmax(0,1fr)}}
+  .lc-folha-a4 .dg-sub{font:12px/17px var(--fonte-ui);color:#4A524E;margin-top:4px}
+  .lc-folha-a4 .dg-res{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid #1B2023;margin:16px 0;font-family:var(--fonte-ui)}
+  .lc-folha-a4 .dg-res div{padding:8px 10px;border-right:1px solid #C6CCC6}
+  .lc-folha-a4 .dg-res div:last-child{border-right:0}
+  .lc-folha-a4 .dg-res small{display:block;font-size:11px;color:#4A524E}
+  .lc-folha-a4 .dg-res b{font-size:15px;font-variant-numeric:tabular-nums}
+  @media (max-width:639px){.lc-folha-a4 .dg-res{grid-template-columns:1fr 1fr}.lc-folha-a4 .dg-res div:nth-child(2){border-right:0}.lc-folha-a4 .dg-res div:nth-child(-n+2){border-bottom:1px solid #C6CCC6}}
+  .lc-folha-a4 .lc-tabela-cont{overflow-x:auto;border:0;background:none}
+</style>
+</head>
+<body>
+<a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="lc-doc-cab">
+  <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
+  <nav aria-label="Documentação"><a href="40-portal.html">Portal</a><a href="41-publicas.html">Públicas, acesso</a><a href="41b-publicas.html">Públicas, site</a><a href="41c-publicas.html">Públicas, status</a><a href="50-superadmin.html">Superadmin</a><a href="60-celular.html">Celular</a><a href="61-documentos-gerados.html" aria-current="page">Documentos</a></nav>
+  <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
+</header>
+<main id="conteudo" class="dg-pagina">
+<p class="lc-legenda" style="margin-bottom:8px">Documento gerado é o único lugar onde a serifa (Source Serif 4) escreve o corpo do texto. A folha é branca nos dois temas, porque é o que sai na impressora e no PDF. Marca do cliente só no timbre e no botão do e-mail; carimbos só em estado documental. Troque a marca com <code>?marca=orbita</code>.</p>
+
+<!-- E-MAIL -->
+<section class="lc-sobre-tela" id="email" aria-label="Sobre o e-mail transacional">
+  <div class="lc-sobre-tela__nome"><b>E-mail transacional na marca do cliente</b><span>Boleto disponível e chamado respondido. 600 px, funciona sem imagem e em modo escuro do Gmail.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>O morador lê no celular, entende em uma linha o que é e o que fazer, e age num botão. Nada de "não responda" sem saída: o rodapé diz onde falar.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Remetente: nome da administradora, e-mail do domínio dela (SPF/DKIM).</li><li>Assunto com o que e o valor; pré-cabeçalho com o vencimento.</li><li>Título em serifa (é documento), dados em tabela, um botão.</li><li>Rodapé: por que recebeu, como mudar o canal, endereço.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>os e-mails da Nubank e da Enel têm uma ação só e o valor no assunto; o guia da Litmus recomenda 600 px, botão em HTML (não imagem) e texto alternativo; e o Código de Defesa do Consumidor exige que a cobrança identifique o credor.</p></div>
+</section>
+<div class="dg-dois">
+  <div class="dg-mesa"><div class="lc-email__env"><b>De:</b> Administradora Alpha &lt;avisos@alpha.com.br&gt;<br><b>Assunto:</b> Boleto de outubro disponível, R$ 1.284,37<br><b>Para:</b> ana.souza@gmail.com</div>
+    <div class="lc-email"><div class="lc-email__topo"><span class="lc-topo-portal__logo" data-marca-sigla>A</span><span data-marca-nome>Administradora Alpha</span></div>
+      <div class="lc-email__corpo"><h1>Seu boleto de outubro está disponível</h1><p>Ana, o condomínio do Bloco B, apto 1204, do Cond. Parque das Águas vence em 10/10/2026.</p>
+        <table class="lc-email__dados"><tr><td>Valor</td><td>R$ 1.284,37</td></tr><tr><td>Vencimento</td><td>10/10/2026</td></tr><tr><td>Inclui</td><td>Obra da fachada, 4 de 10</td></tr></table>
+        <a class="lc-email__btn" href="40c-portal-boletos.html#boleto">Pagar com Pix</a><p style="font-size:13px;color:#4A524E">O PDF do boleto está anexado. Linha digitável: 34191.79001 01043.510047 91020.150008 1 96210000128437</p></div>
+      <div class="lc-email__rodape">Você recebe este e-mail porque é condômina do Cond. Parque das Águas. Dúvidas: responda este e-mail ou chame no WhatsApp (11) 3045-2210. <a href="#">Prefiro só WhatsApp</a>.<br>Administradora Alpha Ltda., Av. Brigadeiro Faria Lima, 2.232, São Paulo. Tecnologia GACO.</div></div></div>
+  <div class="dg-mesa"><div class="lc-email__env"><b>De:</b> Administradora Alpha &lt;suporte@alpha.com.br&gt;<br><b>Assunto:</b> Chamado 4.812 resolvido: vazamento no teto do banheiro<br><b>Para:</b> ana.souza@gmail.com</div>
+    <div class="lc-email"><div class="lc-email__topo"><span class="lc-topo-portal__logo" data-marca-sigla>A</span><span data-marca-nome>Administradora Alpha</span></div>
+      <div class="lc-email__corpo"><h1>Seu chamado foi resolvido</h1><p>Juliana Reis escreveu: "A Hidráulica Souza trocou a prumada entre o 12º e o 13º andar. A mancha deve secar em 3 a 5 dias; se voltar a pingar, responda este e-mail."</p>
+        <p style="margin-top:16px"><span class="lc-carimbo lc-carimbo--pago" style="--carimbo-tinta:#1E6B45">Resolvido<small>Chamado 4.812, 01/10/26 11:40</small></span></p>
+        <p style="margin-top:16px"><b>Isso resolveu?</b></p><p><a class="lc-email__btn" style="margin:8px 8px 0 0" href="#">Sim, resolveu</a><a href="#" style="color:#23408E;font-weight:600">Não, reabrir</a></p></div>
+      <div class="lc-email__rodape">Chamado aberto pelo portal em 01/10/2026, 08:14. <a href="#">Ver a conversa inteira</a>.<br>Administradora Alpha Ltda. Tecnologia GACO.</div></div></div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Ordem do código igual à visual; tabela de dados com <code>role="presentation"</code> no e-mail real.</p></div><div><h3>O que é anunciado</h3><p><code>lang="pt-BR"</code> no e-mail; título como h1; botão é link com texto real ("Pagar com Pix").</p></div><div><h3>Nome do que é só ícone</h3><p>Logo com <code>alt</code> "Administradora Alpha". Sem ícones soltos.</p></div></div>
+
+<!-- BOLETO -->
+<section class="lc-sobre-tela" id="boleto" aria-label="Sobre o boleto em PDF">
+  <div class="lc-sobre-tela__nome"><b>Boleto em PDF</b><span>Recibo do pagador em cima, ficha de compensação embaixo (padrão Febraban), Pix no meio.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Quem imprime paga no caixa; quem tem celular lê o QR. A composição explica o valor no próprio papel.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Timbre do condomínio e da administradora.</li><li>Resumo: valor, vencimento, QR Pix.</li><li>Composição com dupla sublinha só no total.</li><li>Linha pontilhada e ficha de compensação com código de barras.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o leiaute Febraban da ficha de compensação é obrigatório para o banco ler; o boleto híbrido (Pix + código de barras) é o que Itaú e Bradesco já emitem; e a dupla sublinha é o signo contábil de total da V1.</p></div>
+</section>
+<div class="dg-mesa"><div class="dg-ferr"><button class="lc-btn lc-btn--p" type="button" onclick="window.print()"><i data-i="imprimir"></i>Imprimir</button><button class="lc-btn lc-btn--p" type="button"><i data-i="baixar"></i>Baixar PDF</button></div>
+<article class="lc-folha-a4" aria-label="Boleto de outubro">
+  <div class="lc-doc-timbre"><span class="lc-doc-timbre__logo" data-marca-sigla>A</span><div class="lc-doc-timbre__txt"><b>Condomínio Parque das Águas</b>CNPJ 12.345.678/0001-90. Rua Ministro Jesuíno Cardoso, 412, São Paulo, SP<br>Administrado por <span data-marca-nome>Administradora Alpha</span></div><div class="lc-doc-timbre__num">Boleto<b>2026.10.1204</b>Competência 10/2026</div></div>
+  <h1>Condomínio de outubro de 2026</h1>
+  <p class="dg-sub">Pagador: Ana Souza, CPF •••.482.318-••. Unidade: Bloco B, apto 1204. Fração ideal 0,8333%.</p>
+  <div style="display:flex;gap:24px;align-items:center;margin:20px 0;flex-wrap:wrap"><span class="lc-passe__qr" role="img" aria-label="QR Code Pix" style="width:120px;height:120px"></span><div style="font-family:var(--fonte-ui)"><div style="font-size:12px;color:#4A524E">Valor</div><div style="font:600 28px/34px var(--fonte-ui)">R$ 1.284,37</div><div style="font-size:13px;margin-top:4px">Vencimento <b>10/10/2026</b>. Após: multa de 2% e juros de 1% ao mês.</div><div style="font-size:12px;color:#4A524E;margin-top:6px">Pague com Pix pelo QR ou pelo código de barras abaixo.</div></div></div>
+  <h2>Composição</h2>
+  <table><thead><tr><th>Item</th><th>Base</th><th class="lc-num">Valor</th></tr></thead><tbody><tr><td>Taxa ordinária</td><td>0,8333% de R$ 131.570,00</td><td class="lc-num">R$ 1.096,40</td></tr><tr><td>Fundo de reserva</td><td>10% da ordinária</td><td class="lc-num">R$ 109,64</td></tr><tr><td>Obra da fachada, parcela 4 de 10</td><td>AGE de 12/05/2026</td><td class="lc-num">R$ 78,33</td></tr></tbody><tfoot><tr><td colspan="2">Total</td><td class="lc-num"><span class="lc-total">R$ 1.284,37</span></td></tr></tfoot></table>
+  <div class="lc-ficha-comp" aria-label="Ficha de compensação">
+    <div class="lc-ficha-comp__linha"><b>Banco Itaú</b><b>341-7</b><b style="font-family:var(--fonte-cod);letter-spacing:.02em">34191.79001 01043.510047 91020.150008 1 96210000128437</b></div>
+    <div class="lc-ficha-comp__grade"><div><small>Local de pagamento</small>Pagável em qualquer banco ou por Pix</div><div><small>Vencimento</small><b>10/10/2026</b></div><div><small>Beneficiário</small>Cond. Parque das Águas, CNPJ 12.345.678/0001-90</div><div><small>Agência / código do beneficiário</small>0104 / 35100-4</div><div><small>Pagador</small>Ana Souza, Bloco B, apto 1204</div><div><small>(=) Valor do documento</small><b>R$ 1.284,37</b></div></div>
+    <div class="lc-codigo-barras" role="img" aria-label="Código de barras do boleto"></div>
+  </div>
+  <div class="lc-doc-rodape"><span>Emitido em 25/09/2026 pela Administradora Alpha</span><span>Verifique em parquedasaguas.alpha.com.br/verificar, código BOL-2026-10-1204</span></div>
+</article></div>
+
+<!-- BALANCETE -->
+<section class="lc-sobre-tela" id="balancete" aria-label="Sobre o balancete">
+  <div class="lc-sobre-tela__nome"><b>Balancete mensal</b><span>Gerado da prestação de contas; carimbo de aprovação do conselho.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Um documento que o condômino entende e que o contador aceita: resumo em quatro números, receitas e despesas por grupo, saldo e fundos.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Timbre, mês e situação (carimbo do conselho).</li><li>Resumo do mês em 4 caixas.</li><li>Receitas e despesas com subtotal; total com dupla sublinha.</li><li>Assinaturas da síndica e do conselho, código de verificação.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o balancete da Lello e o da Superlógica são os que o síndico já recebe (grupos de despesa e saldo de fundos); e a norma contábil NBC T 10.21 orienta a separar fundos do caixa ordinário.</p></div>
+</section>
+<div class="dg-mesa"><article class="lc-folha-a4" aria-label="Balancete de setembro">
+  <div class="lc-doc-timbre"><span class="lc-doc-timbre__logo" data-marca-sigla>A</span><div class="lc-doc-timbre__txt"><b>Condomínio Parque das Águas</b>CNPJ 12.345.678/0001-90<br>Administrado por <span data-marca-nome>Administradora Alpha</span></div><div class="lc-doc-timbre__num">Balancete<b>2026/09</b>Página 1 de 6</div></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap"><div><h1>Balancete de setembro de 2026</h1><p class="dg-sub">Período de 01/09/2026 a 30/09/2026. Regime de caixa.</p></div><span class="lc-carimbo lc-carimbo--aprovado">Aprovado com ressalvas<small>Conselho fiscal, 02/10/26</small></span></div>
+  <div class="dg-res"><div><small>Saldo anterior</small><b>R$ 210.255,66</b></div><div><small>Receitas</small><b>R$ 132.418,20</b></div><div><small>Despesas</small><b>R$ 127.903,55</b></div><div><small>Saldo em 30/09</small><b>R$ 214.770,31</b></div></div>
+  <h2>Receitas</h2>
+  <table><thead><tr><th>Conta</th><th class="lc-num">Valor</th></tr></thead><tbody><tr><td>Taxas ordinárias recebidas</td><td class="lc-num">R$ 120.930,40</td></tr><tr><td>Fundo de reserva</td><td class="lc-num">R$ 10.384,52</td></tr><tr><td>Multas e juros</td><td class="lc-num">R$ 643,28</td></tr><tr><td>Reservas de áreas comuns</td><td class="lc-num">R$ 460,00</td></tr></tbody><tfoot><tr><td>Total de receitas</td><td class="lc-num"><span class="lc-subtotal">R$ 132.418,20</span></td></tr></tfoot></table>
+  <h2>Despesas</h2>
+  <table><thead><tr><th>Grupo</th><th class="lc-num">Valor</th></tr></thead><tbody><tr><td>Folha e encargos</td><td class="lc-num">R$ 67.912,40</td></tr><tr><td>Consumo (água, energia, gás)</td><td class="lc-num">R$ 29.118,72</td></tr><tr><td>Manutenção preventiva</td><td class="lc-num">R$ 11.940,00</td></tr><tr><td>Manutenção corretiva</td><td class="lc-num">R$ 6.582,43</td></tr><tr><td>Administração e honorários</td><td class="lc-num">R$ 9.850,00</td></tr><tr><td>Bancárias e diversas</td><td class="lc-num">R$ 2.500,00</td></tr></tbody><tfoot><tr><td>Total de despesas</td><td class="lc-num"><span class="lc-subtotal">R$ 127.903,55</span></td></tr><tr><td>Resultado do mês</td><td class="lc-num"><span class="lc-total">R$ 4.514,65</span></td></tr></tfoot></table>
+  <div class="lc-doc-assinaturas"><div><b>Marina Costa</b>Síndica</div><div><b>Cláudia Nunes</b>Conselho fiscal</div><div><b>Antônio Ribeiro</b>Conselho fiscal</div></div>
+  <div class="lc-doc-rodape"><span>Gerado em 30/09/2026, 18:40</span><span>Código BAL-2026-09-PQA-41K8</span></div>
+</article></div>
+
+<!-- ATA -->
+<section class="lc-sobre-tela" id="ata" aria-label="Sobre a ata">
+  <div class="lc-sobre-tela__nome"><b>Ata de assembleia</b><span>Texto corrido em serifa, deliberações numeradas como na pauta, registro em cartório como carimbo.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>A ata que vai ao cartório sai pronta do sistema, com a votação online contada e a lista de presença anexa, e o condômino a reconhece como documento oficial.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Cabeçalho com data, local, chamada e quórum.</li><li>Deliberações na ordem da pauta, com o resultado em números.</li><li>Assinaturas do presidente e do secretário da mesa.</li><li>Carimbo de registro depois do cartório; código de verificação no rodapé.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o modelo de ata dos cartórios de títulos e documentos de São Paulo pede texto corrido e assinatura da mesa; o art. 1.352 do Código Civil exige o quórum escrito; e o carimbo é a forma que o síndico reconhece de "registrado".</p></div>
+</section>
+<div class="dg-mesa"><article class="lc-folha-a4" aria-label="Ata da assembleia">
+  <div class="lc-doc-timbre"><span class="lc-doc-timbre__logo" data-marca-sigla>A</span><div class="lc-doc-timbre__txt"><b>Condomínio Parque das Águas</b>CNPJ 12.345.678/0001-90</div><div class="lc-doc-timbre__num">Ata<b>AGE-2026-05</b>2 páginas</div></div>
+  <h1 style="text-align:center;font-size:20px;line-height:28px">Ata da assembleia geral extraordinária do Condomínio Parque das Águas, realizada em 12 de maio de 2026</h1>
+  <p style="margin-top:18px">Aos doze dias do mês de maio de dois mil e vinte e seis, às 20h, em segunda chamada, no salão de festas do condomínio e por videoconferência, reuniram-se os condôminos conforme lista de presença anexa, representando 76,7% das frações ideais. Assumiu a presidência o Sr. Antônio Ribeiro, que convidou a Sra. Juliana Reis, da Administradora Alpha, para secretariar os trabalhos.</p>
+  <p><b>1. Obra de recuperação da fachada.</b> Apresentados os três orçamentos, foi aprovada a proposta da Fachadas Paulista Engenharia, no valor de R$ 939.960,00, a ser rateada em 10 parcelas mensais pela fração ideal, por 65 votos a favor, 20 contra e 7 abstenções, atingido o quórum de dois terços.</p>
+  <p><b>2. Assuntos gerais.</b> Sem deliberação. Nada mais havendo, o presidente encerrou a assembleia às 21h47, e eu, secretária, lavrei a presente ata, que vai assinada por mim e pelo presidente.</p>
+  <div class="lc-doc-assinaturas"><div><b>Antônio Ribeiro</b>Presidente da mesa</div><div><b>Juliana Reis</b>Secretária da mesa</div></div>
+  <div style="display:flex;gap:20px;align-items:center;margin-top:28px;flex-wrap:wrap"><span class="lc-carimbo lc-carimbo--aprovado lc-carimbo--g">Aprovado em assembleia<small>12/05/2026, 2/3 das frações</small></span><span class="lc-carimbo lc-carimbo--emitido">Registrada<small>2º RTD de São Paulo, 20/05/26, nº 1.204.877</small></span></div>
+  <div class="lc-doc-rodape"><div class="lc-doc-autentica"><span class="lc-passe__qr" role="img" aria-label="QR de verificação"></span><span>Verifique a autenticidade em<br>parquedasaguas.alpha.com.br/verificar<br>Código ATA-2026-0512-PQA</span></div></div>
+</article></div>
+
+<!-- CERTIFICADO -->
+<section class="lc-sobre-tela" id="certificado" aria-label="Sobre o certificado">
+  <div class="lc-sobre-tela__nome"><b>Certificado da Academy</b><span>Paisagem, filete duplo, código e QR de verificação. Sem medalha, sem selo dourado.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Um certificado que o síndico mostra com orgulho e que qualquer um confere em segundos pelo código.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Emitido ao fechar a disciplina com aprovação.</li><li>Nome, curso, carga horária, período e nota.</li><li>Assinatura da coordenação e QR para a página de verificação.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>os certificados da USP e do Coursera trazem carga horária e código verificável; a crítica C1 pediu não repetir a assinatura como carimbo, então aqui a assinatura aparece uma vez.</p></div>
+</section>
+<div class="dg-mesa"><article class="lc-cert-folha" aria-label="Certificado de Marina Costa">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap"><div class="lc-linha"><span class="lc-doc-timbre__logo" data-marca-sigla>A</span><span style="font:600 14px/18px var(--fonte-ui)">Academy <span data-marca-nome>Administradora Alpha</span></span></div><span style="font:12px/17px var(--fonte-cod);color:#4A524E">ACAD-2026-7F3K-91QD</span></div>
+  <p style="margin-top:6%;font:500 13px/18px var(--fonte-ui);color:#4A524E">Certificamos que</p>
+  <span class="lc-cert-folha__nome">Marina Costa</span>
+  <p>concluiu a disciplina <b>Legislação condominial</b>, do curso de <b>Formação de síndicos</b>, turma 2026.1, com carga horária de 16 horas, entre 03/02 e 27/06/2026, com nota final 8,9 e frequência de 100%.</p>
+  <div class="lc-cert-folha__pe"><div class="lc-doc-assinaturas" style="margin-top:0;min-width:220px"><div><b>Dra. Helena Prado</b>Professora responsável</div></div><div class="lc-doc-autentica"><span class="lc-passe__qr" role="img" aria-label="QR de verificação"></span><span>São Paulo, 27/06/2026<br>Verifique em alpha.com.br/verificar</span></div></div>
+</article></div>
+
+<!-- PROPOSTA E RECIBO -->
+<section class="lc-sobre-tela" id="recibo" aria-label="Sobre proposta e recibo">
+  <div class="lc-sobre-tela__nome"><b>Proposta em PDF e recibo de pagamento</b><span>A proposta assinada e o recibo que o síndico guarda.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>A proposta aceita vira documento com o aceite registrado; o recibo prova o pagamento com carimbo, data e forma.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Proposta: timbre, escopo, valor com dupla sublinha, aceite com nome, CPF, data e IP.</li><li>Recibo: quem pagou, o quê, quanto (por extenso), carimbo "Pago".</li><li>Os dois com código de verificação.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o PandaDoc e o Clicksign anexam a trilha do aceite no fim do PDF; o recibo com valor por extenso é o modelo que o comércio brasileiro usa e que o contador pede.</p></div>
+</section>
+<div class="dg-dois">
+  <div class="dg-mesa"><article class="lc-folha-a4" aria-label="Proposta" style="padding:40px 40px 32px">
+    <div class="lc-doc-timbre"><span class="lc-doc-timbre__logo" data-marca-sigla>A</span><div class="lc-doc-timbre__txt"><b data-marca-nome>Administradora Alpha</b>CNPJ 08.412.337/0001-55</div><div class="lc-doc-timbre__num">Proposta<b>PR-2026-0193</b></div></div>
+    <h1 style="font-size:20px;line-height:26px">Administração do Edifício Mirante do Ibirapuera</h1>
+    <p class="dg-sub">64 unidades. Validade até 12/10/2026.</p>
+    <p style="margin-top:14px">Propomos a administração completa do condomínio: cobrança, folha, prestação de contas mensal, assembleias e portal dos moradores, com gerente dedicado e uma visita por mês.</p>
+    <table style="margin-top:14px"><tbody><tr><td>Plano Completo, mensal</td><td class="lc-num">R$ 2.880,00</td></tr><tr><td>Implantação</td><td class="lc-num">Isenta</td></tr></tbody><tfoot><tr><td>Total no primeiro ano</td><td class="lc-num"><span class="lc-total">R$ 34.560,00</span></td></tr></tfoot></table>
+    <div style="margin-top:20px"><span class="lc-carimbo lc-carimbo--aprovado">Aprovado<small>Roberto Matos, 02/10/26 15:41</small></span></div>
+    <p class="dg-sub" style="margin-top:8px">Aceite eletrônico: Roberto Matos, CPF •••.318.447-••, síndico. IP 189.44.12.7. Código enviado a roberto.matos@gmail.com.</p>
+  </article></div>
+  <div class="dg-mesa"><article class="lc-folha-a4" aria-label="Recibo" style="padding:40px 40px 32px">
+    <div class="lc-doc-timbre"><span class="lc-doc-timbre__logo" data-marca-sigla>A</span><div class="lc-doc-timbre__txt"><b>Condomínio Parque das Águas</b>CNPJ 12.345.678/0001-90</div><div class="lc-doc-timbre__num">Recibo<b>REC-2026-09-1204</b></div></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap"><h1 style="font-size:22px">Recibo</h1><span class="lc-carimbo lc-carimbo--pago lc-carimbo--g">Pago<small>Pix, 08/09/26 07:51</small></span></div>
+    <p style="margin-top:14px">Recebemos de <b>Ana Souza</b>, unidade Bloco B, apto 1204, a importância de <b>R$ 1.284,37</b> (um mil, duzentos e oitenta e quatro reais e trinta e sete centavos), referente ao condomínio de setembro de 2026.</p>
+    <table style="margin-top:14px"><tbody><tr><td>Forma</td><td>Pix, ID E1234567820260908075112345</td></tr><tr><td>Boleto</td><td>2026.09.1204</td></tr></tbody></table>
+    <div class="lc-doc-assinaturas" style="margin-top:28px"><div><b>Administradora Alpha</b>Por procuração do condomínio</div></div>
+    <div class="lc-doc-rodape"><span>São Paulo, 08/09/2026</span><span>Código REC-2026-09-1204-X7</span></div>
+  </article></div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Imprimir, Baixar PDF; os documentos são leitura. No PDF real, ordem de leitura marcada (PDF/UA).</p></div><div><h3>O que é anunciado</h3><p>Cada folha é <code>article</code> com nome ("Boleto de outubro"). Carimbos lidos como texto ("Pago, Pix, 08/09/26 07:51").</p></div><div><h3>Nome do que é só ícone</h3><p>QR: "QR Code Pix" ou "QR de verificação". Código de barras: "Código de barras do boleto".</p></div></div>
+
+<!-- NOTIFICAÇÃO E CIRCULAR -->
+<section class="lc-sobre-tela" id="notificacao" aria-label="Sobre notificação e circular">
+  <div class="lc-sobre-tela__nome"><b>Notificação de multa e circular para o elevador</b><span>Gerados pelo portal do síndico e pelos comunicados.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>A notificação cita o fato, o artigo e o histórico, com prazo de defesa; a circular imprime o comunicado em A4 com letra grande para o quadro do elevador.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Notificação: gerada da decisão do síndico; carimbo "Emitido" e, depois, "Ciente" quando a unidade abre.</li><li>Circular: gerada do comunicado; QR leva ao portal para dar ciência.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o art. 1.337 do Código Civil e a jurisprudência pedem direito de defesa antes da multa; o quadro do elevador continua sendo onde o morador idoso lê o aviso, então o QR liga o papel ao registro de ciência.</p></div>
+</section>
+<div class="dg-dois">
+  <div class="dg-mesa"><article class="lc-folha-a4" aria-label="Notificação de multa" style="padding:40px 40px 32px">
+    <div class="lc-doc-timbre"><span class="lc-doc-timbre__logo" data-marca-sigla>A</span><div class="lc-doc-timbre__txt"><b>Condomínio Parque das Águas</b>CNPJ 12.345.678/0001-90</div><div class="lc-doc-timbre__num">Notificação<b>NOT-2026-0388</b></div></div>
+    <h1 style="font-size:20px;line-height:26px">Notificação de multa por infração ao regimento interno</h1>
+    <p class="dg-sub">Para: unidade Bloco B, apto 1104. São Paulo, 01/10/2026.</p>
+    <p style="margin-top:14px">Prezado condômino, em 30/09/2026, das 23h40 à 1h10, foi registrada perturbação do sossego originada desta unidade (ocorrência 0388), em desacordo com o art. 22 do regimento interno.</p>
+    <p>Por se tratar da terceira ocorrência em 30 dias, após orientação em 08/09 e advertência em 24/09, aplica-se a multa prevista no art. 47, no valor de <b>R$ 1.096,40</b>, a ser lançada no boleto de novembro.</p>
+    <p>O condômino pode apresentar defesa por escrito, pelo portal ou na administração, até <b>16/10/2026</b>.</p>
+    <div class="lc-doc-assinaturas" style="margin-top:28px"><div><b>Marina Costa</b>Síndica</div></div>
+    <div style="margin-top:20px"><span class="lc-carimbo lc-carimbo--emitido">Emitido<small>01/10/26 10:12</small></span></div>
+  </article></div>
+  <div class="dg-mesa"><article class="lc-folha-a4" aria-label="Circular para o elevador" style="padding:40px 40px 32px">
+    <div class="lc-doc-timbre"><span class="lc-doc-timbre__logo" data-marca-sigla>A</span><div class="lc-doc-timbre__txt"><b>Condomínio Parque das Águas</b>Circular aos moradores do bloco B</div><div class="lc-doc-timbre__num">Circular<b>CIR-2026-041</b></div></div>
+    <h1 style="font-size:30px;line-height:36px">Falta de água no bloco B na quarta, 08/10, das 8h às 14h</h1>
+    <p style="margin-top:16px;font-size:18px;line-height:28px">Limpeza semestral da caixa d'água pela Hidroclean. Deixe as torneiras fechadas e reserve água para o período. O laudo de potabilidade sai no portal até 15/10.</p>
+    <div class="lc-doc-autentica" style="margin-top:28px"><span class="lc-passe__qr" role="img" aria-label="QR para dar ciência no portal" style="width:96px;height:96px"></span><span style="font-size:14px;line-height:20px">Leia no celular e dê ciência:<br>aponte a câmera para o código.</span></div>
+    <div class="lc-doc-assinaturas" style="margin-top:28px"><div><b>Marina Costa</b>Síndica, 29/09/2026</div></div>
+  </article></div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Leitura em ordem; no PDF, título marcado como cabeçalho.</p></div><div><h3>O que é anunciado</h3><p>Carimbo "Emitido, 01/10/26 10:12" como texto. Prazo de defesa em negrito e por extenso no texto.</p></div><div><h3>Nome do que é só ícone</h3><p>QR: "QR para dar ciência no portal".</p></div></div>
+</main>
+<script>
+document.querySelectorAll(".lc-passe__qr").forEach(function(el){ var h=""; for(var i=0;i<49;i++){ var on=((i*7+(i>>2))%3)!==1; if(i<3||i%7===0||i>45) on=true; h+='<i'+(on?'':' class="v"')+'></i>'; } el.innerHTML=h; });
+</script>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/doc.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

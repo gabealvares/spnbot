@@ -99,7 +99,7 @@ function linha(c){
   var r=PES[c.resp], marc=sel.has(c.id)||todosDoFiltro;
   return '<tr class="p2-linha" data-id="'+c.id+'"'+(marc?' aria-selected="true"':'')+'>'+
     '<td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar '+esc(c.nome)+'"'+(marc?' checked':'')+'><span class="lc-marcar__caixa"></span></label></td>'+
-    '<td><a class="lc-tabela__primaria" href="p2-registro.html?id='+c.id+'">'+esc(c.nome)+'</a><span class="lc-tabela__sub">'+esc(c.sindico)+', '+c.unidades+' unidades</span></td>'+
+    '<td><a class="lc-tabela__primaria" href="p2-registro.html?id='+c.id+'&de=renovacoes">'+esc(c.nome)+'</a><span class="lc-tabela__sub">'+esc(c.sindico)+', '+c.unidades+' unidades</span></td>'+
     '<td data-rot="Número" data-cel-oculta>'+c.id+'</td><td data-cel-oculta>'+c.indice+'</td>'+
     '<td class="lc-num" data-cel-oculta>'+P.moeda(c.valor)+'</td><td class="lc-num" data-rot="Novo valor">'+P.moeda(c.novo)+'</td>'+
     '<td data-rot="Reajuste em">'+c.reajuste+'</td>'+

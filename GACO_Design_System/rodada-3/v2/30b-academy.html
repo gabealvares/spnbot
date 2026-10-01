@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academy: avaliação e documentos</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q4.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q4-icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q4.js" defer></script>
+<style>
+.ab-ent{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;margin-top:12px;align-items:start}
+.ab-rubrica th,.ab-rubrica td{white-space:normal!important;vertical-align:top!important;padding:8px 10px!important;height:auto!important;font-size:12.5px}
+.ab-rubrica td b{display:block;font-variant-numeric:tabular-nums}
+.ab-quiz{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:16px;margin-top:12px;align-items:start}
+.ab-cal{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px}
+.ab-cal th{font-weight:600;color:var(--cm-texto-2);padding:6px;text-align:left;border-bottom:1px solid var(--cm-filete-forte)}
+.ab-cal td{height:92px;vertical-align:top;padding:4px 6px;border:1px solid var(--cm-filete);background:var(--cm-camada-1)}
+.ab-cal td.is-fora{background:transparent;color:var(--cm-texto-3)}
+.ab-cal td.is-hoje .ab-dia{background:var(--cm-texto-1);color:var(--cm-fundo)}
+.ab-dia{display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;border-radius:50%;font-weight:650}
+.ab-ev{display:flex;align-items:center;gap:4px;margin-top:3px;padding:1px 5px;border-left:3px solid var(--c);background:var(--cm-camada-2);font-size:11.5px;line-height:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ab-hist{max-width:980px}
+.ab-cert{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;margin-top:12px;align-items:start}
+@media (max-width:1099px){ .ab-ent,.ab-quiz,.ab-cert{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:699px){ .ab-cal td{height:56px} .ab-ev span{display:none} .ab-ev{padding:0;height:6px} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Academy","tela":"Boletim","papel":"Atendimento","sino":3,"links":{"Portal do aluno":"30-academy.html","Disciplinas":"30-academy.html#t-disciplina","Boletim":"30b-academy.html#t-boletim","Calendário acadêmico":"30b-academy.html#t-calendario","Histórico":"30b-academy.html#t-historico","Certificados":"30b-academy.html#t-certificado","Turmas":"30c-academy-professor.html"}}'></div>
+
+<main id="conteudo" class="cm-doc">
+<header class="cm-doc-capa">
+  <div>
+    <h1>Academy: o lado do aluno, parte 2</h1>
+    <p>Entregar um trabalho com rubrica, fazer um questionário com tempo, ler o boletim com média e frequência, o calendário do semestre, o histórico escolar e o certificado que qualquer pessoa pode verificar.</p>
+    <p class="cm-doc-paginas" style="margin-top:8px">Páginas da Academy: <a href="30-academy.html">Aluno: portal, disciplina, módulos, aula</a> <a href="30b-academy.html" aria-current="page">Aluno: entrega, questionário, boletim, calendário, histórico, certificado</a> <a href="30c-academy-professor.html">Professor e coordenação</a></p>
+  </div>
+  <div data-cm-seletor></div>
+  <nav class="cm-doc-indice" aria-label="Telas desta página">
+    <a href="#t-entrega"><b>30.5</b>Entrega</a><a href="#t-questionario"><b>30.6</b>Questionário</a><a href="#t-boletim"><b>30.7</b>Boletim</a><a href="#t-calendario"><b>30.8</b>Calendário acadêmico</a><a href="#t-historico"><b>30.9</b>Histórico escolar</a><a href="#t-certificado"><b>30.10</b>Certificado verificável</a>
+  </nav>
+</header>
+
+<!-- 30.5 -->
+<section class="cm-doc-tela" id="t-entrega" aria-labelledby="t-ent-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">30.5</span><h2 class="cm-doc-tela__titulo" id="t-ent-h">Entrega de atividade</h2><span class="cm-doc-tela__sub">instruções, rubrica, arquivos e comprovante</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>O aluno sabe exatamente como vai ser avaliado antes de entregar (a rubrica com os pontos de cada critério), anexa os arquivos, declara que o trabalho é dele e recebe um comprovante com número e hora. Depois da correção, a mesma tela mostra a nota por critério e o comentário.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Instruções e rubrica em cima; o envio à direita, sempre visível.</li><li>Arrasta os arquivos; o rascunho fica guardado até enviar.</li><li>O botão Enviar só liga com a declaração de autoria marcada.</li><li>Enviado: comprovante com número, hora e os arquivos; dá para reenviar até o prazo (tentativa 2 de 2).</li><li>Depois do prazo, o envio é aceito como atrasado, com o desconto escrito antes de confirmar.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Canvas mostra a rubrica ao lado do envio e devolve a nota por critério; o Moodle dá o comprovante de envio, que o aluno de faculdade guarda; e o Google Classroom ensinou que o rascunho com arquivos fica salvo até o "Entregar".</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__barra"><span>Estado:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado"><button type="button" aria-pressed="true" data-estado="rascunho">Rascunho</button><button type="button" aria-pressed="false" data-estado="enviado">Enviado</button><button type="button" aria-pressed="false" data-estado="corrigido">Corrigido</button></div></div>
+    <div class="cm-doc-palco__corpo" style="padding-top:12px">
+      <div class="cm-linha cm-linha--quebra"><div class="cm-cresce"><span class="cm-t-legenda">Gestão Financeira de Condomínios, semana 9</span><h1 class="cm-t-registro">Trabalho 2: rateio da obra da fachada</h1></div><dl class="cm-destaques" style="margin:0;border:0"><div><dt>Vale</dt><dd>3,0 na N2</dd></div><div><dt>Prazo</dt><dd>03/10, 23:59</dd></div><div><dt>Tentativas</dt><dd>1 de 2</dd></div></dl></div>
+      <div class="ab-ent">
+        <div class="cm-pilha cm-pilha--6">
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Instruções</h2></header><div class="cm-cartao__corpo cm-leitura" style="font-size:13.5px;line-height:20px">
+            <p>O Cond. Parque das Águas aprovou em assembleia a obra da fachada por R$ 489.528,00 em 10 parcelas. Usando a planilha modelo e a convenção anexa, faça o rateio por fração ideal para as 312 unidades e escreva um parecer de uma página para a síndica.</p>
+            <p>Entregue a planilha (xlsx) e o parecer (pdf). O parecer deve dizer quem paga (proprietário ou inquilino) e como tratar as unidades em acordo.</p></div></section>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Rubrica</h2><span class="cm-t-legenda">3,0 pontos</span></header>
+            <div class="cm-tabela-caixa" style="border:0"><table class="cm-tabela ab-rubrica"><caption class="cm-sr">Rubrica do trabalho 2</caption><thead><tr><th style="width:24%">Critério</th><th>Excelente</th><th>Suficiente</th><th>Insuficiente</th></tr></thead><tbody>
+              <tr><td><b>Cálculo do rateio</b></td><td><b>1,2</b>Soma fecha no centavo, arredondamento explicado</td><td><b>0,8</b>Soma fecha com diferença menor que R$ 1</td><td><b>0,2</b>Usa fração errada ou não fecha</td></tr>
+              <tr><td><b>Base legal</b></td><td><b>0,9</b>Cita convenção, Código Civil e Lei do Inquilinato</td><td><b>0,5</b>Cita uma das três</td><td><b>0</b>Sem base</td></tr>
+              <tr><td><b>Parecer para a síndica</b></td><td><b>0,9</b>Claro, uma página, responde inquilino e acordo</td><td><b>0,5</b>Responde só uma das perguntas</td><td><b>0,1</b>Texto técnico demais ou incompleto</td></tr>
+            </tbody></table></div></section>
+          <section class="cm-cartao" data-estado-painel="corrigido" hidden><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Correção do Prof. André Kato</h2><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Nota 2,6 de 3,0</span></header><div class="cm-cartao__corpo"><p style="font-size:13.5px">Cálculo excelente (1,2). Base legal suficiente (0,5): faltou a Lei do Inquilinato no parecer, embora a planilha trate o inquilino certo. Parecer excelente (0,9).</p></div></section>
+        </div>
+        <aside class="cm-cartao" aria-labelledby="env-t" id="env-form">
+          <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="env-t">Sua entrega</h2><span class="cm-t-legenda" data-estado-painel="rascunho">rascunho salvo ontem, 22:14</span></header>
+          <div class="cm-cartao__corpo cm-pilha cm-pilha--5">
+            <div data-estado-painel="rascunho" class="cm-pilha cm-pilha--5">
+              <label class="cm-upload"><i data-i="enviar-arquivo"></i><span><b>Arraste os arquivos</b> ou clique</span><span class="cm-t-legenda">xlsx e pdf, até 20 MB</span><input type="file" hidden multiple></label>
+              <div class="cm-anexos"><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="planilha"></i></span><span><span class="cm-anexo__nome">rateio-fachada-beatriz.xlsx</span><span class="cm-anexo__meta">88 KB</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Remover rateio-fachada-beatriz.xlsx"><i data-i="fechar"></i></button></div><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="pdf"></i></span><span><span class="cm-anexo__nome">parecer-sindica.pdf</span><span class="cm-anexo__meta">enviando, 72%</span><span class="cm-anexo__barra"><i style="width:72%"></i></span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Cancelar envio de parecer-sindica.pdf"><i data-i="fechar"></i></button></div></div>
+              <div class="cm-campo"><label class="cm-campo__rotulo" for="ent-com">Comentário ao professor <span class="cm-campo__opcional">opcional</span></label><textarea class="cm-area" id="ent-com" style="min-height:60px">Considerei o Ap 1501 como cobertura (0,4510%).</textarea></div>
+              <label class="cm-marcar"><input type="checkbox" id="ent-decl"><span class="cm-marcar__caixa"></span><span>Declaro que fiz este trabalho e que as fontes estão citadas</span></label>
+              <button class="cm-botao cm-botao--principal cm-botao--bloco" type="button" id="ent-enviar" disabled>Enviar entrega</button>
+              <p class="cm-campo__ajuda" id="ent-ajuda">Marque a declaração para enviar. Você ainda pode reenviar até 03/10, 23:59.</p>
+            </div>
+            <div data-estado-painel="enviado" hidden class="cm-pilha cm-pilha--5">
+              <div class="cm-alerta cm-alerta--sucesso"><i data-i="sucesso"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Entregue em 01/10, 10:52</span><span class="cm-alerta__desc">Comprovante ENT-2026-GFC-08817. Uma cópia foi para o seu e-mail.</span></span></div>
+              <div class="cm-anexos"><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="planilha"></i></span><span><span class="cm-anexo__nome">rateio-fachada-beatriz.xlsx</span><span class="cm-anexo__meta">88 KB</span></span><span></span></div><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="pdf"></i></span><span><span class="cm-anexo__nome">parecer-sindica.pdf</span><span class="cm-anexo__meta">212 KB</span></span><span></span></div></div>
+              <button class="cm-botao" type="button">Reenviar (tentativa 2 de 2)</button>
+            </div>
+            <div data-estado-painel="corrigido" hidden><p style="font-size:13px">Nota <b>2,6</b> lançada em 08/10. Entra na N2 com a prova 2.</p></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Instruções, rubrica (tabela)</li><li>Área de envio, arquivos (remover)</li><li>Comentário</li><li>Declaração, Enviar</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Enviar desabilitado: "Enviar entrega, indisponível. Marque a declaração para enviar".</li><li>Envio do arquivo: "parecer-sindica.pdf, enviando 72%".</li><li>Depois: "Entregue em 01/10, 10:52, comprovante ENT-2026-GFC-08817".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>X do arquivo: "Remover rateio-fachada-beatriz.xlsx"</li></ul></div>
+  </div>
+</section>
+
+<!-- 30.6 -->
+<section class="cm-doc-tela" id="t-questionario" aria-labelledby="t-qz-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">30.6</span><h2 class="cm-doc-tela__titulo" id="t-qz-h">Questionário</h2><span class="cm-doc-tela__sub">tempo, mapa de questões e salvamento a cada resposta</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Fazer um questionário de 10 questões em 30 minutos sem medo de perder resposta se a internet cair. O mapa mostra o que já foi respondido e o que está marcado para revisar; o tempo restante fica sempre à vista e avisa aos 5 minutos.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Uma questão por vez; cada resposta é salva na hora ("Salvo").</li><li>Mapa à direita: clicar vai para a questão. "Marcar para revisar" põe o losango.</li><li>Anterior e Próxima embaixo; teclas 1 a 5 escolhem a alternativa.</li><li>Enviar mostra o que está em branco antes de confirmar; ao acabar o tempo, envia o que foi salvo.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Moodle Quiz e o Canvas Quizzes usam o mapa de questões com "marcar para revisar"; as provas do Enem digital e dos concursos ensinaram o cronômetro sempre visível; e o salvamento a cada resposta é o que o aluno corporativo, que faz no intervalo, mais pediu.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" style="padding-top:12px">
+      <div class="cm-linha cm-linha--quebra"><div class="cm-cresce"><span class="cm-t-legenda">Legislação Condominial II, semana 9</span><h1 class="cm-t-registro">Questionário da semana 9</h1></div><span class="cm-cronometro" role="timer" aria-label="Tempo restante"><i data-i="cronometro"></i><span id="qz-tempo">18:42</span></span><span class="cm-t-legenda" aria-live="polite" id="qz-salvo">Salvo às 10:31</span></div>
+      <div class="ab-quiz">
+        <div>
+          <div class="cm-questao">
+            <div class="cm-questao__cabeca"><b>Questão 4 de 10</b><span>vale 1 ponto</span><button class="cm-botao cm-botao--p cm-botao--discreto cm-empurra" type="button" aria-pressed="false" data-alternar data-texto-sim="Marcada para revisar" data-texto-nao="Marcar para revisar" id="qz-marcar">Marcar para revisar</button></div>
+            <p class="cm-questao__enunciado">Um condômino inadimplente há três meses quer votar na assembleia que vai aprovar a obra da fachada. Segundo o Código Civil, art. 1.335, o que a administradora deve orientar?</p>
+            <fieldset class="cm-alternativas" id="qz-alt"><legend class="cm-sr">Alternativas</legend>
+              <label class="cm-alternativa"><input type="radio" name="q4" value="A"><span class="cm-alternativa__letra">A</span><span>Ele pode votar normalmente, porque o voto é direito de todo proprietário.</span></label>
+              <label class="cm-alternativa"><input type="radio" name="q4" value="B" checked><span class="cm-alternativa__letra">B</span><span>Ele não pode votar enquanto não quitar as contribuições, mas pode participar da assembleia.</span></label>
+              <label class="cm-alternativa"><input type="radio" name="q4" value="C"><span class="cm-alternativa__letra">C</span><span>Ele não pode nem entrar na assembleia.</span></label>
+              <label class="cm-alternativa"><input type="radio" name="q4" value="D"><span class="cm-alternativa__letra">D</span><span>Ele pode votar se o síndico autorizar por escrito.</span></label>
+              <label class="cm-alternativa"><input type="radio" name="q4" value="E"><span class="cm-alternativa__letra">E</span><span>Ele vota com peso reduzido à metade da fração ideal.</span></label>
+            </fieldset>
+          </div>
+          <div class="cm-linha" style="margin-top:12px"><button class="cm-botao" type="button"><i data-i="chevron-esquerda"></i>Anterior</button><button class="cm-botao" type="button">Próxima<i data-i="chevron-direita"></i></button><button class="cm-botao cm-botao--principal cm-empurra" type="button" data-abrir="modal-quiz">Enviar respostas</button></div>
+        </div>
+        <aside class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Questões</h2><span class="cm-t-legenda">7 de 10 respondidas</span></header><div class="cm-cartao__corpo">
+          <div class="cm-mapa-questoes" role="group" aria-label="Ir para a questão"><button type="button" class="is-respondida" aria-label="Questão 1, respondida">1</button><button type="button" class="is-respondida" aria-label="Questão 2, respondida">2</button><button type="button" class="is-respondida is-marcada" aria-label="Questão 3, respondida, marcada para revisar">3</button><button type="button" class="is-respondida" aria-current="true" aria-label="Questão 4, respondida, atual">4</button><button type="button" class="is-respondida" aria-label="Questão 5, respondida">5</button><button type="button" aria-label="Questão 6, em branco">6</button><button type="button" class="is-respondida" aria-label="Questão 7, respondida">7</button><button type="button" class="is-respondida" aria-label="Questão 8, respondida">8</button><button type="button" aria-label="Questão 9, em branco">9</button><button type="button" aria-label="Questão 10, em branco">10</button></div>
+          <div class="cm-diario__legenda"><span><b style="display:inline-block;width:10px;height:10px;background:var(--cm-camada-3)"></b>respondida</span><span><b style="display:inline-block;width:10px;height:10px;border:1px solid var(--cm-filete-forte)"></b>em branco</span><span>losango: revisar</span></div>
+          <p class="cm-t-legenda">Nota mínima para concluir a semana: 6. Uma tentativa.</p></div></aside>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Marcar para revisar</li><li>Alternativas (setas, ou teclas 1 a 5)</li><li>Anterior, Próxima, Enviar</li><li>Mapa de questões</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Cronômetro: anuncia só aos 5 e ao 1 minuto ("Faltam 5 minutos"), para não interromper.</li><li>"Salvo às 10:31" em região viva educada.</li><li>Mapa: "Questão 3, respondida, marcada para revisar".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Relógio: "Tempo restante"</li></ul></div>
+  </div>
+</section>
+
+<div class="cm-sobreposicao" id="modal-quiz" data-janela hidden>
+  <div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="mqz-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mqz-t">Enviar com 3 em branco?<span class="cm-modal__sub">Questões 6, 9 e 10 estão sem resposta. A 3 está marcada para revisar.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo"><p>Depois de enviar não dá para mudar. Ainda restam 18 minutos.</p></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-fechar>Voltar à questão 6</button><button class="cm-botao cm-botao--principal" type="button" data-fechar data-toast="Respostas enviadas. A nota sai quando o prazo fechar, em 05/10.">Enviar assim mesmo</button></div>
+  </div>
+</div>
+
+<!-- 30.7 -->
+<section class="cm-doc-tela" id="t-boletim" aria-labelledby="t-bol-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">30.7</span><h2 class="cm-doc-tela__titulo" id="t-bol-h">Boletim</h2><span class="cm-doc-tela__sub">notas, média e frequência mínima de 75%, por disciplina</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Responder "estou aprovada?" para cada disciplina do período: as notas parciais, a média com os pesos, as faltas contra o máximo permitido e a frequência com a linha dos 75%. A regra de aprovação está escrita embaixo, e o que falta para passar é calculado.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Período no topo (2026.2); trocar mostra os anteriores.</li><li>Cada linha abre o detalhe das avaliações da disciplina (o mesmo de Notas, na sala).</li><li>"Quanto preciso" calcula a nota mínima na N2 para fechar média 7.</li><li>Baixar PDF gera o boletim com a marca da Academy.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>é o boletim das faculdades brasileiras (N1, N2, média, faltas, situação), que o aluno reconhece; a barra de frequência com a marca do mínimo veio da V1 e o crítico elogiou; e o "quanto preciso na N2" é a conta que todo aluno faz à mão.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Boletim</h1><div class="cm-cabecalho-pagina__acoes"><div class="cm-selecao"><select aria-label="Período"><option>2026.2, em curso</option><option>2026.1</option><option>2025.2</option><option>2025.1</option></select><i data-i="chevron-baixo"></i></div><button class="cm-botao" type="button"><i data-i="pdf"></i>Baixar PDF</button></div></div></header>
+      <div class="cm-tabela-caixa"><table class="cm-tabela"><caption class="cm-sr">Boletim de 2026.2</caption><thead><tr><th>Disciplina</th><th class="cm-num">CH</th><th class="cm-num">N1</th><th class="cm-num">N2</th><th class="cm-num">Média</th><th class="cm-num">Faltas</th><th style="width:200px">Frequência</th><th>Situação</th><th>Precisa na N2</th></tr></thead><tbody id="bol"></tbody>
+        <tfoot><tr><td>Coeficiente do período, parcial</td><td class="cm-num">200 h</td><td colspan="2"></td><td class="cm-num"><span class="cm-total-duplo">7,9</span></td><td colspan="4"></td></tr></tfoot></table></div>
+      <p class="cm-t-legenda" style="margin-top:8px">Média = N1 × 40% + N2 × 60%. Aprova com média 7 ou mais e frequência de 75% ou mais. Média entre 4 e 6,9 vai para exame final (média com o exame: 5). Frequência abaixo de 75% reprova, qualquer que seja a nota.</p>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Período, Baixar PDF</li><li>Linhas (o nome abre o detalhe)</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Frequência: "71%, mínimo 75%, abaixo do mínimo".</li><li>Faltas: "6 de no máximo 5".</li><li>Precisa: "precisa de 6,2 na N2".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Ícones de situação acompanham a palavra.</li></ul></div>
+  </div>
+</section>
+
+<!-- 30.8 -->
+<section class="cm-doc-tela" id="t-calendario" aria-labelledby="t-cal-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">30.8</span><h2 class="cm-doc-tela__titulo" id="t-cal-h">Calendário acadêmico</h2><span class="cm-doc-tela__sub">provas, entregas, feriados e prazos da secretaria</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Ver o mês do semestre com tudo que importa: prova, entrega, feriado sem aula, rematrícula. Cada tipo tem cor própria (das etiquetas, nunca das cores de estado) e o nome escrito; dá para assinar no Google Agenda ou no Outlook.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Mês, com anterior e próximo; "Hoje" volta.</li><li>Filtro por tipo e por disciplina.</li><li>Clicar no evento abre o detalhe (sala, o que levar, link da entrega).</li><li>"Assinar" gera o link iCal pessoal.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o calendário acadêmico das faculdades é publicado por mês com legenda de tipos; o Google Agenda e o Outlook ensinaram a grade mensal com evento em faixa; e o Canvas oferece o feed iCal para levar as entregas ao calendário do celular.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Outubro de 2026</h1><div class="cm-cabecalho-pagina__acoes"><button class="cm-botao cm-botao--icone" type="button" aria-label="Mês anterior"><i data-i="chevron-esquerda"></i></button><button class="cm-botao" type="button">Hoje</button><button class="cm-botao cm-botao--icone" type="button" aria-label="Próximo mês"><i data-i="chevron-direita"></i></button><button class="cm-botao" type="button"><i data-i="calendario-mais"></i>Assinar</button></div></div></header>
+      <div class="cm-linha cm-linha--quebra" style="margin-bottom:8px;font-size:12px;gap:14px"><span class="ab-ev" style="--c:var(--cm-etq-6);margin:0">Prova</span><span class="ab-ev" style="--c:var(--cm-etq-1);margin:0">Entrega</span><span class="ab-ev" style="--c:var(--cm-etq-7);margin:0">Feriado, sem aula</span><span class="ab-ev" style="--c:var(--cm-etq-5);margin:0">Secretaria</span><span class="ab-ev" style="--c:var(--cm-etq-2);margin:0">Evento</span></div>
+      <div style="overflow-x:auto"><table class="ab-cal" id="cal"><caption class="cm-sr">Calendário acadêmico de outubro de 2026</caption><thead><tr><th>Dom</th><th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th><th>Sáb</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Mês anterior, Hoje, Próximo, Assinar</li><li>Dias com evento (os eventos são links)</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Dia: "3 de outubro, sexta: Entrega, Trabalho 2 de Gestão Financeira".</li><li>Hoje: "1 de outubro, hoje".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>"Mês anterior", "Próximo mês"</li></ul></div>
+  </div>
+</section>
+
+<!-- 30.9 -->
+<section class="cm-doc-tela" id="t-historico" aria-labelledby="t-his-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">30.9</span><h2 class="cm-doc-tela__titulo" id="t-his-h">Histórico escolar</h2><span class="cm-doc-tela__sub">todos os períodos, com carga horária e coeficiente</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>O registro oficial do curso: cada período com as disciplinas, carga horária, nota final, frequência e situação; o total integralizado e o coeficiente. Vale para promoção interna e para pedir aproveitamento numa faculdade de fora.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Períodos em ordem, do mais antigo ao atual.</li><li>"Baixar PDF assinado" sai com código de verificação, igual ao certificado.</li><li>"Pedir histórico oficial" abre solicitação à secretaria quando precisa de carimbo físico.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>é o histórico escolar no formato das faculdades (período, disciplina, CH, nota, frequência, situação, coeficiente); a assinatura digital com código segue o diploma digital do MEC, que já tem verificação pública.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" style="padding-top:16px">
+      <article class="cm-documento-folha ab-hist" aria-label="Histórico escolar">
+        <div class="cm-documento-folha__topo"><span class="cm-documento-folha__marca" data-marca-inicial>A</span><div class="cm-cresce"><h2>Histórico escolar</h2><p class="cm-documento-folha__meta">Academy Administradora Alpha. Formação em Gestão Condominial, 800 h. Beatriz Nogueira, matrícula 2025.1.0147.</p></div><button class="cm-botao" type="button"><i data-i="pdf"></i>Baixar PDF assinado</button></div>
+        <div class="cm-tabela-caixa" style="border:0"><table class="cm-tabela cm-tabela--simples" style="width:100%"><caption class="cm-sr">Disciplinas cursadas por período</caption><thead><tr><th>Período</th><th>Disciplina</th><th class="cm-num">CH</th><th class="cm-num">Nota</th><th class="cm-num">Freq.</th><th>Situação</th></tr></thead><tbody id="hist"></tbody></table></div>
+        <dl class="cm-destaques"><div><dt>Carga integralizada</dt><dd>520 de 800 h</dd></div><div><dt>Coeficiente</dt><dd>8,4</dd></div><div><dt>Código de verificação</dt><dd>HIST-0147-26-9QZ2</dd></div></dl>
+      </article>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Baixar PDF assinado</li><li>Tabela</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Tabela com legenda "Disciplinas cursadas por período"; cada linha lê o período.</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Nenhum.</li></ul></div>
+  </div>
+</section>
+
+<!-- 30.10 -->
+<section class="cm-doc-tela" id="t-certificado" aria-labelledby="t-cer-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">30.10</span><h2 class="cm-doc-tela__titulo" id="t-cer-h">Certificado verificável</h2><span class="cm-doc-tela__sub">o documento e a página pública que confere o código</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>O certificado do curso de extensão sai com a marca da administradora, a carga horária, o conteúdo e um código único com QR. Qualquer pessoa (um síndico, outra empresa) confere na página pública se ele é verdadeiro, sem login.</p></div>
+    <div><h3>Fluxo</h3><ol><li>O aluno abre o certificado, baixa o PDF ou compartilha no LinkedIn.</li><li>Quem recebe digita o código ou lê o QR na página "Verificar certificado".</li><li>A página responde: válido (com nome, curso, data e carga) ou não encontrado, sem expor mais dados.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>a Alura, a Coursera e o Credly emitem certificado com código e página pública de verificação; o LinkedIn tem o campo "ID da credencial" para esse código; e a serifa fica fora: a fundação reserva o documento gerado para a marca do cliente, não para enfeite.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" style="padding-top:16px">
+      <div class="ab-cert">
+        <div>
+          <div class="cm-certificado" role="img" aria-label="Certificado de Beatriz Nogueira, curso de extensão Cobrança e acordos em condomínios, 40 horas, concluído em 12/08/2025, código ALPHA-ACD-2025-0147-7F3K">
+            <div class="cm-certificado__marca"><span data-marca-inicial>A</span><span style="background:none;color:inherit;width:auto;height:auto;font-weight:700" data-marca-nome>Administradora Alpha</span> Academy</div>
+            <div class="cm-certificado__titulo">Certificado de conclusão</div>
+            <p class="cm-certificado__texto">Certificamos que</p>
+            <div class="cm-certificado__nome">Beatriz Nogueira</div>
+            <p class="cm-certificado__texto">concluiu o curso de extensão <b>Cobrança e acordos em condomínios</b>, com carga horária de 40 horas, frequência de 100% e nota final 9,2, entre 07/07 e 12/08/2025.</p>
+            <div class="cm-certificado__pe"><div><b>Helena Vasques</b>Diretora de operações</div><div><b>Cláudia Ribeiro</b>Coordenação da Academy<br><span class="cm-certificado__codigo">ALPHA-ACD-2025-0147-7F3K</span></div><div class="cm-qr"><svg viewBox="0 0 29 29" id="qr-cert" shape-rendering="crispEdges"></svg></div></div>
+          </div>
+          <div class="cm-linha" style="margin-top:12px"><button class="cm-botao cm-botao--principal" type="button"><i data-i="pdf"></i>Baixar PDF</button><button class="cm-botao" type="button"><i data-i="compartilhar"></i>Adicionar ao LinkedIn</button><button class="cm-botao" type="button" data-toast="Link de verificação copiado."><i data-i="copiar"></i>Copiar link de verificação</button></div>
+        </div>
+        <aside class="cm-cartao" aria-labelledby="ver-t"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="ver-t">Verificar certificado</h2><span class="cm-t-legenda">página pública</span></header><div class="cm-cartao__corpo cm-pilha cm-pilha--5">
+          <div class="cm-campo"><label class="cm-campo__rotulo" for="ver-cod">Código do certificado</label><div class="cm-entrada"><input id="ver-cod" value="ALPHA-ACD-2025-0147-7F3K" spellcheck="false"><button class="cm-entrada__acao" type="button" id="ver-btn">Verificar</button></div></div>
+          <div id="ver-res" aria-live="polite"></div>
+          <p class="cm-t-legenda">Mostramos só nome, curso, data e carga horária. Notas e documentos ficam com a pessoa.</p></div></aside>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Baixar PDF, LinkedIn, Copiar link</li><li>Código, Verificar</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Certificado como imagem com descrição completa (nome, curso, carga, data, código).</li><li>Resultado: "Certificado válido, emitido em 12/08/2025" ou "Código não encontrado".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>QR faz parte da imagem descrita.</li></ul></div>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+function v(n){return n==null?'<span class="cm-texto-3">em aberto</span>':String(n.toFixed(1)).replace('.',',')}
+var B=[['Gestão Financeira de Condomínios',60,8.7,null,3,8,89],['Legislação Condominial II',40,7.9,null,2,5,92],['Assembleias e Mediação de Conflitos',40,7.4,null,6,5,71],['Manutenção Predial e Normas',40,6.2,null,4,5,83],['Atendimento e Comunicação com o Condômino',20,9.5,null,0,3,100]];
+document.getElementById('bol').innerHTML=B.map(function(b){var risco=b[6]<75;var precisa=Math.max(0,(7-b[2]*0.4)/0.6);
+  var sit=risco?['perigo','perigo','Risco por falta: reprova se faltar mais']:b[2]<7?['aviso','atencao','Atenção: média parcial abaixo de 7']:['sucesso','sucesso','Em dia'];
+  return '<tr><td class="cm-tabela__principal"><a href="30-academy.html#t-disciplina">'+b[0]+'</a></td><td class="cm-num">'+b[1]+' h</td><td class="cm-num">'+v(b[2])+'</td><td class="cm-num">'+v(b[3])+'</td><td class="cm-num cm-forte">'+v(b[2])+'</td><td class="cm-num'+(b[4]>b[5]?' cm-forte':'')+'" style="'+(b[4]>b[5]?'color:var(--cm-perigo-texto)':'')+'">'+b[4]+' de '+b[5]+'</td>'+
+  '<td><div class="cm-frequencia'+(risco?' is-risco':'')+'" style="margin-top:10px"><span class="cm-sr">Frequência</span><span class="cm-frequencia__barra"><i style="--f:'+b[6]+'%"></i><span class="cm-frequencia__minimo" style="--min:75%" data-rotulo="75%"></span></span><b>'+b[6]+'%</b></div></td>'+
+  '<td><span class="cm-estado cm-estado--'+sit[0]+'" style="white-space:normal"><i data-i="'+sit[1]+'"></i>'+sit[2]+'</span></td><td>'+(precisa<=0?'qualquer nota':'<b>'+precisa.toFixed(1).replace('.',',')+'</b>')+'</td></tr>'}).join('');
+/* calendário outubro 2026: 01/10 é quinta */
+var EV={1:[['etq-2','Aula inaugural da extensão']],3:[['etq-1','Entrega: Trabalho 2, Gestão Financeira']],5:[['etq-1','Questionário sem. 9, Legislação']],8:[['etq-1','Fórum: multa sem assembleia']],12:[['etq-7','Nossa Senhora Aparecida']],13:[['etq-6','Prova 1, Assembleias']],15:[['etq-7','Dia do Professor, sem aula']],20:[['etq-6','Prova 1 reposição']],22:[['etq-6','Prova prática, Manutenção']],27:[['etq-5','Último dia para trancar']],30:[['etq-2','Simulação de assembleia aberta']]};
+var h='<tr>',dow=4;for(var i=0;i<dow;i++) h+='<td class="is-fora"><span class="ab-dia">'+(27+i)+'</span></td>';
+for(var d=1;d<=31;d++){h+='<td class="'+(d===1?'is-hoje':'')+'"><span class="ab-dia">'+d+'</span>'+(EV[d]||[]).map(function(e){return '<a class="ab-ev" href="#" style="--c:var(--cm-'+e[0]+');color:inherit;text-decoration:none"><span>'+e[1]+'</span></a>'}).join('')+'</td>';if((dow+d)%7===0&&d<31) h+='</tr><tr>'}
+h+='<td class="is-fora"><span class="ab-dia">1</span></td></tr>';document.querySelector('#cal tbody').innerHTML=h;
+var H=[['2025.1','Fundamentos de Condomínio',80,8.8,95],['2025.1','Matemática Financeira Aplicada',60,7.6,90],['2025.1','Comunicação Escrita',40,9.1,100],['2025.2','Legislação Condominial I',60,8.2,92],['2025.2','Contabilidade de Condomínios',80,8.0,88],['2025.2','Cobrança e Acordos (extensão)',40,9.2,100],['2026.1','Gestão de Pessoas na Portaria',60,8.9,96],['2026.1','Orçamento e Previsão',60,8.4,91],['2026.1','Atendimento Omnicanal',40,9.0,100]];
+var per='';document.getElementById('hist').innerHTML=H.map(function(x){var p=x[0]!==per?(per=x[0]):'';return '<tr><td>'+(p?'<b>'+p+'</b>':'')+'</td><td>'+x[1]+'</td><td class="cm-num">'+x[2]+' h</td><td class="cm-num">'+String(x[3].toFixed(1)).replace('.',',')+'</td><td class="cm-num">'+x[4]+'%</td><td><span class="cm-estado cm-estado--ponto cm-estado--sucesso">Aprovada</span></td></tr>'}).join('')+'<tr><td><b>2026.2</b></td><td colspan="5" class="cm-texto-2">5 disciplinas em curso, 200 h</td></tr>';
+/* QR e verificação */
+function qr(id,seed){var s=seed,svg=document.getElementById(id),h='';function rnd(){s=(s*9301+49297)%233280;return s/233280}function olho(x,y){h+='<rect x="'+x+'" y="'+y+'" width="7" height="7" fill="#121517"/><rect x="'+(x+1)+'" y="'+(y+1)+'" width="5" height="5" fill="#fff"/><rect x="'+(x+2)+'" y="'+(y+2)+'" width="3" height="3" fill="#121517"/>'}
+  for(var y=0;y<29;y++)for(var x=0;x<29;x++){if((x<8&&y<8)||(x>20&&y<8)||(x<8&&y>20)) continue;if(rnd()>.52) h+='<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="#121517"/>'}olho(0,0);olho(22,0);olho(0,22);svg.innerHTML=h}
+qr('qr-cert',147);
+function verificar(){var c=document.getElementById('ver-cod').value.trim().toUpperCase(),r=document.getElementById('ver-res');
+  r.innerHTML=c==='ALPHA-ACD-2025-0147-7F3K'?'<div class="cm-alerta cm-alerta--sucesso"><i data-i="sucesso"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Certificado válido</span><span class="cm-alerta__desc">Beatriz Nogueira concluiu "Cobrança e acordos em condomínios", 40 h, em 12/08/2025. Emitido pela Academy da Administradora Alpha.</span></span></div>':'<div class="cm-alerta cm-alerta--perigo"><i data-i="erro"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Código não encontrado</span><span class="cm-alerta__desc">Confira as letras e os números. O código tem 4 partes separadas por hífen, como ALPHA-ACD-2025-0147-7F3K.</span></span></div>'}
+document.getElementById('ver-btn').addEventListener('click',verificar);document.getElementById('ver-cod').addEventListener('keydown',function(e){if(e.key==='Enter') verificar()});verificar();
+/* entrega: declaração liga o botão */
+var dec=document.getElementById('ent-decl'),btn=document.getElementById('ent-enviar');
+dec.addEventListener('change',function(){btn.disabled=!dec.checked;document.getElementById('ent-ajuda').textContent=dec.checked?'Pronto para enviar. Você ainda pode reenviar até 03/10, 23:59.':'Marque a declaração para enviar. Você ainda pode reenviar até 03/10, 23:59.'});
+btn.addEventListener('click',function(){var b=document.querySelector('#t-entrega [data-estado="enviado"]');if(b) b.click();window.qToast&&qToast('Entregue. Comprovante ENT-2026-GFC-08817.','sucesso')});
+/* questionário: tempo e salvamento */
+var seg=18*60+42;setInterval(function(){seg=Math.max(0,seg-1);document.getElementById('qz-tempo').textContent=Math.floor(seg/60)+':'+('0'+seg%60).slice(-2)},1000);
+document.getElementById('qz-alt').addEventListener('change',function(){var d=new Date();document.getElementById('qz-salvo').textContent='Salvo às '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)});
+document.addEventListener('keydown',function(e){var r=document.getElementById('t-questionario').getBoundingClientRect();if(r.top>innerHeight||r.bottom<0) return;if(/^[1-5]$/.test(e.key)&&!(e.target.tagName==='TEXTAREA'||(e.target.tagName==='INPUT'&&e.target.type!=='radio'))){var i=document.querySelectorAll('#qz-alt input')[+e.key-1];i.checked=true;i.focus();i.dispatchEvent(new Event('change',{bubbles:true}))}});
+})();
+</script>
+</body>
+</html>

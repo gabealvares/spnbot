@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Negócios</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-kb .cm-kanban__coluna{width:262px}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Pipeline em quadro <small>Comercial, Funil de vendas, Negócios. Quadro por etapa com a soma da mensalidade de cada coluna, "esfriando" com triângulo e palavra, e arrastar para mudar de etapa.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>O executivo precisa ver o funil inteiro, saber quanto há em cada etapa e o que está parado. Cada coluna soma a mensalidade; cartão sem atividade há mais de 10 dias ganha "Atenção: esfriando" com o filete laranja à esquerda. Arrastar muda a etapa; o teclado faz o mesmo pelo "Mover para…".</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Arraste o cartão para outra coluna: a soma recalcula e o toast oferece "Desfazer".</li><li>Sem mouse: foque o cartão, abra "⋯", "Mover para…" e escolha a etapa.</li><li>"Marcar como perdido" no "⋯" do cartão ou no negócio abre o motivo de perda, obrigatório.</li><li>"Lista" no segmentado troca para a tabela com as mesmas colunas e filtros.</li><li>Clique no cartão abre o <a class="cm-link" href="23c-negocio.html">negócio</a> com o Path.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Pipedrive popularizou o quadro com soma por coluna e "rotting" (cartão que apodrece) em cor e palavra; o HubSpot e o Salesforce oferecem a mesma visão como tabela; e o Trello e o Jira ensinaram arrastar com "Mover" no menu para quem usa teclado.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Quadro</button><button type="button" data-q3-estado="vazio" aria-pressed="false">Funil vazio</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Comercial","tela":"Negócios","papel":"Comercial","usuario":{"nome":"Lucas Ferreira","iniciais":"LF","cargo":"Executivo comercial","presenca":"disponivel","tom":1}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Negócios</h1><div class="cm-cabecalho-pagina__acoes"><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Visão"><button type="button" aria-pressed="true"><i data-i="quadro-kanban"></i>Quadro</button><button type="button" aria-pressed="false"><i data-i="lista"></i>Lista</button></div><button class="cm-filtro is-ativo" type="button">Dono: <b>eu</b><i data-i="chevron-baixo"></i></button><button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Novo negócio</button></div></div>
+  <p class="cm-cabecalho-pagina__desc">14 negócios abertos, R$ 61.940,00 por mês. 3 esfriando.</p></header>
+ <div data-se="padrao">
+ <div class="cm-kanban q3-kb">
+  <section class="cm-kanban__coluna"><header class="cm-kanban__cabeca"><h2 class="cm-kanban__titulo">Diagnóstico</h2><span class="cm-contador">3</span></header><div class="cm-kanban__soma" data-q3-soma></div>
+   <div class="cm-kanban__cartoes">
+    <a class="cm-kanban-cartao" href="23c-negocio.html" draggable="true" data-valor="6480"><span class="cm-kanban-cartao__titulo">Cond. Jardim Europa</span><span class="cm-kanban-cartao__sub">R$ 6.480,00 por mês, 180 unidades</span><span class="cm-kanban-cartao__pe"><span>Indicação, hoje</span><span class="cm-avatar cm-avatar--p cm-avatar--1">LF</span></span></a>
+    <a class="cm-kanban-cartao" href="23c-negocio.html" draggable="true" data-valor="2592"><span class="cm-kanban-cartao__titulo">Ed. Mirante do Parque</span><span class="cm-kanban-cartao__sub">R$ 2.592,00 por mês</span><span class="cm-kanban-cartao__pe"><span>Visita 03/10</span><span class="cm-avatar cm-avatar--p cm-avatar--1">LF</span></span></a>
+    <a class="cm-kanban-cartao" href="23c-negocio.html" draggable="true" data-valor="3240"><span class="cm-kanban-cartao__titulo">Cond. Villa Toscana</span><span class="cm-kanban-cartao__sub">R$ 3.240,00 por mês, 96 casas</span><span class="cm-kanban-cartao__pe"><span>Ligar amanhã</span><span class="cm-avatar cm-avatar--p cm-avatar--1">LF</span></span></a>
+   </div><button class="cm-kanban__adicionar" type="button"><i data-i="adicionar"></i>Adicionar</button></section>
+  <section class="cm-kanban__coluna"><header class="cm-kanban__cabeca"><h2 class="cm-kanban__titulo">Visita técnica</h2><span class="cm-contador">2</span></header><div class="cm-kanban__soma" data-q3-soma></div>
+   <div class="cm-kanban__cartoes">
+    <a class="cm-kanban-cartao is-esfriando" href="23c-negocio.html" draggable="true" data-valor="12240"><span class="cm-kanban-cartao__titulo">Res. Alto da Boa Vista</span><span class="cm-kanban-cartao__sub">R$ 12.240,00 por mês, 340 unidades</span><span class="cm-kanban-cartao__pe"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Esfriando há 12 dias</span><span class="cm-avatar cm-avatar--p cm-avatar--1">LF</span></span></a>
+    <a class="cm-kanban-cartao" href="23c-negocio.html" draggable="true" data-valor="4320"><span class="cm-kanban-cartao__titulo">Ed. Solar das Palmeiras</span><span class="cm-kanban-cartao__sub">R$ 4.320,00 por mês</span><span class="cm-kanban-cartao__pe"><span>Visita feita 29/09</span><span class="cm-avatar cm-avatar--p cm-avatar--3">AM</span></span></a>
+   </div><button class="cm-kanban__adicionar" type="button"><i data-i="adicionar"></i>Adicionar</button></section>
+  <section class="cm-kanban__coluna"><header class="cm-kanban__cabeca"><h2 class="cm-kanban__titulo">Proposta</h2><span class="cm-contador">4</span></header><div class="cm-kanban__soma" data-q3-soma></div>
+   <div class="cm-kanban__cartoes">
+    <a class="cm-kanban-cartao is-esfriando" href="23c-negocio.html" draggable="true" data-valor="5040"><span class="cm-kanban-cartao__titulo">Cond. Reserva do Bosque</span><span class="cm-kanban-cartao__sub">R$ 5.040,00 por mês</span><span class="cm-kanban-cartao__pe"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Esfriando há 15 dias</span><span class="cm-avatar cm-avatar--p cm-avatar--1">LF</span></span></a>
+    <a class="cm-kanban-cartao" href="23c-negocio.html" draggable="true" data-valor="1900"><span class="cm-kanban-cartao__titulo">Cond. Parque das Águas, Portaria</span><span class="cm-kanban-cartao__sub">R$ 1.900,00 por mês, expansão</span><span class="cm-kanban-cartao__pe"><span>Com o CS</span><span class="cm-avatar cm-avatar--p cm-avatar--5">RM</span></span></a>
+    <a class="cm-kanban-cartao" href="23c-negocio.html" draggable="true" data-valor="3888"><span class="cm-kanban-cartao__titulo">Ed. Horizonte Azul</span><span class="cm-kanban-cartao__sub">R$ 3.888,00 por mês</span><span class="cm-kanban-cartao__pe"><span>Aberta 4 vezes</span><span class="cm-avatar cm-avatar--p cm-avatar--1">LF</span></span></a>
+    <a class="cm-kanban-cartao is-atrasado" href="23c-negocio.html" draggable="true" data-valor="2160"><span class="cm-kanban-cartao__titulo">Ed. Casa Branca</span><span class="cm-kanban-cartao__sub">R$ 2.160,00 por mês</span><span class="cm-kanban-cartao__pe"><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Proposta vence hoje</span><span class="cm-avatar cm-avatar--p cm-avatar--1">LF</span></span></a>
+   </div><button class="cm-kanban__adicionar" type="button"><i data-i="adicionar"></i>Adicionar</button></section>
+  <section class="cm-kanban__coluna"><header class="cm-kanban__cabeca"><h2 class="cm-kanban__titulo">Assembleia</h2><span class="cm-contador">2</span></header><div class="cm-kanban__soma" data-q3-soma></div>
+   <div class="cm-kanban__cartoes">
+    <a class="cm-kanban-cartao" href="23c-negocio.html" draggable="true" data-valor="9720"><span class="cm-kanban-cartao__titulo">Cond. Torres do Ibirapuera</span><span class="cm-kanban-cartao__sub">R$ 9.720,00 por mês, assembleia 14/10</span><span class="cm-kanban-cartao__pe"><span>Edital publicado</span><span class="cm-avatar cm-avatar--p cm-avatar--1">LF</span></span></a>
+    <a class="cm-kanban-cartao is-esfriando" href="23c-negocio.html" draggable="true" data-valor="2700"><span class="cm-kanban-cartao__titulo">Ed. Vitória Régia</span><span class="cm-kanban-cartao__sub">R$ 2.700,00 por mês</span><span class="cm-kanban-cartao__pe"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Esfriando há 11 dias</span><span class="cm-avatar cm-avatar--p cm-avatar--3">AM</span></span></a>
+   </div><button class="cm-kanban__adicionar" type="button"><i data-i="adicionar"></i>Adicionar</button></section>
+  <section class="cm-kanban__coluna"><header class="cm-kanban__cabeca"><h2 class="cm-kanban__titulo">Contrato</h2><span class="cm-contador">1</span></header><div class="cm-kanban__soma" data-q3-soma></div>
+   <div class="cm-kanban__cartoes">
+    <a class="cm-kanban-cartao" href="23c-negocio.html" draggable="true" data-valor="7980"><span class="cm-kanban-cartao__titulo">Cond. Recanto dos Ipês</span><span class="cm-kanban-cartao__sub">R$ 7.980,00 por mês</span><span class="cm-kanban-cartao__pe"><span class="cm-estado cm-estado--info"><i data-i="assinatura"></i>2 de 3 assinaturas</span><span class="cm-avatar cm-avatar--p cm-avatar--1">LF</span></span></a>
+   </div><button class="cm-kanban__adicionar" type="button"><i data-i="adicionar"></i>Adicionar</button></section>
+ </div>
+ </div>
+ <div data-se="vazio"><div class="cm-vazio"><i data-i="quadro-kanban"></i><p class="cm-vazio__titulo">Nenhum negócio aberto com você</p><p class="cm-vazio__texto">Qualifique um lead para ele virar negócio na etapa Diagnóstico. Há 5 leads novos esperando.</p><div class="cm-vazio__acoes"><a class="cm-botao cm-botao--principal" href="23-comercial.html">Abrir leads</a></div></div></div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título, Quadro e Lista, filtro, Novo negócio; colunas em ordem; em cada coluna, o título com contagem e soma, os cartões (cada um é link; o menu "⋯" do cartão tem Mover para…), Adicionar.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Coluna lida como "Proposta, 4 negócios, R$ 13.0xx,00 por mês". "Atenção: esfriando há 15 dias" em palavra. Ao mover, o toast anuncia a nova etapa.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>Nenhum botão só com ícone no quadro (Adicionar tem palavra).</p></section>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>

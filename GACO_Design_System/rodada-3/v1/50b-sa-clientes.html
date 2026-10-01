@@ -19,8 +19,8 @@
 </head>
 <body data-moldura='{"contexto":"superadmin","modulo":"clientes","secao":"Clientes da plataforma","usuario":{"nome":"Bruno Tavares","iniciais":"BT","cor":"lc-av--c5","cargo":"Suporte da plataforma"},"cliente":{"nome":"GACO Plataforma","sigla":"G"},"trilha":["Clientes da plataforma"]}'>
 <main id="conteudo" class="lc-pagina">
-<section class="lc-ficha-tela" aria-label="Sobre a lista de clientes">
-  <div class="lc-ficha-tela__nome"><b>Clientes da plataforma</b><span>Administradoras e empresas de serviço que contratam o GACO.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre a lista de clientes">
+  <div class="lc-sobre-tela__nome"><b>Clientes da plataforma</b><span>Administradoras e empresas de serviço que contratam o GACO.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Achar um cliente e ver, na linha, plano, uso, cobrança e se alguém da plataforma está dentro dele agora.</p></div>
   <div><h2>Fluxo</h2><ol><li>Busca por nome, CNPJ ou domínio; filtros salvos em visões ("Perto do limite", "Fatura vencida").</li><li>Clicar no nome abre o detalhe; a lista lembra filtro e posição.</li><li>"Entrar no cliente" fica no detalhe, nunca na linha (exige motivo).</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o painel de contas do Stripe e o "Organizations" do Zendesk mostram plano e cobrança na linha; o Intercom e o Retool deixam a impersonação dentro do detalhe, com justificativa, para não acontecer por engano.</p></div>
@@ -42,8 +42,8 @@
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Exportar, Novo cliente, visões (setas), busca, filtros, cabeçalhos ordenáveis, nome de cada cliente.</p></div><div><h3>O que é anunciado</h3><p>Uso como texto: "142 de 200". Coluna "Agora": "Lucas, só leitura" diz quem está dentro do cliente.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
 
 <!-- DETALHE -->
-<section class="lc-ficha-tela" id="detalhe" aria-label="Sobre o detalhe do cliente">
-  <div class="lc-ficha-tela__nome"><b>Detalhe do cliente da plataforma</b><span>Uso, plano, módulos, marca e acessos. "Entrar no cliente" no topo.</span></div>
+<section class="lc-sobre-tela" id="detalhe" aria-label="Sobre o detalhe do cliente">
+  <div class="lc-sobre-tela__nome"><b>Detalhe do cliente da plataforma</b><span>Uso, plano, módulos, marca e acessos. "Entrar no cliente" no topo.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Responder em segundos "o que este cliente tem, quanto usa, quanto paga e quem da plataforma entrou nele", e mudar módulo ou plano com registro.</p></div>
   <div><h2>Fluxo</h2><ol><li>Cabeçalho com campos-chave (plano, mensalidade, desde, gerente).</li><li>Abas: Visão, Módulos, Marca, Acessos da plataforma, Faturas.</li><li>Ligar um módulo mostra a barra de salvar com o impacto na mensalidade; "Salvar ▾" (e voltar à lista, e ir ao próximo).</li><li>"Entrar no cliente" abre o modal de motivo e prazo.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o Salesforce e o HubSpot colocam campos-chave no topo da ficha; o Shopify Admin liga recursos do plano com interruptor e mostra o preço; e o "Login as" do Intercom pede motivo e deixa trilha de auditoria.</p></div>

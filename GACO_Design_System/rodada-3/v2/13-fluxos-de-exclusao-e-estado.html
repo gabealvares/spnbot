@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exclusão e estado</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q2.css">
+<script src="sistema/icones.js"></script>
+<script src="padroes/links-doc.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q2.js" defer></script>
+<style>
+.path-demo{background:var(--cm-camada-1);border:1px solid var(--cm-filete);padding:12px 14px}
+.etapa-pede{margin-top:10px;max-width:520px}
+.niveis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.niveis .cm-cartao__corpo p{font-size:13px;margin:0 0 10px;color:var(--cm-texto-2)}
+@media (max-width:999px){.niveis{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"tela":"Lixeira","papel":"Diretoria","trilha":false,"usuario":{"nome":"Juliana Reis","iniciais":"JR","cargo":"Gestora do Suporte","presenca":"disponivel","tom":2}}'></div>
+<main id="conteudo" class="cm-doc">
+  <nav class="cm-doc__indice" aria-label="Nesta página"><h2>Nesta página</h2><ol>
+    <li><a href="#path">Path clicável</a></li>
+    <li><a href="#motivo">Saída com motivo</a></li>
+    <li><a href="#niveis">Exclusão em 3 níveis</a></li>
+    <li><a href="#lixeira">Lixeira de 30 dias</a></li>
+    <li><a href="#arquivar">Arquivar</a></li>
+    <li><a href="#massa">Em massa com desfazer</a></li>
+    <li><a href="#matriz">Matriz das ações</a></li>
+  </ol></nav>
+  <div class="cm-doc__corpo">
+    <header class="cm-doc__cabeca">
+      <h1>Exclusão e estado</h1>
+      <p>Mudar o estado de um registro e tirá-lo do caminho são as ações que mais assustam. A V2 troca a confirmação em tudo por três coisas: <b>o caminho visível</b> (Path), <b>desfazer na hora</b> e <b>lixeira de 30 dias</b>. Confirmação fica só para o que não volta, e aí ela pede para digitar o nome.</p>
+      <div class="cm-doc__regras"><span><b>Estado</b> é ação, nunca campo de formulário</span><span><b>Motivo</b> só quando a saída pede</span><span><b>Excluir</b> sempre vai para a lixeira, menos o irreversível</span></div>
+    </header>
+
+    <section class="cm-doc-sec" id="path">
+      <h2>Path clicável, sem motivo</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Ver o caminho inteiro do registro (o que passou, onde está, quanto tempo) e avançar sem modal.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Clique numa etapa futura: abre, logo abaixo, o que ela pede, com os campos.</li><li>Preencher e "Mover para Treinamento". O Path anda, o tempo zera, toast com Desfazer.</li><li>Clique numa etapa passada: mostra quando foi concluída e por quem; voltar a ela pede motivo.</li><li>"Marcar etapa como concluída" à direita avança uma etapa sem perguntas, se ela não pede campo.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Salesforce Path mostra o que cada etapa pede e avança com "marcar como concluída", e o Pipedrive mostra dias por etapa. A regra de 26/09 (estado é ação) se mantém: o Path é a ação, só que visível. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Implantação do Cond. Vila Serena</b><span>teste: clique em Treinamento</span></div><div class="cm-palco__corpo">
+        <div class="path-demo">
+          <div class="cm-path" id="p1">
+            <ol aria-label="Etapa da implantação">
+              <li class="is-feito"><button type="button" data-e="0"><i data-i="marcar"></i>Contrato</button></li>
+              <li class="is-feito"><button type="button" data-e="1"><i data-i="marcar"></i>Cadastro</button></li>
+              <li class="is-atual"><button type="button" data-e="2" aria-current="step">Configuração</button></li>
+              <li><button type="button" data-e="3">Treinamento</button></li>
+              <li><button type="button" data-e="4">Em operação</button></li>
+            </ol>
+            <button class="cm-botao" type="button" id="p1-concluir">Marcar etapa como concluída</button>
+            <span class="cm-ancora"><button class="cm-botao cm-botao--discreto" type="button" aria-haspopup="menu" aria-expanded="false" data-q2-abre="p1-saida">Encerrar<i data-i="chevron-baixo"></i></button>
+              <div class="cm-menu cm-flutuante" role="menu" id="p1-saida" hidden><button class="cm-menu__item cm-menu__item--perigo" role="menuitem" type="button" data-q2-modal="m-motivo"><i data-i="proibido"></i><span>Cancelar a implantação…</span><span></span></button><button class="cm-menu__item" role="menuitem" type="button" data-q2-modal="m-motivo"><i data-i="pausado"></i><span>Pausar…</span><span></span></button></div></span>
+          </div>
+          <div class="cm-path__orientacao" id="p1-or"><span><b>Há 9 dias em Configuração.</b></span><span><b>O que a etapa pede:</b> boletos de teste emitidos e portal publicado</span></div>
+          <div class="cm-popover etapa-pede" id="p1-pede" hidden role="region" aria-labelledby="p1-pede-t">
+            <div class="cm-popover__cabeca" style="padding:10px 12px 0"><b id="p1-pede-t">Para entrar em Treinamento</b></div>
+            <div class="cm-popover__corpo cm-pilha" style="padding:10px 12px">
+              <div class="cm-campo"><label class="cm-campo__rotulo" for="p1-d">Data do treinamento</label><div class="cm-entrada"><i data-i="calendario"></i><input id="p1-d" value="08/10/2026"></div></div>
+              <div class="cm-campo"><label class="cm-campo__rotulo" for="p1-q">Quem treina</label><div class="cm-selecao"><select id="p1-q"><option>Carla Mendes</option><option>Rafael Lima</option></select><i data-i="chevron-baixo"></i></div></div>
+            </div>
+            <div class="cm-popover__pe" style="display:flex;gap:6px;justify-content:flex-end;padding:8px 12px;border-top:1px solid var(--cm-filete)"><button class="cm-botao cm-botao--p" type="button" onclick="document.getElementById('p1-pede').hidden=true">Cancelar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" id="p1-mover">Mover para Treinamento</button></div>
+          </div>
+        </div>
+      </div></div>
+      <h3>Cliques: avançar a implantação para Treinamento</h3>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>3 cliques e 1 modal; o caminho não aparece</span></h4><div class="cm-regua" data-regua="3,1,0"></div><ol><li>Mudar estado (1), escolher o destino (1), confirmar (1, modal por cima).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>2 cliques, nenhum modal</span></h4><div class="cm-regua" data-regua="2,0,0"></div><ol><li>Treinamento no Path (1), Mover para Treinamento (1). O Path mostra o resto do caminho.</li></ol></section>
+      </div>
+      <table class="cm-especificacao">
+        <tr><th>Cores</th><td>Feito: verde com tique (é estado). Atual: chapa clara com filete latão embaixo e peso forte (é onde a ação está). Futuro: neutro. Perdido: vermelho com palavra. A marca do cliente nunca pinta o Path.</td></tr>
+        <tr><th>Onde fica</th><td>Logo abaixo do cabeçalho do registro, largura toda. Ação de avançar à direita; saídas (cancelar, perder, pausar) num botão separado, fora da faixa, para o Path mostrar só o caminho feliz.</td></tr>
+        <tr><th>Celular</th><td>Só a etapa atual mostra o nome; as outras viram marcas. Toque abre a lista de etapas numa folha inferior.</td></tr>
+      </table>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Cada etapa é botão; setas não são necessárias (são poucas).</li><li>Ao abrir o que a etapa pede, o foco vai ao primeiro campo.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Configuração, etapa atual, 3 de 5. Há 9 dias."</li><li>"Contrato, concluída."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Tique da etapa feita acompanha o nome.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="motivo">
+      <h2>Saída com motivo</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Saídas do caminho (cancelada, perdida, recusada, pausada) deixam o porquê registrado, sem pedir motivo para quem só avança.</p></div>
+        <div><h3>Fluxo</h3><ol><li>"Encerrar ▾" à direita do Path.</li><li>Modal pequeno com motivo obrigatório em lista curta e texto livre opcional.</li><li>Confirmar com o verbo da saída ("Cancelar a implantação").</li><li>O Path ganha a etapa final em vermelho com a palavra e o motivo aparece no cabeçalho.</li><li>Reabrir fica no ⋯ e pede motivo também.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Pipedrive e o Salesforce pedem motivo de perda em lista configurável (alimenta relatório de churn), e o restante das transições seguem sem pergunta. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__corpo"><button class="cm-botao cm-botao--perigo" type="button" data-q2-modal="m-motivo"><i data-i="proibido"></i>Cancelar a implantação…</button></div></div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>motivo opcional e perdido no histórico</span></h4><div class="cm-regua" data-regua="3,1,0"></div><ol><li>Mudar estado (1), Cancelada (1), confirmar (1).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>3 cliques, motivo no relatório</span></h4><div class="cm-regua" data-regua="3,1,0"></div><ol><li>Encerrar (1), escolher o motivo (1), Cancelar a implantação (1).</li></ol></section>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="niveis">
+      <h2>Exclusão em 3 níveis</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Proteger contra o erro percebido depois, sem transformar cada exclusão num modal que ninguém lê.</p></div>
+        <div><h3>Fluxo</h3><ol><li><b>Nível 1, leve:</b> tirar etiqueta, tirar da fila, desvincular. Executa e oferece Desfazer por 8 segundos.</li><li><b>Nível 2, registro de negócio:</b> chamado, contrato, lançamento não conciliado. Vai para a lixeira sem modal, com Desfazer. Se tem vínculos, um modal diz quais vão junto.</li><li><b>Nível 3, irreversível ou em cascata:</b> condomínio com unidades e histórico, remessa bancária, fechamento de mês, exclusão LGPD. Modal com a consequência e o nome digitado.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Cloudscape define exatamente esses três níveis, o Salesforce e o HubSpot têm lixeira (15 e 90 dias) e a AWS pede o nome para o que não volta. A NN/g mostra que confirmação frequente vira clique sem ler. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__corpo">
+        <div class="niveis">
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo">Nível 1: tirar etiqueta</h3></header><div class="cm-cartao__corpo"><p>Chamado 48213</p><div class="cm-multi" id="n1"><span class="cm-etiqueta cm-etiqueta--1">Manutenção<button class="cm-etiqueta__remover" type="button" aria-label="Remover Manutenção" onclick="var e=this.parentNode,p=e.parentNode;e.remove();cmQ2.toast('Etiqueta Manutenção removida.','sucesso','Desfazer',function(){p.insertBefore(e,p.firstChild)})"><i data-i="fechar"></i></button></span><span class="cm-etiqueta cm-etiqueta--4">Garagem<button class="cm-etiqueta__remover" type="button" aria-label="Remover Garagem" onclick="var e=this.parentNode,p=e.parentNode;e.remove();cmQ2.toast('Etiqueta Garagem removida.','sucesso','Desfazer',function(){p.insertBefore(e,p.firstChild)})"><i data-i="fechar"></i></button></span></div></div></section>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo">Nível 2: excluir chamado</h3></header><div class="cm-cartao__corpo"><p>Chamado 48190, duplicado do 48188. Sem vínculos: vai direto para a lixeira.</p><button class="cm-botao cm-botao--perigo cm-botao--p" type="button" id="n2a"><i data-i="excluir"></i>Excluir</button><p style="margin-top:12px">Contrato CT-2025-0033, com 2 aditivos e 14 boletos: pergunta antes.</p><button class="cm-botao cm-botao--perigo cm-botao--p" type="button" data-q2-modal="m-vinculos"><i data-i="excluir"></i>Excluir…</button></div></section>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo">Nível 3: excluir condomínio</h3></header><div class="cm-cartao__corpo"><p>Cond. Bosque Imperial, 184 unidades, 6 anos de histórico financeiro. Não volta.</p><button class="cm-botao cm-botao--perigo cm-botao--p" type="button" data-q2-modal="m-definitivo"><i data-i="excluir"></i>Excluir definitivamente…</button></div></section>
+        </div>
+      </div></div>
+      <h3>Cliques: excluir por engano e recuperar dois dias depois</h3>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>3 cliques para excluir, nenhum caminho de volta</span></h4><div class="cm-regua" data-regua="3,1,0"></div><ol><li>⋯ (1), Excluir (1), confirmar (1, modal).</li><li>Recuperar: pedido ao suporte da plataforma e restauração de cópia de segurança.</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>2 para excluir, 3 para recuperar em até 30 dias</span></h4><div class="cm-regua" data-regua="5,1,0"></div><ol><li>⋯ (1), Excluir (1). Toast com Desfazer.</li><li>Dois dias depois: Ctrl K "lixeira" (teclas), filtrar Contrato (1), Restaurar (1), confirmar o destino (1).</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Nível 2 com vínculos e nível 3: foco inicial em Cancelar.</li><li>Nível 3: o botão de excluir fica desabilitado até o nome bater.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Diálogo de alerta com o título e a consequência.</li><li>Campo do nome: "Digite Cond. Bosque Imperial para confirmar".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>X da etiqueta: "Remover Manutenção".</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="lixeira">
+      <h2>Lixeira de 30 dias</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Quem excluiu por engano recupera sozinho, sem chamar o suporte, e a gestora sabe quem excluiu o quê.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Configuração › Sistema › Lixeira, ou Ctrl K "lixeira", ou o ⋯ de cada lista ("Lixeira de OS").</li><li>Filtros por tipo e por quem excluiu; contagem de dias que faltam.</li><li>Restaurar devolve ao lugar e aos vínculos; se o nome já existe, pergunta como renomear.</li><li>Excluir definitivamente só para administrador, com nome digitado.</li><li>Depois de 30 dias, some sozinho; a auditoria guarda que existiu.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Salesforce tem a Recycle Bin com quem excluiu e quando, o HubSpot restaura por 90 dias e tira a exclusão LGPD da lixeira, e o Google Drive ensinou "restaurar" como verbo. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Lixeira</b><span>teste: Restaurar uma linha</span></div><div class="cm-palco__corpo">
+        <div class="cm-filtros" style="margin-bottom:8px"><button class="cm-filtro" type="button">Tipo<i data-i="chevron-baixo"></i></button><button class="cm-filtro" type="button">Excluído por<i data-i="chevron-baixo"></i></button><span class="cm-empurra cm-t-legenda">5 itens. Itens com mais de 30 dias saem sozinhos.</span></div>
+        <div class="cm-rolar-x"><table class="cm-tabela"><thead><tr><th>Item</th><th>Tipo</th><th>Excluído por</th><th>Quando</th><th>Restaurável</th><th class="cm-tabela__acoes" style="width:200px"><span class="cm-sr">Ações</span></th></tr></thead><tbody id="lx">
+          <tr><td class="cm-tabela__principal">CT-2025-0033, Cond. Alto da Glória<span class="cm-tabela__sub">com 2 aditivos e 14 boletos</span></td><td>Contrato</td><td>Bruno Teixeira</td><td>29/09 às 16:12</td><td><span class="cm-estado cm-estado--ponto cm-estado--neutro">mais 28 dias</span></td><td style="text-align:right;white-space:nowrap"><button class="cm-botao cm-botao--p" type="button" data-lx="restaurar"><i data-i="restaurar"></i>Restaurar</button></td></tr>
+          <tr><td class="cm-tabela__principal">Chamado 48190<span class="cm-tabela__sub">Portão do Bl B, duplicado</span></td><td>Chamado</td><td>Juliana Reis</td><td>hoje às 09:02</td><td><span class="cm-estado cm-estado--ponto cm-estado--neutro">mais 30 dias</span></td><td style="text-align:right;white-space:nowrap"><button class="cm-botao cm-botao--p" type="button" data-lx="restaurar"><i data-i="restaurar"></i>Restaurar</button></td></tr>
+          <tr><td class="cm-tabela__principal">OS 455<span class="cm-tabela__sub">Trava do bicicletário</span></td><td>Ordem de serviço</td><td>Diego Martins</td><td>05/09 às 11:40</td><td><span class="cm-estado cm-estado--ponto cm-estado--aviso">Atenção: mais 4 dias</span></td><td style="text-align:right;white-space:nowrap"><button class="cm-botao cm-botao--p" type="button" data-lx="restaurar"><i data-i="restaurar"></i>Restaurar</button></td></tr>
+          <tr><td class="cm-tabela__principal">Comunicado “Limpeza da caixa d’água”<span class="cm-tabela__sub">rascunho</span></td><td>Comunicado</td><td>Sistema (rascunho com 30 dias)</td><td>01/09</td><td><span class="cm-estado cm-estado--ponto cm-estado--aviso">Atenção: amanhã</span></td><td style="text-align:right;white-space:nowrap"><button class="cm-botao cm-botao--p" type="button" data-lx="restaurar"><i data-i="restaurar"></i>Restaurar</button></td></tr>
+          <tr><td class="cm-tabela__principal">Fornecedor Portões Sul<span class="cm-tabela__sub">tem 3 OS abertas que voltam junto</span></td><td>Fornecedor</td><td>Sônia Prates</td><td>20/09 às 08:15</td><td><span class="cm-estado cm-estado--ponto cm-estado--neutro">mais 19 dias</span></td><td style="text-align:right;white-space:nowrap"><button class="cm-botao cm-botao--p" type="button" data-lx="restaurar"><i data-i="restaurar"></i>Restaurar</button></td></tr>
+        </tbody></table></div>
+        <div class="cm-vazio" id="lx-vazio" hidden><i data-i="excluir"></i><p class="cm-vazio__titulo">A lixeira está vazia</p><p class="cm-vazio__texto">O que for excluído fica aqui por 30 dias, com quem excluiu e quando.</p></div>
+      </div></div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Filtros, linhas, Restaurar de cada linha. Depois de restaurar, o foco vai à linha seguinte.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Chamado 48190 restaurado em Suporte › Chamados. Abrir."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Botões sempre com verbo escrito.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="arquivar">
+      <h2>Arquivar</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Tirar do caminho o que acabou (cliente que saiu, campanha encerrada, projeto entregue) sem apagar a história.</p></div>
+        <div><h3>Fluxo</h3><ol><li>⋯ › Arquivar: executa na hora, com Desfazer. Sem modal.</li><li>Sai das listas padrão, da carteira e dos favoritos; continua no Ctrl K com a palavra "arquivado" e no filtro "Arquivados".</li><li>Aberto, o registro mostra a faixa "Arquivado por Rafael Lima em 15/09. Desarquivar" e fica só leitura.</li><li>Arquivado não conta em indicador de carteira ativa.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Gmail e o Slack separam arquivar de excluir (arquivar some da frente, não do sistema), e o Jira arquiva projetos em modo só leitura. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__corpo">
+        <div class="cm-faixa cm-faixa--info" role="status"><i data-i="arquivar"></i><span class="cm-faixa__texto"><b>Cond. Recanto dos Pinheiros está arquivado.</b> Por Rafael Lima em 15/09, motivo: trocou de administradora. Só leitura.</span><button class="cm-botao cm-botao--p" type="button" data-q2-toast="Cliente desarquivado. Voltou para a carteira de Rafael Lima.|sucesso|Desfazer">Desarquivar</button></div>
+      </div></div>
+    </section>
+
+    <section class="cm-doc-sec" id="massa">
+      <h2>Em massa, com desfazer</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Agir em 4 ou em 1.240 registros com a mesma segurança de agir em um.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Marcar o cabeçalho pega a página; aparece "Os 6 desta página estão marcados. Marcar todos os 1.240 do filtro".</li><li>A barra de massa diz a contagem e substitui os filtros.</li><li>Ação reversível (arquivar, atribuir, mover, excluir para a lixeira): executa e oferece Desfazer, com a contagem.</li><li>Ação de efeito externo (enviar cobrança, disparar WhatsApp): pede confirmação com o número e o efeito.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Gmail oferece "selecionar todas as conversas que correspondem à pesquisa", o PatternFly documenta que selecionar tudo pega só a página, e o Carbon troca a barra de ferramentas pela de massa. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Chamados resolvidos há mais de 90 dias</b><span>teste: marque o cabeçalho, depois "Marcar todos"</span></div><div class="cm-palco__corpo">
+        <div class="cm-barra-massa" role="region" aria-label="Ações em massa" id="ms-barra" hidden><b id="ms-n"></b><button class="cm-botao cm-botao--p" type="button" id="ms-arq"><i data-i="arquivar"></i>Arquivar</button><button class="cm-botao cm-botao--p" type="button" data-q2-modal="m-cobranca"><i data-i="whatsapp"></i>Enviar pesquisa de satisfação</button><button class="cm-botao cm-botao--p cm-botao--perigo" type="button" id="ms-exc"><i data-i="excluir"></i>Excluir</button><span class="cm-empurra"><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" id="ms-limpar">Limpar seleção</button></span></div>
+        <div class="cm-alerta cm-alerta--info" id="ms-todos" hidden style="margin:8px 0"><i data-i="informacao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo" id="ms-todos-t">Os 6 desta página estão marcados.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p cm-botao--link" type="button" id="ms-todos-b">Marcar todos os 1.240 do filtro</button></span></div>
+        <div class="cm-rolar-x"><table class="cm-tabela"><thead><tr><th class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" id="ms-cab" aria-label="Marcar os 6 desta página"><span class="cm-marcar__caixa"></span></label></th><th>Nº</th><th>Assunto</th><th>Resolvido em</th></tr></thead><tbody id="ms-corpo">
+          <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Marcar 41022"><span class="cm-marcar__caixa"></span></label></td><td>41022</td><td>2ª via do boleto de maio, Bl A 302</td><td>03/06</td></tr>
+          <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Marcar 41018"><span class="cm-marcar__caixa"></span></label></td><td>41018</td><td>Barulho de obra fora do horário</td><td>02/06</td></tr>
+          <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Marcar 40997"><span class="cm-marcar__caixa"></span></label></td><td>40997</td><td>Reserva da churrasqueira 2</td><td>30/05</td></tr>
+          <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Marcar 40981"><span class="cm-marcar__caixa"></span></label></td><td>40981</td><td>Lâmpada do hall do Bl C</td><td>29/05</td></tr>
+          <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Marcar 40970"><span class="cm-marcar__caixa"></span></label></td><td>40970</td><td>Encomenda extraviada na portaria</td><td>28/05</td></tr>
+          <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Marcar 40966"><span class="cm-marcar__caixa"></span></label></td><td>40966</td><td>Vazamento na prumada, Bl B</td><td>28/05</td></tr>
+        </tbody></table></div>
+      </div></div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>arquivar 6 chamados: 18 cliques, 6 modais</span></h4><div class="cm-regua" data-regua="18,6,0"></div><ol><li>Por chamado: ⋯ (1), Arquivar (1), confirmar (1, modal).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>2 cliques</span></h4><div class="cm-regua" data-regua="2,0,0"></div><ol><li>Marcar o cabeçalho (1), Arquivar (1). Toast "6 chamados arquivados. Desfazer".</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>A barra de massa aparece antes da tabela e recebe o foco ao marcar o primeiro.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"6 marcados, região ações em massa."</li><li>"Os 6 desta página estão marcados. Marcar todos os 1.240 do filtro, botão."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Caixa do cabeçalho: "Marcar os 6 desta página".</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="matriz">
+      <h2>Matriz das ações</h2>
+      <div class="cm-rolar-x"><table class="cm-tabela-doc"><thead><tr><th>Ação</th><th>Nível</th><th>Pergunta antes?</th><th>Volta atrás</th><th>Auditoria</th></tr></thead><tbody>
+        <tr><td>Avançar etapa</td><td>estado</td><td>não; pede só os campos da etapa</td><td>Desfazer, 8 s; depois, voltar etapa com motivo</td><td>de → para, quem, quando</td></tr>
+        <tr><td>Perder, cancelar, pausar</td><td>estado de saída</td><td>sim, com motivo obrigatório</td><td>Reabrir com motivo</td><td>motivo e texto</td></tr>
+        <tr><td>Tirar etiqueta, desvincular, tirar da fila</td><td>1</td><td>não</td><td>Desfazer, 8 s</td><td>sim</td></tr>
+        <tr><td>Arquivar</td><td>1</td><td>não</td><td>Desfazer; Desarquivar a qualquer tempo</td><td>sim</td></tr>
+        <tr><td>Excluir registro sem vínculos</td><td>2</td><td>não</td><td>Desfazer; lixeira por 30 dias</td><td>sim, e na lixeira</td></tr>
+        <tr><td>Excluir registro com vínculos</td><td>2</td><td>sim, lista o que vai junto</td><td>lixeira, restaura com os vínculos</td><td>sim</td></tr>
+        <tr><td>Excluir condomínio, fechar mês, cancelar remessa</td><td>3</td><td>sim, digitando o nome</td><td>não volta</td><td>sim, com motivo</td></tr>
+        <tr><td>Exclusão a pedido do titular (LGPD)</td><td>3, rito próprio</td><td>sim, com protocolo do pedido</td><td>não volta, não passa pela lixeira</td><td>só o protocolo, sem os dados</td></tr>
+        <tr><td>Envio em massa ao cliente</td><td>efeito externo</td><td>sim, com número e prévia</td><td>Cancelar envio por 60 s</td><td>sim</td></tr>
+      </tbody></table></div>
+    </section>
+  </div>
+</main>
+
+<div class="cm-sobreposicao" id="m-motivo" hidden>
+  <div class="cm-modal cm-modal--p cm-modal--perigo" role="dialog" aria-modal="true" aria-labelledby="mm-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mm-t">Cancelar a implantação do Cond. Vila Serena?<span class="cm-modal__sub">Ela sai da lista ativa. Os dados ficam; dá para reabrir.</span></h2></div>
+    <div class="cm-modal__corpo cm-pilha">
+      <fieldset class="cm-grupo-opcoes"><legend class="cm-campo__rotulo">Motivo <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></legend>
+        <label class="cm-radio"><input type="radio" name="mm" checked><span class="cm-radio__bola"></span><span>O cliente desistiu do contrato</span></label>
+        <label class="cm-radio"><input type="radio" name="mm"><span class="cm-radio__bola"></span><span>Dados do condomínio não chegaram</span></label>
+        <label class="cm-radio"><input type="radio" name="mm"><span class="cm-radio__bola"></span><span>Será refeita com outro plano</span></label>
+      </fieldset>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="mm-x">O que aconteceu <span class="cm-campo__opcional">opcional</span></label><textarea class="cm-area" id="mm-x" rows="2"></textarea></div>
+    </div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-fechar data-q2-foco>Voltar</button><button class="cm-botao cm-botao--perigo" type="button" id="mm-ok">Cancelar a implantação</button></div>
+  </div>
+</div>
+<div class="cm-sobreposicao" id="m-vinculos" hidden>
+  <div class="cm-modal cm-modal--p cm-modal--perigo" role="alertdialog" aria-modal="true" aria-labelledby="mv-t" aria-describedby="mv-d">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mv-t">Excluir o contrato CT-2025-0033?<span class="cm-modal__sub" id="mv-d">Vão junto para a lixeira, por 30 dias:</span></h2></div>
+    <div class="cm-modal__corpo"><ul class="cm-doc-lista" style="margin:0"><li>2 aditivos (reajuste 2025 e inclusão do Bl C)</li><li>14 boletos, 3 deles em aberto, que deixam de ser cobrados</li><li>A tarefa de renovação de Bruno Teixeira</li></ul></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-fechar data-q2-foco>Cancelar</button><button class="cm-botao cm-botao--perigo-cheio" type="button" data-q2-fechar data-q2-toast="Contrato CT-2025-0033 e 16 itens ligados foram para a lixeira. Restauráveis até 31/10.|sucesso|Desfazer">Excluir contrato e vínculos</button></div>
+  </div>
+</div>
+<div class="cm-sobreposicao" id="m-definitivo" hidden>
+  <div class="cm-modal cm-modal--p cm-modal--perigo" role="alertdialog" aria-modal="true" aria-labelledby="md-t" aria-describedby="md-d">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="md-t">Excluir definitivamente o Cond. Bosque Imperial?<span class="cm-modal__sub" id="md-d">Isto não vai para a lixeira e não volta.</span></h2></div>
+    <div class="cm-modal__corpo cm-pilha">
+      <div class="cm-alerta cm-alerta--perigo"><i data-i="perigo"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Somem 184 unidades, 2.310 boletos e 6 anos de prestação de contas.</span><span class="cm-alerta__desc">Para só tirar da carteira, use Arquivar. A prestação de contas em PDF continua no seu e-mail de backup mensal.</span></span></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="md-n">Digite <b>Cond. Bosque Imperial</b> para confirmar</label><div class="cm-entrada"><input id="md-n" autocomplete="off" data-q2-ignora></div></div>
+    </div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-fechar data-q2-foco>Cancelar</button><button class="cm-botao cm-botao--perigo-cheio" type="button" id="md-ok" disabled data-q2-fechar data-q2-toast="Cond. Bosque Imperial excluído definitivamente. Registro na auditoria com o seu nome e motivo.|sucesso">Excluir definitivamente</button></div>
+  </div>
+</div>
+<div class="cm-sobreposicao" id="m-cobranca" hidden>
+  <div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="mb-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mb-t" data-ms-titulo>Enviar a pesquisa de satisfação?<span class="cm-modal__sub" id="mb-sub">Vai pelo WhatsApp para quem abriu os chamados marcados.</span></h2></div>
+    <div class="cm-modal__corpo"><div class="cm-bolha cm-bolha--saida" style="max-width:100%">Olá! Seu chamado foi resolvido em maio. De 1 a 5, quanto a gente te ajudou? Responda só com o número.</div></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-fechar data-q2-foco>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-q2-fechar id="mb-ok">Enviar</button></div>
+  </div>
+</div>
+<script>
+(function(){
+  var d=document;
+  /* Path */
+  d.getElementById('p1').addEventListener('click',function(e){var b=e.target.closest('button[data-e]');if(!b) return;var i=+b.dataset.e;
+    if(i===3){d.getElementById('p1-pede').hidden=false;d.getElementById('p1-d').focus()}
+    else if(i<2) cmQ2.toast(b.textContent.trim()+': concluída em '+(i?'22/09':'12/09')+' por Carla Mendes.','info');
+    else if(i===4) cmQ2.toast('Em operação pede Treinamento concluído. Avance uma etapa por vez.','aviso')});
+  function avancar(){var li=d.querySelectorAll('#p1 li');li[2].className='is-feito';li[2].querySelector('button').innerHTML=cmIcone('marcar')+'Configuração';li[2].querySelector('button').removeAttribute('aria-current');li[3].className='is-atual';li[3].querySelector('button').setAttribute('aria-current','step');
+    d.getElementById('p1-or').innerHTML='<span><b>Desde hoje em Treinamento.</b></span><span><b>O que a etapa pede:</b> treinamento em 08/10 com Carla Mendes e lista de presença</span>';d.getElementById('p1-pede').hidden=true;
+    cmQ2.toast('Implantação em Treinamento.','sucesso','Desfazer',function(){location.hash='#path';cmQ2.toast('Voltou para Configuração.','info')})}
+  d.getElementById('p1-mover').onclick=avancar;d.getElementById('p1-concluir').onclick=function(){d.getElementById('p1-pede').hidden=false;d.getElementById('p1-d').focus();cmQ2.toast('Configuração concluída. Treinamento pede data e responsável.','info')};
+  d.getElementById('mm-ok').onclick=function(){cmQ2.fecharModal(this);var ol=d.querySelector('#p1 ol');ol.insertAdjacentHTML('beforeend','<li class="is-perdido"><button type="button" aria-current="step">'+cmIcone('proibido')+'Cancelada</button></li>');ol.querySelectorAll('li.is-atual').forEach(function(x){x.className=''});d.getElementById('p1-or').innerHTML='<span><b>Cancelada hoje.</b> Motivo: o cliente desistiu do contrato.</span>';location.hash='#path';cmQ2.toast('Implantação cancelada. Motivo registrado.','sucesso','Desfazer')};
+  /* nível 2 */
+  d.getElementById('n2a').onclick=function(){var b=this;b.disabled=true;b.innerHTML=cmIcone('excluir')+'Na lixeira';cmQ2.toast('Chamado 48190 foi para a lixeira. Restaurável até 31/10.','sucesso','Desfazer',function(){b.disabled=false;b.innerHTML=cmIcone('excluir')+'Excluir';cmQ2.toast('Chamado 48190 restaurado.','info')})};
+  /* nível 3 */
+  var n=d.getElementById('md-n');n.addEventListener('input',function(){d.getElementById('md-ok').disabled=n.value.trim()!=='Cond. Bosque Imperial'});
+  /* lixeira */
+  d.getElementById('lx').addEventListener('click',function(e){var b=e.target.closest('[data-lx]');if(!b) return;var tr=b.closest('tr'),nome=tr.querySelector('.cm-tabela__principal').firstChild.textContent,prox=tr.nextElementSibling||tr.previousElementSibling;tr.hidden=true;
+    cmQ2.toast(nome+' restaurado ao lugar de origem.','sucesso','Abrir');if(prox&&!prox.hidden) prox.querySelector('button').focus();
+    if(!d.querySelector('#lx tr:not([hidden])')){d.getElementById('lx-vazio').hidden=false}});
+  /* massa */
+  var corpo=d.getElementById('ms-corpo'),cab=d.getElementById('ms-cab'),todos=false;
+  function upd(){var n=corpo.querySelectorAll('input:checked').length;var tot=todos?1240:n;d.getElementById('ms-barra').hidden=!n;d.getElementById('ms-n').textContent=tot===1?'1 marcado':tot.toLocaleString('pt-BR')+' marcados';
+    d.getElementById('ms-todos').hidden=!(n===6);d.getElementById('ms-todos-t').textContent=todos?'Os 1.240 chamados do filtro estão marcados.':'Os 6 desta página estão marcados.';d.getElementById('ms-todos-b').textContent=todos?'Marcar só os 6 desta página':'Marcar todos os 1.240 do filtro';
+    d.getElementById('mb-sub').textContent='Vai pelo WhatsApp para '+tot.toLocaleString('pt-BR')+(tot===1?' pessoa':' pessoas')+' que abriram os chamados marcados.';d.getElementById('mb-ok').textContent='Enviar para '+tot.toLocaleString('pt-BR')}
+  corpo.addEventListener('change',function(){todos=false;upd()});
+  cab.addEventListener('change',function(){corpo.querySelectorAll('input').forEach(function(i){i.checked=cab.checked});todos=false;upd()});
+  d.getElementById('ms-todos-b').onclick=function(){todos=!todos;upd()};
+  d.getElementById('ms-limpar').onclick=function(){corpo.querySelectorAll('input').forEach(function(i){i.checked=false});cab.checked=false;todos=false;upd()};
+  function acao(verbo){var tot=todos?1240:corpo.querySelectorAll('input:checked').length;var trs=[].slice.call(corpo.querySelectorAll('tr')).filter(function(t){return t.querySelector('input').checked});trs.forEach(function(t){t.hidden=true});d.getElementById('ms-limpar').click();
+    cmQ2.toast(tot.toLocaleString('pt-BR')+' chamados '+verbo+'.','sucesso','Desfazer',function(){trs.forEach(function(t){t.hidden=false});cmQ2.toast('Desfeito: '+tot.toLocaleString('pt-BR')+' chamados voltaram.','info')})}
+  d.getElementById('ms-arq').onclick=function(){acao('arquivados')};d.getElementById('ms-exc').onclick=function(){acao('foram para a lixeira')};
+  d.getElementById('mb-ok').addEventListener('click',function(){var t=this.textContent.replace('Enviar para ','');cmQ2.toast('Pesquisa saindo para '+t+' pessoas. Dá para cancelar o envio por 60 segundos.','info','Cancelar envio')});
+})();
+</script>
+</body>
+</html>

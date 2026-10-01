@@ -119,6 +119,9 @@
 /* B1. Listagem: a tabela rola dentro dela, cabeçalho e paginação ficam parados */
 .lc-modelo-lista .lc-tabela-cont--alta{--_alt:calc(100dvh - 312px);min-height:280px}
 .lc-modelo-lista .lc-chips:empty{display:none}
+.lc-modelo-lista .lc-tabela{min-width:1040px}
+.lc-modelo-previa .lc-tabela{min-width:640px}
+@media (max-width:639px){.lc-modelo-lista .lc-tabela{min-width:0}}
 @media (max-width:639px){.lc-modelo-lista .lc-tabela-cont--alta{max-height:none}}
 
 /* B2. Listagem com prévia: lista | prévia 480 (só leitura) */

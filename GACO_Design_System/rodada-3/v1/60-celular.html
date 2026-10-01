@@ -20,14 +20,14 @@
 <a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="lc-doc-cab">
   <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
-  <nav aria-label="Documentação"><a href="40-portal.html">Portal</a><a href="41-publicas.html">Públicas, acesso</a><a href="41b-publicas.html">Públicas, site</a><a href="50-superadmin.html">Superadmin</a><a href="60-celular.html" aria-current="page">Celular</a><a href="61-documentos-gerados.html">Documentos</a></nav>
+  <nav aria-label="Documentação"><a href="40-portal.html">Portal</a><a href="41-publicas.html">Públicas, acesso</a><a href="41b-publicas.html">Públicas, site</a><a href="41c-publicas.html">Públicas, status</a><a href="50-superadmin.html">Superadmin</a><a href="60-celular.html" aria-current="page">Celular</a><a href="61-documentos-gerados.html">Documentos</a></nav>
   <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
 </header>
 <main id="conteudo" class="cel-pagina">
 <p class="lc-legenda" style="margin-bottom:8px">Cada aparelho é a tela real em 390 × 844, com a moldura da fundação (barra do módulo, barra inferior, gaveta). Toque e navegue dentro deles. Abrir sozinho: o endereço está no nome de cada aparelho.</p>
 
-<section class="lc-ficha-tela" aria-label="Navegação no celular">
-  <div class="lc-ficha-tela__nome"><b>Sistema interno no celular: Início, gaveta, avisos e busca</b><span>Abaixo de 640 px o trilho vira gaveta e aparece a barra inferior com 5 destinos.</span></div>
+<section class="lc-sobre-tela" aria-label="Navegação no celular">
+  <div class="lc-sobre-tela__nome"><b>Sistema interno no celular: Início, gaveta, avisos e busca</b><span>Abaixo de 640 px o trilho vira gaveta e aparece a barra inferior com 5 destinos.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Quem está fora da mesa (gerente em visita, coordenador na obra) decide o que é dele em poucos toques: Para você primeiro, a equipe, o mural.</p></div>
   <div><h2>Fluxo</h2><ol><li>Barra inferior: Início, Para você (com contador), Pesquisar, Avisos, Menu.</li><li>Menu abre a gaveta à esquerda com Recentes e módulos do papel, cada um com suas seções.</li><li>Avisos abre o sino em tela cheia; Pesquisar abre a busca ⌘K em tela cheia.</li><li>Voltar: gesto do sistema ou X; o foco volta ao botão que abriu.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o app do Microsoft Teams e o do Slack usam barra inferior com 4 ou 5 destinos e menu para o resto; o Gmail no celular abre a gaveta com as pastas; e o Material 3 e as diretrizes da Apple pedem alvos de 44 px e rótulo visível em cada aba.</p></div>
@@ -40,8 +40,8 @@
 </div>
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Pular, barra do módulo (menu, nome, sino, conta), conteúdo, barra inferior. Gaveta: foco no primeiro item, preso até fechar.</p></div><div><h3>O que é anunciado</h3><p>Gaveta é <code>dialog</code> modal "Menu". Contador da aba: "Para você, 5".</p></div><div><h3>Nome do que é só ícone</h3><p>Hambúrguer: "Abrir menu". X da gaveta: "Fechar menu". Todas as abas inferiores têm rótulo visível.</p></div></div>
 
-<section class="lc-ficha-tela" aria-label="Suporte no celular">
-  <div class="lc-ficha-tela__nome"><b>Suporte no celular: conversas, conversa com teclado e chamado</b><span>O motor do Suporte é o WhatsApp; no celular o desenho é o do próprio WhatsApp.</span></div>
+<section class="lc-sobre-tela" aria-label="Suporte no celular">
+  <div class="lc-sobre-tela__nome"><b>Suporte no celular: conversas, conversa com teclado e chamado</b><span>O motor do Suporte é o WhatsApp; no celular o desenho é o do próprio WhatsApp.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Responder um síndico de qualquer lugar sem perder o prazo, separar o que é resposta do que é nota interna, e mudar o estado do chamado com o polegar.</p></div>
   <div><h2>Fluxo</h2><ol><li>Conversas ordenadas pelo prazo de resposta, filas em pílulas no topo.</li><li>Na conversa, o compositor sobe com o teclado; a barra inferior some para dar espaço.</li><li>"Responder" e "Nota" no compositor; a nota fica âmbar e diz "só a equipe vê".</li><li>Chamado: estado em segmentado, campos-chave rolam na horizontal, ações fixas no pé.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o WhatsApp Business (lista, bolhas, tiques, áudio), o app do Zendesk (nota interna amarela) e o Intercom (compositor com modo) são o que o atendente já usa; o atributo <code>interactive-widget=resizes-content</code> faz o navegador encolher a tela com o teclado.</p></div>
@@ -53,8 +53,8 @@
 </div>
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Voltar, contato, dados, mensagens (log), modo, anexar, caixa, Enviar.</p></div><div><h3>O que é anunciado</h3><p>Prazo em texto: "Venceu há 2 min". Nota interna anunciada com o rótulo "Nota interna, só a equipe vê" antes do texto.</p></div><div><h3>Nome do que é só ícone</h3><p>Seta: "Voltar para Conversas". i: "Dados do chamado". Avião: "Enviar". Clipe: "Anexar".</p></div></div>
 
-<section class="lc-ficha-tela" aria-label="Decidir e registrar no celular">
-  <div class="lc-ficha-tela__nome"><b>Aprovar férias e reembolso, registro do CS: folha inferior</b><span>Decisão e registro curtos abrem em folha inferior, não em tela nova.</span></div>
+<section class="lc-sobre-tela" aria-label="Decidir e registrar no celular">
+  <div class="lc-sobre-tela__nome"><b>Aprovar férias e reembolso, registro do CS: folha inferior</b><span>Decisão e registro curtos abrem em folha inferior, não em tela nova.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Aprovar um reembolso entre duas reuniões e registrar a visita ao condomínio ainda na calçada, com o próximo passo obrigatório.</p></div>
   <div><h2>Fluxo</h2><ol><li>Tocar no item abre a folha com valor, composição e comprovantes.</li><li>"Aprovar" e "Recusar" no pé, ao alcance do polegar; recusar pede comentário.</li><li>Registro do CS: tipo em 4 botões, texto, saúde, próximo passo com data; "Registrar" fecha a folha e mostra o toast.</li><li>Arrastar a alça para baixo ou o X fecha sem salvar (pergunta se houver texto).</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o Google Maps e o Apple Mapas consagraram a folha inferior com alça; o app do Expensify e o do SAP Concur aprovam despesa com o comprovante na mesma folha; e o HubSpot no celular registra ligação com próximo passo.</p></div>
@@ -65,8 +65,8 @@
 </div>
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Folha: título, Fechar, conteúdo, Recusar, Aprovar. O fundo fica inerte enquanto a folha está aberta.</p></div><div><h3>O que é anunciado</h3><p>Folha é <code>dialog</code> modal com o título. Aprovar: "Reembolso aprovado. Próximo: férias de Juliana." com Desfazer.</p></div><div><h3>Nome do que é só ícone</h3><p>X: "Fechar". A alça é decorativa; fechar também funciona pelo X e por Esc.</p></div></div>
 
-<section class="lc-ficha-tela" aria-label="Portal no celular">
-  <div class="lc-ficha-tela__nome"><b>Portal no celular com barra inferior</b><span>As mesmas páginas 40 a 40j, sem a documentação (<code>?limpo=1</code>).</span></div>
+<section class="lc-sobre-tela" aria-label="Portal no celular">
+  <div class="lc-sobre-tela__nome"><b>Portal no celular com barra inferior</b><span>As mesmas páginas 40 a 40j, sem a documentação (<code>?limpo=1</code>).</span></div>
   <div><h2>O que esta tela resolve</h2><p>O morador usa o portal como app de banco: abas no pé, topo na cor da administradora, boleto e chamado em um toque.</p></div>
   <div><h2>Fluxo</h2><ol><li>Abas no pé: Início, Boletos, Reservas, Chamados, Mais.</li><li>"Mais" abre a gaveta com o que varia por papel (morador, síndico, conselheiro).</li><li>A aba ativa usa a cor do cliente (única exceção, como no topo).</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>os apps do Nubank, do Itaú e do Inter usam 4 ou 5 abas no pé com "Mais"; o TownSq e o Condomob seguem o mesmo desenho, que o morador já conhece.</p></div>

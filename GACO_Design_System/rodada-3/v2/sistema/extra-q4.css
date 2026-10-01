@@ -285,7 +285,7 @@
 .cm-conclusao[aria-pressed="true"]{border-color:var(--cm-sucesso-borda);color:var(--cm-sucesso-texto);font-weight:600}
 .cm-conclusao[aria-pressed="true"]::before{background:var(--cm-sucesso-ponto);border-color:var(--cm-sucesso-ponto);box-shadow:inset 0 0 0 2px var(--cm-camada-1)}
 .cm-conclusao.is-auto{border-style:dashed}
-.cm-disciplina-linha{display:grid;grid-template-columns:44px minmax(0,1.6fr) minmax(0,1fr) 150px 170px auto;gap:14px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--cm-filete);font-size:13px}
+.cm-disciplina-linha{display:grid;grid-template-columns:44px minmax(0,1.5fr) minmax(140px,1fr) 190px 120px 200px;gap:14px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--cm-filete);font-size:13px}
 .cm-disciplina-linha:last-child{border-bottom:0}
 .cm-disciplina-linha:hover{background:var(--cm-camada-2)}
 .cm-disciplina-linha__nome{font-weight:700;font-size:14px;color:var(--cm-texto-1);text-decoration:none}

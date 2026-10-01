@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fluxos de salvar</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q2.css">
+<script src="sistema/icones.js"></script>
+<script src="padroes/links-doc.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q2.js" defer></script>
+<style>
+.demo-form{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;max-width:640px}
+.demo-form .largo{grid-column:1/-1}
+.mini-comp{max-width:720px;border:1px solid var(--cm-filete)}
+.mini-conv{display:flex;flex-direction:column;gap:6px;padding:12px 16px;background:var(--cm-conversa-fundo);min-height:120px}
+@media (max-width:599px){.demo-form{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"CS","tela":"Clientes","papel":"CS","trilha":false,"usuario":{"nome":"Rafael Lima","iniciais":"RL","cargo":"CS sênior","presenca":"disponivel","tom":3}}'></div>
+<main id="conteudo" class="cm-doc">
+  <nav class="cm-doc__indice" aria-label="Nesta página"><h2>Nesta página</h2><ol>
+    <li><a href="#regra">A regra em uma tabela</a></li>
+    <li><a href="#barra">Barra que só aparece com alteração</a></li>
+    <li><a href="#salvar-menu">Salvar ▾</a></li>
+    <li><a href="#campo">Por campo: Enter e Esc</a></li>
+    <li><a href="#secao">Por seção</a></li>
+    <li><a href="#sair">Sair com alteração</a></li>
+    <li><a href="#conflito">Conflito de versão</a></li>
+    <li><a href="#rascunho">Rascunho em texto longo</a></li>
+    <li><a href="#erro">Erro com resumo</a></li>
+    <li><a href="#ctrl-s">Ctrl S</a></li>
+    <li><a href="#enviar">Enviar ▾ no atendimento</a></li>
+    <li><a href="#textos">Textos de salvar</a></li>
+  </ol></nav>
+  <div class="cm-doc__corpo">
+    <header class="cm-doc__cabeca">
+      <h1>Fluxos de salvar</h1>
+      <p>Uma pessoa precisa saber, a qualquer momento, se o que fez está gravado. Na V2 isso tem uma resposta só: <b>se existe alguma coisa por salvar, aparece uma barra dizendo quantas e quais; se não aparece nada, está tudo gravado.</b> O resto desta página são as variações dessa regra, todas funcionando.</p>
+      <div class="cm-doc__regras"><span><b>Nunca</b> Salvar aceso sem alteração</span><span><b>Nunca</b> pergunta ao sair se nada mudou</span><span><b>Nunca</b> salvamento automático em dado de efeito (valor, baixa, estado)</span><span><b>Sempre</b> Desfazer no que grava na hora</span></div>
+    </header>
+
+    <section class="cm-doc-sec" id="regra">
+      <h2>A regra em uma tabela</h2>
+      <p>Quem decide como salva é o tamanho da mudança, não a tela. Esta tabela substitui o caso a caso.</p>
+      <div class="cm-rolar-x"><table class="cm-tabela-doc">
+        <thead><tr><th>O que muda</th><th>Como grava</th><th>Onde está o botão</th><th>Volta atrás</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td>Um campo de ação</td><td>na hora</td><td>não há botão</td><td>Desfazer no toast, 8 s</td><td>responsável, prioridade, etiqueta, seguir</td></tr>
+          <tr><td>Um campo de dado</td><td>Enter confirma no campo; soma na barra</td><td>barra do pé</td><td>Esc no campo; Descartar na barra</td><td>telefone, e-mail, data de retorno</td></tr>
+          <tr><td>Um grupo coerente</td><td>Salvar seção</td><td>pé da própria seção, à direita</td><td>Cancelar ou Esc</td><td>endereço, vigência e valores, dados bancários</td></tr>
+          <tr><td>Um cadastro inteiro</td><td>Salvar ▾ ou Criar ▾</td><td>barra do pé, à direita</td><td>Descartar; pergunta ao sair</td><td>novo cliente, novo fornecedor</td></tr>
+          <tr><td>Texto longo</td><td>rascunho sozinho, publicar à mão</td><td>Publicar ou Enviar</td><td>Recuperar o rascunho</td><td>ata, comunicado, e-mail, proposta</td></tr>
+          <tr><td>Etapa ou estado</td><td>ação nomeada no Path</td><td>Path e "Avançar para…"</td><td>Desfazer; motivo quando a saída pede</td><td>Expansão → Renovação, Perdido</td></tr>
+          <tr><td>Linha de tabela de objeto-linha</td><td>Enter grava a linha</td><td>não há botão</td><td>Desfazer no toast</td><td>leituras de hidrômetro, itens de rateio</td></tr>
+          <tr><td>Mensagem ao cliente</td><td>Enviar ▾</td><td>compositor, à direita</td><td>Desfazer por 8 s (antes de sair)</td><td>resposta no WhatsApp</td></tr>
+        </tbody></table></div>
+    </section>
+
+    <section class="cm-doc-sec" id="barra">
+      <h2>Barra que só aparece com alteração</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Acaba com o "será que salvou?": sem barra, está gravado; com barra, ela diz quantas e quais alterações faltam.</p></div>
+        <div><h3>Fluxo</h3><ol><li>A pessoa muda um campo. O campo ganha o fundo de "editado".</li><li>A barra sobe no pé: "1 alteração não salva: Telefone". O título da aba ganha "• ".</li><li>Volta o valor original: a barra some sozinha (comparação com o original, não "tocou no campo").</li><li>Salvar: a barra mostra "salvando", some, e o toast confirma.</li><li>Descartar devolve tudo ao original, sem pergunta: o botão já diz o que faz.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Shopify Polaris (barra de salvar contextual) e o Elastic (barra do pé) só mostram salvar quando há alteração, e o Cloudscape não pergunta nada se nada mudou. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Contato da síndica</b><span>teste: mude o telefone; depois volte ao valor antigo</span></div>
+        <div class="cm-palco__corpo" data-q2-form="contato" data-q2-salvo="Contato da síndica salvo.">
+          <div class="demo-form">
+            <div class="cm-campo"><label class="cm-campo__rotulo" for="d1-t">Telefone</label><div class="cm-entrada"><input id="d1-t" value="(41) 99812-4410" type="tel"></div></div>
+            <div class="cm-campo"><label class="cm-campo__rotulo" for="d1-e">E-mail</label><div class="cm-entrada"><input id="d1-e" value="marina.costa@gmail.com" type="email"></div></div>
+            <div class="cm-campo largo"><label class="cm-campo__rotulo" for="d1-h">Melhor horário</label><div class="cm-selecao"><select id="d1-h"><option>Manhã, até 11h</option><option>Tarde</option><option>Qualquer horário, pelo WhatsApp</option></select><i data-i="chevron-baixo"></i></div></div>
+          </div>
+          <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" data-q2-barra="contato" hidden style="margin-top:16px">
+            <div class="cm-barra-salvar__msg" data-q2-msg aria-live="polite"><b></b><span></span></div>
+            <button class="cm-botao cm-botao--discreto" type="button" data-q2-descartar>Descartar</button>
+            <button class="cm-botao cm-botao--principal" type="button" data-q2-salvar>Salvar <span class="cm-dividido__lembra"></span></button>
+          </div>
+        </div>
+      </div>
+      <h3>Cliques: mudar o telefone da síndica</h3>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>3 cliques, 2 trocas, botão Salvar sempre aceso</span></h4><div class="cm-regua" data-regua="3,2,0"></div><ol><li>Editar no registro (1, troca para a página de edição com 25 campos).</li><li>Achar o campo, Salvar (1, troca de volta), conferir se mudou (1).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>2 cliques, nenhuma troca</span></h4><div class="cm-regua" data-regua="2,0,1"></div><ol><li>Lápis (1), digitar, Enter (tecla).</li><li>Salvar na barra (1). Ou Ctrl S.</li></ol></section>
+      </div>
+      <table class="cm-especificacao">
+        <tr><th>Posição</th><td>Pé da área de trabalho (não da janela inteira quando há coluna fixa), grudada, largura do conteúdo. Mensagem à esquerda; Descartar e Salvar à direita, Salvar por último.</td></tr>
+        <tr><th>Estados</th><td>Escondida · com alteração (filete latão no topo) · salvando (girando ao lado da mensagem, botão ocupado) · erro (filete vermelho, mensagem diz que nada foi gravado) · conflito (abre a escolha de versão).</td></tr>
+        <tr><th>Mensagem</th><td>Negrito: "2 alterações não salvas". Depois, até 4 nomes de campo: "Telefone, Síndica". Mais que 4: "e mais 3". No celular, só o negrito.</td></tr>
+      </table>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>A barra aparece no fim da ordem e não rouba o foco.</li><li>Ctrl S salva de qualquer campo.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>A mensagem é região viva educada: "1 alteração não salva, Telefone".</li><li>Depois de salvar, o toast é status: "Contato da síndica salvo".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Não há botão só ícone na barra simples.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="salvar-menu">
+      <h2>Salvar ▾: e próximo, e voltar à carteira, e novo, lembrar escolha</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Quem confere 20 contratos ou cadastra 12 unidades não quer, a cada um, salvar, voltar e abrir o próximo.</p></div>
+        <div><h3>Fluxo</h3><ol><li>A seta ao lado de Salvar abre as quatro formas: continuar aqui, ir para o próximo (diz qual), voltar à carteira (diz a visão e a linha), criar outro.</li><li>Escolher salva na hora daquele jeito.</li><li>Com "Lembrar minha escolha" marcado, o botão passa a dizer o que faz: "Salvar e próximo".</li><li>Ctrl S sempre salva e fica; Ctrl Enter sempre salva e vai ao próximo.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o SAP Fiori tem "salvar e próximo" e "salvar e voltar", o Salesforce tem "salvar e novo", e o Zendesk e o Help Scout lembram por pessoa o que acontece depois de enviar. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Contrato CT-2024-0187</b><span>teste: mude o índice e use a seta do Salvar</span></div>
+        <div class="cm-palco__corpo" data-q2-form="contrato" data-q2-padrao="proximo">
+          <div class="demo-form">
+            <div class="cm-campo"><label class="cm-campo__rotulo" for="d2-i">Índice de reajuste</label><div class="cm-selecao"><select id="d2-i"><option>IGP-M</option><option>IPCA</option></select><i data-i="chevron-baixo"></i></div></div>
+            <div class="cm-campo"><label class="cm-campo__rotulo" for="d2-p">Percentual</label><div class="cm-entrada cm-entrada--porcentagem"><input id="d2-p" value="5,48" inputmode="decimal"><span class="cm-entrada__sufixo">%</span></div></div>
+          </div>
+          <p class="cm-t-legenda" style="margin-top:10px" id="d2-onde">Você está no contrato 14 de 63 da visão "Reajuste pendente em outubro".</p>
+          <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" data-q2-barra="contrato" hidden style="margin-top:16px">
+            <div class="cm-barra-salvar__msg" data-q2-msg aria-live="polite"><b></b><span></span></div>
+            <button class="cm-botao cm-botao--discreto" type="button" data-q2-descartar>Descartar</button>
+            <div class="cm-dividido cm-ancora">
+              <button class="cm-botao cm-botao--principal" type="button" data-q2-salvar>Salvar <span class="cm-dividido__lembra"></span></button>
+              <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de salvar" data-q2-abre="d2-menu"><i data-i="chevron-baixo"></i></button>
+              <div class="cm-menu cm-flutuante cm-flutuante--cima" role="menu" id="d2-menu" data-q2-menu-de="contrato" hidden style="width:310px">
+                <button class="cm-menu__item" role="menuitemradio" type="button" data-q2-opcao="continuar"><i data-i="salvar"></i><span>Salvar e continuar aqui</span><span class="cm-menu__atalho">Ctrl S</span></button>
+                <button class="cm-menu__item" role="menuitemradio" type="button" data-q2-opcao="proximo"><i data-i="chevron-baixo"></i><span>Salvar e ir para o próximo<span class="cm-menu__desc">15 de 63, Residencial Jardim Botânico</span></span><span class="cm-menu__atalho">Ctrl Enter</span></button>
+                <button class="cm-menu__item" role="menuitemradio" type="button" data-q2-opcao="voltar"><i data-i="voltar"></i><span>Salvar e voltar à carteira<span class="cm-menu__desc">Reajuste pendente em outubro, linha 14</span></span><span></span></button>
+                <button class="cm-menu__item" role="menuitemradio" type="button" data-q2-opcao="novo"><i data-i="adicionar"></i><span>Salvar e criar outro contrato</span><span></span></button>
+                <div class="cm-menu__sep"></div>
+                <label class="cm-marcar" style="padding:6px 12px" data-q2-fica><input type="checkbox" checked data-q2-lembrar="contrato" data-q2-ignora><span class="cm-marcar__caixa"></span><span>Lembrar minha escolha<span class="cm-marcar__desc">Vale para contratos, neste navegador e no seu usuário.</span></span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3>Cliques: conferir 20 lançamentos de rateio</h3>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>120 cliques, 60 trocas</span></h4><div class="cm-regua" data-regua="40,20,0" aria-label="120 cliques e 60 trocas; cada marca vale 3"></div><ol><li>Por lançamento: linha (1, troca), Editar (1, troca), corrigir (1), Salvar (1, troca), voltar (2).</li><li>Cada marca aqui vale 3.</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>41 cliques, 20 teclas, nenhuma volta à lista</span></h4><div class="cm-regua" data-regua="21,0,20"></div><ol><li>Abrir o primeiro (1).</li><li>Por lançamento: lápis (1), corrigir, Ctrl Enter salva e abre o próximo (tecla).</li></ol></section>
+      </div>
+      <table class="cm-especificacao">
+        <tr><th>Rótulos</th><td>Botão: "Salvar" + lembrança em peso leve ("e próximo", "e voltar à carteira", "e novo"). Itens do menu sempre com verbo e destino. Na criação: "Criar cliente ▾" com "Criar e abrir a ficha", "Criar e começar outro", "Criar e voltar à lista".</td></tr>
+        <tr><th>"Próximo" sem conjunto</th><td>Se a pessoa não veio de uma lista (abriu por link ou pelo Ctrl K), o item "e próximo" fica desabilitado com a explicação "Abra a partir de uma lista para ter próximo".</td></tr>
+        <tr><th>Lembrar</th><td>Por pessoa e por tipo de registro, guardado no usuário (não só no navegador). Desmarcar faz a escolha valer uma vez.</td></tr>
+      </table>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Descartar, Salvar, seta.</li><li>No menu: setas entre itens, Enter escolhe, Esc fecha e volta à seta.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Itens são opções marcáveis: "Salvar e ir para o próximo, marcado, 15 de 63, Residencial Jardim Botânico".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Seta: "Outras formas de salvar".</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="campo">
+      <h2>Por campo: Enter confirma, Esc desfaz</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Mudar um dado sem abrir formulário, com dois tipos de campo bem separados: o que é dado e o que é ação.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Lápis, clique no valor ou E com a linha em foco abre o campo.</li><li>Embaixo: "Era (41) 3456-7788. Enter confirma, Esc desfaz."</li><li>Enter: a linha fica marcada "alterado" e a barra conta. Esc: volta como estava.</li><li>Campo de ação (Responsável): escolher grava na hora, com Desfazer.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Salesforce edita por lápis e junta as edições num salvar; o Jira e o Linear gravam atribuição e prioridade na hora; mostrar o valor anterior vem do Fiori ("valor original" em edição). Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Ficha do cliente</b><span>teste: lápis do telefone, Enter; troque o responsável</span></div>
+        <div class="cm-palco__corpo" data-q2-form="ficha" data-q2-salvo="Cliente salvo.">
+          <section class="cm-cartao" style="max-width:520px"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo">Contato e endereço</h3></header><div class="cm-cartao__corpo"><dl class="cm-ficha">
+            <div class="cm-ficha__linha" data-q2-campo><dt>Telefone</dt><dd>(41) 3456-7788</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar telefone"><i data-i="editar"></i></button></div>
+            <div class="cm-ficha__linha" data-q2-campo><dt>Data de retorno</dt><dd>15/10/2026</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar data de retorno"><i data-i="editar"></i></button></div>
+            <div class="cm-ficha__linha" data-q2-campo data-q2-campo-acao data-opcoes="Rafael Lima|Carla Mendes|Bruno Teixeira"><dt>Responsável</dt><dd>Rafael Lima</dd><button class="cm-ficha__lapis" type="button" aria-label="Trocar responsável"><i data-i="atribuir"></i></button></div>
+            <div class="cm-ficha__linha is-leitura"><dt>Criado em</dt><dd>12/03/2024 <span class="cm-ficha__cadeado"><i data-i="bloquear" data-rotulo="Campo do sistema, não editável"></i></span></dd><span></span></div>
+          </dl></div></section>
+          <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" data-q2-barra="ficha" hidden style="margin-top:16px;max-width:520px">
+            <div class="cm-barra-salvar__msg" data-q2-msg aria-live="polite"><b></b><span></span></div>
+            <button class="cm-botao cm-botao--discreto" type="button" data-q2-descartar>Descartar</button>
+            <button class="cm-botao cm-botao--principal" type="button" data-q2-salvar>Salvar <span class="cm-dividido__lembra"></span></button>
+          </div>
+        </div>
+      </div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>mudar a prioridade de 1 chamado: 4 cliques, 2 trocas</span></h4><div class="cm-regua" data-regua="4,2,0"></div><ol><li>Editar (1, troca), abrir a lista de prioridade (1), escolher (1), Salvar (1, troca).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>2 cliques, nenhuma troca</span></h4><div class="cm-regua" data-regua="2,0,0"></div><ol><li>Clicar na prioridade (1), escolher (1). Gravado, com Desfazer.</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>O lápis de cada linha; Enter ou E abre; foco volta ao lápis.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Telefone, editando. Era (41) 3456-7788. Enter confirma, Esc desfaz."</li><li>"Responsável: Carla Mendes. Gravado. Desfazer."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>"Editar telefone", "Trocar responsável".</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="secao">
+      <h2>Por seção</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Campos que só fazem sentido juntos (vigência e valores, endereço, dados bancários) mudam juntos, sem sair do registro.</p></div>
+        <div><h3>Fluxo</h3><ol><li>"Editar seção" no cabeçalho do cartão.</li><li>O cartão vira formulário com filete latão e "Editando"; ao mudar algo, "Alterações não salvas".</li><li>As outras seções e os lápis ficam travados até terminar (um contexto de edição por vez).</li><li>Salvar seção grava só a seção; Cancelar ou Esc desfaz; Ctrl S salva a seção.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o SAP Fiori prefere edição parcial no lugar para partes do objeto, o Cloudscape edita por contêiner com o salvar no pé do contêiner, e o HubSpot edita os cartões da coluna do registro sem sair dele. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Contrato e cobrança</b><span>teste: Editar seção, apague a mensalidade e tente salvar</span></div>
+        <div class="cm-palco__corpo">
+          <section class="cm-cartao" style="max-width:560px" data-q2-secao data-q2-nome="Contrato e cobrança"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo">Contrato e cobrança</h3><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q2-editar-secao><i data-i="editar"></i>Editar seção</button></header>
+            <div class="cm-cartao__corpo">
+              <dl class="cm-ficha" data-q2-secao-leitura><div class="cm-ficha__linha"><dt>Índice</dt><dd data-q2-mostra="ix">IGP-M</dd><span></span></div><div class="cm-ficha__linha"><dt>Mensalidade</dt><dd data-q2-mostra="mx">R$ 4.380,00</dd><span></span></div><div class="cm-ficha__linha"><dt>Fim da vigência</dt><dd data-q2-mostra="fx">14/01/2027</dd><span></span></div></dl>
+              <div data-q2-secao-form hidden><div class="demo-form">
+                <div class="cm-campo"><label class="cm-campo__rotulo" for="d4-i">Índice</label><div class="cm-selecao"><select id="d4-i" data-q2-para="ix"><option>IGP-M</option><option>IPCA</option></select><i data-i="chevron-baixo"></i></div></div>
+                <div class="cm-campo"><label class="cm-campo__rotulo" for="d4-m">Mensalidade *</label><div class="cm-entrada cm-entrada--moeda"><span class="cm-entrada__prefixo">R$</span><input id="d4-m" value="4.380,00" required data-q2-para="mx"></div></div>
+                <div class="cm-campo"><label class="cm-campo__rotulo" for="d4-f">Fim da vigência</label><div class="cm-entrada"><input id="d4-f" value="14/01/2027" data-q2-para="fx"></div></div>
+              </div>
+              <div style="display:flex;gap:6px;justify-content:flex-end;padding-top:10px;margin-top:10px;border-top:1px solid var(--cm-filete)"><span class="cm-cresce cm-t-legenda">Ctrl S salva a seção, Esc cancela.</span><button class="cm-botao cm-botao--p" type="button" data-q2-secao-cancelar>Cancelar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q2-secao-salvar>Salvar seção</button></div></div>
+            </div></section>
+        </div>
+      </div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>4 cliques, 2 trocas, formulário de 25 campos</span></h4><div class="cm-regua" data-regua="4,2,0"></div><ol><li>Editar o contrato (1, troca), achar os 3 campos, Salvar (1, troca), conferir (2).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>2 cliques, nenhuma troca</span></h4><div class="cm-regua" data-regua="2,0,1"></div><ol><li>Editar seção (1), mudar os 3 campos, Salvar seção (1) ou Ctrl S.</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Editar seção → primeiro campo → … → Cancelar → Salvar seção.</li><li>Ao fechar, o foco volta a "Editar seção".</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Contrato e cobrança salva. 1 campo alterado."</li><li>Faltou valor: "Falta preencher Mensalidade."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Não há ícone sem texto.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="sair">
+      <h2>Sair com alteração: três saídas nomeadas</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Ninguém perde trabalho por clicar no menu, e ninguém responde pergunta à toa quando não mudou nada.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Com algo por salvar, qualquer navegação interna (menu, trilha, J e K, Ctrl K, link) para e pergunta.</li><li>A pergunta diz quantas alterações, em quais campos e para onde a pessoa ia.</li><li>Continuar editando (foco inicial) · Descartar e sair · Salvar e sair (principal).</li><li>Fechar a aba ou recarregar usa o aviso do próprio navegador.</li><li>Sem alteração, sai direto.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o GitLab (Pajamas) pergunta com "salvar" e "descartar e sair" nomeados, e o Cloudscape proíbe a pergunta quando nada mudou. O foco em "Continuar editando" evita perder trabalho com um Enter distraído. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Tente sair</b><span>mude o telefone no exemplo acima (barra), depois clique abaixo</span></div>
+        <div class="cm-palco__corpo cm-linha cm-linha--quebra" style="gap:8px">
+          <a class="cm-botao" href="padroes/listagem-previa.html">Ir para Clientes pela trilha</a>
+          <button class="cm-botao" type="button" onclick="cmQ2.algumSujo()?cmQ2.pedirSaida(function(){cmQ2.toast('Abrindo 15 de 63.','info')},'o próximo cliente (J)'):cmQ2.toast('Nada por salvar: sairia direto, sem pergunta.','info')">Apertar J (próximo)</button>
+          <button class="cm-botao" type="button" onclick="var f=cmQ2.form('contato');document.getElementById('d1-t').value='(41) 99812-0000';f.atualizar();cmQ2.pedirSaida(function(){cmQ2.toast('Abrindo Contratos.','info')},'Contratos, pelo menu')">Simular: alterar e sair pelo menu</button>
+        </div>
+      </div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>"Descartar alterações?" com Sim e Não</span></h4><div class="cm-regua" data-regua="1,0,0"></div><ol><li>A pergunta aparecia mesmo sem mudança.</li><li>"Sim" descartava; para salvar era preciso voltar, Salvar e sair de novo (3 cliques a mais).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>1 clique em qualquer saída</span></h4><div class="cm-regua" data-regua="1,0,0"></div><ol><li>Salvar e sair resolve em um clique e leva para onde a pessoa ia.</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Continuar editando (inicial), Descartar e sair, Salvar e sair.</li><li>Esc não fecha (é diálogo de alerta); escolher é obrigatório.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Diálogo de alerta: "Sair sem salvar? 1 alteração em Telefone. Você ia para Contratos."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Sem X: as saídas são os três botões.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="conflito">
+      <h2>Conflito de versão</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Duas pessoas editaram o mesmo cliente. Ninguém apaga o trabalho do outro sem ver.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Ao salvar, o servidor diz que a versão mudou desde que a pessoa abriu.</li><li>Se os campos não se cruzam, junta sozinho e avisa: "Carla também mudou o e-mail; juntamos as duas mudanças".</li><li>Se cruzam: diálogo com campo, a sua versão e a da outra pessoa, lado a lado, com escolha por campo.</li><li>Salvar a combinação grava; a auditoria registra as duas autorias.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Salesforce avisa que o registro foi alterado por outra pessoa antes de sobrescrever, o Jira e o Confluence comparam as versões, e o Google Docs mostra quem mudou o quê. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Salvar com conflito</b></div><div class="cm-palco__corpo"><button class="cm-botao cm-botao--principal" type="button" data-q2-modal="m-conflito">Salvar (simular conflito)</button></div></div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>a última gravação vencia</span></h4><div class="cm-regua" data-regua="1,0,0"></div><ol><li>Salvar (1). O telefone que a Carla corrigiu sumia sem aviso.</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>2 cliques, nada se perde</span></h4><div class="cm-regua" data-regua="2,0,0"></div><ol><li>Escolher a versão do campo em conflito (1), Salvar a combinação (1).</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Primeira escolha, linha a linha, depois os botões.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Carla Mendes salvou este cliente às 14:31, enquanto você editava. 1 campo diferente."</li><li>Cada opção: "Telefone, a sua: (41) 3456-7799".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Avatar da Carla com o nome escrito.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="rascunho">
+      <h2>Rascunho só em texto longo</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>A ata de 40 minutos não some se a sessão cai, a aba fecha ou o notebook dorme. E o valor do boleto nunca é gravado pela metade.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Em ata, comunicado, e-mail e proposta, o texto é guardado como rascunho a cada pausa de 2 segundos.</li><li>Ao lado do Publicar: "Rascunho salvo às 14:32". Sem rede: "Rascunho guardado neste navegador".</li><li>Volta à tela com rascunho: faixa "Recuperar o que você escreveu às 14:32?" com Recuperar e Descartar.</li><li>O registro oficial só muda no Publicar. Rascunhos aparecem em Para você › Rascunhos.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o SAP Fiori guarda rascunho a cada 20 segundos sem tocar o registro ativo, o Gmail e o Google Docs salvam o texto sozinhos, e o A3 mostrou que salvamento automático em dado de efeito (Dynamics) dispara integração antes da hora. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Comunicado de reajuste da taxa</b><span>teste: escreva e pare de digitar</span><span class="cm-empurra"><button class="cm-botao cm-botao--p" type="button" id="d7-rec">Simular volta com rascunho</button></span></div>
+        <div class="cm-palco__corpo">
+          <div class="cm-faixa cm-faixa--info" id="d7-faixa" hidden style="margin-bottom:10px"><i data-i="rascunho"></i><span class="cm-faixa__texto">Você tem um rascunho deste comunicado, de hoje às 14:32. Recuperar o que escreveu?</span><button class="cm-botao cm-botao--p" type="button" id="d7-sim">Recuperar</button><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" onclick="this.parentNode.hidden=true;cmQ2.toast('Rascunho descartado.','info','Desfazer')">Descartar</button></div>
+          <div class="cm-campo" style="max-width:680px"><label class="cm-campo__rotulo" for="d7-t">Texto do comunicado</label><textarea class="cm-area" id="d7-t" rows="5" data-q2-ignora>Prezados condôminos do Cond. Parque das Águas, a partir de novembro a taxa condominial passa de R$ 980,00 para R$ 1.034,00, conforme aprovado na assembleia de 23/09.</textarea></div>
+          <div class="cm-linha" style="gap:10px;margin-top:10px;max-width:680px"><span class="cm-gravacao is-ok cm-cresce" id="d7-st" role="status"><i data-i="sucesso"></i>Rascunho salvo às 14:32</span><button class="cm-botao" type="button">Pré-visualizar</button><button class="cm-botao cm-botao--principal" type="button" data-q2-toast="Comunicado publicado para 312 unidades, com ciência pedida.|sucesso|Ver">Publicar</button></div>
+        </div>
+      </div>
+      <table class="cm-especificacao">
+        <tr><th>Onde tem rascunho</th><td>Ata, comunicado, e-mail ao cliente, proposta comercial, modelo de contrato, resposta longa no compositor (por conversa), descrição de chamado no portal.</td></tr>
+        <tr><th>Onde nunca tem</th><td>Valor, baixa, estado, etapa, permissões, configuração. Ali vale a barra de salvar.</td></tr>
+        <tr><th>Quanto dura</th><td>30 dias, depois vai para a lixeira. Um rascunho por pessoa por registro.</td></tr>
+      </table>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Faixa de recuperar (quando existe) antes do texto.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Status sem roubar o foco: "Rascunho salvo às 14:33". Não repete a cada pausa: só quando muda de minuto.</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Ícone do status é decorativo; o texto diz tudo.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="erro">
+      <h2>Erro com resumo</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Quando não dá para salvar, a pessoa sabe o que corrigir, onde, e que nada foi gravado.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Salvar com campo errado: nada é gravado.</li><li>Resumo no topo recebe o foco: "2 campos precisam de correção", com link para cada campo.</li><li>Cada campo diz o que fazer ("O CNPJ tem 14 dígitos"), não só "inválido".</li><li>A barra fica vermelha e diz "Nada foi gravado ainda".</li><li>Erro do servidor: alerta com o motivo e "Tentar de novo"; as alterações continuam na tela.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o GOV.UK Design System usa resumo de erros com links e foco nele, o Carbon pede mensagem que diga como corrigir, e o Polaris mantém a barra de salvar em erro até corrigir. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Novo fornecedor</b><span>teste: digite "12.345" no CNPJ e clique Salvar</span><span class="cm-empurra"><button class="cm-botao cm-botao--p" type="button" id="d8-srv">Simular erro do servidor</button></span></div>
+        <div class="cm-palco__corpo" data-q2-form="fornecedor" data-q2-salvo="Fornecedor criado.">
+          <div class="cm-resumo-erros" data-q2-resumo="fornecedor" hidden tabindex="-1" style="max-width:640px;margin-bottom:12px"></div>
+          <div class="cm-alerta cm-alerta--perigo" id="d8-alerta" hidden style="max-width:640px;margin-bottom:12px"><i data-i="perigo"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Não foi possível salvar: a conexão com o servidor caiu às 14:36.</span><span class="cm-alerta__desc">O que você digitou continua aqui. Nada foi gravado.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button" onclick="document.getElementById('d8-alerta').hidden=true;cmQ2.form('fornecedor').salvar()">Tentar de novo</button></span></div>
+          <div class="demo-form">
+            <div class="cm-campo"><label class="cm-campo__rotulo" for="d8-n">Razão social <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="d8-n" required data-q2-msg="Escreva a razão social como está no CNPJ."></div></div>
+            <div class="cm-campo"><label class="cm-campo__rotulo" for="d8-c">CNPJ <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="d8-c" inputmode="numeric" required data-q2-valida="^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$" data-q2-msg="O CNPJ tem 14 dígitos, no formato 00.000.000/0000-00."></div></div>
+          </div>
+          <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" data-q2-barra="fornecedor" hidden style="margin-top:16px">
+            <div class="cm-barra-salvar__msg" data-q2-msg aria-live="polite"><b></b><span></span></div>
+            <button class="cm-botao cm-botao--discreto" type="button" data-q2-descartar>Descartar</button>
+            <button class="cm-botao cm-botao--principal" type="button" data-q2-salvar>Salvar <span class="cm-dividido__lembra"></span></button>
+          </div>
+        </div>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Ao falhar, o foco vai para o título do resumo; Tab chega aos links; cada link leva ao campo.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"2 campos precisam de correção."</li><li>Campo: "CNPJ, inválido, O CNPJ tem 14 dígitos…".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Ícone de perigo acompanha texto; nunca sozinho.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="ctrl-s">
+      <h2>Ctrl S</h2>
+      <p>Funciona em toda tela com algo para salvar, inclusive dentro de um campo. Nos exemplos acima: mude algo e aperte <kbd class="cm-tecla">Ctrl</kbd> <kbd class="cm-tecla">S</kbd>.</p>
+      <table class="cm-especificacao">
+        <tr><th>Com alteração</th><td>Salva e fica (nunca usa a escolha "e próximo"; quem quer próximo usa Ctrl Enter).</td></tr>
+        <tr><th>Seção em edição</th><td>Salva só a seção.</td></tr>
+        <tr><th>Sem alteração</th><td>Toast "Nada para salvar. Tudo já está gravado." e o navegador não abre o "Salvar página como".</td></tr>
+        <tr><th>Fora de formulário</th><td>Lista, painel, mural: o Ctrl S é do navegador, não interceptamos.</td></tr>
+        <tr><th>No Mac</th><td><kbd class="cm-tecla">⌘</kbd> <kbd class="cm-tecla">S</kbd>, com os mesmos efeitos.</td></tr>
+      </table>
+    </section>
+
+    <section class="cm-doc-sec" id="enviar">
+      <h2>Enviar ▾ no atendimento</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Responder e decidir o que acontece com a conversa no mesmo clique, e já abrir a próxima.</p></div>
+        <div><h3>Fluxo</h3><ol><li>O texto ao lado do botão diz o que vai acontecer: "Depois de enviar: aguardar a cliente".</li><li>A seta abre: manter aberta, aguardar a cliente (SLA pausa), resolver, resolver e abrir a próxima (diz quem é).</li><li>Escolher envia daquele jeito e, com "Lembrar", passa a ser o padrão do botão.</li><li>Ctrl Enter envia com a escolha lembrada. Nota interna não muda estado.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Zendesk tem "enviar como" com o próximo chamado da visão, o Freshdesk "enviar e definir estado" e o Help Scout lembra por pessoa o que fazer depois de responder. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Conversa com Osvaldo Freitas</b><span>teste: a seta do Enviar</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/console.html" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Console completo</a></span></div>
+        <div class="cm-palco__corpo">
+          <div class="mini-comp">
+            <div class="mini-conv" id="d10-conv"><div class="cm-bolha cm-bolha--entrada">Preciso da 2ª via do boleto de outubro, Bl A 302. <span class="cm-bolha__meta">09:20</span></div></div>
+            <div class="cm-compositor">
+              <div class="cm-compositor__caixa" style="margin-top:10px"><textarea aria-label="Mensagem para Osvaldo Freitas" id="d10-t" data-q2-ignora>Segue a 2ª via com vencimento em 10/10. Linha digitável e Pix no PDF.</textarea></div>
+              <div class="cm-compositor__barra"><span class="cm-cresce cm-t-legenda" id="d10-dep">Depois de enviar: resolver e abrir a próxima</span>
+                <div class="cm-dividido cm-ancora"><button class="cm-botao cm-botao--principal" type="button" id="d10-env">Enviar <span class="cm-dividido__lembra" id="d10-lem">e próxima</span></button><button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de enviar" data-q2-abre="d10-menu"><i data-i="chevron-baixo"></i></button>
+                  <div class="cm-menu cm-flutuante cm-flutuante--cima" role="menu" id="d10-menu" hidden style="width:320px">
+                    <button class="cm-menu__item" role="menuitemradio" type="button" data-d10="manter"><i data-i="conversa"></i><span>Enviar e manter aberta<span class="cm-menu__desc">O SLA segue contando</span></span><span></span></button>
+                    <button class="cm-menu__item" role="menuitemradio" type="button" data-d10="aguardar"><i data-i="pausado"></i><span>Enviar e aguardar o cliente<span class="cm-menu__desc">Estado Aguardando; o SLA pausa</span></span><span></span></button>
+                    <button class="cm-menu__item" role="menuitemradio" type="button" data-d10="resolver"><i data-i="sucesso"></i><span>Enviar e resolver<span class="cm-menu__desc">Reabre se ele responder em 7 dias</span></span><span></span></button>
+                    <button class="cm-menu__item" role="menuitemradio" type="button" data-d10="proxima" aria-checked="true"><i data-i="proximo"></i><span>Enviar, resolver e abrir a próxima<span class="cm-menu__desc">Letícia Araújo, reserva do salão</span></span><span class="cm-menu__atalho">Ctrl Enter</span></button>
+                  </div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>responder e encerrar: 5 cliques, 1 modal</span></h4><div class="cm-regua" data-regua="5,1,0"></div><ol><li>Enviar (1). Mudar estado (1), Resolvido (1), confirmar (1, modal).</li><li>Voltar à fila e abrir a próxima (1).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>1 tecla</span></h4><div class="cm-regua" data-regua="0,0,1"></div><ol><li>Ctrl Enter com "resolver e abrir a próxima" lembrado. Em 40 conversas: de 200 para 40.</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Caixa de texto, Enviar, seta. No menu, setas e Enter.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Botão: "Enviar e próxima". Texto ao lado é lido como descrição.</li><li>"Enviada e resolvida. Abrindo Letícia Araújo. Desfazer."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Seta: "Outras formas de enviar".</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="textos">
+      <h2>Textos de salvar</h2>
+      <p>A ação tem o mesmo nome do botão ao toast. Nada de "Sucesso!" ou "Operação realizada".</p>
+      <div class="cm-rolar-x"><table class="cm-tabela-doc"><thead><tr><th>Momento</th><th>Texto</th><th>Não usar</th></tr></thead><tbody>
+        <tr><td>Barra</td><td>2 alterações não salvas · Telefone, Síndica</td><td>Você tem alterações pendentes</td></tr>
+        <tr><td>Salvando</td><td>Salvando… (no próprio botão, ocupado)</td><td>Aguarde</td></tr>
+        <tr><td>Salvou</td><td>Cliente salvo. · Contrato e cobrança salva. 1 campo alterado.</td><td>Salvo com sucesso!</td></tr>
+        <tr><td>Salvou e próximo</td><td>Contrato salvo. Abrindo 15 de 63: Residencial Jardim Botânico.</td><td>Redirecionando…</td></tr>
+        <tr><td>Nada mudou</td><td>Nada para salvar. Tudo já está gravado.</td><td>Nenhuma alteração detectada</td></tr>
+        <tr><td>Erro de campo</td><td>O CNPJ tem 14 dígitos. Falta 1.</td><td>Campo inválido</td></tr>
+        <tr><td>Erro de servidor</td><td>Não foi possível salvar: a conexão caiu às 14:36. O que você digitou continua aqui.</td><td>Erro 500 · Algo deu errado</td></tr>
+        <tr><td>Conflito</td><td>Carla Mendes salvou este cliente às 14:31, enquanto você editava.</td><td>Conflito de concorrência</td></tr>
+      </tbody></table></div>
+    </section>
+  </div>
+</main>
+
+<div class="cm-sobreposicao" id="m-conflito" hidden>
+  <div class="cm-modal cm-modal--g" role="dialog" aria-modal="true" aria-labelledby="mc-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mc-t">Carla Mendes salvou este cliente às 14:31, enquanto você editava<span class="cm-modal__sub">O e-mail que ela mudou e o seu telefone foram juntados. Só o campo abaixo precisa da sua escolha.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-q2-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo">
+      <div class="cm-conflito" role="radiogroup" aria-label="Escolher a versão do campo Síndica">
+        <span class="cm-conflito__cab">Campo</span><span class="cm-conflito__cab">A sua versão</span><span class="cm-conflito__cab">A versão de Carla Mendes</span>
+        <span>Síndica</span><label class="is-diferente"><input type="radio" name="cf1" checked> Marina Costa Ribeiro</label><label class="is-diferente"><input type="radio" name="cf1"> Paulo Henrique Saldanha<br><small class="cm-t-legenda">Ata da assembleia de 23/09</small></label>
+        <span>Telefone</span><span>(41) 3456-7799</span><span class="cm-texto-3">não mudou</span>
+        <span>E-mail</span><span class="cm-texto-3">não mudou</span><span>conselho@parquedasaguas.com.br</span>
+      </div>
+    </div>
+    <div class="cm-modal__pe"><span class="cm-modal__pe-esq"><a class="cm-link" href="#">Ver o histórico completo</a></span><button class="cm-botao" type="button" data-q2-fechar>Continuar editando</button><button class="cm-botao cm-botao--principal" type="button" data-q2-fechar data-q2-toast="Cliente salvo com as duas versões combinadas. A auditoria mostra você e Carla.|sucesso">Salvar a combinação</button></div>
+  </div>
+</div>
+<script>
+(function(){
+  var d=document;
+  d.getElementById('conteudo').addEventListener('q2:salvo',function(e){
+    var f=e.target.getAttribute('data-q2-form');if(f!=='contrato') return;e.preventDefault();var op=e.detail.opcao;
+    var t={continuar:'Contrato salvo.',proximo:'Contrato salvo. Abrindo 15 de 63: Residencial Jardim Botânico.',voltar:'Contrato salvo. Voltando a Reajuste pendente em outubro, linha 14 destacada.',novo:'Contrato salvo. Abrindo Novo contrato.'}[op];
+    cmQ2.toast(t,'sucesso');if(op==='proximo') d.getElementById('d2-onde').textContent='Você está no contrato 15 de 63 da visão "Reajuste pendente em outubro".';});
+  /* rascunho */
+  var t=d.getElementById('d7-t'),st=d.getElementById('d7-st'),tm;
+  function hora(){var x=new Date();return (x.getHours()<10?'0':'')+x.getHours()+':'+(x.getMinutes()<10?'0':'')+x.getMinutes()}
+  t.addEventListener('input',function(){st.className='cm-gravacao cm-cresce';st.innerHTML=cmIcone('editar')+'Escrevendo';clearTimeout(tm);
+    tm=setTimeout(function(){st.className='cm-gravacao is-salvando cm-cresce';st.innerHTML=cmIcone('atualizar')+'Guardando rascunho';
+      setTimeout(function(){st.className='cm-gravacao is-ok cm-cresce';st.innerHTML=cmIcone('sucesso')+'Rascunho salvo às '+hora();try{localStorage.setItem('cm-v2-rascunho-comunicado',t.value)}catch(e){}},500)},2000)});
+  d.getElementById('d7-rec').onclick=function(){d.getElementById('d7-faixa').hidden=false;t.value='';};
+  d.getElementById('d7-sim').onclick=function(){var v='';try{v=localStorage.getItem('cm-v2-rascunho-comunicado')||''}catch(e){}t.value=v||'Prezados condôminos do Cond. Parque das Águas, a partir de novembro a taxa condominial passa de R$ 980,00 para R$ 1.034,00, conforme aprovado na assembleia de 23/09. O boleto de novembro já vem com o novo valor.';d.getElementById('d7-faixa').hidden=true;t.focus();cmQ2.toast('Rascunho recuperado.','sucesso')};
+  /* erro do servidor */
+  d.getElementById('d8-srv').onclick=function(){var f=cmQ2.form('fornecedor');d.getElementById('d8-n').value='Elevadores Atlas Ltda.';d.getElementById('d8-c').value='12.345.678/0001-90';f.atualizar();
+    var b=f.barra;b.classList.add('is-erro');b.querySelector('[data-q2-msg] b').textContent='Não foi possível salvar';b.querySelector('[data-q2-msg] span').textContent='A conexão caiu. O que você digitou continua aqui.';d.getElementById('d8-alerta').hidden=false};
+  /* enviar */
+  var R={manter:['e manter','Depois de enviar: continua com você'],aguardar:['e aguardar','Depois de enviar: aguardar o cliente'],resolver:['e resolver','Depois de enviar: resolver'],proxima:['e próxima','Depois de enviar: resolver e abrir a próxima']},op='proxima';
+  function enviar(o){var tx=d.getElementById('d10-t');if(!tx.value.trim()){tx.focus();cmQ2.toast('Escreva a mensagem antes de enviar.','aviso');return}var c=d.getElementById('d10-conv');c.insertAdjacentHTML('beforeend','<div class="cm-bolha cm-bolha--saida">'+tx.value.replace(/</g,'&lt;')+' <span class="cm-bolha__meta">agora</span></div>');tx.value='';
+    cmQ2.toast({manter:'Enviada. Continua aberta com você.',aguardar:'Enviada. Aguardando o cliente, SLA pausado.',resolver:'Enviada e resolvida.',proxima:'Enviada e resolvida. Abrindo Letícia Araújo.'}[o],'sucesso','Desfazer')}
+  d.addEventListener('click',function(e){var b=e.target.closest('[data-d10]');if(!b) return;op=b.getAttribute('data-d10');d.getElementById('d10-lem').textContent=R[op][0];d.getElementById('d10-dep').textContent=R[op][1];d.querySelectorAll('[data-d10]').forEach(function(x){x.setAttribute('aria-checked',x===b)});enviar(op)});
+  d.getElementById('d10-env').onclick=function(){enviar(op)};
+  d.getElementById('d10-t').addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();e.stopPropagation();enviar(op)}});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="superadmin">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Superadmin: suporte à plataforma</title>
+<script>window.CM_LINKS={"Clientes da plataforma": "50b-superadmin-clientes.html", "Planos e cobrança": "50d-superadmin-planos.html", "Uso por cliente": "50b-superadmin-clientes.html", "Acessos em nome do cliente": "50c-superadmin-entrar.html", "Saúde da plataforma": "50f-superadmin-saude.html", "Versões e publicações": "50f-superadmin-saude.html#versoes", "Homologação": "50g-superadmin-homologacao.html", "Filas e tarefas": "50f-superadmin-saude.html#filas", "Superadmins e histórico": "50e-superadmin-seguranca.html", "Auditoria global": "50e-superadmin-seguranca.html#auditoria", "Senha e dois fatores": "50e-superadmin-seguranca.html#dois-fatores", "Início": "50-superadmin.html"}</script>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q5.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q5.js" defer></script>
+<style>
+
+.sa-grade{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:20px;align-items:start}
+.sa-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.sa-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+.rolar{overflow-x:auto}
+@media (max-width:1099px){ .sa-grade{grid-template-columns:minmax(0,1fr)} .sa-3{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:599px){ .sa-2,.sa-3{grid-template-columns:minmax(0,1fr)} }
+.ch{display:grid;grid-template-columns:340px minmax(0,1fr) 300px;border:1px solid var(--cm-filete);min-height:620px}
+.ch>*{min-width:0}.ch .cm-coluna{border-right:1px solid var(--cm-filete)}
+@media (max-width:1099px){ .ch{grid-template-columns:minmax(0,1fr)} .ch>aside{display:none} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"contexto": "superadmin", "tela": "Chamados dos clientes", "sino": 5}'></div>
+<main id="conteudo">
+<div class="cm-pagina">
+<details class="cm-anotacao" open>
+<summary><i data-i="informacao"></i>Sobre esta tela: Suporte à plataforma: chamados dos clientes e comunicados</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>O que esta tela resolve</h3><p>A equipe do GACO atende os clientes (administradoras) no mesmo desenho do Suporte do sistema: fila, conversa com nota interna amarela, ficha à direita. E avisa todos os clientes de uma vez com faixa, sino ou e-mail, vendo antes como fica.</p></div>
+<div><h3>Fluxo</h3><ol><li>Fila à esquerda; o chamado aberto fica com o filete de seleção.</li><li>Conversa com Resposta e Nota interna; "Enviar ▾" lembra a última escolha.</li><li>Ficha do cliente com "Entrar no cliente" (pede motivo).</li><li>Comunicado: formato, texto com contagem, público, período e prévia; Agendar.</li></ol></div>
+<div><h3>Resolvemos fazer assim porque</h3><p>é o mesmo desenho que aprovamos para o Suporte (Zendesk, Front), para a equipe não aprender duas telas; o Statuspage e o Intercom agendam aviso com prévia do público. Enviamos para aprovação.</p></div>
+</div></details>
+<section class="cm-tela" id="chamados" aria-labelledby="chamados-t">
+<h2 class="cm-tela__titulo" id="chamados-t">Chamados dos clientes <small>Tela 1 de 2, fila, conversa e ficha</small></h2>
+<header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Chamados dos clientes</h1></div></header>
+<div class="ch"><div class="cm-coluna"><div class="cm-coluna__cabeca"><h2 class="cm-coluna__titulo">Abertos</h2><span class="cm-contador">4</span></div><div class="cm-coluna__corpo"><div class="cm-lista-linhas" style="border:0"><a class="cm-linha-lista" href="#" aria-current="true"><span><span class="cm-linha-lista__titulo" style="font-size:13.5px">3391: WhatsApp desconectado</span><span class="cm-linha-lista__sub" style="font-size:12.5px">Atlântica Gestão Predial, Camila</span><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Urgente</span></span><span class="cm-linha-lista__meta" style="font-size:12px">09:01</span></a><a class="cm-linha-lista" href="#"><span><span class="cm-linha-lista__titulo" style="font-size:13.5px">3388: boletos importados em dobro</span><span class="cm-linha-lista__sub" style="font-size:12.5px">Administradora Alpha, Rafael</span><span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Em andamento</span></span><span class="cm-linha-lista__meta" style="font-size:12px">08:52</span></a><a class="cm-linha-lista" href="#"><span><span class="cm-linha-lista__titulo" style="font-size:13.5px">3385: dúvida sobre NFS-e de Curitiba</span><span class="cm-linha-lista__sub" style="font-size:12.5px">Vértice Condomínios, sem dono</span><span class="cm-estado cm-estado--ponto cm-estado--neutro">Novo</span></span><span class="cm-linha-lista__meta" style="font-size:12px">ontem</span></a><a class="cm-linha-lista" href="#"><span><span class="cm-linha-lista__titulo" style="font-size:13.5px">3379: pedido de exportação completa</span><span class="cm-linha-lista__sub" style="font-size:12.5px">Pilar, Luana</span><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Aguardando cliente</span></span><span class="cm-linha-lista__meta" style="font-size:12px">29/09</span></a></div></div></div>
+<div style="display:flex;flex-direction:column;background:var(--cm-conversa-fundo);border-right:1px solid var(--cm-filete)"><div class="cm-coluna__cabeca" style="background:var(--cm-camada-1)"><h2 class="cm-coluna__titulo">WhatsApp desconectado <span class="cm-plaqueta">3391</span></h2></div><div class="cm-conversa" role="log" aria-label="Chamado 3391" data-rolar-fim style="padding:14px">
+<span class="cm-dia">Hoje</span>
+<div class="cm-bolha cm-bolha--entrada"><span class="cm-bolha__autor">Tiago Moura, Atlântica</span>Bom dia. O WhatsApp parou às 7h, aparece "número desconectado". Os moradores estão mandando e nada chega. <span class="cm-bolha__meta">09:01</span></div>
+<div class="cm-evento"><i data-i="fone-atendimento"></i>Camila Ortega assumiu, 09:02</div>
+<div class="cm-nota"><div class="cm-nota__cabeca"><i data-i="nota-interna"></i>Nota interna de Camila Ortega <span>só a equipe GACO vê</span></div>A Meta pediu reverificação do número por mudança de razão social no CNPJ. Precisa do documento da Junta.</div>
+<div class="cm-bolha cm-bolha--saida">Bom dia, Tiago. As mensagens não se perderam: ficam guardadas e entram quando reconectar. A Meta pediu o contrato social atualizado. Pode mandar aqui? <span class="cm-bolha__meta">09:08<i data-i="lida" class="cm-tique--lida" data-rotulo="Lida"></i></span></div>
+<div class="cm-bolha cm-bolha--entrada cm-bolha--arquivo"><span class="cm-bolha__autor">Tiago Moura, Atlântica</span><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="pdf"></i></span><span><span class="cm-anexo__nome">contrato-social-2026.pdf</span><span class="cm-anexo__meta">2,4 MB</span></span></div><span class="cm-bolha__meta">09:24</span></div></div>
+<div class="cm-compositor"><div class="cm-abas" role="tablist" data-abas><button role="tab" aria-selected="true"><i data-i="responder"></i>Resposta</button><button role="tab" aria-selected="false" tabindex="-1"><i data-i="nota-interna"></i>Nota interna</button></div><div class="cm-compositor__caixa"><textarea aria-label="Mensagem">Recebido. Enviei à Meta; a aprovação costuma levar até 2 horas.</textarea></div>
+<div class="cm-compositor__barra"><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Anexar"><i data-i="anexar"></i></button><span class="cm-cresce cm-t-legenda">Depois de enviar: aguardar cliente</span><span class="cm-ancora cm-dividido-q5"><span class="cm-dividido"><button class="cm-botao cm-botao--principal" type="button" data-toast="Enviada. Aguardando cliente.">Enviar <span class="cm-dividido__lembra">e aguardar</span></button><button class="cm-botao cm-botao--principal" type="button" aria-label="Outras formas de enviar" aria-haspopup="menu" aria-expanded="false" data-alternar="m-env"><i data-i="chevron-baixo"></i></button></span>
+<div class="cm-menu cm-menu--240 cm-flutuante is-acima" role="menu" id="m-env" data-menu-q5 hidden><button class="cm-menu__item" role="menuitem" type="button" data-lembra="e manter aberto"><i data-i="enviar"></i><span>Enviar e manter aberto</span><span></span></button><button class="cm-menu__item" role="menuitem" type="button" data-lembra="e aguardar"><i data-i="pendente"></i><span>Enviar e aguardar cliente</span><span></span></button><button class="cm-menu__item" role="menuitem" type="button" data-lembra="e resolver"><i data-i="sucesso"></i><span>Enviar e resolver</span><span class="cm-menu__atalho">E</span></button></div></span></div></div></div>
+<aside class="cm-coluna" style="border-right:0"><div class="cm-coluna__cabeca"><h2 class="cm-coluna__titulo">Atlântica Gestão Predial</h2></div><div class="cm-coluna__corpo" style="padding:12px"><dl class="cm-ficha"><div class="cm-ficha__linha"><dt>Plano</dt><dd>Completo</dd><span></span></div><div class="cm-ficha__linha"><dt>Contato</dt><dd>Tiago Moura, TI</dd><span></span></div><div class="cm-ficha__linha"><dt>Impacto</dt><dd>312 mensagens na fila</dd><span></span></div></dl><a class="cm-botao cm-botao--bloco" href="50c-superadmin-entrar.html" style="margin-top:12px"><i data-i="entrar"></i>Entrar no cliente</a></div></aside></div>
+</section>
+<section class="cm-tela" id="comunicados" aria-labelledby="comunicados-t">
+<h2 class="cm-tela__titulo" id="comunicados-t">Comunicados da plataforma <small>Tela 2 de 2</small></h2>
+<div class="sa-2"><section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Novo comunicado da plataforma</h2></header><div class="cm-cartao__corpo cm-pilha cm-pilha--6">
+<fieldset class="cm-grupo-opcoes cm-grupo-opcoes--linha"><legend>Formato</legend><label class="cm-radio"><input type="radio" name="cf" checked><span class="cm-radio__bola"></span><span>Faixa no topo</span></label><label class="cm-radio"><input type="radio" name="cf"><span class="cm-radio__bola"></span><span>Aviso no sino</span></label><label class="cm-radio"><input type="radio" name="cf"><span class="cm-radio__bola"></span><span>E-mail aos administradores</span></label></fieldset>
+<div class="cm-campo"><label class="cm-campo__rotulo" for="cm-x">Texto</label><textarea class="cm-area" id="cm-x" rows="2">Manutenção programada hoje às 23h, por 20 minutos. Boletos e Pix continuam valendo.</textarea><p class="cm-campo__contagem">86 de 140</p></div>
+<div class="cm-campo"><span class="cm-campo__rotulo">Para quem</span><div class="cm-multi"><span class="cm-etiqueta cm-etiqueta--1">Todos os clientes<button class="cm-etiqueta__remover" type="button" aria-label="Remover Todos os clientes"><i data-i="fechar"></i></button></span><span class="cm-etiqueta cm-etiqueta--5">Usuários internos e moradores<button class="cm-etiqueta__remover" type="button" aria-label="Remover Usuários internos e moradores"><i data-i="fechar"></i></button></span><input aria-label="Adicionar público"></div></div>
+<div class="cm-campo"><label class="cm-campo__rotulo" for="cm-q">Mostrar de</label><div class="cm-periodo"><div class="cm-entrada"><input id="cm-q" value="01/10 22:00"></div><span class="cm-periodo__ate">até</span><div class="cm-entrada"><input aria-label="Mostrar até" value="01/10 23:20"></div></div></div></div>
+<div class="cm-cartao__pe"><span class="cm-cresce">Vai para 7 clientes, cerca de 43 mil pessoas</span><button class="cm-botao cm-botao--principal" type="button" data-toast="Comunicado agendado para 22:00.">Agendar</button></div></section>
+<section><h3 class="cm-t-subsecao" style="margin-bottom:8px">Prévia: como o cliente vê</h3><div class="cm-palco"><div class="cm-faixa cm-faixa--info"><i data-i="informacao"></i><span class="cm-faixa__texto">Manutenção programada hoje às 23h, por 20 minutos. Boletos e Pix continuam valendo.</span><button class="cm-botao cm-botao--p cm-botao--discreto" type="button">Entendi</button></div><div class="cm-palco__corpo"><span class="cm-esqueleto cm-esqueleto--titulo"></span><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:70%"></span></div></div>
+<p class="cm-t-legenda" style="margin-top:8px">A faixa é azul (informação), nunca na cor do cliente nem do GACO, e some no "Entendi" para cada pessoa.</p></section></div>
+</section>
+<details class="cm-anotacao cm-anotacao--a11y">
+<summary><i data-i="teclado"></i>Acessibilidade desta tela</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>Ordem de foco</h3><ol><li>Fila</li><li>Conversa (log), abas Resposta e Nota, Anexar, Enviar, Outras formas</li><li>Ficha, Entrar no cliente</li><li>Comunicado: campos, Agendar</li></ol></div>
+<div><h3>O que é anunciado</h3><ul><li>Nota interna anunciada com "só a equipe GACO vê"</li><li>Contagem de caracteres viva</li></ul></div>
+<div><h3>Nome do que é só ícone</h3><ul><li>"Anexar", "Outras formas de enviar", "Remover Todos os clientes"</li></ul></div>
+</div></details>
+</div>
+</main>
+
+</body>
+</html>

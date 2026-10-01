@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa de Máquinas: tabelas e listas</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q1.css">
+<link rel="stylesheet" href="sistema/extra-q1-doc.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-q1-doc.js" defer></script>
+<style>
+/* só disposição desta página */
+.ex-celular{width:390px;max-width:100%;border:1px solid var(--cm-filete-forte);background:var(--cm-fundo);padding:12px 12px 16px;margin:0 auto}
+.ex-celular__topo{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ex-celular__topo h2{font-size:20px;font-weight:700;flex:1}
+.ex-lado{display:grid;grid-template-columns:356px minmax(0,1fr);border:1px solid var(--cm-filete);min-height:420px}
+.ex-lado .cm-coluna{border-right:1px solid var(--cm-filete)}
+.ex-w720{max-width:720px}
+.tab-rodape-massa{margin-bottom:6px}
+@media (max-width:899px){ .ex-lado{grid-template-columns:minmax(0,1fr)} .ex-lado>.ex-lado__direita{display:none} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"papel":"Produto","trilha":false,"sino":3,"usuario":{"nome":"Juliana Reis","iniciais":"JR","cargo":"Gestora do Suporte","presenca":"disponivel","tom":2}}'></div>
+<header class="doc-topo">
+  <nav aria-label="Páginas do sistema">
+    <a href="00-fundamentos.html">Fundamentos</a>
+    <a href="01-iconografia.html">Iconografia</a>
+    <a href="02-navegacao.html">Navegação</a>
+    <a href="03-componentes.html">Componentes</a>
+    <a href="04-formularios.html">Formulários</a>
+    <a href="05-tabelas-e-listas.html" aria-current="page">Tabelas e listas</a>
+  </nav>
+  <div data-cm-seletor></div>
+</header>
+
+<div class="doc">
+<nav class="doc-indice" aria-label="Tabelas e listas">
+  <div class="doc-indice__busca"><div class="cm-entrada cm-entrada--p cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" placeholder="Filtrar" aria-label="Filtrar a página"></div></div>
+  <div class="doc-indice__familia">Tabela</div>
+  <a href="#densa">Tabela densa padrão</a><a href="#selecao">Seleção e barra de massa</a><a href="#fixa">Coluna fixa e rolagem lateral</a><a href="#editavel">Célula editável</a><a href="#grupos">Agrupamento e total</a><a href="#ordenacao">Ordenação</a>
+  <div class="doc-indice__familia">Encontrar</div>
+  <a href="#filtros">Filtros, chips e visões</a>
+  <div class="doc-indice__familia">Estados</div>
+  <a href="#estados">Vazio, filtro, erro, carregando</a>
+  <div class="doc-indice__familia">Quantidade</div>
+  <a href="#paginacao">Paginação</a><a href="#carregar-mais">Carregar mais</a>
+  <div class="doc-indice__familia">Listas</div>
+  <a href="#conversas">Lista de conversas</a><a href="#celular">Cartões no celular</a>
+  <div class="doc-indice__familia">Fechamento</div>
+  <a href="#limites">Casos-limite</a><a href="#mais">Mais exemplos</a><a href="#acessibilidade">Foco e leitores de tela</a>
+</nav>
+
+<main id="conteudo" class="doc-main">
+
+<section class="doc-abre" aria-labelledby="titulo-pagina">
+  <div>
+    <p class="cm-t-legenda">Catálogo vivo, V2 Casa de Máquinas. Fonte: sistema/componentes.css, seções 17 a 19</p>
+    <h1 id="titulo-pagina">Tabelas e listas</h1>
+    <p>A tabela densa é onde a administradora passa o dia: boletos, chamados, carteira de clientes. Aqui ela aparece inteira e funcionando: marcar linhas e agir em massa, ordenar, filtrar com chips, editar a célula como planilha, agrupar e somar, rolar para o lado com a primeira coluna presa. E as listas que não são tabela: a fila de conversas e os cartões do celular.</p>
+    <p class="porque"><b>Resolvemos fazer assim porque</b> o Salesforce (list views), o Airtable e o Linear mostram que quem trabalha com 300 registros quer densidade, cabeçalho preso, visões salvas e edição na própria célula; o Gmail e o Zendesk ensinaram a barra de ação em massa que aparece só ao marcar; e o Jira e o GitHub provaram que filtro em chip, removível, é mais fácil de ler do que um painel de filtros escondido. Enviamos para aprovação.</p>
+  </div>
+  <div>
+    <div class="doc-bloco"><h2>O que esta tela resolve</h2><p>Define como toda lista do GACO se comporta, para que boletos, chamados e clientes funcionem igual: mesma altura de linha, mesmos filtros, mesma barra de massa, mesma regra de vazio.</p></div>
+    <div class="doc-bloco"><h2>Fluxo de uma lista no GACO</h2><ol>
+      <li>Visão salva no topo (abas), busca e filtros logo abaixo; chips mostram o que está ligado.</li>
+      <li>Clique na linha abre o registro; a lista guarda filtro, ordem e posição na URL, e "14 de 63" deixa andar com J e K.</li>
+      <li>Marcar linhas faz a barra de massa aparecer no lugar dos filtros; Esc desmarca.</li>
+      <li>Célula editável salva por linha, com a barra de salvar embaixo da tabela.</li>
+      <li>Voltar do registro devolve a lista no mesmo ponto.</li>
+    </ol></div>
+    <div class="doc-bloco"><h2>Medidas</h2><p>Linha de 32px na densidade compacta, 36 na padrão, 44 na confortável. Cabeçalho de 34px, preso no topo da caixa. Número à direita, texto à esquerda, estado com palavra. Até 8 colunas visíveis sem rolar; acima disso, a primeira fica presa.</p></div>
+  </div>
+</section>
+
+<!-- ================================================================= TABELA -->
+<section class="doc-familia" aria-labelledby="f-tabela">
+<h2 id="f-tabela">Tabela</h2>
+<p>Os palcos mostram o tema escuro em cima e o claro embaixo, porque a tabela precisa da largura. Tudo funciona nos dois.</p>
+
+<section class="doc-comp" id="densa">
+  <h3>Tabela densa padrão <code>.cm-tabela</code></h3>
+  <p class="lead">Boletos de outubro do Cond. Parque das Águas. Cabeçalho preso ao rolar dentro da caixa, coluna principal em negrito com o morador embaixo, número tabular à direita, estado com ponto de forma e palavra, ações que aparecem ao passar o mouse.</p>
+  <template class="doc-ex-t" data-matriz="densa" data-layout="empilhado" data-densidades="escuro" data-titulo="Escuro e claro; embaixo, as três densidades."></template>
+  <div class="doc-regras">
+    <div><h5>Anatomia</h5><ol class="doc-anatomia"><li>Caixa <code>.cm-tabela-caixa</code> (rola; <code>--alta</code> limita a altura e prende o cabeçalho)</li><li>Cabeçalho 34px na camada 2, filete forte embaixo</li><li>Coluna principal <code>.cm-tabela__principal</code> com <code>__sub</code></li><li>Números <code>.cm-num</code>, à direita, tabulares</li><li>Ações <code>.cm-tabela__acoes</code>: "⋯" que aparece no hover e no foco</li></ol></div>
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Mais de 10 registros com 3 ou mais atributos para comparar.</li><li>Quando a pessoa precisa ordenar, filtrar, marcar vários.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Fila de conversas: lista de conversas.</li><li>No celular: cartões.</li><li>Plaqueta em toda linha, zebra por padrão, ícone em cada célula.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li><code>table</code> de verdade com <code>th scope</code>; a principal é link (Enter abre); <code>aria-sort</code> nas ordenáveis; legenda oculta (<code>caption</code>) com o total.</li><li>As ações da linha ficam visíveis no foco do teclado.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="selecao">
+  <h3>Seleção e barra de massa <code>.cm-barra-massa</code></h3>
+  <p class="lead">Marque uma linha ou todas pelo cabeçalho. A barra de massa aparece acima da tabela com quantas foram marcadas e o que dá para fazer com elas; Cancelar ou Esc desmarca. Marcando a página inteira, ela oferece marcar todos os 312.</p>
+  <template class="doc-ex-t" data-matriz="selecao" data-layout="empilhado" data-titulo="<b>Funciona.</b> Marque linhas, depois o cabeçalho."></template>
+  <template class="doc-ex-t" data-titulo="Barra de massa flutuante, para listas longas em que o topo sai da vista." data-codigo="sim">
+<div class="cm-barra-massa cm-barra-massa--flutuante" role="region" aria-label="Ações em massa"><b>48 selecionados</b><button class="cm-botao cm-botao--p" type="button"><i data-i="enviar"></i>Enviar 2ª via</button><button class="cm-botao cm-botao--p" type="button"><i data-i="exportar"></i>Exportar</button><button class="cm-botao cm-botao--p" type="button">Mais…</button><span class="cm-empurra"><button class="cm-botao cm-botao--p cm-botao--discreto" type="button">Cancelar</button></span></div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Ação que vale para vários: enviar 2ª via, atribuir, mover, exportar, arquivar.</li><li>Até 3 ações na barra; o resto em "Mais…".</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Excluir em massa sem confirmação: com mais de 10 itens, pede confirmação; sempre vai para a lixeira.</li><li>Barra sempre visível com botões desabilitados.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Caixa do cabeçalho com "Selecionar todos os boletos da página"; estado misto (<code>indeterminate</code>) quando parte está marcada. A barra é região com rótulo e o número é anunciado ("3 selecionados"). Shift + clique marca um intervalo; Espaço marca a linha com foco.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="fixa">
+  <h3>Coluna fixa e rolagem lateral <code>.cm-tabela__fixa</code></h3>
+  <p class="lead">A carteira do CS tem 14 colunas. A caixa de marcar e o nome do condomínio ficam presos à esquerda; o resto rola para o lado dentro da caixa, nunca a página. O filete forte mostra onde termina a parte presa.</p>
+  <template class="doc-ex-t" data-matriz="fixa" data-layout="empilhado" data-titulo="Role a tabela para o lado."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Mais de 8 colunas, ou qualquer tabela que passe da largura no tablet.</li><li>Prender no máximo as duas primeiras (<code>__fixa</code>, <code>__fixa2</code>).</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Rolagem lateral da página inteira.</li><li>Prender colunas à direita, exceto as ações.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>A caixa que rola recebe foco (<code>tabindex="0"</code>) e rótulo, para rolar com as setas. "Colunas" no cabeçalho deixa esconder e reordenar, e a escolha fica na visão.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="editavel">
+  <h3>Célula editável <code>.cm-celula-editavel</code></h3>
+  <p class="lead">Como numa planilha: clique na célula (ou Enter, ou F2), digite, Enter confirma e desce, Tab confirma e vai para a direita, Esc desfaz. A célula alterada ganha o canto de latão e o fundo de editado; a barra de salvar aparece embaixo da tabela. Valor que não serve fica com borda vermelha e o motivo na dica.</p>
+  <template class="doc-ex-t" data-matriz="editavel" data-layout="empilhado" data-titulo="<b>Funciona.</b> Rateio extra de novembro por unidade. Experimente pôr letras no valor."></template>
+  <template class="doc-ex-t" data-titulo="Os cinco estados da célula, parados." data-codigo="nao">
+<div class="cm-tabela-caixa ex-w720"><table class="cm-tabela"><thead><tr><th>Estado</th><th class="cm-num">Valor</th><th>O que acontece</th></tr></thead><tbody>
+<tr><td>Normal, mouse por cima</td><td class="cm-num cm-celula-editavel cm-sim-hover" tabindex="0">R$ 1.284,90</td><td>Filete aparece; cursor de texto.</td></tr>
+<tr><td>Editando</td><td class="cm-num cm-celula-editavel is-editando"><input aria-label="Valor" value="1.320,00"></td><td>Caixa com anel de latão; Enter, Tab, Esc.</td></tr>
+<tr><td>Editado, sem salvar</td><td class="cm-num cm-celula-editavel is-editado" tabindex="0">R$ 1.320,00</td><td>Canto de latão e fundo de editado até salvar.</td></tr>
+<tr><td>Erro</td><td class="cm-num cm-celula-editavel is-erro" tabindex="0" aria-invalid="true" title="Use só números, como 1.320,00">R$ 13a0</td><td>Borda vermelha; o motivo vem na dica e na barra.</td></tr>
+<tr><td>Só leitura</td><td class="cm-num cm-celula-editavel is-leitura">R$ 1.284,90</td><td>Calculado pelo rateio; não abre.</td></tr>
+</tbody></table></div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Ajustes em lote do mesmo campo: rateio extra, próximo passo da carteira, responsável.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Campo que depende de outro (endereço): abre a ficha.</li><li>Salvar a cada célula sem avisar: a barra mostra quantas e deixa desfazer.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Célula editável é focável e anunciada como "editável"; ao editar, o campo tem o rótulo "Valor, Bl A Ap 101". Setas andam entre células quando não está editando.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="grupos">
+  <h3>Agrupamento e total <code>.cm-tabela__grupo</code> <code>tfoot</code></h3>
+  <p class="lead">Agrupe por bloco, estado ou responsável. O grupo mostra quantos e quanto soma, e fecha com um clique. O total fica preso no pé da caixa.</p>
+  <template class="doc-ex-t" data-matriz="grupos" data-layout="empilhado" data-titulo="<b>Funciona.</b> Feche e abra os blocos."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Boletos por bloco, chamados por estado, carteira por responsável.</li><li>Soma só de coluna que soma (valor, unidades); média com a palavra "média".</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Dois níveis de grupo: filtre um, agrupe o outro.</li><li>Total sem dizer do quê ("Total" sozinho na coluna errada).</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>O botão do grupo tem <code>aria-expanded</code> e o nome do grupo com a contagem; o total é a linha do <code>tfoot</code>.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="ordenacao">
+  <h3>Ordenação <code>.cm-ordenar</code> <code>aria-sort</code></h3>
+  <p class="lead">Clique no cabeçalho: crescente, decrescente, volta à ordem da visão. A seta da coluna ordenada fica em latão; as outras ficam apagadas até o mouse passar. Chamados abertos, ordenados por SLA.</p>
+  <template class="doc-ex-t" data-matriz="ordenacao" data-layout="empilhado" data-titulo="<b>Funciona.</b> Clique em Nº, Assunto, Prazo ou Aberto."></template>
+  <template class="doc-ex-t" data-titulo="Os três estados do cabeçalho." data-codigo="nao">
+<div class="cm-tabela-caixa" style="max-width:520px"><table class="cm-tabela"><thead><tr><th>Sem ordem</th><th aria-sort="ascending"><button class="cm-ordenar" type="button">Crescente<i data-i="seta-cima"></i></button></th><th aria-sort="descending"><button class="cm-ordenar" type="button">Decrescente<i data-i="seta-baixo"></i></button></th><th><button class="cm-ordenar cm-sim-hover" type="button">Mouse por cima<i data-i="ordenar"></i></button></th></tr></thead></table></div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Toda coluna de data, número, prazo e nome.</li><li>A ordem padrão da visão vem marcada (chamados por SLA, boletos por vencimento).</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Ordenar por coluna de ação ou de seleção.</li><li>Ordem alfabética de estado: estado ordena pela gravidade.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li><code>aria-sort</code> no <code>th</code>; o botão diz "Ordenar por prazo"; a troca é anunciada ("Ordenado por prazo, do mais curto").</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= ENCONTRAR -->
+<section class="doc-familia" aria-labelledby="f-filtros">
+<h2 id="f-filtros">Encontrar</h2>
+
+<section class="doc-comp" id="filtros">
+  <h3>Filtros, chips e visões salvas <code>.cm-visoes</code> <code>.cm-filtros</code> <code>.cm-chips</code></h3>
+  <p class="lead">Visões salvas em abas no topo ("Precisam de mim hoje"); busca e filtros em botão logo abaixo; cada filtro ligado vira um chip com X. A contagem e o vazio por filtro respondem na hora. Troque a visão, busque "garagem", tire um chip.</p>
+  <template class="doc-ex-t" data-matriz="filtros" data-layout="empilhado" data-titulo="<b>Funciona.</b> Visões, busca, filtro de estado, chips, limpar e vazio por filtro."></template>
+  <div class="doc-regras">
+    <div><h5>Anatomia</h5><ol class="doc-anatomia"><li>Visões <code>.cm-visoes</code> (abas com contador)</li><li>Busca <code>--busca</code> e filtros <code>.cm-filtro</code> (ligado: <code>.is-ativo</code>)</li><li>Chips <code>.cm-chip</code> com "Limpar filtros"</li><li>Contagem do resultado à direita</li></ol></div>
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Toda lista com mais de 20 itens.</li><li>Visão salva quando a mesma combinação se repete toda semana.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Filtro escondido num painel lateral sem chip na tela.</li><li>Mais de 4 filtros em botão: os outros em "Mais filtros".</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Filtro abre popover (<code>aria-haspopup="dialog"</code>); chip remove com "Tirar filtro Estado"; contagem em região viva ("8 chamados").</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= ESTADOS -->
+<section class="doc-familia" aria-labelledby="f-estados">
+<h2 id="f-estados">Estados da lista</h2>
+
+<section class="doc-comp" id="estados">
+  <h3>Vazio, vazio por filtro, erro, carregando e sem permissão</h3>
+  <p class="lead">O cabeçalho da tabela fica: a pessoa continua sabendo onde está. O corpo diz por que não há linhas e qual é o próximo passo.</p>
+  <template class="doc-ex-t" data-matriz="estados" data-layout="empilhado" data-titulo="Cinco estados da mesma tabela de boletos."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Regras</h5><ul><li>Primeiro uso: diga o que aparece aqui e ofereça criar ou importar.</li><li>Filtro sem resultado: repita os filtros e ofereça limpar.</li><li>Erro: o que falhou, que nada se perdeu, e "Tentar de novo".</li><li>Carregando: linhas de esqueleto na altura certa, nunca mais de 10.</li><li>Sem permissão: quem libera e "Pedir acesso".</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Estado vazio vive numa linha <code>tr.cm-tabela__estado</code> com <code>td colspan</code>, para o leitor continuar dentro da tabela. Carregando: <code>aria-busy="true"</code> na tabela e "Carregando boletos" em texto oculto.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= QUANTIDADE -->
+<section class="doc-familia" aria-labelledby="f-qtd">
+<h2 id="f-qtd">Quantidade</h2>
+
+<section class="doc-comp" id="paginacao">
+  <h3>Paginação com a tabela <code>.cm-paginacao</code></h3>
+  <p class="lead">Para listas em que a posição importa (financeiro, auditoria): total escrito, páginas e linhas por página, no pé da caixa. A página fica na URL.</p>
+  <template class="doc-ex-t" data-matriz="paginacao" data-layout="empilhado" data-titulo="<b>Funciona.</b> Página 1 de 7 do extrato de setembro."></template>
+</section>
+
+<section class="doc-comp" id="carregar-mais">
+  <h3>Carregar mais <code>.cm-carregar-mais</code></h3>
+  <p class="lead">Para feeds e históricos, em que se lê de cima para baixo: o botão traz mais 20 e diz quantos faltam. No fim, uma linha diz que acabou.</p>
+  <template class="doc-ex-t" data-matriz="carregar" data-layout="lado" data-titulo="<b>Funciona.</b> Atividade do cliente, 5 por vez."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Atividade, histórico, mural, mensagens antigas da conversa.</li><li>Rolagem contínua só na conversa (para cima) e no mural.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Tabela financeira: paginação.</li><li>Rolagem contínua com rodapé importante embaixo.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Depois de carregar, o foco vai para o primeiro item novo e "5 itens carregados, faltam 7" é anunciado.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= LISTAS -->
+<section class="doc-familia" aria-labelledby="f-listas">
+<h2 id="f-listas">Listas que não são tabela</h2>
+
+<section class="doc-comp" id="conversas">
+  <h3>Lista de conversas <code>.cm-conversa-item</code> (novo, em extra-q1.css)</h3>
+  <p class="lead">A fila do Suporte. Cada item: avatar, nome, prévia da última mensagem, hora, canal, prazo do SLA em estado e etiquetas. Não lida em negrito com contador de latão. Ordenada por prazo. Clique num item ou use J e K com o foco na lista.</p>
+  <template class="doc-ex-t" data-matriz="conversas" data-layout="lado" data-titulo="<b>Funciona.</b> A atual tem a chapa de seleção e o filete."></template>
+  <div class="doc-regras">
+    <div><h5>Anatomia</h5><ol class="doc-anatomia"><li>Avatar 32 (morador não tem presença)</li><li>Nome e prévia, cortados com reticências</li><li>Lado: hora e contador de não lidas</li><li>Meta: canal com ícone, SLA em estado, até 2 etiquetas</li></ol></div>
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Fila do Suporte, menções, caixa de entrada de e-mail.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Plaqueta com o número do chamado em cada item.</li><li>Cor de canal (verde do WhatsApp) no item: o canal é ícone e palavra.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Lista com rótulo ("Minha fila, 7 conversas"); item é link com <code>aria-current</code> na aberta; o rótulo junta nome, prévia, prazo e "2 não lidas". J e K andam, Enter abre.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="celular">
+  <h3>Cartões no celular <code>.cm-cartao-linha</code> (novo, em extra-q1.css)</h3>
+  <p class="lead">Abaixo de 600px a tabela vira cartão: a coluna principal é o título, o valor fica à direita, o estado embaixo e mais dois campos em duas colunas. Marcar vira toque longo; ações vão para a folha inferior.</p>
+  <template class="doc-ex-t" data-matriz="celular" data-layout="lado" data-titulo="Os mesmos boletos da tabela densa, em 390px."></template>
+  <div class="doc-regras">
+    <div><h5>Como a linha vira cartão</h5><ul><li>Coluna principal → título (15px, até 2 linhas).</li><li>Número principal → à direita do título.</li><li>Segunda linha → <code>__sub</code>.</li><li>Até 4 colunas → <code>__campos</code> em duas colunas; o resto some e fica na ficha.</li><li>Estado → pé, à esquerda; ação principal → pé, à direita.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Tabela com rolagem lateral no celular.</li><li>Cartão com mais de 6 informações.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Cada cartão é um link com alvo de 44px ou mais; botões do pé têm 44px; filtros viram uma folha inferior "Filtrar (2)".</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= CASOS-LIMITE -->
+<section class="doc-familia" id="limites" aria-labelledby="f-lim">
+<h2 id="f-lim">Casos-limite</h2>
+<p>Nome que não cabe, valor de sete dígitos, cliente renomeado, nenhuma, uma e muitas linhas.</p>
+<template class="doc-ex-t" data-matriz="limites" data-layout="empilhado" data-titulo="Corte com reticências e dica (nome), quebra em até duas linhas (próximo passo), número grande que empurra a coluna, nome antigo embaixo do novo."></template>
+<template class="doc-ex-t" data-matriz="contagens" data-layout="empilhado" data-codigo="nao" data-titulo="Uma linha, um grupo de um e a frase de cada quantidade."></template>
+<div class="doc-regras">
+  <div><h5>Corte e quebra</h5><ul><li>Nome de pessoa e condomínio: uma linha, reticências, nome inteiro na dica e no leitor.</li><li>Texto livre (próximo passo, assunto): até duas linhas com <code>.cm-quebrar</code>.</li><li>Valor e data: nunca cortam; a coluna cresce.</li></ul></div>
+  <div><h5>Plural</h5><ul><li>"Nenhum boleto", "1 boleto", "312 boletos".</li><li>"1 selecionado", "3 selecionados"; "Selecionar todos os 312".</li><li>Paginação: "1 boleto", "1–50 de 312 boletos".</li></ul></div>
+</div>
+</section>
+
+<!-- ================================================================= MAIS EXEMPLOS -->
+<section class="doc-familia" id="mais" aria-labelledby="f-mais">
+<h2 id="f-mais">Mais exemplos</h2>
+<template class="doc-ex-t" data-titulo="<b>Tabela simples</b> (<code>--simples</code>): composição do boleto de outubro, Bl B Ap 1204. Sem caixa, sem cabeçalho preso." data-layout="lado">
+<table class="cm-tabela cm-tabela--simples" style="max-width:420px">
+  <caption class="cm-sr">Composição do boleto de outubro</caption>
+  <thead><tr><th>Item</th><th class="cm-num">Valor</th></tr></thead>
+  <tbody>
+    <tr><td>Taxa condominial</td><td class="cm-num">R$ 1.032,00</td></tr>
+    <tr><td>Fundo de reserva, 10%</td><td class="cm-num">R$ 103,20</td></tr>
+    <tr><td>Rateio da obra do telhado, 3 de 6</td><td class="cm-num">R$ 149,70</td></tr>
+    <tr><td>Desconto por pagamento em dia</td><td class="cm-num">− R$ 0,00</td></tr>
+  </tbody>
+  <tfoot><tr><td>Total</td><td class="cm-num">R$ 1.284,90</td></tr></tfoot>
+</table>
+</template>
+<template class="doc-ex-t" data-titulo="<b>Zebra</b> (<code>--zebra</code>): escala de plantão de outubro. Só em tabela larga de leitura, sem ação por linha." data-layout="empilhado">
+<div class="cm-tabela-caixa"><table class="cm-tabela cm-tabela--zebra">
+  <caption class="cm-sr">Escala do plantão de sábado</caption>
+  <thead><tr><th>Sábado</th><th>WhatsApp, 8h às 14h</th><th>E-mail, 8h às 14h</th><th>Sobreaviso</th></tr></thead>
+  <tbody>
+    <tr><td>04/10</td><td>Beatriz Nogueira</td><td>Diego Martins</td><td>Juliana Reis</td></tr>
+    <tr><td>11/10</td><td>Renata Sousa</td><td>Beatriz Nogueira</td><td>Juliana Reis</td></tr>
+    <tr><td>18/10</td><td>Diego Martins</td><td>Renata Sousa</td><td>Marcos Almeida</td></tr>
+    <tr><td>25/10</td><td>Beatriz Nogueira</td><td>Diego Martins</td><td>Marcos Almeida</td></tr>
+  </tbody>
+</table></div>
+</template>
+</section>
+
+<!-- ================================================================= A11Y -->
+<section class="doc-a11y" id="acessibilidade" aria-labelledby="f-a11y">
+<h2 id="f-a11y">Foco e leitores de tela nesta página</h2>
+<div class="doc-rolar"><table class="doc-tab">
+  <thead><tr><th>Peça</th><th>Ordem de foco</th><th>O que é anunciado</th></tr></thead>
+  <tbody>
+    <tr><td>Tabela</td><td>Caixa de marcar do cabeçalho, botões de ordenar, depois linha a linha: caixa, link principal, células editáveis, "⋯"</td><td>"Boletos de outubro, tabela, 14 linhas"; "Vencimento, ordenado do mais antigo"; "Bl A Ap 101, link".</td></tr>
+    <tr><td>Barra de massa</td><td>Aparece antes da tabela; Tab chega nela depois do cabeçalho de marcar</td><td>"Ações em massa, região. 3 selecionados".</td></tr>
+    <tr><td>Célula editável</td><td>Tab entra nas editáveis; setas andam; Enter ou F2 edita</td><td>"Ajuste, Bl A Ap 101, R$ 0,00, editável"; ao confirmar, "1 alteração não salva".</td></tr>
+    <tr><td>Filtros</td><td>Visões (setas), busca, filtros, chips, Limpar</td><td>"8 chamados" a cada mudança; "Nada com estes filtros".</td></tr>
+    <tr><td>Lista de conversas</td><td>Um Tab entra; J e K andam; Enter abre</td><td>"Marina Costa, Que horas eles vêm?, responde em 6 minutos, 2 não lidas, atual".</td></tr>
+    <tr><td>Cartões no celular</td><td>Cartão inteiro, depois os botões do pé</td><td>"Bl B Ap 1204, Marina Costa, R$ 1.284,90, em aberto, link".</td></tr>
+  </tbody>
+</table></div>
+<h4>Nome do que é só ícone</h4>
+<div class="doc-rolar"><table class="doc-tab"><thead><tr><th>Ícone</th><th>Nome acessível</th></tr></thead><tbody>
+  <tr><td><i data-i="mais-opcoes"></i> na linha</td><td>"Ações de Bl A Ap 101"</td></tr>
+  <tr><td><i data-i="seta-cima"></i> <i data-i="seta-baixo"></i> <i data-i="ordenar"></i></td><td>Decorativos: o botão diz "Ordenar por vencimento" e o <code>th</code> tem <code>aria-sort</code></td></tr>
+  <tr><td><i data-i="chevron-baixo"></i> no grupo</td><td>Decorativo: o botão diz "Bloco A, 5 boletos" e tem <code>aria-expanded</code></td></tr>
+  <tr><td><i data-i="fechar"></i> no chip</td><td>"Tirar filtro Estado"</td></tr>
+  <tr><td><i data-i="whatsapp"></i> <i data-i="email"></i> <i data-i="canal-site"></i> no canal</td><td>Decorativos: o nome do canal vem escrito ao lado</td></tr>
+  <tr><td><i data-i="chevron-esquerda"></i> <i data-i="chevron-direita"></i></td><td>"Página anterior", "Próxima página"</td></tr>
+</tbody></table></div>
+</section>
+
+</main>
+</div>

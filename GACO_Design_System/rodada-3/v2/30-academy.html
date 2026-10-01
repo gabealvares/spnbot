@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academy: portal do aluno</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q4.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q4-icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q4.js" defer></script>
+<style>
+.ac-portal{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start;margin-top:12px}
+.ac-curso{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:14px 16px;background:var(--cm-camada-1);border:1px solid var(--cm-filete)}
+.ac-curso h1{font-size:20px;line-height:26px;font-weight:700}
+.ac-disc{display:grid;grid-template-columns:220px minmax(0,1fr) 280px;gap:20px;align-items:start;margin-top:12px}
+.ac-disc__topo{padding:14px 0 10px;border-bottom:1px solid var(--cm-filete);margin-bottom:12px}
+.ac-disc__topo h1{font-size:20px;line-height:26px;font-weight:700}
+.ac-aula{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start;margin-top:12px}
+.ac-transc{max-height:220px;overflow:auto;font-size:13px;line-height:20px;padding-right:6px}
+.ac-transc p{margin-bottom:8px}
+.ac-transc time{color:var(--cm-texto-3);font-size:12px;margin-right:6px}
+.ac-transc .is-agora{background:var(--cm-acao-suave)}
+@media (max-width:1099px){ .ac-portal,.ac-aula{grid-template-columns:minmax(0,1fr)} .ac-disc{grid-template-columns:200px minmax(0,1fr)} .ac-disc>:last-child{grid-column:1/-1} }
+@media (max-width:699px){ .ac-disc{grid-template-columns:minmax(0,1fr)} .cm-curso-menu{display:flex;overflow-x:auto;border-left:0;border-bottom:1px solid var(--cm-filete)} .cm-curso-menu a{border-left:0;border-bottom:2px solid transparent;white-space:nowrap;margin:0 0 -1px} .cm-curso-menu a[aria-current="page"]{border-bottom-color:var(--cm-acao)} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Academy","tela":"Portal do aluno","papel":"Atendimento","sino":3,"links":{"Portal do aluno":"30-academy.html","Disciplinas":"30-academy.html#t-disciplina","Boletim":"30b-academy.html#t-boletim","Calendário acadêmico":"30b-academy.html#t-calendario","Histórico":"30b-academy.html#t-historico","Certificados":"30b-academy.html#t-certificado","Turmas":"30c-academy-professor.html","Painel da coordenação":"30c-academy-professor.html#t-certificados"}}'></div>
+
+<main id="conteudo" class="cm-doc">
+<header class="cm-doc-capa">
+  <div>
+    <h1>Academy: o lado do aluno, parte 1</h1>
+    <p>A Academy da Administradora Alpha é uma faculdade corporativa: curso de Formação em Gestão Condominial em 4 períodos, disciplinas com professor, carga horária, frequência mínima de 75% e média 7. Aqui: o portal do aluno, a sala da disciplina no desenho do Canvas, os módulos semanais no desenho do Moodle e a aula com player.</p>
+    <p class="cm-doc-paginas" style="margin-top:8px">Páginas da Academy: <a href="30-academy.html" aria-current="page">Aluno: portal, disciplina, módulos, aula</a> <a href="30b-academy.html">Aluno: entrega, questionário, boletim, calendário, histórico, certificado</a> <a href="30c-academy-professor.html">Professor e coordenação</a></p>
+  </div>
+  <div data-cm-seletor></div>
+  <nav class="cm-doc-indice" aria-label="Telas desta página">
+    <a href="#t-portal"><b>30.1</b>Portal do aluno</a><a href="#t-disciplina"><b>30.2</b>Disciplina</a><a href="#t-modulos"><b>30.3</b>Módulos semanais</a><a href="#t-aula"><b>30.4</b>Aula com player</a>
+  </nav>
+</header>
+
+<!-- 30.1 -->
+<section class="cm-doc-tela" id="t-portal" aria-labelledby="t-por-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">30.1</span><h2 class="cm-doc-tela__titulo" id="t-por-h">Portal do aluno</h2><span class="cm-doc-tela__sub">o período, as disciplinas e o que vence</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Ao entrar, o aluno sabe onde está no curso (3º período de 4), quais disciplinas cursa, quanto falta de cada uma, se está em risco por falta ou por nota e o que vence nos próximos dias. Cada disciplina abre a sala dela.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Topo: curso, matrícula, período e coeficiente.</li><li>"Para entregar" à direita com prazo e ação ("Continuar entrega").</li><li>Disciplinas do período em lista: professor, horário, progresso, frequência com a marca de 75%, média parcial e situação.</li><li>O nome da disciplina abre a sala (30.2); "Boletim" e "Histórico" levam às telas da 30b.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o portal do aluno das faculdades (Totvs Educacional, Lyceum, o "Meu" da Anhanguera) abre no período com as disciplinas, faltas e notas; o crítico apontou que a V2 mostrava só o interior da disciplina e escondia a faculdade; e o Canvas Dashboard põe o "A fazer" à direita, onde o aluno procura o que vence.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__barra"><span>Estado:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado"><button type="button" aria-pressed="true" data-estado="dados">Com dados</button><button type="button" aria-pressed="false" data-estado="vazio">Sem matrícula no período</button><button type="button" aria-pressed="false" data-estado="carregando">Carregando</button></div></div>
+    <div class="cm-doc-palco__corpo" style="padding-top:16px">
+      <div class="ac-curso">
+        <span class="cm-ladrilho cm-ladrilho--g"><i data-i="capelo"></i></span>
+        <div class="cm-cresce"><h1>Formação em Gestão Condominial</h1><p class="cm-texto-2">Beatriz Nogueira, matrícula 2025.1.0147. Período letivo 2026.2, de 04/08 a 12/12.</p></div>
+        <dl class="cm-destaques" style="margin:0;border:0"><div><dt>Período</dt><dd>3º de 4</dd></div><div><dt>Coeficiente</dt><dd>8,4</dd></div><div><dt>Carga cursada</dt><dd>520 de 800 h</dd></div></dl>
+      </div>
+      <div data-estado-painel="dados">
+      <div class="ac-portal">
+        <div class="cm-pilha cm-pilha--6">
+          <section class="cm-cartao" aria-labelledby="disc-t">
+            <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="disc-t">Disciplinas de 2026.2</h2><a class="cm-link" href="30b-academy.html#t-boletim" style="font-size:12.5px">Boletim completo</a></header>
+            <div id="ac-disc"></div>
+          </section>
+          <section class="cm-cartao" aria-labelledby="grade-t">
+            <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="grade-t">Grade da semana</h2><span class="cm-t-legenda">29/09 a 03/10</span></header>
+            <div class="cm-cartao__corpo"><div class="cm-grade-semana" role="table" aria-label="Grade horária da semana">
+              <div class="cm-grade-semana__cab" role="columnheader"></div><div class="cm-grade-semana__cab" role="columnheader">Seg 29</div><div class="cm-grade-semana__cab" role="columnheader">Ter 30</div><div class="cm-grade-semana__cab is-hoje" role="columnheader">Qua 01</div><div class="cm-grade-semana__cab" role="columnheader">Qui 02</div><div class="cm-grade-semana__cab" role="columnheader">Sex 03</div>
+              <div class="cm-t-legenda">19:00</div><div><span class="cm-grade-semana__evento">Legislação Condominial II, sala 3</span></div><div><span class="cm-grade-semana__evento">Gestão Financeira, sala 2</span></div><div><span class="cm-grade-semana__evento">Assembleias e Mediação, sala 3</span></div><div><span class="cm-grade-semana__evento">Manutenção Predial, laboratório</span></div><div><span class="cm-grade-semana__evento" style="border-left-color:var(--cm-acao)">Entrega: rateio da obra, até 23:59</span></div>
+              <div class="cm-t-legenda">EAD</div><div></div><div></div><div><span class="cm-grade-semana__evento">Atendimento e Comunicação, módulo 5</span></div><div></div><div></div>
+            </div></div>
+          </section>
+        </div>
+        <aside class="cm-pilha cm-pilha--6">
+          <section class="cm-pv" aria-labelledby="pe-t"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="pe-t">Para entregar</h2><span class="cm-contador cm-contador--novo">3</span></header>
+            <div class="cm-pv-item is-urgente"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="entrega"></i></span><div><div class="cm-pv-item__titulo"><a href="30b-academy.html#t-entrega">Trabalho 2: rateio da obra</a></div><div class="cm-pv-item__contexto">Gestão Financeira de Condomínios</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Vence sexta, 03/10, 23:59</span></div></div><div class="cm-pv-item__acoes"><a class="cm-botao cm-botao--p cm-botao--principal" href="30b-academy.html#t-entrega">Continuar entrega</a></div></div>
+            <div class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="prova"></i></span><div><div class="cm-pv-item__titulo"><a href="30b-academy.html#t-questionario">Questionário da semana 9</a></div><div class="cm-pv-item__contexto">Legislação Condominial II, 10 questões</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--neutro"><i data-i="pendente"></i>Até 05/10</span></div></div><div class="cm-pv-item__acoes"><a class="cm-botao cm-botao--p" href="30b-academy.html#t-questionario">Começar</a></div></div>
+            <div class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="forum"></i></span><div><div class="cm-pv-item__titulo"><a href="#">Fórum: o síndico pode multar sem assembleia?</a></div><div class="cm-pv-item__contexto">Assembleias e Mediação, vale presença</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--neutro"><i data-i="pendente"></i>Até 08/10</span></div></div><div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button">Responder</button></div></div>
+          </section>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Avisos</h2></header><div class="cm-cartao__corpo"><ul class="cm-atividade" style="margin:-8px -12px">
+            <li><span class="cm-avatar">SM</span><div><div class="cm-atividade__titulo">Profa. Sandra Moraes</div><div class="cm-atividade__desc">Aula de quarta será a simulação de assembleia. Tragam o edital lido.</div></div><span class="cm-atividade__quando">ontem</span></li>
+            <li><span class="cm-avatar cm-avatar--4">CO</span><div><div class="cm-atividade__titulo">Coordenação</div><div class="cm-atividade__desc">Rematrícula para 2027.1 de 17 a 28/11.</div></div><span class="cm-atividade__quando">25/09</span></li></ul></div></section>
+        </aside>
+      </div>
+      </div>
+      <div data-estado-painel="vazio" hidden><div class="cm-vazio"><i data-i="calendario-academico"></i><p class="cm-vazio__titulo">Você não está matriculada em 2027.1</p><p class="cm-vazio__texto">A rematrícula vai de 17 a 28/11. Escolha as disciplinas do 4º período; as obrigatórias já vêm marcadas.</p><div class="cm-vazio__acoes"><a class="cm-botao cm-botao--principal" href="30c-academy-professor.html#t-rematricula">Fazer a rematrícula</a><a class="cm-botao" href="30b-academy.html#t-historico">Ver histórico</a></div></div></div>
+      <div data-estado-painel="carregando" hidden><div class="cm-pilha" style="margin-top:16px"><span class="cm-esqueleto" style="height:60px"></span><span class="cm-esqueleto" style="height:60px;width:96%"></span><span class="cm-esqueleto" style="height:60px;width:92%"></span></div></div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Boletim completo</li><li>Disciplinas: nome (abre a sala)</li><li>Grade da semana (tabela)</li><li>Para entregar: título, ação</li><li>Avisos</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Disciplina: "Assembleias e Mediação de Conflitos, Profa. Sandra Moraes, frequência 71%, abaixo do mínimo de 75%, risco por falta".</li><li>A barra de frequência tem o texto do valor e do mínimo.</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Ladrilhos das entregas são decorativos; o título diz o tipo.</li></ul></div>
+  </div>
+</section>
+
+<!-- 30.2 -->
+<section class="cm-doc-tela" id="t-disciplina" aria-labelledby="t-dis-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">30.2</span><h2 class="cm-doc-tela__titulo" id="t-dis-h">Disciplina</h2><span class="cm-doc-tela__sub">a sala, com o menu do curso: Página inicial, Avisos, Módulos, Atividades, Notas, Pessoas, Fórum</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>É o lugar onde se estuda: o aluno vê a próxima entrega, o aviso da professora, a semana atual e tudo da disciplina em um menu fixo à esquerda. É o mesmo desenho em todas as disciplinas, então quem aprendeu uma aprendeu todas.</p></div>
+    <div><h3>Fluxo</h3><ol><li>O menu do curso à esquerda troca a seção sem sair da sala (experimente: Avisos, Notas, Pessoas, Fórum).</li><li>A Página inicial mostra a próxima entrega com "Continuar entrega" e a semana atual.</li><li>À direita: "A fazer" da disciplina e as datas.</li><li>A trilha (Academy, Disciplinas, Gestão Financeira) volta ao portal.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Canvas tem o menu do curso com Página inicial, Avisos, Módulos, Atividades, Notas e Pessoas, e ele é reconhecido por quem fez faculdade nos últimos anos; o Moodle e o Blackboard usam a mesma ideia de "sala"; e o crítico gostou desta peça na V2, então ela fica, agora atrás do portal do aluno.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo">
+      <div class="ac-disc__topo"><span class="cm-t-legenda">Turma GFC-2026.2-A, terças às 19h, sala 2, 60 h</span><h1>Gestão Financeira de Condomínios</h1></div>
+      <div class="ac-disc">
+        <nav aria-label="Menu da disciplina"><ul class="cm-curso-menu" id="ac-menu">
+          <li><a href="#" data-sec="inicio" aria-current="page">Página inicial</a></li>
+          <li><a href="#" data-sec="avisos">Avisos <span class="cm-contador cm-contador--novo">1</span></a></li>
+          <li><a href="#t-modulos">Módulos</a></li>
+          <li><a href="#" data-sec="atividades">Atividades</a></li>
+          <li><a href="#" data-sec="notas">Notas</a></li>
+          <li><a href="#" data-sec="pessoas">Pessoas</a></li>
+          <li><a href="#" data-sec="forum">Fórum <span class="cm-contador">4</span></a></li>
+          <li><a href="#">Biblioteca</a></li>
+          <li><a href="#">Plano de ensino</a></li>
+        </ul></nav>
+        <div id="ac-secoes">
+          <div data-sec-painel="inicio" class="cm-pilha cm-pilha--6">
+            <div class="cm-alerta cm-alerta--neutro"><i data-i="fixar"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Prof. André Kato, aviso fixado</span><span class="cm-alerta__desc">No trabalho 2 usem a fração ideal da convenção, não a do IPTU. A planilha modelo está no módulo da semana 9.</span></span></div>
+            <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Próxima entrega</h2></header><div class="cm-cartao__corpo cm-linha cm-linha--quebra"><span class="cm-ladrilho"><i data-i="entrega"></i></span><div class="cm-cresce"><b>Trabalho 2: rateio da obra da fachada</b><p class="cm-texto-2" style="font-size:12.5px">Vale 3 pontos da N2. Rascunho salvo ontem às 22:14, falta a planilha.</p></div><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Vence sexta, 23:59</span><a class="cm-botao cm-botao--principal" href="30b-academy.html#t-entrega">Continuar entrega</a></div></section>
+            <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Semana 9: rateio e fração ideal</h2><a class="cm-link" href="#t-modulos" style="font-size:12.5px">Todos os módulos</a></header>
+              <div class="cm-recurso"><i data-i="videoaula"></i><span class="cm-recurso__titulo"><a href="#t-aula">Aula 17: fração ideal na prática</a><span class="cm-recurso__meta">vídeo, 42 min, assistido até 18:20</span></span><span></span><button class="cm-conclusao" type="button" aria-pressed="false" data-alternar data-texto-sim="Concluído" data-texto-nao="Marcar como concluído">Marcar como concluído</button></div>
+              <div class="cm-recurso"><i data-i="planilha"></i><span class="cm-recurso__titulo"><a href="#">Planilha modelo de rateio</a><span class="cm-recurso__meta">xlsx, 28 KB</span></span><span></span><span class="cm-conclusao is-auto" aria-pressed="true" role="status">Concluído ao abrir</span></div>
+            </section>
+          </div>
+          <div data-sec-painel="avisos" hidden class="cm-pilha cm-pilha--6">
+            <article class="cm-post"><header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--5">AK</span><div><div class="cm-post__autor">Prof. André Kato</div><div class="cm-post__sub">para a turma GFC-2026.2-A</div></div><span class="cm-post__quando">ontem 18:02</span></header><h3 class="cm-post__titulo" style="margin-top:8px">Fração ideal: convenção, não IPTU</h3><p class="cm-post__corpo">Três de vocês me perguntaram. No trabalho 2, a fração vem da convenção do condomínio (art. 1.334 do Código Civil). A do IPTU serve para o imposto, não para o rateio.</p><div class="cm-ciencia"><span class="cm-ciencia__texto">28 de 32 alunos leram</span><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-toast="Leitura registrada.">Li</button></div></article>
+          </div>
+          <div data-sec-painel="atividades" hidden>
+            <div class="cm-tabela-caixa"><table class="cm-tabela"><caption class="cm-sr">Atividades da disciplina</caption><thead><tr><th>Atividade</th><th>Prazo</th><th class="cm-num">Vale</th><th>Situação</th></tr></thead><tbody>
+              <tr><td class="cm-tabela__principal"><a href="#">Trabalho 1: previsão orçamentária</a></td><td>01/09</td><td class="cm-num">3,0</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Entregue, nota 2,6</span></td></tr>
+              <tr><td class="cm-tabela__principal"><a href="#">Prova 1</a></td><td>15/09</td><td class="cm-num">7,0</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Nota 6,1</span></td></tr>
+              <tr><td class="cm-tabela__principal"><a href="30b-academy.html#t-entrega">Trabalho 2: rateio da obra</a></td><td>03/10</td><td class="cm-num">3,0</td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Rascunho, vence em 2 dias</span></td></tr>
+              <tr><td class="cm-tabela__principal"><a href="#">Prova 2</a></td><td>24/11</td><td class="cm-num">7,0</td><td><span class="cm-estado cm-estado--neutro"><i data-i="pendente"></i>Ainda não aberta</span></td></tr></tbody></table></div>
+          </div>
+          <div data-sec-painel="notas" hidden>
+            <div class="cm-tabela-caixa"><table class="cm-tabela cm-tabela--simples" style="padding:0 12px"><caption class="cm-sr">Notas da disciplina</caption><thead><tr><th>Avaliação</th><th class="cm-num">Peso</th><th class="cm-num">Nota</th></tr></thead><tbody><tr><td>N1: trabalho 1 e prova 1</td><td class="cm-num">40%</td><td class="cm-num">8,7</td></tr><tr><td>N2: trabalho 2 e prova 2</td><td class="cm-num">60%</td><td class="cm-num cm-texto-3">em aberto</td></tr><tr><td><b>Média parcial</b></td><td></td><td class="cm-num"><b>8,7</b></td></tr></tbody></table></div>
+            <div class="cm-frequencia" style="margin-top:22px"><span>Frequência</span><span class="cm-frequencia__barra"><i style="--f:89%"></i><span class="cm-frequencia__minimo" style="--min:75%" data-rotulo="mínimo 75%"></span></span><b>89%</b></div>
+            <p class="cm-t-legenda" style="margin-top:6px">Aprova com média 7 e frequência de 75% ou mais. Você pode faltar mais 3 aulas.</p>
+          </div>
+          <div data-sec-painel="pessoas" hidden>
+            <div class="cm-pilha"><div class="cm-pessoa"><span class="cm-avatar cm-avatar--5">AK<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Prof. André Kato</span><span class="cm-pessoa__sub">professor, responde em até 1 dia útil</span></span></div><div class="cm-pessoa"><span class="cm-avatar cm-avatar--3">GL</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Gabriel Leite</span><span class="cm-pessoa__sub">tutor, plantão de dúvidas às quintas 18h</span></span></div><p class="cm-t-legenda">32 alunos na turma. <a class="cm-link" href="#">Ver todos</a></p></div>
+          </div>
+          <div data-sec-painel="forum" hidden>
+            <ul class="cm-atividade"><li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="forum"></i></span><div><div class="cm-atividade__titulo"><a href="#">Inadimplente pode votar na assembleia?</a></div><div class="cm-atividade__desc">Rogério Paiva, 12 respostas, a do professor marcada como resposta</div></div><span class="cm-atividade__quando">ontem</span></li><li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="forum"></i></span><div><div class="cm-atividade__titulo"><a href="#">Fundo de reserva pode pagar obra?</a></div><div class="cm-atividade__desc">Beatriz Nogueira, 5 respostas</div></div><span class="cm-atividade__quando">22/09</span></li></ul>
+          </div>
+        </div>
+        <aside class="cm-pilha cm-pilha--6">
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">A fazer</h2></header><div class="cm-cartao__corpo cm-pilha" style="gap:8px;font-size:13px"><span><i data-i="entrega"></i> Trabalho 2, até 03/10</span><span><i data-i="videoaula"></i> Aula 17, 24 min restantes</span><span><i data-i="prova"></i> Prova 2 em 24/11</span></div></section>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Situação</h2></header><div class="cm-cartao__corpo"><div class="cm-frequencia" style="margin-top:12px"><span>Freq.</span><span class="cm-frequencia__barra"><i style="--f:89%"></i><span class="cm-frequencia__minimo" style="--min:75%" data-rotulo="75%"></span></span><b>89%</b></div><p style="font-size:13px;margin-top:8px">Média parcial <b>8,7</b>, <span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>em dia</span></p></div></section>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Menu da disciplina (seção atual marcada)</li><li>Conteúdo da seção</li><li>A fazer, situação</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Menu: "Menu da disciplina, navegação; Página inicial, página atual; Avisos, 1 novo".</li><li>Trocar de seção move o foco para o título da seção.</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Alfinete do aviso: decorativo, o texto diz "aviso fixado".</li></ul></div>
+  </div>
+</section>
+
+<!-- 30.3 -->
+<section class="cm-doc-tela" id="t-modulos" aria-labelledby="t-mod-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">30.3</span><h2 class="cm-doc-tela__titulo" id="t-mod-h">Módulos semanais com conclusão</h2><span class="cm-doc-tela__sub">semana a semana, o que ver, fazer e entregar</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>A disciplina organizada por semana: cada uma com as aulas, a leitura, o questionário e a entrega, e uma caixa de conclusão por item. O aluno vê o progresso da semana e sabe exatamente o que falta; a semana atual vem aberta e marcada.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Semanas passadas recolhidas com o progresso; a atual aberta; as futuras liberam na data.</li><li>Conclusão manual ("Marcar como concluído") ou automática (ao abrir, ao enviar, ao tirar nota mínima), com contorno tracejado.</li><li>Item com pré-requisito mostra o que libera.</li><li>"Recolher todas" e "Ir para a semana atual" no topo.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Moodle organiza o curso em tópicos semanais com a caixa de conclusão manual ou automática, e essa diferença (cheia ou tracejada) é dele; o Canvas Modules mostra o pré-requisito e o "bloqueado até"; e a barra de progresso por semana vem do Coursera.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" style="padding-top:12px">
+      <div class="cm-linha cm-linha--quebra" style="margin-bottom:10px"><h1 class="cm-t-secao cm-cresce">Módulos, Gestão Financeira de Condomínios</h1><button class="cm-botao cm-botao--p" type="button">Ir para a semana atual</button><button class="cm-botao cm-botao--p cm-botao--discreto" type="button">Recolher todas</button></div>
+      <div class="cm-modulo"><button class="cm-modulo__cabeca" type="button" aria-expanded="false" data-recolher aria-controls="mod-8"><i data-i="chevron-baixo"></i><span class="cm-modulo__titulo">Semana 8: fundo de reserva e fundo de obras</span><span class="cm-modulo__datas">22 a 28/09</span><span class="cm-progresso cm-progresso--sucesso"><span class="cm-progresso__barra"><i style="--p:100%"></i></span><span class="cm-progresso__valor">4 de 4</span></span></button><div id="mod-8" hidden></div></div>
+      <div class="cm-modulo is-atual"><button class="cm-modulo__cabeca" type="button" aria-expanded="true" data-recolher aria-controls="mod-9"><i data-i="chevron-baixo"></i><span class="cm-modulo__titulo">Semana 9: rateio e fração ideal</span><span class="cm-modulo__datas">29/09 a 05/10, semana atual</span><span class="cm-progresso cm-progresso--sucesso"><span class="cm-progresso__barra"><i style="--p:40%" id="mod9-barra"></i></span><span class="cm-progresso__valor" id="mod9-valor">2 de 5</span></span></button>
+        <div id="mod-9">
+          <div class="cm-recurso"><i data-i="videoaula"></i><span class="cm-recurso__titulo"><a href="#t-aula">Aula 17: fração ideal na prática</a><span class="cm-recurso__meta">vídeo, 42 min</span></span><span class="cm-recurso__prazo cm-texto-2">assistido até 18:20</span><button class="cm-conclusao" type="button" aria-pressed="false" data-alternar data-texto-sim="Concluído" data-texto-nao="Marcar como concluído">Marcar como concluído</button></div>
+          <div class="cm-recurso"><i data-i="livro-aberto"></i><span class="cm-recurso__titulo"><a href="#">Leitura: Código Civil, arts. 1.331 a 1.358</a><span class="cm-recurso__meta">PDF, 14 páginas</span></span><span></span><span class="cm-conclusao is-auto" aria-pressed="true">Concluído ao abrir</span></div>
+          <div class="cm-recurso"><i data-i="planilha"></i><span class="cm-recurso__titulo"><a href="#">Planilha modelo de rateio</a><span class="cm-recurso__meta">xlsx</span></span><span></span><span class="cm-conclusao is-auto" aria-pressed="true">Concluído ao abrir</span></div>
+          <div class="cm-recurso"><i data-i="prova"></i><span class="cm-recurso__titulo"><a href="30b-academy.html#t-questionario">Questionário da semana 9</a><span class="cm-recurso__meta">10 questões, nota mínima 6 para concluir</span></span><span class="cm-recurso__prazo">até 05/10</span><span class="cm-conclusao is-auto" aria-pressed="false">Conclui com nota 6</span></div>
+          <div class="cm-recurso"><i data-i="entrega"></i><span class="cm-recurso__titulo"><a href="30b-academy.html#t-entrega">Trabalho 2: rateio da obra da fachada</a><span class="cm-recurso__meta">vale 3,0 na N2</span></span><span class="cm-recurso__prazo"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>vence 03/10</span></span><span class="cm-conclusao is-auto" aria-pressed="false">Conclui ao enviar</span></div>
+        </div></div>
+      <div class="cm-modulo is-bloqueado"><button class="cm-modulo__cabeca" type="button" aria-expanded="false" data-recolher aria-controls="mod-10"><i data-i="chevron-baixo"></i><span class="cm-modulo__titulo">Semana 10: inadimplência e acordos</span><span class="cm-modulo__datas"><i data-i="bloquear" class="cm-icone--14"></i> libera em 06/10</span></button><div id="mod-10" hidden><p class="cm-t-legenda" style="padding:10px 12px">Abre na segunda, 06/10. A aula 19 só abre depois do questionário da semana 9.</p></div></div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Ir para a semana atual, Recolher todas</li><li>Cabeçalho de cada semana (abre e fecha)</li><li>Itens: título, conclusão</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Semana: "Semana 9: rateio e fração ideal, semana atual, 2 de 5, aberta".</li><li>Conclusão manual: "Marcar como concluído, botão de alternância, não pressionado".</li><li>Automática: "Conclui com nota 6", não é botão.</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Cadeado da semana 10: acompanhado de "libera em 06/10".</li></ul></div>
+  </div>
+</section>
+
+<!-- 30.4 -->
+<section class="cm-doc-tela" id="t-aula" aria-labelledby="t-aula-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">30.4</span><h2 class="cm-doc-tela__titulo" id="t-aula-h">Aula com player</h2><span class="cm-doc-tela__sub">vídeo, capítulos, transcrição e anotações</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>O colaborador assiste à aula no intervalo do plantão: retoma de onde parou, pula para o capítulo que interessa, lê a transcrição se estiver sem fone e anota com o minuto. A conclusão marca sozinha ao passar de 90% do vídeo.</p></div>
+    <div><h3>Fluxo</h3><ol><li>O player abre em 18:20, onde parou, com aviso "Continuando de 18:20".</li><li>Capítulos à direita; a transcrição acompanha e destaca o trecho atual.</li><li>Legenda, velocidade (até 2x) e tela cheia no player; espaço pausa, setas voltam e avançam 10 segundos.</li><li>"Anterior" e "Próxima" levam à aula vizinha do módulo.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o YouTube e a Alura consagraram capítulos, velocidade e "continuar de onde parou"; o Coursera mostra a transcrição sincronizada ao lado, que ajuda quem estuda sem som; e os atalhos de teclado são os do YouTube, que todo mundo já sabe.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" style="padding-top:12px">
+      <div class="cm-linha cm-linha--quebra"><div class="cm-cresce"><span class="cm-t-legenda">Gestão Financeira de Condomínios, semana 9</span><h1 class="cm-t-registro">Aula 17: fração ideal na prática</h1></div><a class="cm-botao" href="#"><i data-i="chevron-esquerda"></i>Anterior</a><a class="cm-botao" href="#">Próxima<i data-i="chevron-direita"></i></a></div>
+      <div class="ac-aula">
+        <div class="cm-pilha cm-pilha--6">
+          <div class="cm-player" role="region" aria-label="Player da aula 17">
+            <div class="cm-player__tela">
+              <svg class="cm-player__quadro" viewBox="0 0 640 360" aria-hidden="true"><rect width="640" height="360" fill="#181C1F"/><rect x="40" y="40" width="360" height="240" fill="#FBFAF6"/><g fill="none" stroke="#3D454B" stroke-width="2"><path d="M70 90h300M70 130h300M70 170h300M70 210h300M70 250h300"/><path d="M190 70v200M290 70v200"/></g><g fill="#2E353A" font-family="sans-serif" font-size="13"><text x="74" y="84">Unidade</text><text x="196" y="84">Fração ideal</text><text x="296" y="84">Rateio</text><text x="74" y="124">Ap 101</text><text x="196" y="124">0,2814%</text><text x="296" y="124">R$ 52,34</text><text x="74" y="164">Ap 201</text><text x="196" y="164">0,3205%</text><text x="296" y="164">R$ 59,61</text><text x="74" y="204">Cobertura</text><text x="196" y="204">0,4510%</text><text x="296" y="204">R$ 83,88</text></g><circle cx="520" cy="180" r="64" fill="#2E353A"/><circle cx="520" cy="160" r="22" fill="#6B7479"/><path d="M478 228c8-28 76-28 84 0" fill="#6B7479"/></svg>
+              <button class="cm-player__play" type="button" aria-label="Continuar a aula de 18:20" id="pl-play"><i data-i="play"></i></button>
+              <span class="cm-player__legenda" id="pl-leg">A fração ideal vem da convenção. É ela que manda no rateio.</span>
+            </div>
+            <div class="cm-player__controles">
+              <button type="button" aria-label="Reproduzir" id="pl-play2"><i data-i="play"></i></button>
+              <button type="button" aria-label="Voltar 10 segundos"><i data-i="girar-anti"></i></button>
+              <span class="cm-player__tempo" id="pl-tempo">18:20 / 42:06</span>
+              <span class="cm-player__progresso" role="slider" tabindex="0" aria-label="Posição na aula" aria-valuemin="0" aria-valuemax="2526" aria-valuenow="1100" aria-valuetext="18 minutos e 20 segundos de 42 minutos" style="--p:43.5%"><i></i><b style="--c:0%"></b><b style="--c:21%"></b><b style="--c:40%"></b><b style="--c:68%"></b><b style="--c:88%"></b></span>
+              <select class="cm-player__vel" aria-label="Velocidade"><option>1x</option><option selected>1,25x</option><option>1,5x</option><option>2x</option></select>
+              <button type="button" aria-label="Legenda" aria-pressed="true" data-alternar><i data-i="legenda"></i></button>
+              <button type="button" aria-label="Som"><i data-i="audio"></i></button>
+              <button type="button" aria-label="Tela cheia"><i data-i="tela-cheia"></i></button>
+            </div>
+          </div>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Minhas anotações</h2><span class="cm-t-legenda">só você vê</span></header><div class="cm-cartao__corpo">
+            <ul class="cm-comentarios"><li><span class="cm-ladrilho cm-ladrilho--pp"><i data-i="marcador"></i></span><div><button class="cm-botao cm-botao--link" type="button">12:40</button> Fração do IPTU não serve para rateio. Cair na prova!</div></li></ul>
+            <div class="cm-chat-compositor" style="margin:8px 0 0"><textarea rows="2" aria-label="Anotar no minuto atual, 18:20" placeholder="Anotar em 18:20"></textarea><div class="cm-chat-compositor__barra"><span class="cm-cresce">Enter salva com o minuto</span><button class="cm-botao cm-botao--p" type="button" data-toast="Anotação salva em 18:20.">Salvar</button></div></div>
+          </div></section>
+        </div>
+        <aside class="cm-pilha cm-pilha--6">
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Capítulos</h2></header>
+            <ol class="cm-capitulos"><li class="is-visto"><time>00:00</time><button type="button">Por que a fração ideal existe</button><i data-i="sucesso" data-rotulo="visto"></i></li><li class="is-visto"><time>08:50</time><button type="button">Onde achar na convenção</button><i data-i="sucesso" data-rotulo="visto"></i></li><li class="is-atual"><time>16:50</time><button type="button" aria-current="true">Exemplo com 312 unidades</button><span></span></li><li><time>28:40</time><button type="button">Arredondamento e centavos</button><span></span></li><li><time>37:00</time><button type="button">Erros comuns na 2ª via</button><span></span></li></ol></section>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Transcrição</h2><button class="cm-botao cm-botao--p cm-botao--discreto" type="button"><i data-i="baixar"></i>Baixar</button></header><div class="cm-cartao__corpo ac-transc">
+            <p><time>17:58</time>Vamos pegar o Parque das Águas, com 312 unidades em quatro blocos.</p><p><time>18:09</time>O apartamento de três dormitórios tem fração de 0,3205%.</p><p class="is-agora"><time>18:20</time>A fração ideal vem da convenção. É ela que manda no rateio.</p><p><time>18:31</time>Se a obra custa 18.600 reais, esse apartamento paga 59 reais e 61 centavos.</p></div></section>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Anterior, Próxima</li><li>Player: continuar, voltar 10 s, posição (setas), velocidade, legenda, som, tela cheia</li><li>Anotações</li><li>Capítulos, transcrição</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Posição: "18 minutos e 20 segundos de 42 minutos".</li><li>Capítulo: "Exemplo com 312 unidades, atual".</li><li>Legenda: "Legenda, pressionado".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>"Reproduzir", "Voltar 10 segundos", "Legenda", "Som", "Tela cheia"</li></ul></div>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+var D=[['Gestão Financeira de Condomínios','Prof. André Kato','Ter 19h, sala 2','60 h',6,10,89,8.7,'sucesso','Em dia','carteira'],
+ ['Legislação Condominial II','Profa. Cláudia Ribeiro','Seg 19h, sala 3','40 h',5,9,92,7.9,'sucesso','Em dia','regimento'],
+ ['Assembleias e Mediação de Conflitos','Profa. Sandra Moraes','Qua 19h, sala 3','40 h',4,9,71,7.4,'perigo','Risco por falta','assembleia'],
+ ['Manutenção Predial e Normas','Eng. Fábio Lacerda','Qui 19h, laboratório','40 h',5,9,83,6.2,'aviso','Atenção: média abaixo de 7','chave-inglesa'],
+ ['Atendimento e Comunicação com o Condômino','Letícia Araújo','EAD, no seu ritmo','20 h',4,6,100,9.5,'sucesso','Em dia','fone-atendimento']];
+var ic={sucesso:'sucesso',perigo:'perigo',aviso:'atencao'};
+document.getElementById('ac-disc').innerHTML=D.map(function(d){return '<div class="cm-disciplina-linha"><span class="cm-ladrilho"><i data-i="'+d[10]+'"></i></span><div><a class="cm-disciplina-linha__nome" href="#t-disciplina">'+d[0]+'</a><div class="cm-t-legenda">'+d[1]+', '+d[2]+', '+d[3]+'</div></div><div class="cm-progresso cm-progresso--sucesso"><span class="cm-progresso__barra"><i style="--p:'+Math.round(d[4]/d[5]*100)+'%"></i></span><span class="cm-progresso__valor">semana '+d[4]+' de '+d[5]+'</span></div>'+
+ '<div class="cm-frequencia'+(d[6]<75?' is-risco':'')+'" style="margin-top:10px"><span class="cm-sr">Frequência</span><span class="cm-frequencia__barra"><i style="--f:'+d[6]+'%"></i><span class="cm-frequencia__minimo" style="--min:75%" data-rotulo="75%"></span></span><b>'+d[6]+'%</b></div>'+
+ '<div style="font-size:13px">Média parcial <b>'+String(d[7]).replace('.',',')+'</b></div><span class="cm-estado cm-estado--'+d[8]+'"><i data-i="'+ic[d[8]]+'"></i>'+d[9]+'</span></div>'}).join('');
+/* menu do curso */
+var menu=document.getElementById('ac-menu');
+menu.addEventListener('click',function(e){var a=e.target.closest('a[data-sec]');if(!a) return;e.preventDefault();[].forEach.call(menu.querySelectorAll('a'),function(x){x.removeAttribute('aria-current')});a.setAttribute('aria-current','page');
+  [].forEach.call(document.querySelectorAll('[data-sec-painel]'),function(p){p.hidden=p.getAttribute('data-sec-painel')!==a.getAttribute('data-sec')});
+  var p=document.querySelector('[data-sec-painel="'+a.getAttribute('data-sec')+'"]');p.setAttribute('tabindex','-1');p.focus()});
+/* conclusão atualiza o progresso da semana 9 */
+document.getElementById('mod-9').addEventListener('q:alternou',function(){var n=document.querySelectorAll('#mod-9 .cm-conclusao[aria-pressed="true"]').length;document.getElementById('mod9-valor').textContent=n+' de 5';document.getElementById('mod9-barra').style.setProperty('--p',n/5*100+'%')});
+/* player */
+var tocando=false;function alternar(){tocando=!tocando;['pl-play','pl-play2'].forEach(function(id){var b=document.getElementById(id);b.innerHTML=window.cmIcone?cmIcone(tocando?'pausa':'play'):'';b.setAttribute('aria-label',tocando?'Pausar':'Reproduzir')});document.getElementById('pl-play').style.visibility=tocando?'hidden':'visible'}
+document.getElementById('pl-play').addEventListener('click',alternar);document.getElementById('pl-play2').addEventListener('click',alternar);
+})();
+</script>
+</body>
+</html>

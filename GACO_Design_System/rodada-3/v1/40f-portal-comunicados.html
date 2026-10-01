@@ -23,8 +23,8 @@
 </head>
 <body data-moldura='{"contexto":"portal","secao":"Comunicados","papel":"morador","cliente":{"nome":"Administradora Alpha","sigla":"A"},"unidade":"Bloco B, apto 1204"}'>
 <main id="conteudo" class="lc-pagina">
-<section class="lc-ficha-tela" aria-label="Sobre a tela Comunicados">
-  <div class="lc-ficha-tela__nome"><b>Comunicados com ciência</b><span>Feed da administradora e da síndica para a unidade, o bloco ou todo o condomínio.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre a tela Comunicados">
+  <div class="lc-sobre-tela__nome"><b>Comunicados com ciência</b><span>Feed da administradora e da síndica para a unidade, o bloco ou todo o condomínio.</span></div>
   <div><h2>O que esta tela resolve</h2><p>O condômino lê o que importa e registra que leu. A ciência vira prova para a administradora (multa, obra, falta de água) e some da lista de pendências.</p></div>
   <div><h2>Fluxo</h2><ol><li>Abas: "Por ler" (padrão), "Todos" e "Fixados".</li><li>Cada comunicado diz para quem foi e quem assinou.</li><li>"Li e estou ciente" grava na hora e vira carimbo com nome, unidade e hora. Não há desfazer: é registro.</li><li>Anexos abrem em nova aba; voltar pela aba Comunicados.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o Workplace e o Microsoft Teams têm "confirmar leitura" em comunicado obrigatório; o livro de ocorrências da portaria tem assinatura de ciência, que é o signo que o síndico reconhece; e o Gmail ensinou "por ler" como fila.</p></div>
@@ -50,8 +50,8 @@
 </div>
 <div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Abas (setas), anexo, "Li e estou ciente", próximo comunicado.</p></div><div><h3>O que é anunciado</h3><p>Ao registrar: carimbo com <code>role="status"</code>, "Ciente, Ana Souza, apto 1204, 01/10/26 09:12". O foco vai para o carimbo.</p></div><div><h3>Nome do que é só ícone</h3><p>Ladrilho da administradora é decorativo; o nome está escrito ao lado.</p></div></div>
 
-<section class="lc-ficha-tela" id="documentos" aria-label="Sobre a tela Documentos">
-  <div class="lc-ficha-tela__nome"><b>Documentos do condomínio</b><span>Convenção, regimento, atas, balancetes, laudos e contratos. Só leitura para o morador.</span></div>
+<section class="lc-sobre-tela" id="documentos" aria-label="Sobre a tela Documentos">
+  <div class="lc-sobre-tela__nome"><b>Documentos do condomínio</b><span>Convenção, regimento, atas, balancetes, laudos e contratos. Só leitura para o morador.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Achar o documento oficial em 2 toques, na versão vigente, sem pedir por e-mail. O balancete do mês sai aqui assim que a síndica aprova.</p></div>
   <div><h2>Fluxo</h2><ol><li>Pastas à esquerda (no celular, abas roláveis).</li><li>Busca dentro do texto dos PDFs.</li><li>Linha mostra versão, data e estado ("Vigente", "Substituído").</li><li>Abrir mostra a prévia; "Baixar" salva o PDF.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o Google Drive e o Dropbox organizam por pasta com busca no conteúdo; o portal da Lello e o da Superlógica publicam balancete mensal com data; e marcar a versão vigente evita o morador seguir um regimento antigo.</p></div>

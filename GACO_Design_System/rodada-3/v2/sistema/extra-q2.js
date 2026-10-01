@@ -92,10 +92,10 @@ Q.fecharModal=function(el){
   x.el.dispatchEvent(new CustomEvent('q2:fechado',{bubbles:true}));
 };
 D.addEventListener('click',function(e){
+  var t2=e.target.closest('[data-q2-toast]');if(t2&&!t2.disabled){var p=t2.getAttribute('data-q2-toast').split('|');toast(p[0],p[1]||'sucesso',p[2])}
   var m=e.target.closest('[data-q2-modal]');if(m){e.preventDefault();Q.abrirModal(m.getAttribute('data-q2-modal'),m);return}
   var f=e.target.closest('[data-q2-fechar]');if(f){e.preventDefault();Q.fecharModal(f);return}
   if(pilha.length){var t=pilha[pilha.length-1].el;if(e.target===t&&t.classList.contains('cm-sobreposicao')&&!t.hasAttribute('data-q2-fixo')) Q.fecharModal(t)}
-  var t2=e.target.closest('[data-q2-toast]');if(t2){var p=t2.getAttribute('data-q2-toast').split('|');toast(p[0],p[1]||'sucesso',p[2])}
 });
 D.addEventListener('keydown',function(e){
   if(!pilha.length) return;var top=pilha[pilha.length-1].el;
@@ -130,7 +130,7 @@ function valor(el){if(el.type==='checkbox'||el.type==='radio') return el.checked
 function Form(raiz){
   var nome=raiz.getAttribute('data-q2-form');
   var barra=D.querySelector('[data-q2-barra="'+nome+'"]');
-  var F={nome:nome,raiz:raiz,barra:barra,opcao:ler('cm-v2-salvar-'+nome)||raiz.getAttribute('data-q2-opcao')||'continuar'};
+  var F={nome:nome,raiz:raiz,barra:barra,opcao:ler('cm-v2-salvar-'+nome)||raiz.getAttribute('data-q2-padrao')||'continuar'};
   function campos(){return $$('input:not([type="hidden"]),select,textarea',raiz).filter(function(x){return !x.hasAttribute('data-q2-ignora')&&!x.closest('[data-q2-secao-form]')&&!x.closest('[data-q2-campo]')&&!x.closest('[data-q2-celula]')})}
   F.original=function(){campos().forEach(function(c){c.setAttribute('data-q2-orig',valor(c))})};
   F.sujos=function(){

@@ -145,7 +145,7 @@
     if(f) setTimeout(function(){f.focus()},30);
   }
   function fecharDialogo(){if(aberto){aberto.remove();aberto=null;if(volta&&volta.focus)volta.focus();volta=null}}
-  window.docAbrir=abrirDialogo;window.docFechar=fecharDialogo;
+  window.docAbrir=abrirDialogo;window.docFechar=fecharDialogo;window.docFecharTudo=function(){fecharTudo()};
 
   d.addEventListener('click',function(e){
     var x;

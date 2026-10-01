@@ -15,8 +15,8 @@
 </head>
 <body data-moldura='{"contexto":"superadmin","modulo":"versoes","secao":"Homologação","faixa":{"tipo":"homologacao","versao":"2026.10.2"},"usuario":{"nome":"Mateus Vieira","iniciais":"MV","cor":"lc-av--c8","cargo":"Desenvolvimento"},"cliente":{"nome":"GACO Plataforma","sigla":"G"}}'>
 <main id="conteudo" class="lc-pagina">
-<section class="lc-ficha-tela" aria-label="Sobre homologação">
-  <div class="lc-ficha-tela__nome"><b>Ambiente de homologação</b><span>Faixa ardósia fixa no topo em qualquer tela deste ambiente. Dados de teste.</span></div>
+<section class="lc-sobre-tela" aria-label="Sobre homologação">
+  <div class="lc-sobre-tela__nome"><b>Ambiente de homologação</b><span>Faixa ardósia fixa no topo em qualquer tela deste ambiente. Dados de teste.</span></div>
   <div><h2>O que esta tela resolve</h2><p>Testar uma versão com clientes reais escolhidos, sem ninguém confundir teste com produção, e publicar só quando o roteiro passou.</p></div>
   <div><h2>Fluxo</h2><ol><li>A faixa diz "Homologação", a versão e "Ir para produção"; não fecha.</li><li>Versão candidata com o que muda (notas) e clientes convidados para testar.</li><li>Roteiro de testes com caixas; cada falha vira bug ligado.</li><li>"Programar publicação" só habilita com o roteiro completo.</li></ol></div>
   <div><h2>Resolvemos fazer assim porque</h2><p>o Salesforce Sandbox e o Shopify (loja de desenvolvimento) marcam o ambiente com faixa permanente; o LaunchDarkly libera recurso por cliente; e o TestRail organiza roteiro com passou e falhou.</p></div>
@@ -24,7 +24,7 @@
 <div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Versão 2026.10.2</h1><p class="lc-cab-pagina__desc">Em homologação desde 29/09. Publicação prevista para 07/10, 23h.</p></div><div class="lc-cab-pagina__acoes"><span data-dica="Faltam 2 testes do roteiro"><button class="lc-btn lc-btn--principal" type="button" disabled>Programar publicação</button></span></div></div>
 <div class="sa-hm">
   <div class="lc-pilha">
-    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>O que muda</h2></div><div class="lc-caixa__corpo"><ul class="lc-regras" style="list-style:disc"><li>Portal: 2ª via recalcula multa e juros pela data escolhida.</li><li>Suporte: "Enviar e abrir a próxima" lembrado por atendente.</li><li>Financeiro: alerta de boleto duplicado na mesma competência.</li><li>Correção: rateio arredondava centavos para cima (chamado 1.188).</li></ul></div></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>O que muda</h2></div><div class="lc-caixa__corpo"><ul class="lc-regras-uso" style="list-style:disc"><li>Portal: 2ª via recalcula multa e juros pela data escolhida.</li><li>Suporte: "Enviar e abrir a próxima" lembrado por atendente.</li><li>Financeiro: alerta de boleto duplicado na mesma competência.</li><li>Correção: rateio arredondava centavos para cima (chamado 1.188).</li></ul></div></section>
     <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Roteiro de testes</h2><span class="lc-aux">8 de 10</span></div><div class="lc-caixa__corpo lc-pilha--p" style="display:flex;flex-direction:column;gap:8px">
       <label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>2ª via com data futura<small>Passou, Sol Nascente, 30/09</small></span></label>
       <label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>Boleto duplicado gera alerta<small>Passou, Alpha, 30/09</small></span></label>

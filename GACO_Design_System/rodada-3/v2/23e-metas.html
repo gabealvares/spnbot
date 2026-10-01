@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metas de vendas</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-metas{display:flex;flex-direction:column;gap:18px;padding:16px}
+.q3-meta-linha{display:grid;grid-template-columns:200px minmax(0,1fr) 22px;gap:16px;align-items:center}
+@media (max-width:599px){.q3-meta-linha{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Metas <small>Comercial, Metas de vendas. Outubro de 2026: meta de receita nova da equipe e de cada executivo, com o realizado, o previsto pelo funil e o ritmo esperado no dia.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>Meta só ajuda se diz "estou atrás ou na frente do ritmo". Cada barra tem três marcas: realizado (latão), previsto pelo funil ponderado (tracejado) e a linha do ritmo esperado para hoje (dia 1 de 23 úteis). É tela de relatório, então os números grandes ficam no cabeçalho.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Troque o mês e a métrica (receita nova por mês, negócios ganhos, visitas).</li><li>Clique num executivo abre os negócios que compõem o previsto.</li><li>Gestor edita a meta pelo lápis de cada linha; mudança fica no histórico.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Salesforce (Forecasts) e o HubSpot (Goals) mostram meta, realizado e previsto lado a lado; o Pipedrive mostra o ritmo esperado; barras horizontais com rótulo direto seguem o guia de visualização da fundação (sem legenda solta, sem pizza).</p></section>
+  </div>
+  
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Comercial","tela":"Metas de vendas","papel":"Comercial","usuario":{"nome":"Lucas Ferreira","iniciais":"LF","cargo":"Executivo comercial","presenca":"disponivel","tom":1}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Metas</h1><div class="cm-cabecalho-pagina__acoes"><div class="cm-selecao"><select aria-label="Mês"><option>Outubro de 2026</option><option>Setembro de 2026</option></select><i data-i="chevron-baixo"></i></div><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Métrica"><button type="button" aria-pressed="true">Receita nova</button><button type="button" aria-pressed="false">Ganhos</button><button type="button" aria-pressed="false">Visitas</button></div></div></div>
+  <div class="cm-kpis" role="list" aria-label="Equipe em outubro"><div class="cm-kpi" role="listitem"><span class="cm-kpi__rotulo">Meta da equipe</span><span class="cm-kpi__valor">R$ 30.000,00</span><span class="cm-kpi__variacao">por mês, receita nova</span></div><div class="cm-kpi" role="listitem"><span class="cm-kpi__rotulo">Realizado</span><span class="cm-kpi__valor">R$ 7.980,00</span><span class="cm-kpi__variacao is-melhor"><i data-i="alta"></i>27% <span>no dia 1 de 23</span></span></div><div class="cm-kpi" role="listitem"><span class="cm-kpi__rotulo">Previsto pelo funil</span><span class="cm-kpi__valor">R$ 26.410,00</span><span class="cm-kpi__variacao is-pior">88% da meta</span></div></div></header>
+ <section class="cm-cartao" aria-labelledby="t-ex"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-ex">Por executivo</h2><span class="cm-t-legenda">latão: realizado; tracejado: previsto; traço vertical: ritmo de hoje</span></header>
+  <div class="q3-metas">
+   <div class="q3-meta-linha"><span class="cm-pessoa"><span class="cm-avatar cm-avatar--m cm-avatar--1">LF</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Lucas Ferreira</span><span class="cm-pessoa__sub">meta R$ 12.000,00</span></span></span>
+    <div class="cm-meta"><span class="cm-meta__nome">R$ 7.980,00 realizado</span><span class="cm-meta__valor"><b>66%</b>, previsto R$ 13.880,00</span><span class="cm-meta__trilho" style="--feito:66%;--previsto:100%;--ritmo:4%" role="img" aria-label="Realizado 66%, previsto 116%, ritmo de hoje 4%"><s></s><i></i><u></u></span></div><button class="cm-ficha__lapis" type="button" aria-label="Editar meta de Lucas Ferreira" style="opacity:1"><i data-i="editar"></i></button></div>
+   <div class="q3-meta-linha"><span class="cm-pessoa"><span class="cm-avatar cm-avatar--m cm-avatar--3">AM</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Amanda Moraes</span><span class="cm-pessoa__sub">meta R$ 10.000,00</span></span></span>
+    <div class="cm-meta"><span class="cm-meta__nome">R$ 0,00 realizado</span><span class="cm-meta__valor"><b>0%</b>, previsto R$ 7.020,00</span><span class="cm-meta__trilho" style="--feito:0%;--previsto:70%;--ritmo:4%" role="img" aria-label="Realizado 0%, previsto 70%, ritmo de hoje 4%"><s></s><i></i><u></u></span></div><button class="cm-ficha__lapis" type="button" aria-label="Editar meta de Amanda Moraes" style="opacity:1"><i data-i="editar"></i></button></div>
+   <div class="q3-meta-linha"><span class="cm-pessoa"><span class="cm-avatar cm-avatar--m cm-avatar--4">GS</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Guilherme Santos</span><span class="cm-pessoa__sub">meta R$ 8.000,00</span></span></span>
+    <div class="cm-meta"><span class="cm-meta__nome">R$ 0,00 realizado</span><span class="cm-meta__valor"><b>0%</b>, previsto R$ 5.510,00</span><span class="cm-meta__trilho" style="--feito:0%;--previsto:69%;--ritmo:4%" role="img" aria-label="Realizado 0%, previsto 69%, ritmo de hoje 4%"><s></s><i></i><u></u></span></div><button class="cm-ficha__lapis" type="button" aria-label="Editar meta de Guilherme Santos" style="opacity:1"><i data-i="editar"></i></button></div>
+  </div></section>
+ <section class="cm-cartao" style="margin-top:16px" aria-labelledby="t-hist"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-hist">Últimos seis meses, equipe</h2></header>
+  <div class="cm-cartao__corpo"><table class="cm-tabela cm-tabela--simples"><thead><tr><th>Mês</th><th class="cm-num">Meta</th><th class="cm-num">Realizado</th><th>Resultado</th></tr></thead><tbody>
+   <tr><td>Setembro</td><td class="cm-num">R$ 28.000,00</td><td class="cm-num">R$ 31.240,00</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Bateu, 112%</span></td></tr>
+   <tr><td>Agosto</td><td class="cm-num">R$ 28.000,00</td><td class="cm-num">R$ 22.110,00</td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>79%</span></td></tr>
+   <tr><td>Julho</td><td class="cm-num">R$ 26.000,00</td><td class="cm-num">R$ 27.900,00</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Bateu, 107%</span></td></tr>
+  </tbody></table></div></section>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título, mês, métrica; números da equipe; por executivo (pessoa, barra descrita, lápis); histórico.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Cada barra é imagem com "Realizado 66%, previsto 116%, ritmo de hoje 4%". Resultado do mês em palavra e número.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Editar meta de Lucas Ferreira" (e de cada executivo).</p></section>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>

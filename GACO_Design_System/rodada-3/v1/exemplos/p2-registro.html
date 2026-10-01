@@ -33,16 +33,20 @@
 /* Antes da moldura montar: trilha e "14 de 63" a partir do conjunto de onde a pessoa veio */
 (function(){
   var P=LCP2, u=new URLSearchParams(location.search), id=u.get("id")||"2026-0412", c=P.contrato(id);
-  var cj=P.conjunto.ler()||{ids:P.CONTRATOS.map(function(x){return x.id;}),rotulo:"Renovações: reajuste em outubro",volta:"p2-lista.html"};
-  var i=cj.ids.indexOf(c.id); if(i<0){ cj={ids:P.CONTRATOS.map(function(x){return x.id;}),rotulo:"Renovações",volta:"p2-lista.html"}; i=cj.ids.indexOf(c.id); }
-  var ant=cj.ids[i-1], prox=cj.ids[i+1];
-  window.P2REG={c:c,cj:cj,i:i,ant:ant,prox:prox};
+  /* o conjunto vem da lista de onde a pessoa saiu (sessão) ou do endereço (?de=renovacoes, para nova aba e link colado).
+     Sem conjunto (link direto, notificação, ⌘K) não há "14 de 63". */
+  var padrao={ids:P.CONTRATOS.map(function(x){return x.id;}),rotulo:"Renovações: reajuste em outubro",volta:"p2-lista.html"};
+  var cj=P.conjunto.ler(), deLista=u.get("de")==="renovacoes";
+  if(cj && cj.ids.indexOf(c.id)<0) cj=null; if(!cj && deLista) cj=padrao;
+  var tem=!!cj; if(!cj) cj={ids:[c.id],rotulo:"Renovações",volta:"p2-lista.html"};
+  var i=cj.ids.indexOf(c.id), ant=cj.ids[i-1], prox=cj.ids[i+1];
+  window.P2REG={c:c,cj:cj,i:i,ant:ant,prox:prox,tem:tem};
   var pag='<span class="lc-paginador" aria-label="Posição na lista">'+
-    (ant?'<a class="lc-btn lc-btn--icone lc-btn--discreto" href="p2-registro.html?id='+ant+'" aria-label="Anterior: '+P.esc(P.contrato(ant).nome)+'" data-dica="Anterior (K)" rel="prev"><i data-i="chevron-esquerda"></i></a>':'<button class="lc-btn lc-btn--icone lc-btn--discreto" disabled aria-label="Não há anterior"><i data-i="chevron-esquerda"></i></button>')+
+    (ant?'<a class="lc-btn lc-btn--icone lc-btn--discreto" href="p2-registro.html?id='+ant+'&de=renovacoes" aria-label="Anterior: '+P.esc(P.contrato(ant).nome)+'" data-dica="Anterior (K)" rel="prev"><i data-i="chevron-esquerda"></i></a>':'<button class="lc-btn lc-btn--icone lc-btn--discreto" disabled aria-label="Não há anterior"><i data-i="chevron-esquerda"></i></button>')+
     '<span><b>'+(i+1)+'</b> de '+cj.ids.length+'</span>'+
-    (prox?'<a class="lc-btn lc-btn--icone lc-btn--discreto" href="p2-registro.html?id='+prox+'" aria-label="Próximo: '+P.esc(P.contrato(prox).nome)+'" data-dica="Próximo (J)" rel="next"><i data-i="chevron-direita"></i></a>':'<button class="lc-btn lc-btn--icone lc-btn--discreto" disabled aria-label="Não há próximo"><i data-i="chevron-direita"></i></button>')+'</span>';
+    (prox?'<a class="lc-btn lc-btn--icone lc-btn--discreto" href="p2-registro.html?id='+prox+'&de=renovacoes" aria-label="Próximo: '+P.esc(P.contrato(prox).nome)+'" data-dica="Próximo (J)" rel="next"><i data-i="chevron-direita"></i></a>':'<button class="lc-btn lc-btn--icone lc-btn--discreto" disabled aria-label="Não há próximo"><i data-i="chevron-direita"></i></button>')+'</span>';
   var cfg=JSON.parse(document.body.getAttribute("data-moldura"));
-  cfg.trilha=["Renovações",c.nome]; cfg.acaoTrilha=pag;
+  cfg.trilha=["Renovações",c.nome]; if(tem) cfg.acaoTrilha=pag;
   document.body.setAttribute("data-moldura",JSON.stringify(cfg));
   document.title=c.nome+", renovação";
 })();
@@ -207,10 +211,10 @@ var pend=P.guarda.sget("toast-pendente",null); if(pend){ sessionStorage.removeIt
 
 /* ---------- edição: barra de salvar + Salvar ▾ ---------- */
 var ed=new P.Edicao({raiz:$("#esq"),onde:$("#conteudo"),objeto:"Contrato de administração",chave:"lc-salvar:renovacao",
-  opcoes:[{id:"salvar",t:"Salvar",sub:"Fica neste contrato.",ic:"salvar"},
-          {id:"proximo",t:"Salvar e ir para o próximo",curto:"Salvar e próximo",sub:prox?(R.i+2)+" de "+R.cj.ids.length+", "+prox.nome:"Este é o último da lista.",ic:"chevron-direita"},
+  opcoes:[{id:"salvar",t:"Salvar",sub:"Fica neste contrato.",ic:"salvar"}].concat(R.tem?[
+          {id:"proximo",t:"Salvar e ir para o próximo",curto:"Salvar e próximo",sub:prox?(R.i+2)+" de "+R.cj.ids.length+", "+prox.nome:"Este é o último da lista.",ic:"chevron-direita"}]:[]).concat([
           {id:"voltar",t:"Salvar e voltar para a lista",curto:"Salvar e voltar",sub:R.cj.rotulo+", na mesma posição.",ic:"seta-esquerda"},
-          {id:"novo",t:"Salvar e criar outro contrato",curto:"Salvar e novo",sub:"Abre um contrato em branco.",ic:"mais"}],
+          {id:"novo",t:"Salvar e criar outro contrato",curto:"Salvar e novo",sub:"Abre um contrato em branco.",ic:"mais"}]),
   aoMudar:function(m){ $$(".lc-secao-reg[data-secao]").forEach(function(s){ s.classList.toggle("lc-secao-reg--sujo",m.some(function(x){return s.contains(x.el);})); });
     var v=$("#e-valor"), a=$("#e-valor-a"); if(m.some(function(x){return x.el===v;})){ a.hidden=false; a.innerHTML='Antes: <s>'+P.moeda(c.valor)+'</s>. Muda os boletos a partir de novembro.'; } else a.hidden=true; },
   aoSalvar:function(m,modo){ return new Promise(function(ok,falha){ setTimeout(function(){
@@ -245,7 +249,7 @@ function aplicar(m){
 }
 function depois(modo,m){
   var nomes=m.map(function(x){return x.campo.toLowerCase();}).join(", ");
-  if(modo==="proximo" && R.prox){ P.guarda.sset("toast-pendente",{txt:"<b>"+esc(c.nome)+"</b> salvo: "+esc(nomes)+". Agora no "+(R.i+2)+" de "+R.cj.ids.length+"."}); location.href="p2-registro.html?id="+R.prox; return; }
+  if(modo==="proximo" && R.prox){ P.guarda.sset("toast-pendente",{txt:"<b>"+esc(c.nome)+"</b> salvo: "+esc(nomes)+". Agora no "+(R.i+2)+" de "+R.cj.ids.length+"."}); location.href="p2-registro.html?id="+R.prox+"&de=renovacoes"; return; }
   if(modo==="voltar"){ P.guarda.sset("toast-pendente-lista",{txt:"<b>"+esc(c.nome)+"</b> salvo: "+esc(nomes)+"."}); location.href=R.cj.volta; return; }
   if(modo==="novo"){ P.guarda.sset("toast-pendente",{txt:"<b>"+esc(c.nome)+"</b> salvo. Este é um contrato novo, em branco."}); location.href="p2-criacao-pagina.html"; return; }
   P.toast("Alterações salvas: "+esc(nomes)+".",{tipo:"sucesso",acao:"Desfazer",aoAcao:function(){ P.anunciar("Desfeito: os valores anteriores voltaram."); }});
@@ -410,7 +414,7 @@ function compartilhar(){ var link=location.href.split("#")[0].split("?")[0]+"?id
       el.querySelector("[data-env]").addEventListener("click",function(){ var p=el.querySelector("#lk-p").value||"Juliana Souza"; api.fechar(); P.toast("Link enviado a <b>"+esc(p)+"</b>.",{tipo:"sucesso"}); }); }}); }
 
 /* ---------- teclado: J próximo, K anterior, H histórico, E edita a primeira seção ---------- */
-function ir(id){ if(!id) return; var href="p2-registro.html?id="+id; if(ed.sujo()) P.perguntarSaida(ed,function(){ location.href=href; },P.contrato(id).nome); else location.href=href; }
+function ir(id){ if(!id) return; var href="p2-registro.html?id="+id+"&de=renovacoes"; if(ed.sujo()) P.perguntarSaida(ed,function(){ location.href=href; },P.contrato(id).nome); else location.href=href; }
 P.atalho("j",function(){ ir(R.prox); }); P.atalho("k",function(){ ir(R.ant); }); P.atalho("h",historico);
 P.atalho("c",function(e){ if(e.shiftKey){ compartilhar(); } },{mod:true});
 

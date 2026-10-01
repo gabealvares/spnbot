@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Páginas públicas, status e avisos</title>
+<meta name="description" content="Páginas públicas: situação do serviço (status.gaco.com.br), preferências de e-mail sem login, convite expirado e aceite de nova política de privacidade.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/doc.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<style>.pub-pagina{max-width:1376px;margin:0 auto;padding:24px 32px 64px}@media (max-width:639px){.pub-pagina{padding:16px 16px 48px}}</style>
+</head>
+<body>
+<a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="lc-doc-cab">
+  <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
+  <nav aria-label="Documentação"><a href="40-portal.html">Portal</a><a href="41-publicas.html">Públicas, acesso</a><a href="41b-publicas.html">Públicas, site</a><a href="41c-publicas.html" aria-current="page">Públicas, status</a><a href="50-superadmin.html">Superadmin</a><a href="60-celular.html">Celular</a><a href="61-documentos-gerados.html">Documentos</a></nav>
+  <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
+</header>
+<main id="conteudo" class="pub-pagina">
+<section class="lc-sobre-tela" aria-label="Sobre a página de status">
+  <div class="lc-sobre-tela__nome"><b>Situação do serviço (pública)</b><span>status.gaco.com.br. Marca GACO, porque é da plataforma; a administradora pode apontar o próprio domínio.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>A administradora e o síndico sabem, sem ligar, se o problema é do GACO, o que foi afetado e quando volta.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Frase-resumo no topo com palavra e cor de estado.</li><li>Incidente aberto com as atualizações publicadas pelo superadmin (50g).</li><li>Componentes com 90 dias; manutenções programadas.</li><li>"Receber avisos" por e-mail.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>é o desenho do Atlassian Statuspage, usado por GitHub, Stripe e Slack, que administradores de TI já sabem ler.</p></div>
+</section>
+<div class="lc-quadro-tela"><div class="lc-pub" style="min-height:0">
+  <div class="lc-pub__topo"><span class="lc-pub__logo" style="background:var(--atual);color:var(--texto-inverso)">G</span><span class="lc-pub__nome">Situação do GACO</span><span class="lc-pub__topo-fim"><button class="lc-btn lc-btn--p" type="button" data-toast="Você vai receber avisos em ana.souza@gmail.com."><i data-i="sino"></i>Receber avisos</button></span></div>
+  <div style="width:min(860px,100%);margin:0 auto;padding:32px 16px" class="lc-pilha">
+    <div class="lc-alerta lc-alerta--aviso"><i data-i="aviso"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Envio de WhatsApp com atraso</span>Monitorando desde 10:20. Mensagens saem com até 10 minutos de atraso; nada se perde.<ul style="margin-top:8px"><li><b>10:20</b> O provedor normalizou. Estamos enviando as mensagens que ficaram na fila.</li><li><b>10:05</b> Identificamos lentidão no provedor do WhatsApp.</li><li><b>09:12</b> Investigando atraso no envio.</li></ul></div></div>
+    <section class="lc-caixa"><ul class="lc-servicos">
+      <li><span><b>Sistema interno</b></span><span class="lc-estado lc-estado--sucesso">Operacional</span><span class="lc-dias" aria-hidden="true" id="d1"></span></li>
+      <li><span><b>Portal do cliente</b></span><span class="lc-estado lc-estado--sucesso">Operacional</span><span class="lc-dias" aria-hidden="true" id="d2"></span></li>
+      <li><span><b>Envio de WhatsApp</b></span><span class="lc-estado lc-estado--aviso">Lento</span><span class="lc-dias" aria-hidden="true" id="d3"></span></li>
+      <li><span><b>Boletos e Pix</b></span><span class="lc-estado lc-estado--sucesso">Operacional</span><span class="lc-dias" aria-hidden="true" id="d4"></span></li></ul></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Manutenção programada</h2></div><div class="lc-caixa__corpo"><p class="lc-pequeno"><b>Domingo, 05/10/2026, das 2h às 6h (horário de Brasília).</b> Atualização do banco de dados. O sistema e o portal ficam fora do ar; boletos já emitidos e o Pix pelo banco funcionam.</p></div></section>
+  </div>
+  <div class="lc-pub__pe"><span>Atualizado às 10:20</span><a href="#">Histórico de incidentes</a></div>
+</div></div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Receber avisos, incidente, componentes, manutenção, histórico.</p></div><div><h3>O que é anunciado</h3><p>Estado em texto ("Lento"); barras de 90 dias são decorativas.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+
+<section class="lc-sobre-tela" aria-label="Sobre preferências de e-mail">
+  <div class="lc-sobre-tela__nome"><b>Preferências de e-mail sem entrar</b><span>Link "Prefiro só WhatsApp" do rodapé do e-mail.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Parar de receber o que não quer sem perder o que é obrigatório (cobrança e comunicado com ciência), e sem precisar de senha.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Abre pelo link assinado (válido 30 dias).</li><li>Interruptores por tipo; obrigatórios aparecem travados com o porquê.</li><li>"Salvar" confirma na mesma tela.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o Gmail exige descadastro em um clique para remetentes em volume (2024); o centro de preferências do Mailchimp separa por tipo; e a LGPD pede saída simples.</p></div>
+</section>
+<div class="lc-quadro-tela"><div class="lc-pub" style="min-height:0"><div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span></div>
+  <div class="lc-pub__corpo"><div class="lc-pub__cartao lc-pub__cartao--largo"><h1>O que você quer receber por e-mail</h1><p>ana.souza@gmail.com, Cond. Parque das Águas, Bloco B, apto 1204.</p>
+    <div class="lc-pilha--p" style="display:flex;flex-direction:column;gap:12px;margin-top:20px">
+      <label class="lc-interruptor"><input type="checkbox" role="switch" checked disabled><span class="lc-interruptor__trilho"></span>Boleto e cobrança <span class="lc-legenda">(obrigatório enquanto não houver outro canal)</span></label>
+      <label class="lc-interruptor"><input type="checkbox" role="switch"><span class="lc-interruptor__trilho"></span>Comunicados gerais</label>
+      <label class="lc-interruptor"><input type="checkbox" role="switch"><span class="lc-interruptor__trilho"></span>Resumo semanal do condomínio</label>
+      <label class="lc-interruptor"><input type="checkbox" role="switch" checked><span class="lc-interruptor__trilho"></span>Respostas dos meus chamados</label></div>
+    <div class="lc-grupo-btn" style="margin-top:20px"><button class="lc-btn lc-btn--principal" type="button" data-toast="Preferências salvas.">Salvar preferências</button></div></div></div></div></div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Interruptores (o travado é pulado, mas lido), Salvar.</p></div><div><h3>O que é anunciado</h3><p>Travado: "Boleto e cobrança, ligado, indisponível, obrigatório enquanto não houver outro canal".</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+
+<section class="lc-sobre-tela" aria-label="Sobre convite expirado e nova política">
+  <div class="lc-sobre-tela__nome"><b>Convite expirado e nova política de privacidade</b><span>Estados de borda do acesso.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Não deixar a pessoa sem saída: convite vencido pede novo em um toque; política nova é aceita uma vez, com o que mudou em destaque.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Convite expirado: explica e oferece "Pedir novo convite" (vai para a administradora).</li><li>Política: resumo do que mudou, link para o texto completo, "Aceitar e continuar".</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o Slack e o Notion tratam convite vencido com pedido de reenvio; o Google e o Nubank resumem mudanças da política antes do aceite.</p></div>
+</section>
+<div class="lc-quadros">
+  <div class="lc-quadro-tela"><div class="lc-pub" style="min-height:0"><div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span></div><div class="lc-pub__corpo" style="padding-top:32px"><div class="lc-pub__cartao"><h1>Este convite venceu</h1><p>O convite para o Bloco B, apto 1204 valia até 28/09/2026. Peça outro: a Administradora Alpha envia em até 1 dia útil.</p><div class="lc-grupo-btn" style="margin-top:20px"><button class="lc-btn lc-btn--principal" type="button" data-toast="Pedido enviado à Administradora Alpha.">Pedir novo convite</button></div></div></div></div></div>
+  <div class="lc-quadro-tela"><div class="lc-pub" style="min-height:0"><div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span></div><div class="lc-pub__corpo" style="padding-top:32px"><div class="lc-pub__cartao"><h1>Atualizamos a política de privacidade</h1><p>Vale a partir de 01/10/2026. O que mudou:</p><ul class="lc-regras-uso" style="list-style:disc;margin-top:8px"><li>Gravações de áudio do WhatsApp ficam 1 ano, não 5.</li><li>A portaria remota passa a ver só nome e unidade do visitante.</li></ul><p style="margin-top:8px"><a href="#">Ler a política completa</a></p><div class="lc-grupo-btn" style="margin-top:20px"><button class="lc-btn lc-btn--principal" type="button">Aceitar e continuar</button></div></div></div></div></div>
+</div>
+</main>
+<script>
+["d1","d2","d3","d4"].forEach(function(id,k){ var d=""; for(var i=0;i<90;i++){ var c=(k===2&&(i===22||i===58||i===89))?' class="a"':(k===1&&i===61?' class="a"':''); d+='<i'+c+'></i>'; } document.getElementById(id).innerHTML=d; });
+</script>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/doc.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

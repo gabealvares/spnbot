@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fluxos de navegação V1</title>
+<meta name="description" content="Ir e voltar na V1: lista que lembra o lugar, 14 de 63 com J e K, nova aba, trilha, recentes, favoritos, ⌘K com ações e criar, notificação e menção no ponto exato, voltar do navegador.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/doc.css">
+<link rel="stylesheet" href="sistema/extra-p2.css">
+<script src="sistema/marca.js"></script>
+</head>
+<body>
+<a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="lc-doc-cab">
+  <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
+  <nav aria-label="Documentação"><a href="00-fundamentos.html">Fundamentos</a><a href="01-iconografia.html">Iconografia</a><a href="02-navegacao.html">Navegação</a><a href="10-padroes-de-tela.html">Padrões</a><a href="11-fluxos-de-salvar.html">Salvar</a><a href="12-fluxos-de-navegacao.html" aria-current="page">Ir e voltar</a><a href="13-fluxos-de-exclusao-e-estado.html">Excluir e etapas</a><a href="14-feedback-e-estados.html">Avisos</a><a href="15-auditoria-paginacao-rolagem.html">Histórico e rolagem</a><a href="16-fluxos-complementares.html">Mais fluxos</a></nav>
+  <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
+</header>
+<div class="lc-doc">
+<nav class="lc-doc-indice" aria-label="Nesta página"><ol></ol></nav>
+<main id="conteudo" class="lc-doc-conteudo">
+<header>
+  <h1>Ir e voltar</h1>
+  <p class="lc-doc-lede">Voltar é voltar exatamente para onde estava. A lista lembra filtro, página, rolagem e a linha que a pessoa abriu; o registro sabe que é o 14 de 63 e anda com J e K; o sino e a menção levam ao comentário exato; e o ⌘K acha e executa. Os exemplos abaixo são navegáveis.</p>
+</header>
+<section class="lc-doc-sec" id="lista-registro">
+  <h2>Lista, registro e volta no mesmo lugar</h2>
+<p>Quem sai de uma lista para abrir um registro volta exatamente onde estava: mesma visão e filtros, mesma ordem, mesma página, mesma rolagem, e a linha de onde saiu marcada e com o foco. Vale para os três caminhos de volta: a trilha, o voltar do navegador e “Salvar e voltar”.</p><figure style="margin:12px 0 18px"><svg viewBox="0 0 980 230" role="img" aria-labelledby="sv-t sv-d" style="width:100%;max-width:980px;height:auto;display:block;font-family:var(--fonte-ui)">
+<title id="sv-t">Ida e volta entre a lista e o registro</title><desc id="sv-d">A lista guarda filtro, página, rolagem e a linha aberta. O registro mostra 14 de 63 e anda com J e K. Trilha, voltar do navegador e Salvar e voltar levam à lista no mesmo lugar.</desc>
+<defs><marker id="ps" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--texto-2)"/></marker></defs>
+<rect x="10" y="40" width="300" height="150" fill="var(--sup-1)" stroke="var(--filete-forte)"/>
+<text x="26" y="66" font-size="15" font-weight="600" fill="var(--texto-1)">Renovações (lista)</text>
+<text x="26" y="92" font-size="12.5" fill="var(--texto-2)">Visão: Reajuste em outubro</text><text x="26" y="112" font-size="12.5" fill="var(--texto-2)">Página 1 de 2, 50 por página</text>
+<text x="26" y="132" font-size="12.5" fill="var(--texto-2)">Rolagem: 612 px</text>
+<rect x="20" y="146" width="280" height="26" fill="var(--selecao)" stroke="var(--atual)"/><text x="30" y="164" font-size="12.5" font-weight="600" fill="var(--selecao-texto)">14 Cond. Parque das Águas</text>
+<rect x="670" y="40" width="300" height="150" fill="var(--sup-1)" stroke="var(--filete-forte)"/>
+<text x="686" y="66" font-size="15" font-weight="600" fill="var(--texto-1)">Cond. Parque das Águas</text>
+<text x="686" y="92" font-size="12.5" fill="var(--texto-2)">Trilha: CS › Renovações › …</text><text x="686" y="112" font-size="12.5" fill="var(--texto-2)">‹ 14 de 63 ›   J próximo, K anterior</text>
+<text x="686" y="132" font-size="12.5" fill="var(--texto-2)">Salvar ▾: e próximo, e voltar</text>
+<line x1="310" y1="80" x2="664" y2="80" stroke="var(--texto-2)" stroke-width="1.5" marker-end="url(#ps)"/>
+<text x="350" y="70" font-size="12.5" fill="var(--texto-1)">1. clicar no nome (Ctrl+clique: nova aba)</text>
+<text x="350" y="100" font-size="12" fill="var(--texto-2)">guarda: visão, página, rolagem, linha, conjunto de 63</text>
+<line x1="670" y1="150" x2="316" y2="150" stroke="var(--texto-2)" stroke-width="1.5" marker-end="url(#ps)"/>
+<text x="350" y="140" font-size="12.5" fill="var(--texto-1)">2. trilha, voltar do navegador ou Salvar e voltar</text>
+<text x="350" y="172" font-size="12" fill="var(--texto-2)">devolve: mesma visão, página, rolagem; linha 14 marcada e com foco</text>
+<path d="M820 190 C 820 222, 900 222, 900 196" fill="none" stroke="var(--texto-2)" stroke-width="1.5" marker-end="url(#ps)"/>
+<text x="720" y="222" font-size="12" fill="var(--texto-2)">3. J e K andam no conjunto sem voltar à lista</text>
+</svg><figcaption class="lc-legenda">Os números são passos, não uma escala.</figcaption></figure><ul class="lc-doc-regras"><li><b>No endereço</b>: visão, busca, filtros, ordem, página e itens por página. Copiar o link reproduz a lista.</li><li><b>Na sessão do navegador</b>: rolagem da tabela e a última linha aberta.</li><li><b>Linha de chegada</b>: fundo de seleção com marcador à esquerda e um brilho curto; o foco vai para o nome; o leitor de tela ouve “De volta a Renovações. Página 1. Cond. Parque das Águas, linha 14 de 63, está destacada.”</li><li>Filtrar troca o endereço sem empilhar o histórico do navegador: um voltar não desfaz filtro por filtro.</li><li>Se o registro saiu da lista (foi arquivado), a lista volta na mesma posição e o aviso diz isso.</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: editar um contrato e voltar para a lista">
+  <div class="lc-doc-cliques__antes"><h4><b>8</b> cliques hoje <small>4 trocas, posição perdida</small></h4><ol><li>Clicar a linha na página 3 (troca).</li><li>✏ (troca).</li><li>Alterar o índice.</li><li>Salvar (recarga).</li><li>Trilha volta ao módulo (troca).</li><li>Refazer 2 filtros.</li><li>Ir à página 3 e rolar até a linha.</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>5</b> cliques na V1 <small>2 trocas, posição mantida</small></h4><ol><li>Clicar o nome (troca).</li><li>Lápis de Vigência e valores.</li><li>Alterar.</li><li>Salvar.</li><li>Trilha “Renovações” (troca): mesma posição, linha marcada.</li></ol></div>
+</div><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo">
+  <dl class="lc-doc-a11y" style="margin:0;border:0;padding:0;max-width:none;background:none">
+    <dt>O que esta tela resolve</dt><dd>Testar a ida e volta de verdade: a lista guarda o lugar mesmo dentro deste quadro.</dd>
+    <dt>Fluxo</dt><dd><ol style="margin:0;padding-left:18px"><li>Troque a visão ou role a tabela.</li><li>Clique em Cond. Parque das Águas.</li><li>No contrato, clique “Renovações” na trilha.</li><li>A lista volta igual, com a linha marcada.</li></ol></dd>
+    <dt>Por quê</dt><dd>Resolvemos fazer assim porque o Jira (navegador de issues com posição), o Dynamics 365 (navegação por conjunto de registros) e o Gmail (volta à mesma conversa) tratam o voltar como direito da pessoa; a NN/g lembra que trilha é hierarquia, por isso o elo da seção leva à lista filtrada, e não ao histórico. Enviamos para aprovação.</dd>
+  </dl></div></div>
+<div class="lc-doc-exemplo" style="--_alt:760px"><div class="lc-doc-exemplo__cab"><b>Renovações: abra um contrato e volte</b><span>exemplos/p2-lista.html</span><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="exemplos/p2-lista.html" target="_blank">Abrir em tela cheia<i data-i="abrir-fora"></i></a></div></div>
+<iframe data-src="exemplos/p2-lista.html" title="Tela de exemplo: Renovações: abra um contrato e volte"></iframe></div>
+<dl class="lc-doc-a11y"><dt>Ordem de foco</dt><dd>Ao voltar, o foco cai no nome da linha de onde a pessoa saiu.</dd><dt>O que é anunciado</dt><dd>A frase de chegada com página e posição.</dd><dt>Só ícone, com nome</dt><dd>Os mesmos da listagem.</dd></dl>
+</section>
+<section class="lc-doc-sec" id="anterior-proximo">
+  <h2>“14 de 63”, anterior e próximo, J e K</h2>
+<ul class="lc-doc-regras"><li><b>Onde</b>: à direita da trilha, no topo de todo registro aberto a partir de uma lista. Setas com o nome do vizinho na dica.</li><li><b>O conjunto</b> é a lista filtrada de onde a pessoa veio, na ordem em que estava. Se ela chegou por link direto, por notificação ou pelo ⌘K, o paginador não aparece.</li><li><b>J</b> vai para o próximo, <b>K</b> para o anterior (como no Gmail e no Help Scout). No primeiro e no último, a seta fica desabilitada.</li><li><b>Com alteração</b>, J, K e as setas fazem a pergunta das três saídas antes de andar.</li><li><b>Salvar e próximo</b> usa o mesmo conjunto.</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: revisar 63 contratos">
+  <div class="lc-doc-cliques__antes"><h4><b>400 a 550</b> cliques hoje <small>cerca de 250 trocas</small></h4><ol><li>Por contrato: abrir, ✏, alterar, salvar, voltar, refazer filtros, achar a página e a linha.</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>cerca de 250</b> cliques na V1 <small>63 trocas leves</small></h4><ol><li>Abrir o primeiro.</li><li>Por contrato: lápis, alterar, Salvar e próximo (ou J quando não há nada a mudar).</li></ol></div>
+</div>
+</section>
+<section class="lc-doc-sec" id="nova-aba">
+  <h2>Abrir em nova aba</h2>
+<ul class="lc-doc-regras"><li>Todo nome de registro é um link de verdade: Ctrl+clique, ⌘+clique e o botão do meio abrem em nova aba, como em qualquer site.</li><li>A linha inteira é clicável, mas faz o mesmo que o link; Ctrl+clique na linha também abre em nova aba.</li><li>O “⋯” da linha tem “Abrir em nova aba” e “Copiar link”, para quem não conhece o atalho.</li><li>No ⌘K, Ctrl+Enter abre o resultado em nova aba.</li><li>A nova aba recebe o conjunto pelo endereço; o “14 de 63” aparece lá também.</li></ul><p class="lc-doc-decisao">Resolvemos fazer assim porque o navegador já é o melhor sistema de abas que existe: o Salesforce Console e o ServiceNow criaram abas dentro do sistema e o custo foi alto; o HubSpot, o Fiori e o Linear dão endereço próprio a cada registro e deixam o navegador fazer o resto. Enviamos para aprovação.</p>
+</section>
+<section class="lc-doc-sec" id="trilha">
+  <h2>Trilha</h2>
+<ul class="lc-doc-regras"><li>Mostra onde a tela está na hierarquia: módulo, seção, registro, subtela. O último elo é a tela atual, sem link.</li><li>O elo da seção leva à lista com os filtros e a posição de onde a pessoa veio; sem lista de origem, leva à seção limpa.</li><li>Aparece só abaixo do nível de seção (registro, criação, subtela). Listas e painéis não têm trilha.</li><li>No celular, rola na horizontal numa linha só.</li><li>Nunca é histórico de navegação: para isso há o voltar do navegador e os recentes.</li></ul><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo"><nav aria-label="Exemplo de trilha"><ol class="lc-trilha"><li><a href="#">CS</a></li><li><a href="#">Renovações</a></li><li><a href="#">Cond. Parque das Águas</a></li><li><span aria-current="page">Aditivo de reajuste</span></li></ol></nav></div></div>
+</section>
+<section class="lc-doc-sec" id="recentes">
+  <h2>Recentes e favoritos</h2>
+<ul class="lc-doc-regras"><li><b>Recentes</b>: os últimos 8 registros e telas que a pessoa abriu, guardados no servidor (atravessam aparelhos). Aparecem no ⌘K vazio, no menu da estrela do trilho e na gaveta do celular.</li><li><b>Favoritos</b>: estrela no cabeçalho de qualquer registro e de qualquer visão salva. Um clique favorita; o aviso diz onde encontrar (“Fica na estrela do trilho”).</li><li>Favoritos têm ordem escolhida pela pessoa (“Organizar o trilho e os favoritos”) e aparecem antes dos recentes.</li><li>Visão salva favoritada leva os filtros junto.</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: abrir um condomínio usado todo dia">
+  <div class="lc-doc-cliques__antes"><h4><b>4</b> cliques hoje <small>pelo menu</small></h4><ol><li>Trilho CS.</li><li>Seção Clientes.</li><li>Item Clientes.</li><li>Buscar e clicar.</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>2</b> cliques na V1 <small>pela estrela</small></h4><ol><li>Estrela do trilho.</li><li>Cond. Parque das Águas.</li></ol></div>
+</div>
+</section>
+<section class="lc-doc-sec" id="cmdk">
+  <h2>⌘K: telas, registros, ações e “criar ‹objeto›”</h2>
+<p>Ctrl+K (ou ⌘K) em qualquer tela abre a busca de tudo. Ela acha telas, registros e ações, e executa: “nova os” cria uma ordem de serviço ali mesmo, “lixeira” vai para a lixeira, “marina” abre a síndica. Cada ação mostra o seu atalho, para a pessoa aprender o teclado usando.</p><div class="lc-doc-quadro"><div class="lc-doc-quadro__cab"><b>Experimente</b><span>Digite “nova”, “parque”, “lixeira” ou “renova”. Setas escolhem, Enter executa.</span></div><div class="lc-doc-palco" style="display:flex;justify-content:center">
+  <div class="lc-cmdk" role="dialog" aria-label="Pesquisar em tudo (demonstração)" style="animation:none"><div class="lc-cmdk__entrada"><i data-i="pesquisar"></i><input type="text" id="ck-q" role="combobox" aria-expanded="true" aria-controls="ck-l" aria-autocomplete="list" placeholder="Pesquise telas, registros ou ações" autocomplete="off"><span class="lc-tecla">Esc</span></div>
+  <ul class="lc-cmdk__lista" id="ck-l" role="listbox" aria-label="Resultados"></ul>
+  <div class="lc-cmdk__pe"><span><span class="lc-tecla">↑</span><span class="lc-tecla">↓</span> escolher</span><span><span class="lc-tecla">Enter</span> abrir ou executar</span><span><span class="lc-tecla">Ctrl</span>+<span class="lc-tecla">Enter</span> nova aba</span></div></div></div></div><div class="lc-tabela-cont" style="margin:10px 0 18px"><table class="lc-tabela"><caption class="lc-sr">Grupos do ⌘K</caption><thead><tr><th scope="col">Grupo</th><th scope="col">O que entra</th><th scope="col">Ordem</th></tr></thead><tbody><tr><td>Criar ‹objeto›</td><td>Toda criação do papel da pessoa: Criar ordem de serviço, Criar contrato, Criar reserva</td><td>Primeiro quando a pessoa digita um verbo (nova, novo, criar, abrir)</td></tr><tr><td>Ações</td><td>Ações de tela e do registro aberto: Avançar etapa, Emitir 2ª via, Mudar para o tema escuro</td><td>Depois de Criar</td></tr><tr><td>Registros</td><td>Clientes, contratos, pessoas, chamados, OS, por nome, número, CNPJ e telefone</td><td>Primeiro quando a pessoa digita um nome ou número</td></tr><tr><td>Telas</td><td>Todas as telas do papel, com o caminho (CS, Contratos)</td><td>Por último, até 4 sem texto</td></tr><tr><td>Recentes</td><td>Sem texto: os 8 últimos</td><td>Só com a caixa vazia</td></tr></tbody></table></div><ul class="lc-doc-regras"><li>O escopo (Tudo, Telas, Clientes, Pessoas, Chamados, Ações) restringe a busca; Tab passa pelo escopo.</li><li>“Criar ‹objeto›” abre a criação rápida do objeto onde a pessoa está, sem trocar de tela.</li><li>Para o coordenador: a moldura atual acha telas e registros; falta o grupo “Criar” e executar a ação no Enter (ver relatório).</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: chegar às férias pendentes da equipe">
+  <div class="lc-doc-cliques__antes"><h4><b>4</b> cliques hoje <small>pelo menu</small></h4><ol><li>Trilho Cultura.</li><li>Seção RH.</li><li>Grupo Solicitações.</li><li>Férias.</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>1</b> cliques na V1 <small>mais a digitação</small></h4><ol><li>Ctrl+K, digitar “férias” e Enter.</li></ol></div>
+</div>
+</section>
+<section class="lc-doc-sec" id="notificacao">
+  <h2>Notificação leva ao ponto exato</h2>
+<ul class="lc-doc-regras"><li>Cada notificação é um link para o registro <b>e para o lugar</b> dentro dele: a aba certa e o item (comentário, mensagem, etapa).</li><li>Ao chegar, o item recebe destaque por 2 s, o foco vai para ele e a frase é anunciada; a notificação fica lida.</li><li>Voltar do navegador devolve à tela em que a pessoa estava antes do sino.</li><li>Sino é aviso; o que pede ação também vai para Para você, com o verbo (Responder, Aprovar).</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: responder à menção do jurídico">
+  <div class="lc-doc-cliques__antes"><h4><b>6</b> cliques hoje <small>2 trocas</small></h4><ol><li>Sino.</li><li>Notificação (troca).</li><li>Achar a aba e o comentário.</li><li>Responder.</li><li>Enviar.</li><li>Voltar ao que fazia (troca).</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>3</b> cliques na V1 <small>1 troca</small></h4><ol><li>Sino ou Para você.</li><li>“Responder” (abre no comentário, com o campo pronto).</li><li>Enviar.</li></ol></div>
+</div><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo">
+  <dl class="lc-doc-a11y" style="margin:0;border:0;padding:0;max-width:none;background:none">
+    <dt>O que esta tela resolve</dt><dd>Levar a pessoa direto ao comentário de Juliana Souza que menciona Letícia, sem procurar.</dd>
+    <dt>Fluxo</dt><dd><ol style="margin:0;padding-left:18px"><li>A notificação “Juliana Souza mencionou você em Renovação do Parque das Águas” leva a este endereço.</li><li>A aba Atividade abre, o comentário fica em destaque e com o foco.</li><li>Responder fica a um clique.</li></ol></dd>
+    <dt>Por quê</dt><dd>Resolvemos fazer assim porque o GitHub e o Linear (notificação abre no comentário), o Slack (link para a mensagem exata) e o Jira (âncora no comentário) evitam a caça ao trecho. Enviamos para aprovação.</dd>
+  </dl></div></div>
+<div class="lc-doc-exemplo" style="--_alt:720px"><div class="lc-doc-exemplo__cab"><b>Chegada pelo sino: comentário em destaque</b><span>exemplos/p2-registro.html</span><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="exemplos/p2-registro.html?id=2026-0412#comentario-1182" target="_blank">Abrir em tela cheia<i data-i="abrir-fora"></i></a></div></div>
+<iframe data-src="exemplos/p2-registro.html?id=2026-0412#comentario-1182" title="Tela de exemplo: Chegada pelo sino: comentário em destaque"></iframe></div>
+<dl class="lc-doc-a11y"><dt>Ordem de foco</dt><dd>O comentário recebe o foco logo depois de abrir.</dd><dt>O que é anunciado</dt><dd>“Comentário de Juliana Souza que menciona você, em destaque.”</dd><dt>Só ícone, com nome</dt><dd>Nenhum.</dd></dl>
+</section>
+<section class="lc-doc-sec" id="mencao">
+  <h2>Menção vira item de trabalho</h2>
+<ul class="lc-doc-regras"><li>@ no comentário, na nota interna ou na conversa abre a lista de pessoas com presença; Enter escolhe.</li><li>A pessoa mencionada recebe no sino (aba Menções) e em Para você com “Responder”.</li><li>Nota interna com menção nunca vai ao cliente; a bolha amarela diz “só a equipe vê”.</li><li>Responder à menção abre o registro no comentário com o campo de resposta já aberto e preenchido com @autor.</li></ul><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo"><ul class="lc-pv" style="max-width:560px"><li class="lc-pv__item"><span class="lc-pv__o-que"><b>Juliana Souza</b> mencionou você em Renovação do Parque das Águas: “a cláusula 7ª pede aviso com 30 dias…”</span><span class="lc-pv__prazo">há 20 min</span><a class="lc-btn lc-btn--p lc-pv__acao" href="exemplos/p2-registro.html?id=2026-0412#comentario-1182" target="_blank">Responder</a></li></ul></div></div>
+</section>
+<section class="lc-doc-sec" id="voltar">
+  <h2>Voltar do navegador</h2>
+<div class="lc-tabela-cont" style="margin:10px 0 18px"><table class="lc-tabela"><caption class="lc-sr">Histórico do navegador</caption><thead><tr><th scope="col">Ação</th><th scope="col">Cria entrada no histórico do navegador?</th><th scope="col">Voltar faz</th></tr></thead><tbody><tr><td>Abrir registro, tela, aba do registro</td><td>Sim</td><td>Volta à tela anterior, na posição</td></tr><tr><td>Filtrar, ordenar, trocar página</td><td>Não (troca o endereço sem empilhar)</td><td>Volta à tela anterior à lista, não filtro por filtro</td></tr><tr><td>Abrir modal, painel, menu</td><td>Não</td><td>Fecha nada; volta a tela (com alteração, pergunta)</td></tr><tr><td>Salvar</td><td>Não</td><td>—</td></tr><tr><td>Salvar e próximo, J, K</td><td>Sim (troca o registro)</td><td>Volta ao registro anterior</td></tr></tbody></table></div><ul class="lc-doc-regras"><li>Com alteração não salva, o voltar do navegador mostra o aviso nativo do navegador.</li><li>O GACO nunca prende o botão voltar nem abre janela para impedir a saída.</li></ul>
+</section>
+
+</main>
+</div>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p2-icones.js"></script>
+<script src="sistema/doc.js"></script>
+<script src="sistema/extra-p2.js"></script>
+<script>
+/* As telas de exemplo seguem o tema desta página (o tema vai pelo endereço do quadro). */
+(function(){
+  function tema(){ return document.documentElement.getAttribute("data-tema")||"claro"; }
+  function carregar(){ document.querySelectorAll("iframe[data-src]").forEach(function(f){ var s=f.getAttribute("data-src"); f.src=s+(s.indexOf("?")>-1?"&":"?")+"tema="+tema(); }); }
+  document.addEventListener("lc:tema",carregar); carregar();
+})();
+</script>
+<script>
+(function(){
+var P=LCP2,$=P.$,esc=P.esc;
+var D=[{g:"Criar",t:"Criar ordem de serviço",s:"Operações, abre o formulário curto aqui",ic:"mais",k:"N",v:["nova","novo","criar","os","ordem","servico"]},
+ {g:"Criar",t:"Criar contrato de administração",s:"CS, página de criação",ic:"mais",v:["novo","nova","criar","contrato"]},
+ {g:"Criar",t:"Criar reserva",s:"Operações, Agenda de reservas",ic:"mais",v:["nova","criar","reserva","salao"]},
+ {g:"Ações",t:"Avançar renovação para Aditivo assinado",s:"No contrato aberto",ic:"seta-direita",v:["avancar","etapa","aditivo"]},
+ {g:"Ações",t:"Emitir 2ª via de boleto",s:"Financeiro",ic:"boleto",v:["2","via","boleto","segunda"]},
+ {g:"Registros",t:"Cond. Parque das Águas",s:"Cliente, 120 unidades, síndica Marina Costa",ic:"condominio",v:["parque","aguas","cond"]},
+ {g:"Registros",t:"Contrato 2026-0412, Cond. Parque das Águas",s:"Renovação em Aprovação do síndico",ic:"contrato",v:["2026","0412","contrato","parque","renova"]},
+ {g:"Registros",t:"Marina Costa",s:"Síndica, Cond. Parque das Águas",ic:"sindico",v:["marina","costa","sindica"]},
+ {g:"Telas",t:"Renovações",s:"CS, Contratos",ic:"relacionamento",v:["renova","contratos"]},
+ {g:"Telas",t:"Lixeira (30 dias)",s:"Configuração, Segurança",ic:"lixeira",v:["lixeira","excluidos","restaurar"]},
+ {g:"Telas",t:"Conciliação",s:"Financeiro",ic:"carteira",v:["concilia","extrato"]}];
+var R=[{g:"Recentes",t:"Residencial Jardim Botânico",s:"Contrato, há 20 min",ic:"condominio"},{g:"Recentes",t:"Conversas: Minhas",s:"Suporte, há 1 h",ic:"conversas"},{g:"Recentes",t:"Rateio de outubro",s:"Financeiro, ontem",ic:"rateio"}];
+var q=$("#ck-q"),l=$("#ck-l"),sel=0,rs=[];
+function norm(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
+function d(){ var t=norm(q.value.trim()); var verbo=/^(nov|cri|abr)/.test(t);
+  rs = !t ? R.concat(D.filter(function(x){return x.g==="Criar";}).slice(0,1)) : D.filter(function(x){ return t.split(/\s+/).every(function(p){ return x.v.some(function(v){return v.indexOf(p)===0;})||(" "+norm(x.t)).indexOf(" "+p)>-1; }); });
+  var ord=verbo?["Criar","Ações","Registros","Telas"]:["Registros","Criar","Ações","Telas"]; if(!t) ord=["Recentes","Criar"];
+  rs.sort(function(a,b){return ord.indexOf(a.g)-ord.indexOf(b.g);}); if(sel>=rs.length) sel=0;
+  var g=null,h=""; rs.forEach(function(r,i){ if(r.g!==g){ g=r.g; h+='<li class="lc-cmdk__grupo" role="presentation">'+g+'</li>'; } h+='<li class="lc-cmdk__item" role="option" id="ck'+i+'" aria-selected="'+(i===sel)+'" data-i="'+i+'">'+lcIcone(r.ic)+'<span style="min-width:0"><span>'+esc(r.t)+'</span><small>'+esc(r.s)+'</small></span>'+(r.k?'<span class="lc-tecla">'+r.k+'</span>':r.g==="Telas"?'<span class="lc-cmdk__onde">Ir para a tela</span>':r.g==="Criar"?'<span class="lc-cmdk__onde">Executar</span>':'')+'</li>'; });
+  l.innerHTML=h||'<li class="lc-vazio" style="padding:20px 16px"><p class="lc-vazio__titulo">Nada encontrado para “'+esc(q.value)+'”</p><p class="lc-vazio__texto">Pesquise só o começo do nome, o número ou o CNPJ.</p></li>'; q.setAttribute("aria-activedescendant","ck"+sel); }
+function exec(i){ var r=rs[i]; if(!r) return; if(r.g==="Criar") P.toast("Na tela real: abre “"+esc(r.t)+"” sem sair de onde você está.",{ic:"mais"}); else P.toast("Na tela real: abre “"+esc(r.t)+"”.",{ic:"seta-direita"}); }
+q.addEventListener("input",function(){sel=0;d();});
+q.addEventListener("keydown",function(e){ if(e.key==="ArrowDown"){e.preventDefault();sel=(sel+1)%Math.max(rs.length,1);d();} if(e.key==="ArrowUp"){e.preventDefault();sel=(sel-1+rs.length)%Math.max(rs.length,1);d();} if(e.key==="Enter"){e.preventDefault();exec(sel);} if(e.key==="Escape"){q.value="";d();} });
+l.addEventListener("click",function(e){ var o=e.target.closest("[data-i]"); if(o) exec(+o.getAttribute("data-i")); });
+d();
+})();
+</script>
+</body>
+</html>
