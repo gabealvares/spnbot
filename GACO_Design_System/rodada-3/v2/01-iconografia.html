@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa de Máquinas: iconografia</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<script src="sistema/icones.js"></script>
+<style>
+.doc-topo{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:8px 24px;background:var(--cm-camada-1);border-bottom:1px solid var(--cm-filete);border-top:3px solid var(--cm-marca)}
+.doc-topo__marca{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none}
+.doc-topo nav{display:flex;gap:4px;flex-wrap:wrap}
+.doc-topo nav a{padding:5px 10px;text-decoration:none;color:var(--cm-texto-2);font-size:13px;border-bottom:2px solid transparent}
+.doc-topo nav a[aria-current]{color:var(--cm-texto-1);font-weight:650;border-bottom-color:var(--cm-acao)}
+.doc-topo [data-cm-seletor]{margin-left:auto}
+main{max-width:1440px;margin:0 auto;padding:28px 24px 96px}
+.sec{padding:32px 0 8px;border-top:1px solid var(--cm-filete);margin-top:32px}
+.sec:first-child{border-top:0;margin-top:0;padding-top:0}
+.sec>h2{font-size:22px;line-height:28px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.sec h3{font-size:15px;font-weight:700;margin:22px 0 8px}
+.sec p{max-width:78ch}
+.porque{max-width:84ch;margin:12px 0;padding:10px 14px;border-left:3px solid var(--cm-acao);background:var(--cm-camada-1);font-size:13px;line-height:19px}
+.receita{display:grid;grid-template-columns:300px minmax(0,1fr);gap:32px;align-items:start}
+.anatomia{position:relative;width:288px;height:288px;background:var(--cm-camada-1);border:1px solid var(--cm-filete-forte)}
+.anatomia svg.grade{position:absolute;inset:0;width:100%;height:100%}
+.anatomia .cm-icone{position:absolute;inset:24px;width:240px;height:240px;stroke-width:1.5;color:var(--cm-texto-1)}
+.regras{margin:0;padding:0;list-style:none;border-top:1px solid var(--cm-filete)}
+.regras li{display:grid;grid-template-columns:170px 1fr;gap:14px;padding:8px 0;border-bottom:1px solid var(--cm-filete);font-size:13.5px}
+.regras b{font-weight:650}
+.antes{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.antes>div{border:1px solid var(--cm-filete);background:var(--cm-camada-1);padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:6px;text-align:center;font-size:12px;color:var(--cm-texto-2)}
+.antes svg{width:48px;height:48px;margin:0 auto 4px;display:block}
+.antes .cmp{width:48px;height:48px;margin:0 auto 4px;display:block}
+.antes .luc{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;color:var(--cm-texto-3)}
+.antes .nome{grid-column:1/-1;color:var(--cm-texto-1);font-weight:600;text-align:left}
+.mod{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0;border-top:1px solid var(--cm-filete)}
+.mod>div{display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:center;padding:10px 12px 10px 0;border-bottom:1px solid var(--cm-filete)}
+.mod b{display:block;font-size:13.5px}
+.mod span.d{font-size:12px;color:var(--cm-texto-2)}
+.filtro{display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:sticky;top:57px;z-index:5;background:var(--cm-fundo);padding:10px 0;border-bottom:1px solid var(--cm-filete)}
+.filtro .cm-entrada{width:320px;max-width:100%}
+.grupo-ic{margin-top:22px}
+.grupo-ic h3{display:flex;gap:10px;align-items:baseline;margin:0 0 8px}
+.grupo-ic h3 span{font-size:12px;font-weight:400;color:var(--cm-texto-2)}
+.ics{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:6px}
+.ic{border:1px solid var(--cm-filete);display:grid;grid-template-columns:1fr 1fr;min-width:0}
+.ic .lado{display:flex;align-items:center;justify-content:center;gap:10px;height:52px;background:var(--cm-fundo);color:var(--cm-texto-1)}
+.ic .cm-icone--16{width:16px;height:16px}.ic .cm-icone--20{width:20px;height:20px}.ic .cm-icone--24{width:24px;height:24px}
+.ic .nome{grid-column:1/-1;padding:4px 8px;font-size:12px;border-top:1px solid var(--cm-filete);background:var(--cm-camada-1);display:flex;justify-content:space-between;gap:6px;min-width:0}
+.ic .nome code{font-family:var(--cm-fonte-plaqueta);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ic .nome span{color:var(--cm-texto-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11.5px}
+.ic.proprio .nome code::after{content:" (próprio)";color:var(--cm-texto-3)}
+.ctx{width:100%;border-collapse:collapse;font-size:13px}
+.ctx th{text-align:left;font-weight:600;color:var(--cm-texto-2);padding:6px 10px 6px 0;border-bottom:1px solid var(--cm-filete-forte);font-size:12.5px}
+.ctx td{padding:7px 10px 7px 0;border-bottom:1px solid var(--cm-filete);vertical-align:middle}
+.ctx td .cm-icone{margin-right:4px}
+@media (max-width:899px){ .receita{grid-template-columns:1fr} .regras li{grid-template-columns:1fr;gap:2px} main{padding:20px 16px 80px} .doc-topo{padding:8px 16px} .doc-topo [data-cm-seletor]{margin-left:0} }
+@media (max-width:599px){ .doc-topo{position:static} .filtro{top:0} .anatomia{width:100%;height:auto;aspect-ratio:1} .anatomia .cm-icone{inset:8.33%;width:83.33%;height:83.33%} .rolar{overflow-x:auto} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="doc-topo">
+  <a class="doc-topo__marca" href="00-fundamentos.html"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="casa-de-maquinas"></i></span>GACO V2, Casa de Máquinas</a>
+  <nav aria-label="Páginas do sistema"><a href="00-fundamentos.html">Fundamentos</a><a href="01-iconografia.html" aria-current="page">Iconografia</a><a href="02-navegacao.html">Navegação</a><a href="README-SISTEMA.md">README</a></nav>
+  <div data-cm-seletor data-sem-densidade></div>
+</header>
+<main id="conteudo">
+
+<section class="sec">
+  <h2>Iconografia</h2>
+  <p><b id="total">0</b> desenhos únicos, todos com a mesma receita, nomeados em português pelo objeto que representam. A forma vem do Lucide, que o usuário já conhece do Linear e de boa parte das SaaS novas; o acabamento é do GACO. Onde o mercado não tem o signo (casa de máquinas, rateio, quadro de luz, plaqueta, boleto), o desenho é próprio, na mesma grade.</p>
+  <p class="porque"><b>Resolvemos fazer assim porque</b> o Linear e o shadcn/ui usam o Lucide como vocabulário e o Teams e o Google mostram que o usuário reconhece a metáfora (sino, clipe, check duplo), não o traço (A5 §4.4). Um kit 100% próprio ensinaria metáforas novas; um Lucide sem acabamento seria igual ao de qualquer SaaS. Enviamos para aprovação.</p>
+</section>
+
+<section class="sec" id="receita">
+  <h2>Receita</h2>
+  <div class="receita">
+    <div class="anatomia" aria-label="Ícone casa de máquinas ampliado sobre a grade de 24">
+      <svg class="grade" viewBox="0 0 288 288" aria-hidden="true">
+        <g stroke="var(--cm-filete)" stroke-width="1"><line x1="24" y1="24" x2="24" y2="264"/><line x1="24" y1="24" x2="264" y2="24"/><line x1="34" y1="24" x2="34" y2="264"/><line x1="24" y1="34" x2="264" y2="34"/><line x1="44" y1="24" x2="44" y2="264"/><line x1="24" y1="44" x2="264" y2="44"/><line x1="54" y1="24" x2="54" y2="264"/><line x1="24" y1="54" x2="264" y2="54"/><line x1="64" y1="24" x2="64" y2="264"/><line x1="24" y1="64" x2="264" y2="64"/><line x1="74" y1="24" x2="74" y2="264"/><line x1="24" y1="74" x2="264" y2="74"/><line x1="84" y1="24" x2="84" y2="264"/><line x1="24" y1="84" x2="264" y2="84"/><line x1="94" y1="24" x2="94" y2="264"/><line x1="24" y1="94" x2="264" y2="94"/><line x1="104" y1="24" x2="104" y2="264"/><line x1="24" y1="104" x2="264" y2="104"/><line x1="114" y1="24" x2="114" y2="264"/><line x1="24" y1="114" x2="264" y2="114"/><line x1="124" y1="24" x2="124" y2="264"/><line x1="24" y1="124" x2="264" y2="124"/><line x1="134" y1="24" x2="134" y2="264"/><line x1="24" y1="134" x2="264" y2="134"/><line x1="144" y1="24" x2="144" y2="264"/><line x1="24" y1="144" x2="264" y2="144"/><line x1="154" y1="24" x2="154" y2="264"/><line x1="24" y1="154" x2="264" y2="154"/><line x1="164" y1="24" x2="164" y2="264"/><line x1="24" y1="164" x2="264" y2="164"/><line x1="174" y1="24" x2="174" y2="264"/><line x1="24" y1="174" x2="264" y2="174"/><line x1="184" y1="24" x2="184" y2="264"/><line x1="24" y1="184" x2="264" y2="184"/><line x1="194" y1="24" x2="194" y2="264"/><line x1="24" y1="194" x2="264" y2="194"/><line x1="204" y1="24" x2="204" y2="264"/><line x1="24" y1="204" x2="264" y2="204"/><line x1="214" y1="24" x2="214" y2="264"/><line x1="24" y1="214" x2="264" y2="214"/><line x1="224" y1="24" x2="224" y2="264"/><line x1="24" y1="224" x2="264" y2="224"/><line x1="234" y1="24" x2="234" y2="264"/><line x1="24" y1="234" x2="264" y2="234"/><line x1="244" y1="24" x2="244" y2="264"/><line x1="24" y1="244" x2="264" y2="244"/><line x1="254" y1="24" x2="254" y2="264"/><line x1="24" y1="254" x2="264" y2="254"/><line x1="264" y1="24" x2="264" y2="264"/><line x1="24" y1="264" x2="264" y2="264"/></g>
+        <rect x="48" y="48" width="192" height="192" fill="none" stroke="var(--cm-acao-filete)" stroke-dasharray="3 3"/>
+        <circle cx="144" cy="144" r="100" fill="none" stroke="var(--cm-acao-filete)" stroke-dasharray="3 3"/>
+      </svg>
+      <i data-i="casa-de-maquinas"></i>
+    </div>
+    <ul class="regras">
+      <li><b>Grade</b><span>24×24, área útil de 20×20 (2 de respiro). Formas quadradas ocupam 18, redondas 19 de diâmetro.</span></li>
+      <li><b>Traço</b><span>1,5 em 16, 20 e 24px; 1,75 em 12 e 14px para manter o peso; 1,25 em 32px e 1 em 48px (estado vazio).</span></li>
+      <li><b>Ponta e junção</b><span>Ponta quadrada, junção em quina (miter). Ponto é um quadradinho, não uma bolinha.</span></li>
+      <li><b>Cantos</b><span>Todo canto do Lucide com raio até 3 vira quina viva; retângulo perde o arredondamento. Círculo e curva grande ficam.</span></li>
+      <li><b>Preenchimento</b><span>Nenhum. Ativo se marca com cor, fundo de linha ou filete, nunca com ícone cheio.</span></li>
+      <li><b>Cor</b><span>currentColor. Cinza (texto 2 ou 3) no repouso, texto 1 no hover e no ativo. Ícone de estado leva a cor do estado e a palavra ao lado.</span></li>
+      <li><b>Nome</b><span>Português, pelo objeto: <code>boleto</code>, <code>vaga</code>, <code>casa-de-maquinas</code>. Um objeto, um signo: estrela é favorito em todo lugar; funil é Comercial, filtro é <code>filtrar</code>.</span></li>
+      <li><b>Rótulo</b><span>Na navegação o ícone vem com texto. Botão só de ícone exige aria-label e dica.</span></li>
+      <li><b>Uso</b><span><code>&lt;i data-i="boleto"&gt;&lt;/i&gt;</code> é trocado pelo SVG; <code>cmIcone('boleto','cm-icone--20')</code> devolve a string.</span></li>
+    </ul>
+  </div>
+  <h3>Redesenho: Lucide de origem e GACO</h3>
+  <div class="antes" id="antes"></div>
+</section>
+
+<section class="sec" id="modulos">
+  <h2>Mapa por módulo</h2>
+  <p>Os 13 signos dos módulos (11 do menu, mais Desenvolvimento dentro de Produto e a Configuração na engrenagem), mais o Início. Todos consagrados (A5 §4.5).</p>
+  <div class="mod" id="mod"></div>
+</section>
+
+<section class="sec" id="contexto">
+  <h2>Mapa por contexto</h2>
+  <div class="rolar"><table class="ctx"><thead><tr><th>Lugar</th><th>Tamanho</th><th>Ícones</th><th>Regra</th></tr></thead><tbody>
+    <tr><td>Barra de cima</td><td>18px</td><td><i data-i="pesquisar"></i><i data-i="troca-de-cliente"></i><i data-i="notificacoes"></i><i data-i="engrenagem"></i></td><td>Sem rótulo visível, com aria-label e dica</td></tr>
+    <tr><td>Barra de menu (favoritos)</td><td>14px</td><td><i data-i="favorito"></i><i data-i="conversas"></i><i data-i="chamado"></i><i data-i="ordem-de-servico"></i></td><td>Sempre com o nome ao lado</td></tr>
+    <tr><td>Gaveta e barra inferior</td><td>18–22px</td><td><i data-i="inicio"></i><i data-i="boleto"></i><i data-i="reserva"></i><i data-i="menu"></i></td><td>Ícone em cima, rótulo de uma palavra embaixo</td></tr>
+    <tr><td>Botão</td><td>16px</td><td><i data-i="salvar"></i><i data-i="enviar"></i><i data-i="excluir"></i><i data-i="mais-opcoes"></i></td><td>Ícone à esquerda do verbo; nunca seta no fim</td></tr>
+    <tr><td>Estado</td><td>14px</td><td><i data-i="sucesso" class="cm-estado--sucesso" style="color:var(--cm-sucesso-texto)"></i><i data-i="atencao" style="color:var(--cm-aviso-texto)"></i><i data-i="perigo" style="color:var(--cm-perigo-texto)"></i><i data-i="pendente" style="color:var(--cm-info-texto)"></i><i data-i="rascunho" style="color:var(--cm-neutro-texto)"></i></td><td>Forma diferente por sentido, sempre com palavra</td></tr>
+    <tr><td>Conversa</td><td>14–16px</td><td><i data-i="marcar"></i><i data-i="lida" style="color:var(--cm-info-texto)"></i><i data-i="whatsapp"></i><i data-i="microfone"></i><i data-i="anexar"></i><i data-i="nota-interna"></i></td><td>Tique simples entregue, duplo azul lida, X vermelho falhou</td></tr>
+    <tr><td>Ladrilho de objeto</td><td>20px em 40</td><td><i data-i="condominio"></i><i data-i="unidade"></i><i data-i="contrato" ></i><i data-i="pessoa"></i></td><td>Identifica o tipo de registro no cabeçalho e na paleta ⌘K</td></tr>
+    <tr><td>Estado vazio</td><td>32px</td><td><i data-i="caixa-de-entrada" class="cm-icone--32"></i></td><td>Traço 1,25, cinza; nunca ilustração</td></tr>
+    <tr><td>Reações do mural</td><td>14px</td><td><i data-i="curtir"></i><i data-i="parabens"></i><i data-i="amei"></i><i data-i="genial"></i><i data-i="apoio"></i></td><td>Sempre com o nome: Curtir, Parabéns, Amei, Genial, Apoio</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="sec" id="todos">
+  <h2>Todos os ícones em 16, 20 e 24, nos dois temas</h2>
+  <div class="filtro"><div class="cm-entrada cm-entrada--busca"><i data-i="pesquisar"></i><input id="busca" type="search" placeholder="Filtrar por nome ou sentido" aria-label="Filtrar ícones"></div><span class="cm-t-legenda" id="contagem"></span><span class="cm-t-legenda">Cada cartão: escuro à esquerda, claro à direita.</span></div>
+  <div id="grupos"></div>
+  <h3>Apelidos</h3>
+  <p class="cm-t-legenda" id="apelidos"></p>
+</section>
+</main>
+<script>
+var ORIG={"inicio": "<path d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\"/><path d=\"M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/>", "salvar": "<path d=\"M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z\"/><path d=\"M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7\"/><path d=\"M7 3v4a1 1 0 0 0 1 1h7\"/>", "calendario": "<path d=\"M8 2v3\"/><path d=\"M16 2v3\"/><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M3 9h18\"/>", "chave": "<path d=\"M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z\"/><circle cx=\"16.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"/>", "chamado": "<path d=\"M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z\"/><path d=\"M13 5v2\"/><path d=\"M13 17v2\"/><path d=\"M13 11v2\"/>", "engrenagem": "<path d=\"M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>", "editar": "<path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\"/><path d=\"m15 5 4 4\"/>", "pasta": "<path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"/>"};
+(function(){
+  var I=window.CM_ICONES,G=window.CM_ICONES_GRUPOS,S=window.CM_ICONES_SENTIDO,P=window.CM_ICONES_PROPRIOS,M=window.CM_ICONE_DO_MODULO,A=window.CM_ICONES_APELIDOS;
+  document.getElementById('total').textContent=Object.keys(I).length;
+  document.getElementById('antes').innerHTML=Object.keys(ORIG).map(function(n){return '<div><span class="nome">'+n+'</span><span><svg class="luc" viewBox="0 0 24 24">'+ORIG[n]+'</svg>Lucide</span><span>'+cmIcone(n,'cm-icone--48').replace('cm-icone--48','')+'GACO</span></div>'}).join('').replace(/<svg class="cm-icone /g,'<svg style="width:48px;height:48px;margin:0 auto 4px;display:block" class="cm-icone ');
+  var D={'Início':'Teams, Asana, Canvas','Marketing':'RD Station, Mailchimp','Comercial':'negócio fechado; o funil fica para a visão de funil','CS':'relação com o cliente','Projetos':'Trello, Asana','Operações':'manutenção (CMMS)','Suporte':'atendimento; o balão é da Conversa','Produto':'Jira, Linear','Desenvolvimento':'universal para código','Financeiro':'Conta Azul, apps de banco','Academy':'faculdade','Cultura':'pessoas','Relatórios':'Excel, Power BI','Configuração':'universal'};
+  document.getElementById('mod').innerHTML=Object.keys(M).map(function(k){return '<div><span class="cm-ladrilho">'+cmIcone(M[k])+'</span><span><b>'+k+'</b><span class="d"><code>'+M[k]+'</code>, '+D[k]+'</span></span></div>'}).join('');
+  function cartao(n){var ic=function(){return cmIcone(n,'cm-icone--16')+cmIcone(n,'cm-icone--20')+cmIcone(n,'cm-icone--24')};
+    return '<div class="ic'+(P.indexOf(n)>=0?' proprio':'')+'" data-n="'+n+' '+(S[n]||'').toLowerCase()+'"><div class="lado" data-theme="dark">'+ic()+'</div><div class="lado" data-theme="light">'+ic()+'</div><div class="nome"><code>'+n+'</code><span>'+(S[n]||'')+'</span></div></div>'}
+  document.getElementById('grupos').innerHTML=G.map(function(g){return '<div class="grupo-ic"><h3>'+g[0]+' <span>'+g[1].length+'</span></h3><div class="ics">'+g[1].map(cartao).join('')+'</div></div>'}).join('');
+  document.getElementById('apelidos').innerHTML='Nomes alternativos que levam ao mesmo desenho (um objeto, um signo): '+Object.keys(A).map(function(k){return '<code>'+k+'</code> → <code>'+A[k]+'</code>'}).join(', ')+'.';
+  var b=document.getElementById('busca'),c=document.getElementById('contagem');
+  function f(){var q=b.value.trim().toLowerCase(),n=0;[].forEach.call(document.querySelectorAll('.ic'),function(x){var ok=!q||x.getAttribute('data-n').indexOf(q)>=0;x.hidden=!ok;if(ok)n++});
+    [].forEach.call(document.querySelectorAll('.grupo-ic'),function(g){g.hidden=!g.querySelector('.ic:not([hidden])')});c.textContent=n+' de '+Object.keys(I).length}
+  b.addEventListener('input',f);f();
+})();
+</script>
+</body>
+</html>

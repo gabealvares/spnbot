@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa de Máquinas: fundamentos</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<script src="sistema/icones.js"></script>
+<style>
+/* layout desta página de documentação (só disposição; o resto vem do sistema) */
+.doc-topo{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:8px 24px;background:var(--cm-camada-1);border-bottom:1px solid var(--cm-filete);border-top:3px solid var(--cm-marca)}
+.doc-topo__marca{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none}
+.doc-topo nav{display:flex;gap:4px;flex-wrap:wrap}
+.doc-topo nav a{padding:5px 10px;text-decoration:none;color:var(--cm-texto-2);font-size:13px;border-bottom:2px solid transparent}
+.doc-topo nav a[aria-current]{color:var(--cm-texto-1);font-weight:650;border-bottom-color:var(--cm-acao)}
+.doc-topo [data-cm-seletor]{margin-left:auto}
+.doc{display:grid;grid-template-columns:220px minmax(0,1fr);gap:40px;max-width:1440px;margin:0 auto;padding:0 24px}
+.doc-indice{position:sticky;top:64px;align-self:start;padding:28px 0;font-size:13px;max-height:calc(100vh - 64px);overflow:auto}
+.doc-indice a{display:block;padding:4px 0 4px 10px;color:var(--cm-texto-2);text-decoration:none;border-left:2px solid var(--cm-filete)}
+.doc-indice a:hover{color:var(--cm-texto-1);border-left-color:var(--cm-texto-3)}
+main{padding:28px 0 96px;min-width:0}
+.sec{padding:36px 0 8px;border-top:1px solid var(--cm-filete);margin-top:36px}
+.sec:first-of-type{border-top:0;margin-top:0;padding-top:0}
+.sec>h2{font-size:22px;line-height:28px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.sec h3{font-size:15px;font-weight:700;margin:24px 0 8px}
+.sec p.lead{max-width:76ch;color:var(--cm-texto-1);font-size:14px;line-height:21px;margin-bottom:10px}
+.sec p{max-width:76ch}
+.porque{max-width:84ch;margin:12px 0;padding:10px 14px;border-left:3px solid var(--cm-acao);background:var(--cm-camada-1);font-size:13px;line-height:19px}
+.porque b{font-weight:650}
+.abertura{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;align-items:start;padding-bottom:12px}
+.abertura h1{font-size:48px;line-height:1;font-weight:700;letter-spacing:-.025em;margin:6px 0 14px}
+.abertura .conceito{font-size:16px;line-height:1.55;max-width:58ch}
+.principios{margin:0;padding:0;list-style:none;display:grid;gap:0;border-top:1px solid var(--cm-filete)}
+.principios li{display:grid;grid-template-columns:1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--cm-filete);font-size:13.5px}
+.principios li b{display:block;font-size:14px}
+.principios li span.n{font-family:var(--cm-fonte-plaqueta);font-size:12px;color:var(--cm-texto-3);padding-top:2px}
+.escala{display:grid;grid-template-columns:110px repeat(11,minmax(0,1fr));gap:4px;align-items:stretch;margin:4px 0;font-size:11px}
+.escala>b{font-size:12.5px;font-weight:650;align-self:center}
+.amostra{display:flex;flex-direction:column;gap:2px;min-width:0}
+.amostra i{display:block;height:36px;border:1px solid var(--cm-filete)}
+.amostra span{color:var(--cm-texto-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.temas{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tema-painel{background:var(--cm-fundo);color:var(--cm-texto-1);border:1px solid var(--cm-filete-forte);padding:14px}
+.tema-painel h4{font-size:13px;font-weight:700;margin-bottom:8px;display:flex;justify-content:space-between}
+.papeis{width:100%;font-size:12.5px;border-collapse:collapse}
+.papeis td{padding:5px 6px;border-bottom:1px solid var(--cm-filete);vertical-align:middle}
+.papeis td:first-child{width:22px;padding-left:0}
+.papeis .sw{display:block;width:18px;height:18px;border:1px solid var(--cm-filete-forte)}
+.papeis code{font-family:var(--cm-fonte-plaqueta);font-size:11.5px;color:var(--cm-texto-2)}
+.papeis .cr{white-space:nowrap;text-align:right}
+.tipo-linha{display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--cm-filete)}
+.tipo-linha small{display:block;color:var(--cm-texto-2);font-size:12px;line-height:17px}
+.faz{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:10px 0}
+.faz>div{border:1px solid var(--cm-filete);padding:12px 14px;background:var(--cm-camada-1)}
+.faz h4{display:flex;align-items:center;gap:6px;font-size:13px;margin-bottom:8px}
+.faz .ok h4{color:var(--cm-sucesso-texto)}.faz .nao h4{color:var(--cm-perigo-texto)}
+.faz p{font-size:13px;margin:6px 0}
+.barras-esp{display:flex;flex-direction:column;gap:4px}
+.barras-esp div{display:grid;grid-template-columns:90px 60px 1fr;gap:10px;align-items:center;font-size:12.5px}
+.barras-esp i{display:block;height:10px;background:var(--cm-acao)}
+.grade-demo{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;height:56px;margin:8px 0}
+.grade-demo i{background:var(--cm-acao-suave);border:1px dashed var(--cm-acao-filete)}
+.tabela-doc{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+.tabela-doc th{text-align:left;font-weight:600;color:var(--cm-texto-2);padding:6px 10px 6px 0;border-bottom:1px solid var(--cm-filete-forte);font-size:12.5px}
+.tabela-doc td{padding:7px 10px 7px 0;border-bottom:1px solid var(--cm-filete);vertical-align:top}
+.tabela-doc code{font-family:var(--cm-fonte-plaqueta);font-size:11.5px;color:var(--cm-texto-2)}
+.dens{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.dens>div{border:1px solid var(--cm-filete);background:var(--cm-camada-1);padding:10px}
+.dens h4{font-size:13px;margin-bottom:8px}
+.mov{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.mov .pista{width:min(240px,40vw);height:28px;border:1px solid var(--cm-filete);position:relative;background:var(--cm-camada-1)}
+.mov .pista i{position:absolute;left:2px;top:2px;width:22px;height:22px;background:var(--cm-acao)}
+.mov .pista.vai i{left:calc(100% - 24px)}
+.wl{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.wl>div{border:1px solid var(--cm-filete);background:var(--cm-fundo)}
+.wl .faixa-top{display:flex;align-items:stretch;height:44px;border-top:3px solid var(--wl);border-bottom:1px solid var(--cm-filete);background:var(--cm-camada-1)}
+.wl .faixa-top .cm-testeira{min-width:0;flex:1;max-width:none;background:var(--wl)}
+.wl .corpo{padding:12px;display:flex;flex-direction:column;gap:10px;font-size:12.5px}
+.wl .portal{background:var(--wl);color:#fff;padding:10px 12px;font-weight:700;display:flex;gap:8px;align-items:center}
+.wl .portal-botao{display:flex;align-items:center;justify-content:center;height:44px;background:var(--wl);color:#fff;font-weight:700;border-radius:4px}
+.avaliador{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start;border:1px solid var(--cm-filete);padding:14px;background:var(--cm-camada-1)}
+.voz td:first-child{color:var(--cm-sucesso-texto)}
+.voz td:nth-child(2){color:var(--cm-texto-2);text-decoration:line-through;text-decoration-color:var(--cm-perigo-texto)}
+.z-pilha{display:flex;flex-direction:column-reverse;gap:3px;max-width:520px}
+.z-pilha div{display:flex;justify-content:space-between;padding:5px 10px;border:1px solid var(--cm-filete);background:var(--cm-camada-1);font-size:12.5px}
+.z-pilha code{font-family:var(--cm-fonte-plaqueta);font-size:11.5px;color:var(--cm-texto-2)}
+@media (max-width:1023px){ .doc{grid-template-columns:1fr;gap:0} .doc-indice{display:none} }
+@media (max-width:899px){
+  .abertura,.temas,.faz,.dens,.wl,.avaliador{grid-template-columns:1fr}
+  .abertura h1{font-size:36px}
+  .escala{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .escala>b{grid-column:1/-1}
+  .tipo-linha{grid-template-columns:1fr;gap:4px}
+  .doc{padding:0 16px}
+  .doc-topo{padding:8px 16px}
+  .doc-topo [data-cm-seletor]{margin-left:0}
+}
+@media (max-width:599px){ .doc-topo{position:static} .tabela-rolar{overflow-x:auto} .grade-demo{grid-template-columns:repeat(4,1fr);gap:12px} .grade-demo i:nth-child(n+5){display:none} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="doc-topo">
+  <a class="doc-topo__marca" href="00-fundamentos.html"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="casa-de-maquinas"></i></span>GACO V2, Casa de Máquinas</a>
+  <nav aria-label="Páginas do sistema">
+    <a href="00-fundamentos.html" aria-current="page">Fundamentos</a>
+    <a href="01-iconografia.html">Iconografia</a>
+    <a href="02-navegacao.html">Navegação</a>
+    <a href="README-SISTEMA.md">README</a>
+  </nav>
+  <div data-cm-seletor></div>
+</header>
+
+<div class="doc">
+<nav class="doc-indice" aria-label="Nesta página">
+  <a href="#principios">Princípios</a><a href="#cor">Cor</a><a href="#estados">Estados e atenção</a><a href="#papeis">Papéis e contraste</a>
+  <a href="#tipografia">Tipografia</a><a href="#plaqueta">Plaqueta</a><a href="#espaco">Espaço e grade</a><a href="#forma">Raio, borda, elevação</a>
+  <a href="#camadas">Camadas</a><a href="#movimento">Movimento</a><a href="#densidade">Densidade</a><a href="#breakpoints">Breakpoints</a>
+  <a href="#temas">Temas</a><a href="#marca">White label</a><a href="#voz">Voz e redação</a>
+</nav>
+<main id="conteudo">
+
+<section class="sec" id="principios">
+  <div class="abertura">
+    <div>
+      <p class="cm-t-legenda">Proposta V2 para decisão do dono, rodada 3. Fonte da verdade: sistema/tokens.css</p>
+      <h1>Casa de Máquinas</h1>
+      <p class="conceito">A interface é a sala de operação do prédio: o quadro de chaves, o painel do elevador, a plaquinha de latão no hall. O fundo é grafite, a ação é latão, e tudo que existe fisicamente no condomínio ou num protocolo (chamado, OS, contrato, unidade, vaga, chave) ganha uma plaqueta gravada. O resto é silencioso, para quem passa oito horas por dia na fila.</p>
+    </div>
+    <ol class="principios">
+      <li><span><b>Operação primeiro.</b> Densa por padrão, teclado em tudo, nada que esconda o trabalho atrás de um clique a mais.</span></li>
+      <li><span><b>Um metal só.</b> Latão é ação, foco, item ativo. Nunca estado, nunca decoração.</span></li>
+      <li><span><b>Estado tem palavra.</b> Cor sempre com ícone e texto. O laranja de atenção nunca aparece sozinho.</span></li>
+      <li><span><b>Plaqueta só no que é físico ou protocolo.</b> Uma por bloco, como valor isolado.</span></li>
+      <li><span><b>A marca do cliente é dona do topo, não do estado.</b> Testeira, fio, portal. Nunca contador, etiqueta, bolha ou Path.</span></li>
+      <li><span><b>Casca do GACO, gesto do mercado.</b> WhatsApp no Suporte, Salesforce no CS, portal do aluno no Academy, sempre com o traço e as cores daqui.</span></li>
+    </ol>
+  </div>
+  <p class="porque"><b>Resolvemos fazer assim porque</b> Zendesk, Front e Linear mostram que a ferramenta de quem atende o dia inteiro ganha com densidade, teclado e uma única cor de ação; e Odoo, Salesforce e Microsoft 365 mostram que a casca comum só sobrevive se ninguém a repinta por módulo. Enviamos para aprovação.</p>
+</section>
+
+<section class="sec" id="cor">
+  <h2>Cor: primitivos</h2>
+  <p class="lead">Sete escalas de dez passos e um tom de papel para a nota interna. Os valores aparecem lidos do CSS desta página, não digitados. Tela e componente nunca usam o primitivo direto: usam o papel (seção seguinte).</p>
+  <div id="escalas"></div>
+  <p class="porque"><b>Resolvemos fazer assim porque</b> o Carbon (IBM), o Primer (GitHub) e o Polaris (Shopify) separam a paleta crua dos papéis, e é isso que permite o tema claro e o escuro sem duplicar componentes. O grafite é levemente esverdeado de propósito: o preto-azulado com acento neon é o primeiro sinal de "feito por IA" que o dono listou.</p>
+</section>
+
+<section class="sec" id="estados">
+  <h2>Estados e a diferença entre latão e atenção</h2>
+  <p class="lead">Cinco sentidos, cada um com fundo, borda, texto e ponto. O sentido é o mesmo em todos os módulos (A5 §2.4). Em lista longa o ponto pode substituir o ícone, mas a palavra fica e a forma muda: círculo para concluído e informação, losango para atenção, quadrado para perigo, círculo vazado para neutro.</p>
+  <div class="cm-linha cm-linha--quebra" style="gap:18px;margin:10px 0 14px">
+    <span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Pago</span>
+    <span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Atenção: esfriando</span>
+    <span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Vencido há 4 dias</span>
+    <span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Em atendimento</span>
+    <span class="cm-estado cm-estado--neutro"><i data-i="rascunho"></i>Rascunho</span>
+    <span class="cm-separador-v"></span>
+    <span class="cm-estado cm-estado--ponto cm-estado--sucesso">Resolvido</span>
+    <span class="cm-estado cm-estado--ponto cm-estado--aviso">Aguardando cliente</span>
+    <span class="cm-estado cm-estado--ponto cm-estado--perigo">SLA vencido</span>
+    <span class="cm-estado cm-estado--ponto cm-estado--info">Aberto</span>
+    <span class="cm-estado cm-estado--ponto cm-estado--neutro">Fechado</span>
+  </div>
+  <div class="cm-linha cm-linha--quebra" style="gap:8px;margin-bottom:12px">
+    <span class="cm-estado cm-estado--caixa cm-estado--sucesso"><i data-i="sucesso"></i>Resolvido</span>
+    <span class="cm-estado cm-estado--caixa cm-estado--aviso"><i data-i="atencao"></i>Pendente</span>
+    <span class="cm-estado cm-estado--caixa cm-estado--perigo"><i data-i="perigo"></i>Atrasado</span>
+    <span class="cm-estado cm-estado--caixa cm-estado--info"><i data-i="pendente"></i>Aberto</span>
+    <span class="cm-estado cm-estado--caixa cm-estado--neutro"><i data-i="arquivar"></i>Arquivado</span>
+  </div>
+  <h3>Latão contra laranja de atenção (correção do crítico)</h3>
+  <div class="faz">
+    <div class="ok"><h4><i data-i="sucesso"></i>Assim</h4>
+      <div class="cm-linha cm-linha--quebra" style="gap:10px">
+        <button class="cm-botao cm-botao--principal" type="button">Responder</button>
+        <span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Atenção: responde em 6 min</span>
+        <span class="cm-contador cm-contador--novo">2</span>
+      </div>
+      <p>O laranja de atenção foi puxado para o vermelho-alaranjado (matiz 22°; o latão fica em 40°) e sempre vem com o triângulo e uma palavra. O latão só aparece em ação, foco, item ativo e contador de "não lido, para você".</p>
+    </div>
+    <div class="nao"><h4><i data-i="erro"></i>Nunca</h4>
+      <div class="cm-linha cm-linha--quebra" style="gap:10px">
+        <span style="display:inline-flex;align-items:center;gap:6px;color:var(--cm-aviso-texto);font-weight:600"><span style="width:8px;height:8px;border-radius:50%;background:var(--cm-aviso-ponto)"></span></span>
+        <span style="display:inline-block;padding:0 8px;border:1px solid var(--cm-acao);color:var(--cm-acao);font-size:12px;font-weight:600">Em risco</span>
+      </div>
+      <p>Ponto laranja sem palavra; latão pintando um estado ("Em risco" em latão). No Path, a etapa atual não é um bloco cheio de latão: é a chapa clara com o filete de latão embaixo.</p>
+    </div>
+  </div>
+  <h3>Nota interna contra linha selecionada</h3>
+  <p>A nota interna usa o amarelo-papel (signo do Zendesk, do Intercom e do Front) com borda tracejada e cadeado. A linha selecionada usa a camada 3 com filete de latão à esquerda. As duas não dividem mais o mesmo tom, que era a queixa do crítico na V2.</p>
+  <div class="faz">
+    <div><div class="cm-nota"><div class="cm-nota__cabeca"><i data-i="nota-interna"></i>Nota interna de Juliana Prado <span>só a equipe vê, 09:24</span></div><span class="cm-mencao">@Beatriz</span> corretiva urgente, sim. Já avisei o Diego.</div></div>
+    <div><div class="cm-tabela-caixa"><table class="cm-tabela"><tbody><tr aria-selected="true"><td>48213</td><td>Vazamento no teto da garagem</td></tr><tr><td>48207</td><td>Portão da garagem travou aberto</td></tr></tbody></table></div></div>
+  </div>
+</section>
+
+<section class="sec" id="papeis">
+  <h2>Papéis, nos dois temas, com contraste medido</h2>
+  <p class="lead">O contraste abaixo é calculado nesta página a partir da cor que o navegador aplicou (WCAG 2.2, relação de luminância). Texto pede 4,5:1; borda de controle e ícone pedem 3:1.</p>
+  <div class="temas">
+    <div class="tema-painel" data-theme="dark"><h4>Escuro, padrão da operação <span class="cm-t-legenda">data-theme="dark"</span></h4><table class="papeis" data-papeis></table></div>
+    <div class="tema-painel" data-theme="light"><h4>Claro, dia e portal <span class="cm-t-legenda">data-theme="light"</span></h4><table class="papeis" data-papeis></table></div>
+  </div>
+</section>
+
+<section class="sec" id="tipografia">
+  <h2>Tipografia</h2>
+  <p class="lead">Hanken Grotesk em toda a interface, com números tabulares ligados no corpo da página: valores em reais, prazos e contagens não dançam na coluna. Fragment Mono aparece em um lugar só, a plaqueta (e no código, nas telas de desenvolvimento). Rótulo nunca em caixa alta e nunca em mono.</p>
+  <div id="escala-tipo"></div>
+  <p class="porque"><b>Resolvemos fazer assim porque</b> o Linear, o Stripe e o Front usam uma grotesca só, em três pesos, com números tabulares, e deixam a hierarquia para tamanho e peso. A Hanken tem desenho de placa técnica (o "a" e o "g" de dois andares, terminais retos), o que conversa com a casa de máquinas sem virar fonte de cartaz. Os arquivos estão em sistema/fontes; o Google Fonts fica de reserva.</p>
+</section>
+
+<section class="sec" id="plaqueta">
+  <h2>Plaqueta: a regra exata</h2>
+  <p class="lead">A plaqueta é a assinatura da V2. Ela só funciona se for rara. Por isso a regra é fechada:</p>
+  <table class="tabela-doc">
+    <tbody>
+      <tr><td style="width:180px"><b>O que pode virar plaqueta</b></td><td>Só identificador físico ou de protocolo: número de chamado (<span class="cm-plaqueta">#48213</span>), ordem de serviço (<span class="cm-plaqueta">OS 482</span>), contrato (<span class="cm-plaqueta">CT-2024-0187</span>), unidade (<span class="cm-plaqueta">Bl B Ap 1204</span>), vaga (<span class="cm-plaqueta">Vaga 37</span>) e chave (<span class="cm-plaqueta">Chave 12</span>).</td></tr>
+      <tr><td><b>Onde pode</b></td><td>Como valor isolado: no cabeçalho do registro (tamanho grande, uma vez), no campo da ficha cujo valor é o identificador ("Unidade"), na etiqueta do quadro de chaves e no cartão de vínculo da conversa ("Vinculado à OS 482").</td></tr>
+      <tr><td><b>Quantas</b></td><td>No máximo uma por bloco visual. Se o local tem unidade e duas vagas, a unidade vai em plaqueta e as vagas em texto: "vagas 37 e 38".</td></tr>
+      <tr><td><b>Onde nunca</b></td><td>Dentro de uma frase, em mensagem de conversa, em linha do tempo, em toda linha de lista ou tabela (lá o número vai em texto tabular na coluna "Nº"), em título de página, botão, etiqueta, estado, e no portal do síndico e do morador (o componente vira texto sozinho quando a página tem data-contexto="portal").</td></tr>
+    </tbody>
+  </table>
+  <div class="faz">
+    <div class="ok"><h4><i data-i="sucesso"></i>Assim</h4>
+      <div class="cm-linha" style="gap:10px"><span class="cm-ladrilho"><i data-i="chamado"></i></span><span><span class="cm-t-legenda">Chamado</span><div class="cm-linha"><b class="cm-t-registro">Vazamento no teto da garagem</b><span class="cm-plaqueta cm-plaqueta--g">#48213</span></div></span></div>
+      <dl class="cm-ficha" style="margin-top:10px"><div class="cm-ficha__linha"><dt>Unidade</dt><dd><span class="cm-plaqueta">Bl B Ap 1204</span></dd><span></span></div><div class="cm-ficha__linha"><dt>Local</dt><dd>Subsolo 1, vagas 37 e 38</dd><span></span></div></dl>
+    </div>
+    <div class="nao"><h4><i data-i="erro"></i>Nunca</h4>
+      <p>Marina pediu a reserva do <span class="cm-plaqueta">Salão</span> para a <span class="cm-plaqueta">Bl A Ap 804</span> em 18/10.</p>
+      <p>Lista de conversas com <span class="cm-plaqueta">Parque das Águas, Bl B…</span> em cada linha.</p>
+      <p>Portal do morador: "Seu chamado <span class="cm-plaqueta" style="all:revert">• #48213 •</span> foi aberto".</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="espaco">
+  <h2>Espaço, grade e contêineres</h2>
+  <p class="lead">Base de 4px. A grade é de 12 colunas com vão de 16px e margem de 24px; no celular, 4 colunas, vão de 12px e margem de 16px.</p>
+  <div class="barras-esp" id="esp"></div>
+  <h3>Grade de 12 colunas</h3>
+  <div class="grade-demo" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <h3>Contêineres</h3>
+  <div class="tabela-rolar"><table class="tabela-doc"><thead><tr><th>Token</th><th>Largura</th><th>Uso</th></tr></thead><tbody>
+    <tr><td><code>--cm-largura-leitura</code></td><td>680px</td><td>Comunicado, ata, edital, artigo da central de ajuda</td></tr>
+    <tr><td><code>--cm-largura-formulario</code></td><td>760px</td><td>Formulário longo em página própria (acima de ~20 campos)</td></tr>
+    <tr><td><code>--cm-largura-registro</code></td><td>1280px</td><td>Ficha de registro em três colunas (CS, contrato, unidade)</td></tr>
+    <tr><td><code>--cm-largura-ampla</code></td><td>1488px</td><td>Listas, tabelas e telas de trabalho</td></tr>
+    <tr><td><code>--cm-largura-portal</code></td><td>600px</td><td>Coluna do portal e das páginas públicas</td></tr>
+    <tr><td><code>--cm-modal-p / m / g / gg</code></td><td>400 / 560 / 720 / 960px</td><td>Confirmação, cadastro curto, cadastro médio, comparação</td></tr>
+    <tr><td><code>--cm-painel-lateral / -g</code></td><td>400 / 560px</td><td>Prévia de registro, auditoria, filtros avançados</td></tr>
+    <tr><td><code>--cm-coluna-fila / -ficha</code></td><td>356 / 348px</td><td>Colunas do atendimento (fila, conversa, ficha)</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="sec" id="forma">
+  <h2>Raio, borda e elevação</h2>
+  <p class="lead">Chapa reta: superfícies não têm canto arredondado. Controles têm 2px, a plaqueta 1px, a bolha de conversa 4px, avatar e interruptor são redondos. Sombra só no que flutua (menu, popover, paleta, toast, painel): o resto se separa por camada e filete de 1px.</p>
+  <div class="cm-linha cm-linha--quebra" style="gap:16px;align-items:flex-start">
+    <div class="cm-cartao" style="width:180px"><div class="cm-cartao__cabeca"><span class="cm-cartao__titulo">Cartão, raio 0</span></div><div class="cm-cartao__corpo cm-t-legenda">Camada 1 e filete</div></div>
+    <button class="cm-botao" type="button">Controle, raio 2</button>
+    <span class="cm-plaqueta">Raio 1</span>
+    <div class="cm-bolha cm-bolha--entrada" style="max-width:200px">Bolha, raio 4 <span class="cm-bolha__meta">09:12</span></div>
+    <span class="cm-avatar cm-avatar--m cm-avatar--3">MC</span>
+    <div class="cm-menu" style="width:200px"><div class="cm-menu__titulo">Flutuante, com sombra</div><button class="cm-menu__item" type="button"><i data-i="editar"></i><span>Editar</span><span class="cm-menu__atalho">E</span></button></div>
+  </div>
+  <p class="porque"><b>Resolvemos fazer assim porque</b> o Zendesk Agent Workspace, o Linear e o Odoo 17 separam áreas por tom e filete e reservam a sombra para o que está por cima de outra coisa; a sombra cinza igual em todo cartão é o "kit de cartões" que o dono rejeitou.</p>
+</section>
+
+<section class="sec" id="camadas">
+  <h2>Camadas (z-index)</h2>
+  <div class="z-pilha" id="zpilha"></div>
+</section>
+
+<section class="sec" id="movimento">
+  <h2>Movimento</h2>
+  <p class="lead">Movimento só responde a uma ação da pessoa: abrir, fechar, confirmar. Nada entra na tela sozinho. Com "reduzir movimento" ligado no sistema operacional, as durações viram zero.</p>
+  <div class="tabela-rolar"><table class="tabela-doc"><thead><tr><th>Token</th><th>Duração</th><th>Uso</th><th></th></tr></thead><tbody>
+    <tr><td><code>--cm-mov-rapido</code></td><td>90 ms</td><td>Hover, foco, troca de aba, marcar</td><td><div class="mov"><div class="pista" data-pista="var(--cm-mov-rapido)"><i></i></div></div></td></tr>
+    <tr><td><code>--cm-mov-medio</code></td><td>180 ms</td><td>Menu, popover, cascata, toast</td><td><div class="mov"><div class="pista" data-pista="var(--cm-mov-medio)"><i></i></div></div></td></tr>
+    <tr><td><code>--cm-mov-lento</code></td><td>260 ms</td><td>Painel lateral, gaveta, folha inferior</td><td><div class="mov"><div class="pista" data-pista="var(--cm-mov-lento)"><i></i></div></div></td></tr>
+    <tr><td><code>--cm-intencao-abrir</code></td><td>200 ms</td><td>Pousar no bloco da cascata antes de abrir (nunca hover seco)</td><td></td></tr>
+  </tbody></table></div>
+  <button class="cm-botao cm-botao--p" type="button" id="tocar-mov"><i data-i="play"></i>Ver as três durações</button>
+</section>
+
+<section class="sec" id="densidade">
+  <h2>Densidade</h2>
+  <p class="lead"><b>Decisão: compacta é o padrão do sistema interno; confortável é o padrão do portal; padrão fica como escolha de quem quer mais ar.</b> A densidade é da pessoa, igual em todos os módulos, e fica no menu da conta.</p>
+  <div class="dens">
+    <div data-densidade="compacta"><h4>Compacta, operação (controle 28, linha 36)</h4><div class="cm-tabela-caixa"><table class="cm-tabela"><tbody><tr><td>48213</td><td>Vazamento no teto</td><td><span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Aberto</span></td></tr><tr><td>48207</td><td>Portão travou</td><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Vencido</span></td></tr><tr><td>48199</td><td>Reserva do salão</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Resolvido</span></td></tr></tbody></table></div><div class="cm-linha" style="margin-top:8px"><button class="cm-botao cm-botao--principal" type="button">Salvar</button><div class="cm-entrada cm-cresce"><input value="Bl B Ap 1204" aria-label="Exemplo"></div></div></div>
+    <div data-densidade="padrao"><h4>Padrão (controle 32, linha 44)</h4><div class="cm-tabela-caixa"><table class="cm-tabela"><tbody><tr><td>48213</td><td>Vazamento no teto</td><td><span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Aberto</span></td></tr><tr><td>48207</td><td>Portão travou</td><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Vencido</span></td></tr><tr><td>48199</td><td>Reserva do salão</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Resolvido</span></td></tr></tbody></table></div><div class="cm-linha" style="margin-top:8px"><button class="cm-botao cm-botao--principal" type="button">Salvar</button><div class="cm-entrada cm-cresce"><input value="Bl B Ap 1204" aria-label="Exemplo"></div></div></div>
+    <div data-densidade="confortavel"><h4>Confortável, portal (controle 40, linha 52)</h4><div class="cm-tabela-caixa"><table class="cm-tabela"><tbody><tr><td>48213</td><td>Vazamento no teto</td><td><span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Aberto</span></td></tr><tr><td>48207</td><td>Portão travou</td><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Vencido</span></td></tr><tr><td>48199</td><td>Reserva do salão</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Resolvido</span></td></tr></tbody></table></div><div class="cm-linha" style="margin-top:8px"><button class="cm-botao cm-botao--principal" type="button">Salvar</button><div class="cm-entrada cm-cresce"><input value="Bl B Ap 1204" aria-label="Exemplo"></div></div></div>
+  </div>
+  <p class="porque"><b>Resolvemos fazer assim porque</b> o Zendesk, o Jira e o Linear abrem compactos para quem trabalha a fila (cabem cerca de 18 linhas de 36px numa tela de 768px úteis, contra 12 linhas na confortável), o Gmail e o Salesforce oferecem a escolha "compacta, padrão, confortável" à pessoa, e os apps de banco que o síndico usa no celular trabalham com alvo de 44px. Os números 36/44/52 são os mesmos que o GACO já tem hoje (livro, "Densidade por pessoa"), então ninguém perde o costume. Enviamos para aprovação.</p>
+</section>
+
+<section class="sec" id="breakpoints">
+  <h2>Breakpoints</h2>
+  <div class="tabela-rolar"><table class="tabela-doc"><thead><tr><th>Faixa</th><th>Largura</th><th>O que muda na moldura</th><th>O que muda na tela</th></tr></thead><tbody>
+    <tr><td>Largo</td><td>1280px e acima</td><td>Tudo à vista: testeira, ⌘K central, favoritos com nome, grupos, "N de 11 módulos"</td><td>Atendimento em três colunas; ficha em três colunas</td></tr>
+    <tr><td>Desktop</td><td>1100 a 1279px</td><td>Favoritos só com ícone; grupos perdem folga</td><td>Ficha em duas colunas, histórico vai para aba</td></tr>
+    <tr><td>Apertado</td><td>900 a 1099px</td><td>Busca vira lupa com Ctrl K; some o "N de 11"</td><td>Atendimento em duas colunas, ficha vira painel lateral</td></tr>
+    <tr><td>Tablet</td><td>600 a 899px</td><td>Grupos vão para a gaveta; ficam favoritos e o botão Menu</td><td>Uma coluna; formulário em uma coluna; rodapé de atalhos some</td></tr>
+    <tr><td>Celular</td><td>até 599px</td><td>Barra de cima compacta (menu, marca, lupa, sino, avatar), barra inferior com 5 destinos, gaveta</td><td>Alvo de 44px; tabela vira lista de cartões; modal vira folha inferior</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="sec" id="temas">
+  <h2>Temas</h2>
+  <p class="lead">O escuro é o padrão da operação, porque os operadores já usam o GACO no escuro hoje (livro, D8). O claro é completo, não uma inversão: é o padrão do portal e da impressão, e qualquer pessoa troca no menu da conta (Escuro, Claro, Sistema). Qualquer elemento pode forçar o tema com data-theme, como os dois painéis acima.</p>
+  <div class="temas">
+    <div class="tema-painel" data-theme="dark"><div class="cm-pv"><div class="cm-pv-item is-urgente"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="whatsapp"></i></span><div><div class="cm-pv-item__titulo">Responder Marina Costa</div><div class="cm-pv-item__contexto">Vazamento no teto da garagem</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Responde em 6 min</span></div></div><div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p cm-botao--principal" type="button">Abrir</button></div></div></div></div>
+    <div class="tema-painel" data-theme="light"><div class="cm-pv"><div class="cm-pv-item is-urgente"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="whatsapp"></i></span><div><div class="cm-pv-item__titulo">Responder Marina Costa</div><div class="cm-pv-item__contexto">Vazamento no teto da garagem</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Responde em 6 min</span></div></div><div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p cm-botao--principal" type="button">Abrir</button></div></div></div></div>
+  </div>
+</section>
+
+<section class="sec" id="marca">
+  <h2>White label</h2>
+  <p class="lead">O cliente troca logo, nome e uma cor. A identidade (grafite, latão, plaqueta, tipo, forma, comportamento) não muda. A correção pedida pelo crítico: no sistema interno a marca deixa de ser um fio de 3px e passa a ser dona do topo.</p>
+  <table class="tabela-doc"><thead><tr><th>Onde a marca aparece</th><th>Sistema interno</th><th>Portal</th></tr></thead><tbody>
+    <tr><td>Testeira (bloco do logo e nome, à esquerda da barra de cima)</td><td>Sim, na cor cheia do cliente, 232px ou mais</td><td>O topo inteiro na cor do cliente</td></tr>
+    <tr><td>Fio de 3px no alto da página</td><td>Sim</td><td>Não (o topo já é a marca)</td></tr>
+    <tr><td>Botão principal</td><td><b>Latão</b> (decisão abaixo)</td><td><b>Marca</b>, com o texto calculado para 4,5:1</td></tr>
+    <tr><td>Aba ativa da barra inferior, link</td><td>Não</td><td>Sim (tinta da marca, ajustada ao tema)</td></tr>
+    <tr><td>Cabeçalho do mural da empresa na Home, tela de entrada, e-mail, PDF, boleto, certificado</td><td>Sim</td><td>Sim</td></tr>
+    <tr><td>Estado, contador, etiqueta, bolha de conversa, Path, gráfico, foco</td><td colspan="2"><b>Nunca.</b> Etapa concluída no portal é verde de concluído, não a cor do cliente.</td></tr>
+  </tbody></table>
+  <p class="porque"><b>Decisão: o botão principal interno fica em latão. Resolvemos fazer assim porque</b> o Zendesk, o Freshdesk e o Intercom deixam a marca do cliente na central de ajuda e no messenger (o que o morador vê) e mantêm a cor do produto no espaço de trabalho do agente; com isso o botão de ação nunca encosta no vermelho de atraso (Vértice, vinho) nem no verde de concluído (Lar, verde), que era o defeito apontado no C1 §3. A presença da marca vem da testeira, que é do tamanho do logo do Slack e do Teams no canto de cima. Se o dono preferir a marca também no botão interno (Combinação B do C1), basta trocar --cm-acao por --cm-marca-acao no contexto interno: o contraste já é calculado. Enviamos para aprovação.</p>
+  <div class="wl" id="wl"></div>
+  <h3>Avaliador de cor do cliente</h3>
+  <div class="avaliador">
+    <div class="cm-campo"><label class="cm-campo__rotulo" for="cor-livre">Cor enviada pelo cliente</label><div class="cm-entrada"><input id="cor-livre" type="color" value="#7A2E3A" style="width:44px;flex:none;padding:0;height:26px"><input id="cor-livre-txt" value="#7A2E3A" aria-label="Código da cor"></div><p class="cm-campo__ajuda">A cor é medida contra as cores de estado e contra o fundo dos dois temas.</p><button class="cm-botao cm-botao--p" type="button" id="aplicar-livre" style="align-self:flex-start;margin-top:6px">Aplicar nesta página</button></div>
+    <div id="parecer"></div>
+  </div>
+</section>
+
+<section class="sec" id="voz">
+  <h2>Voz e redação</h2>
+  <p class="lead">A interface fala como uma colega experiente da administradora: direta, no presente, sem gíria e sem pedir desculpa. Verbo no botão, a mesma palavra do botão no aviso que confirma, número antes de adjetivo.</p>
+  <div class="tabela-rolar"><table class="tabela-doc voz"><thead><tr><th>Use</th><th>Evite</th><th>Por quê</th></tr></thead><tbody>
+    <tr><td>Salvar e abrir o próximo</td><td>Submeter</td><td>O botão diz o que acontece</td></tr>
+    <tr><td>Chamado movido para a lixeira. Desfazer</td><td>Item excluído com sucesso!</td><td>Mesmo verbo da ação, saída à mão, sem exclamação</td></tr>
+    <tr><td>Falta 1 dígito. O CNPJ tem 14.</td><td>Valor inválido</td><td>O erro diz o que fazer</td></tr>
+    <tr><td>Responde em 6 min</td><td>SLA: 0,1 h restante</td><td>Prazo em linguagem de gente, com a unidade</td></tr>
+    <tr><td>Fila zerada. As novas conversas chegam aqui.</td><td>Nenhum dado encontrado</td><td>O vazio convida a agir</td></tr>
+    <tr><td>Marina Costa, síndica do Parque das Águas</td><td>Usuário #8812 (perfil Síndico)</td><td>Pessoa pelo nome e pelo papel no prédio</td></tr>
+    <tr><td>Boleto de outubro, vence em 10/10</td><td>Título a receber 2026-10</td><td>Vocabulário do condomínio, não do banco de dados</td></tr>
+    <tr><td>Respostas rápidas</td><td>Macros</td><td>Termo do WhatsApp Business (A5 §5)</td></tr>
+    <tr><td>Contas a receber</td><td>A receber</td><td>Termo do Conta Azul, que o financeiro já usa</td></tr>
+    <tr><td>Excluir… (abre a confirmação)</td><td>Excluir → </td><td>As reticências avisam que haverá um passo; seta no botão é sinal de template</td></tr>
+  </tbody></table></div>
+  <h3>Regras curtas</h3>
+  <ul style="max-width:76ch;padding-left:18px;font-size:13.5px;line-height:21px">
+    <li>Caixa normal em tudo. Nada de rótulo em caixa alta.</li>
+    <li>Sem "A · B · C": metadado vira frase curta com vírgula ("Síndica, Parque das Águas").</li>
+    <li>Data por extenso curto (18/10, ontem, há 4 min); hora 09:38; valor R$ 1.284,90.</li>
+    <li>Emoji só como conteúdo escrito por uma pessoa (mensagem, publicação). A interface nunca usa emoji; reação é ícone com nome.</li>
+    <li>Um conceito, um termo, no sistema inteiro: "Chamado" (não ticket), "Conversas" (a fila), "Negócios" (Comercial), "Negociações" (CS).</li>
+  </ul>
+</section>
+</main>
+</div>
+
+<script>
+(function(){
+  var cs=function(el,v){return getComputedStyle(el).getPropertyValue(v).trim()};
+  var raiz=document.documentElement;
+  /* escalas */
+  var ESC=[['grafite','Grafite',['50','100','200','300','400','500','600','700','800','850','900']],['cimento','Cimento',['50','100','200','300','400','500','600','700','800','900']],['latao','Latão',['50','100','200','300','400','500','600','700','800','900']],['verde','Verde',['50','100','200','300','400','500','600','700','800','900']],['laranja','Laranja-atenção',['50','100','200','300','400','500','600','700','800','900']],['vermelho','Vermelho',['50','100','200','300','400','500','600','700','800','900']],['azul','Azul-informação',['50','100','200','300','400','500','600','700','800','900']]];
+  document.getElementById('escalas').innerHTML=ESC.map(function(e){return '<div class="escala"><b>'+e[1]+'</b>'+e[2].map(function(p){var v=cs(raiz,'--cm-'+e[0]+'-'+p);return '<div class="amostra"><i style="background:'+v+'"></i><span>'+p+'</span><span>'+v+'</span></div>'}).join('')+'</div>'}).join('')+
+    '<div class="escala"><b>Papel</b><div class="amostra"><i style="background:var(--cm-papel-claro)"></i><span>claro</span><span>'+cs(raiz,'--cm-papel-claro')+'</span></div><div class="amostra"><i style="background:var(--cm-papel-escuro)"></i><span>escuro</span><span>'+cs(raiz,'--cm-papel-escuro')+'</span></div></div>';
+  /* papéis com contraste medido */
+  function rgb(s){var m=s.match(/[\d.]+/g);return m?m.slice(0,3).map(Number):[0,0,0]}
+  function hex(c){return '#'+c.map(function(v){return ('0'+Math.round(v).toString(16)).slice(-2)}).join('').toUpperCase()}
+  function L(c){c=c.map(function(v){v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]}
+  function CR(a,b){var x=L(a),y=L(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
+  var PAP=[['--cm-texto-1','--cm-fundo','Texto 1 sobre fundo',4.5],['--cm-texto-2','--cm-fundo','Texto 2 sobre fundo',4.5],['--cm-texto-3','--cm-camada-2','Texto 3 sobre camada 2',4.5],['--cm-texto-2','--cm-camada-3','Texto 2 sobre camada 3',4.5],
+    ['--cm-borda-controle','--cm-fundo','Borda de controle',3],['--cm-link','--cm-camada-1','Link',4.5],['--cm-sobre-acao','--cm-acao','Texto sobre latão',4.5],['--cm-foco','--cm-fundo','Foco',3],
+    ['--cm-sucesso-texto','--cm-camada-2','Sucesso',4.5],['--cm-aviso-texto','--cm-camada-2','Atenção',4.5],['--cm-perigo-texto','--cm-camada-2','Perigo',4.5],['--cm-info-texto','--cm-camada-2','Informação',4.5],['--cm-neutro-texto','--cm-camada-2','Neutro',4.5],
+    ['--cm-aviso-texto','--cm-aviso-fundo','Atenção sobre o próprio fundo',4.5],['--cm-perigo-texto','--cm-perigo-fundo','Perigo sobre o próprio fundo',4.5],['--cm-nota-texto','--cm-nota-fundo','Nota interna',4.5],
+    ['--cm-texto-1','--cm-bolha-saida','Texto na bolha de saída',4.5],['--cm-marca-tinta','--cm-camada-1','Tinta da marca',4.5],['--cm-marca-sobre','--cm-marca','Texto sobre a marca',4.5],['--cm-texto-desabilitado','--cm-fundo','Desabilitado (isento)',0]];
+  function desenharPapeis(){
+    [].forEach.call(document.querySelectorAll('[data-papeis]'),function(t){
+      var sonda=document.createElement('span');t.parentNode.appendChild(sonda);
+      t.innerHTML=PAP.map(function(p){sonda.style.color='var('+p[0]+')';var a=rgb(getComputedStyle(sonda).color);sonda.style.color='var('+p[1]+')';var b=rgb(getComputedStyle(sonda).color);
+        var r=CR(a,b),ok=p[3]===0||r>=p[3];
+        return '<tr><td><span class="sw" style="background:'+hex(a)+'"></span></td><td>'+p[2]+'<br><code>'+p[0]+'</code></td><td><code>'+hex(a)+'</code></td><td class="cr"><b>'+r.toFixed(2)+':1</b> '+(p[3]===0?'<span class="cm-estado cm-estado--neutro"><i data-i="informacao"></i>isento</span>':ok?'<span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>'+(p[3]===3?'3:1':'AA')+'</span>':'<span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>abaixo</span>')+'</td></tr>'}).join('');
+      sonda.remove();
+    });
+    window.cmTrocarIcones&&window.cmTrocarIcones(document);
+  }
+  desenharPapeis();document.addEventListener('cm:marca',desenharPapeis);
+  /* tipografia */
+  var T=[['cm-t-documento','Título de documento','32/38, 700, -0,02em. Só nas páginas do próprio sistema.','Casa de Máquinas'],['cm-t-pagina','Título de página','22/28, 700, -0,01em','Conversas'],['cm-t-registro','Título de registro','20/26, 700','Cond. Parque das Águas'],['cm-t-secao','Seção','16/22, 700','Contrato e cobrança'],
+    ['cm-t-subsecao','Subseção','14/20, 650','Responsáveis'],['cm-t-corpo','Corpo','14/20, 400','A síndica pediu a interdição das vagas 37 e 38 até a Hidrotec liberar o laudo.'],['cm-t-corpo-p','Corpo pequeno','13/18, 400','Aberto pelo WhatsApp às 09:12, assumido por Beatriz às 09:16.'],
+    ['cm-t-rotulo','Rótulo','12,5/16, 500, caixa normal','Responsável'],['cm-t-legenda','Legenda','12/16, 400, texto 2','Atualizado há 4 min por Juliana Prado'],['cm-t-dado','Dado tabular','13/18, números tabulares','R$ 1.284,90   R$ 11.420,00   R$ 318,07'],['plaqueta','Plaqueta','Fragment Mono 11,5/18; grande 14/22','']];
+  document.getElementById('escala-tipo').innerHTML=T.map(function(t){return '<div class="tipo-linha"><div><b>'+t[1]+'</b><small>'+t[2]+'</small><small><code style="font-family:var(--cm-fonte-plaqueta);font-size:11px">.'+(t[0]==='plaqueta'?'cm-plaqueta':t[0])+'</code></small></div><div>'+(t[0]==='plaqueta'?'<span class="cm-plaqueta">#48213</span> <span class="cm-plaqueta cm-plaqueta--g">OS 482</span>':'<span class="'+t[0]+'">'+t[3]+'</span>')+'</div></div>'}).join('');
+  /* espaço */
+  document.getElementById('esp').innerHTML=[1,2,3,4,5,6,7,8,9,10,11,12].map(function(n){var v=cs(raiz,'--cm-esp-'+n);return '<div><code style="font-family:var(--cm-fonte-plaqueta);font-size:11.5px;color:var(--cm-texto-2)">--cm-esp-'+n+'</code><span>'+v+'</span><i style="width:'+v+'"></i></div>'}).join('');
+  /* camadas */
+  var Z=[['base','Conteúdo'],['grudado','Cabeçalho de tabela, rodapé de atalhos'],['barra-salvar','Barra de salvar'],['moldura','Barra de cima e barra de menu'],['faixa','Faixa de contexto'],['gaveta','Gaveta do celular'],['menu','Menu, cascata, popover, lista de opções'],['sobreposicao','Fundo escurecido'],['modal','Modal, painel lateral, folha, paleta ⌘K'],['toast','Toast'],['dica','Dica']];
+  document.getElementById('zpilha').innerHTML=Z.map(function(z){return '<div><span>'+z[1]+'</span><code>--cm-z-'+z[0]+': '+cs(raiz,'--cm-z-'+z[0])+'</code></div>'}).join('');
+  /* movimento */
+  document.getElementById('tocar-mov').addEventListener('click',function(){[].forEach.call(document.querySelectorAll('[data-pista]'),function(p){var i=p.querySelector('i');i.style.transition='left '+p.getAttribute('data-pista')+' var(--cm-curva-entrada)';p.classList.toggle('vai')})});
+  /* white label */
+  function wl(){var C=window.CM_CLIENTES||{};document.getElementById('wl').innerHTML=Object.keys(C).map(function(k){var c=C[k],a=window.cmAvaliarMarca(c.cor);
+    return '<div style="--wl:'+c.cor+'"><div class="faixa-top"><span class="cm-testeira" style="color:'+a.sobre+'"><span class="cm-testeira__logo" style="background:'+a.sobre+';color:'+c.cor+'">'+c.inicial+'</span><span class="cm-testeira__nome">'+c.nome+'</span></span></div>'+
+    '<div class="corpo"><div class="cm-linha"><button class="cm-botao cm-botao--principal cm-botao--p" type="button">Salvar</button><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Atrasado</span><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Concluído</span></div>'+
+    '<div class="portal">'+c.nome+'</div><div class="portal-botao" style="color:'+a.sobre+'">Abrir chamado</div><span class="cm-t-legenda">Texto sobre a marca: '+a.contrasteSobre.toFixed(1)+':1. '+(a.conflitos.length?'Perto do '+a.conflitos[0].nome+' ('+a.conflitos[0].distancia+'°): a marca não pinta estado.':'Longe das cores de estado.')+'</span></div></div>'}).join('');
+    window.cmTrocarIcones&&window.cmTrocarIcones(document.getElementById('wl'))}
+  wl();
+  function parecer(cor){var a=window.cmAvaliarMarca(cor);document.getElementById('parecer').innerHTML='<div class="cm-linha cm-linha--quebra" style="gap:14px;margin-bottom:10px"><span class="cm-testeira" style="background:'+a.cor+';color:'+a.sobre+';height:44px;min-width:200px"><span class="cm-testeira__logo" style="background:'+a.sobre+';color:'+a.cor+'">C</span><span class="cm-testeira__nome">Cliente novo</span></span>'+
+    '<span class="cm-t-legenda">Sobre a marca: <b>'+a.sobre+'</b> ('+a.contrasteSobre.toFixed(2)+':1). Tinta no escuro: <b style="color:'+a.tintaEscuro+'">'+a.tintaEscuro+'</b>. Tinta no claro: <b>'+a.tintaClaro+'</b>.</span></div>'+
+    a.parecer.map(function(p){return '<div class="cm-alerta cm-alerta--'+(a.conflitos.length||a.contrasteSobre<4.5?'aviso':'sucesso')+'" style="margin-top:6px">'+window.cmIcone(a.conflitos.length||a.contrasteSobre<4.5?'atencao':'sucesso')+'<span class="cm-alerta__texto">'+p+'</span></div>'}).join('')}
+  var ci=document.getElementById('cor-livre'),ct=document.getElementById('cor-livre-txt');
+  ci.addEventListener('input',function(){ct.value=ci.value.toUpperCase();parecer(ci.value)});
+  ct.addEventListener('change',function(){if(/^#?[0-9a-f]{6}$/i.test(ct.value)){var v=ct.value.charAt(0)==='#'?ct.value:'#'+ct.value;ci.value=v;parecer(v)}});
+  document.getElementById('aplicar-livre').addEventListener('click',function(){window.cmAplicarMarca({nome:'Cliente novo',cor:ci.value})});
+  parecer(ci.value);
+})();
+</script>
+</body>
+</html>

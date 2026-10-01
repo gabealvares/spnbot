@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moldura de exemplo</title>
+<!-- Página auxiliar do 02-navegacao: monta a moldura com ?cfg= (JSON) e abre um menu com ?abrir=
+     abrir: grupo:CS | sino | conta | cliente | ajustar | config | paleta | paleta:texto | gaveta | atalhos -->
+<script>
+(function(){var p=new URLSearchParams(location.search);var c=p.get('cfg');
+  try{var o=JSON.parse(c||'{}');if(o.contexto) document.documentElement.setAttribute('data-contexto',o.contexto)}catch(e){}
+})();
+</script>
+<script src="../sistema/marca.js"></script>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<script src="../sistema/icones.js"></script>
+<script>
+(function(){var p=new URLSearchParams(location.search);var c=p.get('cfg')||'{"grupo":"Suporte","tela":"Conversas","papel":"Atendimento"}';
+  document.write('<div id="m"></div>');
+  var el=document.getElementById('m');el.setAttribute('data-moldura',c);
+})();
+</script>
+<script src="../sistema/moldura.js"></script>
+<style>
+  body{min-height:100vh}
+  *,*::before,*::after{animation:none!important}
+  .fundo-exemplo{padding:20px 24px;color:var(--cm-texto-3);font-size:13px;max-width:720px}
+  .fundo-exemplo .cm-esqueleto{margin:10px 0}
+</style>
+</head>
+<body>
+<div class="fundo-exemplo" aria-hidden="true">
+  <span class="cm-esqueleto cm-esqueleto--titulo"></span>
+  <span class="cm-esqueleto cm-esqueleto--linha" style="width:80%"></span>
+  <span class="cm-esqueleto cm-esqueleto--linha" style="width:64%"></span>
+  <span class="cm-esqueleto cm-esqueleto--bloco"></span>
+</div>
+<script>
+window.addEventListener('load',function(){
+  var a=new URLSearchParams(location.search).get('abrir');if(!a) return;
+  setTimeout(function(){
+    var m=document.querySelector('[data-cm-moldura]');
+    if(a.indexOf('grupo:')===0){var b=m.querySelector('.cm-grupo[data-grupo="'+a.slice(6)+'"]');if(b) b.click();}
+    else if(a.indexOf('paleta')===0){var bp=m.querySelector('[data-acao="paleta"]')||document.querySelector('.cm-barra-inferior [data-acao="paleta"]');bp.click();
+      var t=a.split(':')[1];if(t){var i=document.querySelector('.cm-paleta input');i.value=t;i.dispatchEvent(new Event('input'))}}
+    else if(a==='gaveta'){var g=document.querySelector('.cm-barra-inferior [data-acao="gaveta"]')||m.querySelector('[data-acao="gaveta"]');g.click()}
+    else if(a==='atalhos'){window.cmAbrirAtalhos&&window.cmAbrirAtalhos()}
+    else {var x=m.querySelector('[data-acao="'+a+'"]');if(x) x.click()}
+    if(document.activeElement&&document.activeElement.blur&&a.indexOf('paleta')!==0) document.activeElement.blur();
+  },150);
+});
+</script>
+</body>
+</html>

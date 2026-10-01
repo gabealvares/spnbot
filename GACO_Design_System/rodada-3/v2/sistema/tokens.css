@@ -1,0 +1,273 @@
+/* =====================================================================
+   GACO V2 "Casa de Máquinas" · tokens.css
+   Fonte da verdade de cor, tipo, espaço, forma, movimento e white label.
+   Ordem: 1. primitivos  2. papéis (tema escuro = padrão da operação)
+          3. tema claro  4. densidades  5. contexto (interno, portal, superadmin)
+          6. white label (--cm-marca-*)  7. fontes
+   Regra de uso: componente e tela só leem PAPÉIS (--cm-fundo, --cm-texto-1…).
+   Primitivo (--cm-grafite-900…) só aparece aqui dentro.
+   Tema:      <html data-theme="dark|light">   (qualquer elemento pode forçar o seu)
+   Densidade: <html data-densidade="compacta|padrao|confortavel">
+   Contexto:  <html data-contexto="interno|portal|superadmin">
+   Marca:     <html data-brand="alpha|lar|vertice">  ou marca.js com cor livre
+   ===================================================================== */
+
+/* ---------- 7. Fontes: arquivo local primeiro, Google como reserva ---------- */
+@font-face{font-family:"Hanken Grotesk";src:url("fontes/HankenGrotesk-var.ttf") format("truetype");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Hanken Grotesk";src:url("fontes/HankenGrotesk-Italic-var.ttf") format("truetype");font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Fragment Mono";src:url("fontes/FragmentMono-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+
+:root{
+  /* =================== 1. PRIMITIVOS (escalas de 10 passos) =================== */
+  /* Grafite: o metal escuro da casa de máquinas, levemente esverdeado, nunca preto-azulado */
+  --cm-grafite-50:#E6E8E6; --cm-grafite-100:#C4CACC; --cm-grafite-200:#A9B0B3; --cm-grafite-300:#8A9296;
+  --cm-grafite-400:#6B7479; --cm-grafite-500:#3D454B; --cm-grafite-600:#2E353A; --cm-grafite-700:#272D31;
+  --cm-grafite-800:#1F2427; --cm-grafite-850:#181C1F; --cm-grafite-900:#121517;
+  /* Cimento: o claro do hall, cinza frio de reboco, não creme */
+  --cm-cimento-50:#FFFFFF; --cm-cimento-100:#F4F6F5; --cm-cimento-200:#E9ECEB; --cm-cimento-300:#E0E5E4;
+  --cm-cimento-400:#D2D8D8; --cm-cimento-500:#B6BEC0; --cm-cimento-600:#7C878B; --cm-cimento-700:#5A6469;
+  --cm-cimento-800:#454E53; --cm-cimento-900:#15191B;
+  /* Latão: a plaquinha do hall. Só ação, foco, ativo. Nunca estado. */
+  --cm-latao-50:#FBF6EA; --cm-latao-100:#F4ECD9; --cm-latao-200:#E8D5A8; --cm-latao-300:#DDBF7C;
+  --cm-latao-400:#D2A857; --cm-latao-500:#C99D48; --cm-latao-600:#A9822F; --cm-latao-700:#7A5B14;
+  --cm-latao-800:#4A3A16; --cm-latao-900:#2A261B;
+  /* Verde: concluído, pago, aprovado, presente, disponível */
+  --cm-verde-50:#E7F4EC; --cm-verde-100:#C9E7D4; --cm-verde-200:#9DD2B1; --cm-verde-300:#5FB38A;
+  --cm-verde-400:#3E9A6E; --cm-verde-500:#1D774C; --cm-verde-600:#17633F; --cm-verde-700:#2C5A44;
+  --cm-verde-800:#1B3A2C; --cm-verde-900:#15251D;
+  /* Laranja-atenção: puxado para o vermelho-alaranjado (matiz 22°) para não encostar no latão (matiz 40°) */
+  --cm-laranja-50:#FDEEE4; --cm-laranja-100:#FAD9C4; --cm-laranja-200:#F5B48C; --cm-laranja-300:#F0935A;
+  --cm-laranja-400:#E5762F; --cm-laranja-500:#A84A0F; --cm-laranja-600:#8C3D0C; --cm-laranja-700:#6B3A1E;
+  --cm-laranja-800:#3F2617; --cm-laranja-900:#2A1C14;
+  /* Vermelho: atrasado, vencido, falhou, perigo */
+  --cm-vermelho-50:#FCEBEC; --cm-vermelho-100:#F8D2D4; --cm-vermelho-200:#F1A6AB; --cm-vermelho-300:#EE7A82;
+  --cm-vermelho-400:#DE5560; --cm-vermelho-500:#B32B37; --cm-vermelho-600:#93222D; --cm-vermelho-700:#6E2A30;
+  --cm-vermelho-800:#3E2023; --cm-vermelho-900:#2B1719;
+  /* Azul-informação: em andamento, lida, informação, homologação */
+  --cm-azul-50:#E8F0FA; --cm-azul-100:#CEDFF3; --cm-azul-200:#A8C5E8; --cm-azul-300:#7FA8D9;
+  --cm-azul-400:#5687C4; --cm-azul-500:#2A5A92; --cm-azul-600:#224A79; --cm-azul-700:#2D4766;
+  --cm-azul-800:#1C2A3A; --cm-azul-900:#16202B;
+  /* Amarelo-papel: só a nota interna (signo do Zendesk, Intercom e Front). Fora da semântica de estado. */
+  --cm-papel-claro:#FFF6CC; --cm-papel-claro-borda:#D9BE45; --cm-papel-escuro:#28261A; --cm-papel-escuro-borda:#6A6231;
+
+  /* =================== TIPOGRAFIA =================== */
+  --cm-fonte-ui:"Hanken Grotesk","Segoe UI",system-ui,-apple-system,sans-serif;
+  --cm-fonte-plaqueta:"Fragment Mono",ui-monospace,"Cascadia Mono",monospace; /* só na plaqueta e no código */
+  /* escala (tamanho / entrelinha / peso). Hanken sempre com números tabulares. */
+  --cm-tipo-documento:32px;      --cm-tipo-documento-lh:38px;   /* só nas páginas do próprio design system */
+  --cm-tipo-pagina:22px;         --cm-tipo-pagina-lh:28px;      /* título de página: 700, -0,01em */
+  --cm-tipo-registro:20px;       --cm-tipo-registro-lh:26px;    /* título de registro (ficha): 700 */
+  --cm-tipo-secao:16px;          --cm-tipo-secao-lh:22px;       /* seção: 700 */
+  --cm-tipo-subsecao:14px;       --cm-tipo-subsecao-lh:20px;    /* subseção: 650 */
+  --cm-tipo-corpo:14px;          --cm-tipo-corpo-lh:20px;       /* corpo: 400 */
+  --cm-tipo-corpo-p:13px;        --cm-tipo-corpo-p-lh:18px;     /* corpo pequeno: 400 */
+  --cm-tipo-rotulo:12.5px;       --cm-tipo-rotulo-lh:16px;      /* rótulo de campo: 500, caixa normal */
+  --cm-tipo-legenda:12px;        --cm-tipo-legenda-lh:16px;     /* legenda, ajuda, hora: 400 */
+  --cm-tipo-dado:13px;           --cm-tipo-dado-lh:18px;        /* dado tabular em tabela: 400 tnum */
+  --cm-tipo-plaqueta:11.5px;     --cm-tipo-plaqueta-lh:18px;    /* Fragment Mono 400 */
+  --cm-tipo-plaqueta-g:14px;     --cm-tipo-plaqueta-g-lh:22px;  /* plaqueta do cabeçalho do registro */
+  --cm-peso-normal:400; --cm-peso-medio:500; --cm-peso-semi:600; --cm-peso-sub:650; --cm-peso-forte:700;
+  --cm-tracking-titulo:-0.01em;
+
+  /* =================== ESPAÇO (base 4) =================== */
+  --cm-esp-0:0; --cm-esp-1:2px; --cm-esp-2:4px; --cm-esp-3:6px; --cm-esp-4:8px; --cm-esp-5:12px;
+  --cm-esp-6:16px; --cm-esp-7:20px; --cm-esp-8:24px; --cm-esp-9:32px; --cm-esp-10:40px; --cm-esp-11:48px; --cm-esp-12:64px;
+
+  /* =================== GRADE E CONTÊINERES =================== */
+  --cm-grade-colunas:12; --cm-grade-vao:16px; --cm-grade-margem:24px;
+  --cm-largura-leitura:680px;   /* texto corrido, comunicado, ata */
+  --cm-largura-formulario:760px;/* formulário longo em página */
+  --cm-largura-registro:1280px; /* ficha de registro em três colunas */
+  --cm-largura-ampla:1488px;    /* listas e telas de trabalho */
+  --cm-largura-portal:600px;    /* coluna do portal e das páginas públicas */
+  --cm-modal-p:400px; --cm-modal-m:560px; --cm-modal-g:720px; --cm-modal-gg:960px;
+  --cm-painel-lateral:400px; --cm-painel-lateral-g:560px;
+  --cm-coluna-fila:356px; --cm-coluna-ficha:348px; --cm-coluna-lateral:320px;
+
+  /* =================== FORMA =================== */
+  --cm-raio-0:0;        /* superfícies, cartões, tabela, painel: chapa reta */
+  --cm-raio-1:1px;      /* plaqueta */
+  --cm-raio-2:2px;      /* controles: botão, campo, etiqueta, menu */
+  --cm-raio-3:4px;      /* bolha de conversa, folha inferior no topo */
+  --cm-raio-redondo:999px; /* avatar, ponto, presença, interruptor */
+  --cm-borda-fina:1px; --cm-borda-media:2px; --cm-borda-grossa:3px;
+  /* sombra: só o que flutua (menu, popover, paleta, toast). Superfície no lugar não tem sombra. */
+  --cm-sombra-flutuante:0 8px 24px rgba(0,0,0,.45), 0 0 0 1px rgba(0,0,0,.25);
+
+  /* =================== CAMADAS (z-index) =================== */
+  --cm-z-base:0; --cm-z-grudado:10; --cm-z-barra-salvar:40; --cm-z-moldura:50; --cm-z-faixa:55;
+  --cm-z-gaveta:60; --cm-z-menu:70; --cm-z-sobreposicao:80; --cm-z-modal:90; --cm-z-toast:100; --cm-z-dica:110;
+
+  /* =================== MOVIMENTO =================== */
+  --cm-mov-rapido:90ms;   /* hover, foco, troca de aba */
+  --cm-mov-medio:180ms;   /* menu, popover, cascata */
+  --cm-mov-lento:260ms;   /* painel lateral, gaveta, folha inferior */
+  --cm-curva-entrada:cubic-bezier(.2,0,0,1);
+  --cm-curva-saida:cubic-bezier(.4,0,1,1);
+  --cm-intencao-abrir:200ms; /* pousar no bloco da cascata antes de abrir */
+
+  /* =================== BREAKPOINTS (referência; CSS usa os números) =================== */
+  --cm-bp-celular:599px;  /* até 599: celular, gaveta + barra inferior */
+  --cm-bp-tablet:899px;   /* 600–899: tablet, grupos vão para a gaveta, favoritos ficam */
+  --cm-bp-apertado:1099px;/* 900–1099: busca vira lupa + ⌘K */
+  --cm-bp-largo:1440px;   /* 1440+: largura de referência das capturas */
+
+  /* =================== MOLDURA =================== */
+  --cm-barra-cima:48px; --cm-barra-menu:42px; --cm-fio-marca:3px; --cm-rodape-atalhos:30px; --cm-barra-inferior:62px;
+  --cm-alvo-toque:44px;
+}
+
+/* =================== 2. PAPÉIS — TEMA ESCURO (padrão da operação) =================== */
+:root, [data-theme="dark"]{
+  color-scheme:dark;
+  --cm-fundo:var(--cm-grafite-900);
+  --cm-camada-1:var(--cm-grafite-850);  /* barras, colunas, cartão */
+  --cm-camada-2:var(--cm-grafite-800);  /* controle, menu, linha em hover */
+  --cm-camada-3:var(--cm-grafite-700);  /* linha selecionada, trilho da barra de progresso */
+  --cm-filete:var(--cm-grafite-600);    /* divisória de 1px entre superfícies */
+  --cm-filete-forte:var(--cm-grafite-500);
+  --cm-borda-controle:var(--cm-grafite-400); /* campo e botão secundário: 3:1 sobre o fundo */
+  --cm-texto-1:var(--cm-grafite-50);
+  --cm-texto-2:var(--cm-grafite-200);
+  --cm-texto-3:var(--cm-grafite-300);
+  --cm-texto-desabilitado:#5F686D;
+  --cm-fundo-desabilitado:var(--cm-grafite-850);
+  --cm-link:var(--cm-latao-400);
+  --cm-acao:var(--cm-latao-400);          /* botão principal, item ativo, aba ativa */
+  --cm-acao-hover:var(--cm-latao-300);
+  --cm-acao-ativo:var(--cm-latao-500);
+  --cm-sobre-acao:var(--cm-grafite-900);
+  --cm-acao-suave:var(--cm-latao-900);    /* fundo de opção em foco no menu, tique da paleta */
+  --cm-acao-filete:#6E5A2E;
+  --cm-foco:var(--cm-latao-400);          /* anel de foco de 2px, nos dois temas */
+  --cm-selecao:var(--cm-grafite-700);     /* linha selecionada = camada 3 + filete latão de 3px à esquerda */
+  --cm-selecao-filete:var(--cm-latao-400);
+  --cm-selecao-texto:rgba(210,168,87,.35);/* ::selection */
+  --cm-editado:#262414;                   /* campo alterado e ainda não salvo */
+  /* estados: fundo, borda, texto, ponto. Sempre com ícone + palavra. */
+  --cm-sucesso-fundo:var(--cm-verde-900);    --cm-sucesso-borda:var(--cm-verde-700);    --cm-sucesso-texto:var(--cm-verde-300);    --cm-sucesso-ponto:var(--cm-verde-300);
+  --cm-aviso-fundo:var(--cm-laranja-900);    --cm-aviso-borda:var(--cm-laranja-700);    --cm-aviso-texto:var(--cm-laranja-300);    --cm-aviso-ponto:var(--cm-laranja-300);
+  --cm-perigo-fundo:var(--cm-vermelho-900);  --cm-perigo-borda:var(--cm-vermelho-700);  --cm-perigo-texto:var(--cm-vermelho-300);  --cm-perigo-ponto:var(--cm-vermelho-300);
+  --cm-info-fundo:var(--cm-azul-900);        --cm-info-borda:var(--cm-azul-700);        --cm-info-texto:var(--cm-azul-300);        --cm-info-ponto:var(--cm-azul-300);
+  --cm-neutro-fundo:var(--cm-grafite-800);   --cm-neutro-borda:var(--cm-grafite-500);   --cm-neutro-texto:var(--cm-grafite-200);   --cm-neutro-ponto:var(--cm-grafite-300);
+  /* conversa */
+  --cm-conversa-fundo:#15191B;
+  --cm-bolha-entrada:var(--cm-grafite-800); --cm-bolha-entrada-borda:var(--cm-grafite-600);
+  --cm-bolha-saida:#1E2B2A;                 --cm-bolha-saida-borda:#34504C;
+  --cm-nota-fundo:var(--cm-papel-escuro);   --cm-nota-borda:var(--cm-papel-escuro-borda); --cm-nota-texto:#E9DFAE;
+  --cm-sobreposicao:rgba(6,8,9,.66);
+  --cm-sombra-flutuante:0 8px 24px rgba(0,0,0,.5), 0 0 0 1px rgba(0,0,0,.3);
+  /* avatar sem foto: 5 tons de chapa, nunca a cor do cliente */
+  --cm-avatar-1:#34444C; --cm-avatar-2:#46402F; --cm-avatar-3:#394536; --cm-avatar-4:#4A3A3F; --cm-avatar-5:#3B3F4E;
+  /* etiquetas do cliente (WhatsApp Business): paleta própria, fora dos estados */
+  --cm-etq-1:#8FA9B8; --cm-etq-2:#B79BC9; --cm-etq-3:#9DB57A; --cm-etq-4:#C9A07A; --cm-etq-5:#7FB5B0; --cm-etq-6:#B98FA0; --cm-etq-7:#A8A68A; --cm-etq-8:#8C9AC2;
+  /* gráfico: série 1 latão, depois tons de chapa; estado só quando o dado é estado */
+  --cm-grafico-1:var(--cm-latao-400); --cm-grafico-2:#7FA8B8; --cm-grafico-3:#A3AAAD; --cm-grafico-4:#8C9AC2; --cm-grafico-5:#9DB57A; --cm-grafico-grade:var(--cm-grafite-600);
+}
+
+/* =================== 3. PAPÉIS — TEMA CLARO (dia, portal, impressão) =================== */
+[data-theme="light"]{
+  color-scheme:light;
+  --cm-fundo:var(--cm-cimento-200);
+  --cm-camada-1:var(--cm-cimento-100);
+  --cm-camada-2:var(--cm-cimento-50);
+  --cm-camada-3:var(--cm-cimento-300);
+  --cm-filete:var(--cm-cimento-400);
+  --cm-filete-forte:var(--cm-cimento-500);
+  --cm-borda-controle:var(--cm-cimento-600);
+  --cm-texto-1:var(--cm-cimento-900);
+  --cm-texto-2:var(--cm-cimento-800);
+  --cm-texto-3:var(--cm-cimento-700);
+  --cm-texto-desabilitado:#8E989C;
+  --cm-fundo-desabilitado:var(--cm-cimento-200);
+  --cm-link:var(--cm-latao-700);
+  --cm-acao:var(--cm-latao-500);
+  --cm-acao-hover:var(--cm-latao-400);
+  --cm-acao-ativo:var(--cm-latao-600);
+  --cm-sobre-acao:var(--cm-cimento-900);
+  --cm-acao-suave:var(--cm-latao-100);
+  --cm-acao-filete:#C6A560;
+  --cm-foco:var(--cm-latao-700);
+  --cm-selecao:var(--cm-cimento-300);
+  --cm-selecao-filete:var(--cm-latao-600);
+  --cm-selecao-texto:rgba(201,157,72,.35);
+  --cm-editado:#FBF3DC;
+  --cm-sucesso-fundo:var(--cm-verde-50);    --cm-sucesso-borda:var(--cm-verde-200);    --cm-sucesso-texto:var(--cm-verde-500);    --cm-sucesso-ponto:var(--cm-verde-500);
+  --cm-aviso-fundo:var(--cm-laranja-50);    --cm-aviso-borda:var(--cm-laranja-200);    --cm-aviso-texto:var(--cm-laranja-500);    --cm-aviso-ponto:var(--cm-laranja-400);
+  --cm-perigo-fundo:var(--cm-vermelho-50);  --cm-perigo-borda:var(--cm-vermelho-200);  --cm-perigo-texto:var(--cm-vermelho-500);  --cm-perigo-ponto:var(--cm-vermelho-500);
+  --cm-info-fundo:var(--cm-azul-50);        --cm-info-borda:var(--cm-azul-200);        --cm-info-texto:var(--cm-azul-500);        --cm-info-ponto:var(--cm-azul-500);
+  --cm-neutro-fundo:var(--cm-cimento-200);  --cm-neutro-borda:var(--cm-cimento-500);   --cm-neutro-texto:var(--cm-cimento-800);   --cm-neutro-ponto:var(--cm-cimento-700);
+  --cm-conversa-fundo:#E4E8E7;
+  --cm-bolha-entrada:#FFFFFF;              --cm-bolha-entrada-borda:var(--cm-cimento-400);
+  --cm-bolha-saida:#DCEBE7;                --cm-bolha-saida-borda:#A9CBC3;
+  --cm-nota-fundo:var(--cm-papel-claro);   --cm-nota-borda:var(--cm-papel-claro-borda); --cm-nota-texto:#3D3410;
+  --cm-sobreposicao:rgba(21,25,27,.45);
+  --cm-sombra-flutuante:0 8px 24px rgba(21,25,27,.16), 0 0 0 1px rgba(21,25,27,.06);
+  --cm-avatar-1:#CFDCE1; --cm-avatar-2:#E6DCC4; --cm-avatar-3:#D3DECF; --cm-avatar-4:#E6D3D7; --cm-avatar-5:#D5D8E6;
+  --cm-etq-1:#3F6476; --cm-etq-2:#6A4C80; --cm-etq-3:#4B6A2C; --cm-etq-4:#7E5531; --cm-etq-5:#2F6763; --cm-etq-6:#7A4258; --cm-etq-7:#5E5C3B; --cm-etq-8:#43517E;
+  --cm-grafico-1:var(--cm-latao-600); --cm-grafico-2:#3F6E80; --cm-grafico-3:#6B7479; --cm-grafico-4:#43517E; --cm-grafico-5:#4B6A2C; --cm-grafico-grade:var(--cm-cimento-400);
+}
+
+/* =================== 4. DENSIDADES =================== */
+/* Compacta é o padrão do sistema interno (decisão no 00-fundamentos §Densidade).
+   Padrão: quem pedir mais ar. Confortável: portal, celular e quem precisa de alvo maior. */
+:root, [data-densidade="compacta"]{
+  --cm-controle-p:24px; --cm-controle:28px; --cm-controle-g:32px;
+  --cm-linha-tabela:36px; --cm-linha-lista:52px; --cm-campo-pad:8px; --cm-celula-pad:10px;
+  --cm-tipo-base:13px; --cm-tipo-base-lh:18px;
+}
+[data-densidade="padrao"]{
+  --cm-controle-p:28px; --cm-controle:32px; --cm-controle-g:36px;
+  --cm-linha-tabela:44px; --cm-linha-lista:60px; --cm-campo-pad:10px; --cm-celula-pad:12px;
+  --cm-tipo-base:14px; --cm-tipo-base-lh:20px;
+}
+[data-densidade="confortavel"]{
+  --cm-controle-p:32px; --cm-controle:40px; --cm-controle-g:48px;
+  --cm-linha-tabela:52px; --cm-linha-lista:68px; --cm-campo-pad:12px; --cm-celula-pad:14px;
+  --cm-tipo-base:15px; --cm-tipo-base-lh:22px;
+}
+
+/* =================== 6. WHITE LABEL (--cm-marca-*) =================== */
+/* O cliente troca: logo, nome, --cm-marca. Tudo o mais é do GACO.
+   Derivados (marca.js recalcula para qualquer cor):
+   --cm-marca          cor como o cliente mandou (testeira, fio, logo)
+   --cm-marca-sobre    texto e ícone sobre a marca (branco ou grafite, o de maior contraste)
+   --cm-marca-tinta    marca como texto/link sobre a camada do tema (≥ 4,5:1, escurecida ou clareada)
+   --cm-marca-suave    fundo tingido (aba ativa do portal, cabeçalho do mural da empresa)
+   --cm-marca-acao     botão principal do PORTAL; no interno o principal é latão
+   Proibido: marca em estado, contador, etiqueta, bolha, Path, gráfico, foco. */
+:root, [data-brand="alpha"]{
+  --cm-marca:#1E5F74; --cm-marca-sobre:#FFFFFF; --cm-marca-nome:"Administradora Alpha";
+  --cm-marca-tinta-escuro:#5D8C9B; --cm-marca-tinta-claro:#1E5F74;
+  --cm-marca-suave-escuro:#192B32; --cm-marca-suave-claro:#E4ECEE;
+}
+[data-brand="lar"]{
+  --cm-marca:#2F6B3F; --cm-marca-sobre:#FFFFFF; --cm-marca-nome:"Lar Gestão Condominial";
+  --cm-marca-tinta-escuro:#618F6D; --cm-marca-tinta-claro:#2F6B3F;
+  --cm-marca-suave-escuro:#1D2D26; --cm-marca-suave-claro:#E6EDE8;
+}
+[data-brand="vertice"]{
+  --cm-marca:#7A2E3A; --cm-marca-sobre:#FFFFFF; --cm-marca-nome:"Vértice Condomínios";
+  --cm-marca-tinta-escuro:#AA7981; --cm-marca-tinta-claro:#7A2E3A;
+  --cm-marca-suave-escuro:#2E2025; --cm-marca-suave-claro:#EFE6E7;
+}
+/* o tema escolhe qual derivado vale */
+:root, [data-theme="dark"]{ --cm-marca-tinta:var(--cm-marca-tinta-escuro); --cm-marca-suave:var(--cm-marca-suave-escuro); }
+[data-theme="light"]{ --cm-marca-tinta:var(--cm-marca-tinta-claro); --cm-marca-suave:var(--cm-marca-suave-claro); }
+:root, [data-brand]{ --cm-marca-acao:var(--cm-marca); --cm-marca-acao-sobre:var(--cm-marca-sobre); }
+
+/* =================== 5. CONTEXTO =================== */
+/* Portal (síndico, morador, conselheiro): confortável, marca no topo e no botão principal, sem plaqueta. */
+[data-contexto="portal"]{
+  --cm-controle-p:36px; --cm-controle:44px; --cm-controle-g:52px;
+  --cm-linha-tabela:52px; --cm-linha-lista:68px; --cm-campo-pad:12px; --cm-celula-pad:14px;
+  --cm-tipo-base:15px; --cm-tipo-base-lh:22px;
+  --cm-acao:var(--cm-marca-acao); --cm-sobre-acao:var(--cm-marca-acao-sobre);
+  --cm-acao-hover:var(--cm-marca-acao); --cm-acao-ativo:var(--cm-marca-acao);
+  --cm-link:var(--cm-marca-tinta);
+}
+/* No tema escuro do portal, o botão usa a marca como veio (o texto já é calculado para ela). */
+
+@media (prefers-reduced-motion:reduce){
+  :root{ --cm-mov-rapido:0ms; --cm-mov-medio:0ms; --cm-mov-lento:0ms; }
+}

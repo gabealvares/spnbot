@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa de Máquinas: navegação</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<style>
+main{max-width:1440px;margin:0 auto;padding:24px 24px 96px}
+.sec{padding:32px 0 8px;border-top:1px solid var(--cm-filete);margin-top:32px}
+.sec:first-child{border-top:0;margin-top:0;padding-top:0}
+.sec>h2{font-size:22px;line-height:28px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.sec h3{font-size:15px;font-weight:700;margin:22px 0 8px}
+.sec p{max-width:80ch}
+.porque{max-width:86ch;margin:12px 0;padding:10px 14px;border-left:3px solid var(--cm-acao);background:var(--cm-camada-1);font-size:13px;line-height:19px}
+.indice{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}
+.palco{border:1px solid var(--cm-filete-forte);background:var(--cm-fundo);overflow-x:auto;margin:10px 0}
+.palco iframe{display:block;border:0;width:1280px;max-width:none;background:var(--cm-fundo)}
+.palcos{display:grid;grid-template-columns:repeat(auto-fit,minmax(392px,1fr));gap:16px}
+.cel{width:392px;max-width:100%}
+.cel iframe{width:390px;height:780px;border:1px solid var(--cm-filete-forte);display:block;max-width:100%}
+.legenda-palco{font-size:12.5px;color:var(--cm-texto-2);margin-top:4px;max-width:80ch}
+.desenho{font-family:var(--cm-fonte-plaqueta);font-size:12px;line-height:1.45;background:var(--cm-camada-1);border:1px solid var(--cm-filete);padding:12px 14px;overflow-x:auto;white-space:pre;color:var(--cm-texto-2)}
+.mapa{columns:3 300px;column-gap:24px}
+.mapa .g{break-inside:avoid;margin:0 0 18px;border-top:2px solid var(--cm-filete-forte);padding-top:8px}
+.mapa .g h4{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;margin-bottom:6px}
+.mapa .g h4 span{margin-left:auto;font-weight:400;font-size:12px;color:var(--cm-texto-3)}
+.mapa .b{margin:6px 0 2px;font-size:12.5px;font-weight:650;color:var(--cm-texto-2)}
+.mapa ul{margin:0;padding:0;list-style:none;font-size:13px}
+.mapa li{padding:2px 0 2px 12px;border-left:1px solid var(--cm-filete)}
+.tab{width:100%;border-collapse:collapse;font-size:13px}
+.tab th{text-align:left;font-weight:600;color:var(--cm-texto-2);padding:6px 10px 6px 0;border-bottom:1px solid var(--cm-filete-forte);font-size:12.5px}
+.tab td{padding:7px 10px 7px 0;border-bottom:1px solid var(--cm-filete);vertical-align:top}
+.rolar{overflow-x:auto}
+@media (max-width:599px){ main{padding:16px 16px 96px} }
+</style>
+</head>
+<body>
+<div data-moldura='{"grupo":"Suporte","tela":"Conversas","papel":"Atendimento","sino":3,"clientes":true,"links":{"Início":"00-fundamentos.html"}}'></div>
+<main id="conteudo">
+
+<section class="sec">
+  <h2>Navegação: Modelo D refinado</h2>
+  <p>A moldura acima é a de verdade, gerada pelo sistema/moldura.js a partir de um atributo. Use o mouse e o teclado nela: clique em um grupo, aperte Ctrl K, abra o sino e o avatar. As cenas abaixo mostram cada menu aberto, nos tamanhos de computador e celular.</p>
+  <div class="indice">
+    <a class="cm-botao cm-botao--p" href="#desenho">Desenho</a><a class="cm-botao cm-botao--p" href="#cascata">Cascata</a><a class="cm-botao cm-botao--p" href="#paleta">Ctrl K</a><a class="cm-botao cm-botao--p" href="#sino">Sino</a><a class="cm-botao cm-botao--p" href="#conta">Conta e presença</a><a class="cm-botao cm-botao--p" href="#cliente">Troca de cliente</a><a class="cm-botao cm-botao--p" href="#celular">Celular e tablet</a><a class="cm-botao cm-botao--p" href="#portal">Portal</a><a class="cm-botao cm-botao--p" href="#superadmin">Superadmin</a><a class="cm-botao cm-botao--p" href="#mapa">Mapa completo</a><a class="cm-botao cm-botao--p" href="#teclado">Teclado</a>
+  </div>
+  <p class="porque"><b>Resolvemos fazer assim porque</b> o dono decidiu o Modelo D em 24/09 inspirado no ERP que as administradoras já usam, e o Odoo e o Salesforce mostram que duas barras no topo (troca de aplicativo e menu do aplicativo) aguentam muitas telas sem comer a largura que o atendimento de três colunas precisa. Refinamos quatro coisas: a marca do cliente ganhou a testeira, a pesquisa saiu do canto e virou a peça central da barra de cima (Linear, Slack e GitHub fazem assim), a barra de menu começa pelos favoritos fixados (Jira "Starred") e mostra só os grupos do papel da pessoa, com "6 de 11 módulos" e Ajustar (Zoho One "Spaces"). Enviamos para aprovação, lado a lado com o trilho lateral da V1.</p>
+</section>
+
+<section class="sec" id="desenho">
+  <h2>Desenho</h2>
+<div class="desenho">┌──────────────────────┬────────────────────────────────────────────┬──────────────────────┐  fio da marca 3px
+│ [A] Administradora…  │  [ Pesquisar telas, clientes, chamados… Ctrl K ] │ ⇄  sino 3  ⚙  avatar●│  barra de cima 48px
+├──────────────────────┴────────────────────────────────────────────┴──────────────────────┤
+│ ★ Favoritos [Conversas][Chamados][OS] │ CS▾ Operações▾ Suporte▾ Academy▾ Cultura▾ … │ 6 de 11 módulos  Ajustar │  barra de menu 42px
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│ Suporte › Atendimento › Conversas › Chamado 48213                         14 de 63  ↑ ↓   │  trilha 36px
+└──────────────────────────────────────────────────────────────────────────────────────────┘
+   testeira na cor do cliente     grupo atual sublinhado em latão     a cascata abre por clique</div>
+  <div class="rolar"><table class="tab" style="margin-top:12px"><thead><tr><th>Peça</th><th>Regra</th></tr></thead><tbody>
+    <tr><td>Testeira</td><td>Logo e nome do cliente na cor dele, 232px ou mais. O clique volta ao Início. No portal, o topo inteiro é a marca; na superadmin, a testeira é do GACO (grafite e latão).</td></tr>
+    <tr><td>Pesquisa (Ctrl K)</td><td>Peça central. Acha tela, registro e ação. Abaixo de 1100px vira lupa; no celular fica na barra inferior.</td></tr>
+    <tr><td>Troca de cliente</td><td>Só aparece para quem tem mais de um cliente (regra de 24/09) e para a superadmin.</td></tr>
+    <tr><td>Sino</td><td>Abas Tudo, Menções, Aprovações, Sistema. Ação no item (Aceitar a troca). Contador em latão: é "para você".</td></tr>
+    <tr><td>Engrenagem</td><td>Configuração em cascata: Empresa, Integrações, Sistema.</td></tr>
+    <tr><td>Avatar</td><td>Presença no padrão Teams (forma, cor e palavra), mensagem de status, tema, densidade, perfil, atalhos, sair.</td></tr>
+    <tr><td>Favoritos</td><td>Fixados pela pessoa (começam pelos do papel). Abaixo de 1280px só o ícone, com o nome na dica.</td></tr>
+    <tr><td>Grupos</td><td>Só os do papel. Sem "Mais", sem rolagem horizontal. Abaixo de 900px vão para a gaveta.</td></tr>
+    <tr><td>Cascata</td><td>No máximo dois níveis (grupo › bloco › telas). Abre por clique; com um menu aberto, passar o mouse troca de grupo; o bloco abre pousando 200ms. Grupo com até 8 telas abre em lista direta.</td></tr>
+    <tr><td>Trilha</td><td>Grupo › bloco › tela › registro, clicável. "14 de 63" com J e K quando a tela veio de uma lista.</td></tr>
+    <tr><td>Rodapé de atalhos</td><td>Opcional, só em tela de trabalho (Conversas, fila). Some abaixo de 900px.</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="sec" id="cascata">
+  <h2>Cascata de dois níveis</h2>
+  <div class="palco"><iframe title="Cascata do CS aberta" style="height:420px" data-cena='{"grupo":"CS","tela":"Clientes","papel":"CS","registro":"Cond. Parque das Águas","navegar":"14 de 63"}' data-abrir="grupo:CS"></iframe></div>
+  <p class="legenda-palco">CS tem 6 blocos e 31 telas: blocos à esquerda com a contagem, telas à direita. O bloco da tela atual já vem aberto.</p>
+  <div class="palco"><iframe title="Projetos em lista direta" style="height:380px" data-cena='{"grupo":"Projetos","tela":"Meus projetos","papel":"CS"}' data-abrir="grupo:Projetos"></iframe></div>
+  <p class="legenda-palco">Projetos tem 8 telas: abre em lista direta, sem o nível de bloco.</p>
+  <div class="palco"><iframe title="Configuração pela engrenagem" style="height:500px" data-cena='{"grupo":"Configuração","tela":"Marca e personalização","papel":"Diretoria"}' data-abrir="config"></iframe></div>
+  <p class="legenda-palco">Configuração pela engrenagem, com os grupos de uma diretora (11 de 11 módulos).</p>
+</section>
+
+<section class="sec" id="paleta">
+  <h2>Pesquisa, Ctrl K</h2>
+  <div class="palcos" style="grid-template-columns:1fr 1fr">
+    <div class="palco"><iframe title="Paleta vazia" style="height:520px;width:900px" data-cena='{"grupo":"Suporte","tela":"Conversas","papel":"Atendimento"}' data-abrir="paleta"></iframe></div>
+    <div class="palco"><iframe title="Paleta com resultados" style="height:520px;width:900px" data-cena='{"grupo":"Suporte","tela":"Conversas","papel":"Diretoria"}' data-abrir="paleta:par"></iframe></div>
+  </div>
+  <p class="legenda-palco">Vazia: Recentes e Ações. Digitando: Telas (com o caminho), Registros (com o tipo) e Ações. ">" filtra só ações. A busca ignora acento.</p>
+  <p class="porque"><b>Resolvemos fazer assim porque</b> o Linear, o Slack, o GitHub e o Notion usam Ctrl K para "ir para qualquer lugar", e o livro registra que achar a tela pelo nome era a queixa nº 1 da auditoria (issue #119). Enviamos para aprovação.</p>
+</section>
+
+<section class="sec" id="sino">
+  <h2>Sino</h2>
+  <div class="palco"><iframe title="Sino aberto" style="height:620px" data-cena='{"grupo":"Suporte","tela":"Conversas","papel":"Atendimento","sino":3}' data-abrir="sino"></iframe></div>
+  <p class="porque"><b>Resolvemos fazer assim porque</b> o GitHub, o Linear Inbox e o Teams separam menções e aprovações do resto e deixam agir no próprio item; o "Para você" da Home usa a mesma lógica. Enviamos para aprovação.</p>
+</section>
+
+<section class="sec" id="conta">
+  <h2>Conta e presença</h2>
+  <div class="palcos">
+    <div class="palco"><iframe title="Menu da conta, escuro" style="height:600px;width:700px" data-cena='{"grupo":"Suporte","tela":"Conversas","papel":"Atendimento","usuario":{"nome":"Beatriz Nogueira","iniciais":"BN","cargo":"Atendente, Suporte","presenca":"disponivel","tom":2}}' data-abrir="conta"></iframe></div>
+    <div class="palco"><iframe title="Menu da conta, claro, ausente" style="height:600px;width:700px" data-tema="light" data-cena='{"grupo":"CS","tela":"Clientes","papel":"CS","usuario":{"nome":"Rodrigo Mello","iniciais":"RM","cargo":"Gerente de CS","presenca":"ausente","tom":4}}' data-abrir="conta"></iframe></div>
+  </div>
+  <div class="rolar"><table class="tab"><thead><tr><th>Presença</th><th>Forma</th><th>Cor</th><th>Quando</th></tr></thead><tbody id="presencas"></tbody></table></div>
+  <p class="porque"><b>Resolvemos fazer assim porque</b> é o padrão do Microsoft Teams, que a equipe da administradora usa: cada presença tem forma própria (tique, traço, relógio, X) além da cor, então quem não distingue verde de vermelho também lê. "Em atendimento" é a única presença nova, para o Suporte. Enviamos para aprovação.</p>
+</section>
+
+<section class="sec" id="cliente">
+  <h2>Troca de cliente e ajuste do menu</h2>
+  <div class="palcos" style="grid-template-columns:1fr 1fr">
+    <div class="palco"><iframe title="Troca de cliente" style="height:420px;width:900px" data-cena='{"grupo":"CS","tela":"Clientes","papel":"CS","clientes":true}' data-abrir="cliente"></iframe></div>
+    <div class="palco"><iframe title="Ajustar menu" style="height:620px;width:900px" data-cena='{"grupo":"CS","tela":"Clientes","papel":"CS"}' data-abrir="ajustar"></iframe></div>
+  </div>
+</section>
+
+<section class="sec" id="celular">
+  <h2>Celular e tablet</h2>
+  <p>Até 599px: barra de cima com menu, marca, lupa, sino e avatar; barra inferior com cinco destinos (Início, o favorito do papel, Pesquisar, Avisos, Menu); gaveta com Recentes, Favoritos e módulos em acordeão. De 600 a 899px: os grupos vão para a gaveta e os favoritos ficam na barra de menu.</p>
+  <div class="palcos">
+    <div class="cel"><iframe title="Celular, tela" data-cena='{"grupo":"Suporte","tela":"Conversas","papel":"Atendimento"}'></iframe><p class="legenda-palco">Tela com barra inferior</p></div>
+    <div class="cel"><iframe title="Celular, gaveta" data-cena='{"grupo":"Suporte","tela":"Conversas","papel":"Atendimento"}' data-abrir="gaveta"></iframe><p class="legenda-palco">Gaveta, grupo atual aberto</p></div>
+    <div class="cel"><iframe title="Celular, pesquisa" data-tema="light" data-cena='{"grupo":"CS","tela":"Clientes","papel":"CS"}' data-abrir="paleta:marina"></iframe><p class="legenda-palco">Pesquisa no celular, tema claro</p></div>
+  </div>
+  <div class="palco" style="margin-top:16px"><iframe title="Tablet" style="height:420px;width:820px" data-cena='{"grupo":"Financeiro","tela":"Contas a receber","papel":"Financeiro"}'></iframe></div>
+  <p class="legenda-palco">Tablet, 820px: favoritos e botão Menu; os grupos estão na gaveta.</p>
+  <p class="porque"><b>Resolvemos fazer assim porque</b> o Teams, o Slack e os apps de banco que o síndico já usa põem os destinos principais embaixo, ao alcance do polegar, e deixam o resto numa gaveta; o livro já define a gaveta com Recentes e grupos em acordeão (Modelo D, ~900px). Enviamos para aprovação.</p>
+</section>
+
+<section class="sec" id="portal">
+  <h2>Portal do cliente (síndico, morador, conselheiro)</h2>
+  <div class="palco"><iframe title="Portal no computador" style="height:360px" data-tema="light" data-cena='{"contexto":"portal","tela":"Chamados","unidade":"Bl B Ap 1204"}'></iframe></div>
+  <div class="palcos" style="margin-top:16px">
+    <div class="cel"><iframe title="Portal celular claro" data-tema="light" data-cena='{"contexto":"portal","tela":"Início"}'></iframe><p class="legenda-palco">Alpha, claro</p></div>
+    <div class="cel"><iframe title="Portal celular Vértice escuro" data-tema="dark" data-marca="vertice" data-cena='{"contexto":"portal","tela":"Boletos"}'></iframe><p class="legenda-palco">Vértice, escuro</p></div>
+    <div class="cel"><iframe title="Portal gaveta Mais" data-tema="light" data-marca="lar" data-cena='{"contexto":"portal","tela":"Chamados"}' data-abrir="gaveta"></iframe><p class="legenda-palco">Lar, "Mais" aberto</p></div>
+  </div>
+  <div class="rolar"><table class="tab" style="margin-top:12px"><thead><tr><th>Lugar</th><th>Itens</th></tr></thead><tbody id="portal-itens"></tbody></table></div>
+  <p class="porque"><b>Resolvemos fazer assim porque</b> a Superlógica (Área do Condômino) e os apps de banco organizam o portal por tarefa (boleto, reserva, chamado) e não por módulo, e o livro já define que o portal nunca mostra os módulos internos (TelaPortal). A marca do cliente é dona do topo e do botão principal; a plaqueta vira texto. Enviamos para aprovação.</p>
+</section>
+
+<section class="sec" id="superadmin">
+  <h2>Superadmin (plataforma)</h2>
+  <div class="palco"><iframe title="Superadmin dentro de um cliente" style="height:420px" data-cena='{"contexto":"superadmin","tela":"Acessos em nome do cliente","emNomeDe":{"cliente":"Administradora Alpha","motivo":"chamado 48213, boleto duplicado","expira":"42 min"}}' data-abrir="grupo:Clientes"></iframe></div>
+  <div class="palco"><iframe title="Homologação" style="height:200px" data-tema="light" data-cena='{"grupo":"Suporte","tela":"Conversas","papel":"Atendimento","homologacao":true}'></iframe></div>
+  <p class="porque"><b>Resolvemos fazer assim porque</b> o Salesforce ("Logged in as"), o Zendesk e o Stripe (modo de teste) mostram uma faixa fixa, impossível de ignorar, quando alguém age em nome de outro ou fora da produção. A faixa da superadmin diz quem, em qual cliente, por qual motivo e até quando, e tem o botão para sair. Enviamos para aprovação.</p>
+</section>
+
+<section class="sec" id="mapa">
+  <h2>Mapa completo: grupos, blocos e telas</h2>
+  <p>Taxonomia do menu.ts (livro consolidado), com os nomes consagrados do A5: "Chamados" no lugar de Tickets, Chamados internos e Chamados sem cliente; "Respostas rápidas" no lugar de Macros; "Negócios" no Comercial e "Negociações" no CS; "Contas a receber" e "Contas a pagar"; Academy com Portal do aluno, Disciplinas, Boletim e Histórico; "Carreira e desenvolvimento" na Cultura; sem "&".</p>
+  <div class="mapa" id="mapa-interno"></div>
+  <h3>Configuração (engrenagem)</h3><div class="mapa" id="mapa-config"></div>
+  <h3>Plataforma (superadmin)</h3><div class="mapa" id="mapa-plataforma"></div>
+  <h3>Grupos por papel</h3>
+  <div class="rolar"><table class="tab"><thead><tr><th>Papel</th><th>Grupos visíveis</th><th>Favoritos iniciais</th><th>Barra inferior</th></tr></thead><tbody id="papeis"></tbody></table></div>
+</section>
+
+<section class="sec" id="teclado">
+  <h2>Teclado</h2>
+  <div class="rolar"><table class="tab"><thead><tr><th>Onde</th><th>Tecla</th><th>Faz</th></tr></thead><tbody>
+    <tr><td>Qualquer tela</td><td><kbd class="cm-tecla">Ctrl</kbd> <kbd class="cm-tecla">K</kbd></td><td>Abre a pesquisa</td></tr>
+    <tr><td>Qualquer tela</td><td><kbd class="cm-tecla">?</kbd></td><td>Lista de atalhos</td></tr>
+    <tr><td>Barra de menu</td><td><kbd class="cm-tecla">←</kbd> <kbd class="cm-tecla">→</kbd></td><td>Anda entre os grupos (com um menu aberto, troca o menu)</td></tr>
+    <tr><td>Grupo</td><td><kbd class="cm-tecla">Enter</kbd> <kbd class="cm-tecla">Espaço</kbd> <kbd class="cm-tecla">↓</kbd></td><td>Abre a cascata e foca o primeiro item</td></tr>
+    <tr><td>Cascata</td><td><kbd class="cm-tecla">↑</kbd> <kbd class="cm-tecla">↓</kbd></td><td>Anda na coluna</td></tr>
+    <tr><td>Cascata</td><td><kbd class="cm-tecla">→</kbd> / <kbd class="cm-tecla">←</kbd></td><td>Entra nas telas do bloco / volta ao bloco</td></tr>
+    <tr><td>Menus e painéis</td><td><kbd class="cm-tecla">Esc</kbd></td><td>Fecha e devolve o foco ao botão que abriu</td></tr>
+    <tr><td>Pesquisa</td><td><kbd class="cm-tecla">↑</kbd> <kbd class="cm-tecla">↓</kbd> <kbd class="cm-tecla">Enter</kbd></td><td>Escolhe e abre; <kbd class="cm-tecla">&gt;</kbd> no começo filtra ações</td></tr>
+    <tr><td>Registro aberto de uma lista</td><td><kbd class="cm-tecla">J</kbd> <kbd class="cm-tecla">K</kbd></td><td>Próximo e anterior ("14 de 63")</td></tr>
+  </tbody></table></div>
+</section>
+</main>
+<script>
+(function(){
+  /* cenas: cada iframe recebe a moldura com uma configuração e um menu aberto */
+  [].forEach.call(document.querySelectorAll('iframe[data-cena]'),function(f){
+    var tema=f.getAttribute('data-tema')||document.documentElement.getAttribute('data-theme');
+    var u='exemplos/moldura.html?theme='+tema+'&brand='+(f.getAttribute('data-marca')||'alpha')+'&cfg='+encodeURIComponent(f.getAttribute('data-cena'))+(f.getAttribute('data-abrir')?'&abrir='+encodeURIComponent(f.getAttribute('data-abrir')):'');
+    f.src=u;
+  });
+  var esc=function(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})};
+  function mapa(lista,id){document.getElementById(id).innerHTML=lista.map(function(g){var n=0;g.blocos.forEach(function(b){n+=b.telas.length});
+    return '<div class="g"><h4>'+cmIcone(g.icone)+esc(g.grupo)+'<span>'+n+' telas</span></h4>'+g.blocos.map(function(b){return (g.blocos.length>1?'<div class="b">'+esc(b.bloco)+'</div>':'')+'<ul>'+b.telas.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul>'}).join('')+'</div>'}).join('')}
+  mapa(CM_MAPA,'mapa-interno');mapa([CM_CONFIGURACAO],'mapa-config');mapa(CM_PLATAFORMA,'mapa-plataforma');
+  document.getElementById('papeis').innerHTML=Object.keys(CM_PAPEIS).map(function(k){var p=CM_PAPEIS[k];return '<tr><td><b>'+k+'</b></td><td>'+p.grupos.join(', ')+' <span class="cm-texto-3">('+p.grupos.length+' de '+CM_MAPA.length+')</span></td><td>'+p.favoritos.join(', ')+'</td><td>'+p.inferior+'</td></tr>'}).join('');
+  var forma={disponivel:'Círculo verde com tique',ocupado:'Círculo vermelho cheio','em-atendimento':'Círculo vermelho com fone','nao-incomodar':'Círculo vermelho com traço',ausente:'Círculo âmbar com relógio',offline:'Círculo vazado com X'};
+  var quando={disponivel:'Pode receber conversa e chamada',ocupado:'Em reunião ou tarefa; recebe, mas não responde já','em-atendimento':'Na fila do Suporte; a distribuição conta com ela','nao-incomodar':'Silencia notificações, menos as urgentes',ausente:'Saiu por pouco tempo; entra sozinha após 10 min parada',offline:'Aparece offline mesmo conectada'};
+  document.getElementById('presencas').innerHTML=CM_PRESENCAS.map(function(p){return '<tr><td><span class="cm-presenca-texto" style="color:var(--cm-texto-1)">'+cmPresenca(p[0])+p[1]+'</span></td><td>'+forma[p[0]]+'</td><td>'+(p[0]==='disponivel'?'Verde':p[0]==='ausente'?'Âmbar':p[0]==='offline'?'Cinza':'Vermelho')+'</td><td>'+quando[p[0]]+'</td></tr>'}).join('');
+  document.getElementById('portal-itens').innerHTML='<tr><td>Topo (computador)</td><td>'+CM_PORTAL.principal.map(function(x){return x[0]}).join(', ')+'</td></tr><tr><td>Barra inferior (celular)</td><td>'+CM_PORTAL.barra.map(function(x){return x[0]}).join(', ')+', Mais</td></tr><tr><td>Mais (gaveta)</td><td>'+CM_PORTAL.mais.map(function(x){return x[0]}).join(', ')+'</td></tr>';
+  document.addEventListener('cm:tema',function(e){[].forEach.call(document.querySelectorAll('iframe[data-cena]:not([data-tema])'),function(f){f.src=f.src.replace(/theme=\w+/,'theme='+e.detail.tema)})});
+})();
+</script>
+</body>
+</html>
