@@ -72,6 +72,7 @@ var MODULOS = {
   operacoes:{nome:"Operações",curto:"Operações",icone:"chave-inglesa",secoes:[
     {nome:"Ordens de serviço",itens:["Todas as OS","Preventivas","Corretivas","Calendário de preventivas"]},
     {nome:"Reservas",itens:["Agenda de reservas","Áreas comuns reserváveis","Regras de uso"]},
+    {nome:"Portaria",itens:["Visitantes","Encomendas","Chaves"]},
     {nome:"Ativos",itens:["Áreas comuns","Equipamentos"]},
     {nome:"Suprimentos",itens:["Estoque","Compras"]},
     {nome:"Contratos",itens:["Contratos de fornecedor","Licenças e alvarás","Fornecedores"]}]},
