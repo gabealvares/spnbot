@@ -20,11 +20,12 @@
 .fin-resumo{font-size:13px;color:var(--cm-texto-2);padding:4px 0 8px}
 .fin-resumo b{color:var(--cm-texto-1);font-weight:650}
 .fin-cobranca{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;margin-top:12px;align-items:start}
-.fin-pagar{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:0;border:1px solid var(--cm-filete);margin-top:8px;min-height:640px}
+.fin-pagar{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:0;border:1px solid var(--cm-filete);margin-top:8px}
 .fin-pagar>.cm-tabela-caixa{border:0;border-right:1px solid var(--cm-filete)}
 .fin-pagar__previa{background:var(--cm-camada-1);display:flex;flex-direction:column;min-width:0}
 .fin-aprov{list-style:none;margin:0;padding:0}
 .fin-aprov li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px dotted var(--cm-filete);font-size:13px}
+@media (max-width:599px){ .fin-oculta-cel{display:none} }
 @media (max-width:1099px){ .fin-cobranca,.fin-pagar{grid-template-columns:minmax(0,1fr)} .fin-pagar>.cm-tabela-caixa{border-right:0;border-bottom:1px solid var(--cm-filete)} }
 </style>
 </head>
@@ -123,7 +124,7 @@
             <caption class="cm-sr">Cobranças do Cond. Parque das Águas, setembro e outubro de 2026, agrupadas por bloco</caption>
             <thead><tr>
               <th class="cm-tabela__marcar cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar todas as linhas visíveis" id="rec-todos"><span class="cm-marcar__caixa"></span></label></th>
-              <th>Nº</th>
+              <th class="fin-oculta-cel">Nº</th>
               <th>Unidade e pagador</th>
               <th>Competência</th>
               <th aria-sort="ascending"><button class="cm-ordenar" type="button">Vencimento<i data-i="seta-cima"></i></button></th>
@@ -431,7 +432,7 @@ R.forEach(function(r,i){
   if(r[0]!==grupo){grupo=r[0];h+='<tr class="cm-tabela__grupo"><td class="cm-tabela__fixa"></td><td colspan="10"><button type="button" aria-expanded="true" data-grupo="'+grupo+'"><i data-i="chevron-baixo"></i>Bloco '+grupo+'</button><span class="cm-tabela__grupo-soma">'+somas[grupo].n+' cobranças, '+brl(somas[grupo].v)+'</span></td></tr>'}
   var e=encargos(r[5],r[6]);tv+=r[5];tm+=e;
   h+='<tr data-bloco="'+r[0]+'" data-total="'+(r[5]+e)+'"'+(r[1]==='Bl B Ap 1204'?' class="is-atual"':'')+'><td class="cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar '+r[1]+'"><span class="cm-marcar__caixa"></span></label></td>'+
-    '<td class="cm-texto-2">'+r[8]+'</td><td class="cm-tabela__principal"><a href="#t-cobranca">'+r[1]+'</a><span class="cm-tabela__sub">'+r[2]+'</span></td><td>'+r[3]+'</td><td>'+r[4]+'/2026</td>'+
+    '<td class="cm-texto-2 fin-oculta-cel">'+r[8]+'</td><td class="cm-tabela__principal"><a href="#t-cobranca">'+r[1]+'</a><span class="cm-tabela__sub">'+r[2]+'</span></td><td>'+r[3]+'</td><td>'+r[4]+'/2026</td>'+
     '<td class="cm-num">'+brl(r[5])+'</td><td class="cm-num'+(e?'':' cm-texto-3')+'">'+(e?brl(e):'—')+'</td><td class="cm-num cm-forte">'+brl(r[5]+e)+'</td><td>'+situacao(r[6])+'</td><td>'+r[7]+'</td>'+
     '<td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações da cobrança '+r[1]+'"><i data-i="mais-opcoes"></i></button></td></tr>';
 });

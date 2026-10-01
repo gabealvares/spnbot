@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cond. Parque das Águas, renovação</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+<style>
+/* layout local da ficha */
+.p2-col-cab{display:flex;align-items:center;gap:8px;padding:14px var(--esp-6) 6px}
+.p2-col-cab h2{font:var(--t-subsecao);flex:1;margin:0}
+.p2-rel{padding:0 var(--esp-5) var(--esp-4);border-bottom:var(--borda-1)}
+.p2-rel .lc-lista>li{padding:8px 0;min-height:0}
+.p2-meio-abas{position:sticky;top:0;z-index:2;background:var(--fundo);margin:0 calc(-1*var(--esp-7));padding:0 var(--esp-7)}
+.p2-compositor{margin:16px 0 20px;background:var(--sup-1);border:var(--borda-1)}
+.p2-compositor .lc-abas{padding:0 8px}
+.p2-compositor textarea{border:0;border-radius:0;min-height:64px}
+.p2-compositor textarea:focus{outline-offset:-2px}
+.p2-compositor__pe{display:flex;align-items:center;gap:8px;padding:6px 8px;border-top:var(--borda-1)}
+.p2-etapa-pop{width:360px}
+.lc-cab-registro__titulo .p2-sub{display:block;font:var(--t-pequeno);color:var(--texto-2);margin-top:2px}
+.p2-etapas-saida{display:flex;gap:6px;align-items:center}
+@media (max-width:899px){.p2-meio-abas{margin:0 -16px;padding:0 16px}.lc-etapas-cont{flex-wrap:wrap}.lc-etapas{width:100%}}
+</style>
+</head>
+<body data-moldura='{"modulo":"cs","secao":"Contratos","item":"Renovações","papel":"gerente-cs","fixa":true,"trilha":["Renovações","Cond. Parque das Águas"]}'>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+/* Antes da moldura montar: trilha e "14 de 63" a partir do conjunto de onde a pessoa veio */
+(function(){
+  var P=LCP2, u=new URLSearchParams(location.search), id=u.get("id")||"2026-0412", c=P.contrato(id);
+  var cj=P.conjunto.ler()||{ids:P.CONTRATOS.map(function(x){return x.id;}),rotulo:"Renovações: reajuste em outubro",volta:"p2-lista.html"};
+  var i=cj.ids.indexOf(c.id); if(i<0){ cj={ids:P.CONTRATOS.map(function(x){return x.id;}),rotulo:"Renovações",volta:"p2-lista.html"}; i=cj.ids.indexOf(c.id); }
+  var ant=cj.ids[i-1], prox=cj.ids[i+1];
+  window.P2REG={c:c,cj:cj,i:i,ant:ant,prox:prox};
+  var pag='<span class="lc-paginador" aria-label="Posição na lista">'+
+    (ant?'<a class="lc-btn lc-btn--icone lc-btn--discreto" href="p2-registro.html?id='+ant+'" aria-label="Anterior: '+P.esc(P.contrato(ant).nome)+'" data-dica="Anterior (K)" rel="prev"><i data-i="chevron-esquerda"></i></a>':'<button class="lc-btn lc-btn--icone lc-btn--discreto" disabled aria-label="Não há anterior"><i data-i="chevron-esquerda"></i></button>')+
+    '<span><b>'+(i+1)+'</b> de '+cj.ids.length+'</span>'+
+    (prox?'<a class="lc-btn lc-btn--icone lc-btn--discreto" href="p2-registro.html?id='+prox+'" aria-label="Próximo: '+P.esc(P.contrato(prox).nome)+'" data-dica="Próximo (J)" rel="next"><i data-i="chevron-direita"></i></a>':'<button class="lc-btn lc-btn--icone lc-btn--discreto" disabled aria-label="Não há próximo"><i data-i="chevron-direita"></i></button>')+'</span>';
+  var cfg=JSON.parse(document.body.getAttribute("data-moldura"));
+  cfg.trilha=["Renovações",c.nome]; cfg.acaoTrilha=pag;
+  document.body.setAttribute("data-moldura",JSON.stringify(cfg));
+  document.title=c.nome+", renovação";
+})();
+</script>
+<main id="conteudo" class="lc-modelo-registro">
+  <header class="lc-cab-registro">
+    <div class="lc-cab-registro__titulo">
+      <span class="lc-ladrilho lc-ladrilho--40"><i data-i="contrato"></i></span>
+      <div style="min-width:0"><h1 id="r-nome">Cond. Parque das Águas</h1><span class="p2-sub" id="r-sub">Contrato de administração 2026-0412, renovação de 2026</span></div>
+      <button type="button" class="lc-btn lc-btn--icone lc-btn--discreto lc-estrela" aria-pressed="false" aria-label="Adicionar aos favoritos" data-dica="Favoritar" id="estrela"><i data-i="estrela"></i></button>
+      <div class="lc-cab-registro__acoes" data-menu-ancora>
+        <a class="lc-btn" href="p2-impressao.html"><i data-i="documento"></i>Ver aditivo</a>
+        <button type="button" class="lc-btn lc-btn--principal" id="enviar-sindico"><i data-i="enviar"></i>Enviar ao síndico</button>
+        <span><button type="button" class="lc-btn lc-btn--icone" id="mais" aria-label="Mais ações do contrato" aria-haspopup="menu" aria-expanded="false"><i data-i="mais-opcoes"></i></button></span>
+        <button type="button" class="lc-btn" id="historico" aria-haspopup="dialog"><i data-i="recentes"></i>Histórico</button>
+      </div>
+    </div>
+    <div class="lc-cab-registro__meta">
+      <span>Síndica <b id="r-sindico">Marina Costa</b></span><span id="r-unid">120 unidades, São Paulo</span>
+      <span>Atualizado por Rafael Lima às 09:58</span>
+    </div>
+    <dl class="lc-campos-chave">
+      <div><dt>Valor atual</dt><dd id="k-valor">R$ 4.380,00</dd></div>
+      <div><dt>Novo valor</dt><dd id="k-novo">R$ 4.620,00</dd></div>
+      <div><dt>Índice</dt><dd id="k-indice">IGP-M, 5,48%</dd></div>
+      <div><dt>Reajuste em</dt><dd id="k-data">14/10/2026</dd></div>
+      <div><dt>Vigência</dt><dd>até 31/10/2027</dd></div>
+      <div><dt>Saúde do cliente</dt><dd><span class="lc-estado lc-estado--aviso lc-estado--forte">62, Atenção</span></dd></div>
+    </dl>
+    <div class="lc-etapas-cont" style="padding:4px 0 0">
+      <ol class="lc-etapas" id="etapas" aria-label="Etapas da renovação"></ol>
+      <div class="p2-etapas-saida" data-menu-ancora>
+        <button type="button" class="lc-btn" id="avancar"></button>
+        <button type="button" class="lc-btn lc-btn--discreto" id="cancelar-renov">Cancelar renovação</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="lc-modelo-registro__corpo">
+    <aside class="lc-modelo-registro__col lc-modelo-registro__col--esq" aria-label="Dados do contrato" id="esq">
+      <section class="lc-secao-reg" aria-labelledby="s-sobre">
+        <div class="lc-secao-reg__cab"><h3 id="s-sobre">Acompanhamento</h3></div>
+        <dl class="lc-props">
+          <dt>Responsável</dt><dd><button type="button" class="lc-celula-edit" data-edita="pessoa" data-rotulo="Responsável" data-opcoes='["Letícia Araújo","Rafael Lima","Carla Mendes","Bruno Tavares"]' id="f-resp">Letícia Araújo</button></dd>
+          <dt>Retornar ao síndico</dt><dd><button type="button" class="lc-celula-edit" data-edita="data" data-rotulo="Retornar ao síndico" data-valor="08/10/2026">08/10/2026</button></dd>
+          <dt>Canal preferido</dt><dd><button type="button" class="lc-celula-edit" data-edita="lista" data-rotulo="Canal preferido" data-opcoes='["WhatsApp","E-mail","Telefone","Reunião presencial"]'>WhatsApp</button></dd>
+          <dt>Observação curta</dt><dd><button type="button" class="lc-celula-edit" data-edita="texto" data-rotulo="Observação curta">Assembleia em 20/10 vota o reajuste</button></dd>
+        </dl>
+      </section>
+
+      <section class="lc-secao-reg" data-secao="Vigência e valores" aria-labelledby="s-vig">
+        <div class="lc-secao-reg__cab"><h3 id="s-vig">Vigência e valores</h3><button type="button" class="lc-btn lc-btn--discreto lc-btn--p lc-btn--icone" data-editar-secao aria-label="Editar Vigência e valores" aria-expanded="false" data-dica="Editar seção"><i data-i="editar"></i></button></div>
+        <div data-leitura><dl class="lc-props">
+          <dt>Valor mensal</dt><dd id="l-valor">R$ 4.380,00</dd>
+          <dt>Índice</dt><dd id="l-indice">IGP-M</dd>
+          <dt>Percentual</dt><dd id="l-pct">5,48%</dd>
+          <dt>Novo valor</dt><dd id="l-novo"><span class="lc-subtotal">R$ 4.620,00</span></dd>
+          <dt>Data do reajuste</dt><dd id="l-data">14/10/2026</dd>
+          <dt>Vencimento do boleto</dt><dd id="l-venc">Dia 10</dd>
+        </dl></div>
+        <div data-edicao hidden><div class="lc-form-grade lc-form-grade--1">
+          <div class="lc-campo"><label class="lc-rotulo" for="e-valor">Valor mensal <span class="lc-obrig" aria-hidden="true">*</span></label>
+            <div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">R$</span><input id="e-valor" class="lc-entrada lc-entrada--num" inputmode="decimal" value="4.380,00" data-campo="Valor mensal" aria-describedby="e-valor-a" required></div>
+            <p class="lc-antes" id="e-valor-a" hidden></p></div>
+          <div class="lc-campo"><label class="lc-rotulo" for="e-indice">Índice</label><select id="e-indice" class="lc-selecao" data-campo="Índice"><option selected>IGP-M</option><option>IPCA</option><option>INPC</option></select></div>
+          <div class="lc-campo"><label class="lc-rotulo" for="e-pct">Percentual</label><div class="lc-entrada-grupo"><input id="e-pct" class="lc-entrada lc-entrada--num" inputmode="decimal" value="5,48" data-campo="Percentual"><span class="lc-entrada-grupo__fixo">%</span></div><p class="lc-ajuda">IGP-M acumulado de 12 meses até agosto de 2026.</p></div>
+          <div class="lc-campo"><label class="lc-rotulo" for="e-data">Data do reajuste</label><input id="e-data" class="lc-entrada" type="date" value="2026-10-14" data-campo="Data do reajuste"></div>
+          <div class="lc-campo"><label class="lc-rotulo" for="e-venc">Vencimento do boleto</label><select id="e-venc" class="lc-selecao" data-campo="Vencimento do boleto"><option>Dia 5</option><option selected>Dia 10</option><option>Dia 15</option><option>Dia 20</option></select></div>
+        </div></div>
+      </section>
+
+      <section class="lc-secao-reg" data-secao="Partes e contatos" aria-labelledby="s-partes">
+        <div class="lc-secao-reg__cab"><h3 id="s-partes">Partes e contatos</h3><button type="button" class="lc-btn lc-btn--discreto lc-btn--p lc-btn--icone" data-editar-secao aria-label="Editar Partes e contatos" aria-expanded="false" data-dica="Editar seção"><i data-i="editar"></i></button></div>
+        <div data-leitura><dl class="lc-props">
+          <dt>Síndica</dt><dd id="l-sind">Marina Costa</dd>
+          <dt>Telefone</dt><dd id="l-tel">(11) 98412-7730</dd>
+          <dt>E-mail</dt><dd id="l-email">marina.costa@parquedasaguas.com.br</dd>
+          <dt>CNPJ</dt><dd>12.418.337/0001-09</dd>
+        </dl></div>
+        <div data-edicao hidden><div class="lc-form-grade lc-form-grade--1">
+          <div class="lc-campo"><label class="lc-rotulo" for="e-sind">Síndica</label><input id="e-sind" class="lc-entrada" value="Marina Costa" data-campo="Síndica"></div>
+          <div class="lc-campo"><label class="lc-rotulo" for="e-tel">Telefone</label><div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">+55</span><input id="e-tel" class="lc-entrada" type="tel" value="(11) 98412-7730" data-campo="Telefone"></div></div>
+          <div class="lc-campo"><label class="lc-rotulo" for="e-email">E-mail</label><input id="e-email" class="lc-entrada" type="email" value="marina.costa@parquedasaguas.com.br" data-campo="E-mail"></div>
+        </div></div>
+      </section>
+
+      <section class="lc-secao-reg" aria-labelledby="s-cob">
+        <div class="lc-secao-reg__cab"><h3 id="s-cob">Cobrança</h3><button type="button" class="lc-btn lc-btn--discreto lc-btn--p lc-btn--icone" aria-label="Editar Cobrança (sem permissão)" aria-disabled="true" data-dica="Só o Financeiro altera"><i data-i="bloquear"></i></button></div>
+        <dl class="lc-props"><dt>Forma</dt><dd>Boleto com Pix</dd><dt>Conta</dt><dd>Itaú, agência 0412</dd><dt>Multa e juros</dt><dd>2% e 1% ao mês</dd></dl>
+      </section>
+    </aside>
+
+    <section class="lc-modelo-registro__col lc-modelo-registro__col--meio" aria-label="Atividade e documentos" id="meio">
+      <div class="p2-meio-abas"><div class="lc-abas" role="tablist" aria-label="Conteúdo do contrato">
+        <button role="tab" type="button" aria-selected="true" aria-controls="t-ativ" id="a-ativ">Atividade <span class="lc-contagem">12</span></button>
+        <button role="tab" type="button" aria-selected="false" aria-controls="t-docs" id="a-docs">Documentos <span class="lc-contagem">4</span></button>
+        <button role="tab" type="button" aria-selected="false" aria-controls="t-bol" id="a-bol">Boletos <span class="lc-contagem">3</span></button>
+        <button role="tab" type="button" aria-selected="false" aria-controls="t-cham" id="a-cham">Chamados <span class="lc-contagem">2</span></button>
+      </div></div>
+      <div role="tabpanel" id="t-ativ" aria-labelledby="a-ativ">
+        <div class="p2-compositor">
+          <div class="lc-abas lc-abas--p" role="tablist" aria-label="Tipo de registro"><button role="tab" type="button" aria-selected="true">Nota interna</button><button role="tab" type="button" aria-selected="false">E-mail ao síndico</button><button role="tab" type="button" aria-selected="false">Tarefa</button></div>
+          <label for="nota" class="lc-sr">Escreva uma nota interna</label>
+          <textarea id="nota" class="lc-area-texto" placeholder="Escreva uma nota para a equipe. Use @ para mencionar alguém."></textarea>
+          <div class="p2-compositor__pe"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Anexar arquivo"><i data-i="anexo"></i></button><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Mencionar alguém"><i data-i="mencionar"></i></button><span class="lc-legenda lc-cresce" id="nota-rasc">Só a equipe vê. Rascunho guardado neste navegador.</span><button class="lc-btn lc-btn--p" type="button" id="publicar">Publicar nota</button></div>
+        </div>
+        <ol class="lc-atividade" id="atividade"></ol>
+        <div class="lc-carregar-mais"><span>Mostrando 8 de 12 registros</span><button class="lc-btn lc-btn--p" type="button" id="mais-ativ">Carregar mais 4</button></div>
+      </div>
+      <div role="tabpanel" id="t-docs" aria-labelledby="a-docs" hidden>
+        <ul class="lc-anexos" style="margin-top:16px">
+          <li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="documento"></i></span><span class="lc-anexo__nome">Aditivo de reajuste 2026 (minuta).pdf</span><span class="lc-anexo__info">Gerado pelo GACO em 29/09/2026, 2 páginas</span><span class="lc-anexo__acoes"><a class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" href="p2-impressao.html" aria-label="Abrir o aditivo"><i data-i="ver"></i></a></span></li>
+          <li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="contrato"></i></span><span class="lc-anexo__nome">Contrato de administração 2025, assinado.pdf</span><span class="lc-anexo__info">Enviado por Carla Mendes em 02/10/2025</span><span class="lc-anexo__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Baixar"><i data-i="baixar"></i></button></span></li>
+          <li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="ata"></i></span><span class="lc-anexo__nome">Ata da assembleia de 12/03/2026.pdf</span><span class="lc-anexo__info">Enviado por Marina Costa pelo portal</span><span class="lc-anexo__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Baixar"><i data-i="baixar"></i></button></span></li>
+          <li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="planilha"></i></span><span class="lc-anexo__nome">Cálculo do IGP-M, set 2025 a ago 2026.xlsx</span><span class="lc-anexo__info">Enviado por Rafael Lima em 26/09/2026</span><span class="lc-anexo__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Baixar"><i data-i="baixar"></i></button></span></li>
+        </ul>
+      </div>
+      <div role="tabpanel" id="t-bol" aria-labelledby="a-bol" hidden><div class="lc-tabela-cont" style="margin-top:16px"><table class="lc-tabela"><caption class="lc-sr">Boletos da taxa de administração</caption><thead><tr><th scope="col">Competência</th><th scope="col" class="lc-num">Valor</th><th scope="col">Vencimento</th><th scope="col">Situação</th></tr></thead><tbody>
+        <tr><td>Setembro de 2026</td><td class="lc-num">R$ 4.380,00</td><td>10/09/2026</td><td><span class="lc-estado lc-estado--sucesso">Pago em 09/09</span></td></tr>
+        <tr><td>Agosto de 2026</td><td class="lc-num">R$ 4.380,00</td><td>10/08/2026</td><td><span class="lc-estado lc-estado--sucesso">Pago em 10/08</span></td></tr>
+        <tr><td>Outubro de 2026</td><td class="lc-num">R$ 4.380,00</td><td>10/10/2026</td><td><span class="lc-estado lc-estado--andamento">Emitido</span></td></tr></tbody></table></div></div>
+      <div role="tabpanel" id="t-cham" aria-labelledby="a-cham" hidden><ul class="lc-lista lc-caixa" style="margin-top:16px">
+        <li><i data-i="chamado"></i><span class="lc-cresce"><a href="p2-conversa.html">Chamado 4.812, vazamento no bloco B</a><span class="lc-lista__sub">Aberto por Marina Costa pelo WhatsApp, há 2 dias</span></span><span class="lc-estado lc-estado--aviso">Aberto</span></li>
+        <li><i data-i="chamado"></i><span class="lc-cresce"><a href="p2-conversa.html">Chamado 4.790, reserva do salão de festas</a><span class="lc-lista__sub">Aberto por Paulo Henrique Dias pelo portal</span></span><span class="lc-estado lc-estado--neutro">Pendente</span></li></ul></div>
+    </section>
+
+    <aside class="lc-modelo-registro__col lc-modelo-registro__col--dir" aria-label="Relacionados">
+      <div class="p2-col-cab"><h2>Contatos <span class="lc-contagem">3</span></h2><button class="lc-btn lc-btn--discreto lc-btn--p" type="button" id="add-contato"><i data-i="mais"></i>Adicionar</button></div>
+      <div class="p2-rel"><ul class="lc-lista">
+        <li><span class="lc-av lc-av--32 lc-av--c4">MC</span><span class="lc-cresce"><b>Marina Costa</b><span class="lc-lista__sub">Síndica, assina o aditivo</span></span></li>
+        <li><span class="lc-av lc-av--32 lc-av--c6">PD</span><span class="lc-cresce"><b>Paulo Henrique Dias</b><span class="lc-lista__sub">Subsíndico</span></span></li>
+        <li><span class="lc-av lc-av--32 lc-av--c2">HP</span><span class="lc-cresce"><b>Helena Prado</b><span class="lc-lista__sub">Conselheira fiscal</span></span></li></ul></div>
+      <div class="p2-col-cab"><h2>Cliente</h2><button class="lc-btn lc-btn--discreto lc-btn--p" type="button" id="previa-cliente"><i data-i="ver"></i>Prévia</button></div>
+      <div class="p2-rel"><p style="font-size:13.5px;margin:0 0 6px"><a href="#" id="link-cliente">Cond. Parque das Águas</a></p><dl class="lc-props"><dt>Saúde</dt><dd><span class="lc-estado lc-estado--aviso">62, Atenção</span></dd><dt>Cliente desde</dt><dd>março de 2019</dd><dt>Gerente</dt><dd>Letícia Araújo</dd></dl></div>
+      <div class="p2-col-cab"><h2>Financeiro</h2></div>
+      <div class="p2-rel"><p style="font-size:13.5px;margin:0"><span class="lc-estado lc-estado--sucesso">Em dia</span></p><p class="lc-legenda" style="margin-top:4px">Nenhum boleto da taxa de administração vencido. Último pagamento em 09/09/2026.</p></div>
+    </aside>
+  </div>
+</main>
+
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2, $=P.$, $$=P.$$, esc=P.esc, R=window.P2REG, c=R.c, u=new URLSearchParams(location.search);
+var simular=u.get("simular");
+
+/* ---------- conteúdo do registro aberto ---------- */
+$("#r-nome").textContent=c.nome; $("#r-sub").textContent="Contrato de administração "+c.id+", renovação de 2026";
+$("#r-sindico").textContent=c.sindico; $("#r-unid").textContent=c.unidades+" unidades, "+c.cidade;
+$("#k-valor").textContent=P.moeda(c.valor); $("#k-novo").textContent=P.moeda(c.novo); $("#k-indice").textContent=c.indice+", "+P.num(c.pct,2)+"%"; $("#k-data").textContent=c.reajuste;
+$("#l-valor").textContent=P.moeda(c.valor); $("#e-valor").value=P.num(c.valor,2); $("#l-indice").textContent=c.indice; $("#e-indice").value=c.indice;
+$("#l-pct").textContent=P.num(c.pct,2)+"%"; $("#e-pct").value=P.num(c.pct,2); $("#l-novo").innerHTML='<span class="lc-subtotal">'+P.moeda(c.novo)+'</span>'; $("#l-data").textContent=c.reajuste;
+var dp=c.reajuste.split("/"); $("#e-data").value=dp[2]+"-"+dp[1]+"-"+dp[0]; $("#l-sind").textContent=c.sindico; $("#e-sind").value=c.sindico;
+$("#f-resp").textContent=P.PESSOAS[c.resp].nome;
+var prox=R.prox?P.contrato(R.prox):null;
+
+/* ---------- toast deixado pela tela anterior (salvar e próximo, excluir…) ---------- */
+var pend=P.guarda.sget("toast-pendente",null); if(pend){ sessionStorage.removeItem("toast-pendente"); setTimeout(function(){ P.toast(pend.txt,{tipo:"sucesso",acao:pend.acao}); },300); }
+
+/* ---------- edição: barra de salvar + Salvar ▾ ---------- */
+var ed=new P.Edicao({raiz:$("#esq"),onde:$("#conteudo"),objeto:"Contrato de administração",chave:"lc-salvar:renovacao",
+  opcoes:[{id:"salvar",t:"Salvar",sub:"Fica neste contrato.",ic:"salvar"},
+          {id:"proximo",t:"Salvar e ir para o próximo",curto:"Salvar e próximo",sub:prox?(R.i+2)+" de "+R.cj.ids.length+", "+prox.nome:"Este é o último da lista.",ic:"chevron-direita"},
+          {id:"voltar",t:"Salvar e voltar para a lista",curto:"Salvar e voltar",sub:R.cj.rotulo+", na mesma posição.",ic:"voltar-faixa"},
+          {id:"novo",t:"Salvar e criar outro contrato",curto:"Salvar e novo",sub:"Abre um contrato em branco.",ic:"mais"}],
+  aoMudar:function(m){ $$(".lc-secao-reg[data-secao]").forEach(function(s){ s.classList.toggle("lc-secao-reg--sujo",m.some(function(x){return s.contains(x.el);})); });
+    var v=$("#e-valor"), a=$("#e-valor-a"); if(m.some(function(x){return x.el===v;})){ a.hidden=false; a.innerHTML='Antes: <s>'+P.moeda(c.valor)+'</s>. Muda os boletos a partir de novembro.'; } else a.hidden=true; },
+  aoSalvar:function(m,modo){ return new Promise(function(ok,falha){ setTimeout(function(){
+    var vv=$("#e-valor").value.trim();
+    if(simular==="erro" || !vv || isNaN(P.lerMoeda(vv))){ simular=null; var e=$("#e-valor"); e.setAttribute("aria-invalid","true");
+      var pe=$("#e-valor-e"); if(!pe){ pe=document.createElement("p"); pe.className="lc-erro"; pe.id="e-valor-e"; e.closest(".lc-campo").appendChild(pe); e.setAttribute("aria-describedby","e-valor-a e-valor-e"); }
+      pe.innerHTML=P.lcIc?'':lcIcone("erro")+'Informe o valor mensal em reais, por exemplo 4.620,00.';
+      e.focus(); return falha({tipo:"validacao",erros:[{campo:"Valor mensal",id:"e-valor"}]}); }
+    if(simular==="rede"){ simular=null; return falha({tipo:"rede"}); }
+    if(simular==="conflito"){ simular=null; conflito(m,ok,falha); return; }
+    var pe2=$("#e-valor-e"); if(pe2) pe2.remove(); $("#e-valor").removeAttribute("aria-invalid");
+    aplicar(m); ok(); depois(modo,m);
+  },500); }); }
+});
+P.guardarSaida(ed);
+P.secoes($("#esq"),ed);
+P.campos($("#esq"),{aoGravar:function(rot,antes,depois,b,desfeito){ ativ("editar",rot+(desfeito?" voltou para ":" alterado para ")+depois,"Letícia Araújo"); }});
+
+function aplicar(m){
+  m.forEach(function(x){ var id=x.el.id, v=x.depois;
+    if(id==="e-valor"){ var n=P.lerMoeda(v); $("#l-valor").textContent=P.moeda(n); $("#k-valor").textContent=P.moeda(n); x.el.value=P.num(n,2); }
+    if(id==="e-indice"){ $("#l-indice").textContent=v; }
+    if(id==="e-pct"){ $("#l-pct").textContent=v+"%"; }
+    if(id==="e-data"){ var q=v.split("-"); $("#l-data").textContent=q[2]+"/"+q[1]+"/"+q[0]; $("#k-data").textContent=$("#l-data").textContent; }
+    if(id==="e-venc"){ $("#l-venc").textContent=v; }
+    if(id==="e-sind"){ $("#l-sind").textContent=v; $("#r-sindico").textContent=v; }
+    if(id==="e-tel"){ $("#l-tel").textContent=v; } if(id==="e-email"){ $("#l-email").textContent=v; }
+  });
+  $("#k-indice").textContent=$("#l-indice").textContent+", "+$("#l-pct").textContent;
+  $$(".lc-secao-reg--editando").forEach(function(s){ P.fecharSecao(s,false); });
+  ativ("editar",m.map(function(x){return x.campo;}).join(", ")+" alterado"+(m.length>1?"s":""),"Letícia Araújo");
+}
+function depois(modo,m){
+  var nomes=m.map(function(x){return x.campo.toLowerCase();}).join(", ");
+  if(modo==="proximo" && R.prox){ P.guarda.sset("toast-pendente",{txt:"<b>"+esc(c.nome)+"</b> salvo: "+esc(nomes)+". Agora no "+(R.i+2)+" de "+R.cj.ids.length+"."}); location.href="p2-registro.html?id="+R.prox; return; }
+  if(modo==="voltar"){ P.guarda.sset("toast-pendente-lista",{txt:"<b>"+esc(c.nome)+"</b> salvo: "+esc(nomes)+"."}); location.href=R.cj.volta; return; }
+  if(modo==="novo"){ P.guarda.sset("toast-pendente",{txt:"<b>"+esc(c.nome)+"</b> salvo. Este é um contrato novo, em branco."}); location.href="p2-criacao-pagina.html"; return; }
+  P.toast("Alterações salvas: "+esc(nomes)+".",{tipo:"sucesso",acao:"Desfazer",aoAcao:function(){ P.anunciar("Desfeito: os valores anteriores voltaram."); }});
+  P.anunciar("Salvo.");
+}
+
+/* ---------- conflito de versão ---------- */
+function conflito(m,ok,falha){
+  var linhas=[["Valor mensal",P.num(c.valor,2),$("#e-valor").value,"4.380,00"],["Índice",c.indice,$("#e-indice").value,"IPCA"],["Percentual",P.num(c.pct,2),$("#e-pct").value,"4,42"],["Vencimento do boleto","Dia 10",$("#e-venc").value,"Dia 10"]];
+  var corpo='<p style="margin:0 0 12px;font-size:14px">Rafael Lima salvou este contrato às 10:41, enquanto você editava. Escolha, campo a campo, o que fica. Nada se perde: a versão que sair fica no histórico.</p>'+
+    '<table class="lc-comparar"><thead><tr><th scope="col">Campo</th><th scope="col">A sua alteração</th><th scope="col">Salva por Rafael Lima, 10:41</th></tr></thead><tbody>'+
+    linhas.map(function(l,i){ var dif=l[2]!==l[3]; return '<tr'+(dif?' class="lc-diferente"':'')+'><td>'+l[0]+'</td>'+
+      (dif?'<td><label><input type="radio" name="cf'+i+'" checked><span>'+esc(l[2])+'</span></label></td><td><label><input type="radio" name="cf'+i+'"><span>'+esc(l[3])+'</span></label></td>'
+          :'<td colspan="2">'+esc(l[2])+' <span class="lc-legenda">(iguais)</span></td>')+'</tr>'; }).join("")+'</tbody></table>';
+  P.modal({titulo:"Outra pessoa salvou este contrato",largo:true,corpo:corpo,semEsc:false,
+    pe:'<span class="lc-modal__aux">2 campos diferentes</span><button type="button" class="lc-btn" data-cf-ver>Ficar com a versão de Rafael</button><button type="button" class="lc-btn lc-btn--principal" data-cf-ok><i data-i="salvar"></i>Salvar com as minhas escolhas</button>',
+    aoFechar:function(){ falha({tipo:"outro",msg:"O contrato mudou enquanto você editava. Salve de novo para escolher o que fica."}); },
+    aoAbrir:function(el,api){
+      el.querySelector("[data-cf-ok]").addEventListener("click",function(){ api.remover(); aplicar(m); ok(); P.toast("Salvo com as suas escolhas. A versão de Rafael Lima ficou no histórico.",{tipo:"sucesso"}); });
+      el.querySelector("[data-cf-ver]").addEventListener("click",function(){ api.remover(); $("#e-indice").value="IPCA"; $("#e-pct").value="4,42"; ed.originais.forEach(function(v,k){ ed.originais.set(k,k.value); }); ed.confirmar(); ed.descartar(); $("#l-indice").textContent="IPCA"; $("#l-pct").textContent="4,42%"; $("#k-indice").textContent="IPCA, 4,42%"; $$(".lc-secao-reg--editando").forEach(function(s){P.fecharSecao(s,false);}); ok(); P.toast("Você está vendo a versão de Rafael Lima. As suas alterações ficaram no histórico como não salvas.",{ic:"info"}); });
+    }});
+}
+
+/* ---------- barra de etapas ---------- */
+var ETAPAS=[["Aviso enviado","14/09"],["Cálculo do reajuste","22/09"],["Aprovação do síndico",""],["Aditivo assinado",""],["Vigente",""]];
+var atual=2, perdida=false;
+var EXIGE={3:{txt:"Para entrar em Aditivo assinado, anexe o aditivo assinado e informe a data da assinatura.",campos:'<div class="lc-campo"><label class="lc-rotulo" for="pe-data">Data da assinatura</label><input id="pe-data" class="lc-entrada" type="date" value="2026-10-01"></div><div class="lc-upload" style="padding:12px" tabindex="0"><i data-i="anexo"></i><span><b>Escolha o PDF</b> ou arraste aqui</span></div>'},
+           4:{txt:"Vigente só depois de Aditivo assinado. O novo valor passa a valer nos boletos a partir da data do reajuste."}};
+function etapas(){
+  $("#etapas").innerHTML=ETAPAS.map(function(e,i){ var cls=perdida&&i===atual?"lc-etapa--perdida":i<atual?"lc-etapa--feita":i===atual?"lc-etapa--atual":"";
+    return '<li class="lc-etapa '+cls+'"'+(i===atual?' aria-current="step"':'')+'><button type="button" data-etapa="'+i+'" aria-haspopup="dialog">'+(i<atual?'<i data-i="feito"></i>':i===atual?'<i data-i="em-andamento"></i>':'<i data-i="a-fazer"></i>')+
+      '<span>'+e[0]+(i===atual?'<small>há 6 dias nesta etapa</small>':i<atual&&e[1]?'<small>em '+e[1]+'</small>':'')+'</span></button></li>'; }).join("");
+  var b=$("#avancar"); if(atual<ETAPAS.length-1 && !perdida){ b.hidden=false; b.innerHTML='Avançar para '+ETAPAS[atual+1][0]+'<i data-i="chevron-direita"></i>'; } else b.hidden=true;
+  $$("#etapas [data-etapa]").forEach(function(x){ x.addEventListener("click",function(){ clicar(+x.getAttribute("data-etapa"),x); }); });
+}
+function mover(i,motivo){ var de=atual; atual=i; etapas(); ativ(i<de?"desfazer":"seta-direita","Etapa: "+ETAPAS[de][0]+" para "+ETAPAS[i][0]+(motivo?". Motivo: "+motivo:""),"Letícia Araújo");
+  P.toast("Renovação em <b>"+ETAPAS[i][0]+"</b>.",{ic:"seta-direita",acao:"Desfazer",aoAcao:function(){ atual=de; etapas(); P.anunciar("Voltou para "+ETAPAS[de][0]+"."); }}); P.anunciar("Renovação movida para "+ETAPAS[i][0]+"."); }
+function clicar(i,btn){
+  if(i===atual||perdida) return;
+  var pop=document.createElement("div"); pop.className="lc-popover p2-etapa-pop"; pop.setAttribute("role","dialog"); pop.setAttribute("aria-label","Mover para "+ETAPAS[i][0]);
+  var volta=i<atual, ex=EXIGE[i], bloqueia=(i===4 && atual<3);
+  pop.innerHTML='<div class="lc-popover__cab"><h3>'+(volta?'Voltar para ':'Mover para ')+ETAPAS[i][0]+'</h3><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" data-fp aria-label="Fechar"><i data-i="fechar"></i></button></div>'+
+    '<div class="lc-popover__corpo lc-pilha lc-pilha--p">'+(volta?'<p>A renovação volta uma etapa. Diga o porquê para quem vier depois.</p><div class="lc-campo"><label class="lc-rotulo" for="pe-mot">Motivo <span class="lc-opcional">opcional</span></label><input id="pe-mot" class="lc-entrada" placeholder="Ex.: síndica pediu novo cálculo pelo IPCA"></div>':
+      bloqueia?'<p class="lc-erro" style="font-size:13px"><i data-i="bloquear"></i>'+ex.txt+'</p>':ex?'<p>'+ex.txt+'</p>'+(ex.campos||''):'<p>Nada a preencher para esta etapa.</p>')+'</div>'+
+    '<div class="lc-popover__pe"><button type="button" class="lc-btn lc-btn--p" data-fp>Cancelar</button>'+(bloqueia?'':'<button type="button" class="lc-btn lc-btn--p" data-mv>'+(volta?'Voltar para ':'Mover para ')+ETAPAS[i][0]+'</button>')+'</div>';
+  var li=btn.parentNode; li.style.position="relative"; pop.style.left="0"; pop.style.top="calc(100% + 6px)"; li.appendChild(pop); if(window.lcIcones) lcIcones(pop);
+  var f=pop.querySelector("input,[data-mv],[data-fp]"); f.focus();
+  function fecha(){ pop.remove(); btn.focus(); document.removeEventListener("keydown",esc1,true); }
+  function esc1(e){ if(e.key==="Escape"){ e.preventDefault(); e.stopPropagation(); fecha(); } }
+  document.addEventListener("keydown",esc1,true);
+  $$("[data-fp]",pop).forEach(function(x){ x.addEventListener("click",fecha); });
+  var mv=pop.querySelector("[data-mv]"); if(mv) mv.addEventListener("click",function(){ var mot=pop.querySelector("#pe-mot"); pop.remove(); document.removeEventListener("keydown",esc1,true); mover(i,mot&&mot.value); });
+}
+$("#avancar").addEventListener("click",function(){ var i=atual+1; if(EXIGE[i]) clicar(i,$('#etapas [data-etapa="'+i+'"]')); else mover(i); });
+$("#cancelar-renov").addEventListener("click",function(){
+  P.modal({titulo:"Cancelar a renovação de "+esc(c.nome)+"?",perigo:true,desc:"O contrato segue vigente com o valor atual. O reajuste deste ano não será aplicado.",
+    corpo:'<fieldset class="lc-grupo-opcoes"><legend class="lc-rotulo" style="margin-bottom:8px">Motivo <span class="lc-obrig" aria-hidden="true">*</span></legend>'+
+      ["Assembleia recusou o reajuste","Condomínio vai trocar de administradora","Reajuste negociado fora do contrato","Contrato encerrado antes da data"].map(function(m,i){return '<label class="lc-radio"><input type="radio" name="mot" value="'+m+'"><span class="lc-radio__bola"></span>'+m+'</label>';}).join("")+
+      '</fieldset><div class="lc-campo" style="margin-top:12px"><label class="lc-rotulo" for="mot-det">Detalhe <span class="lc-opcional">opcional</span></label><textarea id="mot-det" class="lc-area-texto" placeholder="Fica no histórico e no relatório de churn."></textarea></div><p class="lc-erro" id="mot-erro" hidden><i data-i="erro"></i>Escolha um motivo para cancelar.</p>',
+    pe:'<button type="button" class="lc-btn" data-m-fechar>Manter a renovação</button><button type="button" class="lc-btn lc-btn--perigo" data-ok>Cancelar renovação</button>',
+    aoAbrir:function(el,api){ el.querySelector("[data-ok]").addEventListener("click",function(){ var r=el.querySelector("input[name=mot]:checked"); if(!r){ el.querySelector("#mot-erro").hidden=false; el.querySelector("input[name=mot]").focus(); return; }
+      api.fechar(); perdida=true; etapas(); $("#cancelar-renov").hidden=true; ativ("cancelado","Renovação cancelada. Motivo: "+r.value,"Letícia Araújo");
+      P.toast("Renovação cancelada: "+esc(r.value.toLowerCase())+".",{ic:"cancelado",acao:"Desfazer",aoAcao:function(){ perdida=false; etapas(); $("#cancelar-renov").hidden=false; }}); }); }});
+});
+etapas();
+
+/* ---------- atividade ---------- */
+var EV=[
+  {id:"comentario-1182",no:"comentario",quem:"Juliana Souza",cargo:"Jurídico",hora:"hoje, 10:12",txt:'<span class="lc-mencao">@Letícia Araújo</span> a cláusula 7ª pede aviso com 30 dias. O aviso saiu em 14/09, então estamos no prazo para aplicar em 14/10.',pe:'<button class="lc-btn lc-btn--link lc-btn--p" type="button" data-responder>Responder</button><span>2 respostas</span>'},
+  {no:"email-entregue",quem:"Letícia Araújo",hora:"ontem, 17:40",txt:"E-mail a Marina Costa: <b>Reajuste do contrato de administração, outubro de 2026</b>. Aberto às 18:02.",pe:"<span>WhatsApp com o mesmo texto entregue às 17:41</span>"},
+  {no:"editar",quem:"Rafael Lima",hora:"26/09, 15:20",txt:"Percentual alterado de 4,42% para 5,48% (troca de IPCA para IGP-M, conforme cláusula 7ª)."},
+  {no:"anexo",quem:"Rafael Lima",hora:"26/09, 15:18",txt:"Anexou <b>Cálculo do IGP-M, set 2025 a ago 2026.xlsx</b>."},
+  {no:"seta-direita",quem:"Rafael Lima",hora:"22/09, 11:05",txt:"Etapa: Cálculo do reajuste para Aprovação do síndico."},
+  {no:"email",quem:"Sistema",hora:"14/09, 08:00",txt:"Aviso de reajuste enviado a Marina Costa, 30 dias antes, como manda a cláusula 7ª.",sist:1},
+  {no:"recentes",quem:"Suporte da plataforma",hora:"03/09, 16:44",txt:"Corrigiu o dia de vencimento de 15 para 10 a pedido da administradora. Sessão 88, motivo: chamado 1.422.",plat:1},
+  {no:"contrato",quem:"Carla Mendes",hora:"02/10/2025, 09:30",txt:"Contrato de administração 2025 assinado e anexado."}];
+function evHtml(e){ return '<li class="lc-atividade__ev" '+(e.id?'id="'+e.id+'" tabindex="-1"':'')+'><span class="lc-atividade__no'+(e.no==="cancelado"?' lc-atividade__no--perigo':'')+'"><i data-i="'+e.no+'"></i></span><div class="lc-atividade__cartao"><div class="lc-atividade__cab"><b>'+esc(e.quem)+'</b>'+(e.cargo?'<span class="lc-legenda">'+e.cargo+'</span>':'')+(e.plat?'<span class="lc-auditoria__plataforma"><i data-i="sessao"></i>Plataforma</span>':'')+'<span class="lc-atividade__hora">'+e.hora+'</span></div><div class="lc-atividade__corpo">'+e.txt+'</div>'+(e.pe?'<div class="lc-atividade__pe">'+e.pe+'</div>':'')+'</div></li>'; }
+function desenhaAtiv(){ $("#atividade").innerHTML='<li class="lc-atividade__mes">Outubro e setembro de 2026</li>'+EV.slice(0,7).map(evHtml).join("")+'<li class="lc-atividade__mes">2025</li>'+EV.slice(7).map(evHtml).join(""); }
+function ativ(no,txt,quem){ EV.unshift({no:no,quem:quem,hora:"agora, "+P.hora(),txt:esc(txt)}); desenhaAtiv(); }
+desenhaAtiv();
+$("#mais-ativ").addEventListener("click",function(){ var b=this; b.setAttribute("aria-busy","true"); setTimeout(function(){ b.parentNode.innerHTML='<span>Isso é tudo. O contrato foi criado em 02/10/2025.</span>'; P.anunciar("4 registros carregados. Fim da atividade."); },600); });
+/* rascunho do comentário: só no navegador (texto curto não tem rascunho no servidor) */
+var nota=$("#nota"), chaveR="rasc-nota:"+c.id; nota.value=P.guarda.get(chaveR,"");
+nota.addEventListener("input",function(){ P.guarda.set(chaveR,nota.value); $("#nota-rasc").textContent=nota.value?"Rascunho guardado neste navegador às "+P.hora()+".":"Só a equipe vê. Rascunho guardado neste navegador."; });
+$("#publicar").addEventListener("click",function(){ if(!nota.value.trim()){ nota.focus(); P.anunciar("Escreva a nota antes de publicar."); return; } ativ("nota-interna",nota.value,"Letícia Araújo"); nota.value=""; P.guarda.set(chaveR,""); P.toast("Nota publicada. Só a equipe vê.",{tipo:"sucesso"}); });
+
+/* abas */
+var abas=$$('.p2-meio-abas [role=tab]');
+function abrirAba(t){ abas.forEach(function(x){ x.setAttribute("aria-selected",x===t); $("#"+x.getAttribute("aria-controls")).hidden=x!==t; }); }
+abas.forEach(function(t,i){ t.addEventListener("click",function(){ abrirAba(t); }); t.addEventListener("keydown",function(e){ if(e.key==="ArrowRight"){ (abas[i+1]||abas[0]).focus(); (abas[i+1]||abas[0]).click(); } if(e.key==="ArrowLeft"){ (abas[i-1]||abas[abas.length-1]).focus(); (abas[i-1]||abas[abas.length-1]).click(); } }); });
+
+/* chegada por notificação ou menção: #comentario-1182 */
+if(location.hash){ var alvo=document.getElementById(location.hash.slice(1)); if(alvo){ abrirAba(abas[0]); setTimeout(function(){ alvo.classList.add("lc-destaque"); alvo.scrollIntoView({block:"center"}); alvo.focus({preventScroll:true}); P.anunciar("Comentário de Juliana Souza que menciona você, em destaque."); },350); } }
+
+/* ---------- histórico (painel lateral 480) ---------- */
+var AUD=[
+  ["hoje","10:41:07","RL","Rafael Lima","Índice","IGP-M","IGP-M",0,"Contrato"],
+  ["hoje","09:58:31","RL","Rafael Lima","Retornar ao síndico","06/10/2026","08/10/2026",0,"Contrato"],
+  ["hoje","09:12:55","LA","Letícia Araújo","Contato: telefone de Paulo Henrique Dias","(11) 97701-2210","(11) 97701-2290",0,"Contato"],
+  ["26/09/2026","15:20:44","RL","Rafael Lima","Percentual","4,42%","5,48%",0,"Contrato"],
+  ["26/09/2026","15:20:44","RL","Rafael Lima","Índice","IPCA","IGP-M",0,"Contrato"],
+  ["22/09/2026","11:05:12","RL","Rafael Lima","Etapa","Cálculo do reajuste","Aprovação do síndico",0,"Contrato"],
+  ["10/09/2026","07:02:18","SP","Sistema","Boleto de outubro","—","Emitido, R$ 4.380,00",0,"Boleto"],
+  ["03/09/2026","16:44:09","SP","Suporte da plataforma (Lucas Ferreira)","Vencimento do boleto","Dia 15","Dia 10",1,"Contrato"]];
+function audHtml(f){ var filhos=f.filhos, campo=f.campo, quem=f.quem, h="", dia=null, n=0;
+  AUD.forEach(function(a){ if(!filhos && a[8]!=="Contrato") return; if(campo && a[4]!==campo) return; if(quem && a[3].indexOf(quem)<0) return; n++;
+    if(a[0]!==dia){ dia=a[0]; h+='<li class="lc-historico__dia" style="display:block;grid-template-columns:none">'+(dia==="hoje"?"Hoje, 01/10/2026":dia)+'</li>'; }
+    h+='<li><span class="lc-av lc-av--24 '+P.PESSOAS[a[2]].cor+'">'+P.PESSOAS[a[2]].ini+'</span><span class="lc-auditoria__quem"><b>'+esc(a[3])+'</b>'+(a[7]?'<span class="lc-auditoria__plataforma"><i data-i="sessao"></i>Plataforma</span>':'')+(a[8]!=="Contrato"?'<span class="lc-auditoria__onde">em '+a[8]+'</span>':'')+'</span><span class="lc-auditoria__quando"><time>'+a[1]+'</time></span>'+
+      '<dl class="lc-auditoria__mudanca"><dt>'+esc(a[4])+'</dt><dd><del>'+esc(a[5])+'</del> para <ins>'+esc(a[6])+'</ins></dd>'+(a[7]?'<dt>Sessão</dt><dd>88, motivo: chamado 1.422, só leitura liberada por 30 min</dd>':'')+'</dl></li>'; });
+  return {h:h,n:n}; }
+function historico(){
+  var f={filhos:false,campo:"",quem:""};
+  P.painel({titulo:"Histórico de alterações",ic:"recentes",rotulo:"histórico",
+    antes:'<div class="lc-historico__filtros"><label class="lc-sr" for="h-campo">Campo</label><select id="h-campo" class="lc-selecao"><option value="">Todos os campos</option><option>Índice</option><option>Percentual</option><option>Etapa</option><option>Vencimento do boleto</option></select>'+
+      '<label class="lc-sr" for="h-quem">Quem</label><select id="h-quem" class="lc-selecao"><option value="">Todas as pessoas</option><option>Rafael Lima</option><option>Letícia Araújo</option><option>Suporte da plataforma</option><option>Sistema</option></select>'+
+      '<label class="lc-interruptor"><input type="checkbox" role="switch" id="h-filhos"><span class="lc-interruptor__trilho"></span>Incluir contatos e boletos</label></div>',
+    corpo:'<p class="lc-legenda" id="h-cont" style="margin-bottom:8px"></p><ul class="lc-auditoria" id="h-lista"></ul><div class="lc-carregar-mais"><span>Mostrando os registros dos últimos 30 dias</span><button class="lc-btn lc-btn--p" type="button" id="h-mais">Carregar mais 20</button></div>',
+    pe:'<button class="lc-btn lc-btn--p" type="button" id="h-csv"><i data-i="baixar"></i>Baixar histórico (.csv)</button>',
+    aoAbrir:function(p){
+      function d(){ var r=audHtml(f); p.querySelector("#h-lista").innerHTML=r.h; p.querySelector("#h-cont").textContent=r.n+(r.n===1?" alteração":" alterações")+(f.filhos?", incluindo contatos e boletos":" no contrato")+". Hora com segundos, no horário de Brasília."; lcIcones(p); }
+      p.querySelector("#h-campo").addEventListener("change",function(e){ f.campo=e.target.value; d(); });
+      p.querySelector("#h-quem").addEventListener("change",function(e){ f.quem=e.target.value; d(); });
+      p.querySelector("#h-filhos").addEventListener("change",function(e){ f.filhos=e.target.checked; d(); });
+      p.querySelector("#h-mais").addEventListener("click",function(){ var b=this; b.setAttribute("aria-busy","true"); setTimeout(function(){ b.parentNode.innerHTML='<span>Fim do histórico. Contrato criado em 02/10/2025 às 09:30:12 por Carla Mendes.</span>'; },600); });
+      p.querySelector("#h-csv").addEventListener("click",function(){ P.toast("Histórico baixado: 57 alterações, de 02/10/2025 a hoje.",{tipo:"sucesso"}); });
+      d();
+    }});
+}
+$("#historico").addEventListener("click",historico);
+
+/* ---------- prévia de um relacionado (painel só leitura) ---------- */
+function previaCliente(e){ if(e) e.preventDefault(); P.painel({titulo:"Cond. Parque das Águas",ic:"condominio",rotulo:"prévia",
+  corpo:'<p class="lc-legenda" style="margin-bottom:12px">Prévia só leitura. Para alterar, abra o cliente.</p><dl class="lc-props"><dt>CNPJ</dt><dd>12.418.337/0001-09</dd><dt>Endereço</dt><dd>Rua das Nascentes, 480, Vila Mariana, São Paulo</dd><dt>Unidades</dt><dd>120, em 2 blocos</dd><dt>Síndica</dt><dd>Marina Costa, mandato até 03/2027</dd><dt>Saúde</dt><dd><span class="lc-estado lc-estado--aviso">62, Atenção</span></dd><dt>Chamados abertos</dt><dd>2</dd></dl>',
+  pe:'<a class="lc-btn lc-btn--p" href="p2-previa.html">Abrir em nova aba<i data-i="abrir-fora"></i></a><a class="lc-btn lc-btn--p lc-btn--principal" href="p2-previa.html">Abrir o cliente</a>'}); }
+$("#previa-cliente").addEventListener("click",previaCliente); $("#link-cliente").addEventListener("click",previaCliente);
+
+/* ---------- criação relacionada: contato em modal curto ---------- */
+$("#add-contato").addEventListener("click",function(){ P.modal({titulo:"Novo contato do Cond. Parque das Águas",desc:"Só o essencial. O resto você completa depois, na pessoa.",
+  corpo:'<div class="lc-form-grade"><div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="nc-nome">Nome <span class="lc-obrig" aria-hidden="true">*</span></label><input id="nc-nome" class="lc-entrada" required></div><div class="lc-campo"><label class="lc-rotulo" for="nc-papel">Papel no condomínio</label><select id="nc-papel" class="lc-selecao"><option>Conselheiro</option><option>Subsíndico</option><option>Zelador</option><option>Morador</option></select></div><div class="lc-campo"><label class="lc-rotulo" for="nc-tel">WhatsApp</label><div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">+55</span><input id="nc-tel" class="lc-entrada" type="tel"></div></div></div>',
+  pe:'<a class="lc-modal__aux" href="#">Abrir formulário completo</a><button class="lc-btn" type="button" data-m-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-ok>Adicionar contato</button>',
+  aoAbrir:function(el,api){ el.querySelector("[data-ok]").addEventListener("click",function(){ var n=el.querySelector("#nc-nome"); if(!n.value.trim()){ n.setAttribute("aria-invalid","true"); n.focus(); return; } api.fechar(); P.toast("<b>"+esc(n.value)+"</b> adicionado aos contatos.",{tipo:"sucesso",acao:"Desfazer"}); }); }}); });
+
+/* ---------- ações do cabeçalho ---------- */
+$("#estrela").addEventListener("click",function(){ var on=this.getAttribute("aria-pressed")!=="true"; this.setAttribute("aria-pressed",on); this.setAttribute("aria-label",on?"Tirar dos favoritos":"Adicionar aos favoritos"); P.toast(on?"Adicionado aos favoritos. Fica na estrela do trilho.":"Tirado dos favoritos.",{ic:"estrela",ms:3500}); });
+$("#enviar-sindico").addEventListener("click",function(){ var b=this; b.setAttribute("aria-busy","true"); setTimeout(function(){ b.removeAttribute("aria-busy"); ativ("enviar","Aditivo enviado a Marina Costa por e-mail e WhatsApp","Letícia Araújo"); P.toast("Aditivo enviado a <b>"+esc(c.sindico)+"</b> por e-mail e WhatsApp.",{tipo:"sucesso"}); },700); });
+$("#mais").addEventListener("click",function(e){ P.menu(e.currentTarget,[
+  {t:"Copiar link do contrato",ic:"link-copiar",tecla:"Ctrl+Shift+C",acao:function(){ compartilhar(); }},
+  {t:"Duplicar contrato",ic:"duplicar",sub:"Cria um novo com estes dados, sem histórico",acao:function(){ location.href="p2-criacao-pagina.html?duplicar="+c.id; }},
+  {t:"Imprimir ou baixar PDF",ic:"imprimir",tecla:"Ctrl+P",acao:function(){ location.href="p2-impressao.html"; }},
+  {t:"Exportar histórico (.csv)",ic:"baixar"},
+  {sep:1},
+  {t:"Arquivar",ic:"arquivar",sub:"Sai das listas de trabalho; continua na busca",acao:function(){ P.guarda.sset("toast-pendente-lista",{txt:"<b>"+esc(c.nome)+"</b> arquivado.",acao:"Desfazer"}); location.href=R.cj.volta; }},
+  {t:"Excluir",ic:"lixeira",perigo:1,sub:"Vai para a lixeira por 30 dias",acao:function(){ P.guarda.sset("toast-pendente-lista",{txt:"<b>"+esc(c.nome)+"</b> movido para a lixeira. Fica lá por 30 dias.",acao:"Desfazer"}); var r=P.guarda.sget("renov-removidos",[]); r.push(c.id); P.guarda.sset("renov-removidos",r); location.href=R.cj.volta; }}
+],{rotulo:"Mais ações do contrato"}); });
+function compartilhar(){ var link=location.href.split("#")[0].split("?")[0]+"?id="+c.id;
+  P.modal({titulo:"Compartilhar o contrato",desc:"O link abre este contrato para quem já tem acesso a Contratos no GACO. Ninguém de fora entra por ele.",
+    corpo:'<div class="lc-campo"><label class="lc-rotulo" for="lk">Link</label><div class="lc-entrada-grupo"><input id="lk" class="lc-entrada lc-entrada--cod" readonly value="'+esc(link)+'" style="border-bottom:0;padding-left:var(--campo-px)"><button class="lc-entrada-grupo__btn" type="button" data-copiar><i data-i="copiar"></i>Copiar</button></div></div>'+
+      '<div class="lc-campo" style="margin-top:14px"><label class="lc-rotulo" for="lk-p">Enviar para alguém da equipe <span class="lc-opcional">opcional</span></label><input id="lk-p" class="lc-entrada" placeholder="Nome ou e-mail. Ex.: Juliana Souza"><p class="lc-ajuda">A pessoa recebe no sino e por e-mail, com a sua mensagem.</p></div>'+
+      '<div class="lc-alerta lc-alerta--info" style="margin-top:14px"><i data-i="info"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Para mostrar ao síndico, use o portal</span>Marina Costa vê o aditivo em Portal › Documentos. Link de contrato interno não abre para o cliente.</div></div>',
+    pe:'<button class="lc-btn" type="button" data-m-fechar>Fechar</button><button class="lc-btn lc-btn--principal" type="button" data-env><i data-i="enviar"></i>Enviar</button>',
+    aoAbrir:function(el,api){ el.querySelector("[data-copiar]").addEventListener("click",function(){ try{navigator.clipboard.writeText(link);}catch(_){} this.innerHTML=lcIcone("confirmar")+"Copiado"; P.anunciar("Link copiado."); });
+      el.querySelector("[data-env]").addEventListener("click",function(){ var p=el.querySelector("#lk-p").value||"Juliana Souza"; api.fechar(); P.toast("Link enviado a <b>"+esc(p)+"</b>.",{tipo:"sucesso"}); }); }}); }
+
+/* ---------- teclado: J próximo, K anterior, H histórico, E edita a primeira seção ---------- */
+function ir(id){ if(!id) return; var href="p2-registro.html?id="+id; if(ed.sujo()) P.perguntarSaida(ed,function(){ location.href=href; },P.contrato(id).nome); else location.href=href; }
+P.atalho("j",function(){ ir(R.prox); }); P.atalho("k",function(){ ir(R.ant); }); P.atalho("h",historico);
+P.atalho("c",function(e){ if(e.shiftKey){ compartilhar(); } },{mod:true});
+
+/* ---------- trilha e "voltar" levam à lista filtrada, na mesma posição ---------- */
+document.addEventListener("DOMContentLoaded",function(){
+  var a=document.querySelector(".lc-trilha li:nth-child(2) a"); if(a){ a.href=R.cj.volta; a.setAttribute("aria-label","Voltar para "+R.cj.rotulo); }
+  var m=document.querySelector(".lc-trilha li:first-child a"); if(m) m.href="p2-lista.html";
+  if(u.get("painel")==="historico") setTimeout(historico,200);
+  if(u.get("editar")==="vigencia"){ setTimeout(function(){ document.querySelector('[data-secao="Vigência e valores"] [data-editar-secao]').click(); var v=$("#e-valor"); v.value="4.620,00"; v.dispatchEvent(new Event("input",{bubbles:true})); if(u.get("menu")==="salvar") setTimeout(function(){ document.querySelector("[data-salvar-mais]").click(); },150); },200); }
+  if(u.get("estado")==="sem-permissao"){ $("#conteudo").innerHTML='<div class="lc-estado-tela lc-estado-tela--bloqueio" style="height:100%;align-items:center"><div class="lc-vazio"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="bloquear"></i></span><h1 class="lc-vazio__titulo">Este contrato é de outra carteira</h1><p class="lc-vazio__texto">'+esc(c.nome)+' está na carteira de Rafael Lima, e o seu papel só abre contratos da sua carteira. Peça acesso a ele ou à coordenação.</p><div class="lc-grupo-btn"><button class="lc-btn lc-btn--principal" type="button">Pedir acesso a Rafael Lima</button><a class="lc-btn" href="'+R.cj.volta+'">Voltar para Renovações</a></div><p class="lc-estado-tela__detalhe">Você chegou aqui por um link. O endereço continua válido para quem tem acesso.</p></div></div>'; }
+  if(u.get("estado")==="carregando"){ $("#conteudo").setAttribute("aria-busy","true"); $$(".lc-modelo-registro__col").forEach(function(col){ col.innerHTML='<div style="padding:20px" aria-hidden="true">'+'<span class="lc-esqueleto lc-esqueleto--titulo"></span>'+Array.from({length:7},function(){return '<span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span>';}).join("")+'</div>'; }); $("#r-nome").innerHTML='<span class="lc-esqueleto lc-esqueleto--titulo" style="width:260px"></span>'; }
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-contexto="portal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal: Reservas</title>
+<script>window.CM_LINKS={"Início": "40-portal.html", "Chamados": "40b-portal-chamados.html", "Boletos": "40c-portal-boletos.html", "Reservas": "40d-portal-reservas.html", "Assembleias": "40e-portal-assembleias.html", "Comunicados": "40f-portal-comunicados.html", "Documentos": "40f-portal-comunicados.html#documentos", "Minha unidade": "40h-portal-perfil.html", "Moradores e veículos": "40h-portal-perfil.html#moradores", "Meu perfil": "40h-portal-perfil.html", "Encomendas": "40i-portal-portaria.html#encomendas", "Visitantes": "40i-portal-portaria.html"}</script>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q5.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q5.js" defer></script>
+<style>
+
+.portal{max-width:1200px;margin:0 auto;padding:8px 24px 72px}
+.portal-grade{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.portal-estreito{max-width:var(--cm-largura-portal)}
+.portal-cabeca{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;padding:20px 0 14px}
+.portal-cabeca h1{font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em;margin:0}
+.portal-cabeca p{color:var(--cm-texto-2);margin-top:2px}
+.portal-cabeca .cm-empurra{display:flex;gap:8px;flex-wrap:wrap}
+.sec-t{font-size:17px;line-height:24px;font-weight:700;margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+.sec-t .cm-link{margin-left:auto;font-size:14px}
+@media (max-width:899px){ .portal-grade{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:599px){ .portal{padding:4px 16px 56px} .portal-cabeca h1{font-size:20px;line-height:26px} .portal-cabeca .cm-empurra{width:100%} }
+
+.res-grade{display:grid;grid-template-columns:300px minmax(0,1fr) 320px;gap:20px;align-items:start}
+.areas{display:flex;flex-direction:column;gap:6px}
+.area{display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px;align-items:center;text-align:left;padding:10px 12px;border:1px solid var(--cm-filete);background:var(--cm-camada-1);width:100%}
+.area[aria-pressed="true"]{border:2px solid var(--cm-texto-1);padding:9px 11px;background:var(--cm-camada-2)}
+.area b{display:block;font-size:15px}.area span span{font-size:13px;color:var(--cm-texto-2)}
+.cal-portal td{height:48px}.cal-portal td button{width:42px;height:42px;font-size:15px}
+.cal-portal td.is-ocupado button{text-decoration:line-through;color:var(--cm-texto-3)}
+.periodos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.legenda-cal{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--cm-texto-2);margin-top:8px}
+@media (max-width:1099px){ .res-grade{grid-template-columns:minmax(0,1fr) 320px} .res-grade>:first-child{grid-column:1/-1} .areas{flex-direction:row;overflow-x:auto} .area{min-width:220px} }
+@media (max-width:899px){ .res-grade{grid-template-columns:minmax(0,1fr)} }
+
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"contexto": "portal", "tela": "Reservas", "unidade": "Bl B Ap 1204", "sino": 3}'></div>
+<main id="conteudo">
+<div class="portal">
+<details class="cm-anotacao" open>
+<summary><i data-i="informacao"></i>Sobre esta tela: Reservas de áreas comuns</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>O que esta tela resolve</h3><p>Reservar o salão ou a churrasqueira sem ligar para a portaria, sabendo na hora se o dia está livre, quanto custa e até quando dá para cancelar sem taxa.</p></div>
+<div><h3>Fluxo</h3><ol><li>Escolher a área (botões grandes à esquerda; no celular, em faixa que rola).</li><li>Escolher o dia no calendário; ocupado aparece riscado e é anunciado como "ocupado".</li><li>Escolher o período; o resumo à direita atualiza.</li><li>Marcar que leu as regras (abre em modal) e tocar Reservar.</li><li>Confirmação em aviso e no WhatsApp; "Minhas reservas" no topo leva à lista.</li></ol></div>
+<div><h3>Resolvemos fazer assim porque</h3><p>o Airbnb e o Booking mostram dia ocupado no próprio calendário e o preço no resumo fixo, o TownSq e o uCondo usam a mesma ordem área, dia, período, e o Google Agenda põe "Adicionar à agenda" na confirmação. Enviamos para aprovação.</p></div>
+</div></details>
+<section class="cm-tela" id="nova" aria-labelledby="nova-t">
+<h2 class="cm-tela__titulo" id="nova-t">Nova reserva <small>Tela 1 de 3, área, dia, período, regras</small></h2>
+
+<div class="portal-cabeca"><div><h1>Reservar área comum</h1><p>Escolha a área, o dia e o período. A taxa entra no boleto do mês seguinte.</p></div><div class="cm-empurra"><a class="cm-botao" href="#minhas">Minhas reservas <span class="cm-contador">1</span></a></div></div>
+<div class="res-grade">
+ <div class="areas" role="group" aria-label="Área">
+  <button class="area" type="button" aria-pressed="true"><span class="cm-ladrilho"><i data-i="salao-de-festas"></i></span><span><b>Salão de festas</b><span>Até 80 pessoas, R$ 180,00</span></span></button>
+  <button class="area" type="button" aria-pressed="false"><span class="cm-ladrilho"><i data-i="churrasqueira"></i></span><span><b>Churrasqueira 1</b><span>Até 25 pessoas, R$ 60,00</span></span></button>
+  <button class="area" type="button" aria-pressed="false"><span class="cm-ladrilho"><i data-i="churrasqueira"></i></span><span><b>Churrasqueira 2</b><span>Até 25 pessoas, R$ 60,00</span></span></button>
+  <button class="area" type="button" aria-pressed="false"><span class="cm-ladrilho"><i data-i="area-comum"></i></span><span><b>Espaço gourmet</b><span>Até 20 pessoas, R$ 90,00</span></span></button>
+  <button class="area" type="button" aria-pressed="false"><span class="cm-ladrilho"><i data-i="academia"></i></span><span><b>Quadra</b><span>1 hora, sem taxa</span></span></button>
+ </div>
+ <section class="cm-cartao"><header class="cm-cartao__cabeca"><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Mês anterior"><i data-i="chevron-esquerda"></i></button><h2 class="cm-cartao__titulo" style="text-align:center">Outubro de 2026</h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Próximo mês"><i data-i="chevron-direita"></i></button></header>
+  <div class="cm-cartao__corpo"><table class="cm-calendario cal-portal" aria-label="Outubro de 2026"><thead><tr><th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th><th>Sáb</th><th>Dom</th></tr></thead><tbody><tr><td class="is-fora"><button type="button" disabled aria-hidden="true">28</button></td><td class="is-fora"><button type="button" disabled aria-hidden="true">29</button></td><td class="is-fora"><button type="button" disabled aria-hidden="true">30</button></td><td class="is-hoje"><button type="button" aria-label="1 de outubro, livre">1</button></td><td class=""><button type="button" aria-label="2 de outubro, livre">2</button></td><td class=" is-ocupado"><button type="button" aria-label="3 de outubro, ocupado">3</button></td><td class=""><button type="button" aria-label="4 de outubro, livre">4</button></td></tr><tr><td class=""><button type="button" aria-label="5 de outubro, livre">5</button></td><td class=""><button type="button" aria-label="6 de outubro, livre">6</button></td><td class=""><button type="button" aria-label="7 de outubro, livre">7</button></td><td class=""><button type="button" aria-label="8 de outubro, livre">8</button></td><td class=""><button type="button" aria-label="9 de outubro, livre">9</button></td><td class=" is-ocupado"><button type="button" aria-label="10 de outubro, ocupado">10</button></td><td class=""><button type="button" aria-label="11 de outubro, livre">11</button></td></tr><tr><td class=""><button type="button" aria-label="12 de outubro, livre">12</button></td><td class=""><button type="button" aria-label="13 de outubro, livre">13</button></td><td class=""><button type="button" aria-label="14 de outubro, livre">14</button></td><td class=""><button type="button" aria-label="15 de outubro, livre">15</button></td><td class=""><button type="button" aria-label="16 de outubro, livre">16</button></td><td class=""><button type="button" aria-pressed="true" aria-label="17 de outubro, escolhido">17</button></td><td class=""><button type="button" aria-label="18 de outubro, livre">18</button></td></tr><tr><td class=""><button type="button" aria-label="19 de outubro, livre">19</button></td><td class=""><button type="button" aria-label="20 de outubro, livre">20</button></td><td class=""><button type="button" aria-label="21 de outubro, livre">21</button></td><td class=""><button type="button" aria-label="22 de outubro, livre">22</button></td><td class=""><button type="button" aria-label="23 de outubro, livre">23</button></td><td class=" is-ocupado"><button type="button" aria-label="24 de outubro, ocupado">24</button></td><td class=""><button type="button" aria-label="25 de outubro, livre">25</button></td></tr><tr><td class=""><button type="button" aria-label="26 de outubro, livre">26</button></td><td class=""><button type="button" aria-label="27 de outubro, livre">27</button></td><td class=""><button type="button" aria-label="28 de outubro, livre">28</button></td><td class=""><button type="button" aria-label="29 de outubro, livre">29</button></td><td class=""><button type="button" aria-label="30 de outubro, livre">30</button></td><td class=" is-ocupado"><button type="button" aria-label="31 de outubro, ocupado">31</button></td><td class="is-fora"><button type="button" disabled aria-hidden="true">1</button></td></tr></tbody></table><div class="legenda-cal"><span><b>17</b> escolhido</span><span><s>10</s> ocupado</span><span>Contorno: hoje</span></div>
+  <h3 class="cm-t-subsecao" style="margin:16px 0 8px">Sábado, 17/10</h3>
+  <div class="periodos" role="radiogroup" aria-label="Período"><label class="cm-radio"><input type="radio" name="per" checked><span class="cm-radio__bola"></span><span>Dia todo, 10h às 22h</span></label><label class="cm-radio"><input type="radio" name="per" disabled><span class="cm-radio__bola"></span><span>Só noite, 18h às 22h <span class="cm-t-legenda">indisponível</span></span></label></div></div></section>
+ <aside class="cm-pilha cm-pilha--6">
+  <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Resumo</h2></header><div class="cm-cartao__corpo"><dl class="cm-ficha">
+   <div class="cm-ficha__linha"><dt>Área</dt><dd>Salão de festas</dd><span></span></div><div class="cm-ficha__linha"><dt>Quando</dt><dd>Sábado, 17/10, 10h às 22h</dd><span></span></div><div class="cm-ficha__linha"><dt>Taxa</dt><dd>R$ 180,00 no boleto de novembro</dd><span></span></div><div class="cm-ficha__linha"><dt>Cancelar sem taxa</dt><dd>até quarta, 14/10</dd><span></span></div></dl>
+   <div class="cm-campo" style="margin-top:12px"><label class="cm-campo__rotulo" for="conv">Convidados <span class="cm-campo__opcional">opcional, a portaria recebe a lista</span></label><textarea class="cm-area" id="conv" rows="3">Família Costa, 12 pessoas</textarea></div>
+   <label class="cm-marcar" style="margin-top:12px"><input type="checkbox" id="aceite"><span class="cm-marcar__caixa"></span><span>Li as <a class="cm-link" href="#" data-abrir="regras">regras do salão</a><span class="cm-marcar__desc">Som até 22h, limpeza até 10h do dia seguinte</span></span></label></div>
+   <div class="cm-cartao__pe"><button class="cm-botao cm-botao--principal cm-botao--portal" type="button" id="reservar">Reservar</button></div></section>
+ </aside>
+</div>
+<div class="cm-sobreposicao" id="regras" data-janela hidden><div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="rg-t"><div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="rg-t">Regras do salão de festas<span class="cm-modal__sub">Regimento interno, artigos 41 a 48, aprovado em 26/03/2026</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+<div class="cm-modal__corpo cm-leitura"><ol style="padding-left:18px;display:flex;flex-direction:column;gap:6px"><li>Uso das 10h às 22h. Música ambiente só até 22h, em volume que não passe das janelas.</li><li>Até 80 pessoas. A lista de convidados vai à portaria até 2 horas antes.</li><li>O morador recebe e devolve as chaves na portaria e acompanha a vistoria do zelador.</li><li>Limpeza até as 10h do dia seguinte. Danos são cobrados no boleto, com laudo e fotos.</li><li>Uma reserva do salão por unidade por mês.</li></ol></div>
+<div class="cm-modal__pe"><button class="cm-botao cm-botao--principal" type="button" data-fechar onclick="document.getElementById('aceite').checked=true">Li e concordo</button></div></div></div>
+</section>
+<section class="cm-tela" id="minhas" aria-labelledby="minhas-t">
+<h2 class="cm-tela__titulo" id="minhas-t">Minhas reservas <small>Tela 2 de 3, com cancelar no menu</small></h2>
+
+<div class="cm-lista-linhas">
+ <div class="cm-linha-lista"><span class="cm-ladrilho"><i data-i="salao-de-festas"></i></span><span><span class="cm-linha-lista__titulo">Salão de festas, sábado, 17/10</span><span class="cm-linha-lista__sub">10h às 22h. Chaves na portaria. Taxa de R$ 180,00 em novembro.</span></span><span class="cm-linha-lista__meta"><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Confirmada</span></span>
+ <span class="cm-ancora"><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Ações da reserva de 17/10" data-alternar="m-res" aria-haspopup="menu" aria-expanded="false"><i data-i="mais-opcoes"></i></button><div class="cm-menu cm-menu--240 cm-flutuante" role="menu" id="m-res" data-menu-q5 hidden><button class="cm-menu__item" role="menuitem" type="button" data-toast="Lista enviada à portaria."><i data-i="visitante"></i><span>Enviar lista de convidados</span><span></span></button><button class="cm-menu__item" role="menuitem" type="button" data-toast="Evento salvo na sua agenda."><i data-i="calendario"></i><span>Pôr na minha agenda</span><span></span></button><div class="cm-menu__sep"></div><button class="cm-menu__item cm-menu__item--perigo" role="menuitem" type="button" data-toast="Reserva cancelada sem taxa." data-toast-acao="Desfazer"><i data-i="calendario-x"></i><span>Cancelar reserva</span><span></span></button></div></span></div>
+ <div class="cm-linha-lista"><span class="cm-ladrilho"><i data-i="churrasqueira"></i></span><span><span class="cm-linha-lista__titulo">Churrasqueira 1, domingo, 06/09</span><span class="cm-linha-lista__sub">Vistoria sem ocorrências. Taxa paga em outubro.</span></span><span class="cm-linha-lista__meta"><span class="cm-estado cm-estado--neutro"><i data-i="arquivar"></i>Realizada</span></span><span></span></div>
+</div>
+</section>
+<details class="cm-anotacao cm-anotacao--a11y">
+<summary><i data-i="teclado"></i>Acessibilidade desta tela</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>Ordem de foco</h3><ol><li>Áreas</li><li>Mês anterior, calendário, próximo mês</li><li>Períodos</li><li>Convidados, aceite, Reservar</li></ol></div>
+<div><h3>O que é anunciado</h3><ul><li>Cada dia: "17 de outubro, escolhido", "10 de outubro, ocupado"</li><li>Período indisponível lido como desabilitado</li><li>Modal de regras com título e subtítulo</li></ul></div>
+<div><h3>Nome do que é só ícone</h3><ul><li>Setas do mês: "Mês anterior", "Próximo mês"</li><li>"⋯": "Ações da reserva de 17/10"</li><li>X do modal: "Fechar"</li></ul></div>
+</div></details>
+<section class="cm-tela" id="estados" aria-labelledby="estados-t">
+<h2 class="cm-tela__titulo" id="estados-t">Estados da reserva <small>Tela 3 de 3, aprovação, ocupado, limite, sucesso</small></h2>
+<div class="cm-palcos">
+<div class="cm-palco atencao"><div class="cm-palco__rotulo"><i data-i="ver"></i>Pedido aguardando a síndica (fora da regra)</div><div class="cm-palco__corpo"><div class="cm-pilha"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Atenção: aguardando aprovação da síndica</span><p>Você pediu a churrasqueira 2 até 23h. O regimento permite até 22h. A síndica responde em até 2 dias.</p></div></div></div>
+<div class="cm-palco calendario"><div class="cm-palco__rotulo"><i data-i="ver"></i>Dia ocupado ao tocar</div><div class="cm-palco__corpo"><div class="cm-alerta cm-alerta--info"><i data-i="informacao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">10/10 já está reservado</span><span class="cm-alerta__desc">Quer entrar na lista de espera? Avisamos se cancelarem até 07/10.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button" data-toast="Você está na lista de espera de 10/10.">Entrar na espera</button></span></div></div></div>
+<div class="cm-palco regimento"><div class="cm-palco__rotulo"><i data-i="ver"></i>Limite do regimento</div><div class="cm-palco__corpo"><div class="cm-alerta cm-alerta--neutro"><i data-i="regimento"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Você já tem uma reserva do salão em outubro</span><span class="cm-alerta__desc">O regimento permite uma por unidade por mês. Novembro já está aberto.</span></span></div></div></div>
+<div class="cm-palco sucesso"><div class="cm-palco__rotulo"><i data-i="ver"></i>Reserva feita</div><div class="cm-palco__corpo"><div class="cm-vazio"><i data-i="sucesso"></i><p class="cm-vazio__titulo">Salão reservado para sábado, 17/10</p><p class="cm-vazio__texto">Mandamos a confirmação no WhatsApp. As chaves ficam na portaria a partir das 9h30.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button" data-toast="Evento salvo na sua agenda.">Pôr na agenda</button></div></div></div></div>
+</div>
+</section>
+</div>
+</main>
+<script>
+document.querySelectorAll('.area').forEach(function(a){a.addEventListener('click',function(){document.querySelectorAll('.area').forEach(function(x){x.setAttribute('aria-pressed',String(x===a))})})});
+document.querySelectorAll('.cal-portal td:not(.is-fora) button').forEach(function(b){b.addEventListener('click',function(){if(b.closest('.is-ocupado')){q5Toast(b.textContent+'/10 já está reservado. Quer entrar na lista de espera?','info','Entrar na espera');return}document.querySelectorAll('.cal-portal button[aria-pressed]').forEach(function(x){x.removeAttribute('aria-pressed')});b.setAttribute('aria-pressed','true')})});
+document.getElementById('reservar').addEventListener('click',function(){if(!document.getElementById('aceite').checked){q5Toast('Marque que leu as regras do salão para reservar.','aviso');document.getElementById('aceite').focus();return}q5Toast('Salão reservado para sábado, 17/10. Confirmação enviada no WhatsApp.','sucesso','Desfazer')});
+</script>
+</body>
+</html>

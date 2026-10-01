@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal, unidade e portaria</title>
+<meta name="description" content="Portal do morador: perfil e unidades com edição e barra de salvar, moradores e veículos, autorização de visitante com passe e encomendas na portaria.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .p-perfil{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+  .p-port{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+  @media (max-width:1023px){.p-perfil,.p-port{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body data-moldura='{"contexto":"portal","secao":"Minha unidade","papel":"morador","cliente":{"nome":"Administradora Alpha","sigla":"A"},"unidade":"Bloco B, apto 1204"}'>
+<main id="conteudo" class="lc-pagina">
+<section class="lc-ficha-tela" aria-label="Sobre a tela Perfil e unidades">
+  <div class="lc-ficha-tela__nome"><b>Perfil e unidades</b><span>Dados da pessoa, unidades vinculadas, quem mora, veículos e avisos.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Manter o cadastro certo (telefone para o WhatsApp, quem pode entrar, placa do carro) sem formulário enviado por e-mail.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Conta (avatar) e "Perfil", ou Mais e "Minha unidade".</li><li>Lápis em cada seção abre a edição ali mesmo.</li><li>Ao mudar um campo, a barra de salvar aparece no pé com o que mudou; "Descartar" volta.</li><li>Morador novo e veículo passam pela aprovação da administradora (estado "Em aprovação").</li><li>Trocar de unidade fica no topo, para quem tem mais de uma.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o HubSpot e o Salesforce editam por seção com lápis; o Notion e o Figma mostram a barra de salvar só quando há alteração; e o app do Nubank lista cada dado com "Alterar" ao lado, o que o morador já sabe usar.</p></div>
+</section>
+<div class="lc-portal-cab"><div class="lc-portal-cab__txt"><h1>Minha unidade</h1><p>Ana Souza, proprietária e moradora</p></div><div class="lc-grupo-btn"><button class="lc-btn" type="button" data-alternar="#unid"><i data-i="trocar-cliente"></i>Bloco B, apto 1204<i data-i="chevron-baixo"></i></button></div></div>
+<div class="lc-menu lc-menu--estatico" id="unid" hidden style="max-width:320px;margin-bottom:16px"><div class="lc-menu__titulo">Suas unidades</div><a class="lc-menu__item" href="#" aria-checked="true" role="menuitemradio"><i data-i="unidade"></i>Cond. Parque das Águas, B-1204<small>Proprietária</small></a><a class="lc-menu__item" href="#" role="menuitemradio" aria-checked="false"><i data-i="unidade"></i>Residencial Jardim Botânico, 32<small>Proprietária, alugada</small></a></div>
+<div class="p-perfil" data-editavel>
+  <div class="lc-pilha">
+    <section class="lc-secao-reg lc-secao-reg--editando lc-caixa" aria-labelledby="dp-t">
+      <div class="lc-secao-reg__cab lc-caixa__cab"><h2 id="dp-t">Seus dados</h2></div>
+      <div class="lc-caixa__corpo"><div class="lc-form-grade">
+        <div class="lc-campo"><label class="lc-rotulo" for="nome">Nome</label><input id="nome" class="lc-entrada" value="Ana Souza" readonly><p class="lc-ajuda">Para trocar o nome, mande documento à administradora.</p></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="cel">Celular com WhatsApp</label><div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">+55</span><input id="cel" class="lc-entrada" type="tel" value="(11) 9 8712-4410"></div></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="em">E-mail</label><input id="em" class="lc-entrada" type="email" value="ana.souza@gmail.com" aria-describedby="em-a"><p class="lc-antes" id="em-a">Antes: <s>ana.souza@alpha-condominios.com.br</s>. Mostrado assim para documentar a barra de salvar.</p></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="cpf">CPF</label><input id="cpf" class="lc-entrada" value="•••.482.318-••" readonly></div>
+      </div></div></section>
+    <section class="lc-caixa" aria-labelledby="mo-t"><div class="lc-caixa__cab"><h2 id="mo-t">Quem mora na unidade</h2><button class="lc-btn lc-btn--p" type="button"><i data-i="adicionar-pessoa"></i>Adicionar</button></div>
+      <ul class="lc-lista"><li><span class="lc-av lc-av--32 lc-av--c2">AS</span><span class="lc-cresce"><b>Ana Souza</b><span class="lc-lista__sub">Proprietária, acesso ao portal</span></span></li><li><span class="lc-av lc-av--32 lc-av--c6">RS</span><span class="lc-cresce"><b>Ricardo Souza</b><span class="lc-lista__sub">Cônjuge, acesso ao portal</span></span></li><li><span class="lc-av lc-av--32 lc-av--c8">CL</span><span class="lc-cresce"><b>Cida Lopes</b><span class="lc-lista__sub">Diarista, terças e sextas, 8h às 16h</span></span><span class="lc-estado lc-estado--aviso">Em aprovação</span></li></ul></section>
+    <section class="lc-caixa" aria-labelledby="ve-t"><div class="lc-caixa__cab"><h2 id="ve-t">Veículos e vaga</h2></div>
+      <ul class="lc-lista"><li><i data-i="vaga"></i><span class="lc-cresce"><b>Vaga 37, subsolo 1</b><span class="lc-lista__sub">Coberta, demarcada</span></span></li><li><i data-i="estacionamento"></i><span class="lc-cresce"><b>Jeep Compass prata, FHX 2C41</b><span class="lc-lista__sub">Tag de acesso 00418</span></span></li></ul></section>
+  </div>
+  <aside class="lc-pilha"><section class="lc-caixa" aria-labelledby="av-t"><div class="lc-caixa__cab"><h2 id="av-t">Como quer receber avisos</h2></div><div class="lc-caixa__corpo lc-pilha--p" style="display:flex;flex-direction:column;gap:10px">
+    <label class="lc-interruptor"><input type="checkbox" role="switch" checked><span class="lc-interruptor__trilho"></span>Boleto e cobrança por WhatsApp</label>
+    <label class="lc-interruptor"><input type="checkbox" role="switch" checked><span class="lc-interruptor__trilho"></span>Encomenda na portaria por WhatsApp</label>
+    <label class="lc-interruptor"><input type="checkbox" role="switch"><span class="lc-interruptor__trilho"></span>Comunicados por e-mail</label>
+    <p class="lc-legenda">Comunicado que pede ciência sempre chega, por lei, por um dos canais.</p></div></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Segurança</h2></div><ul class="lc-lista"><li><i data-i="senha"></i><span class="lc-cresce">Senha<span class="lc-lista__sub">Trocada em 12/03/2026</span></span><button class="lc-btn lc-btn--p" type="button">Trocar</button></li><li><i data-i="dois-fatores"></i><span class="lc-cresce">Verificação em 2 etapas<span class="lc-lista__sub">Desligada</span></span><a class="lc-btn lc-btn--p" href="41-publicas.html#dois-fatores">Ligar</a></li></ul></section></aside>
+  <div class="lc-barra-salvar" role="region" aria-label="Alterações não salvas" data-barra-salvar style="grid-column:1/-1">
+    <p class="lc-barra-salvar__msg"><i data-i="aviso"></i><span><b data-conta-alt data-n="1">1 alteração não salva</b> em Seus dados: e-mail</span></p>
+    <div class="lc-barra-salvar__acoes"><button class="lc-btn lc-btn--discreto" type="button" data-fechar-alvo="[data-barra-salvar]">Descartar</button><button class="lc-btn lc-btn--principal" type="button" data-fechar-alvo="[data-barra-salvar]" data-toast="Dados salvos.">Salvar</button></div></div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Trocar unidade, campos de Seus dados, Adicionar morador, preferências, Trocar senha, Ligar 2 etapas; barra de salvar por último (Descartar, Salvar).</p></div><div><h3>O que é anunciado</h3><p>A barra é região "Alterações não salvas" e diz quantas e onde. Campos só leitura são anunciados como "somente leitura" com a ajuda.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum; os ícones de lista são decorativos.</p></div></div>
+
+<section class="lc-ficha-tela" id="visitante" aria-label="Sobre a tela Portaria">
+  <div class="lc-ficha-tela__nome"><b>Portaria: visitante e encomendas</b><span>Autorizar visitante com passe e ver o que chegou.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Liberar a entrada sem interfone e saber que a encomenda chegou, com quem está e até quando retirar.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Mais e "Visitantes" (ou atalho do Início).</li><li>Nome, documento opcional, dia e janela de horário; recorrente para diarista.</li><li>"Gerar passe" cria código e QR; "Enviar por WhatsApp" manda ao visitante.</li><li>Encomendas: lista com o porteiro que recebeu e "Retirada" com carimbo quando sai.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o Gruvi e o Condomob geram QR de acesso para o visitante; o app dos Correios e o do Mercado Livre mostram "aguardando retirada" com prazo; e o livro da portaria registra quem entregou, que vira o carimbo.</p></div>
+</section>
+<div class="p-port">
+  <section class="lc-caixa" aria-labelledby="vi-t"><div class="lc-caixa__cab"><h2 id="vi-t">Autorizar visitante</h2></div><div class="lc-caixa__corpo">
+    <div class="lc-form-grade lc-form-grade--1">
+      <div class="lc-campo"><label class="lc-rotulo" for="vn">Nome do visitante</label><input id="vn" class="lc-entrada" value="Carlos Menezes"></div>
+      <div class="lc-campo"><label class="lc-rotulo" for="vd">Documento <span class="lc-opcional">(opcional)</span></label><input id="vd" class="lc-entrada" value="RG 32.418.907-1"></div>
+      <div class="lc-campo"><label class="lc-rotulo" for="vdia">Dia</label><input id="vdia" class="lc-entrada" type="date" value="2026-10-04"></div>
+      <div class="lc-campo"><span class="lc-rotulo" id="vj">Janela</span><div class="lc-seg" role="group" aria-labelledby="vj" data-seg><button type="button" aria-pressed="false">Manhã</button><button type="button" aria-pressed="true">Tarde</button><button type="button" aria-pressed="false">Dia todo</button></div></div>
+      <label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span><span>Repetir toda semana<small>Para diarista, professor, cuidador</small></span></label>
+    </div>
+    <div class="lc-linha" style="margin-top:16px"><button class="lc-btn lc-btn--principal" type="button" data-toast="Passe gerado. Válido em 04/10, das 12h às 18h.">Gerar passe</button></div>
+    <div class="lc-passe" style="margin-top:16px"><span class="lc-passe__qr" role="img" aria-label="QR Code do passe de Carlos Menezes"></span><b>Carlos Menezes</b><span class="lc-passe__cod" aria-label="Código 4 8 2 9 1 7">482 917</span><span class="lc-legenda">Sábado, 04/10, das 12h às 18h. Mostrar na portaria do bloco B.</span>
+      <div style="grid-column:1/-1" class="lc-grupo-btn"><button class="lc-btn" type="button"><i data-i="whatsapp"></i>Enviar por WhatsApp</button><button class="lc-btn lc-btn--discreto" type="button" data-toast="Passe cancelado." data-toast-acao="Desfazer">Cancelar passe</button></div></div>
+  </div></section>
+  <section class="lc-caixa" id="encomendas" aria-labelledby="en-t"><div class="lc-caixa__cab"><h2 id="en-t">Encomendas</h2><span class="lc-aux">Últimos 30 dias</span></div>
+    <ul class="lc-lista">
+      <li><i data-i="encomenda"></i><span class="lc-cresce"><b>Mercado Livre, 1 volume médio</b><span class="lc-lista__sub">Recebida por Severino (portaria) ontem, 17:40. Prateleira B-3. Retire até 07/10.</span></span><span class="lc-estado lc-estado--aviso">Na portaria</span></li>
+      <li><i data-i="correspondencia"></i><span class="lc-cresce"><b>Correios, carta registrada</b><span class="lc-lista__sub">Banco do Brasil. Recebida 24/09.</span></span><span class="lc-carimbo lc-carimbo--protocolado">Retirada<small>Ricardo, 24/09 19:02</small></span></li>
+      <li><i data-i="encomenda"></i><span class="lc-cresce"><b>Amazon, 2 volumes</b><span class="lc-lista__sub">Recebida 18/09.</span></span><span class="lc-carimbo lc-carimbo--protocolado">Retirada<small>Ana, 18/09 20:15</small></span></li>
+    </ul></section>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Nome, documento, dia, janela (segmentado), repetir, Gerar passe, Enviar por WhatsApp, Cancelar passe, lista de encomendas.</p></div><div><h3>O que é anunciado</h3><p>Código do passe lido dígito a dígito ("4 8 2 9 1 7"). Estado da encomenda em texto: "Na portaria" ou "Retirada, Ricardo, 24/09 19:02".</p></div><div><h3>Nome do que é só ícone</h3><p>QR: "QR Code do passe de Carlos Menezes".</p></div></div>
+</main>
+<script>
+document.querySelectorAll(".lc-passe__qr").forEach(function(el){ var h=""; for(var i=0;i<49;i++){ var on=((i*5+(i>>1))%3)!==1; if(i<3||i%7===0) on=true; h+='<i'+(on?'':' class="v"')+'></i>'; } el.innerHTML=h; });
+</script>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

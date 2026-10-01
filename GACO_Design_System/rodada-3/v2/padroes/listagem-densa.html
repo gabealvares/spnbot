@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ordens de serviço</title>
+<script src="../sistema/marca.js"></script>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-q2.css">
+<script src="../sistema/icones.js"></script>
+<script src="links.js"></script>
+<script src="../sistema/moldura.js" defer></script>
+<script src="../sistema/extra-q2.js" defer></script>
+<style>
+.ld-barra{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 0}
+.ld-barra .cm-filtros{flex:1;min-width:0}
+.ld-total{font-size:12.5px;color:var(--cm-texto-2);padding:4px 0 8px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.ld-total b{color:var(--cm-texto-1)}
+.cm-tabela td.ld-acoes{white-space:nowrap}
+.ld-modal-grade{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px}
+.ld-modal-grade .largo{grid-column:1/-1}
+@media (max-width:899px){.ld-col-opc{display:none}.ld-modal-grade{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Operações","tela":"Ordens de serviço","papel":"Operações","atalhos":[["J","próxima linha"],["K","anterior"],["Enter","abrir"],["X","selecionar"],["N","nova OS"],["/","buscar"],["F2","editar célula"],["?","todos"]],"usuario":{"nome":"Diego Martins","iniciais":"DM","cargo":"Coordenador de operações","presenca":"disponivel","tom":4}}'></div>
+<main id="conteudo" class="cm-pagina">
+  <header class="cm-cabecalho-pagina">
+    <div class="cm-cabecalho-pagina__linha">
+      <h1 class="cm-cabecalho-pagina__titulo">Ordens de serviço</h1>
+      <div class="cm-cabecalho-pagina__acoes">
+        <button class="cm-botao" type="button" data-q2-toast="Abrindo Preventivas do mês.|info"><i data-i="preventiva"></i>Preventivas</button>
+        <button class="cm-botao cm-botao--principal" type="button" data-q2-modal="modal-os" data-q2-tecla="n"><i data-i="adicionar"></i>Nova OS</button>
+        <span class="cm-ancora"><button class="cm-botao cm-botao--icone" type="button" aria-label="Mais ações" aria-haspopup="menu" aria-expanded="false" data-q2-abre="menu-pag"><i data-i="mais-opcoes"></i></button>
+          <div class="cm-menu cm-menu--240 cm-flutuante" role="menu" id="menu-pag" hidden>
+            <button class="cm-menu__item" role="menuitem" type="button" data-q2-toast="Abrindo Importar ordens de serviço.|info"><i data-i="importar"></i><span>Importar planilha</span><span></span></button>
+            <button class="cm-menu__item" role="menuitem" type="button" data-q2-toast="Abrindo a lixeira filtrada em ordens de serviço.|info"><i data-i="excluir"></i><span>Lixeira de OS</span><span></span></button>
+          </div></span>
+      </div>
+    </div>
+  </header>
+  <div class="cm-visoes" role="tablist" aria-label="Visões salvas">
+    <button role="tab" type="button" aria-selected="true">Abertas <span class="cm-contador">214</span></button>
+    <button role="tab" type="button" aria-selected="false">Minhas <span class="cm-contador">31</span></button>
+    <button role="tab" type="button" aria-selected="false">Vencem hoje <span class="cm-contador">6</span></button>
+    <button role="tab" type="button" aria-selected="false">Aguardando fornecedor</button>
+    <button role="tab" type="button" aria-selected="false">Concluídas no mês</button>
+    <button role="tab" type="button" aria-selected="false"><i data-i="adicionar"></i>Salvar visão</button>
+  </div>
+  <div class="ld-barra" id="ld-filtros">
+    <div class="cm-filtros">
+      <div class="cm-entrada cm-entrada--busca" style="width:280px"><i data-i="pesquisar"></i><input type="search" placeholder="Buscar por número, condomínio ou local" aria-label="Buscar ordens de serviço" data-q2-busca><kbd class="cm-tecla">/</kbd></div>
+      <button class="cm-filtro is-ativo" type="button" aria-haspopup="dialog">Condomínio: <b>Parque das Águas</b><i data-i="chevron-baixo"></i></button>
+      <button class="cm-filtro" type="button" aria-haspopup="dialog">Tipo<i data-i="chevron-baixo"></i></button>
+      <button class="cm-filtro" type="button" aria-haspopup="dialog">Fornecedor<i data-i="chevron-baixo"></i></button>
+      <button class="cm-filtro" type="button"><i data-i="filtrar"></i>Mais filtros</button>
+    </div>
+    <div class="cm-segmentado cm-segmentado--p cm-segmentado--icones" role="group" aria-label="Visão"><button type="button" aria-pressed="true" aria-label="Tabela" data-dica="Tabela"><i data-i="lista"></i></button><button type="button" aria-pressed="false" aria-label="Quadro" data-dica="Quadro" onclick="location.href='quadro.html'"><i data-i="quadro-kanban"></i></button><button type="button" aria-pressed="false" aria-label="Agenda" data-dica="Agenda" onclick="location.href='agenda.html'"><i data-i="calendario"></i></button></div>
+    <button class="cm-botao cm-botao--p" type="button" data-q2-toast="Exportando 23 ordens de serviço com o filtro atual. O arquivo chega em Relatórios › Exportações.|info"><i data-i="exportar"></i>Exportar 23</button>
+    <button class="cm-botao cm-botao--p cm-botao--icone" type="button" aria-label="Colunas" data-dica="Colunas"><i data-i="ajustar"></i></button>
+  </div>
+  <div class="cm-barra-massa" role="region" aria-label="Ações em massa" id="ld-massa" hidden>
+    <b id="ld-nsel">0 selecionadas</b>
+    <button class="cm-botao cm-botao--p" type="button" data-q2-toast="3 ordens atribuídas a Diego Martins.|sucesso|Desfazer"><i data-i="atribuir"></i>Atribuir</button>
+    <button class="cm-botao cm-botao--p" type="button" data-q2-toast="Prazo das 3 ordens mudou para 04/10.|sucesso|Desfazer"><i data-i="calendario"></i>Mudar prazo</button>
+    <button class="cm-botao cm-botao--p" type="button" data-q2-toast="Exportando 3 ordens selecionadas.|info"><i data-i="exportar"></i>Exportar</button>
+    <button class="cm-botao cm-botao--p cm-botao--perigo" type="button" id="ld-excluir"><i data-i="excluir"></i>Excluir</button>
+    <span class="cm-empurra"><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" id="ld-limpar">Limpar seleção</button></span>
+  </div>
+  <div class="ld-total"><span><b>1–23</b> de 23 com o filtro</span><span class="cm-chips"><span class="cm-chip"><span>Condomínio</span> Parque das Águas<button type="button" aria-label="Tirar filtro Condomínio"><i data-i="fechar"></i></button></span></span><span>Ordenado por prazo, mais urgente primeiro</span></div>
+  <div class="cm-tabela-caixa cm-tabela-caixa--alta" style="--tabela-altura:calc(100vh - 360px)">
+    <table class="cm-tabela">
+      <thead><tr>
+        <th class="cm-tabela__marcar cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar todas desta página" id="ld-todas"><span class="cm-marcar__caixa"></span></label></th>
+        <th>Nº</th>
+        <th>Local e serviço</th>
+        <th class="ld-col-opc">Fornecedor</th>
+        <th aria-sort="ascending"><button class="cm-ordenar" type="button">Prazo<i data-i="seta-cima"></i></button></th>
+        <th class="ld-col-opc">Responsável</th>
+        <th>Estado</th>
+        <th class="cm-num ld-col-opc">Orçado</th>
+        <th class="cm-tabela__acoes"><span class="cm-sr">Ações</span></th>
+      </tr></thead>
+      <tbody id="ld-corpo" data-q2-lista></tbody>
+    </table>
+  </div>
+  <nav class="cm-paginacao" aria-label="Paginação"><span class="cm-paginacao__total"><b>1–23</b> de 23</span><div class="cm-paginacao__paginas"><button type="button" disabled aria-label="Página anterior"><i data-i="chevron-esquerda"></i></button><button type="button" aria-current="page">1</button><button type="button" disabled aria-label="Próxima página"><i data-i="chevron-direita"></i></button></div><div class="cm-selecao"><select aria-label="Linhas por página"><option>25 por página</option><option selected>50 por página</option><option>100 por página</option></select><i data-i="chevron-baixo"></i></div></nav>
+</main>
+
+<!-- criação rápida em modal -->
+<div class="cm-sobreposicao" id="modal-os" hidden>
+  <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="mo-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mo-t">Nova ordem de serviço<span class="cm-modal__sub">Só o essencial. O resto se completa na OS.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-q2-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo">
+      <div class="ld-modal-grade">
+        <div class="cm-campo"><label class="cm-campo__rotulo" for="mo-c">Condomínio <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-selecao"><select id="mo-c"><option>Cond. Parque das Águas</option><option>Cond. Vila Serena</option><option>Edifício Solar do Batel</option></select><i data-i="chevron-baixo"></i></div></div>
+        <div class="cm-campo"><label class="cm-campo__rotulo" for="mo-l">Local <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="mo-l" value="Subsolo 1, vagas 37 e 38" autofocus></div></div>
+        <div class="cm-campo"><label class="cm-campo__rotulo" for="mo-tp">Tipo</label><div class="cm-selecao"><select id="mo-tp"><option>Corretiva</option><option>Preventiva</option><option>Emergencial</option></select><i data-i="chevron-baixo"></i></div></div>
+        <div class="cm-campo"><label class="cm-campo__rotulo" for="mo-p">Prazo</label><div class="cm-entrada"><i data-i="calendario"></i><input id="mo-p" value="02/10/2026"></div></div>
+        <div class="cm-campo largo"><label class="cm-campo__rotulo" for="mo-f">Fornecedor</label>
+          <div class="cm-ancora" style="display:block">
+            <button class="cm-gatilho" type="button" id="mo-f" aria-haspopup="listbox" aria-expanded="false" data-q2-abre="lista-forn" style="width:100%"><span class="cm-gatilho__valor" id="mo-f-v">Hidrotec Instalações</span><i data-i="chevron-baixo"></i></button>
+            <div class="cm-lista-opcoes cm-flutuante cm-flutuante--esq" role="listbox" id="lista-forn" hidden style="width:100%">
+              <div class="cm-lista-opcoes__busca"><div class="cm-entrada cm-entrada--p cm-entrada--busca"><i data-i="pesquisar"></i><input placeholder="Buscar fornecedor" aria-label="Buscar fornecedor" value="Elevadores Atlas"></div></div>
+              <div class="cm-lista-opcoes__vazio" style="padding:8px 12px;font-size:12.5px;color:var(--cm-texto-2)">Nenhum fornecedor com “Elevadores Atlas”.</div>
+              <div class="cm-lista-opcoes__criar"><div class="cm-opcao" role="option" tabindex="0" data-q2-modal="modal-forn"><i data-i="adicionar"></i>Criar fornecedor “Elevadores Atlas”</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="cm-campo largo"><label class="cm-campo__rotulo" for="mo-d">O que fazer</label><textarea class="cm-area" id="mo-d" rows="3">Interditar as vagas 37 e 38 e vistoriar a junta de dilatação perto do pilar P12. Foto no chamado 48213.</textarea></div>
+      </div>
+    </div>
+    <div class="cm-modal__pe"><span class="cm-modal__pe-esq"><a class="cm-link" href="#">Abrir formulário completo</a></span><button class="cm-botao" type="button" data-q2-fechar>Cancelar</button><button class="cm-botao" type="button" data-q2-toast="OS 483 criada. Formulário pronto para a próxima.|sucesso|Abrir OS 483">Criar e outra</button><button class="cm-botao cm-botao--principal" type="button" id="mo-criar">Criar OS</button></div>
+  </div>
+</div>
+<!-- criar fornecedor a partir do campo, sem fechar a OS: modal curto sobre página, com a OS guardada -->
+<div class="cm-sobreposicao" id="modal-forn" hidden>
+  <div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="mf-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mf-t">Novo fornecedor<span class="cm-modal__sub">A OS que você está criando continua aberta atrás.</span></h2></div>
+    <div class="cm-modal__corpo cm-pilha">
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="mf-n">Nome</label><div class="cm-entrada"><input id="mf-n" value="Elevadores Atlas, filial Curitiba"></div></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="mf-c">CNPJ</label><div class="cm-entrada"><input id="mf-c" inputmode="numeric" placeholder="00.000.000/0000-00"></div></div>
+    </div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" id="mf-criar">Criar e usar na OS</button></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var D=[
+   ['483','Cond. Parque das Águas','Subsolo 1, vagas 37 e 38','Interditar e vistoriar junta','Hidrotec Instalações','01/10','Diego Martins','perigo','Vence hoje','1.850,00'],
+   ['481','Cond. Parque das Águas','Portão da garagem, Bl B','Motor travando ao fechar','Portões Sul','02/10','Diego Martins','aviso','Aguardando fornecedor','620,00'],
+   ['478','Cond. Parque das Águas','Casa de máquinas, elevador 2','Ruído no cabo de tração','Elevadores Atlas','03/10','Sônia Prates','info','Agendada','—'],
+   ['476','Cond. Parque das Águas','Piscina adulto','Troca da bomba de recirculação','Aqua Clean','04/10','Diego Martins','info','Em execução','3.240,00'],
+   ['475','Cond. Parque das Águas','Salão de festas','Ar-condicionado sem gelar','Climatiza PR','06/10','Sônia Prates','info','Agendada','480,00'],
+   ['471','Cond. Parque das Águas','Bl A, hall do 3º andar','Luminária queimada','Equipe própria','07/10','Rosângela Duarte','neutro','Aberta','—'],
+   ['469','Cond. Parque das Águas','Caixa d’água superior','Limpeza semestral','Aqua Clean','08/10','Diego Martins','info','Agendada','1.100,00'],
+   ['466','Cond. Parque das Águas','Interfone, Bl C','Ramal 1204 sem áudio','Interfonia Paraná','09/10','Sônia Prates','aviso','Aguardando peça','210,00'],
+   ['462','Cond. Parque das Águas','Gerador','Teste mensal com carga','Geratec','10/10','Diego Martins','info','Agendada','—'],
+   ['460','Cond. Parque das Águas','Playground','Balanço com corrente solta','Equipe própria','10/10','Rosângela Duarte','neutro','Aberta','—'],
+   ['457','Cond. Parque das Águas','Quadra','Rede de proteção rasgada','Esportes JR','12/10','Sônia Prates','neutro','Aberta','890,00'],
+   ['455','Cond. Parque das Águas','Bicicletário','Trava do portão','Equipe própria','13/10','Rosângela Duarte','neutro','Aberta','—'],
+   ['452','Cond. Parque das Águas','Fachada, Bl B','Infiltração no 8º andar','Impermeabiliza Sul','15/10','Diego Martins','aviso','Aguardando aprovação','12.400,00'],
+   ['449','Cond. Parque das Águas','Extintores','Recarga anual','Fogo Zero','18/10','Sônia Prates','info','Agendada','1.320,00'],
+   ['446','Cond. Parque das Águas','Jardim interno','Poda das palmeiras','Verde Vivo','20/10','Rosângela Duarte','info','Agendada','750,00'],
+   ['441','Cond. Parque das Águas','Portaria','Câmera 4 sem imagem','Segurança Total','21/10','Diego Martins','neutro','Aberta','—'],
+   ['438','Cond. Parque das Águas','Churrasqueira','Exaustor com ruído','Climatiza PR','22/10','Sônia Prates','neutro','Aberta','—'],
+   ['433','Cond. Parque das Águas','Bl C, apto 1204','Vazamento vindo do 1304','Hidrotec Instalações','24/10','Diego Martins','aviso','Aguardando morador','—'],
+   ['430','Cond. Parque das Águas','Academia','Esteira 2 desligando','FitService','25/10','Sônia Prates','neutro','Aberta','—'],
+   ['427','Cond. Parque das Águas','Subsolo 2','Pintura das faixas','Equipe própria','28/10','Rosângela Duarte','neutro','Aberta','2.300,00'],
+   ['421','Cond. Parque das Águas','Elevador 1','Manutenção preventiva mensal','Elevadores Atlas','30/10','Diego Martins','info','Agendada','—'],
+   ['418','Cond. Parque das Águas','Quadro de luz, Bl A','Disjuntor desarmando','Eletro Forte','31/10','Sônia Prates','neutro','Aberta','—'],
+   ['412','Cond. Parque das Águas','Telhado, Bl A','Calhas entupidas','Impermeabiliza Sul','05/11','Diego Martins','neutro','Aberta','680,00']];
+  var IC={perigo:'perigo',aviso:'atencao',info:'pendente',neutro:'rascunho',sucesso:'sucesso'};
+  var corpo=document.getElementById('ld-corpo');
+  corpo.innerHTML=D.map(function(r,i){return '<tr data-q2-item'+(i===2?' class="is-atual"':'')+'>'+
+   '<td class="cm-tabela__marcar cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar OS '+r[0]+'"><span class="cm-marcar__caixa"></span></label></td>'+
+   '<td class="cm-t-dado">'+r[0]+'</td>'+
+   '<td class="cm-tabela__principal"><a href="#" data-os="'+r[0]+'">'+r[3]+'</a><span class="cm-tabela__sub">'+r[2]+'</span></td>'+
+   '<td class="ld-col-opc">'+r[4]+'</td>'+
+   '<td class="cm-celula-editavel" tabindex="0" data-q2-celula data-rotulo="Prazo da OS '+r[0]+'">'+r[5]+'</td>'+
+   '<td class="ld-col-opc">'+r[6]+'</td>'+
+   '<td><span class="cm-estado cm-estado--ponto cm-estado--'+r[7]+'">'+r[8]+'</span></td>'+
+   '<td class="cm-num ld-col-opc">'+(r[9]==='—'?'<span class="cm-texto-3">sem orçamento</span>':'R$ '+r[9])+'</td>'+
+   '<td class="cm-tabela__acoes ld-acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Atribuir OS '+r[0]+'" data-dica="Atribuir  A"><i data-i="atribuir"></i></button><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações da OS '+r[0]+'"><i data-i="mais-opcoes"></i></button></td></tr>'}).join('');
+  var massa=document.getElementById('ld-massa'),filtros=document.getElementById('ld-filtros');
+  function sel(){var n=corpo.querySelectorAll('input:checked').length;massa.hidden=!n;filtros.hidden=!!n;document.getElementById('ld-nsel').textContent=n===1?'1 selecionada':n+' selecionadas';
+    corpo.querySelectorAll('tr').forEach(function(tr){tr.setAttribute('aria-selected',tr.querySelector('input').checked)})}
+  corpo.addEventListener('change',sel);
+  document.getElementById('ld-todas').addEventListener('change',function(){var c=this.checked;corpo.querySelectorAll('input').forEach(function(i){i.checked=c});sel()});
+  document.getElementById('ld-limpar').addEventListener('click',function(){corpo.querySelectorAll('input').forEach(function(i){i.checked=false});document.getElementById('ld-todas').checked=false;sel()});
+  document.getElementById('ld-excluir').addEventListener('click',function(){var tr=[].slice.call(corpo.querySelectorAll('tr[aria-selected="true"]'));var n=tr.length;tr.forEach(function(t){t.hidden=true});document.getElementById('ld-limpar').click();
+    cmQ2.toast(n+(n===1?' OS foi':' OS foram')+' para a lixeira.','sucesso','Desfazer',function(){tr.forEach(function(t){t.hidden=false});cmQ2.toast('Restauradas.','info')})});
+  corpo.addEventListener('click',function(e){var a=e.target.closest('a[data-os]');if(a){e.preventDefault();cmQ2.toast('Abrindo OS '+a.getAttribute('data-os')+'. A lista guarda filtro, página e esta linha.','info')}});
+  document.getElementById('mf-criar').addEventListener('click',function(){document.getElementById('mo-f-v').textContent='Elevadores Atlas, filial Curitiba';cmQ2.fecharModal(this);cmQ2.fecharMenu();cmQ2.toast('Fornecedor criado e escolhido na OS.','sucesso')});
+  document.getElementById('mo-criar').addEventListener('click',function(){cmQ2.fecharModal(this);var tr=corpo.querySelector('tr');var n=tr.cloneNode(true);n.children[1].textContent='484';n.querySelector('a').textContent='Interditar e vistoriar junta';n.classList.remove('is-atual');corpo.insertBefore(n,tr);cmQ2.toast('OS 484 criada no topo da lista.','sucesso','Abrir')});
+})();
+</script>
+</body>
+</html>

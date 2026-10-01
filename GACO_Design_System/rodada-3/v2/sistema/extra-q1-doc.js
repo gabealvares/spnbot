@@ -156,6 +156,7 @@
       try{navigator.clipboard.writeText(txt).then(ok,function(){selecionar(det)})}catch(_){selecionar(det)}
       return;
     }
+    if((x=e.target.closest('[data-doc-fecha-alvo]'))){fecharTudo();var a0=x.closest('[data-doc-ancora]');var g0=a0&&a0.querySelector('[data-doc-alterna]');if(g0)g0.focus();return}
     if((x=e.target.closest('[data-doc-alterna]'))){
       var a=x.closest('[data-doc-ancora]');var alvo=a&&a.querySelector('[data-doc-alvo]');
       if(alvo){var abrir=x.getAttribute('aria-expanded')!=='true';fecharTudo(x);alvo.hidden=!abrir;x.setAttribute('aria-expanded',String(abrir));

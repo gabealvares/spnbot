@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRE, Financeiro</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.dre-graf{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start;margin:20px 0}
+.dre .lc-tabela td{height:36px}
+.dre-sub td{font-weight:600;background:var(--sup-2)!important}
+.dre-ind td:first-child{padding-left:28px}
+.dre-res td{font-weight:700;border-top:1px solid var(--filete-forte)}
+@media (max-width:1023px){.dre-graf{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-moldura='{"modulo":"financeiro","secao":"Análise","item":"DRE","papel":"diretor","usuario":{"nome":"Cláudio Prates","cargo":"Diretor","iniciais":"CP","cor":"lc-av--c2"},"trilha":["Análise","DRE"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>DRE da administradora como relatório. Papel: diretoria.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p>
+      <p>A diretoria da Administradora Alpha lê o resultado da empresa (não do condomínio) por mês, com margem e comparação com o orçamento, e leva para a reunião do conselho em PDF ou planilha.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Escolhe o período (padrão: últimos 3 meses + acumulado do ano) e o regime (competência ou caixa).</li>
+      <li>Linhas de grupo abrem e fecham; clicar num valor abre os lançamentos que o compõem.</li>
+      <li>Gráfico do lucro com dica no passe do mouse e no foco; "Ver como tabela" mostra os mesmos números.</li>
+      <li>Exportar (PDF, planilha) ou Agendar envio todo dia 5 para a diretoria (31c).</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p>
+      <p>a DRE do Omie e do Conta Azul é tabela com meses em coluna e análise vertical em %, o QuickBooks deixa clicar no número e ver os lançamentos, e o contador brasileiro espera a ordem da Lei 6.404 (receita bruta, deduções, líquida, custos, despesas, resultado). Indicadores em fileira só aqui, em relatório.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Estado</span>
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela" data-p4-estados><button type="button" data-v="dados" aria-pressed="true">Com dados</button><button type="button" data-v="carregando">Carregando</button><button type="button" data-v="sem-permissao">Sem permissão</button></div>
+    <span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="financeiro"></div>
+</details>
+
+<div class="lc-cab-pagina">
+  <div class="lc-cab-pagina__txt"><h1>Demonstração do resultado</h1>
+    <p class="lc-cab-pagina__desc">Administradora Alpha, regime de competência. Fechado até setembro de 2026; outubro em aberto.</p></div>
+  <div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button" data-abrir="m-agendar"><i data-i="calendario"></i>Agendar envio</button><button class="lc-btn lc-btn--principal" type="button" data-toast="DRE exportada em PDF."><i data-i="baixar"></i>Exportar</button></div>
+</div>
+<div class="lc-filtros">
+  <div class="lc-campo" style="flex-direction:row;align-items:center;gap:8px"><label class="lc-rotulo" for="per">Período</label><select id="per" class="lc-selecao" style="width:220px"><option>Jul a set/2026 + acumulado</option><option>Ano de 2025</option><option>Personalizado</option></select></div>
+  <div class="lc-seg lc-seg--p" role="group" aria-label="Regime" data-p4-seg><button type="button" aria-pressed="true">Competência</button><button type="button" aria-pressed="false">Caixa</button></div>
+  <label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span>Mostrar % da receita</label>
+</div>
+
+<div data-estado="sem-permissao" hidden><div class="lc-caixa"><div class="lc-vazio lc-vazio--centro"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="bloquear"></i></span><h2 class="lc-vazio__titulo">A DRE é só da diretoria</h2><p class="lc-vazio__texto">Seu papel vê o fluxo de caixa dos condomínios, não o resultado da administradora. Quem libera: Cláudio Prates.</p><div class="lc-grupo-btn"><a class="lc-btn" href="26i-financeiro-fluxo-de-caixa.html">Ir para o fluxo de caixa</a></div></div></div></div>
+<div data-estado="carregando" hidden aria-busy="true"><p class="lc-sr" role="status">Calculando a DRE.</p><div class="lc-kpis" style="padding:16px 0"><span class="lc-esqueleto lc-esqueleto--bloco"></span></div><span class="lc-esqueleto lc-esqueleto--bloco" style="height:220px;margin-top:16px"></span></div>
+
+<div data-estado="dados">
+<div class="lc-kpis" aria-label="Indicadores de setembro">
+  <div class="lc-kpi"><span class="lc-kpi__rotulo">Receita líquida, set</span><span class="lc-kpi__valor">R$ 281,8 mil</span><span class="lc-kpi__var lc-kpi__var--pos"><i data-i="tendencia-alta"></i>2,6% sobre agosto</span></div>
+  <div class="lc-kpi"><span class="lc-kpi__rotulo">EBITDA, set</span><span class="lc-kpi__valor">R$ 55,6 mil</span><span class="lc-kpi__var">margem de 19,7%</span></div>
+  <div class="lc-kpi"><span class="lc-kpi__rotulo">Lucro líquido, set</span><span class="lc-kpi__valor">R$ 42,4 mil</span><span class="lc-kpi__var lc-kpi__var--pos"><i data-i="tendencia-alta"></i>10,1% sobre agosto</span></div>
+  <div class="lc-kpi"><span class="lc-kpi__rotulo">Margem líquida no ano</span><span class="lc-kpi__valor">12,2%</span><span class="lc-kpi__var">orçado: 11,5%</span></div>
+</div>
+
+<div class="dre-graf">
+  <figure class="lc-caixa" style="margin:0"><div class="lc-caixa__cab"><h2>Lucro líquido por mês</h2><span class="lc-aux">R$, 2026</span></div>
+    <div class="lc-caixa__corpo">
+      <svg class="lc-graf" viewBox="0 0 720 240" role="img" aria-label="Lucro líquido mensal de janeiro a setembro de 2026"><line class="lc-graf__base" x1="56" x2="712" y1="212.0" y2="212.0"/><text class="lc-graf__eixo" x="48" y="216.0" text-anchor="end">0</text><line class="lc-graf__grade" x1="56" x2="712" y1="172.0" y2="172.0"/><text class="lc-graf__eixo" x="48" y="176.0" text-anchor="end">10 mil</text><line class="lc-graf__grade" x1="56" x2="712" y1="132.0" y2="132.0"/><text class="lc-graf__eixo" x="48" y="136.0" text-anchor="end">20 mil</text><line class="lc-graf__grade" x1="56" x2="712" y1="92.0" y2="92.0"/><text class="lc-graf__eixo" x="48" y="96.0" text-anchor="end">30 mil</text><line class="lc-graf__grade" x1="56" x2="712" y1="52.0" y2="52.0"/><text class="lc-graf__eixo" x="48" y="56.0" text-anchor="end">40 mil</text><line class="lc-graf__grade" x1="56" x2="712" y1="12.0" y2="12.0"/><text class="lc-graf__eixo" x="48" y="16.0" text-anchor="end">50 mil</text><path class="lc-graf__s1" d="M78.4 212.0V99.4q0 -3 3 -3h22.0q3 0 3 3V212.0z" tabindex="0" data-dado="jan: <b>R$ 28.910,00</b>"/><text class="lc-graf__eixo" x="92.4" y="232" text-anchor="middle">jan</text><path class="lc-graf__s1" d="M151.3 212.0V109.1q0 -3 3 -3h22.0q3 0 3 3V212.0z" tabindex="0" data-dado="fev: <b>R$ 26.480,00</b>"/><text class="lc-graf__eixo" x="165.3" y="232" text-anchor="middle">fev</text><path class="lc-graf__s1" d="M224.2 212.0V90.2q0 -3 3 -3h22.0q3 0 3 3V212.0z" tabindex="0" data-dado="mar: <b>R$ 31.204,84</b>"/><text class="lc-graf__eixo" x="238.2" y="232" text-anchor="middle">mar</text><path class="lc-graf__s1" d="M297.1 212.0V82.5q0 -3 3 -3h22.0q3 0 3 3V212.0z" tabindex="0" data-dado="abr: <b>R$ 33.120,00</b>"/><text class="lc-graf__eixo" x="311.1" y="232" text-anchor="middle">abr</text><path class="lc-graf__s1" d="M370.0 212.0V83.6q0 -3 3 -3h22.0q3 0 3 3V212.0z" tabindex="0" data-dado="mai: <b>R$ 32.840,00</b>"/><text class="lc-graf__eixo" x="384.0" y="232" text-anchor="middle">mai</text><path class="lc-graf__s1" d="M442.9 212.0V79.5q0 -3 3 -3h22.0q3 0 3 3V212.0z" tabindex="0" data-dado="jun: <b>R$ 33.880,00</b>"/><text class="lc-graf__eixo" x="456.9" y="232" text-anchor="middle">jun</text><path class="lc-graf__s1" d="M515.8 212.0V59.3q0 -3 3 -3h22.0q3 0 3 3V212.0z" tabindex="0" data-dado="jul: <b>R$ 38.928,40</b>"/><text class="lc-graf__eixo" x="529.8" y="232" text-anchor="middle">jul</text><path class="lc-graf__s1" d="M588.7 212.0V60.9q0 -3 3 -3h22.0q3 0 3 3V212.0z" tabindex="0" data-dado="ago: <b>R$ 38.537,20</b>"/><text class="lc-graf__eixo" x="602.7" y="232" text-anchor="middle">ago</text><path class="lc-graf__s1" d="M661.6 212.0V45.3q0 -3 3 -3h22.0q3 0 3 3V212.0z" tabindex="0" data-dado="set: <b>R$ 42.421,84</b>"/><text class="lc-graf__eixo" x="675.6" y="232" text-anchor="middle">set</text></svg>
+      <details style="margin-top:8px"><summary class="lc-btn lc-btn--link">Ver como tabela</summary>
+        <table class="lc-tabela" style="margin-top:8px;--_min-tab:0"><thead><tr><th>Mês</th><th class="lc-num">Lucro líquido</th></tr></thead><tbody>
+        <tr><td>Janeiro</td><td class="lc-num">R$ 28.910,00</td></tr><tr><td>Fevereiro</td><td class="lc-num">R$ 26.480,00</td></tr><tr><td>Março</td><td class="lc-num">R$ 31.204,84</td></tr><tr><td>Abril</td><td class="lc-num">R$ 33.120,00</td></tr><tr><td>Maio</td><td class="lc-num">R$ 32.840,00</td></tr><tr><td>Junho</td><td class="lc-num">R$ 33.880,00</td></tr><tr><td>Julho</td><td class="lc-num">R$ 38.928,40</td></tr><tr><td>Agosto</td><td class="lc-num">R$ 38.537,20</td></tr><tr><td>Setembro</td><td class="lc-num">R$ 42.421,84</td></tr></tbody>
+        <tfoot><tr><td>Acumulado</td><td class="lc-num"><span class="lc-total">R$ 306.322,28</span></td></tr></tfoot></table></details>
+    </div></figure>
+  <section class="lc-caixa"><div class="lc-caixa__cab"><h2>O que mudou em setembro</h2></div>
+    <ul class="lc-lista">
+      <li><span><b>+3 condomínios</b> na carteira (Residencial Aurora, Ed. Monte Verde, Cond. Vila Real): +R$ 7.440,00 de taxa<span class="lc-lista__sub">Receita bruta</span></span></li>
+      <li><span><b>Comissão de vendas menor</b>: R$ 1.500,00 abaixo de agosto<span class="lc-lista__sub">Despesas comerciais</span></span></li>
+      <li><span><b>Dissídio da equipe</b> entra em outubro: +R$ 6.100,00 por mês<span class="lc-lista__sub">Custos dos serviços</span></span></li>
+    </ul></section>
+</div>
+
+<div class="lc-tabela-cont dre">
+<table class="lc-tabela" style="--_min-tab:860px">
+  <caption class="lc-sr">Demonstração do resultado, julho a setembro de 2026 e acumulado</caption>
+  <thead><tr><th scope="col">Conta</th><th scope="col" class="lc-num">Jul</th><th scope="col" class="lc-num">Ago</th><th scope="col" class="lc-num">Set</th><th scope="col" class="lc-num">% set</th><th scope="col" class="lc-num">Acumulado 2026</th></tr></thead>
+  <tbody>
+    <tr class="dre-sub"><td>Receita bruta de serviços</td><td class="lc-num">286.400,00</td><td class="lc-num">291.200,00</td><td class="lc-num">298.640,00</td><td class="lc-num">106,0%</td><td class="lc-num">2.512.880,00</td></tr>
+    <tr class="dre-ind"><td>(−) ISS, PIS e COFINS</td><td class="lc-num lc-valor-neg">− 16.181,60</td><td class="lc-num lc-valor-neg">− 16.452,80</td><td class="lc-num lc-valor-neg">− 16.873,16</td><td class="lc-num">6,0%</td><td class="lc-num lc-valor-neg">− 141.977,72</td></tr>
+    <tr class="dre-res"><td>Receita líquida</td><td class="lc-num">270.218,40</td><td class="lc-num">274.747,20</td><td class="lc-num"><span class="lc-subtotal">281.766,84</span></td><td class="lc-num">100,0%</td><td class="lc-num"><span class="lc-subtotal">2.370.902,28</span></td></tr>
+    <tr class="dre-ind"><td>(−) Custos dos serviços (gestores, contabilidade)</td><td class="lc-num lc-valor-neg">− 148.200,00</td><td class="lc-num lc-valor-neg">− 149.900,00</td><td class="lc-num lc-valor-neg">− 152.300,00</td><td class="lc-num">54,1%</td><td class="lc-num lc-valor-neg">− 1.318.400,00</td></tr>
+    <tr class="dre-res"><td>Lucro bruto</td><td class="lc-num">122.018,40</td><td class="lc-num">124.847,20</td><td class="lc-num">129.466,84</td><td class="lc-num">45,9%</td><td class="lc-num">1.052.502,28</td></tr>
+    <tr class="dre-ind"><td>(−) Despesas comerciais</td><td class="lc-num lc-valor-neg">− 18.400,00</td><td class="lc-num lc-valor-neg">− 21.300,00</td><td class="lc-num lc-valor-neg">− 19.800,00</td><td class="lc-num">7,0%</td><td class="lc-num lc-valor-neg">− 176.900,00</td></tr>
+    <tr class="dre-ind"><td>(−) Despesas administrativas</td><td class="lc-num lc-valor-neg">− 42.600,00</td><td class="lc-num lc-valor-neg">− 43.100,00</td><td class="lc-num lc-valor-neg">− 44.250,00</td><td class="lc-num">15,7%</td><td class="lc-num lc-valor-neg">− 384.700,00</td></tr>
+    <tr class="dre-ind"><td>(−) Software e tecnologia</td><td class="lc-num lc-valor-neg">− 9.800,00</td><td class="lc-num lc-valor-neg">− 9.800,00</td><td class="lc-num lc-valor-neg">− 9.800,00</td><td class="lc-num">3,5%</td><td class="lc-num lc-valor-neg">− 86.400,00</td></tr>
+    <tr class="dre-res"><td>EBITDA</td><td class="lc-num">51.218,40</td><td class="lc-num">50.647,20</td><td class="lc-num">55.616,84</td><td class="lc-num">19,7%</td><td class="lc-num">404.502,28</td></tr>
+    <tr class="dre-ind"><td>(−) Depreciação</td><td class="lc-num lc-valor-neg">− 2.100,00</td><td class="lc-num lc-valor-neg">− 2.100,00</td><td class="lc-num lc-valor-neg">− 2.100,00</td><td class="lc-num">0,7%</td><td class="lc-num lc-valor-neg">− 18.900,00</td></tr>
+    <tr class="dre-ind"><td>(+) Resultado financeiro</td><td class="lc-num">1.240,00</td><td class="lc-num">1.310,00</td><td class="lc-num">1.385,00</td><td class="lc-num">0,5%</td><td class="lc-num">10.920,00</td></tr>
+    <tr class="dre-ind"><td>(−) IRPJ e CSLL</td><td class="lc-num lc-valor-neg">− 11.430,00</td><td class="lc-num lc-valor-neg">− 11.320,00</td><td class="lc-num lc-valor-neg">− 12.480,00</td><td class="lc-num">4,4%</td><td class="lc-num lc-valor-neg">− 90.200,00</td></tr>
+  </tbody>
+  <tfoot><tr><td>Lucro líquido</td><td class="lc-num">38.928,40</td><td class="lc-num">38.537,20</td><td class="lc-num"><span class="lc-total">42.421,84</span></td><td class="lc-num">15,1%</td><td class="lc-num"><span class="lc-total">306.322,28</span></td></tr></tfoot>
+</table>
+</div>
+<p class="lc-legenda" style="margin-top:8px">% sobre a receita líquida. Clique num valor para ver os lançamentos. Valores em R$.</p>
+</div>
+
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl>
+    <dt>Ordem de foco</dt><dd>Agendar envio, Exportar, Período, Regime, % da receita, barras do gráfico (Tab passa por cada mês e mostra a dica), Ver como tabela, tabela da DRE.</dd>
+    <dt>O que é anunciado</dt><dd>O gráfico tem nome ("Lucro líquido mensal de janeiro a setembro de 2026") e cada barra é focável com o valor no texto da dica; a tabela equivalente fica a um clique. Valores negativos têm o sinal "−" escrito, não só a cor.</dd>
+    <dt>Nome do que é só ícone</dt><dd>Setas de tendência nos indicadores são decorativas; o texto diz "2,6% sobre agosto".</dd>
+  </dl>
+</details>
+</main>
+
+<div class="lc-sobreposicao" id="m-agendar" hidden>
+  <div class="lc-modal" role="dialog" aria-modal="true" aria-labelledby="m-ag-t">
+    <div class="lc-modal__cab"><div style="flex:1"><h2 id="m-ag-t">Agendar envio da DRE</h2><p>Vai como PDF anexo, com o período do mês fechado.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+    <div class="lc-modal__corpo"><div class="lc-form-grade">
+      <div class="lc-campo"><label class="lc-rotulo" for="freq">Frequência</label><select id="freq" class="lc-selecao"><option>Todo mês, dia 5</option><option>Toda segunda-feira</option></select></div>
+      <div class="lc-campo"><label class="lc-rotulo" for="hora">Horário</label><input id="hora" type="time" class="lc-entrada" value="08:00"></div>
+      <div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="para">Para</label><div class="lc-multi"><span class="lc-etiqueta">Cláudio Prates<button type="button" aria-label="Remover Cláudio Prates"><i data-i="fechar"></i></button></span><span class="lc-etiqueta">Conselho da Alpha<button type="button" aria-label="Remover Conselho da Alpha"><i data-i="fechar"></i></button></span><input id="para" placeholder="Pessoa, equipe ou e-mail"></div></div>
+    </div></div>
+    <div class="lc-modal__pe"><button class="lc-btn" type="button" data-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-fechar data-toast="Envio agendado: todo dia 5, às 08:00.">Agendar</button></div>
+  </div>
+</div>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

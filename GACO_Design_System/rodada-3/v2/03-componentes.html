@@ -550,3 +550,215 @@
     <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Um <code>h1</code> por tela: o nome da página ou do registro. O tipo ("Cliente") vem antes, em texto comum.</li><li>Campos-chave em <code>dl</code>: o leitor anuncia "Saúde, 82, boa".</li></ul></div>
   </div>
 </section>
+
+<section class="doc-comp" id="abas">
+  <h3>Abas <code>.cm-abas</code></h3>
+  <p class="lead">Trocam o conteúdo dentro do mesmo registro ou da mesma tela. A aba ativa tem o filete de latão. Clique ou use as setas.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Padrão com contador, pequena e sem linha. A aba de Anexos está desabilitada para quem não tem permissão." data-densidades="escuro">
+<div class="doc-pilha doc-pilha--esticar">
+  <div class="cm-abas" role="tablist" aria-label="Chamado 48213">
+    <button role="tab" type="button" aria-selected="true" aria-controls="ab-p1" id="ab-t1">Chamado</button>
+    <button role="tab" type="button" aria-selected="false" aria-controls="ab-p2" id="ab-t2" tabindex="-1">Boletos <span class="cm-contador">1</span></button>
+    <button role="tab" type="button" aria-selected="false" aria-controls="ab-p3" id="ab-t3" tabindex="-1">Anteriores <span class="cm-contador">4</span></button>
+    <button role="tab" type="button" aria-selected="false" aria-disabled="true" tabindex="-1">Anexos</button>
+  </div>
+  <div role="tabpanel" id="ab-p1" aria-labelledby="ab-t1" class="cm-t-corpo-p">Vazamento no teto da garagem, vaga 37. Aberto pelo WhatsApp às 09:12.</div>
+  <div role="tabpanel" id="ab-p2" aria-labelledby="ab-t2" class="cm-t-corpo-p" hidden>Boleto de setembro, Bl B Ap 1204: R$ 1.284,90, vencido há 4 dias.</div>
+  <div role="tabpanel" id="ab-p3" aria-labelledby="ab-t3" class="cm-t-corpo-p" hidden>4 chamados anteriores de Marina Costa, o último em 02/09.</div>
+  <div class="cm-abas cm-abas--p" role="tablist" aria-label="Período"><button role="tab" type="button" aria-selected="false">Hoje</button><button role="tab" type="button" aria-selected="true">Esta semana</button><button role="tab" type="button" aria-selected="false">Este mês</button></div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="abas" data-layout="empilhado" data-codigo="nao" data-titulo="Estados de uma aba."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Partes de um mesmo registro (Chamado, Boletos, Anteriores).</li><li>Visões de uma mesma lista: aí use as visões salvas (<code>.cm-visoes</code>), que guardam filtro.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para etapas de um processo: use o Path ou as etapas do formulário.</li><li>Mais de sete abas: as de menos uso vão para "Mais".</li><li>Abas dentro de abas.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Substantivo de uma ou duas palavras; contador quando ajuda a decidir ir lá.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li><code>role="tablist"</code>, <code>tab</code> com <code>aria-selected</code> e <code>aria-controls</code>, painel <code>tabpanel</code>.</li><li>Só a aba ativa entra no Tab; setas trocam. Desabilitada usa <code>aria-disabled</code> e a dica diz por quê.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="trilha">
+  <h3>Trilha <code>.cm-trilha</code></h3>
+  <p class="lead">Onde a pessoa está: grupo, bloco, tela e registro, todos clicáveis menos o último. A moldura gera a trilha com "14 de 63" quando a tela veio de uma lista.</p>
+  <template class="doc-ex-t" data-titulo="Trilha solta e com o navegar registro.">
+<div class="doc-pilha">
+  <nav aria-label="Trilha"><ol class="cm-trilha"><li><a href="#trilha">CS</a></li><li><a href="#trilha">Carteira</a></li><li><a href="#trilha">Clientes</a></li><li aria-current="page">Cond. Parque das Águas</li></ol></nav>
+  <div class="doc-fileira">
+    <nav aria-label="Trilha"><ol class="cm-trilha"><li><a href="#trilha">Suporte</a></li><li><a href="#trilha">Conversas</a></li><li aria-current="page">Chamado 48213</li></ol></nav>
+    <div class="cm-navegar-registro"><b>14 de 63</b><button class="cm-botao cm-botao--p cm-botao--icone cm-botao--discreto" type="button" aria-label="Anterior (K)" data-dica="Anterior, K"><i data-i="chevron-cima"></i></button><button class="cm-botao cm-botao--p cm-botao--icone cm-botao--discreto" type="button" aria-label="Próximo (J)" data-dica="Próximo, J"><i data-i="chevron-baixo"></i></button></div>
+  </div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Toda tela abaixo do Início, pela moldura (<code>"registro"</code> e <code>"navegar"</code>).</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Como título da página. O título continua no <code>h1</code>.</li><li>No portal: lá o caminho é curto e o botão Voltar resolve.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li><code>nav aria-label="Trilha"</code> com lista ordenada; o último item tem <code>aria-current="page"</code>. O separador é desenho, não é lido.</li><li>No celular, a trilha mostra só os dois últimos níveis.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="path">
+  <h3>Path de etapas <code>.cm-path</code></h3>
+  <p class="lead">A barra de etapas em seta do Salesforce, para a vida do cliente, do negócio e da implantação. Clicável: a pessoa vê o que cada etapa pede e marca a etapa como concluída. Clique numa etapa.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Feito (verde com tique), atual (chapa clara com filete de latão), futuro (apagado), perdido (vermelho)." data-layout="empilhado">
+<div class="doc-pilha doc-pilha--esticar">
+  <div class="cm-path">
+    <ol aria-label="Etapas do cliente">
+      <li class="is-feito"><button type="button"><i data-i="marcar"></i>Implantação</button></li>
+      <li class="is-feito"><button type="button"><i data-i="marcar"></i>Adoção</button></li>
+      <li class="is-atual"><button type="button" aria-current="step">Expansão</button></li>
+      <li><button type="button">Renovação</button></li>
+      <li><button type="button">Parceria</button></li>
+    </ol>
+    <button class="cm-botao" type="button" data-toast="Etapa Expansão concluída|sucesso">Marcar etapa como concluída</button>
+  </div>
+  <div class="cm-path__orientacao"><span><b>O que a etapa pede:</b> reunião de resultados até 30/10</span><span><b>Falta:</b> proposta do módulo de reservas</span><span><b>Na etapa há:</b> 41 dias</span></div>
+  <div class="cm-path"><ol aria-label="Etapas do negócio"><li class="is-feito"><span><i data-i="marcar"></i>Contato</span></li><li class="is-feito"><span><i data-i="marcar"></i>Proposta</span></li><li class="is-perdido"><span><i data-i="erro"></i>Perdido: preço</span></li></ol></div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="path" data-layout="empilhado" data-codigo="nao" data-titulo="Estados de uma etapa."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Processo linear com etapas nomeadas (vida do cliente, funil, implantação).</li><li>Com "O que a etapa pede" logo abaixo.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Formulário longo: use as etapas de formulário (04-formularios).</li><li>Mais de sete etapas.</li><li>Na cor do cliente.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Etapa em uma palavra; perdido diz o motivo ("Perdido: preço").</li><li>No celular, só a atual mostra o nome; as outras ficam com o ícone.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Lista ordenada com <code>aria-label</code>; a atual com <code>aria-current="step"</code>.</li><li>Feito e perdido têm ícone, não só cor. Cada etapa é um botão.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= O QUE FLUTUA -->
+<section class="doc-familia" aria-labelledby="f-flutua">
+<h2 id="f-flutua">O que flutua</h2>
+<p>Menus, popovers, dicas e diálogos. São as únicas peças com sombra. Abrem por clique, fecham com Esc ou clique fora, e devolvem o foco para quem abriu.</p>
+
+<section class="doc-comp" id="menu">
+  <h3>Menu <code>.cm-menu</code></h3>
+  <p class="lead">Lista de ações de um objeto, aberta pelo "⋯" ou por um botão com seta. Até duas ações secundárias ficam no cabeçalho; o resto vai aqui, com a destrutiva por último.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Abra o ⋯ do chamado.">
+<div class="doc-fileira" style="min-height:300px;align-items:flex-start">
+  <span class="cm-t-corpo">Chamado 48213</span>
+  <span data-doc-ancora class="doc-ancora">
+    <button class="cm-botao cm-botao--icone" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Ações do chamado 48213" data-doc-alterna><i data-i="mais-opcoes"></i></button>
+    <div class="cm-menu cm-menu--240 cm-flutuante" role="menu" aria-label="Ações do chamado 48213" data-doc-alvo hidden>
+      <button class="cm-menu__item" role="menuitem" type="button" data-toast="Chamado atribuído a você|sucesso"><i data-i="atribuir"></i><span>Atribuir a mim</span><span class="cm-menu__atalho">A</span></button>
+      <button class="cm-menu__item" role="menuitem" type="button" data-toast="Abrindo Mover para…|info"><i data-i="mover"></i><span>Mover para…</span><span class="cm-menu__atalho">M</span></button>
+      <button class="cm-menu__item" role="menuitem" type="button" data-toast="Link copiado|sucesso"><i data-i="vincular"></i><span>Copiar link</span><span></span></button>
+      <div class="cm-menu__sep"></div>
+      <button class="cm-menu__item cm-menu__item--perigo" role="menuitem" type="button" data-toast="Chamado movido para a lixeira por 30 dias|sucesso|Desfazer"><i data-i="excluir"></i><span>Excluir…</span><span></span></button>
+    </div>
+  </span>
+</div>
+  </template>
+  <template class="doc-ex-t" data-titulo="<b>Parado, com tudo que um menu pode ter:</b> título, item com descrição, marcado, desabilitado com motivo, atalho, separador, perigo e pé." data-codigo="sim">
+<div class="cm-menu cm-flutuante" role="menu" aria-label="Chamado 48213" style="width:280px">
+  <div class="cm-menu__titulo">Chamado 48213<span>Aberto</span></div>
+  <button class="cm-menu__item" role="menuitem" type="button"><i data-i="atribuir"></i><span>Atribuir</span><span class="cm-menu__atalho">A</span></button>
+  <button class="cm-menu__item cm-sim-hover" role="menuitem" type="button"><i data-i="encaminhar"></i><span>Encaminhar<span class="cm-menu__desc">Para outra equipe ou fila</span></span><span class="cm-menu__atalho">F</span></button>
+  <button class="cm-menu__item" role="menuitemcheckbox" aria-checked="true" type="button"><i data-i="silenciar"></i><span>Silenciar avisos</span><span></span></button>
+  <button class="cm-menu__item" role="menuitem" aria-disabled="true" type="button"><i data-i="restaurar"></i><span>Reabrir<span class="cm-menu__desc">Só a gestora reabre</span></span><span></span></button>
+  <div class="cm-menu__sep"></div>
+  <button class="cm-menu__item cm-menu__item--perigo" role="menuitem" type="button"><i data-i="excluir"></i><span>Excluir…</span><span></span></button>
+  <div class="cm-menu__pe"><i data-i="teclado"></i>Atalhos funcionam com o chamado aberto</div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>"⋯" de registro, de linha de tabela, de cartão de kanban, de mensagem.</li><li>Opções de exibição (marcado com <code>menuitemcheckbox</code>).</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para escolher valor de campo: isso é seleção ou combo.</li><li>Com mais de 12 itens: separe em grupos com título ou use a paleta.</li><li>Menu dentro de menu, mais de um nível.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Verbo primeiro; reticências quando abre outro passo.</li><li>Destrutiva por último, separada, em vermelho com ícone.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Gatilho com <code>aria-haspopup="menu"</code> e <code>aria-expanded</code>.</li><li>Setas andam, Enter escolhe, Esc fecha e devolve o foco, letras do atalho funcionam com o menu aberto.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="contexto">
+  <h3>Menu de contexto <code>.cm-menu--contexto</code></h3>
+  <p class="lead">O mesmo menu do "⋯", aberto pelo botão direito na posição do clique, numa linha de tabela, mensagem ou cartão. É atalho, nunca o único caminho.</p>
+  <template class="doc-ex-t" data-titulo="Botão direito sobre a mensagem de Marina Costa." data-palco="300" data-codigo="sim">
+<div style="padding:30px 18px">
+  <div class="cm-bolha cm-bolha--entrada" style="max-width:340px">Tem água vazando do teto da garagem, em cima da vaga 37. <span class="cm-bolha__meta">09:12</span></div>
+  <div class="cm-menu cm-menu--contexto cm-flutuante" role="menu" aria-label="Mensagem de Marina Costa" style="margin:4px 0 0 160px;width:240px">
+    <button class="cm-menu__item" role="menuitem" type="button"><i data-i="responder"></i><span>Responder citando</span><span class="cm-menu__atalho">R</span></button>
+    <button class="cm-menu__item" role="menuitem" type="button"><i data-i="copiar"></i><span>Copiar texto</span><span class="cm-menu__atalho">Ctrl C</span></button>
+    <button class="cm-menu__item" role="menuitem" type="button"><i data-i="chamado"></i><span>Criar chamado com esta mensagem</span><span></span></button>
+    <button class="cm-menu__item" role="menuitem" type="button"><i data-i="nota-interna"></i><span>Comentar em nota interna</span><span></span></button>
+  </div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Onde quem usa muito quer velocidade: tabela densa, conversa, kanban.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Como único caminho de uma ação. O mesmo menu existe no "⋯".</li><li>No portal e no celular (lá é toque longo que abre a folha inferior).</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Pelo teclado: Shift F10 ou a tecla de menu abrem o mesmo menu no elemento com foco.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="popover">
+  <h3>Popover <code>.cm-popover</code></h3>
+  <p class="lead">Um painelzinho com conteúdo e até duas ações, preso a quem abriu: filtro de coluna, prévia de pessoa, ajuste rápido. Não bloqueia a tela.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Filtro "Estado" de uma lista.">
+<div style="min-height:280px">
+  <span data-doc-ancora class="doc-ancora">
+    <button class="cm-filtro is-ativo" type="button" aria-haspopup="dialog" aria-expanded="false" data-doc-alterna>Estado: <b>Aberto, Aguardando</b><i data-i="chevron-baixo"></i></button>
+    <div class="cm-popover cm-flutuante" role="dialog" aria-label="Filtrar por estado" data-doc-alvo hidden style="width:280px">
+      <div class="cm-popover__cabeca">Estado<button class="cm-botao cm-botao--link cm-botao--p" type="button">Limpar</button></div>
+      <div class="cm-popover__corpo cm-pilha" style="gap:8px">
+        <label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Aberto <span class="cm-texto-3">24</span></span></label>
+        <label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Aguardando cliente <span class="cm-texto-3">9</span></span></label>
+        <label class="cm-marcar"><input type="checkbox"><span class="cm-marcar__caixa"></span><span>Resolvido <span class="cm-texto-3">312</span></span></label>
+      </div>
+      <div class="cm-popover__pe"><button class="cm-botao cm-botao--p" type="button" data-doc-fecha-alvo>Cancelar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-toast="Filtro aplicado: 33 chamados|sucesso">Aplicar</button></div>
+    </div>
+  </span>
+</div>
+  </template>
+  <template class="doc-ex-t" data-titulo="<b>Prévia de pessoa</b>, parada." data-codigo="sim">
+<div class="cm-popover cm-flutuante" role="dialog" aria-label="Marina Costa" style="width:300px">
+  <div class="cm-popover__corpo"><div class="cm-pessoa"><span class="cm-avatar cm-avatar--g cm-avatar--4">MC</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Marina Costa</span><span class="cm-pessoa__sub">Síndica, Cond. Parque das Águas</span><span class="cm-pessoa__sub">(11) 98765-4321</span></span></div></div>
+  <div class="cm-popover__pe"><button class="cm-botao cm-botao--p" type="button"><i data-i="whatsapp"></i>Conversar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button">Abrir ficha</button></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Filtro com várias escolhas; prévia de pessoa ou registro; ajuste curto.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para formulário com mais de três campos: modal ou painel.</li><li>Para texto de ajuda de uma frase: dica.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li><code>role="dialog"</code> com rótulo; o foco entra no primeiro controle; Esc fecha e volta ao gatilho; Tab sai pelo fim e fecha.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="dica">
+  <h3>Dica <code>[data-dica]</code> <code>.cm-dica</code></h3>
+  <p class="lead">Uma frase curta que aparece ao passar o mouse ou chegar pelo teclado. Nomeia botão só de ícone e explica por que algo está desabilitado.</p>
+  <template class="doc-ex-t" data-titulo="<b>Passe o mouse ou use Tab</b> nos botões. Ao lado, a dica parada com atalho.">
+<div class="doc-fileira" style="gap:28px">
+  <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Anexar arquivo" data-dica="Anexar arquivo"><i data-i="anexar"></i></button>
+  <span data-dica="Só a gestora reabre chamados resolvidos" tabindex="0"><button class="cm-botao" type="button" disabled>Reabrir</button></span>
+  <span class="ex-dica-alvo"><button class="cm-botao cm-botao--icone" type="button" aria-label="Próxima conversa" aria-describedby="dica1"><i data-i="proximo"></i></button><span class="cm-dica" role="tooltip" id="dica1">Próxima conversa<kbd class="cm-tecla">J</kbd></span></span>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Todo botão só de ícone.</li><li>Botão desabilitado: o motivo.</li><li>Valor cortado: o texto inteiro.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para informação que a pessoa precisa para decidir: ela vai no texto da tela.</li><li>Com link ou botão dentro: isso é popover.</li><li>No celular como único jeito de saber o nome.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>A dica repete o <code>aria-label</code>; quando acrescenta algo, liga por <code>aria-describedby</code> com <code>role="tooltip"</code>.</li><li>Aparece no foco do teclado, some com Esc, não esconde o que está embaixo do ponteiro.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="paleta">
+  <h3>Paleta Ctrl K <code>.cm-paleta</code></h3>
+  <p class="lead">Acha qualquer tela, registro ou ação pelo nome. É a pesquisa central da moldura. <button class="cm-botao cm-botao--p" type="button" data-doc-paleta><i data-i="pesquisar"></i>Abrir a paleta de verdade</button></p>
+  <template class="doc-ex-t" data-titulo="<b>Digitando "par".</b> Telas com o caminho, registros com o tipo, ações com o atalho. A busca ignora acento." data-codigo="sim">
+<div class="cm-paleta" role="dialog" aria-label="Pesquisar">
+  <div class="cm-paleta__busca"><i data-i="pesquisar"></i><input value="par" aria-label="Pesquisar telas, clientes, chamados" role="combobox" aria-expanded="true" aria-controls="pal-l"><kbd class="cm-tecla">Esc</kbd></div>
+  <div class="cm-paleta__lista" role="listbox" id="pal-l">
+    <div class="cm-paleta__grupo">Registros</div>
+    <div class="cm-paleta__item" role="option" aria-selected="true"><span class="cm-ladrilho"><i data-i="condominio"></i></span><span><span class="cm-paleta__item-titulo">Condomínio <mark>Par</mark>que das Águas</span><span class="cm-paleta__item-sub">Cliente com 312 unidades, saúde 82</span></span><span class="cm-paleta__item-tipo">Cliente</span></div>
+    <div class="cm-paleta__item" role="option" aria-selected="false"><span class="cm-ladrilho"><i data-i="chamado"></i></span><span><span class="cm-paleta__item-titulo">Chamado 48213: vazamento no teto da garagem</span><span class="cm-paleta__item-sub">Cond. <mark>Par</mark>que das Águas, Bl B</span></span><span class="cm-paleta__item-tipo">Chamado</span></div>
+    <div class="cm-paleta__grupo">Telas</div>
+    <div class="cm-paleta__item" role="option" aria-selected="false"><span class="cm-ladrilho"><i data-i="grafico-colunas"></i></span><span><span class="cm-paleta__item-titulo"><mark>Par</mark>celamentos</span><span class="cm-paleta__item-sub">Financeiro › Cobrança</span></span><span class="cm-paleta__item-tipo">Tela</span></div>
+    <div class="cm-paleta__grupo">Ações</div>
+    <div class="cm-paleta__item" role="option" aria-selected="false"><span class="cm-ladrilho"><i data-i="adicionar"></i></span><span><span class="cm-paleta__item-titulo">Abrir chamado</span></span><kbd class="cm-tecla">C</kbd></div>
+  </div>
+  <div class="cm-paleta__pe"><span><kbd class="cm-tecla">↑</kbd><kbd class="cm-tecla">↓</kbd>andar</span><span><kbd class="cm-tecla">Enter</kbd>abrir</span><span><kbd class="cm-tecla">Ctrl Enter</kbd>abrir em nova aba</span><span><kbd class="cm-tecla">&gt;</kbd>só ações</span></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Pela moldura, sempre (<code>cmAbrirPaleta()</code>, Ctrl K, ou "/" fora de campo).</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Como filtro de lista: a lista tem a própria busca.</li><li>No portal: lá a pesquisa é por tela.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Campo <code>combobox</code> que controla um <code>listbox</code>; o item ativo é anunciado por <code>aria-activedescendant</code>; grupos lidos como cabeçalhos.</li><li>Sem resultado: "Nada com par. Tente o nome do condomínio ou o número do chamado."</li></ul></div>
+  </div>
+</section>

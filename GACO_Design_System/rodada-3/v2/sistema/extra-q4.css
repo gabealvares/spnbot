@@ -448,3 +448,7 @@
 .cm-ancora>.cm-flutuante{top:calc(100% + 4px);left:0}
 .cm-ancora--direita>.cm-flutuante{left:auto;right:0}
 .cm-ancora--cima>.cm-flutuante{top:auto;bottom:calc(100% + 4px)}
+/* barra de massa quebra linha no celular (a da fundação não quebra) */
+@media (max-width:899px){ .cm-barra-massa{flex-wrap:wrap;padding:6px 10px} .cm-barra-massa .cm-empurra{margin-left:0} }
+/* anexo: nome e meta em linhas próprias */
+.cm-anexo__nome,.cm-anexo__meta{display:block}
