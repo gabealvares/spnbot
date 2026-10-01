@@ -325,7 +325,7 @@
 .lc-resposta__acoes{grid-column:3;grid-row:1/3;display:flex;gap:6px;align-items:flex-start}
 @media (max-width:639px){.lc-resposta{grid-template-columns:28px minmax(0,1fr)}.lc-resposta__acoes{grid-column:2;grid-row:auto}}
 /* meta: realizado sobre a meta, com marcador do esperado para a data */
-.lc-meta-barra{position:relative;height:10px;background:var(--sup-3)}
+.lc-meta-barra{display:block;position:relative;height:10px;background:var(--sup-3)}
 .lc-meta-barra>i{position:absolute;left:0;top:0;bottom:0;width:var(--_v);background:var(--texto-1)}
 .lc-meta-barra>b{position:absolute;top:-3px;bottom:-3px;left:var(--_esperado);width:2px;background:var(--aviso-ponto)}
 .lc-meta-barra--ok>i{background:var(--sucesso-ponto)}

@@ -483,7 +483,7 @@ function editarCelula(b){var td=b.closest("td"),antigo=b.textContent.trim(),num=
 function filtrarTabela(tb){if(!tb)return;var c=D.querySelector('[data-filtros-de="'+tb.id+'"]');var fs=c?$$(".lc-chip-filtro",c).map(function(x){return x.getAttribute("data-f").split("=");}):[];
   var bi=D.querySelector('[data-busca-tabela="'+tb.id+'"] input');var q=bi?semAcento(bi.value.trim()):"";var vis=0;
   $$("tbody tr:not(.lc-tabela__estado)",tb).forEach(function(r){var ok=fs.every(function(f){return r.getAttribute("data-"+f[0])===f[1];})&&(!q||semAcento(r.textContent).indexOf(q)>-1);r.hidden=!ok;if(ok)vis++;});
-  var vz=$(".lc-tabela__estado",tb);if(vz)vz.hidden=vis>0;var ct=D.querySelector('[data-contagem-de="'+tb.id+'"]');if(ct)ct.textContent=vis===1?"1 boleto":vis+" boletos";
+  var vz=$(".lc-tabela__estado",tb);if(vz)vz.hidden=vis>0;var ct=D.querySelector('[data-contagem-de="'+tb.id+'"]');if(ct)ct.textContent=vis===0?"Nenhum boleto":vis===1?"1 boleto":vis+" boletos";
   var lim=c&&$(".lc-chips__limpar",c);if(lim)lim.hidden=!fs.length;anunciar(vis===0?"Nenhum boleto com estes filtros.":(vis===1?"1 boleto":vis+" boletos")+" com estes filtros.");}
 DOC.filtrarTabela=filtrarTabela;
 function paginar(pg,n){var tot=+pg.getAttribute("data-total"),por=+($(".lc-paginacao__por select",pg)||{value:20}).value,np=Math.max(1,Math.ceil(tot/por));n=Math.min(Math.max(1,n),np);pg.setAttribute("data-pag",n);
