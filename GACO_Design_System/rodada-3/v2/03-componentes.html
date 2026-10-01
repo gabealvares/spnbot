@@ -412,3 +412,141 @@
     <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Ao lado do nome do registro, decorativo. Sozinho (paleta sem texto de tipo), <code>role="img"</code> com o nome do objeto.</li></ul></div>
   </div>
 </section>
+
+<section class="doc-comp" id="plaqueta">
+  <h3>Plaqueta <code>.cm-plaqueta</code></h3>
+  <p class="lead">A assinatura da V2: a plaquinha gravada do quadro de chaves e da casa de máquinas. Por ser forte, é rara. Ela marca só o identificador físico ou de protocolo (chamado, OS, contrato, unidade, vaga, chave), como valor isolado, no máximo uma por bloco.</p>
+  <template class="doc-ex-t" data-titulo="<b>Os quatro lugares onde ela vale.</b> Cabeçalho do registro (grande, uma vez), campo da ficha cujo valor é o identificador, etiqueta do quadro de chaves e cartão de vínculo na conversa. Como botão, copia o número.">
+<div class="doc-pilha">
+  <h2 class="cm-cabecalho-registro__titulo">Vazamento no teto da garagem <span class="cm-plaqueta cm-plaqueta--g">#48213</span></h2>
+  <dl class="cm-ficha ex-w320"><div class="cm-ficha__linha"><dt>Contrato</dt><dd><span class="cm-plaqueta">CT-2024-0187</span></dd><span></span></div></dl>
+  <div class="doc-fileira"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="chave"></i></span><span>Chave da casa de bombas</span><span class="cm-plaqueta">CH-014</span></div>
+  <div class="cm-cartao-vinculo"><i data-i="ordem-de-servico"></i>Vinculado à <span class="cm-plaqueta">OS 482</span></div>
+  <button class="cm-plaqueta" type="button" aria-label="Copiar número do chamado 48213" data-toast="Número 48213 copiado|sucesso">#48213</button>
+</div>
+  </template>
+  <template class="doc-ex-t" data-titulo="<b>No portal ela vira texto.</b> O síndico vê o número em negrito, sem a peça gravada." data-tema="light">
+<div data-contexto="portal" class="doc-pilha"><p>Seu chamado <span class="cm-plaqueta">#48213</span> foi recebido e a manutenção foi acionada.</p></div>
+  </template>
+  <template class="doc-ex-t" data-matriz="plaqueta" data-layout="empilhado" data-codigo="nao" data-titulo="Plaqueta como botão de copiar."></template>
+
+  <h4>Usos errados</h4>
+  <div class="doc-certo-errado">
+    <div class="doc-ce doc-ce--nao"><div class="doc-ce__cab"><i data-i="proibido"></i>Errado: dentro de frase</div><div class="doc-ce__corpo">Tem água pingando sobre a <span class="cm-plaqueta">Vaga 37</span> no <span class="cm-plaqueta">Subsolo 1</span>.</div><p class="doc-ce__nota">Lugar no meio do texto vira ornamento e quebra a leitura.</p></div>
+    <div class="doc-ce doc-ce--sim"><div class="doc-ce__cab"><i data-i="sucesso"></i>Certo</div><div class="doc-ce__corpo">Tem água pingando sobre a vaga 37 no subsolo 1.</div><p class="doc-ce__nota">Texto corrido. Se o local é campo da ficha, ele aparece lá.</p></div>
+    <div class="doc-ce doc-ce--nao"><div class="doc-ce__cab"><i data-i="proibido"></i>Errado: em toda linha</div><div class="doc-ce__corpo"><table class="cm-tabela"><tbody><tr><td><span class="cm-plaqueta">#48213</span></td><td>Vazamento na garagem</td></tr><tr><td><span class="cm-plaqueta">#48207</span></td><td>Portão da garagem travado</td></tr><tr><td><span class="cm-plaqueta">#48199</span></td><td>2ª via do boleto</td></tr></tbody></table></div><p class="doc-ce__nota">Repetida, a plaqueta deixa de identificar e vira textura.</p></div>
+    <div class="doc-ce doc-ce--sim"><div class="doc-ce__cab"><i data-i="sucesso"></i>Certo</div><div class="doc-ce__corpo"><table class="cm-tabela"><thead><tr><th class="cm-num">Nº</th><th>Assunto</th></tr></thead><tbody><tr><td class="cm-num">48213</td><td>Vazamento na garagem</td></tr><tr><td class="cm-num">48207</td><td>Portão da garagem travado</td></tr><tr><td class="cm-num">48199</td><td>2ª via do boleto</td></tr></tbody></table></div><p class="doc-ce__nota">Coluna "Nº" em texto tabular.</p></div>
+    <div class="doc-ce doc-ce--nao"><div class="doc-ce__cab"><i data-i="proibido"></i>Errado: empilhada</div><div class="doc-ce__corpo"><div class="doc-fileira"><span class="cm-plaqueta">Bl B</span><span class="cm-plaqueta">Ap 1204</span><span class="cm-plaqueta">Vaga 37</span></div></div><p class="doc-ce__nota">Três no mesmo bloco. O máximo é uma.</p></div>
+    <div class="doc-ce doc-ce--sim"><div class="doc-ce__cab"><i data-i="sucesso"></i>Certo</div><div class="doc-ce__corpo"><dl class="cm-ficha"><div class="cm-ficha__linha"><dt>Unidade</dt><dd><span class="cm-plaqueta">Bl B Ap 1204</span></dd><span></span></div><div class="cm-ficha__linha"><dt>Vaga</dt><dd>37, subsolo 1</dd><span></span></div></dl></div><p class="doc-ce__nota">Uma no bloco; os outros dados em texto.</p></div>
+    <div class="doc-ce doc-ce--nao"><div class="doc-ce__cab"><i data-i="proibido"></i>Errado: em botão, estado, título de página</div><div class="doc-ce__corpo"><div class="doc-fileira"><button class="cm-botao" type="button">Abrir <span class="cm-plaqueta">OS 482</span></button><span class="cm-plaqueta">Pago</span></div></div><p class="doc-ce__nota">Botão diz a ação; estado tem ícone e palavra.</p></div>
+    <div class="doc-ce doc-ce--sim"><div class="doc-ce__cab"><i data-i="sucesso"></i>Certo</div><div class="doc-ce__corpo"><div class="doc-fileira"><button class="cm-botao" type="button">Abrir a OS</button><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Pago</span></div></div><p class="doc-ce__nota">Cada coisa com a peça dela.</p></div>
+  </div>
+  <div class="doc-regras">
+    <div><h5>Anatomia</h5><ol class="doc-anatomia"><li>Chapa da camada 2 com filete forte e raio 1</li><li>Dois "parafusos" de 3px nas pontas</li><li>Texto em Fragment Mono, números tabulares</li></ol></div>
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Número de chamado, OS, contrato no cabeçalho do registro.</li><li>Campo da ficha cujo valor é o próprio identificador (Contrato, Unidade, Chave).</li><li>Quadro de chaves da portaria; vínculo na conversa.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Dentro de frase, mensagem, linha do tempo, título, botão, etiqueta, estado.</li><li>Em toda linha de lista ou tabela.</li><li>No portal (lá vira texto sozinha).</li><li>Mais de uma por bloco.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>É texto: o leitor lê o número. Os parafusos são pseudo-elementos, não são lidos.</li><li>Como botão de copiar: <code>aria-label="Copiar número do chamado 48213"</code> e toast "Número copiado".</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="testeira">
+  <h3>Testeira de marca <code>.cm-testeira</code></h3>
+  <p class="lead">O lugar do cliente dentro do sistema interno: logo e nome na cor dele, à esquerda da barra de cima, com o fio de 3px. A moldura gera a testeira; aqui ela aparece solta com os três clientes de exemplo e a do GACO (superadmin).</p>
+  <template class="doc-ex-t" data-titulo="Alpha (azul petróleo), Lar (verde), Vértice (vinho) e GACO Plataforma. O texto sobre a marca é branco ou grafite, o de maior contraste.">
+<div class="doc-pilha doc-pilha--esticar">
+  <div class="ex-barra48" data-brand="alpha"><a class="cm-testeira" href="#testeira" aria-label="Início, Administradora Alpha"><span class="cm-testeira__logo">A</span><span class="cm-testeira__nome">Administradora Alpha</span></a></div>
+  <div class="ex-barra48" data-brand="lar"><a class="cm-testeira" href="#testeira" aria-label="Início, Lar Gestão Condominial"><span class="cm-testeira__logo">L</span><span class="cm-testeira__nome">Lar Gestão Condominial<span class="cm-testeira__sub">Belo Horizonte</span></span></a></div>
+  <div class="ex-barra48" data-brand="vertice"><a class="cm-testeira" href="#testeira" aria-label="Início, Vértice Condomínios"><span class="cm-testeira__logo">V</span><span class="cm-testeira__nome">Vértice Condomínios</span></a></div>
+  <div class="ex-barra48"><a class="cm-testeira cm-testeira--gaco" href="#testeira" aria-label="Início da plataforma"><span class="cm-testeira__logo">G</span><span class="cm-testeira__nome">GACO<span class="cm-testeira__sub">Plataforma</span></span></a></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Uma vez por tela, gerada pela moldura. Mínimo 232px, máximo 300px.</li><li>A cor do cliente também vai no fio de 3px, no topo do portal, no mural da empresa, no login, no e-mail e no PDF.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Montar à mão dentro de uma tela.</li><li>Levar a cor da testeira para estado, contador, etiqueta, bolha, Path, gráfico ou foco.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Nome como o cliente cadastrou; acima de 300px corta com reticências e o nome inteiro vai na dica.</li><li>Logo quadrado de 28px; sem logo, a inicial.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>É link para o Início, com <code>aria-label</code> "Início, nome do cliente".</li><li>O foco fica dentro da testeira, na cor do texto sobre a marca.</li><li>marca.js mede o contraste e escolhe branco ou grafite.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= ESTRUTURA -->
+<section class="doc-familia" aria-labelledby="f-estrutura">
+<h2 id="f-estrutura">Estrutura</h2>
+<p>Como o conteúdo se agrupa e como a pessoa sabe onde está. Superfície se separa por camada e filete, nunca por sombra.</p>
+
+<section class="doc-comp" id="cartao">
+  <h3>Cartão, seção e ficha <code>.cm-cartao</code> <code>.cm-secao</code> <code>.cm-ficha</code></h3>
+  <p class="lead">O cartão agrupa um assunto do registro. A ficha é a lista de campos com edição no próprio lugar: o lápis aparece ao passar o mouse ou chegar pelo Tab, e o campo editado fica marcado até salvar.</p>
+  <template class="doc-ex-t" data-titulo="<b>Cartão com ficha.</b> Passe o mouse numa linha para ver o lápis. A linha do meio está em edição; a última é do sistema.">
+<section class="cm-cartao ex-w420">
+  <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Contrato e cobrança</h2><button class="cm-botao cm-botao--p cm-botao--discreto" type="button"><i data-i="editar"></i>Editar seção</button></header>
+  <div class="cm-cartao__corpo">
+    <dl class="cm-ficha">
+      <div class="cm-ficha__linha"><dt>Contrato</dt><dd><span class="cm-plaqueta">CT-2024-0187</span></dd><span></span></div>
+      <div class="cm-ficha__linha"><dt>Telefone</dt><dd>(11) 3456-7788</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar telefone"><i data-i="editar"></i></button></div>
+      <div class="cm-ficha__linha is-editando"><dt><label for="resp">Responsável</label></dt><dd><div class="cm-campo cm-cresce"><div class="cm-entrada cm-entrada--p is-editado"><input id="resp" value="Rodrigo Mello"></div><p class="cm-campo__antes">Era Juliana Reis. Enter confirma, Esc desfaz.</p></div></dd><span></span></div>
+      <div class="cm-ficha__linha is-editado"><dt>Mensalidade</dt><dd>R$ 4.620,00 <span class="cm-ficha__alterado">alterado</span></dd><button class="cm-ficha__lapis" type="button" aria-label="Editar mensalidade"><i data-i="editar"></i></button></div>
+      <div class="cm-ficha__linha is-leitura"><dt>Criado em</dt><dd>12/03/2024 <span class="cm-ficha__cadeado" title="Campo do sistema"><i data-i="bloquear" data-rotulo="Campo do sistema"></i></span></dd><span></span></div>
+    </dl>
+  </div>
+  <footer class="cm-cartao__pe"><i data-i="recentes"></i>Atualizado por Juliana Reis há 2 dias</footer>
+</section>
+  </template>
+  <template class="doc-ex-t" data-titulo="<b>Cartão plano, cartão clicável e seções de painel lateral.</b>">
+<div class="doc-grade2">
+  <a class="cm-cartao cm-cartao--clicavel" href="#cartao"><div class="cm-cartao__corpo"><div class="cm-pessoa"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="assembleia"></i></span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Assembleia ordinária</span><span class="cm-pessoa__sub">Vila Serena, 23/10 às 19h30</span></span></div></div></a>
+  <section class="cm-cartao cm-cartao--plano"><div class="cm-cartao__corpo">Cartão plano: mesma moldura, sem a camada. Para agrupar dentro de outro cartão.</div></section>
+  <div class="cm-cartao">
+    <section class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Tarefas do chamado</h3><button class="cm-botao cm-botao--link cm-secao__acao" type="button">Adicionar</button></div>
+      <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Acionar manutenção</span></label></section>
+    <section class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Boletos em aberto</h3><span class="cm-contador">1</span></div><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Setembro, vencido há 4 dias</span></section>
+  </div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="ficha" data-layout="empilhado" data-codigo="nao" data-titulo="Estados de uma linha da ficha."></template>
+  <div class="doc-regras">
+    <div><h5>Anatomia</h5><ol class="doc-anatomia"><li>Cabeça de 40px com título e até uma ação</li><li>Corpo com 12px de respiro</li><li>Linha da ficha: rótulo 118px (160 na <code>--larga</code>), valor, lápis 22px</li><li>Pé opcional com quem mudou por último</li></ol></div>
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Agrupar campos de um assunto na ficha do cliente, do chamado, da pessoa.</li><li>Edição no lugar campo a campo; "Editar seção" quando os campos dependem um do outro (endereço).</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Cartão dentro de cartão dentro de cartão. Um nível; o segundo é <code>--plano</code> ou <code>.cm-secao</code>.</li><li>Cartão com sombra. Sombra é só do que flutua.</li><li>Fileira de cartões com número grande na Home.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Título do cartão é cabeçalho (<code>h2</code>/<code>h3</code>) na ordem da página.</li><li>Lápis: botão com "Editar telefone"; aparece no foco do teclado. Enter confirma, Esc desfaz e devolve o foco ao lápis.</li><li>Campo do sistema: cadeado com "Campo do sistema" na dica e no rótulo.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="cabecalho">
+  <h3>Cabeçalho de página e de registro <code>.cm-cabecalho-pagina</code> <code>.cm-cabecalho-registro</code></h3>
+  <p class="lead">O título da tela com as ações dela, e o topo do registro: tipo, nome, identificador em plaqueta, ações e os campos-chave em linha. Campos-chave são dados do registro, não KPIs.</p>
+  <template class="doc-ex-t" data-titulo="<b>Página</b> (lista) e <b>registro</b> (ficha do cliente)." data-layout="empilhado">
+<div class="doc-pilha doc-pilha--esticar">
+  <header class="cm-cabecalho-pagina">
+    <div class="cm-cabecalho-pagina__linha">
+      <h1 class="cm-cabecalho-pagina__titulo">Clientes</h1>
+      <div class="cm-cabecalho-pagina__acoes">
+        <button class="cm-botao" type="button"><i data-i="importar"></i>Importar</button>
+        <button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Novo cliente</button>
+        <button class="cm-botao cm-botao--icone" type="button" aria-label="Mais ações" data-dica="Mais ações"><i data-i="mais-opcoes"></i></button>
+      </div>
+    </div>
+    <p class="cm-cabecalho-pagina__desc">63 condomínios na sua carteira. A lista lembra o filtro e a posição.</p>
+  </header>
+  <header class="cm-cabecalho-registro">
+    <div class="cm-cabecalho-registro__topo">
+      <span class="cm-ladrilho"><i data-i="condominio"></i></span>
+      <div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Cliente</span><h1 class="cm-cabecalho-registro__titulo">Cond. Parque das Águas <span class="cm-plaqueta cm-plaqueta--g">CT-2024-0187</span></h1></div>
+      <div class="cm-grupo-botoes"><button class="cm-botao" type="button"><i data-i="telefone"></i>Registrar contato</button><button class="cm-botao cm-botao--principal" type="button">Agendar reunião</button></div>
+    </div>
+    <dl class="cm-destaques">
+      <div><dt>Saúde</dt><dd><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>82, boa</span></dd></div>
+      <div><dt>Unidades</dt><dd>312</dd></div>
+      <div><dt>Síndica</dt><dd>Marina Costa</dd></div>
+      <div><dt>Mensalidade</dt><dd>R$ 4.380,00</dd></div>
+      <div><dt>Renovação</dt><dd>em 106 dias</dd></div>
+    </dl>
+  </header>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Página: toda tela de lista ou painel. Até duas ações visíveis e o resto no "⋯".</li><li>Registro: toda ficha. A plaqueta grande aparece aqui e só aqui.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Saudação ("Bom dia, Beatriz") como título.</li><li>Mais de seis campos-chave; o resto vai para a ficha.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Um <code>h1</code> por tela: o nome da página ou do registro. O tipo ("Cliente") vem antes, em texto comum.</li><li>Campos-chave em <code>dl</code>: o leitor anuncia "Saúde, 82, boa".</li></ul></div>
+  </div>
+</section>

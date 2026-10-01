@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Financeiro: receber e pagar</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q4.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q4-icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q4.js" defer></script>
+<style>
+/* só disposição destas telas */
+.fin-contexto{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:4px 0 10px}
+.fin-contexto .cm-gatilho{width:auto;min-width:240px}
+.fin-resumo{font-size:13px;color:var(--cm-texto-2);padding:4px 0 8px}
+.fin-resumo b{color:var(--cm-texto-1);font-weight:650}
+.fin-cobranca{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;margin-top:12px;align-items:start}
+.fin-pagar{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:0;border:1px solid var(--cm-filete);margin-top:8px;min-height:640px}
+.fin-pagar>.cm-tabela-caixa{border:0;border-right:1px solid var(--cm-filete)}
+.fin-pagar__previa{background:var(--cm-camada-1);display:flex;flex-direction:column;min-width:0}
+.fin-aprov{list-style:none;margin:0;padding:0}
+.fin-aprov li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px dotted var(--cm-filete);font-size:13px}
+@media (max-width:1099px){ .fin-cobranca,.fin-pagar{grid-template-columns:minmax(0,1fr)} .fin-pagar>.cm-tabela-caixa{border-right:0;border-bottom:1px solid var(--cm-filete)} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Financeiro","tela":"Contas a receber","papel":"Financeiro","sino":4,"usuario":{"nome":"Renata Vasconcelos","iniciais":"RV","cargo":"Analista financeira","presenca":"disponivel","tom":3},"links":{"Contas a receber":"26-financeiro.html","Contas a pagar":"26-financeiro.html#t-pagar","Conciliação":"26b-financeiro-conciliacao.html","Extrato":"26d-financeiro-caixa.html","Fluxo de caixa":"26d-financeiro-caixa.html#t-fluxo","DRE":"26c-financeiro-prestacao.html#t-dre","Notas fiscais":"26d-financeiro-caixa.html#t-notas"}}'></div>
+
+<main id="conteudo" class="cm-doc">
+<header class="cm-doc-capa">
+  <div>
+    <h1>Financeiro: receber e pagar</h1>
+    <p>Telas do Financeiro do condomínio, operado pela administradora: cobranças das unidades, a 2ª via com Pix, e as contas do condomínio que precisam de aprovação antes de pagar. Dados de outubro de 2026, Cond. Parque das Águas (312 unidades, blocos A a D).</p>
+    <p class="cm-doc-paginas" style="margin-top:8px">Páginas do Financeiro: <a href="26-financeiro.html" aria-current="page">Receber e pagar</a> <a href="26b-financeiro-conciliacao.html">Conciliação e rateio</a> <a href="26c-financeiro-prestacao.html">Prestação de contas e DRE</a> <a href="26d-financeiro-caixa.html">Extrato, fluxo de caixa, notas e inadimplência</a></p>
+  </div>
+  <div data-cm-seletor></div>
+  <nav class="cm-doc-indice" aria-label="Telas desta página">
+    <a href="#t-receber"><b>26.1</b>Contas a receber</a>
+    <a href="#t-cobranca"><b>26.2</b>Cobrança em detalhe e 2ª via</a>
+    <a href="#t-pagar"><b>26.3</b>Contas a pagar com aprovação</a>
+  </nav>
+</header>
+
+<!-- ============================ 26.1 CONTAS A RECEBER ============================ -->
+<section class="cm-doc-tela" id="t-receber" aria-labelledby="t-receber-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">26.1</span><h2 class="cm-doc-tela__titulo" id="t-receber-h">Contas a receber</h2><span class="cm-doc-tela__sub">tabela densa com total, agrupada por bloco</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>A analista vê, de um condomínio e de um período, tudo o que as unidades devem: o que vence, o que venceu, o que entrou e o que está em acordo. Resolve "quem não pagou setembro?" em uma visão salva, e age em lote (2ª via, baixa, acordo) sem abrir um por um.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>Escolhe o <b>condomínio</b> e o <b>período</b> no topo (a escolha fica guardada na URL e volta igual).</li>
+      <li>Troca a <b>visão salva</b> (Vencidas, A vencer, Pagas, Em acordo) logo abaixo do título.</li>
+      <li>Marca linhas: a <b>barra de massa</b> aparece no lugar dos filtros com Enviar 2ª via, Registrar pagamento, Propor acordo.</li>
+      <li>Clica na unidade: abre a <b>cobrança</b> (26.2) com "14 de 31" para andar com J e K; Esc volta à lista na mesma linha.</li>
+      <li>O total do rodapé soma só o que está filtrado e fica grudado no fim da tabela.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Superlógica e o Group Software, que as administradoras já usam, abrem cobrança como tabela por bloco com total; o Conta Azul e o Omie põem as visões "Vencidas, A vencer, Pagas" como abas sobre a tabela; e o Gmail ensinou que a barra de massa ocupa o lugar dos filtros quando há seleção. Número do boleto vai como texto na coluna Nº, sem plaqueta (regra da fundação).</p></div>
+  </div>
+
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__barra"><span>Tela em 1440 de largura útil. Estado:</span>
+      <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela">
+        <button type="button" aria-pressed="true" data-estado="dados">Com dados</button><button type="button" aria-pressed="false" data-estado="vazio">Vazio</button><button type="button" aria-pressed="false" data-estado="carregando">Carregando</button><button type="button" aria-pressed="false" data-estado="erro">Erro</button><button type="button" aria-pressed="false" data-estado="sem-permissao">Sem permissão</button>
+      </div></div>
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina">
+        <div class="cm-cabecalho-pagina__linha">
+          <h1 class="cm-cabecalho-pagina__titulo">Contas a receber</h1>
+          <div class="cm-cabecalho-pagina__acoes">
+            <button class="cm-botao" type="button" data-toast="Exportação iniciada. O arquivo chega em Exportações quando ficar pronto." data-toast-tipo="info"><i data-i="exportar"></i>Exportar</button>
+            <button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Nova cobrança</button>
+            <span class="cm-ancora cm-ancora--direita">
+              <button class="cm-botao cm-botao--icone" type="button" aria-label="Mais ações" aria-haspopup="menu" aria-expanded="false" data-menu="m-receber-mais"><i data-i="mais-opcoes"></i></button>
+              <div class="cm-menu cm-menu--240 cm-flutuante" role="menu" id="m-receber-mais" hidden>
+                <button class="cm-menu__item" role="menuitem" type="button"><i data-i="importar"></i><span>Importar retorno do banco</span><span></span></button>
+                <button class="cm-menu__item" role="menuitem" type="button"><i data-i="enviar-arquivo"></i><span>Gerar remessa de outubro</span><span></span></button>
+                <button class="cm-menu__item" role="menuitem" type="button"><i data-i="lembrete"></i><span>Régua de cobrança</span><span></span></button>
+                <div class="cm-menu__sep"></div>
+                <button class="cm-menu__item" role="menuitem" type="button"><i data-i="rateio"></i><span>Lançar rateio extra…</span><span></span></button>
+              </div>
+            </span>
+          </div>
+        </div>
+      </header>
+      <div class="fin-contexto">
+        <button class="cm-gatilho" type="button" aria-haspopup="listbox" aria-label="Condomínio"><i data-i="condominio"></i><span class="cm-gatilho__valor">Cond. Parque das Águas</span><i data-i="chevron-baixo"></i></button>
+        <div class="cm-periodo" style="width:300px"><div class="cm-entrada"><i data-i="calendario"></i><input aria-label="Vencimento de" value="01/09/2026"></div><span class="cm-periodo__ate">até</span><div class="cm-entrada"><input aria-label="Vencimento até" value="31/10/2026"></div></div>
+      </div>
+
+      <div data-estado-painel="dados">
+        <div class="cm-visoes" role="tablist" aria-label="Visões salvas">
+          <button role="tab" aria-selected="true">Todas <span class="cm-contador">624</span></button>
+          <button role="tab" aria-selected="false" tabindex="-1">Vencidas <span class="cm-contador">31</span></button>
+          <button role="tab" aria-selected="false" tabindex="-1">A vencer <span class="cm-contador">268</span></button>
+          <button role="tab" aria-selected="false" tabindex="-1">Pagas <span class="cm-contador">321</span></button>
+          <button role="tab" aria-selected="false" tabindex="-1">Em acordo <span class="cm-contador">4</span></button>
+          <button role="tab" aria-selected="false" tabindex="-1">Cobrança judicial <span class="cm-contador">2</span></button>
+        </div>
+        <div id="rec-filtros">
+          <div class="cm-filtros">
+            <div class="cm-entrada cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar por unidade, pagador ou nosso número" placeholder="Unidade, pagador ou nosso número"><kbd class="cm-tecla">/</kbd></div>
+            <button class="cm-filtro is-ativo" type="button" aria-haspopup="dialog">Blocos: <b>A e B</b><i data-i="chevron-baixo"></i></button>
+            <button class="cm-filtro" type="button" aria-haspopup="dialog">Situação<i data-i="chevron-baixo"></i></button>
+            <button class="cm-filtro" type="button" aria-haspopup="dialog">Forma de pagamento<i data-i="chevron-baixo"></i></button>
+            <button class="cm-filtro" type="button"><i data-i="filtrar"></i>Mais filtros</button>
+            <span class="cm-empurra cm-segmentado cm-segmentado--p" role="group" aria-label="Agrupar"><button type="button" aria-pressed="true">Por bloco</button><button type="button" aria-pressed="false">Sem grupo</button></span>
+          </div>
+        </div>
+        <div class="cm-barra-massa" id="rec-massa" role="region" aria-label="Ações em massa" hidden>
+          <b id="rec-massa-n">0 selecionados</b><span class="cm-texto-2" id="rec-massa-soma"></span>
+          <button class="cm-botao cm-botao--p" type="button" data-toast="2ª via enviada por WhatsApp para as unidades selecionadas."><i data-i="whatsapp"></i>Enviar 2ª via</button>
+          <button class="cm-botao cm-botao--p" type="button"><i data-i="sucesso"></i>Registrar pagamento</button>
+          <button class="cm-botao cm-botao--p" type="button"><i data-i="aperto-de-mao"></i>Propor acordo</button>
+          <span class="cm-empurra"><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" id="rec-limpar">Cancelar seleção</button></span>
+        </div>
+        <p class="fin-resumo" id="rec-resumo"></p>
+        <div class="cm-tabela-caixa cm-tabela-caixa--alta" style="--tabela-altura:560px">
+          <table class="cm-tabela" id="tab-receber" aria-describedby="rec-resumo">
+            <caption class="cm-sr">Cobranças do Cond. Parque das Águas, setembro e outubro de 2026, agrupadas por bloco</caption>
+            <thead><tr>
+              <th class="cm-tabela__marcar cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar todas as linhas visíveis" id="rec-todos"><span class="cm-marcar__caixa"></span></label></th>
+              <th>Nº</th>
+              <th>Unidade e pagador</th>
+              <th>Competência</th>
+              <th aria-sort="ascending"><button class="cm-ordenar" type="button">Vencimento<i data-i="seta-cima"></i></button></th>
+              <th class="cm-num">Valor</th>
+              <th class="cm-num">Multa e juros</th>
+              <th class="cm-num">Total</th>
+              <th>Situação</th>
+              <th>Forma</th>
+              <th class="cm-tabela__acoes"><span class="cm-sr">Ações</span></th>
+            </tr></thead>
+            <tbody></tbody>
+            <tfoot><tr><td class="cm-tabela__fixa"></td><td colspan="4" id="rec-total-rot">Total</td><td class="cm-num" id="rec-t-valor"></td><td class="cm-num" id="rec-t-multa"></td><td class="cm-num"><span class="cm-total-duplo" id="rec-t-total"></span></td><td colspan="3"></td></tr></tfoot>
+          </table>
+        </div>
+        <nav class="cm-paginacao" aria-label="Paginação"><span class="cm-paginacao__total"><b>1–17</b> de 624, blocos A e B</span>
+          <div class="cm-paginacao__paginas"><button type="button" disabled aria-label="Página anterior"><i data-i="chevron-esquerda"></i></button><button type="button" aria-current="page">1</button><button type="button">2</button><button type="button">3</button><button type="button" aria-label="Próxima página"><i data-i="chevron-direita"></i></button></div>
+          <div class="cm-selecao"><select aria-label="Linhas por página"><option>50 por página</option><option>100 por página</option></select><i data-i="chevron-baixo"></i></div></nav>
+      </div>
+
+      <div data-estado-painel="vazio" hidden>
+        <div class="cm-vazio"><i data-i="boleto"></i><p class="cm-vazio__titulo">Nenhuma cobrança neste período</p><p class="cm-vazio__texto">O Cond. Parque das Águas ainda não tem as cobranças de novembro. Elas são geradas no dia 25, depois que a síndica aprova a previsão orçamentária do mês.</p><div class="cm-vazio__acoes"><button class="cm-botao cm-botao--principal" type="button">Gerar cobranças de novembro</button><button class="cm-botao" type="button">Ver outubro</button></div></div>
+      </div>
+      <div data-estado-painel="carregando" hidden>
+        <p class="cm-carregando" style="padding:10px 0">Carregando cobranças do Parque das Águas</p>
+        <div class="cm-tabela-caixa"><table class="cm-tabela"><thead><tr><th style="width:36px"></th><th>Nº</th><th>Unidade e pagador</th><th>Competência</th><th>Vencimento</th><th class="cm-num">Total</th><th>Situação</th></tr></thead>
+          <tbody id="rec-esqueleto"></tbody></table></div>
+      </div>
+      <div data-estado-painel="erro" hidden>
+        <div class="cm-alerta cm-alerta--perigo" style="margin:8px 0"><i data-i="erro"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">O retorno do Banco do Brasil de 01/10 não foi lido</span><span class="cm-alerta__desc">O arquivo CBR6431001.ret chegou com 3 linhas a menos do que o cabeçalho anuncia. As baixas de 30/09 ainda não aparecem aqui; nada foi alterado.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button">Ver arquivo</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-toast="Lendo o arquivo de novo." data-toast-tipo="info">Tentar de novo</button></span></div>
+        <p class="cm-t-legenda">A lista abaixo mostra a posição de 30/09, 18:00. As 13 baixas pendentes entram quando o arquivo for lido.</p>
+      </div>
+      <div data-estado-painel="sem-permissao" hidden>
+        <div class="cm-bloqueio" style="margin-top:8px"><i data-i="bloquear"></i><div><h3>Este condomínio não está na sua carteira</h3><p>Você vê as cobranças dos 14 condomínios da carteira de Renata Vasconcelos. O Parque das Águas é atendido por Diego Martins. Para ver ou cobrar, peça acesso à gestora financeira.</p><div class="cm-vazio__acoes" style="margin-top:10px"><button class="cm-botao cm-botao--principal" type="button" data-toast="Pedido enviado para Juliana Reis.">Pedir acesso a Juliana Reis</button><button class="cm-botao" type="button">Voltar à minha carteira</button></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Exportar, Nova cobrança, Mais ações</li><li>Condomínio, período</li><li>Visões (setas trocam)</li><li>Busca (atalho /), filtros, Agrupar</li><li>Tabela: marcar todos, ordenar, linhas; o ⋯ da linha aparece no foco</li><li>Paginação</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Tabela com legenda "Cobranças do Cond. Parque das Águas, setembro e outubro…" e o resumo como descrição.</li><li>Ao marcar: região "Ações em massa", "3 selecionados, R$ 3.692,10".</li><li>Situação lida como texto ("Vencida há 21 dias"), nunca só pela cor.</li><li>Ordenação: "Vencimento, crescente".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>⋯ do cabeçalho: "Mais ações"</li><li>⋯ da linha: "Ações da cobrança Bl A Ap 101"</li><li>Setas da paginação: "Página anterior", "Próxima página"</li><li>Caixa do cabeçalho: "Selecionar todas as linhas visíveis"</li></ul></div>
+  </div>
+</section>
+
+<!-- ============================ 26.2 COBRANÇA EM DETALHE ============================ -->
+<section class="cm-doc-tela" id="t-cobranca" aria-labelledby="t-cobranca-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">26.2</span><h2 class="cm-doc-tela__titulo" id="t-cobranca-h">Cobrança em detalhe, 2ª via e Pix</h2><span class="cm-doc-tela__sub">o boleto da unidade, com composição, histórico e reenvio</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Quando o morador liga dizendo "não recebi o boleto" ou "o boleto venceu", a analista abre a cobrança e em dois cliques manda a 2ª via com o valor certo do dia, por WhatsApp ou e-mail. Ela vê o que compõe o valor, se o morador já leu a mensagem e como ele pagou nos meses anteriores.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>Chega da lista (26.1) ou pela pesquisa Ctrl K ("1204"). A trilha mostra "14 de 31" com J e K.</li>
+      <li>No cabeçalho, <b>Enviar 2ª via ▾</b> lembra o último canal (WhatsApp). O menu tem e-mail, PDF e "com novo vencimento".</li>
+      <li>Boleto vencido: "com novo vencimento" abre a janela que recalcula multa de 2% e juros de 1% ao mês até a nova data, mostra o antes e o depois e envia.</li>
+      <li>Ao enviar: aviso "2ª via enviada para Marina Costa por WhatsApp" com Desfazer por 8 segundos, e a linha entra no histórico.</li>
+      <li>Esc ou a trilha voltam à lista na mesma linha e com o mesmo filtro.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Nubank e o Inter mostram o Pix antes da linha digitável porque é o que se paga hoje; o Superlógica tem "2ª via com novo vencimento" como ação de primeira ordem; e o Stripe Dashboard põe o histórico de eventos da cobrança (gerada, enviada, aberta, paga) ao lado do valor. O número do boleto ganha a plaqueta uma vez, no cabeçalho, porque é protocolo.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__barra"><span>Estado:</span>
+      <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da cobrança">
+        <button type="button" aria-pressed="true" data-estado="avencer">A vencer</button><button type="button" aria-pressed="false" data-estado="vencida">Vencida, com 2ª via aberta</button><button type="button" aria-pressed="false" data-estado="paga">Paga</button>
+      </div></div>
+    <div class="cm-doc-palco__corpo" style="padding-top:16px">
+      <header class="cm-cabecalho-registro">
+        <div class="cm-cabecalho-registro__topo">
+          <span class="cm-ladrilho"><i data-i="boleto"></i></span>
+          <div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Cobrança da unidade</span><h1 class="cm-cabecalho-registro__titulo">Taxa condominial de outubro, Bl B Ap 1204 <span class="cm-plaqueta cm-plaqueta--g">00218.4471-3</span></h1></div>
+          <div class="cm-grupo-botoes">
+            <button class="cm-botao" type="button"><i data-i="sucesso"></i>Registrar pagamento</button>
+            <span class="cm-ancora cm-ancora--direita">
+            <div class="cm-dividido">
+              <button class="cm-botao cm-botao--principal" type="button" data-toast="2ª via enviada para Marina Costa por WhatsApp." data-toast-acao="Desfazer"><i data-i="whatsapp"></i>Enviar 2ª via <span class="cm-dividido__lembra">por WhatsApp</span></button>
+              <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de enviar a 2ª via" data-menu="m-2via"><i data-i="chevron-baixo"></i></button>
+            </div>
+            <div class="cm-menu cm-menu--240 cm-flutuante" role="menu" id="m-2via" hidden style="width:300px">
+              <div class="cm-menu__titulo">Enviar 2ª via</div>
+              <button class="cm-menu__item" role="menuitemradio" aria-checked="true" type="button" data-lembra="por WhatsApp"><i data-i="whatsapp"></i><span>Por WhatsApp<span class="cm-menu__desc">(11) 98765-4321, lido o último em 25/09</span></span><span></span></button>
+              <button class="cm-menu__item" role="menuitemradio" aria-checked="false" type="button" data-lembra="por e-mail"><i data-i="email"></i><span>Por e-mail<span class="cm-menu__desc">marina.costa@gmail.com</span></span><span></span></button>
+              <button class="cm-menu__item" role="menuitem" type="button"><i data-i="pdf"></i><span>Baixar PDF</span><span></span></button>
+              <div class="cm-menu__sep"></div>
+              <button class="cm-menu__item" role="menuitem" type="button" data-abrir="modal-2via"><i data-i="calendario"></i><span>Com novo vencimento…<span class="cm-menu__desc">recalcula multa e juros</span></span><span></span></button>
+            </div></span>
+            <span class="cm-ancora cm-ancora--direita">
+              <button class="cm-botao cm-botao--icone" type="button" aria-label="Mais ações da cobrança" aria-haspopup="menu" aria-expanded="false" data-menu="m-cob-mais"><i data-i="mais-opcoes"></i></button>
+              <div class="cm-menu cm-menu--240 cm-flutuante" role="menu" id="m-cob-mais" hidden>
+                <button class="cm-menu__item" role="menuitem" type="button"><i data-i="aperto-de-mao"></i><span>Propor acordo</span><span></span></button>
+                <button class="cm-menu__item" role="menuitem" type="button"><i data-i="copiar"></i><span>Copiar link do portal</span><span></span></button>
+                <button class="cm-menu__item" role="menuitem" type="button"><i data-i="multa"></i><span>Enviar para cobrança judicial</span><span></span></button>
+                <div class="cm-menu__sep"></div>
+                <button class="cm-menu__item cm-menu__item--perigo" role="menuitem" type="button"><i data-i="excluir"></i><span>Cancelar cobrança…</span><span></span></button>
+              </div>
+            </span>
+          </div>
+        </div>
+        <dl class="cm-destaques">
+          <div><dt>Situação</dt><dd data-estado-painel="avencer"><span class="cm-estado cm-estado--info"><i data-i="pendente"></i>A vencer em 9 dias</span></dd><dd data-estado-painel="vencida" hidden><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Vencida há 21 dias</span></dd><dd data-estado-painel="paga" hidden><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Paga em 30/09 por Pix</span></dd></div>
+          <div><dt>Valor</dt><dd>R$ 1.284,90</dd></div>
+          <div><dt>Vencimento</dt><dd>10/10/2026</dd></div>
+          <div><dt>Pagador</dt><dd><a class="cm-link" href="#">Marina Costa</a></dd></div>
+          <div><dt>Envio</dt><dd>WhatsApp e e-mail</dd></div>
+          <div><dt>Condomínio</dt><dd>Parque das Águas</dd></div>
+        </dl>
+      </header>
+
+      <div data-estado-painel="vencida" hidden>
+        <div class="cm-alerta cm-alerta--aviso" style="margin-top:12px"><i data-i="atencao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Atenção: a 2ª via precisa de novo vencimento</span><span class="cm-alerta__desc">Esta cobrança é de setembro (venceu em 10/09). Pagar hoje custa R$ 1.319,59 com multa e juros. A régua manda o 3º aviso amanhã às 9h.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-abrir="modal-2via">2ª via com novo vencimento</button></span></div>
+      </div>
+
+      <div class="fin-cobranca">
+        <div class="cm-pilha cm-pilha--6">
+          <div class="cm-boleto">
+            <div class="cm-boleto__dados">
+              <dl class="cm-ficha cm-ficha--larga">
+                <div class="cm-ficha__linha is-leitura"><dt>Beneficiário</dt><dd>Condomínio Parque das Águas, CNPJ 12.345.678/0001-90</dd><span></span></div>
+                <div class="cm-ficha__linha is-leitura"><dt>Pagador</dt><dd>Marina Costa, CPF 123.***.***-09</dd><span></span></div>
+                <div class="cm-ficha__linha is-leitura"><dt>Banco</dt><dd>Banco do Brasil, agência 3214-0, carteira 17</dd><span></span></div>
+                <div class="cm-ficha__linha"><dt>Instruções</dt><dd>Após o vencimento, multa de 2% e juros de 1% ao mês</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar instruções"><i data-i="editar"></i></button></div>
+              </dl>
+              <div class="cm-linha-digitavel" aria-label="Linha digitável"><span id="linha-dig">00190.00009 02184.471306 00000.000017 8 98520000128490</span><button class="cm-botao cm-botao--p" type="button" data-toast="Linha digitável copiada."><i data-i="copiar"></i>Copiar</button></div>
+              <h3 class="cm-t-subsecao" style="margin:14px 0 4px">Composição do valor</h3>
+              <table class="cm-composicao"><caption class="cm-sr">Composição do valor da cobrança</caption><tbody>
+                <tr><td>Taxa ordinária, fração ideal 0,3205%</td><td>R$ 980,00</td></tr>
+                <tr><td>Fundo de reserva, 10% da ordinária</td><td>R$ 98,00</td></tr>
+                <tr><td>Obra da fachada, parcela 3 de 10 (aprovada na AGE de 12/06)</td><td>R$ 156,90</td></tr>
+                <tr><td>Consumo de água individual, setembro (hidrômetro 18,4 m³)</td><td>R$ 50,00</td></tr>
+                <tr class="is-total"><td>Total</td><td><span class="cm-total-duplo">R$ 1.284,90</span></td></tr>
+              </tbody></table>
+            </div>
+            <div class="cm-boleto__pix">
+              <b style="color:var(--cm-texto-1)">Pix copia e cola</b>
+              <div class="cm-qr" role="img" aria-label="QR code do Pix desta cobrança"><svg viewBox="0 0 29 29" id="qr-1" shape-rendering="crispEdges"></svg></div>
+              <span>Válido até 10/10. Depois do vencimento, o Pix é gerado de novo com o valor do dia.</span>
+              <button class="cm-botao cm-botao--bloco" type="button" data-toast="Código Pix copiado."><i data-i="pix"></i>Copiar código Pix</button>
+            </div>
+          </div>
+          <section class="cm-cartao">
+            <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Meses anteriores da unidade</h2><a class="cm-link" href="#" style="font-size:12.5px">Extrato da unidade</a></header>
+            <div class="cm-tabela-caixa" style="border:0"><table class="cm-tabela">
+              <thead><tr><th>Competência</th><th>Vencimento</th><th>Pago em</th><th class="cm-num">Pago</th><th>Forma</th><th>Situação</th></tr></thead>
+              <tbody>
+                <tr><td>Setembro de 2026</td><td>10/09</td><td>08/09</td><td class="cm-num">R$ 1.284,90</td><td>Pix</td><td><span class="cm-estado cm-estado--ponto cm-estado--sucesso">Paga em dia</span></td></tr>
+                <tr><td>Agosto de 2026</td><td>10/08</td><td>10/08</td><td class="cm-num">R$ 1.284,90</td><td>Boleto</td><td><span class="cm-estado cm-estado--ponto cm-estado--sucesso">Paga em dia</span></td></tr>
+                <tr><td>Julho de 2026</td><td>10/07</td><td>14/07</td><td class="cm-num">R$ 1.312,30</td><td>Boleto</td><td><span class="cm-estado cm-estado--ponto cm-estado--aviso">Paga com 4 dias de atraso</span></td></tr>
+                <tr><td>Junho de 2026</td><td>10/06</td><td>09/06</td><td class="cm-num">R$ 1.128,00</td><td>Débito automático</td><td><span class="cm-estado cm-estado--ponto cm-estado--sucesso">Paga em dia</span></td></tr>
+              </tbody></table></div>
+          </section>
+        </div>
+        <aside class="cm-cartao" aria-label="Histórico da cobrança">
+          <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Histórico</h2><span class="cm-t-legenda">sempre visível</span></header>
+          <div class="cm-cartao__corpo">
+            <ol class="cm-auditoria">
+              <li class="cm-auditoria__dia" data-estado-painel="paga" hidden>30/09</li>
+              <li data-estado-painel="paga" hidden><time>14:12</time>Paga por <b>Pix</b>, R$ 1.284,90. Baixa automática pelo extrato do Banco do Brasil.</li>
+              <li class="cm-auditoria__dia">Ontem, 30/09</li>
+              <li><time>19:40</time><b>Marina Costa</b> abriu o boleto no portal</li>
+              <li class="cm-auditoria__dia">25/09</li>
+              <li><time>18:40</time>WhatsApp <b>lido</b> por Marina Costa</li>
+              <li><time>09:02</time>Enviada por <b>WhatsApp</b> e <b>e-mail</b> pela régua de cobrança</li>
+              <li class="is-criacao"><time>08:30</time>Gerada pela previsão de outubro, aprovada por <b>Marina Costa</b> (síndica)</li>
+            </ol>
+          </div>
+          <div class="cm-cartao__pe"><i data-i="lembrete"></i>Próximo aviso da régua: 08/10, 2 dias antes do vencimento</div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Registrar pagamento</li><li>Enviar 2ª via, depois a seta do menu</li><li>Mais ações</li><li>Lápis de Instruções</li><li>Copiar linha digitável, Copiar código Pix</li><li>Extrato da unidade, histórico</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>"Enviar 2ª via por WhatsApp, botão"; a seta: "Outras formas de enviar a 2ª via, menu recolhido".</li><li>Ao copiar: "Código Pix copiado" pela região de avisos (status educado).</li><li>Plaqueta lida como "Nosso número 00218.4471-3" pelo título.</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>⋯ "Mais ações da cobrança"</li><li>Lápis "Editar instruções"</li><li>QR: imagem "QR code do Pix desta cobrança"</li></ul></div>
+  </div>
+</section>
+
+<!-- Modal: 2ª via com novo vencimento -->
+<div class="cm-sobreposicao" id="modal-2via" data-janela hidden>
+  <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="m2via-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="m2via-t">2ª via com novo vencimento<span class="cm-modal__sub">Bl B Ap 1202, Carla Moura, taxa de setembro</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo">
+      <div class="cm-form-secao__campos" style="grid-template-columns:repeat(6,minmax(0,1fr))">
+        <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="nv-data">Novo vencimento</label><div class="cm-entrada"><i data-i="calendario"></i><input id="nv-data" value="03/10/2026" inputmode="numeric"></div><p class="cm-campo__ajuda">Até 30 dias depois de hoje.</p></div>
+        <div class="cm-campo cm-col-3"><span class="cm-campo__rotulo">Enviar por</span><div class="cm-segmentado" role="group" aria-label="Canal"><button type="button" aria-pressed="true"><i data-i="whatsapp"></i>WhatsApp</button><button type="button" aria-pressed="false"><i data-i="email"></i>E-mail</button><button type="button" aria-pressed="false">Os dois</button></div></div>
+      </div>
+      <table class="cm-composicao" style="margin-top:14px"><caption class="cm-sr">Recalculo do valor</caption><tbody>
+        <tr><td>Valor original, vencido em 10/09</td><td>R$ 1.284,90</td></tr>
+        <tr><td>Multa de 2%</td><td>R$ 25,70</td></tr>
+        <tr><td id="nv-juros-rot">Juros de 1% ao mês, 23 dias</td><td id="nv-juros">R$ 9,85</td></tr>
+        <tr class="is-total"><td>Total na nova data</td><td><span class="cm-total-duplo" id="nv-total">R$ 1.320,45</span></td></tr>
+      </tbody></table>
+      <p class="cm-campo__antes" style="margin-top:6px">Antes: R$ 1.319,59 pagando hoje. O boleto antigo é baixado como substituído e some do portal.</p>
+    </div>
+    <div class="cm-modal__pe"><span class="cm-modal__pe-esq">Enter gera, Esc fecha</span><button class="cm-botao" type="button" data-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-fechar data-toast="2ª via de R$ 1.320,45 enviada para Carla Moura por WhatsApp." data-toast-acao="Desfazer">Gerar e enviar 2ª via</button></div>
+  </div>
+</div>
+
+<!-- ============================ 26.3 CONTAS A PAGAR ============================ -->
+<section class="cm-doc-tela" id="t-pagar" aria-labelledby="t-pagar-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">26.3</span><h2 class="cm-doc-tela__titulo" id="t-pagar-h">Contas a pagar com aprovação</h2><span class="cm-doc-tela__sub">lista com prévia, alçada e aprovação em lote</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Nenhuma conta do condomínio é paga sem a aprovação certa: até R$ 2.000 a gestora aprova; acima de R$ 5.000 também a síndica (pelo portal) e um conselheiro. A gestora abre a visão "Para eu aprovar", lê a nota e o vínculo com a OS na prévia e aprova sem sair da lista, uma ou várias.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>A visão "Para eu aprovar" abre selecionada; a primeira linha já está na prévia à direita.</li>
+      <li>J e K andam entre as contas; a prévia acompanha. A mostra a nota, o orçamento e a OS 482.</li>
+      <li><b>Aprovar ▾</b> lembra "e ir para a próxima". Recusar pede o motivo (obrigatório), que vai para quem lançou.</li>
+      <li>Com várias marcadas, a barra de massa soma o valor e aprova em lote as que estão na alçada dela; as outras ficam de fora com o motivo.</li>
+      <li>Aprovada, a conta sai da visão e o aviso oferece Desfazer.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Omie e o Conta Azul separam "a aprovar" de "a pagar"; o Ramp e o Brex põem a prévia com o documento ao lado da fila e aprovam com uma tecla; e o Linear Inbox mostrou que andar com J e K numa lista com prévia é mais rápido que abrir e fechar registro. A alçada aparece como etapas com nome, no desenho de aprovações do SAP Concur.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__barra"><span>Estado:</span>
+      <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela">
+        <button type="button" aria-pressed="true" data-estado="dados">Com dados</button><button type="button" aria-pressed="false" data-estado="vazio">Fila zerada</button>
+      </div></div>
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina">
+        <div class="cm-cabecalho-pagina__linha">
+          <h1 class="cm-cabecalho-pagina__titulo">Contas a pagar</h1>
+          <div class="cm-cabecalho-pagina__acoes">
+            <button class="cm-botao" type="button"><i data-i="importar"></i>Importar XML da nota</button>
+            <button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Nova conta</button>
+          </div>
+        </div>
+      </header>
+      <div class="cm-visoes" role="tablist" aria-label="Visões salvas">
+        <button role="tab" aria-selected="true">Para eu aprovar <span class="cm-contador cm-contador--novo">5</span></button>
+        <button role="tab" aria-selected="false" tabindex="-1">Aguardando outras pessoas <span class="cm-contador">8</span></button>
+        <button role="tab" aria-selected="false" tabindex="-1">Aprovadas, a pagar <span class="cm-contador">14</span></button>
+        <button role="tab" aria-selected="false" tabindex="-1">Pagas em outubro</button>
+        <button role="tab" aria-selected="false" tabindex="-1">Recusadas</button>
+      </div>
+      <div data-estado-painel="dados">
+      <div class="cm-barra-massa" id="pag-massa" style="margin-top:8px" hidden><b id="pag-massa-n">2 selecionadas</b><span class="cm-texto-2" id="pag-massa-soma"></span>
+        <button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-toast="2 contas aprovadas. Seguem para pagamento em 03/10." data-toast-acao="Desfazer"><i data-i="sucesso"></i>Aprovar selecionadas</button>
+        <button class="cm-botao cm-botao--p" type="button">Recusar…</button>
+        <span class="cm-empurra cm-t-legenda">A conta da Hidrotec (R$ 7.850,00) passa da sua alçada e precisa da síndica.</span></div>
+      <div class="fin-pagar">
+        <div class="cm-tabela-caixa">
+          <table class="cm-tabela" id="tab-pagar">
+            <caption class="cm-sr">Contas do Cond. Parque das Águas que esperam a sua aprovação</caption>
+            <thead><tr><th class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar todas" id="pag-todos"><span class="cm-marcar__caixa"></span></label></th><th>Fornecedor e descrição</th><th>Vencimento</th><th class="cm-num">Valor</th><th>Aprovações</th></tr></thead>
+            <tbody></tbody>
+            <tfoot><tr><td></td><td colspan="2">Total para aprovar</td><td class="cm-num"><span class="cm-total-duplo" id="pag-total"></span></td><td></td></tr></tfoot>
+          </table>
+        </div>
+        <aside class="fin-pagar__previa" aria-label="Prévia da conta" id="pag-previa"></aside>
+      </div>
+      </div>
+      <div data-estado-painel="vazio" hidden>
+        <div class="cm-vazio"><i data-i="sucesso"></i><p class="cm-vazio__titulo">Nada para você aprovar</p><p class="cm-vazio__texto">As 5 contas de hoje foram aprovadas. Oito esperam a síndica ou o conselho; você recebe aviso se alguma voltar com pergunta.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button">Ver aguardando outras pessoas</button></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Importar XML, Nova conta</li><li>Visões</li><li>Tabela (a linha em foco abre na prévia)</li><li>Prévia: anexos, OS vinculada, Recusar, Aprovar ▾</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Linha: "Hidrotec Instalações, reparo da junta de dilatação, R$ 7.850,00, 1 de 3 aprovações".</li><li>Etapa da alçada: "Marina Costa, síndica, aguardando".</li><li>Recusar abre janela "Recusar a conta da Hidrotec?" com o campo Motivo obrigatório.</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Anexo: "Baixar nota fiscal 4471 em PDF"</li><li>Seta do Aprovar: "Outras formas de aprovar"</li></ul></div>
+  </div>
+</section>
+
+<!-- Modal: recusar -->
+<div class="cm-sobreposicao" id="modal-recusar" data-janela hidden>
+  <div class="cm-modal cm-modal--perigo" role="dialog" aria-modal="true" aria-labelledby="mrec-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mrec-t">Recusar a conta da Hidrotec?<span class="cm-modal__sub">R$ 7.850,00, reparo da junta de dilatação. Renata Vasconcelos recebe o motivo e pode corrigir.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo">
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="mrec-motivo">Motivo <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><textarea class="cm-area" id="mrec-motivo" aria-describedby="mrec-ajuda">O orçamento aprovado foi de R$ 7.200,00. A diferença de R$ 650,00 não tem aditivo.</textarea><p class="cm-campo__ajuda" id="mrec-ajuda">Escreva o que precisa mudar para você aprovar.</p></div>
+    </div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-fechar>Cancelar</button><button class="cm-botao cm-botao--perigo-cheio" type="button" data-fechar data-toast="Conta recusada. Renata recebeu o motivo." data-toast-tipo="aviso" data-toast-acao="Desfazer">Recusar conta</button></div>
+  </div>
+</div>
+
+</main>
+
+<script>
+(function(){
+function brl(v){return 'R$ '+v.toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'.')}
+window.qBRL=brl;
+/* ---------- 26.1 contas a receber ---------- */
+var R=[
+ ['A','Bl A Ap 101','Rogério Tavares','set/26','10/09',1064.30,'vencida','Boleto','00218.4402-1'],
+ ['A','Bl A Ap 102','Helena Duarte','out/26','10/10',1064.30,'avencer','Boleto e Pix','00218.4461-7'],
+ ['A','Bl A Ap 103','Paulo e Cláudia Menezes','out/26','10/10',1064.30,'paga:29/09, Pix','Pix','00218.4462-5'],
+ ['A','Bl A Ap 104','Sônia Albuquerque','out/26','10/10',1064.30,'avencer','Débito automático','00218.4463-3'],
+ ['A','Bl A Ap 201','Fábio Nakamura','out/26','10/10',1284.90,'paga:30/09','Boleto','00218.4464-1'],
+ ['A','Bl A Ap 202','Luciana Prado','set/26','10/09',1284.90,'acordo:2 de 6','Boleto','00218.4405-6'],
+ ['A','Bl A Ap 203','Gustavo Ribeiro','out/26','10/10',1284.90,'avencer','Boleto e Pix','00218.4466-8'],
+ ['A','Bl A Ap 204','Marcos e Tânia Leal','out/26','10/10',1284.90,'avencer','Boleto e Pix','00218.4467-6'],
+ ['A','Bl A Ap 1501','Eduardo Siqueira','out/26','10/10',1596.40,'avencer','Boleto','00218.4468-4'],
+ ['B','Bl B Ap 1201','Antônio Ferraz','out/26','10/10',1284.90,'avencer','Boleto e Pix','00218.4469-2'],
+ ['B','Bl B Ap 1202','Carla Moura','set/26','10/09',1284.90,'vencida','Boleto','00218.4410-2'],
+ ['B','Bl B Ap 1203','Igor Valente','out/26','10/10',1284.90,'paga:28/09','Boleto','00218.4470-6'],
+ ['B','Bl B Ap 1204','Marina Costa','out/26','10/10',1284.90,'avencer','Boleto e Pix','00218.4471-3'],
+ ['B','Bl B Ap 1301','Denise Couto','out/26','10/10',1284.90,'avencer','Boleto e Pix','00218.4472-1'],
+ ['B','Bl B Ap 1302','Roberto Lins','set/26','10/09',1284.90,'vencida','Boleto','00218.4413-7'],
+ ['B','Bl B Ap 1303','Patrícia Gomes','out/26','10/10',1284.90,'avencer','Boleto','00218.4474-8'],
+ ['B','Bl B Ap 1304','Joana e Luís Batista','out/26','10/10',1284.90,'paga:30/09, Pix','Pix','00218.4475-6']
+];
+function encargos(v,s){return s==='vencida'?Math.round(v*0.02*100)/100+Math.round(v*0.01*21/30*100)/100:0}
+function situacao(s){
+  if(s==='vencida') return '<span class="cm-estado cm-estado--ponto cm-estado--perigo">Vencida há 21 dias</span>';
+  if(s==='avencer') return '<span class="cm-estado cm-estado--ponto cm-estado--neutro">A vencer em 9 dias</span>';
+  if(s.indexOf('paga')===0) return '<span class="cm-estado cm-estado--ponto cm-estado--sucesso">Paga em '+s.split(':')[1]+'</span>';
+  if(s.indexOf('acordo')===0) return '<span class="cm-estado cm-estado--ponto cm-estado--info">Acordo, parcela '+s.split(':')[1]+'</span>';
+}
+var tb=document.querySelector('#tab-receber tbody'),h='',grupo='',tv=0,tm=0;
+var somas={};R.forEach(function(r){var e=encargos(r[5],r[6]);somas[r[0]]=somas[r[0]]||{n:0,v:0};somas[r[0]].n++;somas[r[0]].v+=r[5]+e});
+R.forEach(function(r,i){
+  if(r[0]!==grupo){grupo=r[0];h+='<tr class="cm-tabela__grupo"><td class="cm-tabela__fixa"></td><td colspan="10"><button type="button" aria-expanded="true" data-grupo="'+grupo+'"><i data-i="chevron-baixo"></i>Bloco '+grupo+'</button><span class="cm-tabela__grupo-soma">'+somas[grupo].n+' cobranças, '+brl(somas[grupo].v)+'</span></td></tr>'}
+  var e=encargos(r[5],r[6]);tv+=r[5];tm+=e;
+  h+='<tr data-bloco="'+r[0]+'" data-total="'+(r[5]+e)+'"'+(r[1]==='Bl B Ap 1204'?' class="is-atual"':'')+'><td class="cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar '+r[1]+'"><span class="cm-marcar__caixa"></span></label></td>'+
+    '<td class="cm-texto-2">'+r[8]+'</td><td class="cm-tabela__principal"><a href="#t-cobranca">'+r[1]+'</a><span class="cm-tabela__sub">'+r[2]+'</span></td><td>'+r[3]+'</td><td>'+r[4]+'/2026</td>'+
+    '<td class="cm-num">'+brl(r[5])+'</td><td class="cm-num'+(e?'':' cm-texto-3')+'">'+(e?brl(e):'—')+'</td><td class="cm-num cm-forte">'+brl(r[5]+e)+'</td><td>'+situacao(r[6])+'</td><td>'+r[7]+'</td>'+
+    '<td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações da cobrança '+r[1]+'"><i data-i="mais-opcoes"></i></button></td></tr>';
+});
+tb.innerHTML=h;
+document.getElementById('rec-t-valor').textContent=brl(tv);document.getElementById('rec-t-multa').textContent=brl(tm);document.getElementById('rec-t-total').textContent=brl(tv+tm);
+document.getElementById('rec-total-rot').textContent='Total de '+R.length+' cobranças nesta página';
+document.getElementById('rec-resumo').innerHTML='Previsto para setembro e outubro nos blocos A e B: <b>'+brl(tv+tm)+'</b> nesta página. Recebido até hoje: <b>R$ 6.003,30</b> em 4 cobranças. Vencido: <b>R$ 3.732,39</b> em 3 unidades.';
+/* grupo recolhe */
+tb.addEventListener('click',function(e){var b=e.target.closest('[data-grupo]');if(!b) return;var ab=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',ab);
+  [].forEach.call(tb.querySelectorAll('tr[data-bloco="'+b.getAttribute('data-grupo')+'"]'),function(tr){tr.hidden=!ab})});
+/* seleção e barra de massa */
+var massa=document.getElementById('rec-massa'),filtros=document.getElementById('rec-filtros');
+function atualizar(){var s=[].slice.call(tb.querySelectorAll('input:checked'));var soma=0;
+  [].forEach.call(tb.querySelectorAll('tr[data-total]'),function(tr){var c=tr.querySelector('input').checked;tr.setAttribute('aria-selected',c?'true':'false')});
+  s.forEach(function(c){soma+=parseFloat(c.closest('tr').getAttribute('data-total'))});
+  massa.hidden=!s.length;filtros.hidden=!!s.length;
+  document.getElementById('rec-massa-n').textContent=s.length+(s.length===1?' selecionada':' selecionadas');
+  document.getElementById('rec-massa-soma').textContent=brl(soma);
+  var t=document.getElementById('rec-todos');var tot=tb.querySelectorAll('tr[data-total] input').length;t.checked=s.length===tot;t.indeterminate=s.length>0&&s.length<tot}
+tb.addEventListener('change',atualizar);
+document.getElementById('rec-todos').addEventListener('change',function(){var v=this.checked;[].forEach.call(tb.querySelectorAll('tr[data-total] input'),function(c){c.checked=v});atualizar()});
+document.getElementById('rec-limpar').addEventListener('click',function(){[].forEach.call(tb.querySelectorAll('input'),function(c){c.checked=false});atualizar()});
+/* pré-selecionadas para mostrar a barra */
+[0,10,14].forEach(function(i){var trs=tb.querySelectorAll('tr[data-total]');trs[i].querySelector('input').checked=true});atualizar();
+/* esqueleto */
+var es='';for(var k=0;k<8;k++) es+='<tr><td></td><td><span class="cm-esqueleto" style="width:84px"></span></td><td><span class="cm-esqueleto" style="width:'+(120+k*9%60)+'px"></span></td><td><span class="cm-esqueleto" style="width:48px"></span></td><td><span class="cm-esqueleto" style="width:70px"></span></td><td><span class="cm-esqueleto" style="width:80px;margin-left:auto"></span></td><td><span class="cm-esqueleto" style="width:110px"></span></td></tr>';
+document.getElementById('rec-esqueleto').innerHTML=es;
+
+/* ---------- QR (desenho de demonstração) ---------- */
+function qr(id,seed){var s=seed,svg=document.getElementById(id),h='';function rnd(){s=(s*9301+49297)%233280;return s/233280}
+  function olho(x,y){h+='<rect x="'+x+'" y="'+y+'" width="7" height="7" fill="#121517"/><rect x="'+(x+1)+'" y="'+(y+1)+'" width="5" height="5" fill="#fff"/><rect x="'+(x+2)+'" y="'+(y+2)+'" width="3" height="3" fill="#121517"/>'}
+  for(var y=0;y<29;y++)for(var x=0;x<29;x++){if((x<8&&y<8)||(x>20&&y<8)||(x<8&&y>20)) continue;if(rnd()>.52) h+='<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="#121517"/>'}
+  olho(0,0);olho(22,0);olho(0,22);svg.innerHTML=h}
+window.qQR=qr;qr('qr-1',71);
+/* recálculo da 2ª via */
+document.getElementById('nv-data').addEventListener('input',function(){var m=this.value.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);if(!m) return;
+  var d=new Date(+m[3],+m[2]-1,+m[1]),base=new Date(2026,8,10);var dias=Math.max(0,Math.round((d-base)/864e5));
+  var j=Math.round(1284.90*0.01*dias/30*100)/100;document.getElementById('nv-juros-rot').textContent='Juros de 1% ao mês, '+dias+' dias';
+  document.getElementById('nv-juros').textContent=brl(j);document.getElementById('nv-total').textContent=brl(1284.90+25.70+j)});
+
+/* ---------- 26.3 contas a pagar ---------- */
+var P=[
+ {f:'Hidrotec Instalações',d:'Reparo da junta de dilatação, subsolo 1',v:'03/10',val:7850.00,a:1,t:3,os:'OS 482',nf:'4471',cc:'Manutenção predial',alc:'Acima de R$ 5.000: gestora, síndica e um conselheiro'},
+ {f:'Elevadores Atlas Schindler',d:'Contrato de manutenção, outubro',v:'05/10',val:2316.40,a:0,t:1,os:'',nf:'88213',cc:'Elevadores',alc:'Contrato fixo: gestora'},
+ {f:'Sabesp',d:'Água e esgoto, leitura de 22/09',v:'07/10',val:18440.72,a:0,t:1,os:'',nf:'Fatura 0938-12',cc:'Consumo',alc:'Concessionária: gestora'},
+ {f:'Jardins Ipê Paisagismo',d:'Poda das palmeiras da entrada',v:'08/10',val:1280.00,a:0,t:1,os:'OS 497',nf:'1207',cc:'Áreas comuns',alc:'Até R$ 2.000: gestora'},
+ {f:'Clean Max Serviços',d:'Diferença de horas extras, setembro',v:'10/10',val:615.90,a:0,t:1,os:'',nf:'3390',cc:'Limpeza',alc:'Até R$ 2.000: gestora'}
+];
+var tp=document.querySelector('#tab-pagar tbody'),hp='',tot=0;
+P.forEach(function(p,i){tot+=p.val;
+  hp+='<tr data-i="'+i+'" tabindex="0"'+(i===0?' aria-selected="true"':'')+'><td><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar '+p.f+'"'+(i===1||i===3?' checked':'')+'><span class="cm-marcar__caixa"></span></label></td>'+
+  '<td class="cm-tabela__principal"><a href="#" data-previa="'+i+'">'+p.f+'</a><span class="cm-tabela__sub">'+p.d+'</span></td><td>'+p.v+'</td><td class="cm-num cm-forte">'+brl(p.val)+'</td>'+
+  '<td><div class="cm-progresso" style="min-width:110px"><span class="cm-progresso__barra"><i style="--p:'+Math.round(p.a/p.t*100)+'%"></i></span><span class="cm-progresso__valor">'+p.a+' de '+p.t+'</span></div></td></tr>'});
+tp.innerHTML=hp;document.getElementById('pag-total').textContent=brl(tot);
+function previa(i){var p=P[i];[].forEach.call(tp.querySelectorAll('tr'),function(tr){tr.setAttribute('aria-selected',tr.getAttribute('data-i')==i?'true':'false')});
+  var etapas=p.t===3?[['RV','Renata Vasconcelos','lançou em 30/09','sucesso','Feito'],['JR','Juliana Reis','gestora financeira','info','Você'],['MC','Marina Costa','síndica, pelo portal','neutro','Depois de você'],['LF','Luiz Fernandes','conselheiro fiscal','neutro','Depois da síndica']]:[['RV','Renata Vasconcelos','lançou em 30/09','sucesso','Feito'],['JR','Juliana Reis','gestora financeira','info','Você']];
+  document.getElementById('pag-previa').innerHTML=
+   '<div class="cm-painel__cabeca"><h2 class="cm-painel__titulo">'+p.f+'</h2><span class="cm-navegar-registro"><b>'+(i+1)+' de '+P.length+'</b><button class="cm-botao cm-botao--discreto cm-botao--p cm-botao--icone" type="button" aria-label="Anterior (K)" data-nav="-1"><i data-i="chevron-cima"></i></button><button class="cm-botao cm-botao--discreto cm-botao--p cm-botao--icone" type="button" aria-label="Próxima (J)" data-nav="1"><i data-i="chevron-baixo"></i></button></span></div>'+
+   '<div class="cm-painel__corpo">'+
+   '<div class="cm-secao"><p style="font-size:14px;font-weight:600">'+p.d+'</p><p style="font-size:22px;font-weight:700;margin-top:4px">'+brl(p.val)+'</p><p class="cm-t-legenda">Vence em '+p.v+'/2026, pagamento por TED do Banco do Brasil</p></div>'+
+   '<div class="cm-secao"><dl class="cm-ficha"><div class="cm-ficha__linha is-leitura"><dt>Nota fiscal</dt><dd>'+p.nf+'</dd><span></span></div><div class="cm-ficha__linha"><dt>Centro de custo</dt><dd>'+p.cc+'</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar centro de custo"><i data-i="editar"></i></button></div><div class="cm-ficha__linha is-leitura"><dt>Condomínio</dt><dd>Parque das Águas</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Alçada</dt><dd>'+p.alc+'</dd><span></span></div></dl></div>'+
+   (p.os?'<div class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Vinculada a</h3></div><div class="cm-cartao-vinculo" style="align-self:stretch"><i data-i="ordem-de-servico"></i><span class="cm-plaqueta">'+p.os+'</span><span class="cm-texto-2">concluída em 28/09, vistoria de Diego Martins</span></div></div>':'')+
+   '<div class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Anexos</h3></div><div class="cm-anexos"><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="pdf"></i></span><span><span class="cm-anexo__nome">nota-fiscal-'+p.nf.replace(/\D/g,'')+'.pdf</span><span class="cm-anexo__meta">184 KB, conferida com o XML</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Baixar nota fiscal '+p.nf+' em PDF"><i data-i="baixar"></i></button></div>'+(p.os?'<div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="arquivo-texto"></i></span><span><span class="cm-anexo__nome">orcamento-hidrotec-aprovado.pdf</span><span class="cm-anexo__meta">R$ 7.200,00, aprovado em 18/09</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Baixar orçamento"><i data-i="baixar"></i></button></div>':'')+'</div>'+
+   (p.os?'<div class="cm-alerta cm-alerta--aviso" style="margin-top:8px"><i data-i="atencao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Atenção: R$ 650,00 acima do orçamento</span><span class="cm-alerta__desc">O orçamento aprovado foi de R$ 7.200,00.</span></span></div>':'')+'</div>'+
+   '<div class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Aprovação</h3><span class="cm-t-legenda">'+p.a+' de '+p.t+'</span></div><ul class="fin-aprov">'+etapas.map(function(e){return '<li><span class="cm-avatar cm-avatar--p">'+e[0]+'</span><span><b style="font-weight:600">'+e[1]+'</b><span class="cm-tabela__sub" style="display:block;font-size:12px;color:var(--cm-texto-2)">'+e[2]+'</span></span><span class="cm-estado cm-estado--ponto cm-estado--'+e[3]+'">'+e[4]+'</span></li>'}).join('')+'</ul></div>'+
+   '</div><div class="cm-painel__pe"><button class="cm-botao cm-botao--perigo" type="button" data-abrir="modal-recusar">Recusar…</button><span class="cm-ancora cm-ancora--direita cm-ancora--cima"><div class="cm-dividido"><button class="cm-botao cm-botao--principal" type="button" data-toast="Conta aprovada. Segue para Marina Costa no portal." data-toast-acao="Desfazer"><i data-i="sucesso"></i>Aprovar <span class="cm-dividido__lembra">e próxima</span></button><button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de aprovar" data-menu="m-aprovar"><i data-i="chevron-baixo"></i></button></div>'+
+   '<div class="cm-menu cm-flutuante" role="menu" id="m-aprovar" hidden style="width:260px"><button class="cm-menu__item" role="menuitemradio" aria-checked="true" type="button" data-lembra="e próxima"><i data-i="proximo"></i><span>Aprovar e ir para a próxima</span><span class="cm-menu__atalho">A</span></button><button class="cm-menu__item" role="menuitemradio" aria-checked="false" type="button" data-lembra="e ficar"><i data-i="sucesso"></i><span>Aprovar e ficar aqui</span><span></span></button><button class="cm-menu__item" role="menuitem" type="button"><i data-i="conversa"></i><span>Aprovar com comentário…</span><span></span></button></div></span></div>';
+}
+previa(0);
+tp.addEventListener('click',function(e){var a=e.target.closest('[data-previa]');if(a){e.preventDefault();previa(+a.getAttribute('data-previa'))}});
+tp.addEventListener('focusin',function(e){var tr=e.target.closest('tr[data-i]');if(tr&&e.target===tr) previa(+tr.getAttribute('data-i'))});
+document.getElementById('pag-previa').addEventListener('click',function(e){var n=e.target.closest('[data-nav]');if(!n) return;var cur=+tp.querySelector('tr[aria-selected="true"]').getAttribute('data-i');previa(Math.min(P.length-1,Math.max(0,cur+(+n.getAttribute('data-nav')))))});
+var pm=document.getElementById('pag-massa');
+function selPag(){var s=[].slice.call(tp.querySelectorAll('input:checked')),soma=0;s.forEach(function(c){soma+=P[+c.closest('tr').getAttribute('data-i')].val});pm.hidden=!s.length;document.getElementById('pag-massa-n').textContent=s.length+(s.length===1?' selecionada':' selecionadas');document.getElementById('pag-massa-soma').textContent=brl(soma)}
+tp.addEventListener('change',selPag);selPag();
+document.getElementById('pag-todos').addEventListener('change',function(){var v=this.checked;[].forEach.call(tp.querySelectorAll('input'),function(c){c.checked=v});selPag()});
+})();
+</script>
+</body>
+</html>

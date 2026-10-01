@@ -329,3 +329,136 @@
       <tfoot><tr><td>Total do rateio</td><td class="lc-num"><span class="lc-total">R$ 41.638,89</span></td></tr></tfoot></table></div>
   </template>
 </section>
+
+<!-- ============================ SUPERFÍCIES ============================ -->
+<section class="lc-doc-sec" id="cartao" data-familia="Superfícies">
+  <h2>Cartão (caixa) e lista</h2>
+  <p>Caixa é uma região que se lê junta: cabeçalho, corpo e pé, separados por filete. A hierarquia vem do filete e do espaço, não de sombra. Quatro variantes e o estado clicável e selecionado.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="componente"></i>Anatomia</h3><ol style="list-style:none;padding:0"><li><span class="lc-doc-n">1</span> <code>__cab</code>: título 15 px + ação discreta ou contagem.</li><li><span class="lc-doc-n">2</span> <code>__corpo</code> (ou <code>--cheio</code> para lista e tabela).</li><li><span class="lc-doc-n">3</span> <code>__pe</code>: link "Ver todos" ou ação.</li></ol></div>
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Bloco de Home ("Para você", "Agenda de hoje").</li><li>Seção de ficha que se lê de uma vez.</li><li><code>--poço</code> para resumo dentro de formulário; <code>--plana</code> para agrupar sem moldura.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Grade de cartões iguais como enfeite (sinal de IA, crítica C1).</li><li>Caixa dentro de caixa dentro de caixa.</li><li>Cartão inteiro clicável com outros botões dentro, sem área clara.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Título diz o conteúdo, não a categoria: "Boletos vencidos", não "Financeiro".</li><li>Pé com verbo: "Ver os 12 boletos".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Título da caixa é <code>h2</code> ou <code>h3</code> conforme a página.</li><li>Clicável: o link está no título e a caixa só amplia a área.</li><li>Selecionada: <code>aria-selected="true"</code> + contorno de 2 px.</li></ul></div>
+  </div>
+  <template data-ex="Variantes e estados">
+    <div class="p1-dois">
+      <section class="lc-caixa"><div class="lc-caixa__cab"><h3>Boletos vencidos</h3><span class="lc-aux">12</span></div>
+        <ul class="lc-lista"><li><span class="lc-cresce">Bl B, 1204<span class="lc-lista__sub">Marina Costa, venceu em 10/09</span></span><span class="lc-num">R$ 1.284,37</span></li><li><span class="lc-cresce">Bl A, 302<span class="lc-lista__sub">Carlos Ferreira, venceu em 10/08</span></span><span class="lc-num">R$ 1.102,40</span></li></ul>
+        <div class="lc-caixa__pe"><a href="#">Ver os 12 boletos</a></div></section>
+      <section class="lc-caixa lc-caixa--contorno"><div class="lc-caixa__cab"><h3>Contrato de administração</h3><button type="button" class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" aria-label="Editar contrato" data-dica="Editar"><i data-i="editar"></i></button></div>
+        <div class="lc-caixa__corpo"><dl class="lc-props"><dt>Valor mensal</dt><dd>R$ 4.620,00</dd><dt>Reajuste</dt><dd>IGP-M, todo março</dd><dt>Renovação</dt><dd>14/01/2027, em 105 dias</dd></dl></div></section>
+      <section class="lc-caixa lc-caixa--poço"><div class="lc-caixa__cab"><h3>Resumo antes de enviar</h3></div><div class="lc-caixa__corpo lc-pequeno">148 boletos, total <span class="lc-total">R$ 190.215,72</span>, vencimento 10/11.</div></section>
+      <section class="lc-caixa lc-caixa--plana"><div class="lc-caixa__cab" style="padding-left:0"><h3>Sem moldura</h3></div><div class="lc-caixa__corpo lc-pequeno" style="padding-left:0">Agrupa por título e espaço, sem filete.</div></section>
+      <section class="lc-caixa lc-caixa--clicavel lc-f-hover"><div class="lc-caixa__cab"><h3><a href="#">Cond. Jardim Botânico</a></h3><span class="lc-estado lc-estado--aviso">Esfriando</span></div><div class="lc-caixa__corpo lc-pequeno">Clicável, em hover. Sem contato há 21 dias.</div></section>
+      <section class="lc-caixa lc-caixa--clicavel" aria-selected="true"><div class="lc-caixa__cab"><h3><a href="#">Cond. Parque das Águas</a></h3><span class="lc-estado lc-estado--sucesso">Ativo</span></div><div class="lc-caixa__corpo lc-pequeno">Selecionada. Renovação em 105 dias.</div></section>
+    </div>
+  </template>
+  <template data-ex="Carregando, vazio e erro dentro da caixa">
+    <div class="p1-dois">
+      <section class="lc-caixa" aria-busy="true"><div class="lc-caixa__cab"><h3>Agenda de hoje</h3></div><div class="lc-caixa__corpo"><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--curta"></span></div></section>
+      <section class="lc-caixa"><div class="lc-caixa__cab"><h3>Agenda de hoje</h3></div><div class="lc-caixa__corpo lc-pequeno lc-cor-2">Nada marcado para hoje. <a href="#">Ver a semana</a></div></section>
+      <section class="lc-caixa"><div class="lc-caixa__cab"><h3>Boletos vencidos</h3></div><div class="lc-caixa__corpo"><div class="lc-alerta lc-alerta--perigo"><i data-i="erro"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Não foi possível carregar.</span>O banco não respondeu às 10:42. <button type="button" class="lc-btn lc-btn--link">Tentar de novo</button></div></div></div></section>
+      <section class="lc-caixa"><div class="lc-caixa__cab"><h3>Folha de pagamento</h3></div><div class="lc-caixa__corpo lc-pequeno lc-cor-2"><i data-i="bloquear" class="lc-ic--16"></i> Só o Financeiro vê este bloco. Peça acesso a Ana Paula Ribeiro.</div></section>
+    </div>
+  </template>
+</section>
+
+<!-- ============================ NAVEGAÇÃO ============================ -->
+<section class="lc-doc-sec" id="abas" data-familia="Navegação">
+  <h2>Abas</h2>
+  <p>Partes de um mesmo registro ou de uma mesma lista, com contagem quando ajuda. A aba atual ganha peso e marcador inferior em carbono; nunca a cor do cliente (essa só no portal).</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Ficha: Visão geral, Contratos, Chamados 12, Financeiro, Histórico.</li><li>Visões salvas de lista: "Precisam de mim hoje 7".</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para etapas de um processo (use etapas ou passos).</li><li>Mais de 7 abas: mova para "Mais ▾".</li><li>Abas dentro de abas.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Substantivo, uma ou duas palavras. Contagem em cinza depois.</li><li>O cliente pode renomear ("Chamados" vira "Ocorrências"); a largura se ajusta.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>role="tablist"</code>, <code>tab</code> com <code>aria-selected</code> e <code>aria-controls</code>, painéis <code>tabpanel</code>.</li><li>← → trocam de aba; só a atual entra no Tab (<code>tabindex</code> roving).</li><li>Sem permissão: <code>aria-disabled</code> + dica com motivo.</li></ul></div>
+  </div>
+  <template data-ex="Abas funcionando (← → ou clique)" data-dens="tres">
+    <div>
+      <div class="lc-abas" role="tablist" aria-label="Ficha do cliente">
+        <button type="button" role="tab" id="ab-1" aria-selected="true" aria-controls="ap-1" tabindex="0">Visão geral</button>
+        <button type="button" role="tab" id="ab-2" aria-selected="false" aria-controls="ap-2" tabindex="-1">Chamados <span class="lc-contagem">12</span></button>
+        <button type="button" role="tab" id="ab-3" aria-selected="false" aria-controls="ap-3" tabindex="-1">Histórico</button>
+        <button type="button" role="tab" aria-selected="false" aria-disabled="true" tabindex="-1" data-dica="Só o Financeiro vê">Financeiro</button>
+      </div>
+      <div role="tabpanel" id="ap-1" aria-labelledby="ab-1" class="lc-pequeno" style="padding:12px 0">Cond. Parque das Águas, cliente desde 03/2022, 184 unidades.</div>
+      <div role="tabpanel" id="ap-2" aria-labelledby="ab-2" class="lc-pequeno" style="padding:12px 0" hidden>12 chamados, 3 abertos. O mais antigo: vazamento na garagem, 4 dias.</div>
+      <div role="tabpanel" id="ap-3" aria-labelledby="ab-3" class="lc-pequeno" style="padding:12px 0" hidden>Última alteração: valor mensal, por Bruno Tavares, ontem às 16:40.</div>
+    </div>
+  </template>
+  <template data-ex="Estados e tamanho pequeno">
+    <div class="p1-col">
+      <div class="lc-abas" role="tablist" aria-label="Estados de aba"><span role="tab" aria-selected="false">Normal</span><span role="tab" aria-selected="false" class="lc-f-hover">Hover</span><span role="tab" aria-selected="false" class="lc-f-foco" tabindex="-1">Foco</span><span role="tab" aria-selected="true">Atual</span><span role="tab" aria-disabled="true">Sem acesso</span></div>
+      <div class="lc-abas lc-abas--p" role="tablist" aria-label="Abas pequenas"><span role="tab" aria-selected="true">Tudo <span class="lc-contagem">6</span></span><span role="tab" aria-selected="false">Menções <span class="lc-contagem">2</span></span><span role="tab" aria-selected="false">Aprovações <span class="lc-contagem">1</span></span><span role="tab" aria-selected="false">Prazos <span class="lc-contagem">3</span></span></div>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-sec" id="trilha" data-familia="Navegação">
+  <h2>Trilha e paginador</h2>
+  <p>A trilha diz onde a pessoa está e leva de volta; o paginador "14 de 63" anda entre os registros da lista de onde ela veio, sem voltar à lista. A lista lembra filtro e posição.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Trilha: toda tela abaixo do primeiro nível do módulo (a moldura monta).</li><li>Paginador: ficha aberta a partir de uma lista filtrada.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Trilha com o nome do módulo repetido (ele já está na barra).</li><li>Paginador quando a ficha foi aberta por link solto (não há lista).</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Último item é a tela atual, sem link.</li><li>Nome longo corta no meio da trilha, nunca o último.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>nav aria-label="Você está em"</code> + <code>ol</code>; atual com <code>aria-current="page"</code>.</li><li>Setas do paginador com nome: "Anterior: 13 de 63, Cond. Vila Mariana". Atalhos J e K.</li></ul></div>
+  </div>
+  <template data-ex="Trilha e paginador funcionando">
+    <div class="p1-col" style="width:100%">
+      <nav aria-label="Você está em"><ol class="lc-trilha"><li><a href="#">Clientes</a></li><li><a href="#" class="lc-f-hover">Renovam em 90 dias</a></li><li><span aria-current="page" id="pg-nome">Cond. Parque das Águas</span></li></ol></nav>
+      <div class="lc-paginador" data-paginador data-total="63" data-nome-alvo="pg-nome" data-nomes="Cond. Parque das Águas|Residencial Jardim Botânico|Edifício Mirante do Vale|Cond. Bosque Imperial|Residencial Vila Mariana"><button type="button" class="lc-btn lc-btn--icone lc-btn--discreto" data-ant aria-label="Registro anterior" data-dica="Anterior (K)"><i data-i="chevron-esquerda"></i></button><span><b>14</b> de 63</span><button type="button" class="lc-btn lc-btn--icone lc-btn--discreto" data-prox aria-label="Próximo registro" data-dica="Próximo (J)"><i data-i="chevron-direita"></i></button></div>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-sec" id="etapas" data-familia="Navegação">
+  <h2>Barra de etapas e passos</h2>
+  <p>A barra de etapas é o caminho do registro (Salesforce Path em segmentos retos): mostra onde está, há quanto tempo, e se clica para mudar. Passos são a sequência de um formulário longo, numerada.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Etapas: funil comercial, ciclo do cliente no CS, obra, chamado de manutenção.</li><li>Passos: cadastro de condomínio, importação, abertura de assembleia.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para navegar entre seções que não têm ordem (use abas).</li><li>Mais de 7 etapas.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Etapa é substantivo ("Proposta"); o botão ao lado é verbo ("Avançar para Renovado").</li><li>Etapa atual mostra o tempo: "há 12 dias".</li><li>Perdida: a etapa onde saiu, em perigo, com motivo no histórico.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>ol</code>; atual com <code>aria-current="step"</code>; feita com ícone de confirmação (não só verde).</li><li>Mudar etapa anuncia e registra no histórico, com desfazer.</li></ul></div>
+  </div>
+  <template data-ex="Barra de etapas (clique numa etapa ou em Avançar)">
+    <div class="lc-etapas-cont">
+      <ol class="lc-etapas" aria-label="Ciclo do cliente">
+        <li class="lc-etapa lc-etapa--feita"><button type="button"><i data-i="confirmar"></i>Implantação</button></li>
+        <li class="lc-etapa lc-etapa--feita"><button type="button"><i data-i="confirmar"></i>Ativo</button></li>
+        <li class="lc-etapa lc-etapa--atual"><button type="button" aria-current="step">Em renovação<small>há 12 dias</small></button></li>
+        <li class="lc-etapa"><button type="button">Renovado</button></li>
+      </ol>
+      <button type="button" class="lc-btn" data-avancar><i data-i="seta-direita"></i>Avançar para Renovado</button>
+    </div>
+  </template>
+  <template data-ex="Etapa perdida e passos de formulário">
+    <div class="p1-col" style="width:100%">
+      <ol class="lc-etapas" aria-label="Funil comercial" style="width:100%">
+        <li class="lc-etapa lc-etapa--feita"><span><i data-i="confirmar"></i>Contato</span></li>
+        <li class="lc-etapa lc-etapa--feita"><span><i data-i="confirmar"></i>Visita</span></li>
+        <li class="lc-etapa lc-etapa--perdida"><span><i data-i="erro"></i>Proposta, perdida</span></li>
+        <li class="lc-etapa"><span>Fechamento</span></li>
+      </ol>
+      <ol class="lc-passos" aria-label="Cadastro de condomínio"><li class="lc-feito">Dados do condomínio</li><li class="lc-feito">Endereço</li><li aria-current="step">Unidades e frações</li><li>Síndico e conselho</li><li>Financeiro</li><li>Revisão</li></ol>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-sec" id="paginacao" data-familia="Navegação">
+  <h2>Paginação</h2>
+  <p>Para lista longa de trabalho (boletos, unidades). Mostra a faixa atual, quantos por página e as páginas, com reticências. No feed e no celular, use "Carregar mais" (página 05).</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Tabela com mais de 50 linhas.</li><li>Quando a pessoa precisa voltar a uma posição ("estava na página 4").</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Lista de até 50 itens: mostre tudo.</li><li>Feed e conversa: carregar mais.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>"21–40 de 148 boletos": o objeto no fim.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>nav aria-label="Paginação"</code>; página atual <code>aria-current="page"</code>; setas com nome; troca anunciada.</li></ul></div>
+  </div>
+  <template data-ex="Paginação funcionando" data-temas="empilhado">
+    <nav class="lc-paginacao" aria-label="Paginação dos boletos" data-total="148" data-pag="2">
+      <span class="lc-paginacao__info"></span>
+      <label class="lc-paginacao__por">Por página <select class="lc-selecao"><option>20</option><option>50</option><option>100</option></select></label>
+      <div class="lc-paginacao__pags"></div>
+    </nav>
+  </template>
+</section>

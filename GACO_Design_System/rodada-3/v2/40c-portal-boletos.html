@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-contexto="portal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal: Boletos</title>
+<script>window.CM_LINKS={"Início": "40-portal.html", "Chamados": "40b-portal-chamados.html", "Boletos": "40c-portal-boletos.html", "Reservas": "40d-portal-reservas.html", "Assembleias": "40e-portal-assembleias.html", "Comunicados": "40f-portal-comunicados.html", "Documentos": "40f-portal-comunicados.html#documentos", "Minha unidade": "40h-portal-perfil.html", "Moradores e veículos": "40h-portal-perfil.html#moradores", "Meu perfil": "40h-portal-perfil.html", "Encomendas": "40i-portal-portaria.html#encomendas", "Visitantes": "40i-portal-portaria.html"}</script>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q5.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q5.js" defer></script>
+<style>
+
+.portal{max-width:1200px;margin:0 auto;padding:8px 24px 72px}
+.portal-grade{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.portal-estreito{max-width:var(--cm-largura-portal)}
+.portal-cabeca{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;padding:20px 0 14px}
+.portal-cabeca h1{font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em;margin:0}
+.portal-cabeca p{color:var(--cm-texto-2);margin-top:2px}
+.portal-cabeca .cm-empurra{display:flex;gap:8px;flex-wrap:wrap}
+.sec-t{font-size:17px;line-height:24px;font-weight:700;margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+.sec-t .cm-link{margin-left:auto;font-size:14px}
+@media (max-width:899px){ .portal-grade{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:599px){ .portal{padding:4px 16px 56px} .portal-cabeca h1{font-size:20px;line-height:26px} .portal-cabeca .cm-empurra{width:100%} }
+
+.boleto-grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.boleto-topo{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;padding:18px;border:1px solid var(--cm-filete);background:var(--cm-camada-1)}
+.composicao td{padding:8px 0}
+@media (max-width:899px){ .boleto-grade{grid-template-columns:minmax(0,1fr)} }
+
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"contexto": "portal", "tela": "Boletos", "unidade": "Bl B Ap 1204", "sino": 3}'></div>
+<main id="conteudo">
+<div class="portal">
+<details class="cm-anotacao" open>
+<summary><i data-i="informacao"></i>Sobre esta tela: Boletos e 2ª via com Pix</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>O que esta tela resolve</h3><p>Pagar o condomínio em 2 toques: abrir o boleto e copiar o Pix. A pessoa entende o que paga (composição com o rateio ligado à ata) e o prazo real, contando feriado.</p></div>
+<div><h3>Fluxo</h3><ol><li>Na barra inferior, Boletos (toque 1).</li><li>O boleto em aberto abre direto se for o único; "Copiar código Pix" (toque 2).</li><li>O aviso confirma a cópia; o morador cola no banco.</li><li>Linha digitável, PDF e compartilhar ficam abaixo, com peso menor.</li><li>"Boletos" no topo volta à lista.</li></ol></div>
+<div><h3>Resolvemos fazer assim porque</h3><p>o Nubank e o PicPay põem o Pix primeiro e grande, o app do TownSq mostra a 2ª via com o valor atualizado e o Mercado Pago confirma a cópia com um aviso curto. Seguimos a crítica C1: Pix acima, sem serifa e sem plaqueta. Enviamos para aprovação.</p></div>
+</div></details>
+<section class="cm-tela" id="lista" aria-labelledby="lista-t">
+<h2 class="cm-tela__titulo" id="lista-t">Lista de boletos <small>Tela 1 de 3, em aberto e pagos</small></h2>
+
+<div class="portal-cabeca"><div><h1>Boletos</h1><p>Bl B Ap 1204. Débito automático desligado.</p></div><div class="cm-empurra"><div class="cm-selecao"><select aria-label="Ano"><option>2026</option><option>2025</option></select><i data-i="chevron-baixo"></i></div></div></div>
+<div class="cm-lista-linhas">
+ <div class="cm-linha-lista__grupo">Em aberto</div>
+ <a class="cm-linha-lista" href="#detalhe"><span class="cm-ladrilho"><i data-i="boleto"></i></span><span><span class="cm-linha-lista__titulo">Outubro de 2026</span><span class="cm-linha-lista__sub">Vence sábado, 10/10. Sem multa até 13/10.</span></span><span class="cm-linha-lista__meta"><b>R$ 1.284,90</b><span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Em aberto</span></span><i data-i="chevron-direita"></i></a>
+ <div class="cm-linha-lista__grupo">Pagos</div>
+ <a class="cm-linha-lista" href="#"><span class="cm-ladrilho"><i data-i="recibo"></i></span><span><span class="cm-linha-lista__titulo">Setembro de 2026</span><span class="cm-linha-lista__sub">Pago com Pix em 08/09, às 21:14</span></span><span class="cm-linha-lista__meta"><b>R$ 1.271,40</b><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Pago</span></span><i data-i="chevron-direita"></i></a>
+ <a class="cm-linha-lista" href="#"><span class="cm-ladrilho"><i data-i="recibo"></i></span><span><span class="cm-linha-lista__titulo">Agosto de 2026</span><span class="cm-linha-lista__sub">Pago no banco em 10/08</span></span><span class="cm-linha-lista__meta"><b>R$ 1.271,40</b><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Pago</span></span><i data-i="chevron-direita"></i></a>
+ <a class="cm-linha-lista" href="#"><span class="cm-ladrilho"><i data-i="recibo"></i></span><span><span class="cm-linha-lista__titulo">Julho de 2026</span><span class="cm-linha-lista__sub">Pago com Pix em 15/07, com multa de R$ 25,43</span></span><span class="cm-linha-lista__meta"><b>R$ 1.302,41</b><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Pago com atraso</span></span><i data-i="chevron-direita"></i></a>
+</div>
+<p class="cm-t-legenda" style="margin-top:8px">Precisa de declaração de quitação para venda ou financiamento? <a class="cm-link" href="#" data-toast="Pedido enviado. A declaração chega por e-mail em até 2 dias úteis.">Pedir declaração anual de débitos</a></p>
+</section>
+<section class="cm-tela" id="detalhe" aria-labelledby="detalhe-t">
+<h2 class="cm-tela__titulo" id="detalhe-t">Boleto com Pix <small>Tela 2 de 3, 2 toques do celular até o código copiado</small></h2>
+
+<div class="portal-cabeca"><div><p class="cm-saudacao"><a class="cm-link" href="#lista">Boletos</a></p><h1>Boleto de outubro</h1><p>Cond. Parque das Águas, Bl B Ap 1204</p></div></div>
+<div class="boleto-grade">
+<div class="cm-pilha cm-pilha--6">
+ <div class="boleto-topo"><div class="cm-cresce"><div class="cm-valor-grande"><small>R$</small>1.284,90</div><span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Vence sábado, 10/10, em 9 dias</span></div>
+  <p class="cm-t-legenda" style="max-width:34ch">Como 10/10 cai no sábado e 12/10 é feriado, você paga sem multa até terça, 13/10.</p></div>
+ <section aria-labelledby="pix-t" data-cena="pix"><h2 class="sec-t" id="pix-t"><i data-i="pix"></i>Pague com Pix, cai na hora</h2>
+  <div class="cm-pix"><span class="cm-qr" data-semente="pix-out-1204" data-rotulo="QR Code Pix do boleto de outubro"></span>
+   <div class="cm-pilha"><p class="cm-pix__codigo" aria-label="Código Pix copia e cola">00020101021226860014br.gov.bcb.pix2564pix.bancoalpha.com.br/qr/v2/cobv/9d1f0a3c7e2b4c51a8e6f1b20e7c4d5952040000530398654071284.905802BR5925COND PARQUE DAS AGUAS6009SAO PAULO62070503***6304A1F3</p><button class="cm-botao cm-botao--principal cm-botao--portal" type="button" data-copiar="00020101021226860014br.gov.bcb.pix2564pix.bancoalpha.com.br/qr/v2/cobv/9d1f0a3c7e2b4c51a8e6f1b20e7c4d5952040000530398654071284.905802BR5925COND PARQUE DAS AGUAS6009SAO PAULO62070503***6304A1F3" data-copiar-aviso="Código Pix copiado. Cole no app do seu banco."><i data-i="copiar"></i>Copiar código Pix</button><p class="cm-t-legenda">Recebedor: Cond. Parque das Águas, CNPJ 08.412.337/0001-60</p></div></div></section>
+ <section aria-labelledby="bol-t"><h2 class="sec-t" id="bol-t"><i data-i="codigo-de-barras"></i>Ou pague o boleto</h2>
+  <div class="cm-cartao"><div class="cm-cartao__corpo cm-pilha"><span class="cm-t-legenda">Linha digitável</span><p class="cm-linha-digitavel">34191.79001 01043.510047 91020.150008 1 15150000128490</p>
+  <div class="cm-linha cm-linha--quebra"><button class="cm-botao" type="button" data-copiar="34191790010104351004791020150008115150000128490" data-copiar-aviso="Linha digitável copiada."><i data-i="copiar"></i>Copiar linha</button><a class="cm-botao" href="61-documentos-gerados.html#boleto"><i data-i="pdf"></i>Baixar PDF</a><button class="cm-botao" type="button" data-toast="Escolha o app para compartilhar." data-toast-tipo="info"><i data-i="compartilhar"></i>Compartilhar</button></div></div></div></section>
+</div>
+<div class="cm-pilha cm-pilha--6">
+ <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">O que você está pagando</h2></header><div class="cm-cartao__corpo">
+  <table class="cm-tabela cm-tabela--simples composicao" style="width:100%"><tbody>
+   <tr><td>Taxa ordinária de outubro</td><td class="cm-num">R$ 986,00</td></tr>
+   <tr><td>Fundo de reserva, 10%</td><td class="cm-num">R$ 98,60</td></tr>
+   <tr><td>Rateio da impermeabilização da garagem, parcela 4 de 10<br><a class="cm-link" href="40e-portal-assembleias.html?cena=ata">Aprovado na assembleia de 26/03</a></td><td class="cm-num">R$ 142,30</td></tr>
+   <tr><td>Água da unidade, 12 m³ no hidrômetro<br><span class="cm-t-legenda">Leitura de 25/09: 1.482 m³</span></td><td class="cm-num">R$ 58,00</td></tr>
+  </tbody><tfoot><tr><td><b>Total</b></td><td class="cm-num"><b>R$ 1.284,90</b></td></tr></tfoot></table></div></section>
+ <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Pagar sem pensar</h2></header><div class="cm-cartao__corpo cm-pilha">
+  <label class="cm-interruptor cm-interruptor--toque"><input type="checkbox" role="switch" data-toast="Lembrete ligado: avisamos no WhatsApp 3 dias antes."><span class="cm-interruptor__trilho"></span><span>Avisar no WhatsApp 3 dias antes do vencimento</span></label>
+  <label class="cm-interruptor cm-interruptor--toque"><input type="checkbox" role="switch" data-toast="Para ligar o Pix Automático, confirme no app do seu banco." data-toast-tipo="info"><span class="cm-interruptor__trilho"></span><span>Pix Automático todo mês</span></label>
+ </div></section>
+ <p class="cm-t-legenda">Pagou e ainda aparece em aberto? O Pix baixa na hora; o boleto, em até 2 dias úteis. <a class="cm-link" href="40b-portal-chamados.html?cena=novo">Avisar a administração</a></p>
+</div></div>
+</section>
+<details class="cm-anotacao cm-anotacao--a11y">
+<summary><i data-i="teclado"></i>Acessibilidade desta tela</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>Ordem de foco</h3><ol><li>Valor e prazo</li><li>Copiar código Pix</li><li>Copiar linha, PDF, compartilhar</li><li>Composição</li><li>Interruptores de aviso</li></ol></div>
+<div><h3>O que é anunciado</h3><ul><li>Valor lido por inteiro: "R$ 1.284,90"</li><li>"Código Pix copiado. Cole no app do seu banco." em região viva</li><li>O QR tem nome: "QR Code Pix do boleto de outubro"</li></ul></div>
+<div><h3>Nome do que é só ícone</h3><ul><li>Nenhum botão só de ícone nesta tela</li></ul></div>
+</div></details>
+<section class="cm-tela" id="estados" aria-labelledby="estados-t">
+<h2 class="cm-tela__titulo" id="estados-t">Estados do boleto <small>Tela 3 de 3, vencido, pago, gerando, vazio</small></h2>
+<div class="cm-palcos">
+<div class="cm-palco perigo"><div class="cm-palco__rotulo"><i data-i="ver"></i>Vencido: 2ª via com valor atualizado</div><div class="cm-palco__corpo"><div class="cm-pilha"><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Vencido há 83 dias</span><p class="cm-t-secao">Julho de 2026 (exemplo de outra unidade)</p><table class="cm-tabela cm-tabela--simples" style="width:100%"><tbody><tr><td>Valor original</td><td class="cm-num">R$ 1.271,40</td></tr><tr><td>Multa de 2%</td><td class="cm-num">R$ 25,43</td></tr><tr><td>Juros de 1% ao mês, 83 dias</td><td class="cm-num">R$ 35,17</td></tr></tbody><tfoot><tr><td><b>Para pagar hoje</b></td><td class="cm-num"><b>R$ 1.332,00</b></td></tr></tfoot></table><button class="cm-botao cm-botao--principal" type="button" data-toast="2ª via gerada com vencimento hoje."><i data-i="pix"></i>Gerar 2ª via com Pix</button><a class="cm-link" href="#" data-toast="Pedido de acordo enviado ao financeiro da Alpha." data-toast-tipo="info">Prefiro negociar em parcelas</a></div></div></div>
+<div class="cm-palco sucesso"><div class="cm-palco__rotulo"><i data-i="ver"></i>Pago: comprovante e recibo</div><div class="cm-palco__corpo"><div class="cm-pilha"><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Pago com Pix em 08/09, às 21:14</span><div class="cm-valor-grande"><small>R$</small>1.271,40</div><p class="cm-t-legenda">Autenticação E18236120202609082114s07a9c3f1e2</p><a class="cm-botao" href="61-documentos-gerados.html#recibo"><i data-i="recibo"></i>Ver recibo</a></div></div></div>
+<div class="cm-palco carregando"><div class="cm-palco__rotulo"><i data-i="ver"></i>Gerando o boleto no banco</div><div class="cm-palco__corpo"><div class="cm-pilha"><span class="cm-carregando">Pedindo o boleto ao banco</span><p class="cm-t-legenda">Leva até 20 segundos. Pode sair desta tela: avisamos quando estiver pronto.</p><div class="cm-progresso cm-progresso--indeterminado"><span class="cm-progresso__barra"><i></i></span></div></div></div></div>
+<div class="cm-palco boleto"><div class="cm-palco__rotulo"><i data-i="ver"></i>Nenhum boleto ainda</div><div class="cm-palco__corpo"><div class="cm-vazio"><i data-i="boleto"></i><p class="cm-vazio__titulo">Seu primeiro boleto sai em 25/10</p><p class="cm-vazio__texto">Os boletos do Parque das Águas são emitidos todo dia 25 e vencem no dia 10.</p></div></div></div>
+</div>
+</section>
+</div>
+</main>
+
+</body>
+</html>

@@ -122,7 +122,7 @@ var OPCOES={continuar:['e continuar','Salvar e continuar aqui'],proximo:['e pró
 var forms={};
 function rotuloDe(el){
   if(el.getAttribute('data-rotulo')) return el.getAttribute('data-rotulo');
-  var row=el.closest('[data-q2-campo]');if(row){var dt=row.querySelector('dt');if(dt) return dt.textContent.trim()}
+  var row=el.closest('[data-q2-campo]');if(row){var dt=row.querySelector('dt');if(dt) return (dt.getAttribute('data-rotulo')||dt.firstChild.textContent).trim()}
   if(el.id){var l=D.querySelector('label[for="'+el.id+'"]');if(l) return l.textContent.replace('*','').trim()}
   return el.name||'campo';
 }
@@ -244,7 +244,7 @@ function confirmarLinha(r,v){
     focoLinha(r);return;
   }
   r.classList.add('is-editado');
-  var dt=r.querySelector('dt');if(dt&&!dt.querySelector('.cm-ficha__alterado')){var a=D.createElement('span');a.className='cm-ficha__alterado';a.textContent='alterado';dt.appendChild(a)}
+  var dt=r.querySelector('dt');if(dt&&!dt.querySelector('.cm-ficha__alterado')){var a=D.createElement('span');a.className='cm-ficha__alterado';a.textContent='alterado';a.style.marginLeft='6px';dt.appendChild(a)}
   var f=r.closest('[data-q2-form]');if(f&&forms[f.getAttribute('data-q2-form')]) forms[f.getAttribute('data-q2-form')].atualizar();
   focoLinha(r);
 }
