@@ -21,9 +21,9 @@ main{max-width:1440px;margin:0 auto;padding:24px 24px 96px}
 .indice{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}
 .palco{border:1px solid var(--cm-filete-forte);background:var(--cm-fundo);overflow-x:auto;margin:10px 0}
 .palco iframe{display:block;border:0;width:1280px;max-width:none;background:var(--cm-fundo)}
-.palcos{display:grid;grid-template-columns:repeat(auto-fit,minmax(392px,1fr));gap:16px}
-.cel{width:392px;max-width:100%}
-.cel iframe{width:390px;height:780px;border:1px solid var(--cm-filete-forte);display:block;max-width:100%}
+.palcos{display:grid;min-width:0;grid-template-columns:repeat(auto-fit,minmax(min(392px,100%),1fr));gap:16px}
+.cel{width:100%;max-width:392px;min-width:0}
+.cel iframe{width:100%;height:780px;border:1px solid var(--cm-filete-forte);display:block;max-width:100%}
 .legenda-palco{font-size:12.5px;color:var(--cm-texto-2);margin-top:4px;max-width:80ch}
 .desenho{font-family:var(--cm-fonte-plaqueta);font-size:12px;line-height:1.45;background:var(--cm-camada-1);border:1px solid var(--cm-filete);padding:12px 14px;overflow-x:auto;white-space:pre;color:var(--cm-texto-2)}
 .mapa{columns:3 300px;column-gap:24px}
@@ -37,7 +37,7 @@ main{max-width:1440px;margin:0 auto;padding:24px 24px 96px}
 .tab th{text-align:left;font-weight:600;color:var(--cm-texto-2);padding:6px 10px 6px 0;border-bottom:1px solid var(--cm-filete-forte);font-size:12.5px}
 .tab td{padding:7px 10px 7px 0;border-bottom:1px solid var(--cm-filete);vertical-align:top}
 .rolar{overflow-x:auto}
-@media (max-width:599px){ main{padding:16px 16px 96px} }
+@media (max-width:599px){ main{padding:16px 16px 96px} .palcos{grid-template-columns:minmax(0,1fr)!important} .cel iframe{width:100%} }
 </style>
 </head>
 <body>
