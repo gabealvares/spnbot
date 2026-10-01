@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pedido de compra</title>
+<meta name="description" content="Pedido de compra com itens, cotações lado a lado, alçada de aprovação e destino.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+@media (max-width:1099px){#tela-pc .lc-grade{grid-template-columns:minmax(0,1fr)!important}}
+#tela-pc .lc-grade>*{min-width:0}
+</style>
+</head>
+<body data-moldura='{"papel": "operacoes", "usuario": {"nome": "Rogério Alves", "cargo": "Supervisor de Manutenção", "iniciais": "RA", "cor": "lc-av--c8"}, "contadores": {"suporte": 4, "academy": 1}, "modulo": "operacoes", "secao": "Suprimentos", "item": "Compras", "trilha": ["Compras", "Pedido 2026-071"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-nota-projeto" open>
+  <summary><b>Nota de projeto</b> Pedido de compra<span class="lc-nota-projeto__serie"><a href="25-operacoes.html">Ordens de serviço</a> <a href="25b-operacoes-os.html">OS em detalhe</a> <a href="25c-operacoes-preventivas.html">Preventivas</a> <a href="25d-operacoes-equipamentos.html">Equipamentos</a> <a href="25e-operacoes-estoque.html">Estoque</a> <a href="25f-operacoes-fornecedores.html">Fornecedores</a> <a href="25g-operacoes-portaria.html">Portaria</a> <a href="25h-operacoes-reservas.html">Reservas</a> <a href="25i-operacoes-compras.html" aria-current="page">Compras</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2><p>Comprar material passa por três mãos: quem pede (manutenção), quem aprova (síndico, se for do condomínio; diretoria, se for da Alpha) e quem paga (Financeiro). A tela mostra o pedido como documento curto, as cotações lado a lado e a fila de aprovação com quem falta.</p></section>
+    <section><h2>Fluxo</h2><ol><li>Pedido nasce do estoque ("Gerar pedido de compra") ou do zero.</li><li>Cotações: até três fornecedores; a mais barata vem marcada, mas a escolha é de quem pede, com justificativa se não for a mais barata.</li><li>"Mandar para aprovação" (principal) segue a regra de alçada: até R$ 3.000,00 o supervisor aprova; acima, a diretoria.</li><li>Aprovado, vira conta a pagar no Financeiro e entrada prevista no estoque.</li></ol></section>
+    <section><h2>Por que assim</h2><p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o Coupa e o SAP Ariba (pedido com cotações e alçada de aprovação), o Omie (pedido que vira conta a pagar e entrada de estoque) e o Superlógica (aprovação do síndico para gasto do condomínio) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div><div class="lc-estados-tela" data-estados-para="tela-pc">Ver estado:<div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela"><button type="button" aria-pressed="true" data-estado="rascunho">Rascunho</button><button type="button" aria-pressed="false" data-estado="aprovacao">Em aprovação</button><button type="button" aria-pressed="false" data-estado="aprovado">Aprovado</button></div></div>
+</details><div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><span class="lc-estado lc-estado--neutro" data-so-estado="rascunho">Rascunho</span><span class="lc-estado lc-estado--aviso" data-so-estado="aprovacao" hidden>Esperando Ricardo Tavares</span><span class="lc-estado lc-estado--sucesso" data-so-estado="aprovado" hidden>Aprovado, virou conta a pagar</span><h1>Pedido de compra 2026-071</h1><p class="lc-cab-pagina__desc">Reposição do almoxarifado central. Pedido por Rogério Alves em 01/10, a partir do estoque abaixo do mínimo.</p></div>
+<div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button" data-so-estado="rascunho"><i data-i="mais"></i>Acrescentar item</button><button class="lc-btn lc-btn--principal" type="button" data-so-estado="rascunho" data-toast="Enviado para aprovação de Ricardo Tavares (acima de R$ 2.500,00)"><i data-i="enviar"></i>Mandar para aprovação</button></div></div>
+<div id="tela-pc" data-estado="rascunho"><div class="lc-grade" style="display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:var(--esp-8);align-items:start">
+<div><div class="lc-tabela-cont"><table class="lc-tabela"><caption class="lc-sr">Itens do pedido</caption><thead><tr><th scope="col">Item</th><th scope="col" class="lc-num">Qtd.</th><th scope="col" class="lc-num">Preço</th><th scope="col" class="lc-num">Total</th></tr></thead><tbody><tr><td>Lâmpada LED tubular 18 W</td><td class="lc-num">68 un.</td><td class="lc-num">R$ 14,90</td><td class="lc-num">R$ 1.013,20</td></tr><tr><td>Cloro granulado 10 kg</td><td class="lc-num">4 baldes</td><td class="lc-num">R$ 189,00</td><td class="lc-num">R$ 756,00</td></tr><tr><td>Fim de curso PPA</td><td class="lc-num">4 un.</td><td class="lc-num">R$ 96,00</td><td class="lc-num">R$ 384,00</td></tr><tr><td>Saco de lixo 100 L</td><td class="lc-num">16 pacotes</td><td class="lc-num">R$ 32,40</td><td class="lc-num">R$ 518,40</td></tr></tbody><tfoot><tr><td>Total do pedido</td><td></td><td></td><td class="lc-num"><span class="lc-total">R$ 2.671,60</span></td></tr></tfoot></table></div>
+<div class="lc-titulo-linha"><h2>Cotações</h2><span class="lc-legenda">3 de 3</span></div>
+<div class="lc-tabela-cont"><table class="lc-tabela"><caption class="lc-sr">Cotações</caption><thead><tr><th scope="col">Fornecedor</th><th scope="col" class="lc-num">Total</th><th scope="col">Entrega</th><th scope="col">Escolha</th></tr></thead><tbody>
+<tr><td>Ponto Elétrico Materiais</td><td class="lc-num">R$ 2.671,60</td><td>3 dias</td><td><label class="lc-radio"><input type="radio" name="pc" checked><span class="lc-radio__bola"></span>Escolhida, a mais barata</label></td></tr>
+<tr><td>Casa do Condomínio</td><td class="lc-num">R$ 2.904,10</td><td>Amanhã</td><td><label class="lc-radio"><input type="radio" name="pc"><span class="lc-radio__bola"></span>Escolher</label></td></tr>
+<tr><td>Leroy Merlin Empresas</td><td class="lc-num">R$ 2.788,40</td><td>7 dias</td><td><label class="lc-radio"><input type="radio" name="pc"><span class="lc-radio__bola"></span>Escolher</label></td></tr></tbody></table></div></div>
+<aside aria-label="Aprovação"><div class="lc-titulo-linha"><h2>Aprovação</h2></div><ol class="lc-boas-vindas"><li class="lc-feito"><span class="lc-boas-vindas__t">Rogério Alves pediu<small>01/10, 10:40</small></span></li><li><span class="lc-boas-vindas__t">Ricardo Tavares aprova<small>Acima de R$ 2.500,00, alçada da diretoria</small></span></li><li><span class="lc-boas-vindas__t">Financeiro paga<small>Vira conta a pagar, vencimento em 15 dias</small></span></li></ol>
+<div class="lc-titulo-linha"><h2>Para onde vai</h2></div><p class="lc-pequeno">Almoxarifado central. Centro de custo: Manutenção da Alpha (não entra no rateio de nenhum condomínio).</p></aside></div></div><section class="lc-nota-a11y" aria-labelledby="a11y-tit">
+  <h2 id="a11y-tit">Acessibilidade desta tela</h2>
+  <dl><dt>Ordem de foco</dt><dd>Pular para o conteúdo; trilho; barra do módulo; Acrescentar item, Mandar para aprovação; itens; cotações (escolha por rádio); aprovação em ordem.</dd><dt>O que é anunciado</dt><dd>Estado do pedido em palavra; total com o nome; a cotação escolhida diz por quê; a fila de aprovação é lista numerada com o passo atual.</dd><dt>Nome do que é só ícone</dt><dd>Nenhum botão só de ícone.</dd></dl>
+</section>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+
+</body>
+</html>

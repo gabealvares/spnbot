@@ -241,7 +241,8 @@ if(pend){ sessionStorage.removeItem("toast-pendente-lista"); setTimeout(function
 /* primeira pintura + volta ao lugar */
 st.por=+P.guarda.get("lc-por:renovacoes",st.por)||50;
 desenhar();
-if(!estadoTela && st.ultimo){
+/* a volta ao lugar roda depois que a moldura monta (mover nós no DOM zera a rolagem) */
+function voltarAoLugar(){ if(estadoTela || !st.ultimo) return;
   var tr=document.querySelector('tr[data-id="'+st.ultimo+'"]');
   if(tr){ tr.classList.add("lc-visitada","lc-visitada--chegou"); var cont=$("#cont");
     cont.scrollTop = st.rolagem || Math.max(0,tr.offsetTop-cont.clientHeight/2);
@@ -250,6 +251,7 @@ if(!estadoTela && st.ultimo){
     P.anunciar("De volta a Renovações. Página "+st.pag+". "+P.contrato(st.ultimo).nome+", linha "+pos+" de "+lista.length+", está destacada.");
   }
 }
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",function(){ setTimeout(voltarAoLugar,0); }); else setTimeout(voltarAoLugar,0);
 P.atalho("/",function(e){ e.preventDefault(); $("#busca").focus(); });
 P.atalho("n",function(){ location.href="p2-criacao-pagina.html"; });
 })();

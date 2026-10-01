@@ -299,7 +299,7 @@
 
 /* ============================== P13 TRANSIÇÕES DE ESTADO ============================== */
 .lc-estados-lista{list-style:none;margin:0;padding:0;background:var(--sup-1);border:var(--borda-1)}
-.lc-estados-lista li{display:grid;grid-template-columns:24px minmax(160px,1fr) 150px minmax(0,1.4fr) auto;gap:12px;align-items:center;padding:8px 12px;border-top:var(--borda-1);font-size:13.5px}
+.lc-estados-lista li{display:grid;grid-template-columns:24px minmax(160px,1fr) 190px minmax(0,1.4fr) auto;gap:12px;align-items:center;padding:8px 12px;border-top:var(--borda-1);font-size:13.5px}
 .lc-estados-lista li:first-child{border-top:0}
 .lc-estados-lista .lc-arrastar{color:var(--texto-3);cursor:grab;display:flex}
 .lc-transicoes{display:flex;flex-wrap:wrap;gap:4px}
@@ -434,3 +434,12 @@
 .lc-regras li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;padding:6px 0}
 .lc-regras .lc-ic{width:18px;height:18px}
 .lc-regras .lc-ok{color:var(--sucesso-texto)}.lc-regras .lc-atencao{color:var(--aviso-texto)}.lc-regras .lc-falha{color:var(--perigo-texto)}
+/* chat com altura própria dentro da página (sem moldura fixa) */
+.lc-chat-cont{height:min(780px,calc(100dvh - 120px));min-height:560px;border:var(--borda-1);overflow:hidden}
+.lc-chat__compositor{padding:8px 16px 14px;border-top:var(--borda-1);background:var(--sup-1);position:relative}
+.lc-chat__compositor .lc-editor__area{min-height:44px;max-height:160px;overflow:auto}
+.lc-sugestoes{position:absolute;left:16px;bottom:calc(100% - 6px);width:min(420px,calc(100% - 32px))}
+.lc-sugestoes .lc-opcao{gap:10px}
+.lc-sugestoes .lc-opcao .lc-ic{width:16px;height:16px;color:var(--texto-2)}
+.lc-menu-secoes>*{min-width:0}
+.lc-transicoes span{max-width:100%;white-space:normal;height:auto;min-height:22px}

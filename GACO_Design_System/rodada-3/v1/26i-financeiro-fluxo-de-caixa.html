@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fluxo de caixa, Financeiro</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+</head>
+<body data-moldura='{"modulo":"financeiro","secao":"Análise","item":"Fluxo de caixa","papel":"financeiro","usuario":{"nome":"Renata Oliveira","cargo":"Analista financeira","iniciais":"RO","cor":"lc-av--c5"},"trilha":["Análise","Fluxo de caixa"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Fluxo de caixa projetado de um condomínio, 90 dias.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Saber se a conta do condomínio aguenta os próximos 90 dias (13º, rateios, obras) antes que falte dinheiro, e avisar a síndica com antecedência se o saldo for passar do mínimo.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Escolhe o condomínio; o saldo de hoje vem da conciliação (26d).</li>
+      <li>Gráfico semanal com a linha do saldo mínimo (política do condomínio); a semana abaixo dele é dita em texto.</li>
+      <li>Tabela mensal: entradas previstas (com a inadimplência histórica descontada), saídas, saldo.</li>
+      <li>"Avisar a síndica" manda o resumo pelo portal com a sugestão (adiantar do fundo, rateio).</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o fluxo de caixa do Conta Azul e do Nibo projeta por semana com saldo final e mínimo; a previsão de entradas usa a taxa real de pagamento, como a Superlógica faz no "Previsto x Realizado". Uma série, uma régua, sem eixo duplo.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="financeiro"></div>
+</details>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Fluxo de caixa</h1><p class="lc-cab-pagina__desc">Cond. Parque das Águas, conta corrente do Banco Inter. Saldo conciliado hoje: R$ 35.730,15. Saldo mínimo da política: R$ 30.000,00.</p></div>
+  <div class="lc-cab-pagina__acoes"><select class="lc-selecao" aria-label="Condomínio" style="width:260px"><option>Cond. Parque das Águas</option><option>Residencial Jardim Botânico</option></select><button class="lc-btn lc-btn--principal" type="button" data-toast="Resumo enviado a Marina Costa pelo portal.">Avisar a síndica</button></div></div>
+<div class="lc-alerta lc-alerta--aviso" style="margin-bottom:16px"><i data-i="aviso"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Na semana de 28/12 o saldo chega a R$ 33.840, perto do mínimo</span>É a semana do 13º dos 2 funcionários próprios e do seguro anual. Sobra pouco se a inadimplência de dezembro passar de 5%.</div></div>
+<figure class="lc-caixa" style="margin:0 0 20px">
+  <div class="lc-caixa__cab"><h2>Saldo projetado por semana</h2><ul class="lc-graf-legenda" style="margin:0"><li><i style="background:var(--grafico-1)"></i>Saldo no fim da semana</li><li><i class="lc-graf__traco"></i>Mínimo, R$ 30 mil</li></ul></div>
+  <div class="lc-caixa__corpo"><div class="lc-graf-cont"><svg class="lc-graf" viewBox="0 0 1240 260" role="img" aria-label="Saldo projetado da conta do Cond. Parque das Águas por semana, de outubro a dezembro de 2026"><line class="lc-graf__base" x1="56" x2="1232" y1="232.0" y2="232.0"/><text class="lc-graf__eixo" x="48" y="236.0" text-anchor="end">0</text><line class="lc-graf__grade" x1="56" x2="1232" y1="177.0" y2="177.0"/><text class="lc-graf__eixo" x="48" y="181.0" text-anchor="end">20 mil</text><line class="lc-graf__grade" x1="56" x2="1232" y1="122.0" y2="122.0"/><text class="lc-graf__eixo" x="48" y="126.0" text-anchor="end">40 mil</text><line class="lc-graf__grade" x1="56" x2="1232" y1="67.0" y2="67.0"/><text class="lc-graf__eixo" x="48" y="71.0" text-anchor="end">60 mil</text><line class="lc-graf__grade" x1="56" x2="1232" y1="12.0" y2="12.0"/><text class="lc-graf__eixo" x="48" y="16.0" text-anchor="end">80 mil</text><line class="lc-graf__meta" x1="56" x2="1232" y1="149.5" y2="149.5"/><path class="lc-graf__s1" d="M87.2 232.0V136.7q0 -3 3 -3h22.0q3 0 3 3V232.0z" tabindex="0" data-dado="05/10: <b>R$ 35.730</b>"/><text class="lc-graf__eixo" x="101.2" y="252" text-anchor="middle">05/10</text><path class="lc-graf__s1" d="M177.7 232.0V66.7q0 -3 3 -3h22.0q3 0 3 3V232.0z" tabindex="0" data-dado="12/10: <b>R$ 61.210</b>"/><text class="lc-graf__eixo" x="191.7" y="252" text-anchor="middle">12/10</text><path class="lc-graf__s1" d="M268.2 232.0V90.8q0 -3 3 -3h22.0q3 0 3 3V232.0z" tabindex="0" data-dado="19/10: <b>R$ 52.440</b>"/><text class="lc-graf__eixo" x="282.2" y="252" text-anchor="middle">19/10</text><path class="lc-graf__s1" d="M358.6 232.0V113.9q0 -3 3 -3h22.0q3 0 3 3V232.0z" tabindex="0" data-dado="26/10: <b>R$ 44.020</b>"/><text class="lc-graf__eixo" x="372.6" y="252" text-anchor="middle">26/10</text><path class="lc-graf__s1" d="M449.1 232.0V136.6q0 -3 3 -3h22.0q3 0 3 3V232.0z" tabindex="0" data-dado="02/11: <b>R$ 35.800</b>"/><text class="lc-graf__eixo" x="463.1" y="252" text-anchor="middle">02/11</text><path class="lc-graf__s1" d="M539.5 232.0V68.5q0 -3 3 -3h22.0q3 0 3 3V232.0z" tabindex="0" data-dado="09/11: <b>R$ 60.540</b>"/><text class="lc-graf__eixo" x="553.5" y="252" text-anchor="middle">09/11</text><path class="lc-graf__s1" d="M630.0 232.0V75.1q0 -3 3 -3h22.0q3 0 3 3V232.0z" tabindex="0" data-dado="16/11: <b>R$ 58.130</b>"/><text class="lc-graf__eixo" x="644.0" y="252" text-anchor="middle">16/11</text><path class="lc-graf__s1" d="M720.5 232.0V96.6q0 -3 3 -3h22.0q3 0 3 3V232.0z" tabindex="0" data-dado="23/11: <b>R$ 50.310</b>"/><text class="lc-graf__eixo" x="734.5" y="252" text-anchor="middle">23/11</text><path class="lc-graf__s1" d="M810.9 232.0V101.3q0 -3 3 -3h22.0q3 0 3 3V232.0z" tabindex="0" data-dado="30/11: <b>R$ 48.620</b>"/><text class="lc-graf__eixo" x="824.9" y="252" text-anchor="middle">30/11</text><path class="lc-graf__s1" d="M901.4 232.0V34.4q0 -3 3 -3h22.0q3 0 3 3V232.0z" tabindex="0" data-dado="07/12: <b>R$ 72.930</b>"/><text class="lc-graf__eixo" x="915.4" y="252" text-anchor="middle">07/12</text><path class="lc-graf__s1" d="M991.8 232.0V59.0q0 -3 3 -3h22.0q3 0 3 3V232.0z" tabindex="0" data-dado="14/12: <b>R$ 64.010</b>"/><text class="lc-graf__eixo" x="1005.8" y="252" text-anchor="middle">14/12</text><path class="lc-graf__s1" d="M1082.3 232.0V121.7q0 -3 3 -3h22.0q3 0 3 3V232.0z" tabindex="0" data-dado="21/12: <b>R$ 41.210</b>"/><text class="lc-graf__eixo" x="1096.3" y="252" text-anchor="middle">21/12</text><path class="lc-graf__s1" d="M1172.8 232.0V141.9q0 -3 3 -3h22.0q3 0 3 3V232.0z" tabindex="0" data-dado="28/12: <b>R$ 33.840</b>"/><text class="lc-graf__eixo" x="1186.8" y="252" text-anchor="middle">28/12</text></svg></div></div></figure>
+<div class="lc-tabela-cont"><table class="lc-tabela" style="--_min-tab:760px">
+  <caption class="lc-sr">Fluxo de caixa mensal previsto</caption>
+  <thead><tr><th scope="col">Mês</th><th scope="col" class="lc-num">Saldo inicial</th><th scope="col" class="lc-num">Entradas previstas</th><th scope="col" class="lc-num">Saídas previstas</th><th scope="col" class="lc-num">Saldo final</th></tr></thead>
+  <tbody>
+    <tr><td><b>Outubro</b><span class="lc-tabela__sub">inclui motobomba, R$ 12.640,00</span></td><td class="lc-num">35.730,15</td><td class="lc-num">102.632,00</td><td class="lc-num lc-valor-neg">− 102.560,00</td><td class="lc-num"><span class="lc-subtotal">35.802,15</span></td></tr>
+    <tr><td><b>Novembro</b><span class="lc-tabela__sub">1ª parcela do rateio, R$ 6.320,00</span></td><td class="lc-num">35.802,15</td><td class="lc-num">104.120,00</td><td class="lc-num lc-valor-neg">− 91.300,00</td><td class="lc-num"><span class="lc-subtotal">48.622,15</span></td></tr>
+    <tr><td><b>Dezembro</b><span class="lc-tabela__sub">13º e seguro anual</span></td><td class="lc-num">48.622,15</td><td class="lc-num">104.120,00</td><td class="lc-num lc-valor-neg">− 118.900,00</td><td class="lc-num"><span class="lc-subtotal">33.842,15</span></td></tr>
+  </tbody>
+  <tfoot><tr><td>90 dias</td><td></td><td class="lc-num">310.872,00</td><td class="lc-num lc-valor-neg">− 312.760,00</td><td class="lc-num"><span class="lc-total">33.842,15</span></td></tr></tfoot>
+</table></div>
+<p class="lc-legenda" style="margin-top:8px">Entradas previstas com 96% de pagamento em dia (média dos últimos 12 meses). Valores em R$.</p>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Condomínio, Avisar a síndica, barras do gráfico (cada semana), tabela.</dd>
+    <dt>O que é anunciado</dt><dd>O alerta diz a semana e o valor; o gráfico tem nome e cada barra focável mostra semana e saldo; a tabela traz os mesmos números por mês.</dd>
+    <dt>Nome do que é só ícone</dt><dd>Não há botão só ícone.</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

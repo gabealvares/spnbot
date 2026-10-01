@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Usuários, Configuração</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+</head>
+<body data-moldura='{"modulo":"configuracao","secao":"Pessoas e acesso","item":"Usuários","papel":"admin","usuario":{"nome":"Rodrigo Azevedo","cargo":"Administrador do sistema","iniciais":"RA","cor":"lc-av--c7"},"trilha":["Pessoas e acesso","Usuários"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Usuários: convidar, mudar papel, bloquear, ver o último acesso.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Controlar quem entra no sistema e com qual papel: convidar em lote, trocar o papel na própria linha, bloquear quem saiu sem apagar o histórico, e ver quem está sem dois fatores.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>"Convidar" abre o modal com e-mails (um por linha ou colados) e o papel.</li>
+      <li>Papel é célula editável: clica, escolhe, salva na hora com desfazer.</li>
+      <li>Marcar várias pessoas: barra de massa com "Mudar papel", "Pedir dois fatores" e "Bloquear".</li>
+      <li>Bloquear pede confirmação e explica o que acontece (sessões encerradas, histórico mantido, licença liberada).</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o admin do Google Workspace e do Slack lista usuários com papel, situação e último acesso, convida colando vários e-mails e bloqueia sem apagar; o GitHub mostra quem está sem 2FA. Contagem de licenças no topo, como no Microsoft 365.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="configuracao"></div>
+</details>
+<div class="lc-menu-secoes">
+<nav class="lc-menu-secoes__nav" aria-label="Seções da configuração"><p>Empresa</p><a href="32-configuracao.html"><i data-i="ajustes"></i>Todas as seções</a><a href="#"><i data-i="condominio"></i>Dados da empresa</a><a href="32b-config-marca.html"><i data-i="marca-e-aparencia"></i>Marca e aparência</a><p>Pessoas e acesso</p><a href="32c-config-usuarios.html" aria-current="page"><i data-i="pessoa"></i>Usuários</a><a href="32d-config-permissoes.html"><i data-i="permissao"></i>Papéis e permissões</a><p>Listas e termos</p><a href="32e-config-termos.html"><i data-i="idioma"></i>Nomes e glossário</a><a href="32g-config-listas.html"><i data-i="lista-marcadores"></i>Listas e opções</a><p>Automação</p><a href="32f-config-mecanica.html"><i data-i="fluxo"></i>Mecânica dos objetos</a><p>Integrações</p><a href="32h-config-integracoes.html"><i data-i="integracao"></i>Integrações</a><p>Segurança</p><a href="32i-config-seguranca.html"><i data-i="seguranca"></i>Segurança e auditoria</a><a href="32j-config-lixeira.html"><i data-i="lixeira"></i>Lixeira (30 dias)</a></nav>
+<div style="min-width:0">
+  <div class="lc-cab-pagina" style="padding-top:0"><div class="lc-cab-pagina__txt"><h1>Usuários</h1><p class="lc-cab-pagina__desc">86 de 100 licenças em uso. 3 convites esperando resposta.</p></div><div class="lc-cab-pagina__acoes"><button class="lc-btn lc-btn--principal" type="button" data-abrir="m-conv"><i data-i="adicionar-pessoa"></i>Convidar</button></div></div>
+  <div class="lc-filtros" id="us-f"><label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Nome ou e-mail" aria-label="Pesquisar usuários"></label><button class="lc-filtro" type="button">Papel<i data-i="chevron-baixo"></i></button><button class="lc-filtro lc-filtro--ativo" type="button">Sem dois fatores <b>(7)</b></button></div>
+  <div class="lc-massa" id="us-m" hidden><b data-conta>0</b><div class="lc-massa__acoes"><button class="lc-btn lc-btn--discreto lc-btn--p" type="button">Mudar papel</button><button class="lc-btn lc-btn--discreto lc-btn--p" type="button" data-toast="Pedido de dois fatores enviado. Precisam ativar no próximo acesso.">Pedir dois fatores</button><button class="lc-btn lc-btn--discreto lc-btn--p" type="button">Bloquear</button></div><div class="lc-massa__fim"><button class="lc-btn lc-btn--discreto lc-btn--p" type="button" data-limpar>Limpar</button></div></div>
+  <div class="lc-tabela-cont"><table class="lc-tabela lc-com-sel" data-p4-massa="us-m" data-p4-filtros="us-f" style="--_min-tab:900px">
+    <caption class="lc-sr">Usuários sem dois fatores</caption>
+    <thead><tr><th class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar todos"><span class="lc-marcar__caixa"></span></label></th><th scope="col">Pessoa</th><th scope="col">Papel</th><th scope="col">Situação</th><th scope="col">Dois fatores</th><th scope="col">Último acesso</th><th><span class="lc-sr">Ações</span></th></tr></thead>
+    <tbody>
+      <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Bruno Siqueira"><span class="lc-marcar__caixa"></span></label></td><td><span class="lc-pessoa"><span class="lc-av lc-av--32">BS</span><span><span class="lc-tabela__primaria">Bruno Siqueira</span><span class="lc-pessoa__sub">bruno.siqueira@alpha.adm.br</span></span></span></td><td><button class="lc-celula-edit" type="button" aria-label="Papel de Bruno Siqueira: Vendedor, mudar">Vendedor</button></td><td><span class="lc-estado lc-estado--sucesso">Ativo</span></td><td><span class="lc-estado lc-estado--aviso">Desligado</span></td><td>hoje, 09:12</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Mais opções de Bruno Siqueira"><i data-i="mais-opcoes"></i></button></td></tr>
+      <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Marcos Teixeira"><span class="lc-marcar__caixa"></span></label></td><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c8">MT</span><span><span class="lc-tabela__primaria">Marcos Teixeira</span><span class="lc-pessoa__sub">marcos.teixeira@alpha.adm.br</span></span></span></td><td><div class="lc-celula-edit lc-celula-edit--editando"><select class="lc-selecao" aria-label="Papel de Marcos Teixeira" style="height:30px"><option>Coordenador de operações</option><option>Operações (campo)</option></select></div></td><td><span class="lc-estado lc-estado--sucesso">Ativo</span></td><td><span class="lc-estado lc-estado--aviso">Desligado</span></td><td>ontem, 18:40, pelo celular</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Mais opções de Marcos Teixeira"><i data-i="mais-opcoes"></i></button></td></tr>
+      <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Gustavo Lima"><span class="lc-marcar__caixa"></span></label></td><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c3">GL</span><span><span class="lc-tabela__primaria">Gustavo Lima</span><span class="lc-pessoa__sub">gustavo.lima@gmail.com</span></span></span></td><td>Atendente de suporte</td><td><span class="lc-estado lc-estado--info">Convite enviado</span><span class="lc-tabela__sub">há 2 dias</span></td><td><span class="lc-cor-3">depois do 1º acesso</span></td><td><span class="lc-cor-3">nunca</span></td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--p" type="button" data-toast="Convite reenviado para gustavo.lima@gmail.com.">Reenviar</button></td></tr>
+      <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Patrícia Vidal"><span class="lc-marcar__caixa"></span></label></td><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c2">PV</span><span><span class="lc-tabela__primaria">Patrícia Vidal</span><span class="lc-pessoa__sub">desligada em 15/09</span></span></span></td><td>Analista financeira</td><td><span class="lc-estado lc-estado--neutro">Bloqueado</span><span class="lc-tabela__sub">por Rodrigo Azevedo, 15/09</span></td><td><span class="lc-cor-3">não se aplica</span></td><td>15/09, 17:58</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Mais opções de Patrícia Vidal"><i data-i="mais-opcoes"></i></button></td></tr>
+    </tbody></table></div>
+</div>
+</div>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Seções, Convidar, busca, filtros, tabela (selecionar, papel editável, mais opções), barra de massa.</dd>
+    <dt>O que é anunciado</dt><dd>Papel editável: "Papel de Bruno Siqueira: Vendedor, mudar"; ao mudar, toast com Desfazer (role=status). Situação e dois fatores em palavra.</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Mais opções de Bruno Siqueira" (um por linha).</dd></dl>
+</details>
+</main>
+<div class="lc-sobreposicao" id="m-conv" hidden><div class="lc-modal" role="dialog" aria-modal="true" aria-labelledby="mc-t">
+  <div class="lc-modal__cab"><div style="flex:1"><h2 id="mc-t">Convidar pessoas</h2><p>Cada uma recebe um e-mail para criar a senha. Restam 14 licenças.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+  <div class="lc-modal__corpo lc-pilha">
+    <div class="lc-campo"><label class="lc-rotulo" for="em">E-mails</label><textarea id="em" class="lc-area-texto" placeholder="Um por linha, ou cole uma lista">tatiane.souza@gmail.com
+larissa.gomes@outlook.com</textarea><p class="lc-ajuda">2 e-mails reconhecidos.</p></div>
+    <div class="lc-campo"><label class="lc-rotulo" for="pap">Papel</label><select id="pap" class="lc-selecao"><option>Atendente de suporte</option><option>Analista financeiro</option><option>Gerente de CS</option></select></div>
+    <label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span>Exigir dois fatores no primeiro acesso</label></div>
+  <div class="lc-modal__pe"><button class="lc-btn" type="button" data-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-fechar data-toast="2 convites enviados.">Convidar 2</button></div></div></div>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

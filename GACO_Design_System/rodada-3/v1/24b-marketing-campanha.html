@@ -16,7 +16,8 @@
 .cb-grade{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:var(--esp-8);align-items:start}
 .cb-lado h2{font:var(--t-subsecao);margin:0 0 8px}
 .cb-lado section+section{border-top:var(--borda-1);padding-top:var(--esp-5);margin-top:var(--esp-5)}
-@media (max-width:1099px){.cb-grade{grid-template-columns:1fr}}
+.cb-grade>*{min-width:0}
+@media (max-width:1099px){.cb-grade{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body data-moldura='{"papel": "marketing", "usuario": {"nome": "Patrícia Viana", "cargo": "Analista de marketing", "iniciais": "PV", "cor": "lc-av--c5"}, "contadores": {"academy": 1}, "modulo": "marketing", "secao": "Campanhas", "item": "Campanhas", "trilha": ["Campanhas", "Portaria remota, zona leste"]}'>

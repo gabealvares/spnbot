@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OS 482, comentários, Operações</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.cr-coment{display:flex;flex-direction:column;gap:2px}
+.cr-coment .lc-msg{padding:8px 16px}
+.cr-resolvido{margin:4px 16px;padding:8px 10px;border:var(--borda-1);background:var(--sup-2);font-size:13px;display:flex;gap:8px;align-items:center}
+.cr-fotos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.cr-fotos figure{margin:0}
+.cr-fotos span{display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;background:var(--sup-3);color:var(--texto-3)}
+.cr-fotos figcaption{font:var(--t-legenda);color:var(--texto-2);margin-top:4px}
+</style>
+</head>
+<body data-moldura='{"modulo":"operacoes","secao":"Ordens de serviço","item":"Corretivas","papel":"operacoes","usuario":{"nome":"Rafael Lima","cargo":"Coordenador de operações","iniciais":"RL","cor":"lc-av--c7"},"trilha":["Ordens de serviço","OS 482"]}'>
+<main id="conteudo">
+<div class="lc-envolto">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Comentários dentro de um registro (aqui, uma OS), com menção, fio resolvido e seguir.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>A conversa sobre um registro fica no próprio registro, para quem abrir daqui a seis meses: quem decidiu o quê, com que foto, e o que foi resolvido. Quem é mencionado recebe aviso; quem segue o registro recebe as mudanças.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Comentários à direita do registro, do mais antigo para o mais novo, com o compositor no pé.</li>
+      <li>@ menciona e avisa (sino e e-mail); a pessoa mencionada vê o comentário no "Para você".</li>
+      <li>Discussão encerrada vira "Resolvido por… em…" recolhido; clicar reabre.</li>
+      <li>"Seguir" no topo dos comentários escolhe os avisos: tudo, só menções, nada.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o Google Docs e o Figma resolvem comentário (e recolhem); o Asana e o Jira mantêm comentários ao lado dos campos do item e permitem seguir; o Zendesk separa nota interna de resposta ao cliente. Aqui é sempre interno; o morador nunca vê.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="conversas"></div>
+</details>
+</div>
+<div class="lc-cab-registro">
+  <div class="lc-cab-registro__titulo">
+    <span class="lc-ladrilho lc-ladrilho--48"><i data-i="vazamento"></i></span>
+    <div><h1>Infiltração na garagem, subsolo 1</h1><div class="lc-cab-registro__meta" style="margin:4px 0 0"><span class="lc-protocolo"><span>OS</span> 482</span><span>Residencial Aurora</span><span class="lc-estado lc-estado--aviso">Esperando orçamento</span></div></div>
+    <div class="lc-cab-registro__acoes"><button class="lc-btn" type="button">Mudar estado</button><button class="lc-btn lc-btn--principal" type="button">Aprovar orçamento</button></div>
+  </div>
+  <dl class="lc-campos-chave" style="margin-top:12px"><div><dt>Aberta por</dt><dd>Rafael Lima, 01/10</dd></div><div><dt>Prioridade</dt><dd>Alta</dd></div><div><dt>Fornecedor</dt><dd>Impermeabiliza SP</dd></div><div><dt>Prazo</dt><dd>15/10/2026</dd></div></dl>
+</div>
+<div class="lc-envolto">
+<div class="lc-reg">
+  <div class="lc-reg__principal">
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Descrição</h2></div><div class="lc-caixa__corpo"><p style="max-width:68ch;font-size:14.5px;line-height:23px">Duas manchas de infiltração no teto do subsolo 1, embaixo do jardim do térreo, perto das vagas 37 e 38. Água pingando no carro da unidade 52 quando chove. Provável falha na manta do jardim.</p></div></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Fotos da vistoria</h2><span class="lc-aux">3</span></div><div class="lc-caixa__corpo"><div class="cr-fotos">
+      <figure><span role="img" aria-label="Foto: mancha no teto perto da vaga 37"><i data-i="imagem" class="lc-ic--32"></i></span><figcaption>Vaga 37, mancha de 1,2 m</figcaption></figure>
+      <figure><span role="img" aria-label="Foto: gotejamento sobre a vaga 38"><i data-i="imagem" class="lc-ic--32"></i></span><figcaption>Vaga 38, gotejamento</figcaption></figure>
+      <figure><span role="img" aria-label="Foto: jardim do térreo com ralo entupido"><i data-i="imagem" class="lc-ic--32"></i></span><figcaption>Jardim do térreo, ralo entupido</figcaption></figure></div></div></section>
+  </div>
+  <aside class="lc-caixa" aria-labelledby="cm-t">
+    <div class="lc-caixa__cab"><h2 id="cm-t">Comentários <span class="lc-contagem">5</span></h2>
+      <span style="position:relative;display:inline-flex"><button class="lc-btn lc-btn--p" type="button" aria-haspopup="menu" aria-expanded="false" data-abrir="menu-seguir"><i data-i="sino"></i>Seguindo</button>
+        <ul class="lc-menu" id="menu-seguir" role="menu" hidden style="right:0;top:calc(100% + 4px)"><li><button class="lc-menu__item" role="menuitemradio" aria-checked="true" type="button">Tudo<small>comentários e mudanças de estado</small></button></li><li><button class="lc-menu__item" role="menuitemradio" aria-checked="false" type="button">Só quando me mencionarem</button></li><li><button class="lc-menu__item" role="menuitemradio" aria-checked="false" type="button">Nada</button></li></ul></span></div>
+    <div class="cr-coment">
+      <div class="cr-resolvido"><i data-i="feito" class="lc-ic--16" style="color:var(--sucesso-texto)"></i><span class="lc-cresce">2 comentários sobre interditar as vagas. <b>Resolvido</b> por Letícia Araújo, 01/10.</span><button class="lc-btn lc-btn--link" type="button">Mostrar</button></div>
+      <article class="lc-msg"><span class="lc-av lc-av--32 lc-av--c7 lc-msg__av">RL</span><div class="lc-msg__cab"><b>Rafael Lima</b><time>hoje, 10:24</time></div><div class="lc-msg__txt"><p>Pedi orçamento para 3 empresas. A Impermeabiliza SP vem amanhã às 9:00.</p></div></article>
+      <article class="lc-msg"><span class="lc-av lc-av--32 lc-av--c3 lc-msg__av">LA</span><div class="lc-msg__cab"><b>Letícia Araújo</b><time>hoje, 10:41</time></div><div class="lc-msg__txt"><p><span class="lc-mencao">@Renata Oliveira</span> o Aurora tem fundo de reserva para isso? Jorge quer saber antes da reunião de 08/10.</p></div></article>
+      <article class="lc-msg"><span class="lc-av lc-av--32 lc-av--c5 lc-msg__av">RO</span><div class="lc-msg__cab"><b>Renata Oliveira</b><time>hoje, 11:02</time></div><div class="lc-msg__txt"><p>Tem R$ 38.200,00 no fundo (saldo herdado da Habitat). Acima de R$ 10.000 precisa de assembleia, pela convenção do Aurora.</p></div>
+        <div class="lc-msg__reacoes"><button type="button" aria-pressed="true" aria-label="Curtir, 1 pessoa, você"><i data-i="curtir"></i>1</button></div></article>
+    </div>
+    <div class="lc-chat__compositor" style="border-top:var(--borda-1)">
+      <div class="lc-editor"><div class="lc-editor__area" contenteditable="true" role="textbox" aria-label="Comentar na OS 482" data-placeholder="Comentar. Use @ para avisar alguém."></div>
+        <div class="lc-editor__pe"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Anexar foto ou arquivo"><i data-i="anexo"></i></button><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Mencionar pessoa"><i data-i="mencionar"></i></button><span class="lc-cresce">Só a equipe vê.</span><button class="lc-btn lc-btn--principal lc-btn--p" type="button" data-toast="Comentário publicado. Quem segue a OS foi avisado.">Comentar</button></div></div></div>
+  </aside>
+</div>
+</div>
+<div class="lc-envolto lc-envolto--pe">
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Mudar estado, Aprovar orçamento, descrição, fotos, Seguindo (menu), Mostrar resolvidos, comentários, compositor, anexar, mencionar, Comentar.</dd>
+    <dt>O que é anunciado</dt><dd>O menu de seguir usa menuitemradio com marcado. O bloco resolvido diz quem resolveu e quando. Fotos têm descrição do que mostram.</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Anexar foto ou arquivo", "Mencionar pessoa".</dd></dl>
+</details>
+</div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

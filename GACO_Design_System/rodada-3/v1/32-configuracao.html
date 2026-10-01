@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Configuração</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+</head>
+<body data-moldura='{"modulo":"configuracao","secao":"Empresa","item":"Dados da empresa","papel":"admin","usuario":{"nome":"Rodrigo Azevedo","cargo":"Administrador do sistema","iniciais":"RA","cor":"lc-av--c7"},"trilha":["Todas as seções"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Configuração: o índice de todas as seções. Papel: administrador.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Achar o ajuste certo entre dezenas, pelo nome ou pelo que ele faz ("onde troco a cor?", "como tiro o acesso de alguém?"), e ver o que pede atenção (integração com erro, certificado vencendo).</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Busca no topo encontra ajuste por nome e por sinônimo ("logo" leva a Marca e aparência).</li>
+      <li>Seções com os ajustes dentro e uma frase do que cada um faz.</li>
+      <li>Avisos no topo levam direto ao ajuste com problema.</li>
+      <li>Dentro de cada ajuste, a lista de seções fica à esquerda (32b em diante) e a barra de salvar aparece só com alteração.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>os Ajustes do Windows e do macOS, o painel do Google Workspace e o do Stripe abrem num índice pesquisável por seção e depois usam navegação lateral dentro da área. A barra do módulo do GACO repete as seções para quem prefere o menu.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="configuracao"></div>
+</details>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Configuração</h1><p class="lc-cab-pagina__desc">Administradora Alpha. Plano Profissional, 86 usuários de 100.</p></div>
+  <div class="lc-cab-pagina__acoes"><label class="lc-busca" style="width:340px"><i data-i="pesquisar"></i><input type="search" placeholder="Pesquisar ajuste, ex.: logo, senha, WhatsApp" aria-label="Pesquisar ajuste"></label></div></div>
+<div class="lc-pilha lc-pilha--p" style="margin-bottom:20px">
+  <div class="lc-alerta lc-alerta--aviso"><i data-i="aviso"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">O certificado do Itaú vence em 6 dias</span>Sem ele, os boletos de 9 condomínios param de registrar no dia 07/10.<div class="lc-alerta__acoes"><a class="lc-btn lc-btn--p" href="32h-config-integracoes.html">Renovar certificado</a></div></div></div>
+</div>
+<div class="lc-indice-ajustes">
+  <section><h2><i data-i="condominio"></i>Empresa</h2><ul><li><a href="#">Dados da empresa</a> <small>CNPJ, endereço, fuso</small></li><li><a href="32b-config-marca.html">Marca e aparência</a> <small>logo, cor, domínio, e-mail</small></li><li><a href="#">Áreas</a></li><li><a href="#">Produtos e planos</a></li></ul></section>
+  <section><h2><i data-i="pessoas"></i>Pessoas e acesso</h2><ul><li><a href="32c-config-usuarios.html">Usuários</a> <small>86 ativos, 3 convites</small></li><li><a href="32d-config-permissoes.html">Papéis e permissões</a> <small>9 papéis</small></li><li><a href="#">Tipos de pessoa</a></li><li><a href="#">Pessoas duplicadas</a> <small>4 para revisar</small></li></ul></section>
+  <section><h2><i data-i="idioma"></i>Listas e termos</h2><ul><li><a href="32e-config-termos.html">Nomes e glossário</a> <small>como sua empresa chama as coisas</small></li><li><a href="32g-config-listas.html">Listas e opções</a> <small>motivos, categorias, tipos</small></li><li><a href="#">Etiquetas</a></li><li><a href="#">Códigos</a></li></ul></section>
+  <section><h2><i data-i="fluxo"></i>Automação</h2><ul><li><a href="32f-config-mecanica.html">Mecânica dos objetos</a> <small>estados, ordem, transições</small></li><li><a href="#">Automações</a> <small>12 ativas</small></li><li><a href="#">Calendários de atendimento</a></li></ul></section>
+  <section><h2><i data-i="integracao"></i>Integrações</h2><ul><li><a href="32h-config-integracoes.html">Catálogo de integrações</a> <small>WhatsApp, bancos, e-mail</small></li><li><a href="#">Chaves de API</a></li><li><a href="#">Webhooks</a></li><li><a href="#">Importações</a></li></ul></section>
+  <section><h2><i data-i="seguranca"></i>Segurança</h2><ul><li><a href="32i-config-seguranca.html">Dois fatores e sessões</a> <small>obrigatório para 4 papéis</small></li><li><a href="32i-config-seguranca.html">Log de auditoria</a></li><li><a href="32j-config-lixeira.html">Lixeira (30 dias)</a> <small>17 itens</small></li></ul></section>
+</div>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Busca, aviso (Renovar certificado), e as seções na ordem de leitura, cada ajuste é link.</dd>
+    <dt>O que é anunciado</dt><dd>Cada seção tem título (h2) com ícone decorativo. A frase ao lado do link é lida em seguida ("Marca e aparência, logo, cor, domínio, e-mail").</dd>
+    <dt>Nome do que é só ícone</dt><dd>Não há botão só ícone.</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

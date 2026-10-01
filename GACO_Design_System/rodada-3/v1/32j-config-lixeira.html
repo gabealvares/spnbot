@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lixeira, Configuração</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+</head>
+<body data-moldura='{"modulo":"configuracao","secao":"Segurança","item":"Lixeira (30 dias)","papel":"admin","usuario":{"nome":"Rodrigo Azevedo","cargo":"Administrador do sistema","iniciais":"RA","cor":"lc-av--c7"},"trilha":["Segurança","Lixeira"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Lixeira de 30 dias com restaurar e exclusão definitiva.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Tudo o que é excluído fica 30 dias aqui, com quem excluiu e quando some. Restaurar devolve ao lugar com os vínculos; excluir de vez é o terceiro nível e pede que se digite o nome.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Excluir em qualquer tela manda para cá com toast "Desfazer" (nível 1).</li>
+      <li>Aqui, "Restaurar" na linha ou em lote (nível 2: dentro de 30 dias).</li>
+      <li>"Excluir de vez" abre confirmação digitando o nome do item (nível 3); só administrador.</li>
+      <li>A barra mostra quantos dias faltam; itens com 3 dias ou menos ficam no topo.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>a lixeira do Google Drive e do Gmail (30 dias, restaurar, excluir para sempre) é universal; a confirmação digitando vem do GitHub para ação sem volta. São os três níveis de exclusão aprovados no A3.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Estado</span><div class="lc-seg lc-seg--p" role="group" aria-label="Estado" data-p4-estados><button type="button" data-v="dados" aria-pressed="true">Com itens</button><button type="button" data-v="vazio">Vazia</button></div>
+    <span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="configuracao"></div>
+</details>
+<div class="lc-menu-secoes">
+<nav class="lc-menu-secoes__nav" aria-label="Seções da configuração"><p>Empresa</p><a href="32-configuracao.html"><i data-i="ajustes"></i>Todas as seções</a><a href="#"><i data-i="condominio"></i>Dados da empresa</a><a href="32b-config-marca.html"><i data-i="marca-e-aparencia"></i>Marca e aparência</a><p>Pessoas e acesso</p><a href="32c-config-usuarios.html"><i data-i="pessoa"></i>Usuários</a><a href="32d-config-permissoes.html"><i data-i="permissao"></i>Papéis e permissões</a><p>Listas e termos</p><a href="32e-config-termos.html"><i data-i="idioma"></i>Nomes e glossário</a><a href="32g-config-listas.html"><i data-i="lista-marcadores"></i>Listas e opções</a><p>Automação</p><a href="32f-config-mecanica.html"><i data-i="fluxo"></i>Mecânica dos objetos</a><p>Integrações</p><a href="32h-config-integracoes.html"><i data-i="integracao"></i>Integrações</a><p>Segurança</p><a href="32i-config-seguranca.html"><i data-i="seguranca"></i>Segurança e auditoria</a><a href="32j-config-lixeira.html" aria-current="page"><i data-i="lixeira"></i>Lixeira (30 dias)</a></nav>
+<div style="min-width:0">
+  <div class="lc-cab-pagina" style="padding-top:0"><div class="lc-cab-pagina__txt"><h1>Lixeira</h1><p class="lc-cab-pagina__desc">Itens excluídos nos últimos 30 dias. Depois disso somem de vez, sozinhos.</p></div></div>
+  <div data-estado="vazio" hidden><div class="lc-caixa"><div class="lc-vazio lc-vazio--centro"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="lixeira"></i></span><h2 class="lc-vazio__titulo">A lixeira está vazia</h2><p class="lc-vazio__texto">Nada foi excluído nos últimos 30 dias.</p></div></div></div>
+  <div data-estado="dados">
+  <div class="lc-filtros" id="lx-f"><label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Nome do item" aria-label="Pesquisar na lixeira"></label><button class="lc-filtro" type="button">Tipo<i data-i="chevron-baixo"></i></button><button class="lc-filtro" type="button">Quem excluiu<i data-i="chevron-baixo"></i></button></div>
+  <div class="lc-massa" id="lx-m" hidden><b data-conta>0</b><div class="lc-massa__acoes"><button class="lc-btn lc-btn--discreto lc-btn--p" type="button" data-toast="Itens restaurados para o lugar de origem."><i data-i="restaurar"></i>Restaurar</button></div><div class="lc-massa__fim"><button class="lc-btn lc-btn--discreto lc-btn--p" type="button" data-limpar>Limpar</button></div></div>
+  <div class="lc-tabela-cont"><table class="lc-tabela lc-com-sel" data-p4-massa="lx-m" data-p4-filtros="lx-f" style="--_min-tab:900px">
+    <caption class="lc-sr">Itens na lixeira</caption>
+    <thead><tr><th class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar todos"><span class="lc-marcar__caixa"></span></label></th><th scope="col">Item</th><th scope="col">Excluído por</th><th scope="col">Some em</th><th><span class="lc-sr">Ações</span></th></tr></thead>
+    <tbody>
+      <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Reserva do salão, Bloco C, 402"><span class="lc-marcar__caixa"></span></label></td><td><span class="lc-pessoa"><span class="lc-ladrilho lc-ladrilho--32"><i data-i="reserva"></i></span><span><span class="lc-tabela__primaria">Reserva do salão de festas, 12/09</span><span class="lc-pessoa__sub">Reserva, Cond. Parque das Águas, Bloco C, 402</span></span></span></td><td>Rafael Lima<span class="lc-tabela__sub">03/09</span></td><td><span class="lc-progresso-rot" style="margin:0"><span class="lc-valor-neg">2 dias</span></span><span class="lc-progresso lc-progresso--perigo" style="--_v:93%;width:120px"></span></td><td><button class="lc-btn lc-btn--p" type="button" data-toast="Reserva restaurada." data-toast-desfazer><i data-i="restaurar"></i>Restaurar</button> <button class="lc-btn lc-btn--p lc-btn--discreto" type="button" data-abrir="m-def">Excluir de vez</button></td></tr>
+      <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Contrato CT-2024-0187"><span class="lc-marcar__caixa"></span></label></td><td><span class="lc-pessoa"><span class="lc-ladrilho lc-ladrilho--32"><i data-i="contrato"></i></span><span><span class="lc-tabela__primaria">Contrato CT-2024-0187, versão antiga</span><span class="lc-pessoa__sub">Contrato, Ed. Monte Verde</span></span></span></td><td>Cláudio Prates<span class="lc-tabela__sub">28/09</span></td><td><span class="lc-progresso-rot" style="margin:0"><span>27 dias</span></span><span class="lc-progresso lc-progresso--neutro" style="--_v:10%;width:120px"></span></td><td><button class="lc-btn lc-btn--p" type="button" data-toast="Contrato restaurado." data-toast-desfazer><i data-i="restaurar"></i>Restaurar</button> <button class="lc-btn lc-btn--p lc-btn--discreto" type="button" data-abrir="m-def">Excluir de vez</button></td></tr>
+      <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Comunicado Recesso de fim de ano rascunho"><span class="lc-marcar__caixa"></span></label></td><td><span class="lc-pessoa"><span class="lc-ladrilho lc-ladrilho--32"><i data-i="comunicado"></i></span><span><span class="lc-tabela__primaria">Recesso de fim de ano (rascunho 1)</span><span class="lc-pessoa__sub">Comunicado</span></span></span></td><td>Fernanda Lopes<span class="lc-tabela__sub">22/09</span></td><td><span class="lc-progresso-rot" style="margin:0"><span>21 dias</span></span><span class="lc-progresso lc-progresso--neutro" style="--_v:30%;width:120px"></span></td><td><button class="lc-btn lc-btn--p" type="button"><i data-i="restaurar"></i>Restaurar</button> <button class="lc-btn lc-btn--p lc-btn--discreto" type="button" data-abrir="m-def">Excluir de vez</button></td></tr>
+    </tbody></table></div>
+  </div>
+</div>
+</div>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Seções, busca, filtros, linhas (selecionar, Restaurar, Excluir de vez), barra de massa. No modal: campo de confirmação, Cancelar, Excluir de vez (desabilitado até o nome bater).</dd>
+    <dt>O que é anunciado</dt><dd>"Some em 2 dias" é texto; a barra é reforço. O modal é alertdialog com título e descrição do que se perde; o botão diz por que está desabilitado.</dd>
+    <dt>Nome do que é só ícone</dt><dd>Não há botão só ícone.</dd></dl>
+</details>
+</main>
+<div class="lc-sobreposicao" id="m-def" hidden><div class="lc-modal lc-modal--perigo" role="alertdialog" aria-modal="true" aria-labelledby="md-t" aria-describedby="md-d">
+  <div class="lc-modal__cab"><div style="flex:1"><h2 id="md-t">Excluir de vez a reserva de 12/09?</h2><p id="md-d">Some também o histórico e o recibo da taxa de R$ 150,00. Não dá para desfazer.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+  <div class="lc-modal__corpo"><div class="lc-campo"><label class="lc-rotulo" for="conf">Digite <b>reserva 12/09</b> para confirmar</label><input id="conf" class="lc-entrada" autocomplete="off" oninput="document.getElementById('md-ok').disabled=this.value.trim().toLowerCase()!=='reserva 12/09'"></div></div>
+  <div class="lc-modal__pe"><button class="lc-btn" type="button" data-fechar>Cancelar</button><button class="lc-btn lc-btn--perigo" type="button" id="md-ok" disabled data-fechar data-toast="Reserva excluída de vez.">Excluir de vez</button></div></div></div>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

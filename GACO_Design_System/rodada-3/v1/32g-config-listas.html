@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Listas e opções, Configuração</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.ls-grade{display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px;align-items:start}
+.ls-listas a{display:flex;justify-content:space-between;padding:8px 12px;border-top:var(--borda-1);text-decoration:none;color:var(--texto-1);font-size:13.5px}
+.ls-listas a:first-child{border-top:0}
+.ls-listas a[aria-current="page"]{background:var(--selecao);font-weight:600;box-shadow:inset var(--borda-marcador) 0 0 var(--atual)}
+.ls-itens li{display:grid;grid-template-columns:20px minmax(0,1fr) 160px 130px auto;gap:12px;align-items:center;padding:8px 14px;border-top:var(--borda-1)}
+.ls-itens li:first-child{border-top:0}
+.ls-itens .lc-entrada,.ls-itens .lc-selecao{height:32px}
+.ls-itens .lc-arrastar{color:var(--texto-3);display:flex}
+@media (max-width:1023px){.ls-grade{grid-template-columns:minmax(0,1fr)}.ls-itens li{grid-template-columns:20px minmax(0,1fr) auto}.ls-itens li>:nth-child(3),.ls-itens li>:nth-child(4){grid-column:2/-1}}
+</style>
+</head>
+<body data-moldura='{"modulo":"configuracao","secao":"Listas","item":"Listas e opções","papel":"admin","usuario":{"nome":"Rodrigo Azevedo","cargo":"Administrador do sistema","iniciais":"RA","cor":"lc-av--c7"},"trilha":["Listas e termos","Listas e opções"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Listas e opções usadas nos campos do sistema.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>As opções dos campos de escolha (assunto do chamado, motivo de perda, tipo de unidade, categoria financeira) ficam num só lugar, com ordem, cor de etiqueta e quanto cada opção é usada; opção em uso é arquivada, não apagada.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Listas à esquerda, com o número de opções; a escolhida abre à direita.</li>
+      <li>Cada opção: nome, cor de etiqueta (8 tons do sistema, nunca as de estado), uso, ativa.</li>
+      <li>Arrastar ou Alt + setas muda a ordem em que aparece no campo.</li>
+      <li>Arquivar esconde dos campos e mantém nos registros antigos; mesclar junta duas opções repetidas.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o Zendesk ("Ticket fields") e o Pipedrive ("Campos personalizados") editam as opções na lista com ordem e uso, o Jira arquiva opção em uso, e o Notion dá cor por opção a partir de uma paleta fechada. A paleta de etiqueta do GACO já existe e não colide com estado.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="configuracao"></div>
+</details>
+<div class="lc-menu-secoes">
+<nav class="lc-menu-secoes__nav" aria-label="Seções da configuração"><p>Empresa</p><a href="32-configuracao.html"><i data-i="ajustes"></i>Todas as seções</a><a href="#"><i data-i="condominio"></i>Dados da empresa</a><a href="32b-config-marca.html"><i data-i="marca-e-aparencia"></i>Marca e aparência</a><p>Pessoas e acesso</p><a href="32c-config-usuarios.html"><i data-i="pessoa"></i>Usuários</a><a href="32d-config-permissoes.html"><i data-i="permissao"></i>Papéis e permissões</a><p>Listas e termos</p><a href="32e-config-termos.html"><i data-i="idioma"></i>Nomes e glossário</a><a href="32g-config-listas.html" aria-current="page"><i data-i="lista-marcadores"></i>Listas e opções</a><p>Automação</p><a href="32f-config-mecanica.html"><i data-i="fluxo"></i>Mecânica dos objetos</a><p>Integrações</p><a href="32h-config-integracoes.html"><i data-i="integracao"></i>Integrações</a><p>Segurança</p><a href="32i-config-seguranca.html"><i data-i="seguranca"></i>Segurança e auditoria</a><a href="32j-config-lixeira.html"><i data-i="lixeira"></i>Lixeira (30 dias)</a></nav>
+<form data-p4-form data-p4-nome="Assunto da ocorrência" onsubmit="return false" style="min-width:0">
+  <div class="lc-cab-pagina" style="padding-top:0"><div class="lc-cab-pagina__txt"><h1>Listas e opções</h1></div><div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="mais"></i>Nova lista</button></div></div>
+  <div class="ls-grade">
+    <nav class="lc-caixa ls-listas" aria-label="Listas"><a href="#" aria-current="page">Assunto da ocorrência<span class="lc-contagem">9</span></a><a href="#">Motivo de perda<span class="lc-contagem">7</span></a><a href="#">Tipo de unidade<span class="lc-contagem">5</span></a><a href="#">Categoria financeira<span class="lc-contagem">42</span></a><a href="#">Áreas comuns reserváveis<span class="lc-contagem">6</span></a><a href="#">Motivo de desligamento<span class="lc-contagem">6</span></a></nav>
+    <section class="lc-caixa" aria-labelledby="ls-t">
+      <div class="lc-caixa__cab"><h2 id="ls-t">Assunto da ocorrência</h2><span class="lc-aux">usada em Suporte, portal e relatórios</span></div>
+      <ul class="lc-lista ls-itens" aria-label="Opções">
+        <li><span class="lc-arrastar" aria-hidden="true"><i data-i="arrastar"></i></span><input class="lc-entrada" value="Boleto e 2ª via" aria-label="Opção 1"><select class="lc-selecao" aria-label="Cor de Boleto e 2ª via"><option>Etiqueta 1, azul-acinzentado</option></select><span class="lc-legenda">1.204 ocorrências</span><span class="lc-etiqueta lc-etiqueta--1">Boleto e 2ª via</span></li>
+        <li><span class="lc-arrastar" aria-hidden="true"><i data-i="arrastar"></i></span><input class="lc-entrada" value="Vazamento e infiltração" aria-label="Opção 2"><select class="lc-selecao" aria-label="Cor de Vazamento"><option>Etiqueta 7, azul</option></select><span class="lc-legenda">612 ocorrências</span><span class="lc-etiqueta lc-etiqueta--7">Vazamento e infiltração</span></li>
+        <li><span class="lc-arrastar" aria-hidden="true"><i data-i="arrastar"></i></span><input class="lc-entrada" value="Barulho e convivência" aria-label="Opção 3"><select class="lc-selecao" aria-label="Cor de Barulho"><option>Etiqueta 4, rosa</option></select><span class="lc-legenda">488 ocorrências</span><span class="lc-etiqueta lc-etiqueta--4">Barulho e convivência</span></li>
+        <li><span class="lc-arrastar" aria-hidden="true"><i data-i="arrastar"></i></span><input class="lc-entrada" value="Reserva de área comum" aria-label="Opção 4"><select class="lc-selecao" aria-label="Cor de Reserva"><option>Etiqueta 3, verde-musgo</option></select><span class="lc-legenda">301 ocorrências</span><span class="lc-etiqueta lc-etiqueta--3">Reserva de área comum</span></li>
+        <li><span class="lc-arrastar" aria-hidden="true"><i data-i="arrastar"></i></span><input class="lc-entrada" value="Portaria e encomendas" aria-label="Opção 5"><select class="lc-selecao" aria-label="Cor de Portaria"><option>Etiqueta 8, caramelo</option></select><span class="lc-legenda">276 ocorrências</span><span class="lc-etiqueta lc-etiqueta--8">Portaria e encomendas</span></li>
+        <li style="opacity:.75"><span class="lc-arrastar" aria-hidden="true"><i data-i="arrastar"></i></span><input class="lc-entrada" value="Boleto" aria-label="Opção 6, arquivada" readonly><span class="lc-legenda">arquivada em 02/09</span><span class="lc-legenda">mesclada em "Boleto e 2ª via"</span><span class="lc-etiqueta lc-etiqueta--sistema">Arquivada</span></li>
+      </ul>
+      <div class="lc-caixa__pe"><input class="lc-entrada" placeholder="Nova opção e Enter" aria-label="Nova opção" style="max-width:320px"><span class="lc-legenda">Mostrando 6 de 9. Arquivadas não aparecem nos campos.</span></div>
+    </section>
+  </div>
+  <div class="lc-barra-salvar" role="region" aria-label="Alterações não salvas"><p class="lc-barra-salvar__msg"><i data-i="aviso"></i><span></span></p>
+    <div class="lc-barra-salvar__acoes"><button class="lc-btn lc-btn--discreto" type="button" data-descartar>Descartar</button><button class="lc-btn lc-btn--principal" type="button" data-salvar="Lista salva.">Salvar</button></div></div>
+</form>
+</div>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Seções, Nova lista, listas, e por opção: nome, cor; Nova opção; barra de salvar.</dd>
+    <dt>O que é anunciado</dt><dd>Cor da etiqueta tem nome em palavra ("Etiqueta 4, rosa"). Uso é texto. Opção arquivada é só leitura com o motivo.</dd>
+    <dt>Nome do que é só ícone</dt><dd>A alça de arrastar é decorativa; a ordem muda pelo teclado no campo do nome.</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

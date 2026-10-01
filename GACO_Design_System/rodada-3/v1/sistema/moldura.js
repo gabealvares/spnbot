@@ -31,7 +31,7 @@ function slug(s){return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ
    ------------------------------------------------------------------ */
 var MODULOS = {
   inicio:{nome:"Início",curto:"Início",icone:"casa",secoes:[
-    {nome:"Mural"},{nome:"Para você"},{nome:"Minhas tarefas"},{nome:"Pessoas"},{nome:"Comunicados"},{nome:"Agenda"}]},
+    {nome:"Mural"},{nome:"Para você"},{nome:"Conversas internas"},{nome:"Minhas tarefas"},{nome:"Pessoas"},{nome:"Comunicados"},{nome:"Agenda"}]},
   suporte:{nome:"Suporte",curto:"Suporte",icone:"fone-atendimento",secoes:[
     {nome:"Conversas",grupos:[
       {titulo:"Filas",itens:[{t:"Minhas",n:7},{t:"Sem dono",n:3},"Esperando o cliente","Em espera","Todas"]},

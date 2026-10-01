@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Equipamentos</title>
+<meta name="description" content="Cadastro de equipamentos com situação, manutenção, QR e painel com histórico e custo.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+.lc-lista--rente>li{padding-left:0;padding-right:0}
+</style>
+</head>
+<body data-moldura='{"papel": "operacoes", "usuario": {"nome": "Rogério Alves", "cargo": "Supervisor de Manutenção", "iniciais": "RA", "cor": "lc-av--c8"}, "contadores": {"suporte": 4, "academy": 1}, "modulo": "operacoes", "secao": "Ativos", "item": "Equipamentos"}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-nota-projeto" open>
+  <summary><b>Nota de projeto</b> Equipamentos<span class="lc-nota-projeto__serie"><a href="25-operacoes.html">Ordens de serviço</a> <a href="25b-operacoes-os.html">OS em detalhe</a> <a href="25c-operacoes-preventivas.html">Preventivas</a> <a href="25d-operacoes-equipamentos.html" aria-current="page">Equipamentos</a> <a href="25e-operacoes-estoque.html">Estoque</a> <a href="25f-operacoes-fornecedores.html">Fornecedores</a> <a href="25g-operacoes-portaria.html">Portaria</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2><p>Cada equipamento que quebra custa dinheiro e paciência do morador. O cadastro diz onde está, qual modelo, quando foi a última e a próxima manutenção e como está agora, em palavra. O painel lateral mostra o histórico e o custo do ano, que é o que o conselho pergunta antes de aprovar uma troca.</p></section>
+    <section><h2>Fluxo</h2><ol><li>Clicar no nome abre o painel lateral com ficha, últimas OS e custo. Esc fecha e devolve o foco.</li><li>Cada equipamento tem etiqueta com QR: o técnico lê no local e abre a OS certa.</li><li>Filtro por condomínio e por situação; "Com defeito" e "Parado" vêm primeiro.</li><li>Novo equipamento (botão principal) pode vir de planilha.</li></ol></section>
+    <section><h2>Por que assim</h2><p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o UpKeep e o MaintainX (cadastro de ativos com QR e histórico de OS), o Fiix (custo de manutenção por ativo) e o Linear (painel lateral que abre sem sair da lista) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div>
+</details><div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Equipamentos</h1><p class="lc-cab-pagina__desc">214 equipamentos em 9 condomínios. 1 parado, 2 com defeito.</p></div><div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="qr-code"></i>Etiquetas QR</button><button class="lc-btn lc-btn--principal" type="button"><i data-i="mais"></i>Novo equipamento</button></div></div>
+<div class="lc-filtros"><label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Nome, modelo ou etiqueta" aria-label="Buscar equipamentos"></label><button class="lc-filtro" type="button">Condomínio<i data-i="chevron-baixo"></i></button><button class="lc-filtro lc-filtro--ativo" type="button">Situação: <b>com problema primeiro</b><i data-i="chevron-baixo"></i></button><button class="lc-filtro" type="button">Tipo<i data-i="chevron-baixo"></i></button></div>
+<div class="lc-tabela-cont"><table class="lc-tabela"><caption class="lc-sr">Equipamentos</caption><thead><tr><th scope="col">Equipamento</th><th scope="col">Modelo</th><th scope="col">Situação</th><th scope="col">Última manutenção</th><th scope="col">Próxima</th></tr></thead><tbody><tr data-painel-linha><td><button class="lc-btn lc-btn--link" type="button" data-painel="eq-painel" style="font-weight:600;color:var(--texto-1);text-decoration:none;padding:0;height:auto">Elevador social 1</button><span class="lc-tabela__sub">Jardim Botânico, bloco A</span></td><td>Atlas Schindler 3300<span class="lc-tabela__sub">Instalado em 2014</span></td><td><span class="lc-estado lc-estado--sucesso">Funcionando</span></td><td>01/10</td><td>01/11</td></tr><tr data-painel-linha><td><button class="lc-btn lc-btn--link" type="button" data-painel="eq-painel" style="font-weight:600;color:var(--texto-1);text-decoration:none;padding:0;height:auto">Elevador social C</button><span class="lc-tabela__sub">Bosque Real, bloco C</span></td><td>Thyssenkrupp Synergy<span class="lc-tabela__sub">Instalado em 2011</span></td><td><span class="lc-estado lc-estado--perigo">Parado, aguardando peça</span></td><td>28/09</td><td>Depois do reparo</td></tr><tr data-painel-linha><td><button class="lc-btn lc-btn--link" type="button" data-painel="eq-painel" style="font-weight:600;color:var(--texto-1);text-decoration:none;padding:0;height:auto">Bomba de recalque 1 e 2</button><span class="lc-tabela__sub">Ed. Aurora, subsolo</span></td><td>KSB Hydrobloc<span class="lc-tabela__sub">Instalado em 2026</span></td><td><span class="lc-estado lc-estado--sucesso">Funcionando, trocadas em 29/09</span></td><td>29/09</td><td>29/12</td></tr><tr data-painel-linha><td><button class="lc-btn lc-btn--link" type="button" data-painel="eq-painel" style="font-weight:600;color:var(--texto-1);text-decoration:none;padding:0;height:auto">Gerador</button><span class="lc-tabela__sub">Bosque Real, casa de máquinas</span></td><td>Stemac 150 kVA<span class="lc-tabela__sub">Instalado em 2018</span></td><td><span class="lc-estado lc-estado--sucesso">Funcionando</span></td><td>29/09</td><td>27/10</td></tr><tr data-painel-linha><td><button class="lc-btn lc-btn--link" type="button" data-painel="eq-painel" style="font-weight:600;color:var(--texto-1);text-decoration:none;padding:0;height:auto">Portão da garagem</button><span class="lc-tabela__sub">Vila Serena, garagem</span></td><td>PPA Jet Flex<span class="lc-tabela__sub">Instalado em 2019</span></td><td><span class="lc-estado lc-estado--aviso">Com defeito, 3ª vez em 30 dias</span></td><td>22/09</td><td>Em reparo hoje</td></tr><tr data-painel-linha><td><button class="lc-btn lc-btn--link" type="button" data-painel="eq-painel" style="font-weight:600;color:var(--texto-1);text-decoration:none;padding:0;height:auto">Central de interfone</button><span class="lc-tabela__sub">Bosque Real, portaria</span></td><td>Intelbras Comunic 48<span class="lc-tabela__sub">Instalado em 2020</span></td><td><span class="lc-estado lc-estado--aviso">Com defeito, bloco C mudo</span></td><td>15/08</td><td>OS 485</td></tr></tbody></table></div>
+<div class="lc-paginacao"><span class="lc-paginacao__info">Mostrando <b>6</b> de 214</span><div class="lc-paginacao__pags"><button type="button" aria-current="page">1</button><button type="button">2</button><button type="button">…</button><button type="button">36</button></div></div>
+<div class="lc-painel" id="eq-painel" role="dialog" aria-labelledby="eqp-tit" hidden><div class="lc-painel__cab"><h2 id="eqp-tit">Elevador social C</h2><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" data-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+<div class="lc-painel__corpo"><span class="lc-estado lc-estado--perigo">Parado, aguardando peça</span>
+<dl class="lc-props" style="margin-top:12px"><dt>Onde</dt><dd>Residencial Bosque Real, bloco C</dd><dt>Modelo</dt><dd>Thyssenkrupp Synergy, 8 paradas, 600 kg</dd><dt>Série</dt><dd>TK-11-208841</dd><dt>Contrato</dt><dd>Atlas Elevadores, manutenção mensal</dd><dt>Garantia</dt><dd>Terminou em 2013</dd><dt>Etiqueta</dt><dd>EQ-BR-0042 (QR na casa de máquinas)</dd></dl>
+<h3 class="lc-t-subsecao" style="margin:18px 0 6px">Últimas OS</h3><ul class="lc-lista lc-lista--rente"><li><span class="lc-cresce">OS 471, parado no 4º andar<span class="lc-lista__sub">28/09, placa do inversor queimada</span></span><span class="lc-estado lc-estado--aviso">Aguardando peça</span></li><li><span class="lc-cresce">OS 438, porta não fecha<span class="lc-lista__sub">Agosto</span></span><span class="lc-estado lc-estado--sucesso">Concluída</span></li></ul>
+<h3 class="lc-t-subsecao" style="margin:18px 0 6px">Custo em 12 meses</h3><p class="lc-pequeno">R$ 11.940,00 em reparos, além do contrato. O conselho pediu orçamento de modernização.</p></div>
+<div class="lc-painel__pe"><button class="lc-btn" type="button">Imprimir etiqueta QR</button><button class="lc-btn lc-btn--principal" type="button">Abrir OS</button></div></div><section class="lc-nota-a11y" aria-labelledby="a11y-tit">
+  <h2 id="a11y-tit">Acessibilidade desta tela</h2>
+  <dl><dt>Ordem de foco</dt><dd>Pular para o conteúdo; trilho; barra do módulo; Etiquetas QR, Novo equipamento; busca e filtros; tabela (nome abre o painel); painel (Fechar primeiro, conteúdo, ações).</dd><dt>O que é anunciado</dt><dd>Painel como diálogo com o nome do equipamento; situação em palavra; ao fechar, o foco volta ao nome.</dd><dt>Nome do que é só ícone</dt><dd>Fechar.</dd></dl>
+</section>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+
+</body>
+</html>

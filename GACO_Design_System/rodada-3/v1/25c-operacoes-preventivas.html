@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preventivas</title>
+<meta name="description" content="Manutenção preventiva: agenda da semana, laudos obrigatórios e plano anual.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+.pv-bloco{display:block;padding:4px 6px;border-left:var(--borda-marcador) solid var(--andamento-ponto);background:var(--sup-2);font-size:12px;line-height:16px;color:var(--texto-1);text-decoration:none;margin-bottom:2px}
+.pv-bloco small{display:block;color:var(--texto-2)}
+.pv-bloco--laudo{border-left-color:var(--aviso-ponto)}
+.pv-bloco--atrasada{border-left-color:var(--perigo-ponto)}
+.pv-sem{overflow-x:auto}
+.pv-sem .lc-agenda-sem{min-width:980px}
+</style>
+</head>
+<body data-moldura='{"papel": "operacoes", "usuario": {"nome": "Rogério Alves", "cargo": "Supervisor de Manutenção", "iniciais": "RA", "cor": "lc-av--c8"}, "contadores": {"suporte": 4, "academy": 1}, "modulo": "operacoes", "secao": "Ordens de serviço", "item": "Calendário de preventivas"}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-nota-projeto" open>
+  <summary><b>Nota de projeto</b> Manutenção preventiva<span class="lc-nota-projeto__serie"><a href="25-operacoes.html">Ordens de serviço</a> <a href="25b-operacoes-os.html">OS em detalhe</a> <a href="25c-operacoes-preventivas.html" aria-current="page">Preventivas</a> <a href="25d-operacoes-equipamentos.html">Equipamentos</a> <a href="25e-operacoes-estoque.html">Estoque</a> <a href="25f-operacoes-fornecedores.html">Fornecedores</a> <a href="25g-operacoes-portaria.html">Portaria</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2><p>A preventiva é o que se faz antes de quebrar, e parte dela é obrigação legal com laudo (elevador, extintor, AVCB, para-raios). A tela mostra a semana em agenda, para o supervisor distribuir equipe e fornecedor, e o plano anual em tabela, com o que está vencido escrito em vermelho.</p></section>
+    <section><h2>Fluxo</h2><ol><li>Semana ou Mês no topo; setas mudam o período; "Hoje" volta.</li><li>Clicar no bloco abre a OS gerada pela preventiva.</li><li>Arrastar um bloco para outro horário reagenda e avisa o fornecedor.</li><li>Plano anual: cada linha gera as OS sozinha, na frequência escolhida. "Novo plano" cria uma linha.</li></ol></section>
+    <section><h2>Por que assim</h2><p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o Google Agenda (semana em horas e dias), o UpKeep e o Fiix (plano de preventiva por equipamento com frequência e geração automática de OS) e o Superlógica (laudos obrigatórios com vencimento) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div>
+</details><div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Preventivas</h1><p class="lc-cab-pagina__desc">7 nesta semana. 1 laudo vencido (AVCB do Ed. Monte Verde) e 1 preventiva atrasada.</p></div>
+<div class="lc-cab-pagina__acoes"><div class="lc-seg" role="group" aria-label="Período"><button type="button" aria-pressed="true">Semana</button><button type="button" aria-pressed="false">Mês</button></div><button class="lc-btn lc-btn--principal" type="button"><i data-i="mais"></i>Novo plano</button></div></div>
+<div class="lc-alerta lc-alerta--perigo" style="margin-bottom:16px"><i data-i="aviso"></i><div class="lc-alerta__corpo"><b class="lc-alerta__titulo">AVCB do Ed. Monte Verde venceu em 12/09</b>Sem o auto de vistoria, o seguro pode negar sinistro de incêndio. A Projetar Engenharia marcou vistoria dos Bombeiros para 09/10.<div class="lc-alerta__acoes"><button class="lc-btn lc-btn--p" type="button">Avisar o síndico Celso Duarte</button></div></div></div>
+<div class="lc-linha" style="margin-bottom:8px;gap:8px"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Semana anterior"><i data-i="chevron-esquerda"></i></button><b>28/09 a 04/10/2026</b><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Próxima semana"><i data-i="chevron-direita"></i></button><button class="lc-btn lc-btn--p" type="button">Hoje</button></div>
+<div class="pv-sem"><div class="lc-agenda-sem" role="region" aria-label="Preventivas da semana"><div></div><div class="lc-agenda-sem__d">Seg<small>28/09</small></div><div class="lc-agenda-sem__d">Ter<small>29/09</small></div><div class="lc-agenda-sem__d">Qua<small>30/09</small></div><div class="lc-agenda-sem__d lc-agenda-sem__d--hoje">Qui<small>01/10</small></div><div class="lc-agenda-sem__d">Sex<small>02/10</small></div><div class="lc-agenda-sem__d">Sáb<small>03/10</small></div><div class="lc-agenda-sem__d">Dom<small>04/10</small></div><div class="lc-agenda-sem__h">08:00</div><div></div><div></div><div><a class="pv-bloco" href="25b-operacoes-os.html">Piscina, tratamento<small>Solar das Palmeiras</small></a></div><div><a class="pv-bloco" href="25b-operacoes-os.html">Bombas de recalque<small>Ed. Aurora, Hidrotec</small></a></div><div></div><div><a class="pv-bloco" href="25b-operacoes-os.html">Caixa d'água<small>Ed. Aurora, Aqualimp</small></a></div><div></div><div class="lc-agenda-sem__h">10:00</div><div><a class="pv-bloco pv-bloco--atrasada" href="25b-operacoes-os.html">Atrasada: Portões automáticos<small>Vila Serena, PortMax</small></a></div><div></div><div></div><div><a class="pv-bloco pv-bloco--laudo" href="25b-operacoes-os.html">Laudo: Elevadores sociais<small>Jardim Botânico, Atlas</small></a></div><div></div><div></div><div></div><div class="lc-agenda-sem__h">13:00</div><div></div><div><a class="pv-bloco" href="25b-operacoes-os.html">Gerador<small>Bosque Real, equipe própria</small></a></div><div></div><div></div><div></div><div></div><div></div><div class="lc-agenda-sem__h">15:00</div><div></div><div></div><div></div><div></div><div><a class="pv-bloco pv-bloco--laudo" href="25b-operacoes-os.html">Laudo: SPDA (para-raios)<small>Parque das Águas, laudo anual</small></a></div><div></div><div></div></div></div>
+<div class="lc-titulo-linha"><h2>Plano anual</h2><span class="lc-contagem">6 planos</span></div>
+<div class="lc-tabela-cont"><table class="lc-tabela"><caption class="lc-sr">Plano anual de preventivas</caption><thead><tr><th scope="col">O quê</th><th scope="col">Frequência</th><th scope="col">Fornecedor</th><th scope="col">Próxima</th><th scope="col">Laudo</th><th scope="col">Situação</th></tr></thead><tbody><tr><td><b>Elevadores (NBR 16083)</b><span class="lc-tabela__sub">Todos os 18 elevadores</span></td><td>Mensal</td><td>Atlas Elevadores</td><td>01/10</td><td>Sim, ART mensal</td><td><span class="lc-estado lc-estado--sucesso">Em dia</span></td></tr><tr><td><b>Extintores</b><span class="lc-tabela__sub">412 unidades em 9 condomínios</span></td><td>Anual</td><td>Fogo Zero</td><td>07/10</td><td>Sim, selo do Inmetro</td><td><span class="lc-estado lc-estado--sucesso">Em dia</span></td></tr><tr><td><b>AVCB (Bombeiros)</b><span class="lc-tabela__sub">Ed. Monte Verde</span></td><td>Conforme vencimento</td><td>Projetar Engenharia</td><td>Vencido em 12/09</td><td>Sim</td><td><span class="lc-estado lc-estado--perigo">Vencido há 19 dias</span></td></tr><tr><td><b>Caixa d'água, limpeza</b><span class="lc-tabela__sub">9 condomínios</span></td><td>Semestral</td><td>Aqualimp</td><td>03/10</td><td>Sim, laudo de potabilidade</td><td><span class="lc-estado lc-estado--sucesso">Em dia</span></td></tr><tr><td><b>Portões automáticos</b><span class="lc-tabela__sub">14 portões</span></td><td>Mensal</td><td>PortMax Automação</td><td>28/09</td><td>Não</td><td><span class="lc-estado lc-estado--aviso">Atrasada 3 dias</span></td></tr><tr><td><b>SPDA (para-raios)</b><span class="lc-tabela__sub">Parque das Águas</span></td><td>Anual</td><td>Raio Sul</td><td>02/10</td><td>Sim, laudo com ART</td><td><span class="lc-estado lc-estado--sucesso">Em dia</span></td></tr></tbody></table></div><section class="lc-nota-a11y" aria-labelledby="a11y-tit">
+  <h2 id="a11y-tit">Acessibilidade desta tela</h2>
+  <dl><dt>Ordem de foco</dt><dd>Pular para o conteúdo; trilho; barra do módulo; Semana ou Mês; Novo plano; alerta do AVCB; Semana anterior, Hoje, Próxima semana; agenda (dia por dia, bloco é link); plano anual.</dd><dt>O que é anunciado</dt><dd>Bloco como "Laudo: elevadores sociais, Jardim Botânico, Atlas, quinta 01/10 às 10h"; dia de hoje marcado; situação em palavra.</dd><dt>Nome do que é só ícone</dt><dd>Semana anterior, Próxima semana. A borda do bloco é decorativa: o tipo está no começo do texto.</dd></dl>
+</section>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+
+</body>
+</html>

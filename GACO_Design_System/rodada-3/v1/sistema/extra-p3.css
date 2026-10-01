@@ -175,6 +175,7 @@
 .lc-atend__conversa>.lc-conversa{flex:1}
 .lc-atend__ficha{border-left:var(--borda-1);background:var(--sup-1);overflow:auto;visibility:hidden}
 .lc-atend[data-ficha="aberta"] .lc-atend__ficha{visibility:visible}
+.lc-atend:not([data-ficha="aberta"]) .lc-atend__ficha{border-left:0}
 @media (max-width:1279px){.lc-atend[data-ficha="aberta"]{grid-template-columns:minmax(280px,320px) minmax(0,1fr) 0}
   .lc-atend[data-ficha="aberta"] .lc-atend__ficha{position:fixed;top:0;right:0;bottom:0;width:min(360px,100%);z-index:var(--z-painel);box-shadow:var(--sombra-flutuante)}}
 @media (max-width:899px){.lc-atend{grid-template-columns:minmax(0,1fr) 0 0}.lc-atend[data-movel="conversa"]{grid-template-columns:0 minmax(0,1fr) 0}

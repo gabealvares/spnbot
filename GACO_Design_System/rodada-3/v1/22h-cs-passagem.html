@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Passagem do Comercial</title>
+<meta name="description" content="Passagem do Comercial para o CS: promessas com leitura obrigatória, preocupações, quem decide e documentos.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+.ps-grade{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:var(--esp-8);align-items:start}
+.ps-grade>*{min-width:0}
+.ps-prom{list-style:none;margin:0;padding:0}
+.ps-prom li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;padding:10px 0;border-top:var(--borda-1);font-size:14px}
+.ps-prom li:first-child{border-top:0}
+.ps-prom small{display:block;font:var(--t-legenda);color:var(--texto-2)}
+@media (max-width:1099px){.ps-grade{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body data-moldura='{"papel": "gerente-cs", "usuario": {"nome": "Letícia Araújo", "cargo": "Coordenadora de Relacionamento", "iniciais": "LA", "cor": "lc-av--c3"}, "contadores": {"suporte": 7, "cs": 3, "academy": 1}, "modulo": "cs", "secao": "Trabalho do CS", "item": "Passagens recebidas", "trilha": ["Passagens recebidas", "Residencial Flor de Lis"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-nota-projeto" open>
+  <summary><b>Nota de projeto</b> Passagem do Comercial para o CS<span class="lc-nota-projeto__serie"><a href="22-cs.html">Carteira</a> <a href="22b-cliente.html">Ficha do cliente</a> <a href="22c-cs-renovacoes.html">Renovações</a> <a href="22d-cs-nps.html">NPS</a> <a href="22e-cs-playbooks.html">Playbooks</a> <a href="22f-reuniao.html">Reunião e ata</a> <a href="22g-cs-alertas.html">Alertas</a> <a href="22h-cs-passagem.html" aria-current="page">Passagem do Comercial</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2><p>Quando o Comercial ganha, o cliente muda de mãos. A passagem é a folha que o vendedor preenche e o CS aceita: o que foi prometido, quem decide, o que preocupa e o que tem data. Sem isso, a primeira reunião do CS vira repetição do que o cliente já contou.</p></section>
+    <section><h2>Fluxo</h2><ol><li>O vendedor preenche ao marcar Ganho; a gerente de CS recebe no Para você.</li><li>Cada promessa vira item de checagem; "Aceitar passagem" (principal) exige ler todas.</li><li>"Pedir esclarecimento" abre conversa com o vendedor, ligada à passagem.</li><li>Aceita, a passagem cria o playbook "Condomínio novo, primeiros 60 dias" e a reunião de boas-vindas.</li></ol></section>
+    <section><h2>Por que assim</h2><p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o Gainsight e o Vitally (handoff de vendas para CS com promessas e riscos), o HubSpot (passagem ligada ao negócio ganho) e o Asana (aceite com lista de checagem) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div>
+</details><div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><span class="lc-estado lc-estado--aviso">Esperando você aceitar</span><h1>Residencial Flor de Lis</h1><p class="lc-cab-pagina__desc">Ganho em 30/09 por Gustavo Siqueira. Administração, 230 unidades, R$ 4.600,00 por mês. Começa em 01/11.</p></div>
+<div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="conversa"></i>Pedir esclarecimento</button><button class="lc-btn lc-btn--principal" type="button" aria-disabled="true" data-dica="Marque as 4 promessas como lidas">Aceitar passagem</button></div></div>
+<div class="ps-grade"><div>
+<div class="lc-titulo-linha"><h2>O que foi prometido</h2><span class="lc-legenda">0 de 4 lidas</span></div>
+<div class="lc-caixa" style="padding:0 16px"><ul class="ps-prom">
+<li><label class="lc-marcar"><input type="checkbox" aria-label="Li: balancete até o dia 10"><span class="lc-marcar__caixa"></span></label><span>Balancete mensal até o dia 10<small>A antiga administradora mandava dia 20. Foi o motivo da troca.</small></span></li>
+<li><label class="lc-marcar"><input type="checkbox" aria-label="Li: assembleia virtual"><span class="lc-marcar__caixa"></span></label><span>Primeira assembleia virtual em dezembro<small>Previsão orçamentária de 2027. Síndica nunca fez virtual.</small></span></li>
+<li><label class="lc-marcar"><input type="checkbox" aria-label="Li: migração dos boletos"><span class="lc-marcar__caixa"></span></label><span>Boletos de novembro já pela Alpha, sem duplicidade<small>A antiga emite até outubro. Conferir a conta pool com o Financeiro.</small></span></li>
+<li><label class="lc-marcar"><input type="checkbox" aria-label="Li: desconto"><span class="lc-marcar__caixa"></span></label><span>Desconto de 10% nos 3 primeiros meses<small>Aprovado por Ricardo Tavares em 28/09. Já está no contrato.</small></span></li></ul></div>
+<div class="lc-titulo-linha"><h2>O que preocupa</h2></div>
+<p class="lc-pequeno" style="max-width:70ch">O conselho fiscal (Sr. Augusto) foi contra a troca e vai conferir tudo. Há 14 unidades inadimplentes, R$ 61.300,00 em atraso, e a antiga administradora não passou os acordos assinados.</p></div>
+<aside aria-label="Quem decide e documentos"><div class="lc-titulo-linha"><h2>Quem decide</h2></div><ul class="lc-equipe"><li><span class="lc-av lc-av--32 lc-av--c2" aria-hidden="true">AL</span><span><span class="lc-equipe__nome">Ana Lima</span><span class="lc-equipe__faz">Síndica, até 03/2028. Prefere WhatsApp</span></span><span></span></li><li><span class="lc-av lc-av--32 lc-av--c7" aria-hidden="true">AF</span><span><span class="lc-equipe__nome">Augusto Ferreira</span><span class="lc-equipe__faz">Conselho fiscal, cético</span></span><span></span></li></ul>
+<div class="lc-titulo-linha"><h2>Documentos</h2></div><ul class="lc-anexos"><li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="contrato"></i></span><span class="lc-anexo__nome">Contrato assinado.pdf</span><span class="lc-anexo__info">12 páginas</span></li><li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="ata"></i></span><span class="lc-anexo__nome">Ata da AGE que aprovou a troca.pdf</span><span class="lc-anexo__info">4 páginas</span></li></ul></aside></div><section class="lc-nota-a11y" aria-labelledby="a11y-tit">
+  <h2 id="a11y-tit">Acessibilidade desta tela</h2>
+  <dl><dt>Ordem de foco</dt><dd>Pular para o conteúdo; trilho; barra do módulo; Pedir esclarecimento, Aceitar passagem; promessas (cada uma com caixa de leitura); preocupações; quem decide; documentos.</dd><dt>O que é anunciado</dt><dd>Aceitar desabilitado com o motivo; contagem "2 de 4 lidas" muda ao marcar; estado da passagem em palavra.</dd><dt>Nome do que é só ícone</dt><dd>Nenhum botão só de ícone; as caixas de leitura têm nome da promessa.</dd></dl>
+</section>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+<script>document.addEventListener("change",function(e){if(!e.target.closest(".ps-prom"))return;var cs=document.querySelectorAll(".ps-prom input"),n=[].filter.call(cs,function(x){return x.checked}).length,l=document.querySelector(".lc-titulo-linha .lc-legenda");l.textContent=n+" de 4 lidas";var b=document.querySelector('[data-dica="Marque as 4 promessas como lidas"]');if(n===4){b.removeAttribute("aria-disabled");b.setAttribute("data-toast","Passagem aceita. Playbook de 60 dias e reunião de boas-vindas criados.");}else{b.setAttribute("aria-disabled","true");b.removeAttribute("data-toast");}lcAnunciar(n+" de 4 lidas");});</script>
+</body>
+</html>

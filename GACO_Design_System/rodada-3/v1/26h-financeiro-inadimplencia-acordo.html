@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acordo de débitos, Financeiro</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>.ac-grade>*{min-width:0}.lc-caixa__cab{flex-wrap:wrap}.ac-grade{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:24px;align-items:start}@media (max-width:1023px){.ac-grade{grid-template-columns:minmax(0,1fr)}}</style>
+</head>
+<body data-moldura='{"modulo":"financeiro","secao":"Contas a receber","item":"Acordos","papel":"financeiro","usuario":{"nome":"Renata Oliveira","cargo":"Analista financeira","iniciais":"RO","cor":"lc-av--c5"},"trilha":["Inadimplência","Torre 2, 84","Novo acordo"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Inadimplência e acordo: simular, propor e formalizar o parcelamento de débitos.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Negociar a dívida de uma unidade dentro da política aprovada pelo condomínio (desconto máximo, número de parcelas, entrada mínima), mostrar ao morador exatamente o que ele vai pagar e quando, e gerar o termo de acordo.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Débitos da unidade marcados por padrão; desmarcar tira do acordo.</li>
+      <li>Simulação: entrada, parcelas e desconto; o que passa da política vira erro com o limite.</li>
+      <li>O cronograma à direita recalcula; o total consolidado tem dupla sublinha.</li>
+      <li>"Enviar proposta" manda por WhatsApp com link para aceitar; aceito, o termo é gerado e as parcelas entram nas cobranças.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>os simuladores de renegociação do Serasa Limpa Nome e dos bancos mostram entrada, parcelas e total lado a lado, e a Superlógica aplica a política do condomínio no acordo. A regra fica visível, não escondida em mensagem de erro depois.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="financeiro"></div>
+</details>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Novo acordo</h1><p class="lc-cab-pagina__desc">Residencial Aurora, Torre 2, apto 84. Cristiano Melo. Débitos herdados da Habitat Administradora.</p></div></div>
+<div class="ac-grade">
+  <div class="lc-pilha">
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Débitos</h2><span class="lc-aux">7 de 7 no acordo</span></div>
+      <div class="lc-caixa__corpo lc-caixa__corpo--cheio"><div class="lc-tabela-cont" style="border:0"><table class="lc-tabela" style="--_min-tab:600px"><caption class="lc-sr">Débitos da unidade</caption>
+        <thead><tr><th class="lc-tabela__sel"><span class="lc-sr">No acordo</span></th><th>Cobrança</th><th>Vencimento</th><th class="lc-num">Original</th><th class="lc-num">Atualizado</th></tr></thead><tbody>
+        <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" checked aria-label="Incluir taxa 03/2026"><span class="lc-marcar__caixa"></span></label></td><td>Taxa 03/2026</td><td>10/03/2026</td><td class="lc-num">R$ 712,00</td><td class="lc-num">R$ 875,04</td></tr>
+        <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" checked aria-label="Incluir taxa 04/2026"><span class="lc-marcar__caixa"></span></label></td><td>Taxa 04/2026</td><td>10/04/2026</td><td class="lc-num">R$ 712,00</td><td class="lc-num">R$ 867,92</td></tr>
+        <tr><td colspan="5" class="lc-legenda" style="height:32px">e mais 5 taxas, de 05/2026 a 09/2026</td></tr></tbody>
+        <tfoot><tr><td></td><td colspan="2">7 cobranças</td><td class="lc-num"><span class="lc-subtotal">R$ 4.984,00</span></td><td class="lc-num"><span class="lc-total">R$ 5.842,30</span></td></tr></tfoot></table></div></div></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Simulação</h2><span class="lc-aux">Política do Aurora: até 6 parcelas, entrada de 10%, até 50% da multa à vista</span></div>
+      <div class="lc-caixa__corpo"><div class="lc-form-grade lc-form-grade--3">
+        <div class="lc-campo"><label class="lc-rotulo" for="ent">Entrada</label><div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">R$</span><input id="ent" class="lc-entrada lc-entrada--num" value="792,46"></div><p class="lc-ajuda">Mínimo R$ 579,25 (10%).</p></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="par">Parcelas depois da entrada</label><select id="par" class="lc-selecao"><option>5 de R$ 1.000,00</option><option>6 de R$ 833,33</option></select></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="des">Desconto na multa</label><div class="lc-entrada-grupo"><input id="des" class="lc-entrada lc-entrada--num" value="50"><span class="lc-entrada-grupo__fixo">%</span></div><p class="lc-antes">R$ 49,84 de R$ 99,68.</p></div>
+        <div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="juros">Desconto nos juros</label><div class="lc-entrada-grupo" style="max-width:200px"><input id="juros" class="lc-entrada lc-entrada--num" value="20" aria-invalid="true" aria-describedby="juros-e"><span class="lc-entrada-grupo__fixo">%</span></div><p class="lc-erro" id="juros-e"><i data-i="erro"></i>A política não permite desconto nos juros. Para conceder, peça aprovação da síndica (vai pelo portal).</p></div>
+      </div></div></section>
+  </div>
+  <aside class="lc-caixa" aria-labelledby="cr-t" style="position:sticky;top:64px">
+    <div class="lc-caixa__cab"><h2 id="cr-t">Como fica</h2></div>
+    <div class="lc-caixa__corpo lc-caixa__corpo--cheio"><table class="lc-tabela" style="--_min-tab:0"><caption class="lc-sr">Cronograma do acordo</caption>
+      <thead><tr><th>Parcela</th><th>Vence</th><th class="lc-num">Valor</th></tr></thead><tbody>
+      <tr><td>Entrada</td><td>10/10/2026</td><td class="lc-num">R$ 792,46</td></tr>
+      <tr><td>1 de 5</td><td>10/11/2026</td><td class="lc-num">R$ 1.000,00</td></tr>
+      <tr><td>2 de 5</td><td>10/12/2026</td><td class="lc-num">R$ 1.000,00</td></tr>
+      <tr><td>3 de 5</td><td>10/01/2027</td><td class="lc-num">R$ 1.000,00</td></tr>
+      <tr><td>4 de 5</td><td>10/02/2027</td><td class="lc-num">R$ 1.000,00</td></tr>
+      <tr><td>5 de 5</td><td>10/03/2027</td><td class="lc-num">R$ 1.000,00</td></tr></tbody>
+      <tfoot><tr><td colspan="2">Total do acordo</td><td class="lc-num"><span class="lc-total">R$ 5.792,46</span></td></tr></tfoot></table>
+      <ul class="lc-resumo" style="padding:8px 20px"><li><span>Desconto concedido</span><b>R$ 49,84</b></li><li><span>Parcelas vêm</span><b>no mesmo boleto da taxa</b></li><li><span>Se atrasar 2 parcelas</span><b>o acordo cai e volta a dívida</b></li></ul></div>
+    <div class="lc-caixa__pe" style="justify-content:flex-end"><button class="lc-btn" type="button">Gerar termo</button><button class="lc-btn lc-btn--principal" type="button" disabled aria-describedby="juros-e">Enviar proposta</button></div>
+  </aside>
+</div>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Débitos (incluir ou não), entrada, parcelas, desconto na multa, desconto nos juros, Gerar termo, Enviar proposta (desabilitado com o motivo).</dd>
+    <dt>O que é anunciado</dt><dd>O limite da política vem no próprio campo (ajuda) e o erro diz a saída (aprovação da síndica). O cronograma é tabela com cabeçalhos; o total é lido como "Total do acordo, R$ 5.792,46".</dd>
+    <dt>Nome do que é só ícone</dt><dd>Não há botão só ícone.</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

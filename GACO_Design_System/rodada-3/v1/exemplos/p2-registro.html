@@ -275,18 +275,18 @@ function conflito(m,ok,falha){
 
 /* ---------- barra de etapas ---------- */
 var ETAPAS=[["Aviso enviado","14/09"],["Cálculo do reajuste","22/09"],["Aprovação do síndico",""],["Aditivo assinado",""],["Vigente",""]];
-var atual=2, perdida=false;
+var atual=2, perdida=false, desde="há 6 dias nesta etapa";
 var EXIGE={3:{txt:"Para entrar em Aditivo assinado, anexe o aditivo assinado e informe a data da assinatura.",campos:'<div class="lc-campo"><label class="lc-rotulo" for="pe-data">Data da assinatura</label><input id="pe-data" class="lc-entrada" type="date" value="2026-10-01"></div><div class="lc-upload" style="padding:12px" tabindex="0"><i data-i="anexo"></i><span><b>Escolha o PDF</b> ou arraste aqui</span></div>'},
            4:{txt:"Vigente só depois de Aditivo assinado. O novo valor passa a valer nos boletos a partir da data do reajuste."}};
 function etapas(){
   $("#etapas").innerHTML=ETAPAS.map(function(e,i){ var cls=perdida&&i===atual?"lc-etapa--perdida":i<atual?"lc-etapa--feita":i===atual?"lc-etapa--atual":"";
     return '<li class="lc-etapa '+cls+'"'+(i===atual?' aria-current="step"':'')+'><button type="button" data-etapa="'+i+'" aria-haspopup="dialog">'+(i<atual?'<i data-i="feito"></i>':i===atual?'<i data-i="em-andamento"></i>':'<i data-i="a-fazer"></i>')+
-      '<span>'+e[0]+(i===atual?'<small>há 6 dias nesta etapa</small>':i<atual&&e[1]?'<small>em '+e[1]+'</small>':'')+'</span></button></li>'; }).join("");
+      '<span>'+e[0]+(i===atual?'<small>'+desde+'</small>':i<atual&&e[1]?'<small>em '+e[1]+'</small>':'')+'</span></button></li>'; }).join("");
   var b=$("#avancar"); if(atual<ETAPAS.length-1 && !perdida){ b.hidden=false; b.innerHTML='Avançar para '+ETAPAS[atual+1][0]+'<i data-i="chevron-direita"></i>'; } else b.hidden=true;
   $$("#etapas [data-etapa]").forEach(function(x){ x.addEventListener("click",function(){ clicar(+x.getAttribute("data-etapa"),x); }); });
 }
-function mover(i,motivo){ var de=atual; atual=i; etapas(); ativ(i<de?"desfazer":"seta-direita","Etapa: "+ETAPAS[de][0]+" para "+ETAPAS[i][0]+(motivo?". Motivo: "+motivo:""),"Letícia Araújo");
-  P.toast("Renovação em <b>"+ETAPAS[i][0]+"</b>.",{ic:"seta-direita",acao:"Desfazer",aoAcao:function(){ atual=de; etapas(); P.anunciar("Voltou para "+ETAPAS[de][0]+"."); }}); P.anunciar("Renovação movida para "+ETAPAS[i][0]+"."); }
+function mover(i,motivo){ var de=atual, dAntes=desde; atual=i; desde="nesta etapa desde "+P.hora(); etapas(); ativ(i<de?"desfazer":"seta-direita","Etapa: "+ETAPAS[de][0]+" para "+ETAPAS[i][0]+(motivo?". Motivo: "+motivo:""),"Letícia Araújo");
+  P.toast("Renovação em <b>"+ETAPAS[i][0]+"</b>.",{ic:"seta-direita",acao:"Desfazer",aoAcao:function(){ atual=de; desde=dAntes; etapas(); P.anunciar("Voltou para "+ETAPAS[de][0]+"."); }}); P.anunciar("Renovação movida para "+ETAPAS[i][0]+"."); }
 function clicar(i,btn){
   if(i===atual||perdida) return;
   var pop=document.createElement("div"); pop.className="lc-popover p2-etapa-pop"; pop.setAttribute("role","dialog"); pop.setAttribute("aria-label","Mover para "+ETAPAS[i][0]);
