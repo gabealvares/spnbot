@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exclusão e estado V1</title>
+<meta name="description" content="Mudar a etapa pela barra, com e sem motivo; exclusão em três níveis; lixeira de 30 dias; arquivar; ações em massa com desfazer.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/doc.css">
+<link rel="stylesheet" href="sistema/extra-p2.css">
+<script src="sistema/marca.js"></script>
+</head>
+<body>
+<a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="lc-doc-cab">
+  <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
+  <nav aria-label="Documentação"><a href="00-fundamentos.html">Fundamentos</a><a href="01-iconografia.html">Iconografia</a><a href="02-navegacao.html">Navegação</a><a href="10-padroes-de-tela.html">Padrões</a><a href="11-fluxos-de-salvar.html">Salvar</a><a href="12-fluxos-de-navegacao.html">Ir e voltar</a><a href="13-fluxos-de-exclusao-e-estado.html" aria-current="page">Excluir e etapas</a><a href="14-feedback-e-estados.html">Avisos</a><a href="15-auditoria-paginacao-rolagem.html">Histórico e rolagem</a><a href="16-fluxos-complementares.html">Mais fluxos</a></nav>
+  <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
+</header>
+<div class="lc-doc">
+<nav class="lc-doc-indice" aria-label="Nesta página"><ol></ol></nav>
+<main id="conteudo" class="lc-doc-conteudo">
+<header>
+  <h1>Excluir, arquivar e mudar a etapa</h1>
+  <p class="lc-doc-lede">Fazer na hora e deixar desfazer, em vez de perguntar sempre. A etapa muda num clique pela barra; o motivo só é pedido na saída negativa. Excluir manda para uma lixeira de 30 dias; confirmação digitada só para o que não tem volta.</p>
+</header>
+<section class="lc-doc-sec" id="etapa">
+  <h2>Mudar a etapa pela barra</h2>
+<p>A etapa é a informação mais importante de um registro com processo, e é ação, nunca campo de formulário. Ela aparece como barra no topo do registro: o caminho inteiro, o que já passou (com a data), a atual (com os dias nela) e o que falta.</p><div class="lc-tabela-cont" style="margin:10px 0 18px"><table class="lc-tabela"><caption class="lc-sr">Mudar etapa</caption><thead><tr><th scope="col">A pessoa faz</th><th scope="col">O sistema faz</th><th scope="col">Pede algo?</th></tr></thead><tbody><tr><td>Clica na próxima etapa ou em “Avançar para ‹próxima›”</td><td>Move na hora; aviso “Renovação em Aditivo assinado. Desfazer”</td><td>Não, se a etapa não exige nada</td></tr><tr><td>Clica numa etapa que exige dado</td><td>Abre um popover ancorado na etapa com o que ela pede (data da assinatura, PDF)</td><td>Só o que a etapa exige</td></tr><tr><td>Clica numa etapa adiante sem cumprir a anterior</td><td>Popover diz o que falta, em vermelho, sem botão de mover</td><td>Não deixa</td></tr><tr><td>Clica numa etapa já feita</td><td>Popover “Voltar para Cálculo do reajuste” com motivo opcional</td><td>Motivo opcional</td></tr><tr><td>Usa a saída negativa (Cancelar renovação, Perder, Recusar)</td><td>Modal de perigo com motivo obrigatório e detalhe opcional; a etapa atual fica vermelha</td><td>Motivo obrigatório</td></tr></tbody></table></div><ul class="lc-doc-regras"><li>A saída negativa fica fora da barra, à direita, como botão discreto: a barra mostra só o caminho feliz.</li><li>Dias na etapa atual sempre escritos (“há 6 dias nesta etapa”); acima do limite do objeto, em âmbar.</li><li>Toda mudança entra na atividade e no histórico, com motivo.</li><li>Teclado: cada etapa é um botão; Enter abre o popover; Esc fecha e devolve o foco.</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: avançar a renovação">
+  <div class="lc-doc-cliques__antes"><h4><b>3</b> cliques hoje <small>e um modal</small></h4><ol><li>“Mudar estado”.</li><li>Escolher o destino.</li><li>Confirmar no modal.</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>1 ou 2</b> cliques na V1 <small>nenhum modal</small></h4><ol><li>Clicar “Avançar para Aditivo assinado” (ou a etapa).</li><li>Se a etapa pedir dado: preencher e “Mover para Aditivo assinado”.</li></ol></div>
+</div><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo">
+  <dl class="lc-doc-a11y" style="margin:0;border:0;padding:0;max-width:none;background:none">
+    <dt>O que esta tela resolve</dt><dd>Avançar, voltar e cancelar a renovação de forma rápida e com registro do porquê.</dd>
+    <dt>Fluxo</dt><dd><ol style="margin:0;padding-left:18px"><li>Clique em “Avançar para Aditivo assinado”: o popover pede a data e o PDF.</li><li>Clique em “Cálculo do reajuste” (já feita): o popover pede o motivo de voltar.</li><li>Clique em “Cancelar renovação”: o modal exige o motivo.</li></ol></dd>
+    <dt>Por quê</dt><dd>Resolvemos fazer assim porque o Salesforce Path (clicar na etapa e marcar), o Pipedrive (barra de progresso com dias por etapa) e o HubSpot (pipeline no registro) mostram o caminho inteiro e movem em um clique; o motivo obrigatório só na saída negativa vem da regra do GACO de 26/09. Enviamos para aprovação.</dd>
+  </dl></div></div>
+<div class="lc-doc-exemplo" style="--_alt:640px"><div class="lc-doc-exemplo__cab"><b>Barra de etapas no contrato</b><span>exemplos/p2-registro.html</span><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="exemplos/p2-registro.html?id=2026-0412&de=renovacoes" target="_blank">Abrir em tela cheia<i data-i="abrir-fora"></i></a></div></div>
+<iframe data-src="exemplos/p2-registro.html?id=2026-0412&de=renovacoes" title="Tela de exemplo: Barra de etapas no contrato"></iframe></div>
+<dl class="lc-doc-a11y"><dt>Ordem de foco</dt><dd>Cada etapa é um botão na ordem; depois Avançar e Cancelar renovação.</dd><dt>O que é anunciado</dt><dd>Etapa atual: “Aprovação do síndico, etapa atual, há 6 dias.” Ao mover: “Renovação movida para Aditivo assinado.”</dd><dt>Só ícone, com nome</dt><dd>Nenhum: as etapas têm texto.</dd></dl>
+</section>
+<section class="lc-doc-sec" id="niveis">
+  <h2>Exclusão em três níveis</h2>
+<p>Confirmação em tudo vira clique sem ler. O GACO pergunta só quando não há volta; no resto, faz na hora e oferece Desfazer, e o que é de negócio vai para a lixeira.</p><div class="lc-tabela-cont" style="margin:10px 0 18px"><table class="lc-tabela"><caption class="lc-sr">Três níveis</caption><thead><tr><th scope="col">Nível</th><th scope="col">Quando</th><th scope="col">Como é</th><th scope="col">Exemplos</th></tr></thead><tbody><tr><td>1. Leve e reversível</td><td>Desfaz sem custo</td><td>Executa na hora; aviso com Desfazer por 6 s</td><td>Tirar etiqueta, desvincular OS do chamado, tirar da fila, arquivar, remover item da pauta</td></tr><tr><td>2. Registro de negócio</td><td>Pode fazer falta depois</td><td>Vai para a lixeira sem modal; aviso “Movido para a lixeira. Desfazer”; restaura em 30 dias</td><td>Contrato, chamado, reserva, comunicado, fornecedor, lançamento não conciliado</td></tr><tr><td>3. Irreversível ou em cascata</td><td>Não há volta, ou leva outros junto</td><td>Modal de perigo com a consequência e o nome digitado para liberar o botão</td><td>Excluir definitivamente, esvaziar a lixeira, cancelar remessa bancária, fechar o mês, excluir condomínio com unidades</td></tr></tbody></table></div><div class="lc-doc-quadro"><div class="lc-doc-quadro__cab"><b>Experimente os três</b><span>Os avisos aparecem no pé da tela.</span></div><div class="lc-doc-palco"><div class="lc-grupo-btn">
+    <button class="lc-btn" type="button" id="n1"><i data-i="etiqueta"></i>Tirar a etiqueta “Reajuste IGP-M”</button>
+    <button class="lc-btn lc-btn--perigo-contorno" type="button" id="n2"><i data-i="lixeira"></i>Excluir o chamado 4.799</button>
+    <button class="lc-btn lc-btn--perigo" type="button" id="n3"><i data-i="excluir"></i>Excluir o Cond. Vila Serena e as 64 unidades</button></div>
+    <p class="lc-pequeno lc-cor-2" style="margin-top:12px" id="n-estado" role="status">Etiqueta presente. Chamado na lista. Condomínio ativo.</p></div></div><ul class="lc-doc-regras"><li><b>Em massa</b>: acima de 20 itens, mesmo de nível 2, pede um modal simples com o número no botão (“Mover 63 para a lixeira”), sem digitar.</li><li><b>Botão do nível 3</b>: vermelho, verbo e objeto, desabilitado até o texto bater; Enter não confirma sozinho.</li><li><b>Pedido de titular (LGPD)</b> não passa pela lixeira: tem rito próprio, com prazo e registro.</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: excluir por engano e recuperar dois dias depois">
+  <div class="lc-doc-cliques__antes"><h4><b>3</b> cliques hoje <small>e sem volta</small></h4><ol><li>⋯.</li><li>Excluir.</li><li>Confirmar no modal.</li><li>Recuperar: pedir ao suporte da plataforma uma restauração de cópia.</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>3</b> cliques na V1 <small>e volta em qualquer dia até o 30º</small></h4><ol><li>⌘K “lixeira” e Enter.</li><li>Filtrar por tipo Contrato.</li><li>Restaurar.</li></ol></div>
+</div><p class="lc-doc-decisao">Resolvemos fazer assim porque o AWS Cloudscape (três níveis de exclusão), o Salesforce (lixeira de 15 dias) e o HubSpot (lixeira de 90 dias com quem excluiu) separam o que se desfaz do que não volta; a NN/g mostra que confirmação só funciona se for rara. Enviamos para aprovação.</p>
+</section>
+<section class="lc-doc-sec" id="lixeira">
+  <h2>Lixeira de 30 dias</h2>
+<ul class="lc-doc-regras"><li>Uma lixeira por empresa, para todos os módulos, em Configuração › Segurança e no ⌘K (“lixeira”).</li><li>Cada item mostra quem excluiu, quando e em quantos dias sai; a 5 dias do fim, em âmbar.</li><li><b>Restaurar</b> devolve ao mesmo lugar, com histórico, anexos e vínculos; se o nome já existe, volta como “(restaurado)”.</li><li>Quem excluiu e quem administra restauram; os outros veem só o que excluíram.</li><li>Excluir definitivamente e esvaziar são nível 3 (digitar).</li><li>Restaurar e excluir definitivamente entram na auditoria.</li></ul><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo">
+  <dl class="lc-doc-a11y" style="margin:0;border:0;padding:0;max-width:none;background:none">
+    <dt>O que esta tela resolve</dt><dd>Recuperar o que alguém excluiu por engano, sem pedir restauração ao suporte.</dd>
+    <dt>Fluxo</dt><dd><ol style="margin:0;padding-left:18px"><li>Encontra o contrato do Edifício Saint Germain, excluído hoje às 09:40 por Letícia.</li><li>Restaurar: volta para Renovações com histórico.</li><li>Para apagar de vez: ⋯, Excluir definitivamente, digitar o nome.</li></ol></dd>
+    <dt>Por quê</dt><dd>Resolvemos fazer assim porque o Google Drive e o Gmail (lixeira de 30 dias), o Salesforce Recycle Bin e o HubSpot mostram quem excluiu e restauram com vínculos. Enviamos para aprovação.</dd>
+  </dl></div></div>
+<div class="lc-doc-exemplo" style="--_alt:620px"><div class="lc-doc-exemplo__cab"><b>Lixeira, Configuração</b><span>exemplos/p2-lixeira.html</span><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="exemplos/p2-lixeira.html" target="_blank">Abrir em tela cheia<i data-i="abrir-fora"></i></a></div></div>
+<iframe data-src="exemplos/p2-lixeira.html" title="Tela de exemplo: Lixeira, Configuração"></iframe></div>
+<dl class="lc-doc-a11y"><dt>Ordem de foco</dt><dd>Busca, filtros, caixas de seleção, Restaurar de cada linha, ⋯, Esvaziar lixeira.</dd><dt>O que é anunciado</dt><dd>Restaurar: “Edifício Saint Germain, renovação 2026 restaurado em CS, com histórico e vínculos.”</dd><dt>Só ícone, com nome</dt><dd>⋯ de cada linha (“Mais opções de ‹item›”).</dd></dl>
+</section>
+<section class="lc-doc-sec" id="arquivar">
+  <h2>Arquivar não é excluir</h2>
+<div class="lc-tabela-cont" style="margin:10px 0 18px"><table class="lc-tabela"><caption class="lc-sr">Arquivar e excluir</caption><thead><tr><th scope="col"></th><th scope="col">Arquivar</th><th scope="col">Excluir</th></tr></thead><tbody><tr><td>Para que serve</td><td>Tirar do caminho o que acabou, mantendo a memória</td><td>Tirar o que não devia existir</td></tr><tr><td>Onde fica</td><td>Fora das listas de trabalho e dos alertas; continua na busca, nos relatórios e no histórico</td><td>Na lixeira por 30 dias, depois some</td></tr><tr><td>Volta?</td><td>Sempre, com “Desarquivar”</td><td>Até o 30º dia, com “Restaurar”</td></tr><tr><td>Marca no registro</td><td>Carimbo “Arquivado” com quem e quando; tudo em só leitura</td><td>—</td></tr><tr><td>Exemplos</td><td>Contrato encerrado, cliente que saiu, curso antigo, vaga preenchida</td><td>Cadastro em duplicidade, lançamento errado</td></tr></tbody></table></div><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo"><div class="lc-linha lc-linha--entre" style="max-width:640px;padding:12px 16px;background:var(--sup-1);border:var(--borda-1)" id="arq-box"><span><b>Contrato 2019-0207, Residencial Ilhas do Sul</b><span class="lc-lista__sub">Encerrado em 31/08/2026</span></span><button class="lc-btn lc-btn--p" type="button" id="arq"><i data-i="arquivar"></i>Arquivar</button></div></div></div>
+</section>
+<section class="lc-doc-sec" id="massa">
+  <h2>Ações em massa com desfazer</h2>
+<ul class="lc-doc-regras"><li>Selecionar mostra a barra de massa no lugar dos filtros: contagem, ações, “Limpar seleção” na ponta.</li><li>A caixa do cabeçalho pega a página; logo acima aparece “Selecionar as 63 que atendem ao filtro”.</li><li>Ações reversíveis (atribuir, arquivar, mover para a lixeira) executam e o aviso desfaz o lote inteiro.</li><li>Ações que saem do sistema (enviar cobrança, e-mail, gerar boletos) pedem confirmação com o número, sempre.</li><li>Erro parcial: “58 atualizados; 5 não, porque estão em outra carteira. Ver quais.”</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: aprovar 3 pedidos de férias">
+  <div class="lc-doc-cliques__antes"><h4><b>19</b> cliques hoje <small>9 trocas</small></h4><ol><li>Menu Cultura, bloco, Férias, filtro pendentes (4).</li><li>Por pedido: abrir, Mudar estado, Aprovado, confirmar, voltar (5 × 3).</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>5</b> cliques na V1 <small>nenhuma troca</small></h4><ol><li>Para você › Aprovações (1).</li><li>Marcar os 3 (3).</li><li>“Aprovar 3” (1); o aviso desfaz.</li></ol></div>
+</div><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo">
+  <dl class="lc-doc-a11y" style="margin:0;border:0;padding:0;max-width:none;background:none">
+    <dt>O que esta tela resolve</dt><dd>Arquivar, atribuir ou mover para a lixeira várias renovações de uma vez, com volta.</dd>
+    <dt>Fluxo</dt><dd><ol style="margin:0;padding-left:18px"><li>Marque 3 linhas: a barra de massa entra no lugar dos filtros.</li><li>Arquivar: as 3 somem e o aviso traz Desfazer.</li><li>Marque a caixa do cabeçalho e use “Selecionar as 63 que atendem ao filtro”.</li></ol></dd>
+    <dt>Por quê</dt><dd>Resolvemos fazer assim porque o IBM Carbon (barra de ações em lote no lugar da barra da tabela), o Gmail (selecionar todas as conversas da busca) e o PatternFly (seleção da página separada da seleção total) são o padrão reconhecido. Enviamos para aprovação.</dd>
+  </dl></div></div>
+<div class="lc-doc-exemplo" style="--_alt:720px"><div class="lc-doc-exemplo__cab"><b>Ações em massa em Renovações</b><span>exemplos/p2-lista.html</span><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="exemplos/p2-lista.html" target="_blank">Abrir em tela cheia<i data-i="abrir-fora"></i></a></div></div>
+<iframe data-src="exemplos/p2-lista.html" title="Tela de exemplo: Ações em massa em Renovações"></iframe></div>
+<dl class="lc-doc-a11y"><dt>Ordem de foco</dt><dd>Caixas, barra de massa (Atribuir, Exportar, Arquivar, Excluir, Limpar seleção).</dd><dt>O que é anunciado</dt><dd>“As 63 renovações do filtro estão selecionadas.” Ao desfazer: “Desfeito. 3 contratos voltaram para a lista.”</dd><dt>Só ícone, com nome</dt><dd>Caixa do cabeçalho (“Selecionar os 50 desta página”).</dd></dl>
+</section>
+
+</main>
+</div>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p2-icones.js"></script>
+<script src="sistema/doc.js"></script>
+<script src="sistema/extra-p2.js"></script>
+<script>
+/* As telas de exemplo seguem o tema desta página (o tema vai pelo endereço do quadro). */
+(function(){
+  function tema(){ return document.documentElement.getAttribute("data-tema")||"claro"; }
+  function carregar(){ document.querySelectorAll("iframe[data-src]").forEach(function(f){ var s=f.getAttribute("data-src"); f.src=s+(s.indexOf("?")>-1?"&":"?")+"tema="+tema(); }); }
+  document.addEventListener("lc:tema",carregar); carregar();
+})();
+</script>
+<script>
+(function(){
+var P=LCP2,$=P.$,esc=P.esc, et=true, ch=true, cd=true;
+function st(){ $("#n-estado").textContent=(et?"Etiqueta presente.":"Sem a etiqueta.")+" "+(ch?"Chamado na lista.":"Chamado na lixeira.")+" "+(cd?"Condomínio ativo.":"Condomínio excluído para sempre."); }
+$("#n1").addEventListener("click",function(){ if(!et) return; et=false; st(); P.toast("Etiqueta “Reajuste IGP-M” tirada.",{ic:"etiqueta",acao:"Desfazer",aoAcao:function(){ et=true; st(); }}); });
+$("#n2").addEventListener("click",function(){ if(!ch) return; ch=false; st(); P.toast("<b>Chamado 4.799</b> movido para a lixeira. Fica lá por 30 dias.",{ic:"lixeira",acao:"Desfazer",aoAcao:function(){ ch=true; st(); }}); });
+$("#n3").addEventListener("click",function(){ if(!cd) return; P.modal({titulo:"Excluir o Cond. Vila Serena para sempre?",perigo:true,desc:"Saem junto as 64 unidades, 212 moradores, 1.408 boletos e todo o histórico. Não passa pela lixeira e não há volta.",
+  corpo:'<div class="lc-campo"><label class="lc-rotulo" for="dg">Para confirmar, digite <b>Cond. Vila Serena</b></label><input id="dg" class="lc-entrada" autocomplete="off"><p class="lc-confirma-digitando">O botão libera quando o nome for igual. Prefere guardar? <a href="#" data-m-fechar>Arquive o condomínio</a>.</p></div>',
+  pe:'<button class="lc-btn" type="button" data-m-fechar>Cancelar</button><button class="lc-btn lc-btn--perigo" type="button" data-ok disabled>Excluir para sempre</button>',
+  aoAbrir:function(el,api){ var b=el.querySelector("[data-ok]"); el.querySelector("#dg").addEventListener("input",function(e){ b.disabled=e.target.value.trim()!=="Cond. Vila Serena"; }); b.addEventListener("click",function(){ api.fechar(); cd=false; st(); P.toast("Cond. Vila Serena excluído para sempre. O registro da exclusão está na auditoria.",{ic:"excluir"}); }); }}); });
+var a=false; $("#arq").addEventListener("click",function(){ if(a) return; a=true; var b=this; b.outerHTML='<span class="lc-carimbo lc-carimbo--arquivado">Arquivado<small>Letícia Araújo, '+P.hora()+'</small></span>';
+  P.toast("Contrato 2019-0207 arquivado. Continua na busca e nos relatórios.",{ic:"arquivar",acao:"Desfazer",aoAcao:function(){ location.reload(); }}); });
+})();
+</script>
+</body>
+</html>

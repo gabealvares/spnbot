@@ -306,6 +306,8 @@
 }
 
 /* Amostra de tema dentro da página (documentação): repinta o próprio bloco */
+/* bordas compostas: redeclaradas no escopo do tema para amostras escuras dentro de página clara */
+.lc-tema-claro,.lc-tema-escuro,[data-tema]{--borda-1:1px solid var(--filete);--borda-2:1px solid var(--filete-forte);--borda-controle-def:1px solid var(--borda-controle)}
 .lc-tema-claro,.lc-tema-escuro{background:var(--fundo);color:var(--texto-1)}
 /* Marca padrão no escuro quando marca.js não estiver carregado */
 :root[data-tema="escuro"]:not([style*="--marca"]){--marca:#4A68B8;--marca-forte:#5D7BD0;--marca-txt:#FFFFFF}

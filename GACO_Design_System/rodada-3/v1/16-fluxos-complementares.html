@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mais fluxos V1</title>
+<meta name="description" content="Fluxos que um ERP de condomínio usa todo dia: duplicar, importar planilha, exportar com filtro, imprimir e PDF, compartilhar link, anexar, encaminhar e mesclar duplicados.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/doc.css">
+<link rel="stylesheet" href="sistema/extra-p2.css">
+<script src="sistema/marca.js"></script>
+</head>
+<body>
+<a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="lc-doc-cab">
+  <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
+  <nav aria-label="Documentação"><a href="00-fundamentos.html">Fundamentos</a><a href="01-iconografia.html">Iconografia</a><a href="02-navegacao.html">Navegação</a><a href="10-padroes-de-tela.html">Padrões</a><a href="11-fluxos-de-salvar.html">Salvar</a><a href="12-fluxos-de-navegacao.html">Ir e voltar</a><a href="13-fluxos-de-exclusao-e-estado.html">Excluir e etapas</a><a href="14-feedback-e-estados.html">Avisos</a><a href="15-auditoria-paginacao-rolagem.html">Histórico e rolagem</a><a href="16-fluxos-complementares.html" aria-current="page">Mais fluxos</a></nav>
+  <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
+</header>
+<div class="lc-doc">
+<nav class="lc-doc-indice" aria-label="Nesta página"><ol></ol></nav>
+<main id="conteudo" class="lc-doc-conteudo">
+<header>
+  <h1>Mais fluxos de todo dia</h1>
+  <p class="lc-doc-lede">Os fluxos que não são de uma tela só e que todo sistema de gestão precisa: duplicar, importar, exportar o que se vê, imprimir com código de verificação, compartilhar sem expor, anexar com um gesto, encaminhar mantendo o vínculo e mesclar cadastros repetidos. Cada um com a conta de cliques.</p>
+</header>
+<section class="lc-doc-sec" id="duplicar">
+  <h2>Duplicar</h2>
+<ul class="lc-doc-regras"><li>No “⋯” do registro e da linha: “Duplicar ‹objeto›”, com a frase do que vem junto.</li><li>Abre a página de criação já preenchida, com um aviso no topo: o que foi copiado e o que ficou em branco, e por quê.</li><li>Nunca copia: identificadores, datas de vigência, quem assina, anexos, histórico, atividade e vínculos com outros registros.</li><li>O registro novo nasce com “Criado a partir de ‹origem›” na atividade, com link.</li><li>Duplicar em massa não existe; para muitos, use importar.</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: criar o contrato de um condomínio parecido com outro">
+  <div class="lc-doc-cliques__antes"><h4><b>9</b> cliques hoje <small>2 trocas</small></h4><ol><li>Abrir o contrato modelo e anotar valor, índice e serviços.</li><li>Ir a Novo contrato (troca).</li><li>Preencher 6 campos copiando à mão.</li><li>Marcar 3 serviços.</li><li>Criar.</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>4</b> cliques na V1 <small>1 troca</small></h4><ol><li>⋯ do contrato modelo.</li><li>Duplicar contrato (troca, já preenchido).</li><li>Escolher o condomínio e quem assina.</li><li>Criar contrato.</li></ol></div>
+</div><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo">
+  <dl class="lc-doc-a11y" style="margin:0;border:0;padding:0;max-width:none;background:none">
+    <dt>O que esta tela resolve</dt><dd>Aproveitar o que se repete entre contratos sem carregar o que é de cada um.</dd>
+    <dt>Fluxo</dt><dd><ol style="margin:0;padding-left:18px"><li>O aviso diz o que veio e o que ficou em branco.</li><li>Valor, índice, serviços, cobrança e responsáveis já estão preenchidos.</li><li>Falta o condomínio, quem assina e as datas; o pé conta.</li></ol></dd>
+    <dt>Por quê</dt><dd>Resolvemos fazer assim porque o Salesforce (Clone, com campos que não clonam), o Pipedrive (duplicar negócio) e o Google Docs (fazer uma cópia sem o histórico) deixam claro o que a cópia leva. Enviamos para aprovação.</dd>
+  </dl></div></div>
+<div class="lc-doc-exemplo" style="--_alt:680px"><div class="lc-doc-exemplo__cab"><b>Novo contrato, cópia do Parque das Águas</b><span>exemplos/p2-criacao-pagina.html</span><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="exemplos/p2-criacao-pagina.html?duplicar=2026-0412" target="_blank">Abrir em tela cheia<i data-i="abrir-fora"></i></a></div></div>
+<iframe data-src="exemplos/p2-criacao-pagina.html?duplicar=2026-0412" title="Tela de exemplo: Novo contrato, cópia do Parque das Águas"></iframe></div>
+<dl class="lc-doc-a11y"><dt>Ordem de foco</dt><dd>Aviso de cópia (lido como região), campos na ordem, barra de criar.</dd><dt>O que é anunciado</dt><dd>O aviso de cópia é o primeiro conteúdo depois do título.</dd><dt>Só ícone, com nome</dt><dd>Nenhum.</dd></dl>
+</section>
+<section class="lc-doc-sec" id="importar">
+  <h2>Importar planilha</h2>
+<ul class="lc-doc-regras"><li>Quatro etapas: Arquivo, Colunas, Conferência, Importação. Nada entra antes da conferência.</li><li>Ligamos sozinhos as colunas de nome parecido; as que sobram pedem decisão (ignorar ou guardar como nota).</li><li>Conferência mostra três números: prontos, já existentes (com a escolha pular ou atualizar) e com erro (ficam de fora, com a linha e o que corrigir).</li><li>A importação roda em segundo plano; a pessoa pode sair; o sino avisa no fim.</li><li>Desfazer a importação inteira por 24 horas: os criados vão para a lixeira; os atualizados voltam ao valor anterior.</li><li>Modelo de planilha para baixar, com as colunas certas e uma linha de exemplo.</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: trazer 212 contratos do sistema antigo">
+  <div class="lc-doc-cliques__antes"><h4><b>212 cadastros</b> cliques hoje <small>à mão</small></h4><ol><li>Por contrato: Novo contrato, preencher, Criar (3 cliques e 2 trocas).</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>6</b> cliques na V1 <small>e a conferência</small></h4><ol><li>Importar planilha.</li><li>Escolher o arquivo.</li><li>Continuar.</li><li>Decidir a coluna Obs.</li><li>Conferir.</li><li>Importar 198 contratos.</li></ol></div>
+</div><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo">
+  <dl class="lc-doc-a11y" style="margin:0;border:0;padding:0;max-width:none;background:none">
+    <dt>O que esta tela resolve</dt><dd>Migrar a carteira sem digitar e sem estragar o que já existe.</dd>
+    <dt>Fluxo</dt><dd><ol style="margin:0;padding-left:18px"><li>A conferência mostra 198 prontos, 9 existentes e 5 com erro.</li><li>Escolhe pular os existentes.</li><li>Importa; a barra mostra o andamento; no fim, “Desfazer a importação”.</li></ol></dd>
+    <dt>Por quê</dt><dd>Resolvemos fazer assim porque o HubSpot e o Pipedrive (importação com mapeamento de colunas e revisão de duplicados) e o Conta Azul (importação com conferência antes de gravar) evitam a importação que suja a base. Enviamos para aprovação.</dd>
+  </dl></div></div>
+<div class="lc-doc-exemplo" style="--_alt:700px"><div class="lc-doc-exemplo__cab"><b>Importar contratos, conferência</b><span>exemplos/p2-importar.html</span><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p lc-btn--discreto" href="exemplos/p2-importar.html" target="_blank">Desde o início</a><a class="lc-btn lc-btn--p" href="exemplos/p2-importar.html?passo=2" target="_blank">Abrir em tela cheia<i data-i="abrir-fora"></i></a></div></div>
+<iframe data-src="exemplos/p2-importar.html?passo=2" title="Tela de exemplo: Importar contratos, conferência"></iframe></div>
+<dl class="lc-doc-a11y"><dt>Ordem de foco</dt><dd>Passos, opções de duplicados, tabela de erros, Voltar, Cancelar importação, Importar.</dd><dt>O que é anunciado</dt><dd>Andamento: barra de progresso com “66 de 198”.</dd><dt>Só ícone, com nome</dt><dd>Tirar arquivo.</dd></dl>
+</section>
+<section class="lc-doc-sec" id="exportar">
+  <h2>Exportar com o filtro</h2>
+<ul class="lc-doc-regras"><li>O botão Exportar fica na barra da tabela, não no cabeçalho, e exporta exatamente o que a pessoa vê: visão, filtros, busca e ordem.</li><li>O modal diz o número no título (“Exportar 63 renovações”) e oferece: todas do filtro, só as selecionadas, só esta página; colunas visíveis ou todos os campos; Excel, CSV ou PDF.</li><li>Até 5.000 linhas baixa na hora; acima, prepara e avisa no sino com o link (válido por 7 dias).</li><li>Toda exportação entra na auditoria com o filtro usado.</li><li>Com seleção, o Exportar da barra de massa já vem marcado em “só as selecionadas”.</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: mandar ao síndico os contratos em atraso">
+  <div class="lc-doc-cliques__antes"><h4><b>7</b> cliques hoje <small>e uma planilha à mão</small></h4><ol><li>Exportar tudo.</li><li>Abrir no Excel.</li><li>Filtrar de novo à mão.</li><li>Apagar colunas.</li><li>Salvar como.</li><li>Anexar.</li><li>Enviar.</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>3</b> cliques na V1 <small></small></h4><ol><li>Visão Atrasados.</li><li>Exportar.</li><li>“Exportar 10” (só as colunas visíveis).</li></ol></div>
+</div><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo">
+  <dl class="lc-doc-a11y" style="margin:0;border:0;padding:0;max-width:none;background:none">
+    <dt>O que esta tela resolve</dt><dd>Exportar exatamente o recorte que a pessoa montou na tela.</dd>
+    <dt>Fluxo</dt><dd><ol style="margin:0;padding-left:18px"><li>A visão Atrasados está escolhida.</li><li>Exportar abre o modal com “Exportar 10 renovações” e a descrição do filtro.</li><li>Escolhe o formato e exporta; o aviso confirma o arquivo e o número de linhas.</li></ol></dd>
+    <dt>Por quê</dt><dd>Resolvemos fazer assim porque o IBM Carbon (exportar na barra da tabela), o Salesforce (exportar a visão) e o Jira (exportar o resultado da busca) exportam o que se vê, e não a base inteira. Enviamos para aprovação.</dd>
+  </dl></div></div>
+<div class="lc-doc-exemplo" style="--_alt:640px"><div class="lc-doc-exemplo__cab"><b>Renovações, visão Atrasados</b><span>exemplos/p2-lista.html</span><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="exemplos/p2-lista.html?visao=atrasados" target="_blank">Abrir em tela cheia<i data-i="abrir-fora"></i></a></div></div>
+<iframe data-src="exemplos/p2-lista.html?visao=atrasados" title="Tela de exemplo: Renovações, visão Atrasados"></iframe></div>
+<dl class="lc-doc-a11y"><dt>Ordem de foco</dt><dd>Exportar, opções do modal, Exportar ‹número›.</dd><dt>O que é anunciado</dt><dd>O título do modal já diz o número.</dd><dt>Só ícone, com nome</dt><dd>Nenhum.</dd></dl>
+</section>
+<section class="lc-doc-sec" id="imprimir">
+  <h2>Impressão e PDF</h2>
+<ul class="lc-doc-regras"><li>Onde a impressão é o produto (aditivo, contrato, boleto, recibo, ata, edital), há uma secundária visível no cabeçalho: “Ver aditivo”, “Baixar PDF”. Nos outros registros, fica no “⋯” (“Imprimir ou baixar PDF”, Ctrl+P).</li><li>A tela de impressão mostra a folha A4 como sai, e à esquerda as escolhas: documento, o que incluir (timbre, assinaturas, histórico como anexo) e o papel.</li><li>O PDF sai com código de verificação; quem recebe confere em gaco.app/verificar.</li><li>Imprimir do navegador esconde a moldura e as escolhas: sai só a folha.</li><li>Enviar para assinar fica na mesma tela: a síndica recebe por e-mail e WhatsApp.</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: enviar o aditivo para assinatura">
+  <div class="lc-doc-cliques__antes"><h4><b>8</b> cliques hoje <small>fora do sistema</small></h4><ol><li>Gerar no Word com o modelo.</li><li>Copiar valores do sistema.</li><li>Salvar PDF.</li><li>Abrir o e-mail.</li><li>Anexar.</li><li>Escrever.</li><li>Enviar.</li><li>Anexar o assinado de volta no sistema.</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>2</b> cliques na V1 <small></small></h4><ol><li>Ver aditivo.</li><li>Enviar à síndica para assinar.</li></ol></div>
+</div><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo">
+  <dl class="lc-doc-a11y" style="margin:0;border:0;padding:0;max-width:none;background:none">
+    <dt>O que esta tela resolve</dt><dd>Gerar, conferir e enviar o aditivo sem sair do GACO, com o documento exatamente como sai no papel.</dd>
+    <dt>Fluxo</dt><dd><ol style="margin:0;padding-left:18px"><li>Escolhe o documento e o que incluir; a folha muda na hora.</li><li>Baixa o PDF ou imprime (só a folha sai).</li><li>Envia à síndica para assinar.</li></ol></dd>
+    <dt>Por quê</dt><dd>Resolvemos fazer assim porque o Google Docs e o Word (prévia antes de imprimir), o DocuSign (envio para assinatura no mesmo fluxo) e as notas fiscais eletrônicas (código de verificação) dão confiança ao documento. Enviamos para aprovação.</dd>
+  </dl></div></div>
+<div class="lc-doc-exemplo" style="--_alt:760px"><div class="lc-doc-exemplo__cab"><b>Aditivo de reajuste, prévia de impressão</b><span>exemplos/p2-impressao.html</span><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="exemplos/p2-impressao.html" target="_blank">Abrir em tela cheia<i data-i="abrir-fora"></i></a></div></div>
+<iframe data-src="exemplos/p2-impressao.html" title="Tela de exemplo: Aditivo de reajuste, prévia de impressão"></iframe></div>
+<dl class="lc-doc-a11y"><dt>Ordem de foco</dt><dd>Documento, opções, papel, Baixar PDF, Imprimir, Enviar à síndica, depois a folha.</dd><dt>O que é anunciado</dt><dd>A folha tem nome: “Prévia do aditivo”.</dd><dt>Só ícone, com nome</dt><dd>Nenhum.</dd></dl>
+</section>
+<section class="lc-doc-sec" id="compartilhar">
+  <h2>Compartilhar link</h2>
+<ul class="lc-doc-regras"><li>“Copiar link” no “⋯” de todo registro e de toda linha; Ctrl+Shift+C no registro.</li><li>“Compartilhar” abre um modal com o link, “Copiar” e “Enviar para alguém da equipe” com mensagem (chega no sino e por e-mail).</li><li>O link abre só para quem tem acesso; quem não tem vê a tela “sem permissão” com “Pedir acesso”.</li><li>Link de visão salva leva os filtros.</li><li>Para o cliente final, o caminho é o portal (Documentos), nunca o link interno.</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: mostrar um contrato a um colega">
+  <div class="lc-doc-cliques__antes"><h4><b>6</b> cliques hoje <small>por WhatsApp pessoal</small></h4><ol><li>Copiar o endereço do navegador.</li><li>Abrir o WhatsApp.</li><li>Achar o colega.</li><li>Colar.</li><li>Explicar o que é.</li><li>O colega procura de novo porque o link perdeu o contexto.</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>3</b> cliques na V1 <small></small></h4><ol><li>⋯.</li><li>Copiar link do contrato (ou Compartilhar).</li><li>Enviar a Juliana Souza.</li></ol></div>
+</div><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo">
+  <dl class="lc-doc-a11y" style="margin:0;border:0;padding:0;max-width:none;background:none">
+    <dt>O que esta tela resolve</dt><dd>Mandar o contrato certo para a pessoa certa, sem expor nada a quem não deve ver.</dd>
+    <dt>Fluxo</dt><dd><ol style="margin:0;padding-left:18px"><li>⋯ do cabeçalho, “Copiar link do contrato”.</li><li>O modal mostra o link, copia e envia com mensagem.</li></ol></dd>
+    <dt>Por quê</dt><dd>Resolvemos fazer assim porque o Google Drive, o Notion e o Linear separam copiar link de enviar a alguém e respeitam a permissão de quem abre. Enviamos para aprovação.</dd>
+  </dl></div></div>
+<div class="lc-doc-exemplo" style="--_alt:640px"><div class="lc-doc-exemplo__cab"><b>Compartilhar pelo ⋯ do contrato</b><span>exemplos/p2-registro.html</span><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="exemplos/p2-registro.html?id=2026-0412&de=renovacoes" target="_blank">Abrir em tela cheia<i data-i="abrir-fora"></i></a></div></div>
+<iframe data-src="exemplos/p2-registro.html?id=2026-0412&de=renovacoes" title="Tela de exemplo: Compartilhar pelo ⋯ do contrato"></iframe></div>
+<dl class="lc-doc-a11y"><dt>Ordem de foco</dt><dd>⋯, item Copiar link, campo do link, Copiar, pessoa, Enviar.</dd><dt>O que é anunciado</dt><dd>“Link copiado.”</dd><dt>Só ícone, com nome</dt><dd>⋯ (“Mais ações do contrato”).</dd></dl>
+</section>
+<section class="lc-doc-sec" id="anexar">
+  <h2>Anexar arquivo: um gesto só</h2>
+<ul class="lc-doc-regras"><li>Em qualquer formulário, conversa e registro: arrastar para a área, clicar em “Escolha os arquivos” ou, no celular, “Tirar foto” (abre a câmera).</li><li>Clipe com três origens: Arquivo do computador, Foto, Do sistema (boleto deste morador, contrato, artigo da central).</li><li>Cada arquivo vira uma linha com nome, tamanho, progresso e X; erro na própria linha (“Maior que 20 MB. Comprima ou divida.”).</li><li>Nota fiscal em XML ou PDF arrastada num lançamento preenche fornecedor, valor e data.</li></ul><div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo" style="max-width:640px"><label class="lc-upload"><input type="file" multiple><i data-i="nuvem-envio"></i><span><b>Escolha os arquivos</b> ou arraste para cá</span><span class="lc-legenda">PDF, imagem ou planilha, até 20 MB cada.</span></label><ul class="lc-anexos" style="margin-top:10px"><li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="documento"></i></span><span class="lc-anexo__nome">Ata da eleição do síndico.pdf</span><span class="lc-anexo__info">1,2 MB, enviado</span><span class="lc-anexo__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Tirar Ata da eleição do síndico.pdf"><i data-i="fechar"></i></button></span></li><li class="lc-anexo" aria-invalid="true"><span class="lc-anexo__ic"><i data-i="imagem"></i></span><span class="lc-anexo__nome">Fotos da fachada.zip</span><span class="lc-anexo__info">48 MB. Maior que 20 MB: divida em partes.</span><span class="lc-anexo__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Tirar Fotos da fachada.zip"><i data-i="fechar"></i></button></span></li></ul></div></div>
+</section>
+<section class="lc-doc-sec" id="encaminhar">
+  <h2>Encaminhar: uma coisa vira outra, ligada</h2>
+<ul class="lc-doc-regras"><li>Na conversa, no chamado e no negócio: “Encaminhar para…” (Manutenção, Financeiro, CS do cliente) ou “Converter em…”.</li><li>Abre a criação rápida do destino já preenchida (condomínio, unidade, descrição com as mensagens escolhidas, fotos).</li><li>O registro novo fica ligado à origem; a origem mostra o estado do novo atualizado sozinho (“OS 482, agendada para 02/10, 9h”).</li><li>Quem acompanha a origem recebe as mudanças do destino.</li></ul><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: conversa de vazamento vira OS">
+  <div class="lc-doc-cliques__antes"><h4><b>5</b> cliques hoje <small>e dois registros soltos</small></h4><ol><li>Ir a Operações › OS (troca).</li><li>Nova OS.</li><li>Copiar a descrição da conversa e colar.</li><li>Criar.</li><li>Voltar e colar o número na conversa (troca).</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>2</b> cliques na V1 <small>ligados</small></h4><ol><li>⋯ da conversa, “Encaminhar para Manutenção”.</li><li>Criar OS (já preenchida).</li></ol></div>
+</div>
+</section>
+<section class="lc-doc-sec" id="mesclar">
+  <h2>Mesclar duplicados</h2>
+<ul class="lc-doc-regras"><li>Em Configuração › Pessoas duplicadas e no “⋯” de pessoa e cliente: “Mesclar com…”.</li><li>O modal largo mostra os dois lado a lado; campo a campo a pessoa escolhe o que fica; telefones e e-mails diferentes somam.</li><li>Tudo o que estava ligado aos dois (boletos, chamados, unidades) passa para o que fica.</li><li>O outro vai para a lixeira com “Mesclado em ‹nome›”; desfazer por 30 dias.</li></ul><div class="lc-doc-quadro"><div class="lc-doc-quadro__cab"><b>Experimente</b></div><div class="lc-doc-palco"><button class="lc-btn" type="button" id="mesclar"><i data-i="mesclar"></i>Mesclar Marina Costa com Marina C. Costa</button></div></div><div class="lc-doc-cliques" role="group" aria-label="Cliques antes e depois: juntar dois cadastros da mesma síndica">
+  <div class="lc-doc-cliques__antes"><h4><b>14</b> cliques hoje <small>e vínculos perdidos</small></h4><ol><li>Abrir o primeiro, anotar.</li><li>Abrir o segundo, anotar.</li><li>Editar o primeiro com os dados do segundo.</li><li>Trocar a pessoa em cada boleto e chamado do segundo (8 cliques).</li><li>Excluir o segundo.</li></ol></div>
+  <div class="lc-doc-cliques__depois"><h4><b>3</b> cliques na V1 <small></small></h4><ol><li>⋯, Mesclar com….</li><li>Escolher os campos.</li><li>Mesclar.</li></ol></div>
+</div>
+</section>
+
+</main>
+</div>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p2-icones.js"></script>
+<script src="sistema/doc.js"></script>
+<script src="sistema/extra-p2.js"></script>
+<script>
+/* As telas de exemplo seguem o tema desta página (o tema vai pelo endereço do quadro). */
+(function(){
+  function tema(){ return document.documentElement.getAttribute("data-tema")||"claro"; }
+  function carregar(){ document.querySelectorAll("iframe[data-src]").forEach(function(f){ var s=f.getAttribute("data-src"); f.src=s+(s.indexOf("?")>-1?"&":"?")+"tema="+tema(); }); }
+  document.addEventListener("lc:tema",carregar); carregar();
+})();
+</script>
+<script>
+(function(){
+var P=LCP2,$=P.$;
+$("#mesclar").addEventListener("click",function(){ var L=[["Nome","Marina Costa","Marina C. Costa"],["CPF","318.442.901-27","318.442.901-27"],["Telefone","(11) 98412-7730","(11) 3571-2004"],["E-mail","marina.costa@parquedasaguas.com.br","marinacosta@gmail.com"],["Unidade","Bloco B, 1204","Bloco B, 1204"]];
+  P.modal({titulo:"Mesclar duas pessoas",largo:true,desc:"Escolha o que fica. Telefones e e-mails diferentes somam. Boletos, chamados e unidades passam para quem fica.",
+    corpo:'<table class="lc-comparar"><thead><tr><th scope="col">Campo</th><th scope="col">Marina Costa (desde 2019)</th><th scope="col">Marina C. Costa (criada pelo portal em 03/09)</th></tr></thead><tbody>'+L.map(function(l,i){ var d=l[1]!==l[2]; return '<tr'+(d?' class="lc-diferente"':'')+'><td>'+l[0]+'</td>'+(d?(i===2||i===3?'<td colspan="2">'+l[1]+' e '+l[2]+' <span class="lc-legenda">(somam)</span></td>':'<td><label><input type="radio" name="mg'+i+'" checked> '+l[1]+'</label></td><td><label><input type="radio" name="mg'+i+'"> '+l[2]+'</label></td>'):'<td colspan="2">'+l[1]+' <span class="lc-legenda">(iguais)</span></td>')+'</tr>'; }).join("")+'</tbody></table><p class="lc-pequeno" style="margin-top:12px">Passam para Marina Costa: 3 boletos, 2 chamados e 1 reserva.</p>',
+    pe:'<button class="lc-btn" type="button" data-m-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-ok><i data-i="mesclar"></i>Mesclar</button>',
+    aoAbrir:function(el,api){ el.querySelector("[data-ok]").addEventListener("click",function(){ api.fechar(); P.toast("Mescladas. Marina C. Costa foi para a lixeira como “Mesclada em Marina Costa”.",{tipo:"sucesso",acao:"Desfazer"}); }); }}); });
+})();
+</script>
+</body>
+</html>

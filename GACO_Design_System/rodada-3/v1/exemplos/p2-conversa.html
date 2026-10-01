@@ -29,7 +29,7 @@
     <div class="lc-modelo-fila__rola" id="lista" role="list"></div>
   </section>
   <section class="lc-modelo-fila__item" aria-label="Conversa aberta">
-    <div class="lc-modelo-fila__cab p2-cab-cv"><span class="lc-av lc-av--32 lc-av--c4" id="cv-av">MC</span><div class="lc-cresce"><h2 id="cv-nome">Marina Costa</h2><span class="lc-legenda" id="cv-sub">Síndica, Cond. Parque das Águas, pelo WhatsApp</span></div>
+    <div class="lc-modelo-fila__cab p2-cab-cv"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" id="cv-voltar" aria-label="Voltar para as conversas" hidden><i data-i="chevron-esquerda"></i></button><span class="lc-av lc-av--32 lc-av--c4" id="cv-av">MC</span><div class="lc-cresce"><h2 id="cv-nome">Marina Costa</h2><span class="lc-legenda" id="cv-sub">Síndica, Cond. Parque das Águas, pelo WhatsApp</span></div>
       <span class="lc-protocolo"><span>Chamado</span> <b id="cv-prot">4.812</b></span>
       <div class="lc-seg lc-seg--p" role="group" aria-label="Estado do chamado" id="estado"><button type="button" aria-pressed="false">Novo</button><button type="button" aria-pressed="true">Aberto</button><button type="button" aria-pressed="false">Pendente</button><button type="button" aria-pressed="false">Resolvido</button></div></div>
     <div class="lc-conversa" id="conversa" aria-live="polite"></div>
@@ -71,7 +71,7 @@ function lista(){ $("#lista").innerHTML=C.map(function(c,i){ return '<div class=
 function abrir(i){ rasc[at]=$("#msg").value; at=i; var c=C[i]; $("#cv-nome").textContent=c.n; $("#cv-sub").textContent=c.sub+", pelo WhatsApp"; $("#cv-av").textContent=c.av; $("#cv-av").className="lc-av lc-av--32 "+c.c; $("#cv-prot").textContent=c.p;
   $("#conversa").innerHTML='<span class="lc-dia">Hoje</span>'+c.msgs.map(function(m,j){ if(m[0]==="s") return '<div class="lc-msg-sistema"><i data-i="vincular"></i>'+esc(m[1])+'</div>'; if(m[0]==="n") return '<div class="lc-bolha lc-bolha--nota lc-bolha--primeira"><span class="lc-bolha__nota-rotulo"><i data-i="nota-interna"></i>Nota interna, só a equipe vê</span>'+esc(m[1])+'<span class="lc-bolha__meta">'+m[2]+'</span></div>';
     var prim=j===0||c.msgs[j-1][0]!==m[0]; return '<div class="lc-bolha'+(m[0]==="e"?' lc-bolha--enviada':'')+(prim?' lc-bolha--primeira':'')+'">'+esc(m[1])+'<span class="lc-bolha__meta">'+m[2]+(m[0]==="e"?'<span class="lc-tique lc-tique--lida" aria-label="lida"><i data-i="lida"></i></span>':'')+'</span></div>'; }).join("");
-  lcIcones($("#conversa")); $("#conversa").scrollTop=1e5; $("#msg").value=rasc[i]||""; lista(); estado("Aberto"); }
+  lcIcones($("#conversa")); $("#conversa").scrollTop=1e5; if(innerWidth<900 && P.__cvAberto) document.querySelector(".lc-modelo-fila").setAttribute("data-vendo","item"); $("#msg").value=rasc[i]||""; lista(); estado("Aberto"); }
 function estado(e){ $$("#estado button").forEach(function(b){ b.setAttribute("aria-pressed",b.textContent===e); }); }
 function rot(){ $("#enviar").innerHTML=lcIcone("enviar")+ROT[escolha]; }
 function enviar(como){ var t=$("#msg").value.trim(); if(!t){ $("#msg").focus(); return; } var c=C[at];
@@ -92,7 +92,9 @@ $("#msg").addEventListener("keydown",function(e){ if(e.key==="Enter"&&!e.shiftKe
 $("#msg").addEventListener("input",function(){ rasc[at]=$("#msg").value; });
 $$("#comp [data-modo]").forEach(function(b){ b.addEventListener("click",function(){ modo=b.getAttribute("data-modo"); $$("#comp [data-modo]").forEach(function(x){x.setAttribute("aria-pressed",x===b);}); $("#comp").classList.toggle("lc-compositor--nota",modo==="nota"); $("#msg").placeholder=modo==="nota"?"Nota para a equipe. Use @ para chamar alguém.":"Escreva. / abre respostas rápidas."; $("#msg").focus(); }); });
 $$("#estado button").forEach(function(b){ b.addEventListener("click",function(){ var antes=$('#estado [aria-pressed="true"]').textContent; estado(b.textContent); P.toast("Chamado "+C[at].p+" em <b>"+b.textContent+"</b>.",{ic:"seta-direita",acao:"Desfazer",aoAcao:function(){ estado(antes); }}); }); });
-$("#lista").addEventListener("click",function(e){ var x=e.target.closest("[data-i]"); if(x) abrir(+x.getAttribute("data-i")); });
+$("#lista").addEventListener("click",function(e){ var x=e.target.closest("[data-i]"); if(x){ P.__cvAberto=1; abrir(+x.getAttribute("data-i")); } });
+$("#cv-voltar").addEventListener("click",function(){ document.querySelector(".lc-modelo-fila").removeAttribute("data-vendo"); });
+function tamCv(){ $("#cv-voltar").hidden=innerWidth>=900; } addEventListener("resize",tamCv); tamCv();
 $("#lista").addEventListener("keydown",function(e){ var x=e.target.closest("[data-i]"); if(x&&e.key==="Enter") abrir(+x.getAttribute("data-i")); });
 P.atalho("j",function(){ if(at<C.length-1) abrir(at+1); }); P.atalho("k",function(){ if(at>0) abrir(at-1); }); P.atalho("r",function(e){ e.preventDefault(); $("#msg").focus(); });
 P.campos($(".lc-modelo-fila__lado"));

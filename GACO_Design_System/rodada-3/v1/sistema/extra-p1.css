@@ -86,6 +86,9 @@
 /* [15 Filtros] adicionar filtro e "Limpar" no fim dos chips */
 .lc-chips__limpar{font:500 12.5px/1 var(--fonte-ui);color:var(--link);text-decoration:underline;text-underline-offset:2px;padding:4px}
 
+/* [16 Etapas] no celular a barra de etapas ocupa a linha inteira e a ação desce (antes a ação espremia as etapas) */
+@media (max-width:639px){.lc-etapas-cont{flex-direction:column;align-items:stretch;gap:8px}.lc-etapas-cont .lc-etapas{flex:none}}
+
 /* [23 Feed] post fixado no topo do feed: filete do item atual, como a atividade fixada */
 .lc-post--fixado{border-left:var(--borda-marcador) solid var(--atual)}
 

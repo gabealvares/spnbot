@@ -101,6 +101,8 @@
 .lc-etapa small{display:block;font-weight:400;color:var(--texto-2);font-size:12px;line-height:15px}
 .lc-etapa--perdida small{color:var(--perigo-texto)}
 
+@media (max-width:899px){.lc-etapa{min-width:132px}.lc-etapa>button,.lc-etapa>span{height:auto;min-height:44px;padding:6px 6px 6px 2px}.lc-etapas-cont{flex-wrap:wrap}}
+
 /* A12. Paginador do registro dentro da barra da trilha */
 .lc-barra-trilha .lc-paginador{height:32px}
 .lc-barra-trilha .lc-paginador .lc-tecla{margin-left:6px}

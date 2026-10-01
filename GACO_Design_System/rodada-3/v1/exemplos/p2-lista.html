@@ -20,8 +20,10 @@
   .p2-tabela-celular tr{border-bottom:var(--borda-1);padding:10px 4px;position:relative}
   .p2-tabela-celular td{height:auto;border:0;padding:2px 12px}
   .p2-tabela-celular td[data-cel-oculta]{display:none}
-  .p2-tabela-celular td.lc-tabela__sel{position:absolute;right:4px;top:10px;width:auto}
-  .p2-tabela-celular td.lc-tabela__acoes{position:absolute;right:4px;bottom:8px}
+  .p2-tabela-celular td{position:static!important;box-shadow:none!important;background:transparent!important}
+  .p2-tabela-celular td.lc-tabela__sel{position:absolute!important;right:8px;top:10px;width:auto}
+  .p2-tabela-celular td.lc-tabela__acoes{position:absolute!important;right:4px;bottom:8px}
+  .p2-tabela-celular tr[aria-selected="true"]{background:var(--selecao)}
   .p2-tabela-celular td[data-rot]::before{content:attr(data-rot)": ";color:var(--texto-2)}
 }
 </style>

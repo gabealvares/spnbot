@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OS 482</title>
+<meta name="description" content="Ordem de serviço em detalhe: etapas, checklist com fotos, material do estoque, custo, quem paga e aprovação da síndica.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+.od-wrap{margin:-8px calc(-1*var(--grade-margem)) 0}
+.od-pad{padding-left:var(--grade-margem);padding-right:var(--grade-margem)}
+.lc-registro__esq .lc-secao-reg,.lc-registro__dir .lc-assoc{padding-left:16px;padding-right:16px}
+.od-check{list-style:none;margin:0 0 18px;padding:0;border:var(--borda-1);background:var(--sup-1)}
+.od-check li{display:flex;gap:10px;align-items:center;padding:10px 14px;border-top:var(--borda-1);font-size:13.5px}
+.od-check li:first-child{border-top:0}
+.od-check small{display:block;font:var(--t-legenda);color:var(--texto-2)}
+.od-fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+.od-fotos figure{margin:0}
+.od-fotos figcaption{font:var(--t-legenda);color:var(--texto-2);margin-top:4px}
+.od-fotos .lc-foto--desenho{width:100%;margin:0}
+@media (max-width:639px){.od-wrap{margin:-8px -16px 0}.od-fotos{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body data-moldura='{"papel": "operacoes", "usuario": {"nome": "Rogério Alves", "cargo": "Supervisor de Manutenção", "iniciais": "RA", "cor": "lc-av--c8"}, "contadores": {"suporte": 4, "academy": 1}, "modulo": "operacoes", "secao": "Ordens de serviço", "item": "Todas as OS", "trilha": ["Ordens de serviço", "OS 482"], "acaoTrilha": "<span class=\"lc-paginador\" data-total=\"6\" data-nomes=\"OS 483|OS 482|OS 479|OS 477|OS 471|OS 484\"><button class=\"lc-btn lc-btn--icone lc-btn--discreto\" type=\"button\" data-pag=\"ant\" aria-label=\"OS anterior\"><i data-i=\"chevron-esquerda\"></i></button><b>2</b> de 6<button class=\"lc-btn lc-btn--icone lc-btn--discreto\" type=\"button\" data-pag=\"prox\" aria-label=\"Próxima OS\"><i data-i=\"chevron-direita\"></i></button></span>"}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-nota-projeto" open>
+  <summary><b>Nota de projeto</b> Ordem de serviço em detalhe<span class="lc-nota-projeto__serie"><a href="25-operacoes.html">Ordens de serviço</a> <a href="25b-operacoes-os.html" aria-current="page">OS em detalhe</a> <a href="25c-operacoes-preventivas.html">Preventivas</a> <a href="25d-operacoes-equipamentos.html">Equipamentos</a> <a href="25e-operacoes-estoque.html">Estoque</a> <a href="25f-operacoes-fornecedores.html">Fornecedores</a> <a href="25g-operacoes-portaria.html">Portaria</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2><p>A OS é o registro do que foi feito no condomínio: onde, quem, quando, o checklist da execução com fotos de antes e depois, o material que saiu do estoque, o custo e quem paga. Termina com a aprovação da síndica, que fica registrada com carimbo (é estado documental).</p></section>
+    <section><h2>Fluxo</h2><ol><li>Barra de etapas: Aberta, Agendada, Em execução, Concluída, Aprovada. "Concluir" (botão principal) só libera com o checklist completo e a foto do depois.</li><li>O técnico marca o checklist e manda foto pelo celular; aparece aqui na hora.</li><li>Material sai do estoque com baixa automática; custo soma no total.</li><li>Ao concluir, a síndica recebe as fotos pelo WhatsApp e aprova; o chamado de origem é avisado.</li></ol></section>
+    <section><h2>Por que assim</h2><p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o UpKeep e o MaintainX (checklist com foto antes e depois, material e custo na OS), o ServiceNow (etapas da ordem com aprovação) e o Superlógica (cobrança do reparo na unidade responsável) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div><div class="lc-estados-tela" data-estados-para="tela-od">Ver estado:<div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela"><button type="button" aria-pressed="true" data-estado="execucao">Em execução</button><button type="button" aria-pressed="false" data-estado="concluida">Concluída e aprovada</button></div></div>
+</details><div id="tela-od" data-estado="execucao"><div class="od-wrap"><header class="lc-cab-registro od-pad">
+<div class="lc-cab-registro__titulo"><span class="lc-ladrilho lc-ladrilho--48" aria-hidden="true"><i data-i="hidraulica"></i></span><div style="min-width:0"><span class="lc-protocolo"><span>OS</span> 482</span><h1>Vazamento na parede da garagem B</h1></div>
+<div class="lc-cab-registro__acoes"><button class="lc-btn" type="button"><i data-i="calendario"></i>Reagendar</button><span class="lc-ancora-menu"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p " type="button" aria-label="Mais opções da OS" aria-haspopup="menu" aria-expanded="false" data-abre="od-mais"><i data-i="mais-opcoes"></i></button><div class="lc-menu" role="menu" id="od-mais" hidden><button class="lc-menu__item" role="menuitem" type="button"><i data-i="encaminhar"></i>Mandar ao fornecedor</button><button class="lc-menu__item" role="menuitem" type="button"><i data-i="imprimir"></i>Imprimir OS</button><hr class="lc-menu__sep"><button class="lc-menu__item lc-menu__item--perigo" role="menuitem" type="button"><i data-i="cancelado"></i>Cancelar OS</button></div></span><button class="lc-btn lc-btn--principal" type="button" aria-disabled="true" data-dica="Faltam 2 itens do checklist" data-so-estado="execucao"><i data-i="feito"></i>Concluir</button></div></div>
+<div class="lc-cab-registro__meta"><span>Parque das Águas, garagem B</span><span>Hidrotec Encanamentos</span><span>Aberta hoje às 08:51 a partir do chamado 4.812</span></div>
+<div class="lc-etapas-cont" style="padding:6px 0 12px"><ol class="lc-etapas" aria-label="Etapas da OS"><li class="lc-etapa lc-etapa--feita"><span><i data-i="feito"></i>Aberta</span></li><li class="lc-etapa lc-etapa--feita"><span><i data-i="feito"></i>Agendada</span></li><li class="lc-etapa lc-etapa--atual" aria-current="step"><span><span>Em execução<small>desde 11:08</small></span></span></li><li class="lc-etapa"><span>Concluída</span></li><li class="lc-etapa"><span>Aprovada pela síndica</span></li></ol></div></header>
+<div class="lc-registro"><aside class="lc-registro__esq" aria-label="Dados da OS"><section class="lc-secao-reg"><div class="lc-secao-reg__cab"><h3>Onde e o quê</h3><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Editar Onde e o quê"><i data-i="editar"></i></button></div>
+<dl class="lc-props"><dt>Condomínio</dt><dd><a href="22b-cliente.html">Parque das Águas</a></dd><dt>Local</dt><dd>Garagem do bloco B, vagas 31 e 32</dd><dt>Tipo</dt><dd>Corretiva, hidráulica</dd><dt>Prioridade</dt><dd>Alta</dd><dt>Origem</dt><dd><a href="21d-suporte-chamado.html">Chamado 4.812</a>, Marina Costa</dd></dl></section>
+<section class="lc-secao-reg"><div class="lc-secao-reg__cab"><h3>Quem faz</h3></div><dl class="lc-props"><dt>Fornecedor</dt><dd><a href="25f-operacoes-fornecedores.html">Hidrotec Encanamentos</a></dd><dt>Técnico</dt><dd>Edvaldo Souza, (11) 99812-4410</dd><dt>Acompanha</dt><dd>Sônia Lima, zeladora</dd><dt>Responsável Alpha</dt><dd>Rogério Alves</dd></dl></section>
+<section class="lc-secao-reg"><div class="lc-secao-reg__cab"><h3>Quando</h3></div><dl class="lc-props"><dt>Agendada</dt><dd>Hoje, 01/10, 11h</dd><dt>Chegou</dt><dd>11:08, registrado na portaria</dd><dt>Prazo</dt><dd>Concluir até 02/10</dd></dl></section></aside><section class="lc-registro__centro" aria-label="Execução"><div class="lc-titulo-linha"><h2>Checklist da execução</h2><span class="lc-legenda">3 de 5</span></div>
+<ul class="od-check">
+<li><label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>Isolar as vagas 31 e 32<small>Feito por Sônia às 10:02</small></span></label></li>
+<li><label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>Abrir o forro e achar a origem<small>Ralo da área do 1102, cano rachado</small></span></label></li>
+<li><label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>Trocar o trecho do cano<small>1,2 m de PVC 50 mm, do estoque</small></span></label></li>
+<li><label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span><span>Teste de estanqueidade por 2 horas</span></label></li>
+<li><label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span><span>Fechar o forro e fotografar o depois</span></label></li></ul>
+<div class="lc-titulo-linha"><h2>Fotos</h2><button class="lc-btn lc-btn--p" type="button"><i data-i="camera"></i>Acrescentar foto</button></div>
+<div class="od-fotos"><figure><span class="lc-foto--desenho" role="img" aria-label="Antes: mancha de umidade do teto ao piso"><svg viewBox="0 0 280 175" aria-hidden="true"><rect width="280" height="175" style="fill:var(--sup-3)"/><rect y="128" width="280" height="47" style="fill:var(--filete-forte)"/><path d="M118 0c6 30-14 52-4 80s-8 38 6 48h34c10-14-4-30 4-54s-10-46 2-74z" style="fill:var(--texto-3);opacity:.55"/></svg></span><figcaption>Antes</figcaption></figure><figure><span class="lc-foto--desenho" role="img" aria-label="Durante: forro aberto e cano do ralo rachado"><svg viewBox="0 0 280 175" aria-hidden="true"><rect width="280" height="175" style="fill:var(--sup-3)"/><rect y="128" width="280" height="47" style="fill:var(--filete-forte)"/><rect x="60" y="0" width="160" height="50" style="fill:var(--texto-3);opacity:.4"/><path d="M80 30h120" style="stroke:var(--texto-2);stroke-width:8"/><path d="M140 22l6 16" style="stroke:var(--perigo-ponto);stroke-width:3"/></svg></span><figcaption>Durante</figcaption></figure><figure><span class="lc-foto--desenho" role="img" aria-label="Depois: parede seca, forro fechado"><svg viewBox="0 0 280 175" aria-hidden="true"><rect width="280" height="175" style="fill:var(--sup-3)"/><rect y="128" width="280" height="47" style="fill:var(--filete-forte)"/><rect x="0" y="0" width="280" height="128" style="fill:var(--sup-3)"/></svg></span><figcaption>Depois</figcaption></figure></div>
+<div class="lc-titulo-linha"><h2>Material usado</h2><a class="lc-btn lc-btn--link lc-btn--p" href="25e-operacoes-estoque.html">Ver estoque</a></div>
+<div class="lc-tabela-cont"><table class="lc-tabela"><caption class="lc-sr">Material</caption><thead><tr><th scope="col">Item</th><th scope="col" class="lc-num">Qtd.</th><th scope="col">De onde</th><th scope="col" class="lc-num">Custo</th></tr></thead><tbody><tr><td>Cano PVC esgoto 50 mm</td><td class="lc-num">1,2 m</td><td>Almoxarifado central</td><td class="lc-num">R$ 18,60</td></tr><tr><td>Luva de correr 50 mm</td><td class="lc-num">2</td><td>Almoxarifado central</td><td class="lc-num">R$ 14,40</td></tr><tr><td>Placa de forro de gesso</td><td class="lc-num">3</td><td>Comprado pelo fornecedor</td><td class="lc-num">R$ 87,00</td></tr></tbody></table></div></section><aside class="lc-registro__dir" aria-label="Custo e aprovação"><div class="lc-assoc"><div class="lc-assoc__cab"><h3>Custo</h3></div><ul><li><span class="lc-cresce">Mão de obra<small>Hidrotec, visita e reparo</small></span><span class="lc-num">R$ 260,00</span></li><li><span class="lc-cresce">Material</span><span class="lc-num">R$ 120,00</span></li></ul><div class="lc-assoc__total"><span>Total</span><span class="lc-total">R$ 380,00</span></div><p class="lc-legenda" style="margin-top:6px">Quem paga: unidade 1102 (origem no ralo da área privativa). Vai no boleto de novembro, com aviso.</p></div>
+<div class="lc-assoc"><div class="lc-assoc__cab"><h3>Aprovação da síndica</h3></div><p class="lc-pequeno" data-so-estado="execucao">Pedida quando a OS for concluída. Marina recebe as fotos e aprova pelo WhatsApp.</p><span class="lc-carimbo lc-carimbo--aprovado" data-so-estado="concluida" hidden>Aprovado<small>Marina Costa, 02/10/2026 às 09:14</small></span></div>
+<div class="lc-assoc"><div class="lc-assoc__cab"><h3>Histórico</h3></div><ul class="lc-auditoria"><li><span class="lc-av lc-av--24 lc-av--c8" aria-hidden="true">RA</span><span class="lc-auditoria__quem"><b>Rogério Alves</b> abriu a OS</span><span class="lc-auditoria__quando">08:51</span></li><li><span class="lc-av lc-av--24 lc-av--c8" aria-hidden="true">RA</span><span class="lc-auditoria__quem"><b>Rogério Alves</b> mudou quem paga</span><span class="lc-auditoria__quando">11:52</span><dl class="lc-auditoria__mudanca"><dt>Quem paga</dt><dd><del>Condomínio</del> <ins>Unidade 1102</ins></dd></dl></li></ul></div></aside></div></div></div><section class="lc-nota-a11y" aria-labelledby="a11y-tit">
+  <h2 id="a11y-tit">Acessibilidade desta tela</h2>
+  <dl><dt>Ordem de foco</dt><dd>Pular para o conteúdo; trilho; barra do módulo; trilha e anterior/próximo; título; Reagendar, Mais opções, Concluir; etapas; dados; checklist; fotos; material; custo; aprovação; histórico.</dd><dt>O que é anunciado</dt><dd>Concluir desabilitado com o motivo ("Faltam 2 itens do checklist"); checklist como "3 de 5 feitos"; cada foto com descrição; carimbo lido inteiro.</dd><dt>Nome do que é só ícone</dt><dd>OS anterior, Próxima OS, Editar Onde e o quê, Mais opções da OS.</dd></dl>
+</section>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+
+</body>
+</html>
