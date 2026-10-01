@@ -225,14 +225,13 @@
 .lc-uso .lc-progresso{margin:0}
 .lc-uso__n{font-variant-numeric:var(--num);white-space:nowrap;color:var(--texto-2);font-size:12.5px}
 .lc-servicos{list-style:none;margin:0;padding:0}
-.lc-servicos li{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,220px);gap:12px;align-items:center;padding:10px 16px;border-top:var(--borda-1);font-size:13.5px}
+.lc-servicos li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:center;padding:10px 16px;border-top:var(--borda-1);font-size:13.5px}
 .lc-servicos li:first-child{border-top:0}
 .lc-servicos small{display:block;font:var(--t-legenda);color:var(--texto-2)}
 /* 90 dias de disponibilidade: um traço por dia, palavra no rótulo */
-.lc-dias{display:flex;gap:1px;height:24px;align-items:stretch}
+.lc-dias{display:flex;gap:1px;height:20px;align-items:stretch;grid-column:1/-1}
 .lc-dias i{flex:1;background:var(--sucesso-ponto);min-width:1px}
 .lc-dias i.a{background:var(--aviso-ponto)} .lc-dias i.p{background:var(--perigo-ponto)}
-@media (max-width:639px){.lc-servicos li{grid-template-columns:minmax(0,1fr) auto}.lc-servicos .lc-dias{grid-column:1/-1}}
 .lc-modulos-plano{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0 24px}
 .lc-modulos-plano li{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:var(--borda-1);font-size:13.5px}
 .lc-modulos-plano li .lc-interruptor{margin-left:auto}
@@ -321,3 +320,9 @@
 @media (max-width:639px){.lc-email__corpo{padding:20px}.lc-email__topo,.lc-email__rodape{padding-left:20px;padding-right:20px}}
 /* carimbo dentro da folha branca mantém tinta própria */
 .lc-folha-a4 .lc-carimbo,.lc-certificado .lc-carimbo,.lc-email .lc-carimbo{--carimbo-tinta:#1E6B45}
+
+/* ============================== P8 CORREÇÕES PROPOSTAS À FUNDAÇÃO ============================== */
+/* Faixa de contexto no celular: o nome do cliente pode quebrar linha (antes estourava 390 px). */
+@media (max-width:639px){.lc-faixa-contexto{gap:4px 12px}.lc-faixa-contexto__item{white-space:normal}.lc-faixa-contexto__fim{margin-left:0;width:100%}}
+/* modo "só a tela" (?limpo=1): esconde a documentação */
+.lc-limpo .lc-ficha-tela,.lc-limpo .lc-ficha-a11y,.lc-limpo .lc-variacao,.lc-limpo .lc-quadros{display:none!important}

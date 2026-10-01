@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aprovar no celular</title>
+<meta name="description" content="Celular: aprovações de férias e reembolso em lista, com folha inferior aberta mostrando o comprovante e Aprovar ou Recusar.">
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p5.css">
+<script src="../sistema/marca.js"></script>
+<style>
+  .c-corpo{padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px}
+  .c-fundo{position:fixed;inset:0;background:var(--sobreposicao);z-index:45}
+  .lc-folha{z-index:50}
+  .c-comp{border:var(--borda-2);background:var(--sup-2);padding:10px;font-size:12.5px;line-height:18px;display:flex;gap:10px;align-items:center}
+  .c-pe{display:flex;gap:8px;padding:10px 16px 16px;border-top:var(--borda-1)}
+  .c-pe .lc-btn{flex:1;height:48px}
+</style>
+</head>
+<body data-moldura='{"modulo":"cultura","secao":"RH","item":"Fluxos de aprovação","papel":"gerente-cs"}'>
+<main id="conteudo" class="c-corpo">
+  <h1 class="lc-t-pagina">Aprovações</h1>
+  <div class="lc-abas" role="tablist" aria-label="Tipo"><button role="tab" aria-selected="true">Para mim <span class="lc-contagem">3</span></button><button role="tab" aria-selected="false">Decididas</button></div>
+  <ul class="lc-lista lc-caixa">
+    <li><span class="lc-av lc-av--40 lc-av--c7">RL</span><span class="lc-cresce"><b>Reembolso, R$ 186,40</b><span class="lc-lista__sub">Rafael Lima. Uber e estacionamento, visita ao Parque das Águas, 27/09</span></span></li>
+    <li><span class="lc-av lc-av--40 lc-av--c4">JR</span><span class="lc-cresce"><b>Férias, 20/10 a 03/11</b><span class="lc-lista__sub">Juliana Reis. 15 dias, saldo 30. Cobertura: Paula Mendes</span></span></li>
+    <li><span class="lc-av lc-av--40 lc-av--c6">DS</span><span class="lc-cresce"><b>Viagem a Campinas, 14/10</b><span class="lc-lista__sub">Diego Santos. Implantação na Órbita</span></span></li>
+  </ul>
+</main>
+<div class="c-fundo" aria-hidden="true"></div>
+<section class="lc-folha" role="dialog" aria-modal="true" aria-labelledby="f-t">
+  <div class="lc-folha__alca" aria-hidden="true"></div>
+  <div class="lc-folha__cab"><h2 id="f-t">Reembolso de Rafael Lima</h2><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Fechar"><i data-i="fechar"></i></button></div>
+  <div class="lc-folha__corpo" style="padding:0 16px 12px">
+    <p class="lc-boleto__valor" style="font:600 28px/34px var(--fonte-ui)"><small style="font-size:14px;color:var(--texto-2)">R$ </small>186,40</p>
+    <table class="lc-composicao" style="margin:8px 0 12px"><tbody><tr><td>Uber, escritório até o condomínio<small>27/09, 09:12</small></td><td>R$ 38,90</td></tr><tr><td>Uber, volta<small>27/09, 13:40</small></td><td>R$ 41,50</td></tr><tr><td>Estacionamento<small>Parking Vila Nova, 4 h</small></td><td>R$ 106,00</td></tr></tbody></table>
+    <div class="c-comp"><i data-i="recibo"></i><span class="lc-cresce">3 comprovantes anexados<br><span class="lc-legenda">Centro de custo: CS, carteira Letícia</span></span><a class="lc-btn lc-btn--p" href="#">Ver</a></div>
+    <div class="lc-campo" style="margin-top:12px"><label class="lc-rotulo" for="obs">Comentário <span class="lc-opcional">(obrigatório para recusar)</span></label><input id="obs" class="lc-entrada" placeholder="Escreva se for recusar"></div>
+  </div>
+  <div class="c-pe"><button class="lc-btn lc-btn--perigo-contorno" type="button">Recusar</button><button class="lc-btn lc-btn--principal" type="button" data-toast="Reembolso aprovado. Próximo: férias de Juliana." data-toast-acao="Desfazer">Aprovar</button></div>
+</section>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p5-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p5.js"></script>
+</body>
+</html>

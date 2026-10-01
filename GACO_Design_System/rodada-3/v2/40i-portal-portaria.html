@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-contexto="portal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal: Portaria</title>
+<script>window.CM_LINKS={"Início": "40-portal.html", "Chamados": "40b-portal-chamados.html", "Boletos": "40c-portal-boletos.html", "Reservas": "40d-portal-reservas.html", "Assembleias": "40e-portal-assembleias.html", "Comunicados": "40f-portal-comunicados.html", "Documentos": "40f-portal-comunicados.html#documentos", "Minha unidade": "40h-portal-perfil.html", "Moradores e veículos": "40h-portal-perfil.html#moradores", "Meu perfil": "40h-portal-perfil.html", "Encomendas": "40i-portal-portaria.html#encomendas", "Visitantes": "40i-portal-portaria.html"}</script>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q5.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q5.js" defer></script>
+<style>
+
+.portal{max-width:1200px;margin:0 auto;padding:8px 24px 72px}
+.portal-grade{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.portal-estreito{max-width:var(--cm-largura-portal)}
+.portal-cabeca{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;padding:20px 0 14px}
+.portal-cabeca h1{font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em;margin:0}
+.portal-cabeca p{color:var(--cm-texto-2);margin-top:2px}
+.portal-cabeca .cm-empurra{display:flex;gap:8px;flex-wrap:wrap}
+.cm-tabela--simples td:not(.cm-num){white-space:normal}
+.sec-t{font-size:17px;line-height:24px;font-weight:700;margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+.sec-t .cm-link{margin-left:auto;font-size:14px}
+@media (max-width:899px){ .portal-grade{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:599px){ .portal{padding:4px 16px 56px} .portal-cabeca h1{font-size:20px;line-height:26px} .portal-cabeca .cm-empurra{width:100%} }
+
+.port-grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.convite{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:center}
+.codigo-retirada{font-size:36px;line-height:42px;font-weight:750;letter-spacing:.12em;font-variant-numeric:tabular-nums}
+@media (max-width:899px){ .port-grade{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:599px){ .convite{grid-template-columns:minmax(0,1fr)} }
+
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"contexto": "portal", "tela": "Visitantes", "unidade": "Bl B Ap 1204", "sino": 4}'></div>
+<main id="conteudo">
+<div class="portal">
+<details class="cm-anotacao" open>
+<summary><i data-i="informacao"></i>Sobre esta tela: Portaria: visitantes e encomendas</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>O que esta tela resolve</h3><p>Liberar quem chega sem atender o interfone, deixar convite pronto para a visita do fim de semana e saber que encomenda está esperando, com o código para retirar.</p></div>
+<div><h3>Fluxo</h3><ol><li>Quando a portaria chama, o aviso aparece no topo com Recusar e Liberar entrada (também por notificação).</li><li>Autorizar visitante: nome, dia e horário, tipo, carro; "Gerar convite".</li><li>O convite tem QR e código de 4 dígitos; "Enviar pelo WhatsApp" manda para a visita.</li><li>Encomendas: tocar na encomenda abre o código de retirada; X ou Esc fecha.</li></ol></div>
+<div><h3>Resolvemos fazer assim porque</h3><p>o Gatekeeper, o Haus e o próprio TownSq liberam visitante por convite com QR, o Mercado Livre e os Correios usam código curto para retirada, e o iFood avisa com ação direta na notificação. Enviamos para aprovação.</p></div>
+</div></details>
+<div class="cm-alerta cm-alerta--info" role="alert" style="margin-bottom:16px"><i data-i="interfone"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Na portaria agora: Pedro Alves, técnico da Vivo</span><span class="cm-alerta__desc">Diz que vem instalar a internet do Bl B Ap 1204. Sérgio, porteiro, 09:22.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button" data-toast="Entrada recusada. A portaria foi avisada.">Recusar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-toast="Entrada liberada. Sérgio foi avisado.">Liberar entrada</button></span></div>
+<section class="cm-tela" id="visitantes" aria-labelledby="visitantes-t">
+<h2 class="cm-tela__titulo" id="visitantes-t">Visitantes <small>Tela 1 de 2</small></h2>
+<div class="port-grade"><section class="cm-cartao" data-cena="visitante"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Autorizar visitante</h2></header><div class="cm-cartao__corpo cm-pilha cm-pilha--6">
+<div class="cm-campo"><label class="cm-campo__rotulo" for="v-n">Nome</label><div class="cm-entrada"><input id="v-n" value="Cláudia Ribeiro"></div></div>
+<div class="cm-campo"><label class="cm-campo__rotulo" for="v-q">Quando</label><div class="cm-periodo"><div class="cm-entrada"><i data-i="calendario"></i><input id="v-q" value="sábado, 03/10"></div><span class="cm-periodo__ate">das</span><div class="cm-entrada"><input aria-label="Hora de início" value="14:00"></div><span class="cm-periodo__ate">às</span><div class="cm-entrada"><input aria-label="Hora de fim" value="20:00"></div></div></div>
+<fieldset class="cm-grupo-opcoes cm-grupo-opcoes--linha"><legend>Tipo</legend><label class="cm-radio"><input type="radio" name="vt" checked><span class="cm-radio__bola"></span><span>Visita</span></label><label class="cm-radio"><input type="radio" name="vt"><span class="cm-radio__bola"></span><span>Prestador</span></label><label class="cm-radio"><input type="radio" name="vt"><span class="cm-radio__bola"></span><span>Entrega</span></label></fieldset>
+<label class="cm-interruptor cm-interruptor--toque"><input type="checkbox" role="switch"><span class="cm-interruptor__trilho"></span><span>Vem de carro (usa vaga de visitante)</span></label>
+<button class="cm-botao cm-botao--principal cm-botao--portal" type="button" id="gerar">Gerar convite</button></div></section>
+<section class="cm-cartao" id="convite"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Convite pronto</h2><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Válido</span></header><div class="cm-cartao__corpo convite"><span class="cm-qr" data-semente="convite-claudia" data-rotulo="QR do convite de Cláudia Ribeiro" style="width:150px;height:150px"></span>
+<div class="cm-pilha"><p><b>Cláudia Ribeiro</b><br>Sábado, 03/10, das 14h às 20h</p><p class="cm-t-legenda">Ela mostra o QR ou diz o código <b>4 8 1 7</b> na portaria. A portaria vê o nome e libera sem interfonar.</p>
+<button class="cm-botao" type="button" data-toast="Abrindo o WhatsApp para enviar o convite." data-toast-tipo="info"><i data-i="whatsapp"></i>Enviar pelo WhatsApp</button><button class="cm-botao cm-botao--link" type="button" data-toast="Convite cancelado." data-toast-acao="Desfazer">Cancelar convite</button></div></div></section></div>
+<h3 class="sec-t">Autorizações ativas</h3><div class="cm-lista-linhas"><div class="cm-linha-lista"><span class="cm-ladrilho"><i data-i="prestador"></i></span><span><span class="cm-linha-lista__titulo">Rosa Silva, empregada doméstica</span><span class="cm-linha-lista__sub">Terça a sexta, 8h às 17h, até cancelar</span></span><span class="cm-linha-lista__meta">Entrou hoje 07:56</span><span></span></div><div class="cm-linha-lista"><span class="cm-ladrilho"><i data-i="visitante"></i></span><span><span class="cm-linha-lista__titulo">Cláudia Ribeiro</span><span class="cm-linha-lista__sub">Sábado, 03/10, das 14h às 20h</span></span><span class="cm-linha-lista__meta">Ainda não usou</span><span></span></div></div>
+</section>
+<section class="cm-tela" id="encomendas" aria-labelledby="en-t"><h2 class="cm-tela__titulo" id="en-t">Encomendas <small>Tela 2 de 2</small></h2><div class="port-grade"><div class="cm-lista-linhas">
+<div class="cm-linha-lista__grupo">Aguardando retirada</div>
+<button class="cm-linha-lista" type="button" data-abrir="retirada" data-cena="retirada"><span class="cm-ladrilho"><i data-i="encomenda"></i></span><span><span class="cm-linha-lista__titulo">Caixa média, Correios</span><span class="cm-linha-lista__sub">Chegou ontem, 18:40. Recebida por Sérgio. Prateleira B3.</span></span><span class="cm-linha-lista__meta"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Na portaria</span></span><i data-i="chevron-direita"></i></button>
+<div class="cm-linha-lista__grupo">Retiradas</div>
+<div class="cm-linha-lista"><span class="cm-ladrilho"><i data-i="encomenda"></i></span><span><span class="cm-linha-lista__titulo">Envelope, Banco do Brasil</span><span class="cm-linha-lista__sub">Retirado por Paulo Costa em 28/09, 19:12</span></span><span class="cm-linha-lista__meta"><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Retirada</span></span><span></span></div>
+<div class="cm-linha-lista"><span class="cm-ladrilho"><i data-i="encomenda"></i></span><span><span class="cm-linha-lista__titulo">Sacola, farmácia</span><span class="cm-linha-lista__sub">Entregue na porta pelo zelador em 25/09, 11:30, com sua autorização</span></span><span class="cm-linha-lista__meta"><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Entregue</span></span><span></span></div></div>
+<div class="cm-sobreposicao" id="retirada" data-janela hidden><div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="rt-t"><div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="rt-t">Código de retirada<span class="cm-modal__sub">Caixa média, Correios, prateleira B3</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+<div class="cm-modal__corpo cm-pilha" style="align-items:center;text-align:center"><span class="cm-qr" data-semente="retirada-b3" data-rotulo="QR de retirada da encomenda"></span><p class="codigo-retirada" aria-label="Código 7 2 9 0 4 1">729 041</p><p class="cm-t-legenda">Mostre na portaria. Quem retira assina no tablet do porteiro; você recebe o aviso no WhatsApp.</p></div>
+<div class="cm-modal__pe"><button class="cm-botao" type="button" data-fechar data-toast="Paulo Costa pode retirar esta encomenda.">Outra pessoa vai retirar</button></div></div></div></div></section>
+<details class="cm-anotacao cm-anotacao--a11y">
+<summary><i data-i="teclado"></i>Acessibilidade desta tela</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>Ordem de foco</h3><ol><li>Aviso da portaria e suas ações (o aviso é role=alert)</li><li>Formulário do convite, Gerar convite</li><li>Convite: Enviar pelo WhatsApp, Cancelar convite</li><li>Encomendas</li></ol></div>
+<div><h3>O que é anunciado</h3><ul><li>"Na portaria agora: Pedro Alves" é lido assim que chega</li><li>Código de retirada lido dígito a dígito</li></ul></div>
+<div><h3>Nome do que é só ícone</h3><ul><li>X do modal: "Fechar"</li></ul></div>
+</div></details>
+</div>
+</main>
+<script>document.getElementById('gerar').addEventListener('click',function(){q5Toast('Convite gerado para Cláudia Ribeiro.','sucesso');document.getElementById('convite').scrollIntoView({block:'nearest'})});</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversas</title>
+<script src="../sistema/marca.js"></script>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-q2.css">
+<script src="../sistema/icones.js"></script>
+<script src="links.js"></script>
+<script src="../sistema/moldura.js" defer></script>
+<script src="../sistema/extra-q2.js" defer></script>
+<style>
+.co-item{display:grid;grid-template-columns:32px 1fr auto;gap:2px 10px;padding:9px 12px;border-bottom:1px solid var(--cm-filete);cursor:pointer}
+.co-item:hover{background:var(--cm-camada-2)}
+.co-item.is-atual{background:var(--cm-selecao);box-shadow:inset 3px 0 0 var(--cm-selecao-filete)}
+.co-item b{font-weight:650;font-size:13px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.co-item p{grid-column:2/4;margin:0;font-size:12.5px;color:var(--cm-texto-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.co-item time{font-size:12px;color:var(--cm-texto-3)}
+.co-item .co-sla{grid-column:2/4}
+.co-meio{flex:1;min-width:0;display:flex;flex-direction:column;background:var(--cm-conversa-fundo)}
+.co-faixa{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 16px;border-bottom:1px solid var(--cm-filete);background:var(--cm-camada-1)}
+.co-faixa h1{font-size:15px;font-weight:700;margin:0}
+.co-meio .cm-conversa{flex:1;min-height:0}
+@media (max-width:1279px){.cm-coluna--ficha{display:none}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Suporte","tela":"Conversas","papel":"Atendimento","atalhos":true}'></div>
+<main id="conteudo" class="cm-app">
+  <section class="cm-coluna cm-coluna--fila" aria-labelledby="co-ft">
+    <header class="cm-coluna__cabeca"><h2 class="cm-coluna__titulo" id="co-ft">Minhas <span class="cm-contador cm-contador--novo">7</span></h2><div class="cm-selecao"><select aria-label="Ordenar"><option>SLA mais curto</option><option>Mais antiga</option></select><i data-i="chevron-baixo"></i></div></header>
+    <div class="cm-visoes" role="tablist" aria-label="Filas" style="padding:0 6px"><button role="tab" type="button" aria-selected="true">Minhas</button><button role="tab" type="button" aria-selected="false">Sem dono <span class="cm-contador">3</span></button><button role="tab" type="button" aria-selected="false">Aguardando</button><button role="tab" type="button" aria-selected="false">Todas</button></div>
+    <div class="cm-coluna__corpo" id="co-fila" data-q2-lista data-q2-sem-link>
+      <div class="co-item is-atual" data-q2-item data-c="0"><span class="cm-avatar cm-avatar--m">MC</span><b>Marina Costa</b><time>09:12</time><p>Tem água vazando do teto da garagem.</p><span class="co-sla"><span class="cm-estado cm-estado--ponto cm-estado--aviso">Responder em 6 min</span></span></div>
+      <div class="co-item" data-q2-item data-c="1"><span class="cm-avatar cm-avatar--m cm-avatar--4">OF</span><b>Osvaldo Freitas</b><time>09:20</time><p>Preciso da 2ª via do boleto de outubro, Bl A 302</p><span class="co-sla"><span class="cm-estado cm-estado--ponto cm-estado--info">Responder em 18 min</span></span></div>
+      <div class="co-item" data-q2-item data-c="2"><span class="cm-avatar cm-avatar--m cm-avatar--5">LA</span><b>Letícia Araújo</b><time>09:31</time><p>O salão está livre no sábado dia 11?</p><span class="co-sla"><span class="cm-estado cm-estado--ponto cm-estado--info">Responder em 29 min</span></span></div>
+      <div class="co-item" data-q2-item data-c="3"><span class="cm-avatar cm-avatar--m cm-avatar--2">JS</span><b>Jorge Siqueira</b><time>08:58</time><p>Áudio, 0:42</p><span class="co-sla"><span class="cm-estado cm-estado--ponto cm-estado--neutro">Aguardando você desde 08:58</span></span></div>
+      <div class="co-item" data-q2-item data-c="4"><span class="cm-avatar cm-avatar--m cm-avatar--3">TP</span><b>Tânia Pires</b><time>ontem</time><p>Obrigada, deu certo!</p><span class="co-sla"><span class="cm-estado cm-estado--ponto cm-estado--sucesso">Pode resolver</span></span></div>
+    </div>
+  </section>
+
+  <section class="co-meio" aria-labelledby="co-nome">
+    <div class="co-faixa">
+      <span class="cm-avatar cm-avatar--m">MC</span>
+      <div class="cm-cresce"><h1 id="co-nome">Marina Costa</h1><span class="cm-t-legenda">Síndica, Cond. Parque das Águas, pelo WhatsApp</span></div>
+      <button class="cm-estado cm-estado--caixa cm-estado--info" type="button"><i data-i="pendente"></i>Aberto</button>
+      <button class="cm-botao cm-botao--p" type="button" data-q2-modal="modal-transferir" data-q2-tecla="t"><i data-i="encaminhar"></i>Passar</button>
+      <button class="cm-botao cm-botao--p" type="button" id="co-resolver" data-q2-tecla="e"><i data-i="sucesso"></i>Resolver</button>
+    </div>
+    <div class="cm-conversa" role="log" aria-label="Conversa com Marina Costa" id="co-conv">
+      <span class="cm-dia">Hoje</span>
+      <div class="cm-bolha cm-bolha--entrada">Bom dia! Tem água vazando do teto da garagem, em cima da vaga 37. <span class="cm-bolha__meta">09:12</span></div>
+      <div class="cm-bolha cm-bolha--entrada">Já molhou o carro do 1204. <span class="cm-bolha__meta">09:13</span></div>
+      <div class="cm-evento"><i data-i="fone-atendimento"></i>Beatriz assumiu a conversa, 09:16</div>
+      <div class="cm-bolha cm-bolha--saida">Bom dia, Marina. Já estou acionando a manutenção e peço para interditar as vagas 37 e 38. <span class="cm-bolha__meta">09:17<i data-i="lida" class="cm-tique--lida" data-rotulo="Lida"></i></span></div>
+      <div class="cm-nota"><div class="cm-nota__cabeca"><i data-i="nota-interna"></i>Nota interna de Diego Martins <span>só a equipe vê, 09:24</span></div>OS 483 aberta com a Hidrotec. Chegam às 10:00.</div>
+      <div class="cm-cartao-vinculo"><i data-i="ordem-de-servico"></i>Vinculado à <span class="cm-plaqueta">OS 483</span></div>
+    </div>
+    <div class="cm-compositor" id="co-comp">
+      <div class="cm-abas" role="tablist" aria-label="Tipo de mensagem"><button role="tab" type="button" aria-selected="true" id="co-aba-r"><i data-i="responder"></i>Resposta</button><button role="tab" type="button" aria-selected="false" id="co-aba-n"><i data-i="nota-interna"></i>Nota interna</button><span class="cm-compositor__dica"><kbd class="cm-tecla">/</kbd>respostas rápidas</span></div>
+      <div class="cm-compositor__caixa"><textarea aria-label="Mensagem para Marina Costa" id="co-txt">A Hidrotec chega às 10:00 e as vagas 37 e 38 já estão interditadas. Te aviso aqui quando terminarem.</textarea></div>
+      <div class="cm-compositor__barra">
+        <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Anexar"><i data-i="anexar"></i></button>
+        <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Gravar áudio"><i data-i="microfone"></i></button>
+        <span class="cm-cresce cm-t-legenda" id="co-depois">Depois de enviar: aguardar a cliente</span>
+        <div class="cm-dividido cm-ancora">
+          <button class="cm-botao cm-botao--principal" type="button" id="co-enviar">Enviar <span class="cm-dividido__lembra" id="co-lembra">e aguardar</span></button>
+          <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de enviar" data-q2-abre="menu-enviar"><i data-i="chevron-baixo"></i></button>
+          <div class="cm-menu cm-flutuante cm-flutuante--cima" role="menu" id="menu-enviar" hidden style="width:330px">
+            <div class="cm-menu__titulo">Enviar e depois</div>
+            <button class="cm-menu__item" role="menuitemradio" type="button" data-envio="manter" aria-checked="false"><i data-i="conversa"></i><span>Enviar e manter aberta<span class="cm-menu__desc">Continua com você, o SLA segue contando</span></span><span class="cm-menu__atalho"></span></button>
+            <button class="cm-menu__item" role="menuitemradio" type="button" data-envio="aguardar" aria-checked="true"><i data-i="pausado"></i><span>Enviar e aguardar a cliente<span class="cm-menu__desc">Estado vai para Aguardando; o SLA pausa</span></span><span class="cm-menu__atalho">Ctrl Enter</span></button>
+            <button class="cm-menu__item" role="menuitemradio" type="button" data-envio="resolver" aria-checked="false"><i data-i="sucesso"></i><span>Enviar e resolver<span class="cm-menu__desc">Reabre sozinha se ela responder em 7 dias</span></span><span class="cm-menu__atalho"></span></button>
+            <button class="cm-menu__item" role="menuitemradio" type="button" data-envio="proxima" aria-checked="false"><i data-i="proximo"></i><span>Enviar, resolver e abrir a próxima<span class="cm-menu__desc">Osvaldo Freitas, 2ª via do boleto</span></span><span class="cm-menu__atalho"></span></button>
+            <div class="cm-menu__sep"></div>
+            <label class="cm-marcar" style="padding:6px 12px" data-q2-fica><input type="checkbox" checked id="co-lembrar"><span class="cm-marcar__caixa"></span><span>Lembrar a escolha para as próximas</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="cm-coluna cm-coluna--ficha" aria-labelledby="co-ficha-t">
+    <header class="cm-coluna__cabeca"><h2 class="cm-coluna__titulo" id="co-ficha-t">Chamado</h2><span class="cm-plaqueta">#48213</span></header>
+    <div class="cm-abas cm-abas--p" role="tablist" data-q2-abas style="padding:0 10px">
+      <button role="tab" type="button" aria-selected="true" aria-controls="cf-1">Chamado</button><button role="tab" type="button" aria-selected="false" aria-controls="cf-2" tabindex="-1">Pessoa</button><button role="tab" type="button" aria-selected="false" aria-controls="cf-3" tabindex="-1">Boletos <span class="cm-contador">1</span></button>
+    </div>
+    <div class="cm-coluna__corpo">
+      <div id="cf-1" class="cm-secao">
+        <dl class="cm-ficha">
+          <div class="cm-ficha__linha" data-q2-campo data-q2-campo-acao data-opcoes="Manutenção|Barulho|Boleto|Reserva"><dt>Tipo</dt><dd>Manutenção</dd><button class="cm-ficha__lapis" type="button" aria-label="Mudar tipo"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-q2-campo data-q2-campo-acao data-opcoes="Baixa|Normal|Alta|Urgente"><dt>Prioridade</dt><dd>Alta</dd><button class="cm-ficha__lapis" type="button" aria-label="Mudar prioridade"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-q2-campo data-q2-campo-acao data-opcoes="Beatriz Nogueira|Juliana Prado|Diego Martins"><dt>Responsável</dt><dd>Beatriz Nogueira</dd><button class="cm-ficha__lapis" type="button" aria-label="Trocar responsável"><i data-i="atribuir"></i></button></div>
+          <div class="cm-ficha__linha is-leitura"><dt>Fila</dt><dd>Suporte, condomínios PR</dd><span></span></div>
+          <div class="cm-ficha__linha is-leitura"><dt>Local</dt><dd>Subsolo 1, vaga 37</dd><span></span></div>
+        </dl>
+      </div>
+      <div id="cf-2" class="cm-secao" hidden><div class="cm-pessoa"><span class="cm-avatar cm-avatar--m">MC</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Marina Costa</span><span class="cm-pessoa__sub">Síndica desde 2023, Bl B Ap 1204</span></span></div></div>
+      <div id="cf-3" class="cm-secao" hidden><p class="cm-t-corpo-p">Outubro, R$ 1.284,90, vence 10/10.</p><button class="cm-botao cm-botao--p" type="button">Anexar 2ª via na resposta</button></div>
+      <div class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Histórico</h3></div>
+        <ol class="cm-auditoria"><li><time>09:24</time><b>Diego</b> vinculou a OS 483</li><li><time>09:16</time><b>Beatriz</b> assumiu</li><li class="is-criacao"><time>09:12</time>Aberto pelo WhatsApp</li></ol></div>
+    </div>
+  </aside>
+</main>
+
+<!-- transferir para outra fila -->
+<div class="cm-sobreposicao" id="modal-transferir" hidden>
+  <div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="mt-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mt-t">Passar a conversa<span class="cm-modal__sub">Marina Costa, chamado 48213</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-q2-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo cm-pilha">
+      <fieldset class="cm-grupo-opcoes"><legend class="cm-campo__rotulo">Para</legend>
+        <label class="cm-radio"><input type="radio" name="mt" checked><span class="cm-radio__bola"></span><span>Fila Manutenção, Operações<span class="cm-marcar__desc">2 pessoas disponíveis, primeira resposta em 12 min</span></span></label>
+        <label class="cm-radio"><input type="radio" name="mt"><span class="cm-radio__bola"></span><span>Fila Financeiro<span class="cm-marcar__desc">1 disponível</span></span></label>
+        <label class="cm-radio"><input type="radio" name="mt"><span class="cm-radio__bola"></span><span>Uma pessoa: Juliana Prado<span class="cm-marcar__desc">Disponível, 3 conversas</span></span></label>
+      </fieldset>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="mt-n">Nota para quem recebe <span class="cm-campo__opcional">opcional</span></label><textarea class="cm-area" id="mt-n" rows="3">OS 483 já aberta, Hidrotec chega às 10:00. Falta confirmar com a síndica o laudo.</textarea></div>
+      <label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Avisar a Marina que outra equipe vai continuar<span class="cm-marcar__desc">Mensagem pronta: “Passei para a equipe de manutenção, que segue com você por aqui.”</span></span></label>
+    </div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-q2-fechar data-q2-toast="Conversa passada para a fila Manutenção. O SLA segue com o tempo que já correu.|sucesso|Desfazer">Passar</button></div>
+  </div>
+</div>
+<script>
+(function(){
+  var NOMES=['Marina Costa','Osvaldo Freitas','Letícia Araújo','Jorge Siqueira','Tânia Pires'];
+  var R={manter:'e manter',aguardar:'e aguardar',resolver:'e resolver',proxima:'e próxima'};
+  var D={manter:'Depois de enviar: continua com você',aguardar:'Depois de enviar: aguardar a cliente',resolver:'Depois de enviar: resolver',proxima:'Depois de enviar: resolver e abrir a próxima'};
+  var op='aguardar';try{op=localStorage.getItem('cm-v2-enviar')||'aguardar'}catch(e){}
+  function rotulo(){document.getElementById('co-lembra').textContent=R[op];document.getElementById('co-depois').textContent=D[op];document.querySelectorAll('[data-envio]').forEach(function(b){b.setAttribute('aria-checked',b.getAttribute('data-envio')===op)})}
+  function enviar(o){o=o||op;var t=document.getElementById('co-txt');if(!t.value.trim()){cmQ2.toast('Escreva a mensagem antes de enviar.','aviso');t.focus();return}
+    var nota=document.getElementById('co-comp').classList.contains('is-nota');var conv=document.getElementById('co-conv');var b=document.createElement('div');
+    if(nota){b.className='cm-nota';b.innerHTML='<div class="cm-nota__cabeca">'+cmIcone('nota-interna')+'Nota interna de Beatriz Nogueira <span>só a equipe vê, agora</span></div>'+t.value.replace(/</g,'&lt;')}
+    else{b.className='cm-bolha cm-bolha--saida';b.innerHTML=t.value.replace(/</g,'&lt;')+' <span class="cm-bolha__meta">agora'+cmIcone('marcar')+'</span>'}
+    conv.appendChild(b);conv.scrollTop=conv.scrollHeight;t.value='';
+    if(nota){cmQ2.toast('Nota publicada. Só a equipe vê.','sucesso');return}
+    if(o==='manter') cmQ2.toast('Enviada. A conversa continua aberta com você.','sucesso');
+    if(o==='aguardar') cmQ2.toast('Enviada. Aguardando a cliente, SLA pausado.','sucesso','Desfazer');
+    if(o==='resolver') cmQ2.toast('Enviada e resolvida. Reabre se ela responder.','sucesso','Desfazer');
+    if(o==='proxima'){cmQ2.toast('Enviada e resolvida. Abrindo Osvaldo Freitas.','sucesso','Desfazer');cmQ2.lista.ir(cmQ2.lista.i+1,true)}
+  }
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-envio]');if(!b) return;var o=b.getAttribute('data-envio');if(document.getElementById('co-lembrar').checked){op=o;try{localStorage.setItem('cm-v2-enviar',o)}catch(x){}rotulo()}enviar(o)});
+  document.getElementById('co-enviar').addEventListener('click',function(){enviar()});
+  document.getElementById('co-resolver').addEventListener('click',function(){cmQ2.toast('Conversa com '+document.getElementById('co-nome').textContent+' resolvida.','sucesso','Desfazer')});
+  document.getElementById('co-txt').addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();enviar()} if(e.key==='Escape'){e.preventDefault();this.blur();cmQ2.lista.ir(cmQ2.lista.i,true)}});
+  function aba(nota){document.getElementById('co-comp').classList.toggle('is-nota',nota);document.getElementById('co-aba-r').setAttribute('aria-selected',!nota);document.getElementById('co-aba-n').setAttribute('aria-selected',nota);document.getElementById('co-txt').focus()}
+  document.getElementById('co-aba-r').onclick=function(){aba(false)};document.getElementById('co-aba-n').onclick=function(){aba(true)};
+  document.addEventListener('keydown',function(e){if(cmQ2.digitando(e)||e.ctrlKey||e.metaKey||e.altKey||document.querySelector('.cm-sobreposicao:not([hidden])')) return;
+    if(e.key==='r'||e.key==='R'){e.preventDefault();aba(false)} if(e.key==='n'||e.key==='N'){e.preventDefault();aba(true)}});
+  document.getElementById('co-fila').addEventListener('q2:atual',function(e){var i=+e.detail.item.getAttribute('data-c');document.getElementById('co-nome').textContent=NOMES[i]});
+  rotulo();
+})();
+</script>
+</body>
+</html>

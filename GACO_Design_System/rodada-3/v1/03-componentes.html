@@ -14,7 +14,8 @@
 <style>
 /* layout só desta página */
 .p1-linha-ex{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.p1-col{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.p1-col{display:flex;flex-direction:column;gap:12px;align-items:flex-start;max-width:100%}
+.p1-col>*{max-width:100%}
 .p1-conversa{height:560px;display:flex;flex-direction:column;border:var(--borda-1)}
 .p1-conversa .lc-conversa{flex:1}
 .p1-palco-painel{height:520px;position:relative;overflow:hidden;background:var(--fundo);border:var(--borda-1)}
@@ -49,7 +50,7 @@
 </header>
 
 <!-- ============================ AÇÕES ============================ -->
-<section class="lc-doc-sec" id="botao" data-familia="Ações">
+<section class="lc-doc-secao" id="botao" data-familia="Ações">
   <h2>Botão</h2>
   <p>Ação que acontece agora, na mesma tela. Sete variantes, três tamanhos, seis estados. O principal é a única peça de interface que leva a cor do cliente, e aparece uma vez por tela.</p>
   <div class="lc-doc-ficha">
@@ -84,7 +85,7 @@
   </div>
 </section>
 
-<section class="lc-doc-sec" id="dividido" data-familia="Ações">
+<section class="lc-doc-secao" id="dividido" data-familia="Ações">
   <h2>Botão dividido</h2>
   <p>"Salvar ▾" e "Enviar ▾": a ação mais comum fica no corpo do botão; as variações que mudam o que acontece depois ficam na seta. Cada opção do menu diz o efeito.</p>
   <div class="lc-doc-ficha">
@@ -123,7 +124,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="segmentado" data-familia="Ações">
+<section class="lc-doc-secao" id="segmentado" data-familia="Ações">
   <h2>Segmentado</h2>
   <p>Escolha única entre 2 a 5 opções curtas que trocam o que a tela mostra ou o estado de um registro. Todas as opções ficam à vista.</p>
   <div class="lc-doc-ficha">
@@ -144,7 +145,7 @@
 </section>
 
 <!-- ============================ RÓTULOS E IDENTIDADE ============================ -->
-<section class="lc-doc-sec" id="estado" data-familia="Rótulos e identidade">
+<section class="lc-doc-secao" id="estado" data-familia="Rótulos e identidade">
   <h2>Estado, chip, prioridade e saúde</h2>
   <p>Estado é o que o sistema sabe sobre o registro: pago, vencido, esfriando. Sempre ponto + palavra; a cor confirma, nunca informa sozinha. Seis tons fixos que o white label não toca.</p>
   <div class="lc-doc-ficha">
@@ -154,7 +155,7 @@
     <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Particípio ou adjetivo: "Pago", "Vencido há 12 dias", "Esfriando".</li><li>Prazo vem junto quando muda a ação: "Vence hoje".</li><li>Primeira letra maiúscula, o resto minúsculo.</li></ul></div>
     <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>O ponto é decorativo; a palavra é o conteúdo.</li><li>Prioridade em barras leva <code>aria-label="Prioridade alta"</code>.</li><li>Saúde lê "Saúde 62, atenção, caindo".</li></ul></div>
   </div>
-  <template data-ex="Seis tons, quatro formas">
+  <template data-ex="Seis tons, quatro formas" data-rola>
     <table class="lc-doc-matriz"><thead><tr><th scope="col">Tom</th><th scope="col">Ponto</th><th scope="col">Vazado</th><th scope="col">Chip</th><th scope="col">Forte</th></tr></thead><tbody>
       <tr><th scope="row">sucesso</th><td><span class="lc-estado lc-estado--sucesso">Pago</span></td><td><span class="lc-estado lc-estado--sucesso lc-estado--vazado">Agendado</span></td><td><span class="lc-estado lc-estado--sucesso lc-estado--caixa">Resolvido</span></td><td><span class="lc-estado lc-estado--sucesso lc-estado--forte">Ativo</span></td></tr>
       <tr><th scope="row">aviso</th><td><span class="lc-estado lc-estado--aviso">Vence hoje</span></td><td><span class="lc-estado lc-estado--aviso lc-estado--vazado">Sem contato</span></td><td><span class="lc-estado lc-estado--aviso lc-estado--caixa">Esfriando</span></td><td><span class="lc-estado lc-estado--aviso lc-estado--forte">Atenção</span></td></tr>
@@ -197,7 +198,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="etiqueta" data-familia="Rótulos e identidade">
+<section class="lc-doc-secao" id="etiqueta" data-familia="Rótulos e identidade">
   <h2>Etiqueta</h2>
   <p>Categoria que o cliente cria e nomeia, no desenho das etiquetas do WhatsApp Business. Oito cores próprias, sem relação com estado, para que "Vermelho" nunca pareça erro.</p>
   <div class="lc-doc-ficha">
@@ -222,7 +223,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="contador" data-familia="Rótulos e identidade">
+<section class="lc-doc-secao" id="contador" data-familia="Rótulos e identidade">
   <h2>Contador e contagem</h2>
   <p>Contador é o quadrado com número que pede atenção (não lidos, pendências). Contagem é o número em texto cinza ao lado de um nome ("Chamados 12"), que só informa.</p>
   <div class="lc-doc-ficha">
@@ -239,7 +240,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="avatar" data-familia="Rótulos e identidade">
+<section class="lc-doc-secao" id="avatar" data-familia="Rótulos e identidade">
   <h2>Avatar e presença</h2>
   <p>Pessoa é a única forma redonda do sistema. Foto quando houver; sem foto, iniciais numa de oito cores escolhidas pelo nome (a mesma pessoa tem sempre a mesma cor). Presença é ponto + frase escrita.</p>
   <div class="lc-doc-ficha">
@@ -266,7 +267,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="ladrilho" data-familia="Rótulos e identidade">
+<section class="lc-doc-secao" id="ladrilho" data-familia="Rótulos e identidade">
   <h2>Ladrilho e protocolo</h2>
   <p>Ladrilho é a identidade quadrada de empresa, condomínio e objeto: ícone ou logo, nunca iniciais redondas. Protocolo é o número que a pessoa cita ao telefone, com botão de copiar.</p>
   <div class="lc-doc-ficha">
@@ -284,7 +285,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="carimbo" data-familia="Rótulos e identidade">
+<section class="lc-doc-secao" id="carimbo" data-familia="Rótulos e identidade">
   <h2>Carimbo</h2>
   <p>A assinatura da V1: filete duplo e serifa para estado documental, aquele que vira registro com quem e quando. Aparece no boleto pago, na ata aprovada, na ciência do comunicado.</p>
   <div class="lc-doc-ficha">
@@ -312,7 +313,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="dupla-sublinha" data-familia="Rótulos e identidade">
+<section class="lc-doc-secao" id="dupla-sublinha" data-familia="Rótulos e identidade">
   <h2>Dupla sublinha</h2>
   <p>O sinal do contador: duas linhas sob o valor que fecha a conta. Só em total consolidado (total, saldo, total do contrato). Subtotal leva uma linha. Valor negativo leva "−" além da cor.</p>
   <div class="lc-doc-ficha">
@@ -331,7 +332,7 @@
 </section>
 
 <!-- ============================ SUPERFÍCIES ============================ -->
-<section class="lc-doc-sec" id="cartao" data-familia="Superfícies">
+<section class="lc-doc-secao" id="cartao" data-familia="Superfícies">
   <h2>Cartão (caixa) e lista</h2>
   <p>Caixa é uma região que se lê junta: cabeçalho, corpo e pé, separados por filete. A hierarquia vem do filete e do espaço, não de sombra. Quatro variantes e o estado clicável e selecionado.</p>
   <div class="lc-doc-ficha">
@@ -365,7 +366,7 @@
 </section>
 
 <!-- ============================ NAVEGAÇÃO ============================ -->
-<section class="lc-doc-sec" id="abas" data-familia="Navegação">
+<section class="lc-doc-secao" id="abas" data-familia="Navegação">
   <h2>Abas</h2>
   <p>Partes de um mesmo registro ou de uma mesma lista, com contagem quando ajuda. A aba atual ganha peso e marcador inferior em carbono; nunca a cor do cliente (essa só no portal).</p>
   <div class="lc-doc-ficha">
@@ -395,7 +396,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="trilha" data-familia="Navegação">
+<section class="lc-doc-secao" id="trilha" data-familia="Navegação">
   <h2>Trilha e paginador</h2>
   <p>A trilha diz onde a pessoa está e leva de volta; o paginador "14 de 63" anda entre os registros da lista de onde ela veio, sem voltar à lista. A lista lembra filtro e posição.</p>
   <div class="lc-doc-ficha">
@@ -412,7 +413,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="etapas" data-familia="Navegação">
+<section class="lc-doc-secao" id="etapas" data-familia="Navegação">
   <h2>Barra de etapas e passos</h2>
   <p>A barra de etapas é o caminho do registro (Salesforce Path em segmentos retos): mostra onde está, há quanto tempo, e se clica para mudar. Passos são a sequência de um formulário longo, numerada.</p>
   <div class="lc-doc-ficha">
@@ -445,7 +446,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="paginacao" data-familia="Navegação">
+<section class="lc-doc-secao" id="paginacao" data-familia="Navegação">
   <h2>Paginação</h2>
   <p>Para lista longa de trabalho (boletos, unidades). Mostra a faixa atual, quantos por página e as páginas, com reticências. No feed e no celular, use "Carregar mais" (página 05).</p>
   <div class="lc-doc-ficha">
@@ -464,7 +465,7 @@
 </section>
 
 <!-- ============================ SOBREPOSIÇÕES ============================ -->
-<section class="lc-doc-sec" id="menus" data-familia="Sobreposições">
+<section class="lc-doc-secao" id="menus" data-familia="Sobreposições">
   <h2>Menus e "⋯"</h2>
   <p>Lista de ações que aparece sob o gatilho. Itens com ícone, descrição, atalho, marcação, submenu, separador, título de grupo e ação de perigo no fim, separada.</p>
   <div class="lc-doc-ficha">
@@ -503,7 +504,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="popover" data-familia="Sobreposições">
+<section class="lc-doc-secao" id="popover" data-familia="Sobreposições">
   <h2>Popover</h2>
   <p>Caixa flutuante com conteúdo e, às vezes, um formulário curto. Fica presa ao gatilho e fecha ao clicar fora ou com Esc.</p>
   <div class="lc-doc-ficha">
@@ -527,7 +528,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="dica" data-familia="Sobreposições">
+<section class="lc-doc-secao" id="dica" data-familia="Sobreposições">
   <h2>Dica</h2>
   <p>Tinta sobre papel: texto curto que nomeia um ícone ou mostra o atalho. Aparece no hover e no foco do teclado.</p>
   <div class="lc-doc-ficha">
@@ -545,14 +546,14 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="modal" data-familia="Sobreposições">
+<section class="lc-doc-secao" id="modal" data-familia="Sobreposições">
   <h2>Modal</h2>
   <p>Interrompe a tela para uma decisão curta ou um formulário de até 8 campos. Três tipos: padrão (560), largo (760) e perigo com confirmação digitando, que é o terceiro nível da exclusão.</p>
   <div class="lc-doc-ficha">
     <div><h3><i data-i="componente"></i>Anatomia</h3><ol style="list-style:none;padding:0"><li><span class="lc-doc-n">1</span> Cabeçalho: título com verbo + objeto, linha de contexto, fechar.</li><li><span class="lc-doc-n">2</span> Corpo rolável.</li><li><span class="lc-doc-n">3</span> Pé: auxiliar à esquerda, secundário e principal à direita.</li></ol></div>
     <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Novo contato, nova tarefa, gerar boletos.</li><li>Excluir definitivo: modal de perigo, o principal é perigo.</li><li>Exclusão de algo grande (condomínio, cliente): digitar o nome.</li></ul></div>
     <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Formulário longo: use página com passos.</li><li>Editar dado de um registro: edite no próprio registro.</li><li>Modal sobre modal.</li><li>Para avisar algo que não pede decisão (use toast ou alerta).</li></ul></div>
-    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>O título é a pergunta ou a ação: "Excluir o Cond. Bosque Imperial?"</li><li>O corpo diz a consequência com número: "184 unidades e 2.208 boletos".</li><li>O botão repete o verbo: "Excluir condomínio", nunca "Sim".</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>O título é a pergunta ou a ação: "Excluir o Cond. Bosque Imperial?"</li><li>O corpo diz a consequência com número: "96 unidades e 1.152 boletos".</li><li>O botão repete o verbo: "Excluir condomínio", nunca "Sim".</li></ul></div>
     <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>role="dialog"</code> (perigo: <code>alertdialog</code>), <code>aria-modal="true"</code>, <code>aria-labelledby</code> e <code>aria-describedby</code>.</li><li>Foco no primeiro campo (no perigo, no Cancelar); Tab fica preso dentro; Esc e clique fora fecham; o foco volta ao gatilho.</li></ul></div>
   </div>
   <template data-ex="Modal padrão (estático)" data-cheio>
@@ -596,7 +597,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="painel" data-familia="Sobreposições">
+<section class="lc-doc-secao" id="painel" data-familia="Sobreposições">
   <h2>Painel lateral</h2>
   <p>Abre à direita, com 480 px, sem esconder a lista de onde a pessoa veio. Bom para prévia de registro, filtros avançados e formulário médio.</p>
   <div class="lc-doc-ficha">
@@ -623,7 +624,7 @@
   </template>
 </section>
 
-<section class="lc-doc-sec" id="folha" data-familia="Sobreposições">
+<section class="lc-doc-secao" id="folha" data-familia="Sobreposições">
   <h2>Folha inferior</h2>
   <p>No celular, o menu, o filtro e a escolha sobem de baixo, ao alcance do polegar. Itens de 48 px.</p>
   <div class="lc-doc-ficha">
@@ -648,3 +649,472 @@
     </div>
   </template>
 </section>
+
+<!-- ============================ RETORNO ============================ -->
+<section class="lc-doc-secao" id="toast" data-familia="Retorno">
+  <h2>Toast</h2>
+  <p>Confirma, embaixo e no centro, que algo deu certo, e oferece "Desfazer" por 6 segundos. Tinta sobre papel, como a dica. Erro nunca vai em toast: erro fica onde aconteceu.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Depois de salvar, enviar, mover, arquivar, excluir para a lixeira.</li><li>Com "Desfazer" sempre que a ação puder voltar.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para erro, falha de envio ou validação (alerta, campo ou barra de salvar).</li><li>Para algo que a pessoa precisa ler depois (vai para o sino).</li><li>Mais de 2 ao mesmo tempo.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Particípio do verbo do botão + objeto + número: "148 boletos gerados."</li><li>Uma frase, até 90 caracteres.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Contêiner <code>role="status"</code> <code>aria-live="polite"</code>.</li><li>Fica na tela enquanto o mouse ou o foco estão nele; fechar tem nome.</li><li>"Desfazer" alcançável por Tab; também em Ctrl+Z por 6 s.</li></ul></div>
+  </div>
+  <template data-ex="Toasts (estáticos) e disparo real">
+    <div class="p1-col" style="width:100%">
+      <div class="lc-toasts lc-toasts--demo" style="width:100%">
+        <div class="lc-toast lc-toast--sucesso"><i data-i="sucesso"></i><span class="lc-toast__txt">Contrato salvo.</span><button type="button" class="lc-toast__acao">Desfazer</button><button type="button" class="lc-toast__fechar" aria-label="Fechar aviso"><i data-i="fechar" class="lc-ic--16"></i></button></div>
+        <div class="lc-toast"><i data-i="info"></i><span class="lc-toast__txt">Código Pix copiado. Cole no app do seu banco.</span><button type="button" class="lc-toast__fechar" aria-label="Fechar aviso"><i data-i="fechar" class="lc-ic--16"></i></button></div>
+        <div class="lc-toast lc-toast--sucesso"><i data-i="sucesso"></i><span class="lc-toast__txt">3 boletos movidos para a lixeira. Ficam lá por 30 dias.</span><button type="button" class="lc-toast__acao">Desfazer</button><button type="button" class="lc-toast__fechar" aria-label="Fechar aviso"><i data-i="fechar" class="lc-ic--16"></i></button></div>
+      </div>
+      <div class="lc-grupo-btn"><button type="button" class="lc-btn" data-toast="Circular enviada a 184 unidades." data-desfazer>Enviar circular</button><button type="button" class="lc-btn" data-toast="Link copiado." data-info>Copiar link</button></div>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-secao" id="alertas" data-familia="Retorno">
+  <h2>Alertas</h2>
+  <p>Mensagem que fica na página, junto do que ela explica. Quatro tipos, com filete à esquerda e ícone, além da cor. Pode ter título, lista e ações.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li><b>info</b>: regra que vale aqui ("Reajuste automático em março").</li><li><b>sucesso</b>: resultado que precisa ficar visível (importação concluída).</li><li><b>aviso</b>: risco ("3 unidades sem e-mail não vão receber").</li><li><b>perigo</b>: falhou ou bloqueia; resumo de erros do formulário.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Dois alertas coloridos empilhados (crítica C1 à V3).</li><li>Para enfeitar uma dica.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Erro em três partes: o que aconteceu, por quê, como resolver.</li><li>Ação com verbo: "Completar e-mails".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Alerta que aparece depois de uma ação: <code>role="alert"</code> (perigo) ou <code>role="status"</code>.</li><li>O ícone é decorativo; o título diz o tipo.</li></ul></div>
+  </div>
+  <template data-ex="Quatro tipos">
+    <div class="lc-pilha lc-pilha--p">
+      <div class="lc-alerta lc-alerta--info"><i data-i="info"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Reajuste automático em março</span>O contrato reajusta pelo IGP-M acumulado. O síndico recebe o aviso 30 dias antes.</div></div>
+      <div class="lc-alerta lc-alerta--sucesso"><i data-i="sucesso"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Importação concluída</span>184 unidades e 212 moradores importados da planilha. 4 linhas foram ignoradas. <button type="button" class="lc-btn lc-btn--link">Ver as 4 linhas</button></div></div>
+      <div class="lc-alerta lc-alerta--aviso"><i data-i="aviso"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">13 unidades não vão receber o boleto por e-mail</span>Elas não têm e-mail cadastrado. Os boletos saem impressos na portaria.<div class="lc-alerta__acoes"><button type="button" class="lc-btn lc-btn--p">Completar e-mails</button><button type="button" class="lc-btn lc-btn--p lc-btn--discreto">Gerar assim mesmo</button></div></div></div>
+      <div class="lc-alerta lc-alerta--perigo" role="alert"><i data-i="erro"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">2 campos precisam de ajuste antes de salvar</span><ul><li><a href="#">CPF do síndico</a>: incompleto, faltam 2 números.</li><li><a href="#">E-mail</a>: falta o domínio depois do @.</li></ul></div></div>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-secao" id="faixas" data-familia="Retorno">
+  <h2>Faixas</h2>
+  <p>Faixa de sistema avisa um problema do sistema inteiro, uma de cada vez, no topo. Faixa de contexto diz que a pessoa está num lugar especial (superadmin dentro de um cliente, homologação): tem cor que o white label não muda e não fecha.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Sistema: banco fora do ar, manutenção marcada, versão nova.</li><li>Contexto: superadmin com motivo e prazo; homologação com versão.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para propaganda ou novidade de produto.</li><li>Mais de uma faixa de sistema ao mesmo tempo.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>O que está acontecendo + até quando + o que fazer.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Faixa de sistema: <code>role="status"</code>; a de contexto é <code>region</code> com nome "Você está acessando como superadmin".</li></ul></div>
+  </div>
+  <template data-ex="Faixas de sistema e de contexto" data-cheio>
+    <div>
+      <div class="lc-faixa-sistema" role="status"><i data-i="aviso"></i><span><b>Manutenção marcada</b> para domingo, 05/10, das 2:00 às 4:00. Boletos e portal ficam fora do ar.</span><span class="lc-faixa-sistema__fim"><button type="button" class="lc-btn lc-btn--discreto lc-btn--p">Entendi</button></span></div>
+      <div class="lc-faixa-sistema lc-faixa-sistema--perigo" role="status"><i data-i="erro"></i><span><b>O Itaú não está respondendo.</b> Pagamentos de hoje entram assim que voltar. Nada se perde.</span></div>
+      <div class="lc-faixa-sistema lc-faixa-sistema--info" role="status"><i data-i="info"></i><span>Versão 2026.10.2 instalada. <a href="#">Ver o que mudou</a></span></div>
+      <div class="lc-faixa-contexto" role="region" aria-label="Você está acessando como superadmin" style="position:relative"><span class="lc-faixa-contexto__item"><i data-i="plataforma"></i><b>Superadmin</b> dentro de Órbita Condomínios</span><span class="lc-faixa-contexto__item">Motivo: chamado de suporte 1.204</span><span class="lc-faixa-contexto__item"><i data-i="relogio"></i>48 min restantes</span><span class="lc-faixa-contexto__item"><i data-i="ver"></i>Só leitura</span><span class="lc-faixa-contexto__fim"><button type="button" class="lc-btn">Sair do cliente</button></span></div>
+      <div class="lc-faixa-contexto lc-faixa-contexto--homologacao" role="region" aria-label="Ambiente de homologação" style="position:relative"><span class="lc-faixa-contexto__item"><i data-i="homologacao"></i><b>Homologação</b>, versão 2026.10.2</span><span class="lc-faixa-contexto__item">Dados de teste. Nada aqui chega ao morador.</span></div>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-secao" id="barra-salvar" data-familia="Retorno">
+  <h2>Barra de salvar</h2>
+  <p>Só aparece quando há alteração e diz quantas e onde. Descartar à esquerda das ações, "Salvar ▾" por último. Se salvar falhar, a barra fica, com o motivo e "Tentar de novo"; nada se perde.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="componente"></i>Anatomia</h3><ol style="list-style:none;padding:0"><li><span class="lc-doc-n">1</span> Filete superior âmbar (erro: perigo).</li><li><span class="lc-doc-n">2</span> Mensagem: número + onde + quais campos.</li><li><span class="lc-doc-n">3</span> Descartar (discreto) e Salvar ▾ (dividido).</li></ol></div>
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Edição no próprio registro (seção com lápis, tabela editável em lote).</li><li>Página de configuração.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Sempre visível, com Salvar desabilitado.</li><li>Em modal (o pé do modal já tem o botão).</li><li>Junto de autossalvar (escolha um).</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>"1 alteração não salva em Contrato de administração: valor mensal".</li><li>Opções do Salvar ▾: e ir para o próximo (15 de 63, nome), e voltar para a lista, e criar outro.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>role="region"</code> com nome "Alterações não salvas"; a mudança da contagem é anunciada.</li><li>Ctrl+S salva; sair da página com alteração pergunta antes.</li></ul></div>
+  </div>
+  <template data-ex="Funcionando: altere o valor e veja a barra" data-temas="lado">
+    <div data-salvar-form="Contrato de administração">
+      <div class="lc-form-grade lc-form-grade--1" style="padding-bottom:12px">
+        <div class="lc-campo"><label class="lc-rotulo" for="bs-v">Valor mensal</label><div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">R$</span><input id="bs-v" class="lc-entrada lc-entrada--num" value="4.380,00" data-mascara="moeda" inputmode="numeric"></div><p class="lc-antes" hidden>Antes: <s>R$ 4.380,00</s></p></div>
+        <label class="lc-interruptor"><input type="checkbox" role="switch" checked data-nome="Reajuste automático"><span class="lc-interruptor__trilho"></span>Reajuste automático pelo IGP-M</label>
+      </div>
+      <div class="lc-barra-salvar" role="region" aria-label="Alterações não salvas" hidden style="padding:8px 12px">
+        <p class="lc-barra-salvar__msg" data-salvar-msg aria-live="polite"></p>
+        <div class="lc-barra-salvar__acoes lc-ancora"><button type="button" class="lc-btn lc-btn--discreto" data-descartar>Descartar</button>
+          <span class="lc-dividido"><button type="button" class="lc-btn lc-btn--principal" data-salvar="">Salvar</button><button type="button" class="lc-btn lc-btn--principal" aria-label="Outras formas de salvar" aria-haspopup="menu" aria-expanded="false" data-abre="bs-menu"><i data-i="chevron-baixo"></i></button></span>
+          <div class="lc-menu" id="bs-menu" role="menu" hidden style="bottom:calc(100% + 4px);right:0;min-width:280px"><button type="button" class="lc-menu__item" role="menuitem" data-salvar="proximo"><span>Salvar e ir para o próximo<small>15 de 63, Residencial Jardim Botânico</small></span></button><button type="button" class="lc-menu__item" role="menuitem" data-salvar="voltar">Salvar e voltar para a lista</button><button type="button" class="lc-menu__item" role="menuitem" data-salvar="novo">Salvar e criar outro</button></div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template data-ex="Estados (estáticos)" data-temas="empilhado">
+    <div class="lc-pilha lc-pilha--p">
+      <div class="lc-barra-salvar" role="region" aria-label="Alterações não salvas" style="position:relative"><p class="lc-barra-salvar__msg"><i data-i="aviso"></i><span><b>1 alteração não salva</b> em Contrato de administração: valor mensal</span></p><div class="lc-barra-salvar__acoes"><button type="button" class="lc-btn lc-btn--discreto">Descartar</button><span class="lc-dividido"><button type="button" class="lc-btn lc-btn--principal">Salvar</button><button type="button" class="lc-btn lc-btn--principal" aria-label="Outras formas de salvar"><i data-i="chevron-baixo"></i></button></span></div></div>
+      <div class="lc-barra-salvar" role="region" aria-label="Alterações não salvas" style="position:relative"><p class="lc-barra-salvar__msg"><i data-i="aviso"></i><span><b>3 alterações não salvas</b> em 2 seções: valor mensal, dia de vencimento, e-mail do síndico</span></p><div class="lc-barra-salvar__acoes"><button type="button" class="lc-btn lc-btn--discreto">Descartar</button><span class="lc-dividido"><button type="button" class="lc-btn lc-btn--principal" aria-busy="true">Salvar</button><button type="button" class="lc-btn lc-btn--principal" disabled aria-label="Outras formas de salvar"><i data-i="chevron-baixo"></i></button></span></div></div>
+      <div class="lc-barra-salvar lc-barra-salvar--erro" role="region" aria-label="Alterações não salvas" style="position:relative"><p class="lc-barra-salvar__msg"><i data-i="erro"></i><span><b>Não foi possível salvar.</b> A conexão caiu às 10:42. As 3 alterações continuam aqui.</span></p><div class="lc-barra-salvar__acoes"><button type="button" class="lc-btn lc-btn--discreto">Descartar</button><button type="button" class="lc-btn lc-btn--principal"><i data-i="atualizar"></i>Tentar de novo</button></div></div>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-secao" id="esqueleto" data-familia="Retorno">
+  <h2>Esqueleto</h2>
+  <p>Forma cinza do que vai chegar, no mesmo lugar e tamanho. Evita que a tela pule quando os dados chegam. Com movimento reduzido, fica parado.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Carregamento acima de 300 ms de lista, ficha, caixa.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Ação do botão (use carregando no botão).</li><li>Acima de 10 s sem explicar (troque por mensagem com motivo).</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Sem texto; o leitor recebe "Carregando boletos".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Contêiner com <code>aria-busy="true"</code> e rótulo; as formas são <code>aria-hidden</code>.</li></ul></div>
+  </div>
+  <template data-ex="Lista, ficha e tabela carregando">
+    <div class="p1-col" style="width:100%" aria-busy="true" aria-label="Carregando boletos">
+      <div class="lc-linha" style="width:100%"><span class="lc-esqueleto lc-esqueleto--av"></span><div class="lc-cresce"><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--curta"></span></div></div>
+      <span class="lc-esqueleto lc-esqueleto--titulo"></span>
+      <span class="lc-esqueleto lc-esqueleto--linha" style="width:100%"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span>
+      <span class="lc-esqueleto lc-esqueleto--bloco" style="width:100%"></span>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-secao" id="vazio" data-familia="Retorno">
+  <h2>Vazio</h2>
+  <p>Tela sem dados é um convite para agir: diz o que vai aparecer aqui e oferece a primeira ação. Quatro casos com textos diferentes: primeiro uso, sem resultado, sem permissão e erro.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Lista, caixa ou aba sem nada.</li><li><code>--centro</code> em área grande; alinhado à esquerda dentro de caixa.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Ilustração grande decorativa.</li><li>"Ops!", "Nada por aqui :(".</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Título: o fato ("Nenhum chamado aberto").</li><li>Texto: o que aparece aqui e como começa.</li><li>Botão: verbo + objeto.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>O ladrilho é decorativo; o título é <code>h2</code>/<code>h3</code> conforme a tela.</li></ul></div>
+  </div>
+  <template data-ex="Quatro vazios">
+    <div class="p1-dois">
+      <div class="lc-vazio" style="padding:16px 0"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="chamado"></i></span><h3 class="lc-vazio__titulo">Nenhum chamado aberto</h3><p class="lc-vazio__texto">Chamados do WhatsApp, do portal e do e-mail aparecem aqui. Abra um à mão se alguém ligar.</p><div class="lc-grupo-btn"><button type="button" class="lc-btn lc-btn--principal"><i data-i="mais"></i>Abrir chamado</button></div></div>
+      <div class="lc-vazio" style="padding:16px 0"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="filtrar"></i></span><h3 class="lc-vazio__titulo">Nenhum boleto com estes filtros</h3><p class="lc-vazio__texto">Vencido e Bloco C juntos não trazem resultado. Tire um filtro ou procure em todos os blocos.</p><div class="lc-grupo-btn"><button type="button" class="lc-btn">Limpar filtros</button></div></div>
+      <div class="lc-vazio" style="padding:16px 0"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="bloquear"></i></span><h3 class="lc-vazio__titulo">Você não tem acesso à folha de pagamento</h3><p class="lc-vazio__texto">Quem libera é a Ana Paula Ribeiro, do Financeiro.</p><div class="lc-grupo-btn"><button type="button" class="lc-btn">Pedir acesso</button></div></div>
+      <div class="lc-vazio" style="padding:16px 0"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="erro"></i></span><h3 class="lc-vazio__titulo">Os boletos não carregaram</h3><p class="lc-vazio__texto">O banco não respondeu às 10:42. Seus dados estão salvos; tente em instantes.</p><div class="lc-grupo-btn"><button type="button" class="lc-btn"><i data-i="atualizar"></i>Tentar de novo</button></div></div>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-secao" id="progresso" data-familia="Retorno">
+  <h2>Progresso</h2>
+  <p>Barra fina reta, com rótulo e número. Indeterminado quando não se sabe quanto falta. A cor de estado só quando o número tem leitura de bom ou ruim.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Envio de arquivo, geração de boletos, importação.</li><li>Meta de arrecadação do mês (sucesso/aviso/perigo).</li><li>Carga horária cumprida na Academy.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Barra redonda com gradiente.</li><li>Sem número ao lado.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>"Arrecadado R$ 152.418,00 de R$ 190.215,72" + "80%".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>role="progressbar"</code> com <code>aria-valuenow/min/max</code> e <code>aria-label</code>.</li></ul></div>
+  </div>
+  <template data-ex="Progresso">
+    <div class="lc-pilha" style="max-width:420px">
+      <div><div class="lc-progresso-rot"><span>Gerando boletos de novembro</span><b>112 de 184</b></div><span class="lc-progresso" style="--_v:61%" role="progressbar" aria-label="Gerando boletos" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100"></span></div>
+      <div><div class="lc-progresso-rot"><span>Arrecadação de outubro</span><b>80%</b></div><span class="lc-progresso lc-progresso--sucesso lc-progresso--g" style="--_v:80%" role="progressbar" aria-label="Arrecadação de outubro" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></span></div>
+      <div><div class="lc-progresso-rot"><span>Fundo de reserva sobre a meta</span><b>46%</b></div><span class="lc-progresso lc-progresso--aviso" style="--_v:46%" role="progressbar" aria-label="Fundo de reserva" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100"></span></div>
+      <div><div class="lc-progresso-rot"><span>Inadimplência acima do limite</span><b>14%</b></div><span class="lc-progresso lc-progresso--perigo" style="--_v:14%" role="progressbar" aria-label="Inadimplência" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100"></span></div>
+      <div><div class="lc-progresso-rot"><span>Conferindo a planilha</span></div><span class="lc-progresso lc-progresso--indeterminado" role="progressbar" aria-label="Conferindo a planilha"></span></div>
+    </div>
+  </template>
+</section>
+
+<!-- ============================ HISTÓRICO ============================ -->
+<section class="lc-doc-secao" id="linhas-tempo" data-familia="Registro e histórico">
+  <h2>Linhas do tempo</h2>
+  <p>Auditoria diz quem mudou o quê, de quanto para quanto e quando, na língua de quem usa (nunca "campo updated_at"). Atividade conta a vida do registro: ligação, e-mail, etapa, nota fixada.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Auditoria: aba Histórico da ficha, sempre visível na coluna da direita do CS.</li><li>Atividade: coluna central da ficha (HubSpot), linha do tempo do chamado.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para conversa (use bolhas).</li><li>Escondida atrás de um ícone de relógio (crítica C1).</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>"Bruno Tavares alterou o valor mensal": sujeito + verbo + campo.</li><li>Antes riscado, depois destacado. Tempo relativo até 7 dias ("ontem às 16:40"), depois data.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>ul</code>/<code>ol</code> com <code>time datetime</code>.</li><li><code>del</code> e <code>ins</code> são lidos como "removido" e "inserido".</li></ul></div>
+  </div>
+  <template data-ex="Auditoria e atividade">
+    <div class="p1-dois">
+      <ul class="lc-auditoria" aria-label="Histórico de alterações">
+        <li><span class="lc-av lc-av--24 lc-av--c2" aria-hidden="true">BT</span><span class="lc-auditoria__quem"><b>Bruno Tavares</b> alterou o contrato</span><time class="lc-auditoria__quando" datetime="2026-09-30T16:40">ontem, 16:40</time><dl class="lc-auditoria__mudanca"><dt>Valor mensal</dt><dd><del>R$ 4.380,00</del> <ins>R$ 4.620,00</ins></dd><dt>Motivo</dt><dd>Reajuste IGP-M 5,48%</dd></dl></li>
+        <li><span class="lc-av lc-av--24 lc-av--c3" aria-hidden="true">MC</span><span class="lc-auditoria__quem"><b>Marina Costa</b> pelo portal</span><time class="lc-auditoria__quando" datetime="2026-09-28T09:02">28/09, 09:02</time><dl class="lc-auditoria__mudanca"><dt>E-mail</dt><dd><del>marina@parquedasaguas.com</del> <ins>marina.costa@gmail.com</ins></dd></dl></li>
+        <li><span class="lc-av lc-av--24" aria-hidden="true">G</span><span class="lc-auditoria__quem"><b>Sistema</b>, regra de renovação</span><time class="lc-auditoria__quando" datetime="2026-09-19">19/09</time><dl class="lc-auditoria__mudanca"><dt>Etapa</dt><dd><del>Ativo</del> <ins>Em renovação</ins></dd></dl></li>
+      </ul>
+      <ol class="lc-atividade" aria-label="Atividade do cliente">
+        <li class="lc-atividade__mes">Outubro de 2026</li>
+        <li class="lc-atividade__ev lc-atividade__ev--fixado"><span class="lc-atividade__no"><i data-i="fixar"></i></span><div class="lc-atividade__cartao"><div class="lc-atividade__cab"><b>Nota fixada</b><span class="lc-cor-2">Bruno Tavares</span><time class="lc-atividade__hora">01/10</time></div><p class="lc-atividade__corpo">Síndica prefere ligação depois das 18h. Assembleia de renovação em 15/10.</p></div></li>
+        <li class="lc-atividade__ev"><span class="lc-atividade__no lc-atividade__no--sucesso"><i data-i="ligacao-feita"></i></span><div class="lc-atividade__cartao"><div class="lc-atividade__cab"><b>Ligação com Marina Costa</b><time class="lc-atividade__hora">30/09, 18:20</time></div><p class="lc-atividade__corpo">12 min. Aceitou a proposta de reajuste; pediu a minuta por e-mail.</p><div class="lc-atividade__pe"><span><i data-i="anexo" class="lc-ic--14"></i> Minuta de renovação.pdf</span></div></div></li>
+        <li class="lc-atividade__ev"><span class="lc-atividade__no lc-atividade__no--perigo"><i data-i="email"></i></span><div class="lc-atividade__cartao"><div class="lc-atividade__cab"><b>E-mail não entregue</b><time class="lc-atividade__hora">28/09</time></div><p class="lc-atividade__corpo">A caixa de marina@parquedasaguas.com não existe mais.</p></div></li>
+      </ol>
+    </div>
+  </template>
+</section>
+
+<!-- ============================ CONVERSA ============================ -->
+<section class="lc-doc-secao" id="conversa" data-familia="Conversa">
+  <h2>Conversa</h2>
+  <p>O motor do Suporte no desenho do WhatsApp Web, que a atendente já conhece: dia, mensagem de sistema, bolhas com tiques, foto, áudio com transcrição, citação, nota interna e cartão ligado (OS, boleto). A bolha enviada é carbono claro, nunca a cor do cliente.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="componente"></i>Tiques</h3><ul><li><i data-i="enviando" class="lc-ic--16"></i> enviando (relógio)</li><li><i data-i="confirmar" class="lc-ic--16"></i> enviada (1 cinza)</li><li><i data-i="lida" class="lc-ic--16"></i> entregue (2 cinza)</li><li><span class="lc-tique lc-tique--lida"><i data-i="lida" class="lc-ic--16"></i></span> lida (2 carbono)</li><li><span class="lc-tique lc-tique--falhou"><i data-i="erro" class="lc-ic--16"></i></span> falhou, com "Tentar de novo"</li></ul></div>
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Suporte (WhatsApp, portal, e-mail num fio só).</li><li>Conversa interna da equipe e comentários de chamado.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Comentário de feed (use <code>.lc-comentario</code>).</li><li>Bolha na cor do cliente (C1: na Órbita parecia erro).</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Mensagem de sistema no passado: "Chamado 4.812 aberto pelo WhatsApp".</li><li>Nota interna sempre com o rótulo "Nota interna, só a equipe vê".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>role="log"</code> com <code>aria-live="polite"</code>: mensagem nova é anunciada.</li><li>Tique tem nome ("Lida"); foto tem texto alternativo; áudio tem transcrição.</li></ul></div>
+  </div>
+  <template data-ex="Fio completo e compositor (envie uma mensagem ou uma nota)" data-temas="lado">
+    <div class="p1-conversa">
+      <div class="lc-conversa" id="cv-1" role="log" aria-live="polite" aria-label="Conversa com Marina Costa">
+        <span class="lc-dia">Hoje</span>
+        <p class="lc-msg-sistema"><i data-i="chamado"></i>Chamado 4.812 aberto pelo WhatsApp às 09:58</p>
+        <div class="lc-bolha lc-bolha--primeira"><span class="lc-bolha__autor">Marina Costa, síndica</span>Bom dia! Tem água descendo pela parede da garagem, perto da vaga 37.<span class="lc-bolha__meta">09:58</span></div>
+        <div class="lc-bolha"><img class="lc-foto" alt="Parede da garagem com mancha de umidade e água escorrendo até o piso, ao lado da vaga 37" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 100'%3E%3Crect width='160' height='100' fill='%23B9C1BC'/%3E%3Crect y='70' width='160' height='30' fill='%238E9893'/%3E%3Cpath d='M70 0v70' stroke='%236B7570' stroke-width='14'/%3E%3Cpath d='M64 10q6 30 2 60' stroke='%23596B80' stroke-width='5' fill='none'/%3E%3Ctext x='110' y='88' font-size='12' fill='%23F2F4F1' font-family='sans-serif'%3E37%3C/text%3E%3C/svg%3E"><span class="lc-foto-legenda">Está assim desde ontem à noite</span><span class="lc-bolha__meta">09:59</span></div>
+        <div class="lc-bolha"><div class="lc-audio" data-seg="42"><button type="button" class="lc-audio__tocar" aria-label="Tocar áudio"><i data-i="tocar"></i></button><span class="lc-audio__onda" aria-hidden="true"><i style="height:8px" class="lc-tocado"></i><i style="height:14px" class="lc-tocado"></i><i style="height:22px"></i><i style="height:12px"></i><i style="height:18px"></i><i style="height:26px"></i><i style="height:10px"></i><i style="height:16px"></i><i style="height:20px"></i><i style="height:8px"></i><i style="height:14px"></i><i style="height:24px"></i><i style="height:12px"></i><i style="height:6px"></i><i style="height:18px"></i><i style="height:10px"></i></span><span class="lc-audio__tempo">0:42</span></div><span class="lc-audio__transcricao">Transcrição: "O zelador já fechou o registro, mas continua pingando. Dá pra mandar alguém hoje?"</span><span class="lc-bolha__meta">10:01</span></div>
+        <div class="lc-bolha lc-bolha--enviada lc-bolha--primeira"><span class="lc-bolha__citacao"><b>Marina Costa</b>Dá pra mandar alguém hoje?</span>Bom dia, Marina. Já abri a OS e o encanador da Hidro Paulista passa às 14h.<span class="lc-bolha__meta">10:06<span class="lc-tique lc-tique--lida" aria-label="Lida"><i data-i="lida"></i></span></span></div>
+        <div class="lc-ligado"><span class="lc-ladrilho"><i data-i="ordem-de-servico"></i></span><span class="lc-cresce"><b>OS 482</b>, troca de registro, subsolo 1<span class="lc-lista__sub">Hidro Paulista, hoje às 14:00</span></span><span class="lc-estado lc-estado--info">Agendada</span></div>
+        <div class="lc-bolha lc-bolha--nota lc-bolha--primeira"><span class="lc-bolha__nota-rotulo"><i data-i="nota-interna"></i>Nota interna, só a equipe vê</span><span class="lc-mencao">@Rafael Nunes</span> confere se o seguro cobre o reboco?<span class="lc-bolha__meta">10:07</span></div>
+        <div class="lc-bolha lc-bolha--enviada lc-bolha--primeira" aria-invalid="true">Segue o protocolo para acompanhar: 4.812<span class="lc-bolha__meta">10:08<span class="lc-tique lc-tique--falhou" aria-label="Falhou"><i data-i="erro"></i></span></span><span class="lc-bolha__falha">Não enviada: o WhatsApp recusou. <button type="button" class="lc-btn lc-btn--link">Tentar de novo</button></span></div>
+        <p class="lc-msg-sistema"><i data-i="atribuir"></i>Letícia Araújo assumiu o chamado</p>
+      </div>
+      <div class="lc-compositor" data-conversa="cv-1">
+        <div class="lc-compositor__modo" role="group" aria-label="Tipo de mensagem"><button type="button" aria-pressed="true" data-modo="resposta"><i data-i="responder" class="lc-ic--14"></i>Responder</button><button type="button" aria-pressed="false" data-modo="nota"><i data-i="nota-interna" class="lc-ic--14"></i>Nota interna</button></div>
+        <div class="lc-compositor__linha">
+          <button type="button" class="lc-btn lc-btn--icone lc-btn--discreto" aria-label="Anexar arquivo" data-dica="Anexar"><i data-i="anexo"></i></button>
+          <label class="lc-sr" for="cp-1">Mensagem</label><textarea id="cp-1" class="lc-compositor__caixa" rows="1" placeholder="Responder para Marina Costa pelo WhatsApp"></textarea>
+          <button type="button" class="lc-btn lc-btn--icone lc-btn--discreto" aria-label="Gravar áudio" data-dica="Gravar áudio"><i data-i="microfone"></i></button>
+          <button type="button" class="lc-btn lc-btn--principal" data-enviar-msg>Enviar</button>
+        </div>
+        <p class="lc-compositor__dica"><span><span class="lc-tecla">Enter</span> envia</span><span><span class="lc-tecla">Shift</span>+<span class="lc-tecla">Enter</span> quebra a linha</span><span><span class="lc-tecla">/</span> respostas rápidas</span></p>
+      </div>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-secao" id="compositor" data-familia="Conversa">
+  <h2>Compositor</h2>
+  <p>A caixa de escrever da conversa. Alterna Responder e Nota interna (a nota pinta a caixa de amarelo-papel para ninguém responder ao morador por engano). Anexo, áudio e "Enviar ▾".</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Rodapé de toda conversa e de comentário de chamado.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Texto longo com formatação (use editor).</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>O texto de ajuda diz para quem e por onde vai: "Responder para Marina Costa pelo WhatsApp".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Modo em <code>aria-pressed</code>; a troca muda o rótulo do botão (Enviar / Salvar nota).</li><li>A nota é anunciada como nota, não como mensagem.</li></ul></div>
+  </div>
+  <template data-ex="Estados do compositor">
+    <div class="lc-pilha lc-pilha--p">
+      <div class="lc-compositor"><div class="lc-compositor__modo"><button type="button" aria-pressed="true" data-modo="resposta">Responder</button><button type="button" aria-pressed="false" data-modo="nota">Nota interna</button></div><div class="lc-compositor__linha"><textarea class="lc-compositor__caixa" rows="1" aria-label="Mensagem" placeholder="Responder para Marina Costa pelo WhatsApp"></textarea><span class="lc-dividido"><button type="button" class="lc-btn lc-btn--principal">Enviar</button><button type="button" class="lc-btn lc-btn--principal" aria-label="Outras formas de enviar"><i data-i="chevron-baixo"></i></button></span></div></div>
+      <div class="lc-compositor lc-compositor--nota"><div class="lc-compositor__modo"><button type="button" aria-pressed="false" data-modo="resposta">Responder</button><button type="button" aria-pressed="true" data-modo="nota">Nota interna</button></div><div class="lc-compositor__linha"><textarea class="lc-compositor__caixa" rows="1" aria-label="Nota interna">@Rafael Nunes confere o seguro?</textarea><button type="button" class="lc-btn lc-btn--principal">Salvar nota</button></div></div>
+      <div class="lc-compositor"><div class="lc-compositor__linha"><textarea class="lc-compositor__caixa" rows="1" aria-label="Mensagem" disabled placeholder="A janela de 24 horas do WhatsApp fechou. Envie um modelo aprovado."></textarea><button type="button" class="lc-btn">Escolher modelo</button></div></div>
+    </div>
+  </template>
+</section>
+
+<!-- ============================ SOCIAL ============================ -->
+<section class="lc-doc-secao" id="para-voce" data-familia="Social e Início">
+  <h2>"Para você"</h2>
+  <p>O que espera a pessoa hoje, com a ação no próprio item (monday My Work, Linear Inbox). Cada item diz o quê, o prazo e um verbo. Feito, o item risca e oferece desfazer.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Início, coluna principal.</li><li>Até 7 itens; "Ver os 12" leva à caixa completa.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Como lista de notificação genérica.</li><li>Item sem ação ("Você tem 3 boletos").</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>O quê em negrito no objeto: "Aprovar a <b>troca de plantão</b> de Rafael".</li><li>Prazo com palavra: "Atrasado 2 dias", "Hoje até 18:00".</li><li>Botão: verbo curto ("Aprovar", "Responder", "Ligar").</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>O botão tem nome completo: "Aprovar troca de plantão de Rafael Nunes".</li><li>Feito é anunciado, com Desfazer no toast.</li></ul></div>
+  </div>
+  <template data-ex="Para você (clique numa ação)">
+    <ul class="lc-pv" aria-label="Para você">
+      <li class="lc-pv__item"><span class="lc-pv__o-que">Responder <b>Marina Costa</b> sobre o vazamento na garagem</span><span class="lc-pv__prazo lc-pv__prazo--atrasado"><i data-i="prazo-estourado" class="lc-ic--14"></i>Atrasado 18 min</span><button type="button" class="lc-btn lc-btn--p lc-pv__acao" data-feito="Conversa aberta. Item concluído.">Responder</button></li>
+      <li class="lc-pv__item"><span class="lc-pv__o-que">Aprovar a <b>troca de plantão</b> de Rafael Nunes</span><span class="lc-pv__prazo lc-pv__prazo--hoje">Hoje até 18:00</span><button type="button" class="lc-btn lc-btn--p lc-pv__acao" aria-label="Aprovar troca de plantão de Rafael Nunes" data-feito="Troca de plantão aprovada. Rafael foi avisado.">Aprovar</button></li>
+      <li class="lc-pv__item"><span class="lc-pv__o-que">Ligar para o <b>Residencial Jardim Botânico</b>: renovação esfriando</span><span class="lc-pv__prazo">Sem contato há 21 dias</span><button type="button" class="lc-btn lc-btn--p lc-pv__acao" data-feito="Ligação registrada.">Ligar</button></li>
+      <li class="lc-pv__item"><span class="lc-pv__o-que">Ler o comunicado <b>Novo horário da portaria</b></span><span class="lc-pv__prazo">Ciência pedida pelo RH</span><button type="button" class="lc-btn lc-btn--p lc-pv__acao" data-feito="Ciência registrada.">Ler</button></li>
+      <li class="lc-pv__item lc-pv__item--feito"><span class="lc-pv__o-que">Revisar a <b>ata da AGO</b> de setembro</span><span class="lc-pv__prazo">Feito às 09:40</span><button type="button" class="lc-btn lc-btn--discreto lc-btn--p lc-pv__acao">Desfazer</button></li>
+    </ul>
+  </template>
+</section>
+
+<section class="lc-doc-secao" id="feed" data-familia="Social e Início">
+  <h2>Post do feed, reações e ciência</h2>
+  <p>A parte "quase rede social" do Início no arranjo do LinkedIn: publicar, reconhecimento com o valor da empresa, reações com nome, comentário e comunicado com "Li e estou ciente" que vira carimbo.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Reconhecimento, comunicado do RH, aniversário, boas-vindas, foto de evento.</li><li>Ciência quando o comunicado é obrigatório (vira registro).</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para notificação de sistema (vai ao sino).</li><li>Nome e título em serifa (C1: cara de jornal).</li><li>Ranking ou medalha de produtividade.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Reações com nome: "Ana, Bruno e mais 10".</li><li>Cinco reações: Curtir, Parabéns, Amei, Genial, Apoio.</li><li>Ciência: "18 de 24 já leram".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Post é <code>article</code> com <code>aria-labelledby</code> no autor.</li><li>Curtir é <code>aria-pressed</code>; o seletor de reação abre por botão, não só por hover.</li><li>Carimbo de ciência é lido com nome e hora.</li></ul></div>
+  </div>
+  <template data-ex="Feed (curta, reaja, dê ciência)" data-alt="200px">
+    <div class="p1-feed">
+      <div class="lc-caixa lc-publicar" style="margin-bottom:12px"><span class="lc-av lc-av--40 lc-av--c5" aria-hidden="true">LA</span><button type="button" class="lc-publicar__falso">Reconhecer alguém ou publicar</button><div class="lc-publicar__acoes"><button type="button" class="lc-btn lc-btn--discreto lc-btn--p"><i data-i="reconhecimento"></i>Reconhecer</button><button type="button" class="lc-btn lc-btn--discreto lc-btn--p"><i data-i="comunicado"></i>Comunicado</button><button type="button" class="lc-btn lc-btn--discreto lc-btn--p"><i data-i="imagem"></i>Foto</button></div></div>
+      <article class="lc-post" aria-labelledby="ps-a1">
+        <div class="lc-post__cab"><span class="lc-av lc-av--40 lc-av--c7" aria-hidden="true">JR</span><span class="lc-post__quem"><b id="ps-a1">Juliana Reis</b> reconheceu <b>Letícia Araújo</b><span class="lc-post__meta">Gestora de Suporte, há 2 h</span></span><button type="button" class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" aria-label="Mais opções do post"><i data-i="mais-opcoes"></i></button></div>
+        <div class="lc-post__corpo"><div class="lc-reconhece"><i data-i="reconhecimento"></i><span>Valor: <span class="lc-reconhece__valor">Resolver com calma o que é urgente</span></span></div><p>Ontem a Letícia segurou 41 conversas sozinha durante a queda de energia no Parque das Águas e ainda deixou todas com retorno. Obrigada.</p></div>
+        <div class="lc-reacoes-resumo"><span class="lc-reacoes-resumo__pilha" aria-hidden="true"><span><i data-i="curtir"></i></span><span><i data-i="parabens"></i></span></span><span data-conta-alvo="12">Ana, Bruno e mais 10</span></div>
+        <div class="lc-post__acoes lc-ancora"><button type="button" aria-pressed="false" data-alterna data-conta="Ana, Bruno e mais {n}"><i data-i="curtir"></i>Curtir</button><button type="button" aria-haspopup="true" aria-expanded="false" data-abre="ps-reagir"><i data-i="parabens"></i>Reagir</button><button type="button"><i data-i="comentario"></i>Comentar</button>
+          <div class="lc-reagir lc-popover" id="ps-reagir" role="menu" aria-label="Reações" hidden style="bottom:calc(100% + 4px);left:20%;min-width:0;width:max-content;padding:4px;display:flex"><button type="button" role="menuitem" data-fecha data-toast="Você reagiu com Curtir."><i data-i="curtir"></i>Curtir</button><button type="button" role="menuitem" data-fecha data-toast="Você reagiu com Parabéns."><i data-i="parabens"></i>Parabéns</button><button type="button" role="menuitem" data-fecha data-toast="Você reagiu com Amei."><i data-i="amei"></i>Amei</button><button type="button" role="menuitem" data-fecha data-toast="Você reagiu com Genial."><i data-i="genial"></i>Genial</button><button type="button" role="menuitem" data-fecha data-toast="Você reagiu com Apoio."><i data-i="apoio"></i>Apoio</button></div></div>
+        <div class="lc-comentario"><span class="lc-av lc-av--32 lc-av--c2" aria-hidden="true">BT</span><div class="lc-comentario__bolha"><b>Bruno Tavares</b> A síndica me ligou elogiando. Merecido.</div></div>
+      </article>
+      <article class="lc-post" aria-labelledby="ps-a2">
+        <div class="lc-post__cab"><span class="lc-ladrilho lc-ladrilho--40"><i data-i="comunicado"></i></span><span class="lc-post__quem"><b id="ps-a2">Comunicado do RH</b><span class="lc-post__meta">Cultura, ontem às 17:00, ciência obrigatória até 03/10</span></span></div>
+        <div class="lc-post__corpo"><h3 class="lc-post__titulo">Novo horário da portaria remota a partir de 06/10</h3><p>A central de portaria passa a operar 24 horas com dois turnos de 12. As trocas de plantão agora são aprovadas pelo gestor no próprio GACO.</p></div>
+        <div class="lc-ciencia"><button type="button" class="lc-btn lc-btn--p" data-ciencia><i data-i="confirmar"></i>Li e estou ciente</button><span class="lc-ciencia__conta">18 de 24 já leram</span></div>
+      </article>
+      <article class="lc-post" aria-labelledby="ps-a3">
+        <div class="lc-post__cab"><span class="lc-ladrilho lc-ladrilho--40"><i data-i="comunicado"></i></span><span class="lc-post__quem"><b id="ps-a3">Comunicado do RH</b><span class="lc-post__meta">Cultura, 29/09, ciência obrigatória</span></span></div>
+        <div class="lc-post__corpo"><h3 class="lc-post__titulo">Política de trabalho remoto, revisão de setembro</h3><p>Dois dias remotos por semana para Suporte e CS, combinados com a gestora no GACO.</p></div>
+        <div class="lc-ciencia"><span class="lc-carimbo lc-carimbo--ciente">Ciente<small>Letícia Araújo, 30/09/26 09:12</small></span><span class="lc-ciencia__conta">24 de 24 já leram</span></div>
+      </article>
+      <article class="lc-post" aria-labelledby="ps-a4">
+        <div class="lc-post__cab"><span class="lc-ladrilho lc-ladrilho--40"><i data-i="aniversario"></i></span><span class="lc-post__quem"><b id="ps-a4">Aniversário de Rafael Nunes</b><span class="lc-post__meta">Hoje, Operações, 6 anos de casa em novembro</span></span><button type="button" class="lc-btn lc-btn--p" data-toast="Parabéns enviado a Rafael Nunes."><i data-i="parabens"></i>Dar parabéns</button></div>
+        <div style="height:14px"></div>
+      </article>
+    </div>
+  </template>
+</section>
+
+<!-- ============================ TEMPO E TRABALHO ============================ -->
+<section class="lc-doc-secao" id="agenda" data-familia="Tempo e trabalho">
+  <h2>Calendário e agenda</h2>
+  <p>Calendário do mês para reservas, assembleias e prazos; mini calendário para escolher data e ver dias marcados; agenda do dia como lista com hora, e o compromisso de agora marcado.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Reservas do salão, agenda da equipe, calendário acadêmico.</li><li>Agenda do dia na coluna direita do Início.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para prazo único (use data no campo).</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Evento: o quê + onde ("Reserva salão, Bl B 1204"). Mais de 3 no dia: "+2".</li><li>Dia da semana abreviado sem ponto: seg, ter, qua.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Grade com <code>role="grid"</code>; cada dia é botão com data por extenso ("quarta, 1º de outubro, 2 eventos").</li><li>Hoje: <code>aria-current="date"</code>.</li></ul></div>
+  </div>
+  <template data-ex="Agenda do dia e mini calendário">
+    <div class="p1-dois">
+      <ul class="lc-agenda" aria-label="Agenda de hoje">
+        <li><span class="lc-agenda__hora">09:00</span><span>Ronda com o zelador<span class="lc-agenda__sub">Cond. Parque das Águas, Bl C</span></span><span class="lc-estado lc-estado--sucesso">Feito</span></li>
+        <li class="lc-agora"><span class="lc-agenda__hora">10:30</span><span>Renovação com a síndica<span class="lc-agenda__sub">Marina Costa, videochamada, agora</span></span><button type="button" class="lc-btn lc-btn--p">Entrar</button></li>
+        <li><span class="lc-agenda__hora">14:00</span><span>Encanador, OS 482<span class="lc-agenda__sub">Hidro Paulista, subsolo 1</span></span><span class="lc-estado lc-estado--info">Agendado</span></li>
+        <li><span class="lc-agenda__hora">19:30</span><span>AGE, cobertura da piscina<span class="lc-agenda__sub">Salão de festas, 2ª chamada às 20:00</span></span><span class="lc-data"><b>15</b><span>out</span></span></li>
+      </ul>
+      <div class="lc-cal lc-cal--mini p1-cal" role="group" aria-label="Outubro de 2026">
+        <div class="lc-cal__cab"><button type="button" class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" aria-label="Mês anterior"><i data-i="chevron-esquerda"></i></button><h3>Outubro de 2026</h3><button type="button" class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" aria-label="Próximo mês"><i data-i="chevron-direita"></i></button></div>
+        <div class="lc-cal__grade" data-gerar-mini></div>
+      </div>
+    </div>
+  </template>
+  <template data-ex="Calendário do mês (reservas e assembleias)" data-temas="alternar" data-gerar="cal-mes"></template>
+</section>
+
+<section class="lc-doc-secao" id="kanban" data-familia="Tempo e trabalho">
+  <h2>Kanban</h2>
+  <p>Quadro do funil comercial e de projetos. Coluna com contagem e soma, cartão com título, subtítulo e pé; borda esquerda âmbar quando esfria, vermelha quando atrasa. Arrasta com mouse e com teclado.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Funil comercial (Pipedrive), sprint, obras.</li><li>Zona de soltar Ganho/Perdido no fim do arraste.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para fila de atendimento com prazo (lista ordenada por prazo).</li><li>Mais de 7 colunas.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Soma no formato do negócio: "R$ 18.480,00 por mês".</li><li>Pé: dono e há quanto tempo na etapa.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Teclado: foco no cartão, Espaço levanta, ← → trocam de coluna, Espaço solta. Cada passo é anunciado.</li><li>Alternativa sempre: "Mover para ▾" no menu do cartão.</li></ul></div>
+  </div>
+  <template data-ex="Funil comercial (arraste ou use o teclado)" data-temas="alternar" data-rola>
+    <div class="lc-kanban" aria-label="Funil comercial">
+      <section class="lc-kanban__col"><div class="lc-kanban__cab"><h3>Contato <span class="lc-contagem">2</span></h3><p class="lc-kanban__soma">R$ 7.900,00 por mês</p></div><div class="lc-kanban__lista">
+        <button type="button" class="lc-cartao-k" draggable="true" data-valor="3200"><span class="lc-cartao-k__titulo">Edifício Mirante do Vale</span><span class="lc-cartao-k__sub">64 unidades, Santana</span><span class="lc-cartao-k__pe"><span class="lc-av lc-av--20 lc-av--c4" aria-hidden="true">RN</span><span class="lc-cresce">há 3 dias</span>R$ 3.200</span></button>
+        <button type="button" class="lc-cartao-k lc-cartao-k--esfriando" draggable="true" data-valor="4700"><span class="lc-cartao-k__titulo">Cond. Bosque Imperial</span><span class="lc-cartao-k__sub">96 unidades, Morumbi</span><span class="lc-cartao-k__pe"><span class="lc-estado lc-estado--aviso">Esfriando</span><span class="lc-cresce"></span>R$ 4.700</span></button>
+      </div><button type="button" class="lc-kanban__add"><i data-i="mais" class="lc-ic--16"></i>Adicionar negócio</button></section>
+      <section class="lc-kanban__col"><div class="lc-kanban__cab"><h3>Proposta <span class="lc-contagem">2</span></h3><p class="lc-kanban__soma">R$ 10.580,00 por mês</p></div><div class="lc-kanban__lista">
+        <button type="button" class="lc-cartao-k lc-cartao-k--atrasado" draggable="true" data-valor="6180"><span class="lc-cartao-k__titulo">Residencial Vila Mariana, torres 1 e 2, com portaria remota e gestão de obras</span><span class="lc-cartao-k__sub">212 unidades</span><span class="lc-cartao-k__pe"><span class="lc-estado lc-estado--perigo">Proposta vencida</span><span class="lc-cresce"></span>R$ 6.180</span></button>
+        <button type="button" class="lc-cartao-k lc-f-hover" draggable="true" data-valor="4400"><span class="lc-cartao-k__titulo">Cond. Jardins do Cambuí</span><span class="lc-cartao-k__sub">Campinas, 80 unidades</span><span class="lc-cartao-k__pe"><span class="lc-av lc-av--20 lc-av--c2" aria-hidden="true">BT</span><span class="lc-cresce">há 6 dias</span>R$ 4.400</span></button>
+      </div><button type="button" class="lc-kanban__add"><i data-i="mais" class="lc-ic--16"></i>Adicionar negócio</button></section>
+      <section class="lc-kanban__col"><div class="lc-kanban__cab"><h3>Fechamento <span class="lc-contagem">0</span></h3><p class="lc-kanban__soma">R$ 0,00 por mês</p></div><div class="lc-kanban__lista"></div><button type="button" class="lc-kanban__add"><i data-i="mais" class="lc-ic--16"></i>Adicionar negócio</button></section>
+    </div>
+    <div class="lc-zona-soltar" style="margin-top:8px;position:relative" aria-hidden="true"><div class="lc-ganho"><i data-i="sucesso"></i>Ganho</div><div class="lc-perdido"><i data-i="erro"></i>Perdido</div></div>
+  </template>
+</section>
+
+<section class="lc-doc-secao" id="frequencia" data-familia="Tempo e trabalho">
+  <h2>Frequência</h2>
+  <p>Medidor da Academy: barra com a marca do mínimo (75%). Abaixo do mínimo, perigo com a palavra "risco"; perto, aviso.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Boletim e lista de disciplinas da Academy; frequência em treinamento obrigatório.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para meta comercial (use progresso).</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>"68%, risco por falta. Mínimo 75%".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>role="meter"</code> com valor e rótulo que cita o mínimo.</li></ul></div>
+  </div>
+  <template data-ex="Três situações">
+    <div class="p1-col">
+      <span class="lc-frequencia" role="meter" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" aria-label="Frequência em Legislação condominial: 92%, mínimo 75%"><span class="lc-frequencia__barra" style="--_v:92%"></span>92%</span>
+      <span class="lc-frequencia lc-frequencia--atencao" role="meter" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" aria-label="Frequência em Contabilidade: 78%, perto do mínimo de 75%"><span class="lc-frequencia__barra" style="--_v:78%"></span>78%, atenção</span>
+      <span class="lc-frequencia lc-frequencia--baixa" role="meter" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" aria-label="Frequência em Gestão de pessoas: 68%, risco por falta, mínimo 75%"><span class="lc-frequencia__barra" style="--_v:68%"></span>68%, risco por falta</span>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-secao" id="kpi" data-familia="Tempo e trabalho">
+  <h2>KPI simples</h2>
+  <p>Número grande com rótulo e variação, separados por filete. Só em relatório e painel. <b>Nunca em fileira no Início.</b></p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Topo de relatório (inadimplência, arrecadação), painel do superadmin.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>No Início; no rodapé do Suporte (C1: KPI "pela porta dos fundos").</li><li>Mais de 5 por linha.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Variação diz contra o quê: "+2,1 p.p. sobre setembro".</li><li>Para inadimplência, subir é ruim: a cor segue o sentido do negócio.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>dl</code> com rótulo e valor; a seta tem nome ("subiu").</li></ul></div>
+  </div>
+  <template data-ex="Relatório de inadimplência, outubro">
+    <dl class="lc-kpis">
+      <div class="lc-kpi"><dt class="lc-kpi__rotulo">Arrecadado</dt><dd class="lc-kpi__valor">R$ 152.418</dd><dd class="lc-kpi__var lc-kpi__var--pos"><i data-i="tendencia-alta" aria-label="subiu"></i>+3,4% sobre setembro</dd></div>
+      <div class="lc-kpi"><dt class="lc-kpi__rotulo">Inadimplência</dt><dd class="lc-kpi__valor">14,2%</dd><dd class="lc-kpi__var lc-kpi__var--neg"><i data-i="tendencia-alta" aria-label="subiu"></i>+2,1 p.p.</dd></div>
+      <div class="lc-kpi"><dt class="lc-kpi__rotulo">Unidades em atraso</dt><dd class="lc-kpi__valor">26</dd><dd class="lc-kpi__var"><i data-i="tendencia-estavel" aria-label="estável"></i>igual a setembro</dd></div>
+      <div class="lc-kpi"><dt class="lc-kpi__rotulo">Acordos ativos</dt><dd class="lc-kpi__valor">7</dd><dd class="lc-kpi__var lc-kpi__var--pos"><i data-i="tendencia-baixa" aria-label="caiu"></i>2 quitados</dd></div>
+    </dl>
+  </template>
+</section>
+
+<!-- ============================ CASOS-LIMITE ============================ -->
+<section class="lc-doc-secao" id="limites" data-familia="Casos-limite">
+  <h2>Casos-limite</h2>
+  <p>O que acontece com texto longo, número grande, nome renomeado pelo cliente, zero, um e plural. Cada peça foi posta à prova com o pior caso real que a operação já viu.</p>
+  <ul class="lc-doc-regras">
+    <li><b>Texto longo</b> quebra em até 2 linhas em cartão e post; em tabela e etiqueta corta com reticências e mostra inteiro na dica. Nunca corta o último item da trilha.</li>
+    <li><b>Número grande</b>: separador de milhar sempre; até R$ 999.999.999,99 cabe na coluna de valor (largura mínima 14 caracteres); contador passa a "99+".</li>
+    <li><b>Nome renomeado</b>: o cliente troca "Chamados" por "Ocorrências" e "Unidade" por "Apartamento". Abas, botões e mensagens usam o termo do cliente; o plural vem do cadastro do termo.</li>
+    <li><b>Zero, um, vários</b>: "Nenhum chamado", "1 chamado", "12 chamados". Nunca "1 chamado(s)" nem "0 chamados".</li>
+  </ul>
+  <template data-ex="Texto longo e número grande">
+    <div class="p1-col" style="width:100%">
+      <span class="lc-pessoa" style="max-width:320px"><span class="lc-ladrilho lc-ladrilho--40"><i data-i="conjunto-de-predios"></i></span><span style="min-width:0"><span class="lc-pessoa__nome">Condomínio Residencial Parque das Águas Claras do Jardim Botânico, torres A, B e C</span><span class="lc-pessoa__sub lc-reticencias">Avenida Engenheiro Luís Carlos Berrini, 1.748, Cidade Monções, São Paulo</span></span></span>
+      <div class="lc-grupo-btn"><button type="button" class="lc-btn lc-btn--principal">Enviar segunda via a todos os inadimplentes</button></div>
+      <div class="p1-linha-ex"><span class="lc-etiqueta lc-etiqueta--3 lc-etiqueta--corta" data-dica="Aguardando aprovação do conselho fiscal para pagamento"><span>Aguardando aprovação do conselho fiscal para pagamento</span></span><span class="lc-contador">99+</span><span>Unidades <span class="lc-contagem">12.480</span></span></div>
+      <div class="lc-tabela-cont" style="width:100%"><table class="lc-tabela"><thead><tr><th scope="col">Conta</th><th scope="col" class="lc-num">Valor</th></tr></thead><tbody><tr><td>Obra de impermeabilização da cobertura e troca dos 6 elevadores</td><td class="lc-num">R$ 12.845.390,17</td></tr></tbody><tfoot><tr><td>Total do orçamento</td><td class="lc-num"><span class="lc-total">R$ 128.453.901,70</span></td></tr></tfoot></table></div>
+    </div>
+  </template>
+  <template data-ex="Termo renomeado pelo cliente, zero, um e plural">
+    <div class="p1-col" style="width:100%">
+      <div class="lc-abas" role="tablist" aria-label="Ficha com termos do cliente"><span role="tab" aria-selected="true">Visão geral</span><span role="tab" aria-selected="false">Ocorrências <span class="lc-contagem">0</span></span><span role="tab" aria-selected="false">Apartamentos <span class="lc-contagem">1</span></span><span role="tab" aria-selected="false">Moradores <span class="lc-contagem">212</span></span></div>
+      <ul class="lc-lista" style="width:100%"><li>Nenhuma ocorrência aberta</li><li>1 ocorrência aberta</li><li>12 ocorrências abertas</li><li>1 boleto vencido, R$ 1.284,37</li><li>2 boletos vencidos, soma R$ 2.386,77</li></ul>
+      <div class="lc-av-grupo"><span class="lc-av lc-av--24 lc-av--c8" aria-hidden="true">P</span><span class="lc-av-grupo__mais">Portaria (nome de uma palavra só: uma inicial)</span></div>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-secao" id="acessibilidade" data-familia="Casos-limite">
+  <h2>Acessibilidade desta página</h2>
+  <div class="lc-doc-a11y">
+    <div><h3>Ordem de foco</h3><ol><li>"Pular para o conteúdo".</li><li>Marca, links da documentação, densidade, tema.</li><li>Índice por família (desktop).</li><li>Cada seção: exemplos na ordem do quadro (claro antes de escuro), depois "HTML de exemplo" e "Copiar HTML".</li></ol></div>
+    <div><h3>O que é anunciado</h3><ul><li>Toasts em <code>role="status"</code>: "HTML copiado", "Contrato salvo", com Desfazer.</li><li>Troca de etapa, de registro (14 de 63), de página e movimento no kanban, por região viva.</li><li>Mensagem nova na conversa, por <code>role="log"</code>.</li></ul></div>
+    <div><h3>Só ícone, com nome</h3><ul><li>⋯ "Mais opções" (com o objeto: "Mais opções do Bl B, 1204").</li><li>Seta do dividido "Outras formas de salvar".</li><li>Setas "Registro anterior", "Próximo registro".</li><li>"Fechar", "Anexar arquivo", "Gravar áudio", "Tocar áudio", "Copiar número do chamado 4.812".</li></ul></div>
+  </div>
+</section>
+</main>
+</div>
+<script src="sistema/extra-p1-doc.js"></script>
+<script>
+(function(){
+var G=window.LCDoc.geradores;
+/* matriz de botões: 7 variantes x 6 estados, gerada para não repetir à mão */
+G["matriz-botoes"]=function(){
+  var vs=[["principal","Salvar","salvar"],["secundario","Exportar","baixar"],["discreto","Filtrar","filtrar"],["perigo","Excluir",""],["perigo-contorno","Cancelar",""],["link","Ver boleto",""],["icone","",""]];
+  var es=[["Normal",""],["Hover","lc-f-hover"],["Foco","lc-f-foco"],["Ativo","lc-f-ativo"],["Desabilitado","*des"],["Carregando","*busy"]];
+  var h='<table class="lc-doc-matriz"><thead><tr><th scope="col">Variante</th>'+es.map(function(e){return '<th scope="col">'+e[0]+'</th>';}).join("")+'</tr></thead><tbody>\n';
+  vs.forEach(function(v){
+    h+='  <tr><th scope="row">'+(v[0]==="icone"?"só ícone":v[0].replace("-"," "))+'</th>';
+    es.forEach(function(e){
+      var cl="lc-btn "+(v[0]==="icone"?"lc-btn--icone lc-btn--discreto":"lc-btn--"+v[0])+(e[1]&&e[1][0]!=="*"?" "+e[1]:"");
+      var at=(e[1]==="*des"?" disabled":"")+(e[1]==="*busy"?' aria-busy="true"':"")+(v[0]==="icone"?' aria-label="Mais opções"':"");
+      h+='<td><button type="button" class="'+cl+'"'+at+'>'+(v[0]==="icone"?'<i data-i="mais-opcoes"></i>':(v[2]?'<i data-i="'+v[2]+'"></i>':"")+v[1])+'</button></td>';
+    });
+    h+='</tr>\n';
+  });
+  return h+'</tbody></table>';
+};
+/* calendário do mês: outubro de 2026 começa numa quinta */
+var EV={1:[["andamento","Hoje: renovação Parque das Águas"]],3:[["sucesso","Reserva salão, Bl B 1204"],["info","Churrasqueira, Bl A 302"]],5:[["aviso","Manutenção do sistema, 2h"]],10:[["perigo","Vencimento dos boletos"]],14:[["info","Vistoria dos elevadores"]],15:[["andamento","AGE, cobertura da piscina"],["sucesso","Reserva salão, Bl C 81"],["info","Dedetização"],["info","Limpeza da caixa d'água"]],22:[["sucesso","Reserva salão, Bl A 1101"]],28:[["aviso","Prazo do seguro predial"]]};
+G["cal-mes"]=function(){
+  var h='<div class="lc-cal" role="grid" aria-label="Outubro de 2026"><div class="lc-cal__cab"><button type="button" class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" aria-label="Mês anterior"><i data-i="chevron-esquerda"></i></button><h3>Outubro de 2026</h3><button type="button" class="lc-btn lc-btn--p">Hoje</button><button type="button" class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" aria-label="Próximo mês"><i data-i="chevron-direita"></i></button></div>\n<div class="lc-cal__grade">';
+  ["dom","seg","ter","qua","qui","sex","sáb"].forEach(function(d){h+='<span class="lc-cal__dsem" role="columnheader">'+d+'</span>';});
+  for(var c=0;c<35;c++){var d=c-3,fora=d<1||d>31,dw=c%7,num=fora?(d<1?30+d:d-31):d;
+    var cl="lc-cal__dia"+(fora?" lc-cal__dia--fora":"")+((dw===0||dw===6)&&!fora?" lc-cal__dia--fds":"")+(d===1?" lc-cal__dia--hoje":"");
+    h+='\n  <div class="'+cl+'" role="gridcell"'+(d===1?' aria-current="date"':"")+'><span class="lc-cal__num">'+num+'</span>';
+    var ev=!fora&&EV[d]||[];ev.slice(0,3).forEach(function(e){h+='<a href="#" class="lc-evento lc-evento--'+e[0]+'">'+e[1]+'</a>';});
+    if(ev.length>3)h+='<button type="button" class="lc-cal__mais">+'+(ev.length-3)+' mais</button>';h+='</div>';}
+  return h+'</div></div>';
+};
+/* mini calendário dentro do template da agenda */
+document.querySelectorAll("template").forEach(function(t){var m=t.content.querySelector("[data-gerar-mini]");if(!m)return;m.removeAttribute("data-gerar-mini");
+  var h="";["d","s","t","q","q","s","s"].forEach(function(d,i){h+='<span class="lc-cal__dsem" aria-label="'+["domingo","segunda","terça","quarta","quinta","sexta","sábado"][i]+'">'+d+'</span>';});
+  for(var c=0;c<35;c++){var d=c-3;if(d<1||d>31){h+='<span class="lc-cal__dia lc-cal__dia--fora"></span>';continue;}
+    h+='<span class="lc-cal__dia'+(d===1?" lc-cal__dia--hoje":"")+(EV[d]?" lc-cal__dia--marcado":"")+'"><button type="button" class="lc-cal__num" aria-label="'+d+' de outubro'+(EV[d]?", "+EV[d].length+(EV[d].length>1?" eventos":" evento"):"")+'"'+(d===1?' aria-current="date"':"")+'>'+d+'</button></span>';}
+  m.innerHTML=h;});
+/* confirmação digitando: o botão de perigo só habilita com o nome exato */
+document.addEventListener("input",function(e){var c=e.target.getAttribute&&e.target.getAttribute("data-confirma");if(c===null||c===undefined)return;var b=e.target.closest(".lc-modal").querySelector(".lc-btn--perigo");b.disabled=e.target.value.trim()!==c;});
+})();
+</script>
+<script src="sistema/icones.js"></script>
+<script src="sistema/doc.js"></script>
+</body>
+</html>

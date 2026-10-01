@@ -44,7 +44,7 @@
 
 /* ============================== P2 GANTT ============================== */
 .lc-gantt-cont{overflow-x:auto;background:var(--sup-1);border:var(--borda-1);max-width:100%}
-.lc-gantt{--_sem:12;display:grid;grid-template-columns:260px minmax(720px,1fr);min-width:980px;font-size:13px}
+.lc-gantt{--_sem:12;position:relative;display:grid;grid-template-columns:260px minmax(720px,1fr);min-width:980px;font-size:13px}
 .lc-gantt__cab-nome,.lc-gantt__cab-tempo{position:sticky;top:0;background:var(--sup-1);border-bottom:1px solid var(--filete-forte);height:44px;z-index:2}
 .lc-gantt__cab-nome{display:flex;align-items:flex-end;padding:0 12px 8px;font:600 12.5px/16px var(--fonte-ui);color:var(--texto-2);border-right:1px solid var(--filete-forte);position:sticky;left:0;z-index:3}
 .lc-gantt__cab-tempo{display:grid;grid-template-columns:repeat(var(--_sem),minmax(0,1fr))}
@@ -71,9 +71,9 @@
 .lc-gantt__marco{position:absolute;top:50%;left:var(--_i);width:12px;height:12px;margin:-6px 0 0 -6px;background:var(--texto-1);transform:rotate(45deg)}
 .lc-gantt__marco-rot{position:absolute;top:50%;left:calc(var(--_i) + 12px);transform:translateY(-50%);font:500 12px/1 var(--fonte-ui);color:var(--texto-1);white-space:nowrap}
 .lc-gantt__hoje{position:absolute;top:0;bottom:0;left:var(--_h);width:2px;background:var(--atual);z-index:1;pointer-events:none}
-.lc-gantt__hoje-rot{position:absolute;top:2px;left:calc(var(--_h) + 4px);font:600 11px/1 var(--fonte-ui);color:var(--atual);z-index:1}
+.lc-gantt__hoje-rot{position:absolute;top:48px;left:calc(var(--_h) + 4px);font:600 11px/1 var(--fonte-ui);color:var(--atual);z-index:3;background:var(--sup-1);padding:1px 4px}
 .lc-gantt__corpo{display:contents}
-.lc-gantt-legenda{display:flex;gap:16px;flex-wrap:wrap;font:var(--t-legenda);color:var(--texto-2);padding:8px 0}
+.lc-gantt-legenda{list-style:none;margin:0;display:flex;gap:16px;flex-wrap:wrap;font:var(--t-legenda);color:var(--texto-2);padding:8px 0}
 .lc-gantt-legenda i{display:inline-block;width:14px;height:10px;border:1px solid var(--andamento-borda);background:var(--andamento-fundo);vertical-align:-1px;margin-right:6px}
 .lc-gantt-legenda .lc-l-feita{border-color:var(--sucesso-borda);background:var(--sucesso-fundo)}
 .lc-gantt-legenda .lc-l-atrasada{border-color:var(--perigo-borda);background:var(--perigo-fundo)}
@@ -95,7 +95,7 @@
 .lc-organo li:last-child::before{border-right:1px solid var(--filete-forte)}
 .lc-organo ul::before{content:"";position:absolute;top:0;left:50%;height:22px;border-left:1px solid var(--filete-forte)}
 .lc-organo>li>ul:first-of-type::before{}
-.lc-organo__no{display:flex;align-items:center;gap:10px;width:208px;padding:8px 10px;background:var(--sup-1);border:1px solid var(--filete-forte);border-radius:var(--raio-3);text-align:left;font-size:13px;color:var(--texto-1)}
+.lc-organo__no{text-decoration:none;display:flex;align-items:center;gap:10px;width:208px;padding:8px 10px;background:var(--sup-1);border:1px solid var(--filete-forte);border-radius:var(--raio-3);text-align:left;font-size:13px;color:var(--texto-1)}
 .lc-organo__no:hover{border-color:var(--borda-controle)}
 .lc-organo__no[aria-current="true"]{border-color:var(--atual);box-shadow:inset 0 0 0 1px var(--atual)}
 .lc-organo__no b{display:block;font-weight:600;line-height:17px}
@@ -423,3 +423,14 @@
    viewport e cobre linhas na captura de página inteira. Sugestão para fundir em componentes.css. */
 .lc-tabela tfoot td{position:static}
 .lc-tabela-cont--alta .lc-tabela tfoot td{position:sticky}
+.lc-graf-cont{overflow-x:auto;max-width:100%}
+.lc-graf-cont .lc-graf{min-width:560px}
+.lc-organo__no:hover{text-decoration:none;color:var(--texto-1)}
+/* faixa de datas escolhida no calendário mini (férias, reserva) */
+.lc-cal--mini .lc-cal__dia--faixa .lc-cal__num{background:var(--selecao);color:var(--selecao-texto);font-weight:600}
+.lc-cal--mini .lc-cal__dia--faixa-ponta .lc-cal__num{background:var(--atual);color:var(--texto-inverso);border-radius:var(--raio-1)}
+.lc-cal--mini .lc-cal__dia--outro .lc-cal__num{box-shadow:inset 0 -3px 0 var(--info-ponto)}
+.lc-regras{list-style:none;margin:0;padding:0;font-size:13.5px}
+.lc-regras li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;padding:6px 0}
+.lc-regras .lc-ic{width:18px;height:18px}
+.lc-regras .lc-ok{color:var(--sucesso-texto)}.lc-regras .lc-atencao{color:var(--aviso-texto)}.lc-regras .lc-falha{color:var(--perigo-texto)}

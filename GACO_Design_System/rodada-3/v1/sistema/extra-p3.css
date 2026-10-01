@@ -148,8 +148,8 @@
 .lc-diretorio{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
 .lc-ficha-pessoa{display:grid;grid-template-columns:48px minmax(0,1fr);gap:4px 12px;padding:14px;background:var(--sup-1);border:var(--borda-1);border-radius:var(--raio-3);text-decoration:none;color:var(--texto-1);min-width:0}
 .lc-ficha-pessoa:hover{border-color:var(--borda-controle);color:var(--texto-1);text-decoration:none}
-.lc-ficha-pessoa__nome{font-weight:600;font-size:14px;line-height:19px}
-.lc-ficha-pessoa__cargo{font:var(--t-legenda);color:var(--texto-2)}
+.lc-ficha-pessoa__nome{display:block;font-weight:600;font-size:14px;line-height:19px}
+.lc-ficha-pessoa__cargo{display:block;font:var(--t-legenda);color:var(--texto-2)}
 .lc-ficha-pessoa__faz{grid-column:1/-1;display:flex;gap:6px;align-items:center;font:var(--t-legenda);color:var(--texto-2);padding-top:8px;margin-top:6px;border-top:var(--borda-1)}
 .lc-ficha-pessoa__faz .lc-status-pessoal__ponto{width:8px;height:8px}
 .lc-letra{font:600 13px/18px var(--fonte-ui);color:var(--texto-2);padding:16px 0 6px;border-bottom:var(--borda-1);margin-bottom:12px;grid-column:1/-1}
@@ -160,6 +160,7 @@
   border-top:var(--borda-1);background:var(--sup-1);transition:grid-template-columns var(--mov-medio) var(--curva-mover)}
 .lc-atend[data-ficha="aberta"]{grid-template-columns:minmax(300px,360px) minmax(0,1fr) 340px}
 .lc-atend>*{min-width:0;min-height:0}
+.lc-atend__lista,.lc-atend__conversa{overflow:hidden}
 .lc-atend__lista{display:flex;flex-direction:column;border-right:var(--borda-1);background:var(--sup-1)}
 .lc-atend__lista-cab{display:flex;align-items:center;gap:6px;padding:10px 8px 6px 16px}
 .lc-atend__lista-cab h2{font:var(--t-secao);flex:1;margin:0}
@@ -187,7 +188,7 @@
 .lc-conv-item:hover{background:var(--sup-2)}
 .lc-conv-item[aria-current="true"]{background:var(--selecao)}
 .lc-conv-item[aria-current="true"]::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--borda-marcador);background:var(--atual)}
-.lc-conv-item .lc-av{grid-row:1/4;align-self:start}
+.lc-conv-item .lc-av,.lc-conv-item .lc-ladrilho{grid-row:1/4;align-self:start}
 .lc-conv-item__nome{font-weight:600;font-size:14px;line-height:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lc-conv-item__hora{font:var(--t-legenda);color:var(--texto-2);text-align:right;white-space:nowrap;font-variant-numeric:var(--num)}
 .lc-conv-item__hora--nova{color:var(--andamento-texto);font-weight:600}

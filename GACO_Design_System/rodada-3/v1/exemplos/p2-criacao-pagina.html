@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novo contrato de administração</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+<style>
+.p2-form .lc-cab-pagina{padding-top:0}
+.p2-form .lc-secao-form{scroll-margin-top:24px}
+.p2-servicos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 20px}
+@media (max-width:639px){.p2-servicos{grid-template-columns:1fr}}
+.p2-barra-criar .lc-barra-salvar__msg .lc-ic{color:var(--texto-2)}
+.p2-barra-criar{border-top-color:var(--filete-forte)}
+</style>
+</head>
+<body data-moldura='{"modulo":"cs","secao":"Contratos","item":"Contratos","papel":"gerente-cs","trilha":["Contratos","Novo contrato"]}'>
+<main id="conteudo">
+<div class="lc-modelo-form">
+  <form class="p2-form" id="form" novalidate aria-labelledby="titulo">
+    <div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1 id="titulo">Novo contrato de administração</h1><p class="lc-cab-pagina__desc">Os campos com <span class="lc-obrig">*</span> são obrigatórios. O resto você pode completar depois, no próprio contrato.</p></div></div>
+    <div id="avisos"></div>
+
+    <fieldset class="lc-secao-form" id="sec-cond"><legend>Condomínio</legend>
+      <p class="lc-secao-form__desc">Quem contrata a administradora. Se o condomínio ainda não existe, crie na própria lista sem sair daqui.</p>
+      <div class="lc-form-grade">
+        <div class="lc-campo lc-inteiro" style="position:relative"><label class="lc-rotulo" for="c-cond" id="c-cond-r">Condomínio <span class="lc-obrig" aria-hidden="true">*</span></label>
+          <button type="button" class="lc-combo" id="c-cond" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="c-cond-r c-cond" data-obrig="Condomínio"><span class="lc-combo__valor lc-combo__valor--vazio">Escolha o condomínio</span><i data-i="chevron-baixo"></i></button>
+          <input type="hidden" id="c-cond-v" data-campo="Condomínio" value=""></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="c-cnpj">CNPJ</label><input id="c-cnpj" class="lc-entrada" readonly value="" placeholder="Vem do cadastro do condomínio"></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="c-sind">Quem assina pelo condomínio <span class="lc-obrig" aria-hidden="true">*</span></label><input id="c-sind" class="lc-entrada" data-campo="Quem assina" data-obrig="Quem assina pelo condomínio" placeholder="Nome do síndico ou do procurador"></div>
+      </div>
+    </fieldset>
+
+    <fieldset class="lc-secao-form" id="sec-vig"><legend>Vigência e valores</legend>
+      <p class="lc-secao-form__desc">O reajuste anual é calculado sozinho na data-base, pelo índice escolhido.</p>
+      <div class="lc-form-grade">
+        <div class="lc-campo"><label class="lc-rotulo" for="c-ini">Início <span class="lc-obrig" aria-hidden="true">*</span></label><input id="c-ini" class="lc-entrada" type="date" data-campo="Início" data-obrig="Início da vigência"></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="c-fim">Fim</label><input id="c-fim" class="lc-entrada" type="date" data-campo="Fim"><p class="lc-ajuda">Em branco, renova sozinho a cada 12 meses.</p></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="c-valor">Valor mensal <span class="lc-obrig" aria-hidden="true">*</span></label><div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">R$</span><input id="c-valor" class="lc-entrada lc-entrada--num" inputmode="decimal" data-campo="Valor mensal" data-obrig="Valor mensal" placeholder="0,00"></div></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="c-venc">Vencimento do boleto</label><select id="c-venc" class="lc-selecao" data-campo="Vencimento"><option>Dia 5</option><option selected>Dia 10</option><option>Dia 15</option><option>Dia 20</option></select></div>
+        <fieldset class="lc-grupo-opcoes lc-grupo-opcoes--linha lc-inteiro"><legend class="lc-rotulo" style="margin-bottom:8px;width:100%">Índice de reajuste</legend>
+          <label class="lc-radio"><input type="radio" name="c-ind" value="IGP-M" checked data-campo="Índice"><span class="lc-radio__bola"></span>IGP-M</label>
+          <label class="lc-radio"><input type="radio" name="c-ind" value="IPCA"><span class="lc-radio__bola"></span>IPCA</label>
+          <label class="lc-radio"><input type="radio" name="c-ind" value="INPC"><span class="lc-radio__bola"></span>INPC</label></fieldset>
+      </div>
+    </fieldset>
+
+    <fieldset class="lc-secao-form" id="sec-serv"><legend>Serviços incluídos</legend>
+      <p class="lc-secao-form__desc">Aparecem no contrato gerado e na prestação de contas que o síndico vê no portal.</p>
+      <div class="p2-servicos">
+        <label class="lc-marcar"><input type="checkbox" checked data-campo="Gestão financeira"><span class="lc-marcar__caixa"></span><span>Gestão financeira e prestação de contas<small>Balancete mensal até o dia 10</small></span></label>
+        <label class="lc-marcar"><input type="checkbox" checked data-campo="Cobrança"><span class="lc-marcar__caixa"></span><span>Cobrança de inadimplentes<small>Régua de cobrança em D+1, D+5 e D+15</small></span></label>
+        <label class="lc-marcar"><input type="checkbox" checked data-campo="Assembleias"><span class="lc-marcar__caixa"></span><span>Assembleias<small>Duas por ano, com edital e ata</small></span></label>
+        <label class="lc-marcar"><input type="checkbox" data-campo="Folha"><span class="lc-marcar__caixa"></span><span>Folha de pagamento dos funcionários<small>Zelador, porteiros e limpeza</small></span></label>
+        <label class="lc-marcar"><input type="checkbox" data-campo="Jurídico"><span class="lc-marcar__caixa"></span><span>Assessoria jurídica básica<small>Notificações e acordos</small></span></label>
+        <label class="lc-marcar"><input type="checkbox" data-campo="Manutenção"><span class="lc-marcar__caixa"></span><span>Gestão de manutenção preventiva<small>Elevadores, bombas e portões</small></span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="lc-secao-form" id="sec-cob"><legend>Cobrança da taxa</legend>
+      <div class="lc-form-grade lc-form-grade--3">
+        <div class="lc-campo"><label class="lc-rotulo" for="c-conta">Conta de recebimento</label><select id="c-conta" class="lc-selecao" data-campo="Conta"><option>Itaú, agência 0412</option><option>Bradesco, agência 2290</option></select></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="c-multa">Multa</label><div class="lc-entrada-grupo"><input id="c-multa" class="lc-entrada lc-entrada--num" value="2,00" data-campo="Multa"><span class="lc-entrada-grupo__fixo">%</span></div></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="c-juros">Juros ao mês</label><div class="lc-entrada-grupo"><input id="c-juros" class="lc-entrada lc-entrada--num" value="1,00" data-campo="Juros"><span class="lc-entrada-grupo__fixo">%</span></div></div>
+      </div>
+    </fieldset>
+
+    <fieldset class="lc-secao-form" id="sec-resp"><legend>Responsáveis</legend>
+      <div class="lc-form-grade">
+        <div class="lc-campo"><label class="lc-rotulo" for="c-ger">Gerente da carteira <span class="lc-obrig" aria-hidden="true">*</span></label><select id="c-ger" class="lc-selecao" data-campo="Gerente" data-obrig="Gerente da carteira"><option value="">Escolha</option><option>Letícia Araújo</option><option>Rafael Lima</option><option>Bruno Tavares</option></select></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="c-ana">Analista de contratos</label><select id="c-ana" class="lc-selecao" data-campo="Analista"><option>Carla Mendes</option><option>Juliana Souza</option></select></div>
+      </div>
+    </fieldset>
+
+    <fieldset class="lc-secao-form" id="sec-doc"><legend>Documentos</legend>
+      <label class="lc-upload"><input type="file" multiple><i data-i="nuvem-envio"></i><span><b>Escolha os arquivos</b> ou arraste para cá</span><span class="lc-legenda">Contrato assinado, ata de eleição do síndico. PDF ou imagem, até 20 MB cada.</span></label>
+    </fieldset>
+  </form>
+  <nav class="lc-modelo-form__sumario" aria-label="Seções do formulário"><ol>
+    <li><a href="#sec-cond" aria-current="true" data-sum="sec-cond">Condomínio</a></li><li><a href="#sec-vig" data-sum="sec-vig">Vigência e valores</a></li><li><a href="#sec-serv" data-sum="sec-serv">Serviços incluídos</a></li><li><a href="#sec-cob" data-sum="sec-cob">Cobrança da taxa</a></li><li><a href="#sec-resp" data-sum="sec-resp">Responsáveis</a></li><li><a href="#sec-doc" data-sum="sec-doc">Documentos</a></li></ol></nav>
+</div>
+<div class="lc-barra-salvar p2-barra-criar" role="region" aria-label="Criar contrato" id="barra">
+  <p class="lc-barra-salvar__msg"><i data-i="info"></i><span id="barra-msg">Contrato novo, ainda não criado. <b>5 campos obrigatórios</b> por preencher.</span></p>
+  <div class="lc-barra-salvar__acoes" data-menu-ancora>
+    <a class="lc-btn lc-btn--discreto" href="p2-lista.html" id="cancelar">Cancelar</a>
+    <span class="lc-dividido"><button type="button" class="lc-btn lc-btn--principal" id="criar"><i data-i="confirmar"></i>Criar contrato</button><button type="button" class="lc-btn lc-btn--principal" id="criar-mais" aria-label="Outras formas de criar" aria-haspopup="menu" aria-expanded="false"><i data-i="chevron-baixo"></i></button></span>
+  </div>
+</div>
+</main>
+
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2, $=P.$, $$=P.$$, esc=P.esc, u=new URLSearchParams(location.search);
+var form=$("#form");
+var CONDS=[["Cond. Parque das Águas","12.418.337/0001-09","Marina Costa"],["Residencial Jardim Botânico","08.221.904/0001-55","Antônio Ribeiro"],["Edifício Solar das Palmeiras","31.006.712/0001-40","Cláudia Nunes"],["Cond. Vila Serena","22.907.118/0001-63","Regina Lopes"]];
+
+/* pendente vindo de "Salvar e criar outro" */
+var pend=P.guarda.sget("toast-pendente",null); if(pend){ sessionStorage.removeItem("toast-pendente"); setTimeout(function(){ P.toast(pend.txt,{tipo:"sucesso"}); },300); }
+
+/* duplicar: copia valores, serviços e cobrança; condomínio, datas e documentos ficam em branco */
+if(u.get("duplicar")){ var o=P.contrato(u.get("duplicar"));
+  $("#avisos").innerHTML='<div class="lc-alerta lc-alerta--info" style="margin-bottom:16px"><i data-i="duplicar"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Cópia de '+esc(o.nome)+' ('+o.id+')</span>Copiamos valor, índice, serviços, cobrança e responsáveis. Condomínio, quem assina, datas e documentos ficam em branco, porque são de cada contrato. O histórico não vem junto.</div></div>';
+  $("#c-valor").value=P.num(o.novo,2); $("#c-ger").value=P.PESSOAS[o.resp].nome; $("#titulo").textContent="Novo contrato, cópia de "+o.nome; }
+
+/* rastreio de alteração: na criação a barra fica sempre; o que muda é a contagem do que falta */
+var ed=new P.Edicao({raiz:form,objeto:"o contrato novo",chave:"lc-criar:contrato"});
+function faltam(){ return $$("[data-obrig]",form).filter(function(c){ var v=c.id==="c-cond"?$("#c-cond-v").value:c.value; return !String(v).trim(); }); }
+function msg(){ var f=faltam().length; $("#barra-msg").innerHTML=f?'Contrato novo, ainda não criado. <b>'+f+(f===1?' campo obrigatório':' campos obrigatórios')+'</b> por preencher.':'Contrato novo, pronto para criar. <span class="lc-tecla">Ctrl</span>+<span class="lc-tecla">S</span> cria.'; }
+form.addEventListener("input",function(e){ var c=e.target; if(c.getAttribute("aria-invalid")==="true" && String(c.value).trim()){ c.removeAttribute("aria-invalid"); var er=c.closest(".lc-campo").querySelector(".lc-erro"); if(er) er.remove(); recontar(); } msg(); });
+form.addEventListener("change",msg);
+/* a barra da Edição genérica não é usada aqui: a página de criação tem barra própria e permanente */
+ed.atualizar=function(){ document.title=(ed.sujo()?"• ":"")+"Novo contrato de administração"; };
+P.guardarSaida(ed);
+
+/* combo com busca e "Criar condomínio" (sem modal sobre modal: aqui a origem é página, então abre modal curto) */
+$("#c-cond").addEventListener("click",function(e){ var b=e.currentTarget; if(b.getAttribute("aria-expanded")==="true") return fechaCombo();
+  var box=document.createElement("div"); box.className="lc-opcoes"; box.style.position="absolute"; box.style.left="0"; box.style.right="0"; box.style.top="100%"; box.style.marginTop="4px"; box.style.maxWidth="none";
+  box.innerHTML='<div class="lc-opcoes__busca"><label class="lc-busca"><i data-i="pesquisar"></i><input aria-label="Pesquisar condomínio" placeholder="Nome ou CNPJ" id="cb-q"></label></div><ul class="lc-opcoes__lista" role="listbox" id="cb-l" aria-label="Condomínios"></ul><button type="button" class="lc-opcoes__criar" id="cb-criar"><i data-i="mais"></i>Criar condomínio</button>';
+  b.parentNode.appendChild(box); b.setAttribute("aria-expanded","true"); lcIcones(box);
+  var q=box.querySelector("#cb-q"), l=box.querySelector("#cb-l"), sel=0;
+  function d(){ var t=q.value.toLowerCase(), r=CONDS.filter(function(c){return (c[0]+c[1]).toLowerCase().indexOf(t)>-1;});
+    l.innerHTML=r.map(function(c,i){ return '<li class="lc-opcao" role="option" id="cb-o'+i+'" data-realce="'+(i===sel)+'" aria-selected="'+(c[0]===$("#c-cond-v").value)+'" data-i="'+CONDS.indexOf(c)+'">'+esc(c[0])+'<small>CNPJ '+c[1]+'</small></li>'; }).join("")||'<li class="lc-opcao" aria-disabled="true">Nenhum condomínio com “'+esc(q.value)+'”. Crie abaixo.</li>';
+    $("#cb-criar").innerHTML=lcIcone("mais")+(q.value?'Criar condomínio “'+esc(q.value)+'”':'Criar condomínio'); q.setAttribute("aria-activedescendant","cb-o"+sel); }
+  q.addEventListener("input",function(){ sel=0; d(); });
+  q.addEventListener("keydown",function(e){ var n=l.querySelectorAll("[data-i]").length; if(e.key==="ArrowDown"){ e.preventDefault(); sel=(sel+1)%n; d(); } if(e.key==="ArrowUp"){ e.preventDefault(); sel=(sel-1+n)%n; d(); } if(e.key==="Enter"){ e.preventDefault(); var o=l.querySelector('[data-realce="true"]'); if(o) escolher(+o.getAttribute("data-i")); } if(e.key==="Escape"){ e.preventDefault(); e.stopPropagation(); fechaCombo(); } });
+  l.addEventListener("click",function(e){ var o=e.target.closest("[data-i]"); if(o) escolher(+o.getAttribute("data-i")); });
+  box.querySelector("#cb-criar").addEventListener("click",function(){ var nome=q.value; fechaCombo(); criarCond(nome); });
+  d(); q.focus();
+});
+function fechaCombo(){ var x=$(".lc-opcoes",form); if(x) x.remove(); $("#c-cond").setAttribute("aria-expanded","false"); }
+function escolher(i){ var c=CONDS[i]; $("#c-cond-v").value=c[0]; $("#c-cond .lc-combo__valor").textContent=c[0]; $("#c-cond .lc-combo__valor").classList.remove("lc-combo__valor--vazio"); $("#c-cnpj").value=c[1]; if(!$("#c-sind").value) $("#c-sind").value=c[2];
+  $("#c-cond").removeAttribute("aria-invalid"); var er=$("#c-cond").closest(".lc-campo").querySelector(".lc-erro"); if(er) er.remove();
+  fechaCombo(); $("#c-cond").focus(); ed.atualizar(); msg(); recontar(); P.anunciar(c[0]+" escolhido. CNPJ e síndica preenchidos."); }
+function criarCond(nome){ P.modal({titulo:"Novo condomínio",desc:"Criação rápida. Ao criar, ele já fica escolhido no contrato.",
+  corpo:'<div class="lc-form-grade"><div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="nc-n">Nome <span class="lc-obrig" aria-hidden="true">*</span></label><input id="nc-n" class="lc-entrada" value="'+esc(nome)+'"></div><div class="lc-campo"><label class="lc-rotulo" for="nc-c">CNPJ</label><input id="nc-c" class="lc-entrada" inputmode="numeric" placeholder="00.000.000/0000-00"></div><div class="lc-campo"><label class="lc-rotulo" for="nc-u">Unidades</label><input id="nc-u" class="lc-entrada lc-entrada--num" inputmode="numeric"></div><div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="nc-s">Síndico</label><input id="nc-s" class="lc-entrada"></div></div>',
+  pe:'<button type="button" class="lc-btn" data-m-fechar>Cancelar</button><button type="button" class="lc-btn lc-btn--principal" data-ok>Criar e usar no contrato</button>',
+  aoAbrir:function(el,api){ el.querySelector("[data-ok]").addEventListener("click",function(){ var n=el.querySelector("#nc-n"); if(!n.value.trim()){ n.setAttribute("aria-invalid","true"); n.focus(); return; } CONDS.push([n.value,el.querySelector("#nc-c").value||"a preencher",el.querySelector("#nc-s").value]); api.fechar(); escolher(CONDS.length-1); P.toast("Condomínio <b>"+esc(n.value)+"</b> criado e escolhido.",{tipo:"sucesso"}); }); }}); }
+
+/* criar: valida tudo, resume os erros no topo e leva o foco até o resumo */
+function recontar(){ var r=$(".lc-erros-resumo"); if(!r) return; var f=faltam(); if(!f.length){ r.remove(); return; }
+  r.querySelector(".lc-alerta__titulo").textContent=f.length+(f.length===1?" campo precisa":" campos precisam")+" de atenção antes de criar";
+  r.querySelector("ol").innerHTML=f.map(function(c){ return '<li><a href="#'+c.id+'">'+esc(c.getAttribute("data-obrig"))+': preencha.</a></li>'; }).join("");
+  $$("[data-sum]").forEach(function(a){ var s=$("#"+a.getAttribute("data-sum")), n=f.filter(function(c){return s.contains(c);}).length, x=a.querySelector(".lc-contador"); if(x) x.remove(); if(n) a.insertAdjacentHTML("beforeend",'<span class="lc-contador lc-contador--alerta lc-contador--p" aria-label="'+n+' com erro">'+n+'</span>'); }); }
+function criar(modo){
+  var f=faltam(); $$(".lc-erro",form).forEach(function(e){e.remove();}); $$("[aria-invalid]",form).forEach(function(e){e.removeAttribute("aria-invalid");});
+  if(f.length){
+    f.forEach(function(c){ c.setAttribute("aria-invalid","true"); var p=document.createElement("p"); p.className="lc-erro"; p.id=c.id+"-e"; p.innerHTML=lcIcone("erro")+esc(c.getAttribute("data-obrig"))+" é obrigatório."; c.closest(".lc-campo").appendChild(p); c.setAttribute("aria-describedby",p.id); });
+    var r=$(".lc-erros-resumo"); if(!r){ r=document.createElement("div"); r.className="lc-alerta lc-alerta--perigo lc-erros-resumo"; r.setAttribute("tabindex","-1"); r.setAttribute("role","alert");
+      r.innerHTML=lcIcone("erro")+'<div class="lc-alerta__corpo"><span class="lc-alerta__titulo"></span><ol></ol></div>'; $("#avisos").appendChild(r); r.style.marginBottom="16px";
+      r.addEventListener("click",function(e){ var a=e.target.closest("a"); if(!a) return; e.preventDefault(); var c=$(a.getAttribute("href")); c.focus(); c.scrollIntoView({block:"center"}); }); }
+    recontar(); r.focus(); r.scrollIntoView({block:"start"});
+    $("#barra").classList.add("lc-barra-salvar--erro"); $("#barra-msg").innerHTML='<b>Não criamos o contrato.</b> '+f.length+(f.length===1?' campo precisa':' campos precisam')+' de atenção; a lista está no topo.';
+    return;
+  }
+  $("#barra").classList.remove("lc-barra-salvar--erro");
+  var b=$("#criar"); b.setAttribute("aria-busy","true");
+  setTimeout(function(){ b.removeAttribute("aria-busy"); var nome=$("#c-cond-v").value;
+    ed.confirmar(); ed.originais.forEach(function(v,k){ ed.originais.set(k,k.type==="checkbox"||k.type==="radio"?k.checked:k.value); });
+    if(modo==="outro"){ form.reset(); $("#c-cond-v").value=""; $("#c-cond .lc-combo__valor").textContent="Escolha o condomínio"; $("#c-cond .lc-combo__valor").classList.add("lc-combo__valor--vazio"); ed.registrar(); ed.originais.forEach(function(v,k){ ed.originais.set(k,k.type==="checkbox"||k.type==="radio"?k.checked:k.value); }); msg(); window.scrollTo(0,0); $("#c-cond").focus();
+      P.toast("Contrato de <b>"+esc(nome)+"</b> criado. Este é um novo, em branco.",{tipo:"sucesso",acao:"Abrir o criado",aoAcao:function(){ location.href="p2-registro.html?id=2026-0412"; }}); return; }
+    if(modo==="voltar"){ P.guarda.sset("toast-pendente-lista",{txt:"Contrato de <b>"+esc(nome)+"</b> criado."}); location.href="p2-lista.html"; return; }
+    P.guarda.sset("toast-pendente",{txt:"Contrato de <b>"+esc(nome)+"</b> criado. Você está nele agora."}); location.href="p2-registro.html?id=2026-0412";
+  },600);
+}
+var escolha=P.guarda.get("lc-criar:contrato","abrir");
+var ROT={abrir:"Criar contrato",outro:"Criar e criar outro",voltar:"Criar e voltar"};
+function rot(){ $("#criar").innerHTML=lcIcone("confirmar")+ROT[escolha]; }
+rot();
+$("#criar").addEventListener("click",function(){ criar(escolha); });
+$("#criar-mais").addEventListener("click",function(e){ P.menu(e.currentTarget,[
+  {t:"Criar e abrir o contrato",sub:"Vai para o contrato criado.",marcado:escolha==="abrir",acao:function(){ escolha="abrir"; P.guarda.set("lc-criar:contrato",escolha); rot(); criar("abrir"); }},
+  {t:"Criar e criar outro",sub:"Fica aqui, com o formulário em branco. Para cadastrar em série.",marcado:escolha==="outro",acao:function(){ escolha="outro"; P.guarda.set("lc-criar:contrato",escolha); rot(); criar("outro"); }},
+  {t:"Criar e voltar para a lista",sub:"Renovações, na mesma posição.",marcado:escolha==="voltar",acao:function(){ escolha="voltar"; P.guarda.set("lc-criar:contrato",escolha); rot(); criar("voltar"); }},
+  {pe:'<span class="lc-legenda">A última escolha fica como padrão do botão, nesta tela.</span>'}],{classe:"lc-menu--salvar",acima:true,rotulo:"Formas de criar"}); });
+P.atalho("enter",function(e){ e.preventDefault(); criar(escolha); },{mod:true});
+/* Ctrl+S também cria (a Edição genérica já registra Ctrl+S, aqui é substituído) */
+document.addEventListener("keydown",function(e){ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="s"){ e.preventDefault(); e.stopImmediatePropagation(); criar(escolha); } },true);
+
+/* sumário acompanha a seção visível */
+if("IntersectionObserver" in window){ var io=new IntersectionObserver(function(es){ es.forEach(function(x){ if(x.isIntersecting) $$("[data-sum]").forEach(function(a){ a.setAttribute("aria-current",a.getAttribute("data-sum")===x.target.id); }); }); },{rootMargin:"-20% 0px -70% 0px"}); $$(".lc-secao-form").forEach(function(s){ io.observe(s); }); }
+msg();
+if(u.get("erro")==="1") setTimeout(function(){ criar("abrir"); },300);
+})();
+</script>
+</body>
+</html>

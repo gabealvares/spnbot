@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clientes, minha carteira</title>
+<script src="../sistema/marca.js"></script>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-q2.css">
+<script src="../sistema/icones.js"></script>
+<script src="links.js"></script>
+<script src="../sistema/moldura.js" defer></script>
+<script src="../sistema/extra-q2.js" defer></script>
+<style>
+.lp-lista{flex:1;min-width:0;display:flex;flex-direction:column;background:var(--cm-fundo)}
+.lp-topo{padding:0 16px}
+.lp-lista .cm-tabela-caixa{flex:1;min-height:0;overflow:auto;margin:0 16px}
+.lp-previa{width:420px;flex:none;border-left:1px solid var(--cm-filete)}
+.lp-previa .cm-painel{width:100%;border-left:0}
+.lp-previa dl{margin:0}
+@media (max-width:1199px){.lp-previa{display:none}}
+@media (max-width:899px){.lp-lista .cm-tabela-caixa{margin:0 8px}.lp-topo{padding:0 8px}.lp-opc{display:none}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"CS","tela":"Clientes","papel":"CS","atalhos":[["J","próximo"],["K","anterior"],["Enter","abrir a ficha"],["Espaço","prévia"],["X","selecionar"],["/","buscar"],["?","todos"]],"usuario":{"nome":"Rafael Lima","iniciais":"RL","cargo":"CS sênior","presenca":"disponivel","tom":3}}'></div>
+<main id="conteudo" class="cm-app">
+  <div class="lp-lista">
+    <div class="lp-topo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Clientes</h1><div class="cm-cabecalho-pagina__acoes"><button class="cm-botao cm-botao--principal" type="button" onclick="location.href='criacao-pagina.html'"><i data-i="adicionar"></i>Novo cliente</button></div></div></header>
+      <div class="cm-visoes" role="tablist" aria-label="Visões salvas">
+        <button role="tab" type="button" aria-selected="false">Precisam de mim hoje <span class="cm-contador cm-contador--novo">7</span></button>
+        <button role="tab" type="button" aria-selected="true">Renovam em 90 dias <span class="cm-contador">63</span></button>
+        <button role="tab" type="button" aria-selected="false">Detratores sem retorno <span class="cm-contador">4</span></button>
+        <button role="tab" type="button" aria-selected="false">Sem contato há 30 dias</button>
+      </div>
+      <div class="cm-filtros" style="padding:8px 0">
+        <div class="cm-entrada cm-entrada--busca" style="width:260px"><i data-i="pesquisar"></i><input type="search" placeholder="Buscar cliente" aria-label="Buscar cliente" data-q2-busca><kbd class="cm-tecla">/</kbd></div>
+        <button class="cm-filtro is-ativo" type="button">Dono: <b>Rafael Lima</b><i data-i="chevron-baixo"></i></button>
+        <button class="cm-filtro" type="button">Saúde<i data-i="chevron-baixo"></i></button>
+        <span class="cm-empurra cm-t-legenda"><b style="color:var(--cm-texto-1)">1–50</b> de 63</span>
+      </div>
+    </div>
+    <div class="cm-tabela-caixa">
+      <table class="cm-tabela">
+        <thead><tr><th>Cliente</th><th>Saúde</th><th>Renova em</th><th class="lp-opc">Último contato</th><th class="lp-opc">Próximo passo</th></tr></thead>
+        <tbody id="lp-corpo" data-q2-lista></tbody>
+      </table>
+    </div>
+    <nav class="cm-paginacao lp-topo" aria-label="Paginação"><span class="cm-paginacao__total"><b>1–50</b> de 63</span><div class="cm-paginacao__paginas"><button type="button" disabled aria-label="Página anterior"><i data-i="chevron-esquerda"></i></button><button type="button" aria-current="page">1</button><button type="button">2</button><button type="button" aria-label="Próxima página"><i data-i="chevron-direita"></i></button></div></nav>
+  </div>
+  <div class="lp-previa">
+    <aside class="cm-painel cm-painel--no-lugar" aria-label="Prévia do cliente" aria-live="polite">
+      <header class="cm-painel__cabeca"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="condominio"></i></span><h2 class="cm-painel__titulo" id="pv-nome">Cond. Parque das Águas</h2><span class="cm-t-legenda cm-empurra" id="pv-pos">14 de 63</span></header>
+      <div class="cm-painel__corpo" style="padding:12px 16px" id="pv-corpo"></div>
+      <footer class="cm-painel__pe"><span class="cm-t-legenda cm-cresce">Prévia só leitura. Para editar, abra a ficha.</span><a class="cm-botao cm-botao--principal" href="registro.html" id="pv-abrir">Abrir ficha</a></footer>
+    </aside>
+  </div>
+</main>
+<script>
+(function(){
+  var C=[
+   ['Cond. Vila Serena','sucesso','Boa, 88','12 dias','há 3 dias','Assinar aditivo do Bl C'],
+   ['Residencial Monte Verde','aviso','Atenção, 61','15 dias','há 21 dias','Ligar para o síndico Osvaldo'],
+   ['Edifício Solar do Batel','sucesso','Boa, 79','19 dias','ontem','Enviar proposta de renovação'],
+   ['Cond. Jardim das Acácias','perigo','Risco, 42','22 dias','há 34 dias','Reunião com o conselho'],
+   ['Residencial Bosque Imperial','sucesso','Boa, 84','25 dias','há 8 dias','Apresentar laudo do elevador'],
+   ['Cond. Parque das Águas','sucesso','Boa, 82','106 dias','ontem','Reunião de resultados 30/10'],
+   ['Edifício Mirante do Juvevê','aviso','Atenção, 58','31 dias','há 15 dias','Responder NPS 5'],
+   ['Cond. Terras de Santa Felicidade','sucesso','Boa, 90','33 dias','há 2 dias','Nada pendente'],
+   ['Residencial Ecoville Park','sucesso','Boa, 77','38 dias','há 6 dias','Treinar a nova zeladora'],
+   ['Cond. Recanto dos Pinheiros','perigo','Risco, 39','41 dias','há 40 dias','Escalar para a diretoria'],
+   ['Edifício Batel Prime','sucesso','Boa, 86','45 dias','há 4 dias','Enviar prestação de contas'],
+   ['Cond. Alto da Glória','aviso','Atenção, 64','52 dias','há 18 dias','Revisar cobrança de outubro']];
+  var IC={sucesso:'sucesso',aviso:'atencao',perigo:'perigo'};
+  var corpo=document.getElementById('lp-corpo');
+  corpo.innerHTML=C.map(function(r,i){return '<tr data-q2-item'+(r[0]==='Cond. Parque das Águas'?' class="is-atual"':'')+' data-i="'+i+'"><td class="cm-tabela__principal"><a href="registro.html">'+r[0]+'</a><span class="cm-tabela__sub">Curitiba</span></td><td><span class="cm-estado cm-estado--ponto cm-estado--'+r[1]+'">'+r[2]+'</span></td><td class="cm-t-dado">'+r[3]+'</td><td class="lp-opc">'+r[4]+'</td><td class="lp-opc">'+r[5]+'</td></tr>'}).join('');
+  function mostrar(i){var r=C[i];document.getElementById('pv-nome').textContent=r[0];document.getElementById('pv-pos').textContent=(9+i)+' de 63';
+    document.getElementById('pv-corpo').innerHTML='<dl class="cm-ficha"><div class="cm-ficha__linha is-leitura"><dt>Saúde</dt><dd><span class="cm-estado cm-estado--'+r[1]+'">'+cmIcone(IC[r[1]])+r[2]+'</span></dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Renova em</dt><dd>'+r[3]+'</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Último contato</dt><dd>'+r[4]+'</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Próximo passo</dt><dd>'+r[5]+'</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Mensalidade</dt><dd class="cm-t-valor">R$ 4.380,00</dd><span></span></div></dl>'+
+    '<h3 class="cm-t-subsecao" style="margin:16px 0 6px">Últimas atividades</h3><ul class="cm-atividade" style="margin:0 -12px"><li><span class="cm-ladrilho cm-ladrilho--p">'+cmIcone('telefone')+'</span><div><div class="cm-atividade__titulo">Ligação com a síndica</div><div class="cm-atividade__desc">Pediu a proposta do Bloco C até sexta.</div></div><span class="cm-atividade__quando">'+r[4]+'</span></li><li><span class="cm-ladrilho cm-ladrilho--p">'+cmIcone('chamado')+'</span><div><div class="cm-atividade__titulo">2 chamados abertos</div><div class="cm-atividade__desc">Vazamento na garagem e portão do Bl B</div></div><span class="cm-atividade__quando">esta semana</span></li></ul>'}
+  corpo.addEventListener('q2:atual',function(e){mostrar(+e.detail.item.getAttribute('data-i'))});
+  mostrar(5);
+})();
+</script>
+</body>
+</html>

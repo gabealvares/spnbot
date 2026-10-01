@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel do suporte</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-sup{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start}
+@media (max-width:1099px){.q3-sup{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Painel do supervisor: fila ao vivo <small>Suporte, Gestão do suporte, Painel do suporte. Juliana Prado acompanha as 38 conversas abertas e as 8 pessoas, atualizando a cada 15 s.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>O gestor precisa ver o que está prestes a estourar e agir ali: puxar para si, redistribuir, entrar como nota. A fila ao vivo é uma tabela ordenada pelo tempo restante de SLA, com medidor e palavra; ao lado, as pessoas com presença e carga.</p><p>Os números do turno ficam numa linha só no cabeçalho do painel (é o único lugar fora de relatório onde o sistema permite KPI).</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>A tabela atualiza sozinha; linha nova pisca uma vez em latão suave. "Pausar atualização" congela para ler.</li><li>Selecionar linhas mostra "Atribuir a…" e "Mudar prioridade" na barra de massa.</li><li>Em cada linha: "Assumir" (vira sua), "Atribuir" (lista com carga de cada pessoa), "Espiar" (abre a conversa só leitura no painel lateral).</li><li>Clique numa pessoa à direita filtra a tabela pelas conversas dela; o chip mostra o filtro.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Zendesk Explore (Live), o Five9 e o Genesys usam uma tabela ao vivo ordenada pelo tempo de espera com ação de assumir na linha; o Freshdesk põe a carga por agente ao lado; e o Intercom deixa o gestor "espiar" sem entrar na conversa. O medidor de SLA tem forma e palavra porque cor sozinha não basta.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Ao vivo</button><button type="button" data-q3-estado="pausado" aria-pressed="false">Atualização pausada</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Suporte","tela":"Painel do suporte","papel":"Atendimento","usuario":{"nome":"Juliana Prado","iniciais":"JP","cargo":"Gestora do Suporte","presenca":"ocupado","tom":4}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Painel do suporte</h1>
+  <span class="cm-ao-vivo" data-se="padrao">Ao vivo, atualizado às 09:41:15</span><span class="cm-ao-vivo is-pausado" data-se="pausado">Pausado às 09:41:15. 3 mudanças esperando.</span>
+  <div class="cm-cabecalho-pagina__acoes"><button class="cm-botao" type="button" data-q3-estado="pausado" data-se="padrao"><i data-i="pausa"></i>Pausar atualização</button><button class="cm-botao cm-botao--principal" type="button" data-q3-estado="padrao" data-se="pausado"><i data-i="play"></i>Retomar e mostrar 3 mudanças</button></div></div>
+  <div class="cm-kpis" role="list" aria-label="Turno de hoje até agora">
+   <div class="cm-kpi" role="listitem"><span class="cm-kpi__rotulo">Abertas agora</span><span class="cm-kpi__valor">38</span><span class="cm-kpi__variacao">4 sem dono</span></div>
+   <div class="cm-kpi" role="listitem"><span class="cm-kpi__rotulo">SLA em risco</span><span class="cm-kpi__valor">6</span><span class="cm-kpi__variacao is-pior"><i data-i="alta"></i>2 <span>na última hora</span></span></div>
+   <div class="cm-kpi" role="listitem"><span class="cm-kpi__rotulo">Tempo de 1ª resposta hoje</span><span class="cm-kpi__valor">4 min</span><span class="cm-kpi__variacao is-melhor"><i data-i="baixa"></i>1 min <span>contra setembro</span></span></div>
+   <div class="cm-kpi" role="listitem"><span class="cm-kpi__rotulo">Resolvidas hoje</span><span class="cm-kpi__valor">57</span><span class="cm-kpi__variacao">CSAT 4,6</span></div>
+  </div>
+ </header>
+ <div class="q3-sup">
+  <section aria-labelledby="t-fila">
+   <div class="cm-linha" style="margin:4px 0 8px"><h2 class="cm-t-secao cm-cresce" id="t-fila">Fila ao vivo</h2>
+    <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Filas"><button type="button" aria-pressed="true">Todas</button><button type="button" aria-pressed="false">WhatsApp</button><button type="button" aria-pressed="false">E-mail</button><button type="button" aria-pressed="false">Portal</button></div></div>
+   <div class="cm-barra-massa" role="region" aria-label="Ações em massa" id="massa-sup" hidden style="margin-bottom:6px"><b data-q3-massa-n></b><button class="cm-botao cm-botao--p" type="button">Atribuir a…</button><button class="cm-botao cm-botao--p" type="button">Mudar prioridade</button><span class="cm-empurra"><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-massa-cancelar>Cancelar</button></span></div>
+   <div class="cm-tabela-caixa cm-tabela-caixa--alta" style="--tabela-altura:620px"><table class="cm-tabela" data-q3-massa="massa-sup">
+    <thead><tr><th class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar todas"><span class="cm-marcar__caixa"></span></label></th><th aria-sort="ascending"><button class="cm-ordenar" type="button">SLA<i data-i="seta-cima"></i></button></th><th>Quem</th><th>Assunto</th><th>Canal</th><th class="cm-num">Espera</th><th>Responsável</th><th><span class="cm-sr">Ações</span></th></tr></thead>
+    <tbody>
+     <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Patrícia Nunes"><span class="cm-marcar__caixa"></span></label></td><td><div class="cm-medidor-sla is-perigo"><span class="cm-medidor-sla__barra"><i></i></span><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Vencido 4 min</span></div></td><td class="cm-tabela__principal"><a href="21-suporte.html">Patrícia Nunes</a><span class="cm-tabela__sub">Parque das Águas, Bl A 804</span></td><td>Reserva do salão, 18/10</td><td>WhatsApp</td><td class="cm-num">39 min</td><td>Beatriz N.</td><td><div class="cm-grupo-botoes" style="gap:4px"><button class="cm-botao cm-botao--p" type="button" data-q3-toast="Você assumiu a conversa com Patrícia Nunes">Assumir</button><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-modal="painel-espiar">Espiar</button></div></td></tr>
+     <tr class="is-novo"><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Henrique Abreu"><span class="cm-marcar__caixa"></span></label></td><td><div class="cm-medidor-sla is-aviso" style="--sla:86%"><span class="cm-medidor-sla__barra"><i></i></span><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Restam 3 min</span></div></td><td class="cm-tabela__principal"><a href="#">Henrique Abreu</a><span class="cm-tabela__sub">Parque das Águas, vaga 38</span></td><td>Água na garagem</td><td>Portal</td><td class="cm-num">22 min</td><td><span class="cm-texto-2">Sem dono</span></td><td><div class="cm-grupo-botoes" style="gap:4px"><button class="cm-botao cm-botao--p" type="button">Atribuir</button><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-modal="painel-espiar">Espiar</button></div></td></tr>
+     <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Marina Costa"><span class="cm-marcar__caixa"></span></label></td><td><div class="cm-medidor-sla is-aviso" style="--sla:70%"><span class="cm-medidor-sla__barra"><i></i></span><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Restam 6 min</span></div></td><td class="cm-tabela__principal"><a href="21-suporte.html">Marina Costa</a><span class="cm-tabela__sub">Parque das Águas, síndica</span></td><td>Vazamento na garagem</td><td>WhatsApp</td><td class="cm-num">29 min</td><td>Beatriz N.</td><td><div class="cm-grupo-botoes" style="gap:4px"><button class="cm-botao cm-botao--p" type="button">Assumir</button><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-modal="painel-espiar">Espiar</button></div></td></tr>
+     <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Luiz Fernando"><span class="cm-marcar__caixa"></span></label></td><td><div class="cm-medidor-sla is-aviso" style="--sla:60%"><span class="cm-medidor-sla__barra"><i></i></span><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Restam 9 min</span></div></td><td class="cm-tabela__principal"><a href="#">Luiz Fernando, porteiro</a><span class="cm-tabela__sub">Res. Vila Serena</span></td><td>Portão travado aberto</td><td>WhatsApp</td><td class="cm-num">10 min</td><td>Beatriz N.</td><td><div class="cm-grupo-botoes" style="gap:4px"><button class="cm-botao cm-botao--p" type="button">Assumir</button><button class="cm-botao cm-botao--p cm-botao--discreto" type="button">Espiar</button></div></td></tr>
+     <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Gilberto Moura"><span class="cm-marcar__caixa"></span></label></td><td><div class="cm-medidor-sla" style="--sla:45%"><span class="cm-medidor-sla__barra"><i></i></span><span>Restam 18 min</span></div></td><td class="cm-tabela__principal"><a href="#">Gilberto Moura</a><span class="cm-tabela__sub">Ed. Monte Azul, Ap 503</span></td><td>Elevador social parado no 7º</td><td>WhatsApp</td><td class="cm-num">6 min</td><td>Larissa M.</td><td><div class="cm-grupo-botoes" style="gap:4px"><button class="cm-botao cm-botao--p" type="button">Assumir</button><button class="cm-botao cm-botao--p cm-botao--discreto" type="button">Espiar</button></div></td></tr>
+     <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Sílvia Prates"><span class="cm-marcar__caixa"></span></label></td><td><div class="cm-medidor-sla" style="--sla:20%"><span class="cm-medidor-sla__barra"><i></i></span><span>Restam 1 h 10</span></div></td><td class="cm-tabela__principal"><a href="#">Conselho do Solar do Bosque</a><span class="cm-tabela__sub">3 anexos</span></td><td>Prestação de contas de agosto</td><td>E-mail</td><td class="cm-num">21 min</td><td>Renata S.</td><td><div class="cm-grupo-botoes" style="gap:4px"><button class="cm-botao cm-botao--p" type="button">Assumir</button><button class="cm-botao cm-botao--p cm-botao--discreto" type="button">Espiar</button></div></td></tr>
+    </tbody></table></div>
+  </section>
+  <section class="cm-cartao" aria-labelledby="t-pes">
+   <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-pes">Pessoas agora</h2><span class="cm-t-legenda">6 de 8 na fila</span></header>
+   <ul class="cm-equipe">
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--3">LM<span class="cm-presenca cm-presenca--em-atendimento" aria-hidden="true"></span></span><span><span class="cm-equipe__nome">Larissa Mendes</span><span class="cm-equipe__status">Em atendimento</span></span><span class="cm-equipe__carga"><b>9</b> de 10</span></li>
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--2">BN<span class="cm-presenca cm-presenca--em-atendimento" aria-hidden="true"></span></span><span><span class="cm-equipe__nome">Beatriz Nogueira</span><span class="cm-equipe__status">Em atendimento</span></span><span class="cm-equipe__carga"><b>7</b> de 10<br><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>1 vencida</span></span></li>
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--1">DR<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span><span><span class="cm-equipe__nome">Diego Ramos</span><span class="cm-equipe__status">Disponível</span></span><span class="cm-equipe__carga"><b>6</b> de 10</span></li>
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--1">TA<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span><span><span class="cm-equipe__nome">Thiago Alves</span><span class="cm-equipe__status">Disponível</span></span><span class="cm-equipe__carga"><b>5</b> de 10</span></li>
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--5">RS<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span><span><span class="cm-equipe__nome">Renata Sousa</span><span class="cm-equipe__status">Disponível</span></span><span class="cm-equipe__carga"><b>2</b> de 6</span></li>
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--4">CT<span class="cm-presenca cm-presenca--ausente" aria-hidden="true"></span></span><span><span class="cm-equipe__nome">Camila Torres</span><span class="cm-equipe__status">Volto logo, 11h</span></span><span class="cm-equipe__carga">5 pausadas</span></li>
+   </ul>
+   <div class="cm-cartao__pe">Clique numa pessoa para filtrar a fila.</div>
+  </section>
+ </div>
+ <aside class="cm-painel cm-painel--g" id="painel-espiar" role="dialog" aria-labelledby="t-esp" hidden>
+  <header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="t-esp">Espiando: Patrícia Nunes</h2><span class="cm-t-legenda">só leitura</span><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-fechar aria-label="Fechar"><i data-i="fechar"></i></button></header>
+  <div class="cm-painel__corpo"><div class="cm-conversa" style="min-height:100%">
+   <div class="cm-bolha cm-bolha--entrada">Bom dia, quero reservar o salão de festas para 18/10, à noite. <span class="cm-bolha__meta">09:02</span></div>
+   <div class="cm-evento"><i data-i="pendente"></i>Distribuída para Beatriz, 09:02</div>
+   <div class="cm-bolha cm-bolha--entrada">Alguém? A festa é do meu filho. <span class="cm-bolha__meta">09:30</span></div>
+  </div></div>
+  <footer class="cm-painel__pe"><button class="cm-botao" type="button" data-q3-fechar data-q3-toast="Nota enviada para a Beatriz">Mandar nota para a Beatriz</button><button class="cm-botao cm-botao--principal" type="button" data-q3-fechar data-q3-toast="Você assumiu a conversa">Assumir</button></footer>
+ </aside>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título, Pausar; números do turno (lista); filtro de filas; tabela (caixa, SLA, nome, ações Assumir e Espiar por linha); pessoas. A atualização automática não move o foco nem a rolagem.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>A tabela não anuncia cada atualização (seria ruído). Uma região educada diz a cada minuto "2 conversas novas, 1 venceu". O medidor tem a palavra ("Restam 3 min"). Pausado diz quantas mudanças esperam.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Fechar" no painel. Assumir e Espiar têm palavra.</p></section>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>

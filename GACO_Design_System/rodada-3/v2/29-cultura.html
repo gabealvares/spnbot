@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cultura: pessoas e férias</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q4.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q4-icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q4.js" defer></script>
+<style>
+.cu-ferr{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:8px 0 12px}
+.cu-ferr .cm-entrada--busca{width:280px}
+.cu-perfil{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;margin-top:12px;align-items:start}
+.cu-perfil-topo{display:flex;gap:18px;align-items:center;padding:16px;background:var(--cm-camada-1);border:1px solid var(--cm-filete);flex-wrap:wrap}
+.cu-perfil-topo h1{font-size:22px;line-height:28px;font-weight:700}
+.cu-ferias{display:grid;grid-template-columns:360px minmax(0,1fr);gap:16px;margin-top:12px;align-items:start}
+.cu-cal-mes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.cu-cal-mes .cm-calendario td.is-periodo button{background:var(--cm-acao-suave);border-radius:0;width:100%}
+.cu-cal-mes .cm-calendario td.is-ponta button{background:var(--cm-acao);color:var(--cm-sobre-acao);font-weight:700}
+.cu-cal-mes .cm-calendario td.is-feriado button{text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
+.cu-cal-mes .cm-calendario td.is-outro button{box-shadow:inset 0 -3px 0 var(--cm-etq-2);border-radius:0}
+.cu-cal-mes h3{font-size:13px;font-weight:700;margin-bottom:4px}
+.cu-aprov{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:0;border:1px solid var(--cm-filete);margin-top:8px}
+.cu-aprov>.cm-tabela-caixa{border:0;border-right:1px solid var(--cm-filete)}
+.cu-equipe-faixa{display:grid;grid-template-columns:140px repeat(20,minmax(0,1fr));gap:1px;font-size:11px;margin-top:6px}
+.cu-equipe-faixa>span{height:18px;background:var(--cm-camada-2);display:flex;align-items:center;justify-content:center}
+.cu-equipe-faixa>span.n{justify-content:flex-start;background:transparent;font-size:12px;color:var(--cm-texto-2);white-space:nowrap;overflow:hidden}
+.cu-equipe-faixa>span.f{background:repeating-linear-gradient(45deg,var(--cm-etq-2) 0 3px,transparent 3px 6px)}
+.cu-equipe-faixa>span.p{background:var(--cm-acao-suave);box-shadow:inset 0 0 0 1px var(--cm-acao-filete)}
+.cu-equipe-faixa>span.h{background:transparent;color:var(--cm-texto-3)}
+@media (max-width:1099px){ .cu-perfil,.cu-ferias,.cu-aprov{grid-template-columns:minmax(0,1fr)} .cu-aprov>.cm-tabela-caixa{border-right:0;border-bottom:1px solid var(--cm-filete)} }
+@media (max-width:599px){ .cu-cal-mes{grid-template-columns:1fr} .cu-equipe-faixa{grid-template-columns:90px repeat(20,minmax(0,1fr))} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Cultura","tela":"Pessoas","papel":"RH","sino":3,"usuario":{"nome":"Marta Lins","iniciais":"ML","cargo":"Coordenadora de pessoas","presenca":"disponivel","tom":4},"links":{"Pessoas":"29-cultura.html","Meu perfil":"29-cultura.html#t-perfil","Organograma":"29-cultura.html#t-organograma","Férias":"29-cultura.html#t-ferias","Solicitações":"29b-cultura.html","Comunicados":"29b-cultura.html#t-comunicados","Vagas":"29b-cultura.html#t-recrutamento","Pesquisas de clima":"29b-cultura.html#t-clima","Reuniões 1:1":"29b-cultura.html#t-1a1"}}'></div>
+
+<main id="conteudo" class="cm-doc">
+<header class="cm-doc-capa">
+  <div>
+    <h1>Cultura: pessoas, organograma e férias</h1>
+    <p>A equipe da Administradora Alpha (48 pessoas): quem é quem, como falar com cada um, quem responde a quem, e férias com saldo, pedido e aprovação na mesma lógica.</p>
+    <p class="cm-doc-paginas" style="margin-top:8px">Páginas de Cultura: <a href="29-cultura.html" aria-current="page">Pessoas e férias</a> <a href="29b-cultura.html">Solicitações, 1:1, avaliação, recrutamento, comunicados e clima</a></p>
+  </div>
+  <div data-cm-seletor></div>
+  <nav class="cm-doc-indice" aria-label="Telas desta página">
+    <a href="#t-pessoas"><b>29.1</b>Pessoas</a><a href="#t-perfil"><b>29.2</b>Perfil</a><a href="#t-organograma"><b>29.3</b>Organograma</a><a href="#t-ferias"><b>29.4</b>Férias: saldo e pedido</a><a href="#t-aprovar"><b>29.5</b>Aprovar férias</a>
+  </nav>
+</header>
+
+<!-- 29.1 -->
+<section class="cm-doc-tela" id="t-pessoas" aria-labelledby="t-pes-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">29.1</span><h2 class="cm-doc-tela__titulo" id="t-pes-h">Pessoas</h2><span class="cm-doc-tela__sub">diretório com presença e o jeito de falar com cada um</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Achar alguém e saber se dá para falar agora: nome, cargo, equipe, onde trabalha hoje e a presença escrita ("Em atendimento, 3 conversas", "De férias até 10/10"). Um clique abre a conversa interna ou o perfil.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Busca por nome, cargo ou habilidade ("Pix", "assembleia").</li><li>Filtros de equipe, local e "disponível agora"; a escolha fica na URL.</li><li>Cartões ou lista (alternador à direita).</li><li>Conversar abre a direta (33.1); o nome abre o perfil (29.2).</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Teams e o Slack mostram presença com forma, cor e palavra; o diretório do Google Workspace e o do BambooHR abrem em cartões com cargo e equipe; e a Home do GACO já usa a presença escrita com motivo, então a pessoa reconhece o mesmo sinal aqui.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__barra"><span>Estado:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado"><button type="button" aria-pressed="true" data-estado="dados">Com dados</button><button type="button" aria-pressed="false" data-estado="vazio">Busca sem resultado</button></div></div>
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Pessoas <span class="cm-contador">48</span></h1><div class="cm-cabecalho-pagina__acoes"><div class="cm-segmentado cm-segmentado--icones" role="group" aria-label="Forma de ver"><button type="button" aria-pressed="true" aria-label="Cartões"><i data-i="grade"></i></button><button type="button" aria-pressed="false" aria-label="Lista"><i data-i="lista"></i></button></div><button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar-pessoa"></i>Cadastrar pessoa</button></div></div></header>
+      <div class="cu-ferr"><div class="cm-entrada cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar por nome, cargo ou habilidade" placeholder="Nome, cargo ou habilidade"></div><button class="cm-filtro is-ativo" type="button">Equipe: <b>todas</b><i data-i="chevron-baixo"></i></button><button class="cm-filtro" type="button">Local<i data-i="chevron-baixo"></i></button><button class="cm-filtro" type="button" aria-pressed="false"><span class="cm-presenca cm-presenca--disponivel" style="position:static;box-shadow:none;width:10px;height:10px"></span>Disponível agora</button></div>
+      <div data-estado-painel="dados"><div class="cm-q-grade" id="cu-pessoas"></div></div>
+      <div data-estado-painel="vazio" hidden><div class="cm-vazio"><i data-i="procurar-pessoa"></i><p class="cm-vazio__titulo">Ninguém com "contabilidade"</p><p class="cm-vazio__texto">Tente pelo nome da equipe (Financeiro) ou por uma habilidade (balancete, DRE). Prestadores de fora não aparecem aqui; eles estão em Operações, Prestadores.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button">Limpar a busca</button></div></div></div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Cartões ou lista, Cadastrar pessoa</li><li>Busca, filtros</li><li>Cada cartão: nome (link), Conversar</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Cartão: "Beatriz Nogueira, Atendente, Suporte, Em atendimento, 3 conversas".</li><li>O selo de presença é decorativo; a palavra é lida.</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>"Cartões", "Lista"</li><li>Balão: "Conversar com Beatriz Nogueira"</li></ul></div>
+  </div>
+</section>
+
+<!-- 29.2 -->
+<section class="cm-doc-tela" id="t-perfil" aria-labelledby="t-per-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">29.2</span><h2 class="cm-doc-tela__titulo" id="t-per-h">Perfil</h2><span class="cm-doc-tela__sub">o que a pessoa conta de si e o que o RH guarda</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Conhecer a colega: o que ela faz, desde quando, com quem trabalha, os reconhecimentos que recebeu. A própria pessoa edita o que é dela (telefone, como prefere ser chamada, se mostra o aniversário); o RH vê também os dados de contrato, e só ele.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Topo: foto, nome, cargo, equipe, gestora, presença e o status que a pessoa escreveu.</li><li>Abas: Sobre, Trajetória, Reconhecimentos, Férias e ausências, Documentos (esta só para a pessoa e o RH).</li><li>Lápis no campo editável; Enter confirma e a barra de salvar aparece.</li><li>Campos sensíveis mostram o cadeado e quem pode ver.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o LinkedIn e o perfil do Workplace ensinaram o topo com foto e trajetória; o BambooHR e a Gupy separam o que é público do que é do RH, e a LGPD exige isso; e a edição no lugar com Enter e Esc é o padrão do GACO (A3).</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" style="padding-top:16px" data-form data-barra="barra-perfil">
+      <div class="cu-perfil-topo">
+        <span class="cm-avatar cm-avatar--gg cm-avatar--2">BN<span class="cm-presenca cm-presenca--em-atendimento" aria-hidden="true"></span></span>
+        <div class="cm-cresce"><h1>Beatriz Nogueira</h1><p class="cm-texto-2">Atendente de suporte, equipe Suporte. Gestora: <a class="cm-link" href="#">Letícia Araújo</a></p><p style="margin-top:4px"><span class="cm-presenca-texto"><span class="cm-presenca cm-presenca--em-atendimento"></span>Em atendimento, na fila do WhatsApp até 18h</span></p></div>
+        <div class="cm-grupo-botoes"><button class="cm-botao" type="button"><i data-i="conversa"></i>Conversar</button><button class="cm-botao" type="button"><i data-i="reconhecimento"></i>Reconhecer</button><button class="cm-botao cm-botao--icone" type="button" aria-label="Mais ações do perfil"><i data-i="mais-opcoes"></i></button></div>
+      </div>
+      <div class="cm-abas" role="tablist" aria-label="Seções do perfil" style="margin-top:8px"><button role="tab" aria-selected="true" aria-controls="per-sobre">Sobre</button><button role="tab" aria-selected="false" tabindex="-1" aria-controls="per-traj">Trajetória</button><button role="tab" aria-selected="false" tabindex="-1" aria-controls="per-rec">Reconhecimentos <span class="cm-contador">7</span></button><button role="tab" aria-selected="false" tabindex="-1">Férias e ausências</button><button role="tab" aria-selected="false" tabindex="-1">Documentos <i data-i="bloquear" class="cm-icone--14" data-rotulo="só você e o RH"></i></button></div>
+      <div class="cu-perfil">
+        <div>
+          <div id="per-sobre">
+            <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Sobre</h2></header><div class="cm-cartao__corpo">
+              <dl class="cm-ficha cm-ficha--larga">
+                <div class="cm-ficha__linha"><dt>Como prefere ser chamada</dt><dd>Bia</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar como prefere ser chamada"><i data-i="editar"></i></button></div>
+                <div class="cm-ficha__linha is-editando"><dt>Telefone de trabalho</dt><dd><div class="cm-campo cm-cresce"><div class="cm-entrada"><span class="cm-entrada__prefixo">+55</span><input type="tel" value="(11) 97412-3308" data-nome="Telefone de trabalho" id="per-tel"></div><p class="cm-campo__antes">Era (11) 97412-3300. Enter confirma, Esc desfaz.</p></div></dd><span></span></div>
+                <div class="cm-ficha__linha"><dt>E-mail</dt><dd>beatriz.nogueira@alphaadm.com.br</dd><span></span></div>
+                <div class="cm-ficha__linha"><dt>Local</dt><dd>Sede, Vila Mariana, São Paulo, 3º andar</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar local"><i data-i="editar"></i></button></div>
+                <div class="cm-ficha__linha"><dt>Na empresa desde</dt><dd>15/03/2023, 3 anos e 6 meses</dd><span></span></div>
+                <div class="cm-ficha__linha"><dt>Aniversário</dt><dd>14/10 <label class="cm-interruptor" style="margin-left:8px"><input type="checkbox" role="switch" checked data-nome="Mostrar aniversário"><span class="cm-interruptor__trilho"></span><span class="cm-interruptor__estado">mostrar para a equipe</span></label></dd><span></span></div>
+                <div class="cm-ficha__linha"><dt>Habilidades</dt><dd><span class="cm-etiqueta">WhatsApp Business</span><span class="cm-etiqueta">2ª via e Pix</span><span class="cm-etiqueta">Libras básico</span></dd><button class="cm-ficha__lapis" type="button" aria-label="Editar habilidades"><i data-i="editar"></i></button></div>
+                <div class="cm-ficha__linha is-leitura"><dt>CPF e endereço</dt><dd class="cm-texto-2">Só você e o RH veem <span class="cm-ficha__cadeado"><i data-i="bloquear" data-rotulo="dado protegido"></i></span></dd><span></span></div>
+              </dl></div></section>
+          </div>
+          <div id="per-traj" hidden><section class="cm-cartao"><div class="cm-cartao__corpo"><ul class="cm-atividade"><li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="cracha"></i></span><div><div class="cm-atividade__titulo">Atendente de suporte II</div><div class="cm-atividade__desc">Promovida após o ciclo de avaliação 2025.2</div></div><span class="cm-atividade__quando">jan/2026</span></li><li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="certificado"></i></span><div><div class="cm-atividade__titulo">Concluiu "Cobrança e acordos" no Academy</div></div><span class="cm-atividade__quando">ago/2025</span></li><li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="adicionar-pessoa"></i></span><div><div class="cm-atividade__titulo">Entrou como atendente de suporte I</div></div><span class="cm-atividade__quando">mar/2023</span></li></ul></div></section></div>
+          <div id="per-rec" hidden><article class="cm-post cm-post--reconhecimento"><header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--3">LA</span><div><div class="cm-post__autor">Letícia Araújo</div><div class="cm-post__sub">Coordenadora do Suporte</div></div><span class="cm-post__quando">29/09</span></header><div class="cm-post__tipo"><i data-i="reconhecimento"></i>Valor: cuidar de quem mora</div><h3 class="cm-post__titulo">Resolveu com calma o que era urgente</h3><p class="cm-post__corpo">O vazamento da garagem do Parque das Águas chegou às 9h12 e às 9h40 a vaga já estava isolada e a síndica tranquila.</p></article></div>
+        </div>
+        <aside class="cm-pilha cm-pilha--6">
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Equipe Suporte</h2><span class="cm-t-legenda">9 pessoas</span></header><div class="cm-cartao__corpo cm-pilha">
+            <div class="cm-pessoa"><span class="cm-avatar cm-avatar--3">LA<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Letícia Araújo</span><span class="cm-pessoa__sub">gestora, disponível</span></span></div>
+            <div class="cm-pessoa"><span class="cm-avatar cm-avatar--1">CA<span class="cm-presenca cm-presenca--ausente" aria-hidden="true"></span></span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Carlos Antunes</span><span class="cm-pessoa__sub">volto às 11h, consulta médica</span></span></div>
+            <div class="cm-pessoa"><span class="cm-avatar cm-avatar--5">AF<span class="cm-presenca cm-presenca--em-atendimento" aria-hidden="true"></span></span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Ana Ferreira</span><span class="cm-pessoa__sub">em atendimento, 2 conversas</span></span></div>
+            <a class="cm-link" href="#t-organograma" style="font-size:12.5px">Ver no organograma</a></div></section>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Próximas ausências</h2></header><div class="cm-cartao__corpo"><p style="font-size:13px">Férias de 03/11 a 17/11, <span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>aguardando Letícia</span></p></div></section>
+        </aside>
+      </div>
+      <div class="cm-barra-salvar" id="barra-perfil" role="region" aria-label="Alterações não salvas" hidden><div class="cm-barra-salvar__msg"><b data-contagem></b><span data-campos></span></div><button class="cm-botao cm-botao--discreto" type="button" data-descartar>Descartar</button><button class="cm-botao cm-botao--principal" type="button" data-salvar="Perfil salvo.">Salvar</button></div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Conversar, Reconhecer, Mais ações</li><li>Abas</li><li>Campos: lápis ou campo em edição</li><li>Interruptor do aniversário</li><li>Equipe, ausências</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Campo em edição: "Telefone de trabalho, alterado. Era (11) 97412-3300".</li><li>Cadeado: "dado protegido, só você e o RH veem".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Lápis: "Editar local", "Editar habilidades"</li><li>Cadeado da aba Documentos: "só você e o RH"</li></ul></div>
+  </div>
+</section>
+
+<!-- 29.3 -->
+<section class="cm-doc-tela" id="t-organograma" aria-labelledby="t-org-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">29.3</span><h2 class="cm-doc-tela__titulo" id="t-org-h">Organograma</h2><span class="cm-doc-tela__sub">quem responde a quem, com o tamanho de cada equipe</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Quem chega na empresa, ou quem precisa escalar um assunto, entende em segundos quem lidera o quê. A busca acende a pessoa na árvore e abre o caminho até ela.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Começa na diretoria, com as gerências abertas e as equipes recolhidas.</li><li>Clicar num nó abre a equipe; o número diz quantas pessoas há abaixo.</li><li>Buscar "Beatriz" abre o caminho Ricardo, Helena, Letícia, Beatriz e destaca o nó.</li><li>"Ver como lista" mostra a mesma árvore em lista recuada, acessível por teclado.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o organograma do BambooHR, do Teams e do Pingboard é a árvore de cima para baixo com cartão por pessoa; o modo lista recuada vem do próprio Teams e atende leitor de tela e celular, onde a árvore larga não cabe.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo">
+      <div class="cu-ferr" style="padding-top:16px"><div class="cm-entrada cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" aria-label="Achar pessoa no organograma" value="Beatriz"></div><div class="cm-segmentado" role="group" aria-label="Forma de ver"><button type="button" aria-pressed="true">Árvore</button><button type="button" aria-pressed="false">Lista</button></div><button class="cm-botao" type="button"><i data-i="exportar"></i>Exportar PDF</button></div>
+      <div class="cm-organograma" role="tree" aria-label="Organograma da Administradora Alpha">
+        <ul>
+          <li role="treeitem" aria-expanded="true"><button class="cm-no" type="button"><span class="cm-avatar cm-avatar--1">RA</span><span><span class="cm-no__nome">Ricardo Alves</span><span class="cm-no__cargo">Diretor geral</span><span class="cm-no__equipe">47 pessoas abaixo</span></span></button>
+            <ul role="group">
+              <li role="treeitem" aria-expanded="true"><button class="cm-no" type="button"><span class="cm-avatar cm-avatar--4">HV</span><span><span class="cm-no__nome">Helena Vasques</span><span class="cm-no__cargo">Diretora de operações</span><span class="cm-no__equipe">21 pessoas</span></span></button>
+                <ul role="group">
+                  <li role="treeitem" aria-expanded="true"><button class="cm-no" type="button"><span class="cm-avatar cm-avatar--3">LA</span><span><span class="cm-no__nome">Letícia Araújo</span><span class="cm-no__cargo">Coordenadora do Suporte</span><span class="cm-no__equipe">9 pessoas</span></span></button>
+                    <ul role="group"><li role="treeitem"><button class="cm-no" type="button" aria-current="true"><span class="cm-avatar cm-avatar--2">BN</span><span><span class="cm-no__nome">Beatriz Nogueira</span><span class="cm-no__cargo">Atendente de suporte II</span><span class="cm-no__equipe">achada pela busca</span></span></button></li><li role="treeitem"><button class="cm-no" type="button"><span class="cm-avatar cm-avatar--5">+7</span><span><span class="cm-no__nome">Mais 7 atendentes</span><span class="cm-no__cargo">Suporte</span></span></button></li></ul></li>
+                  <li role="treeitem" aria-expanded="false"><button class="cm-no" type="button"><span class="cm-avatar cm-avatar--5">DM</span><span><span class="cm-no__nome">Diego Martins</span><span class="cm-no__cargo">Coordenador de operações</span><span class="cm-no__equipe">6 pessoas</span></span></button></li>
+                  <li role="treeitem" aria-expanded="false"><button class="cm-no" type="button"><span class="cm-avatar cm-avatar--2">RM</span><span><span class="cm-no__nome">Rodrigo Mello</span><span class="cm-no__cargo">Gerente de implantação</span><span class="cm-no__equipe">3 pessoas</span></span></button></li>
+                </ul></li>
+              <li role="treeitem" aria-expanded="false"><button class="cm-no" type="button"><span class="cm-avatar cm-avatar--4">JR</span><span><span class="cm-no__nome">Juliana Reis</span><span class="cm-no__cargo">Gestora financeira</span><span class="cm-no__equipe">5 pessoas</span></span></button></li>
+              <li role="treeitem" aria-expanded="false"><button class="cm-no" type="button"><span class="cm-avatar cm-avatar--3">PS</span><span><span class="cm-no__nome">Paula Siqueira</span><span class="cm-no__cargo">Gerente de CS</span><span class="cm-no__equipe">6 pessoas</span></span></button></li>
+              <li role="treeitem" aria-expanded="false"><button class="cm-no" type="button"><span class="cm-avatar cm-avatar--1">TM</span><span><span class="cm-no__nome">Thiago Monteiro</span><span class="cm-no__cargo">Gerente de produto</span><span class="cm-no__equipe">5 pessoas</span></span></button></li>
+              <li role="treeitem" aria-expanded="false"><button class="cm-no" type="button"><span class="cm-avatar cm-avatar--4">ML</span><span><span class="cm-no__nome">Marta Lins</span><span class="cm-no__cargo">Coordenadora de pessoas</span><span class="cm-no__equipe">2 pessoas</span></span></button></li>
+            </ul></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Busca, Árvore ou Lista, Exportar</li><li>Árvore: setas para cima e para baixo andam no nível, direita abre, esquerda fecha</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Árvore: "Organograma da Administradora Alpha, árvore".</li><li>Nó: "Letícia Araújo, Coordenadora do Suporte, 9 pessoas, aberto, nível 3".</li><li>Achado: "Beatriz Nogueira, atual".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Nenhum: todo nó tem nome e cargo.</li></ul></div>
+  </div>
+</section>
+
+<!-- 29.4 -->
+<section class="cm-doc-tela" id="t-ferias" aria-labelledby="t-fer-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">29.4</span><h2 class="cm-doc-tela__titulo" id="t-fer-h">Férias: saldo e pedido juntos</h2><span class="cm-doc-tela__sub">a pessoa vê quanto tem enquanto escolhe as datas</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Pedir férias sem errar a regra da CLT e sem pegar a equipe desfalcada. O saldo fica ao lado do calendário e muda enquanto a pessoa escolhe; as regras (até 3 períodos, um com 14 dias ou mais, nenhum com menos de 5, não começar nos 2 dias antes de feriado) são conferidas na hora, e a equipe aparece no mesmo período.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Saldo à esquerda: dias do período aquisitivo, gozados, pedidos e o limite para tirar.</li><li>Clica no primeiro e no último dia no calendário, ou digita as datas.</li><li>Abaixo, a faixa da equipe mostra quem está fora nos mesmos dias.</li><li>Opções: vender até 10 dias e adiantar a 1ª parcela do 13º.</li><li><b>Pedir férias</b> manda para a gestora; o pedido aparece em "Próximas ausências" como aguardando.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>a Sólides, a Factorial e o Convenia mostram o saldo no mesmo lugar do pedido, porque a pergunta é "quanto eu tenho?" antes de "quando?"; o Google Agenda ensinou escolher período clicando em dois dias; e a regra da reforma trabalhista (art. 134 da CLT) é a dúvida nº 1 que chega ao RH, então a tela responde antes.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" style="padding-top:16px">
+      <header class="cm-cabecalho-pagina" style="padding-top:0"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Minhas férias</h1></div><p class="cm-cabecalho-pagina__desc">Beatriz Nogueira, período aquisitivo de 15/03/2025 a 14/03/2026.</p></header>
+      <div class="cu-ferias">
+        <section class="cm-cartao" aria-labelledby="sal-t"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="sal-t">Saldo</h2></header><div class="cm-cartao__corpo">
+          <div class="cm-saldo" aria-live="polite"><span class="cm-saldo__numero" id="sal-n">5</span><span class="cm-saldo__rotulo">dias sobram depois deste pedido</span>
+            <div class="cm-saldo__regua" aria-hidden="true"><i class="is-gozado" style="width:33.3%"></i><i class="is-pedido" id="sal-ped" style="width:50%"></i></div>
+            <div class="cm-saldo__legenda"><span><i style="background:var(--cm-texto-3)"></i>10 gozados em julho</span><span><i style="background:repeating-linear-gradient(45deg,var(--cm-texto-2) 0 3px,transparent 3px 6px)"></i><span id="sal-ped-t">15 neste pedido</span></span><span><i style="background:var(--cm-camada-3)"></i><span id="sal-res-t">5 livres</span></span></div></div>
+          <dl class="cm-ficha" style="margin-top:12px"><div class="cm-ficha__linha is-leitura"><dt>Direito</dt><dd>30 dias</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Tirar até</dt><dd>14/03/2027</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Próximo período</dt><dd>começa 15/03/2026, mais 30 dias</dd><span></span></div></dl>
+          <div class="cm-pilha" style="margin-top:12px;gap:8px">
+            <label class="cm-marcar"><input type="checkbox" id="fer-vender"><span class="cm-marcar__caixa"></span><span>Vender 5 dias (abono)<span class="cm-marcar__desc">até 1/3 do período; pago com as férias</span></span></label>
+            <label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Adiantar a 1ª parcela do 13º<span class="cm-marcar__desc">só se pedir até 31/01; neste ano já foi paga em julho</span></span></label>
+          </div>
+        </div></section>
+        <section class="cm-cartao" aria-labelledby="ped-t"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="ped-t">Novo pedido</h2><div class="cm-periodo" style="width:300px"><div class="cm-entrada cm-entrada--p"><input aria-label="Primeiro dia" id="fer-ini" value="03/11/2026"></div><span class="cm-periodo__ate">até</span><div class="cm-entrada cm-entrada--p"><input aria-label="Último dia" id="fer-fim" value="17/11/2026"></div></div></header>
+          <div class="cm-cartao__corpo">
+            <div class="cu-cal-mes" id="fer-cal"></div>
+            <p class="cm-t-legenda" style="margin-top:6px">Sublinhado pontilhado: feriado. Traço lilás embaixo do dia: alguém da equipe fora.</p>
+            <div id="fer-regras" class="cm-pilha" style="gap:6px;margin-top:12px" aria-live="polite"></div>
+            <h3 class="cm-t-subsecao" style="margin-top:14px">A equipe nesses dias</h3>
+            <div class="cu-equipe-faixa" id="fer-equipe" aria-label="Ausências da equipe Suporte de 02/11 a 21/11"></div>
+          </div>
+          <footer class="cm-cartao__pe" style="justify-content:flex-end"><span class="cm-cresce">Vai para Letícia Araújo. Ela responde em até 3 dias úteis.</span><button class="cm-botao" type="button">Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-toast="Pedido enviado para Letícia Araújo: 03/11 a 17/11, 15 dias.">Pedir férias</button></footer>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Vender dias, adiantar 13º</li><li>Primeiro dia, último dia</li><li>Calendário (setas andam pelos dias, Enter marca)</li><li>Regras, equipe</li><li>Cancelar, Pedir férias</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Saldo em região viva: "5 dias sobram depois deste pedido".</li><li>Regra: "Atenção: de 10 a 14/11 a equipe fica com 7 de 9 atendentes".</li><li>Dia: "3 de novembro, terça, início das férias".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Tique da regra: "cumprida"; triângulo: "atenção"</li></ul></div>
+  </div>
+</section>
+
+<!-- 29.5 -->
+<section class="cm-doc-tela" id="t-aprovar" aria-labelledby="t-apr-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">29.5</span><h2 class="cm-doc-tela__titulo" id="t-apr-h">Aprovar férias</h2><span class="cm-doc-tela__sub">a gestora decide vendo a cobertura da equipe</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>A coordenadora do Suporte aprova férias sem deixar a fila do WhatsApp com menos de 7 atendentes. Ela vê o pedido, a cobertura dia a dia com o mínimo marcado e os outros pedidos que caem nos mesmos dias, e aprova ou devolve com sugestão de data.</p></div>
+    <div><h3>Fluxo</h3><ol><li>Chega pelo "Para você" da Home (Aprovações) ou por Cultura, Férias, Para aprovar.</li><li>A lista à esquerda; o pedido aberto à direita com a cobertura.</li><li><b>Aprovar</b> avisa a pessoa e o RH; <b>Sugerir outra data</b> devolve com a sugestão e um motivo.</li><li>Aprovar em lote só aparece quando os pedidos marcados não derrubam a cobertura.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Factorial e o Personio mostram o calendário da equipe na hora de aprovar; a escala de plantão do próprio Suporte do GACO já trabalha com "mínimo de atendentes por dia"; e a aprovação em lista com prévia segue o padrão de Contas a pagar (26.3).</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Férias para aprovar</h1></div></header>
+      <div class="cm-visoes" role="tablist" aria-label="Visões"><button role="tab" aria-selected="true">Para aprovar <span class="cm-contador cm-contador--novo">3</span></button><button role="tab" aria-selected="false" tabindex="-1">Aprovadas</button><button role="tab" aria-selected="false" tabindex="-1">Calendário da equipe</button></div>
+      <div class="cu-aprov">
+        <div class="cm-tabela-caixa"><table class="cm-tabela"><caption class="cm-sr">Pedidos de férias da equipe Suporte</caption><thead><tr><th>Pessoa</th><th>Período</th><th class="cm-num">Dias</th><th>Cobertura</th></tr></thead><tbody>
+          <tr aria-selected="true"><td class="cm-tabela__principal"><a href="#">Beatriz Nogueira</a><span class="cm-tabela__sub">pediu ontem</span></td><td>03/11 a 17/11</td><td class="cm-num">15</td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>7 de 9 em 5 dias</span></td></tr>
+          <tr><td class="cm-tabela__principal"><a href="#">Ana Ferreira</a><span class="cm-tabela__sub">pediu em 25/09</span></td><td>22/12 a 05/01</td><td class="cm-num">15</td><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>6 de 9 no Natal</span></td></tr>
+          <tr><td class="cm-tabela__principal"><a href="#">Marcos Vieira</a><span class="cm-tabela__sub">pediu em 22/09, vende 10</span></td><td>08/12 a 12/12</td><td class="cm-num">5</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>8 de 9</span></td></tr>
+        </tbody></table></div>
+        <aside style="background:var(--cm-camada-1);display:flex;flex-direction:column" aria-label="Pedido aberto">
+          <div class="cm-painel__cabeca"><h2 class="cm-painel__titulo">Beatriz Nogueira, 03/11 a 17/11</h2></div>
+          <div class="cm-secao"><figure class="cm-grafico" style="margin:0;border:0;padding:0;background:transparent"><figcaption class="cm-grafico__cabeca"><span class="cm-grafico__titulo">Atendentes trabalhando por dia útil</span><span class="cm-grafico__sub">mínimo da fila: 7</span></figcaption><div id="cob"></div><div class="cm-grafico__legenda"><span><i style="--c:var(--cm-grafico-2)"></i>Atendentes, com este pedido</span><span><i class="is-linha" style="--c:var(--cm-grafico-1)"></i>Mínimo</span></div></figure></div>
+          <div class="cm-secao"><p style="font-size:13px">De 10 a 14/11 também está fora <b>Carlos Antunes</b> (férias aprovadas). A fila fica no mínimo, sem folga.</p><dl class="cm-ficha" style="margin-top:8px"><div class="cm-ficha__linha is-leitura"><dt>Saldo dela</dt><dd>20 dias, 5 sobram</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Limite</dt><dd>14/03/2027</dd><span></span></div></dl></div>
+          <div class="cm-painel__pe" style="margin-top:auto"><button class="cm-botao" type="button" data-abrir="modal-sugerir">Sugerir outra data…</button><button class="cm-botao cm-botao--principal" type="button" data-toast="Férias de Beatriz aprovadas. Ela e o RH foram avisados." data-toast-acao="Desfazer"><i data-i="sucesso"></i>Aprovar</button></div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Visões</li><li>Lista de pedidos</li><li>Gráfico de cobertura (cada dia focável)</li><li>Sugerir outra data, Aprovar</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Linha: "Ana Ferreira, 22/12 a 05/01, 15 dias, perigo, 6 de 9 no Natal".</li><li>Dia no gráfico: "12/11: atendentes 7, mínimo 7".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Ícones de cobertura acompanham a palavra.</li></ul></div>
+  </div>
+</section>
+
+<div class="cm-sobreposicao" id="modal-sugerir" data-janela hidden>
+  <div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="msug-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="msug-t">Sugerir outra data<span class="cm-modal__sub">Beatriz recebe a sugestão e pode aceitar com um clique.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo"><div class="cm-periodo"><div class="cm-entrada"><input aria-label="Primeiro dia sugerido" value="24/11/2026"></div><span class="cm-periodo__ate">até</span><div class="cm-entrada"><input aria-label="Último dia sugerido" value="08/12/2026"></div></div><p class="cm-campo__ajuda" style="margin-top:6px">Cobertura nesse período: 8 de 9 todos os dias.</p><div class="cm-campo" style="margin-top:12px"><label class="cm-campo__rotulo" for="msug-m">Motivo</label><textarea class="cm-area" id="msug-m">O Carlos já está fora de 10 a 21/11. Do dia 24 em diante a fila fica com folga.</textarea></div></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-fechar data-toast="Sugestão enviada para Beatriz.">Enviar sugestão</button></div>
+  </div>
+</div>
+</main>
+
+<script>
+(function(){
+var PE=[['Beatriz Nogueira','BN',2,'Atendente de suporte II','Suporte','em-atendimento','Em atendimento, 3 conversas'],['Letícia Araújo','LA',3,'Coordenadora do Suporte','Suporte','disponivel','Disponível'],['Carlos Antunes','CA',1,'Atendente de suporte I','Suporte','ausente','Volto às 11h, consulta médica'],['Juliana Reis','JR',4,'Gestora financeira','Financeiro','ocupado','Em reunião até 10h30'],['Renata Vasconcelos','RV',3,'Analista financeira','Financeiro','disponivel','Disponível'],['Paula Siqueira','PS',3,'Gerente de CS','CS','nao-incomodar','Não incomodar, assembleia no Vila Serena'],['Rodrigo Mello','RM',5,'Gerente de implantação','Implantação','disponivel','Disponível'],['Camila Duarte','CD',3,'Analista de implantação','Implantação','offline','De férias até 10/10'],['Diego Martins','DM',5,'Coordenador de operações','Operações','disponivel','Em vistoria no Parque das Águas'],['Thiago Monteiro','TM',1,'Gerente de produto','Produto','disponivel','Disponível'],['Larissa Okada','LO',2,'Desenvolvedora','Produto','ocupado','Concentrada até 12h'],['Marta Lins','ML',4,'Coordenadora de pessoas','Pessoas e cultura','disponivel','Disponível']];
+document.getElementById('cu-pessoas').innerHTML=PE.map(function(p){return '<div class="cm-cartao-pessoa"><div class="cm-pessoa"><span class="cm-avatar cm-avatar--g cm-avatar--'+p[2]+'">'+p[1]+(window.cmPresenca?cmPresenca(p[5]):'<span class="cm-presenca cm-presenca--'+p[5]+'" aria-hidden="true"></span>')+'</span><span class="cm-pessoa__texto"><a class="cm-pessoa__nome cm-link" style="color:var(--cm-texto-1)" href="#t-perfil">'+p[0]+'</a><span class="cm-pessoa__sub">'+p[3]+'</span><span class="cm-pessoa__sub">'+p[4]+'</span></span></div><div class="cm-linha"><span class="cm-presenca-texto cm-cresce"><span class="cm-presenca cm-presenca--'+p[5]+'"></span>'+p[6]+'</span><button class="cm-botao cm-botao--icone cm-botao--p cm-botao--discreto" type="button" aria-label="Conversar com '+p[0]+'"><i data-i="conversa"></i></button></div></div>'}).join('');
+/* calendário de férias */
+var FER={'2026-11-2':'Finados','2026-11-15':'Proclamação da República','2026-11-20':'Consciência Negra'};
+var OUTRO=[10,11,12,13,14,17,18,19,20,21];
+function data(s){var m=s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);return m?new Date(+m[3],+m[2]-1,+m[1]):null}
+function cal(ini,fim){var h='';[[2026,10,'Novembro de 2026'],[2026,11,'Dezembro de 2026']].forEach(function(mm){var y=mm[0],m=mm[1];var d1=new Date(y,m,1),dow=d1.getDay(),dias=new Date(y,m+1,0).getDate();
+  h+='<div><h3>'+mm[2]+'</h3><table class="cm-calendario"><caption class="cm-sr">'+mm[2]+'</caption><thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead><tbody><tr>';
+  for(var i=0;i<dow;i++) h+='<td></td>';
+  for(var d=1;d<=dias;d++){var dt=new Date(y,m,d),c=[];var noPer=ini&&fim&&dt>=ini&&dt<=fim;if(noPer) c.push('is-periodo');if(ini&&(+dt===+ini||+dt===+fim)) c.push('is-ponta');if(FER[y+'-'+(m+1)+'-'+d]) c.push('is-feriado');if(m===10&&OUTRO.indexOf(d)>=0) c.push('is-outro');
+    h+='<td class="'+c.join(' ')+'"><button type="button" aria-label="'+d+' de '+mm[2].split(' ')[0].toLowerCase()+(FER[y+'-'+(m+1)+'-'+d]?', feriado: '+FER[y+'-'+(m+1)+'-'+d]:'')+(noPer?', nas férias':'')+'">'+d+'</button></td>';
+    if((dow+d)%7===0&&d<dias) h+='</tr><tr>'}
+  h+='</tr></tbody></table></div>'});document.getElementById('fer-cal').innerHTML=h}
+function regras(ini,fim){var n=ini&&fim?Math.round((fim-ini)/864e5)+1:0;var vende=document.getElementById('fer-vender').checked?5:0;var resto=20-n-vende;
+  var R=[];
+  R.push(n>=14?['sucesso','Um período com 14 dias ou mais: este tem '+n]:n>=5?['sucesso','Período de '+n+' dias; o de 14 ou mais ainda pode ser tirado depois']:['perigo','Nenhum período pode ter menos de 5 dias']);
+  R.push(resto===0||resto>=5?['sucesso','Sobra '+resto+' dias, dá para tirar depois']:resto<0?['perigo','Faltam '+(-resto)+' dias de saldo']:['perigo','Sobrariam '+resto+' dias, menos que 5. Junte neste pedido ou venda']);
+  var dow=ini?ini.getDay():1;var vesp=ini&&(FER['2026-11-'+(ini.getDate()+1)]||FER['2026-11-'+(ini.getDate()+2)]||dow===5||dow===6);
+  R.push(vesp?['perigo','Não pode começar nos 2 dias antes de feriado ou do descanso semanal']:['sucesso','Começa numa terça, longe de feriado']);
+  R.push(['aviso','Atenção: de 10 a 14/11 a equipe fica com 7 de 9 atendentes, no limite da fila']);
+  var ic={sucesso:'sucesso',perigo:'perigo',aviso:'atencao'},nome={sucesso:'cumprida',perigo:'não cumprida',aviso:'atenção'};
+  document.getElementById('fer-regras').innerHTML=R.map(function(r){return '<span class="cm-estado cm-estado--leve cm-estado--'+r[0]+'" style="white-space:normal"><i data-i="'+ic[r[0]]+'" data-rotulo="'+nome[r[0]]+'"></i>'+r[1]+'</span>'}).join('');
+  document.getElementById('sal-n').textContent=Math.max(0,resto);
+  document.getElementById('sal-ped').style.width=Math.max(0,(n+vende)/30*100)+'%';
+  document.getElementById('sal-ped-t').textContent=n+' neste pedido'+(vende?' e 5 vendidos':'');
+  document.getElementById('sal-res-t').textContent=Math.max(0,resto)+' livres'}
+function atualizar(){var a=data(document.getElementById('fer-ini').value),b=data(document.getElementById('fer-fim').value);if(a&&b&&b<a){var t=a;a=b;b=t}cal(a,b);regras(a,b)}
+['fer-ini','fer-fim','fer-vender'].forEach(function(id){document.getElementById(id).addEventListener('input',atualizar);document.getElementById(id).addEventListener('change',atualizar)});
+var clique=0;document.getElementById('fer-cal').addEventListener('click',function(e){var b=e.target.closest('button');if(!b) return;var mes=b.closest('div').querySelector('h3').textContent.indexOf('Dezembro')===0?12:11;var v=('0'+b.textContent).slice(-2)+'/'+mes+'/2026';
+  if(clique%2===0){document.getElementById('fer-ini').value=v;document.getElementById('fer-fim').value=v}else document.getElementById('fer-fim').value=v;clique++;atualizar()});
+atualizar();
+/* faixa da equipe 02/11 a 21/11 (dias úteis e fins de semana) */
+var dias=[];for(var d=2;d<=21;d++) dias.push(d);
+var eq=[['Beatriz (pedido)',function(d){return d>=3&&d<=17?'p':''}],['Carlos Antunes',function(d){return d>=10&&d<=21?'f':''}],['Ana Ferreira',function(){return ''}],['Marcos Vieira',function(){return ''}]];
+var h='<span class="n"></span>'+dias.map(function(d){var w=new Date(2026,10,d).getDay();return '<span class="h">'+d+'</span>'}).join('');
+eq.forEach(function(p){h+='<span class="n">'+p[0]+'</span>'+dias.map(function(d){var w=new Date(2026,10,d).getDay();var c=p[1](d);return '<span class="'+c+'"'+(w===0||w===6?' style="opacity:.45"':'')+'></span>'}).join('')});
+document.getElementById('fer-equipe').innerHTML=h;
+window.addEventListener('load',function(){qGrafico(document.getElementById('cob'),{categorias:['03','04','05','06','09','10','11','12','13','16','17'],altura:170,rotulo:'Atendentes por dia útil de 03 a 17/11',formato:function(v){return String(Math.round(v))},series:[{nome:'Atendentes',valores:[8,8,8,8,8,7,7,7,7,7,7],tipo:'barra',cor:2},{nome:'Mínimo',valores:[7,7,7,7,7,7,7,7,7,7,7],tipo:'linha',cor:1}]})});
+})();
+</script>
+</body>
+</html>

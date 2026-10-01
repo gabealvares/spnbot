@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avaliação e 1:1, Cultura</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.av-tab td{vertical-align:top;padding-top:12px;padding-bottom:12px;height:auto}
+.av-tab .lc-area-texto{min-height:56px}
+.av-auto{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid var(--filete-forte);border-radius:var(--raio-1);font-weight:600}
+.um-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:start}
+</style>
+</head>
+<body data-moldura='{"modulo":"cultura","secao":"Carreira e desenvolvimento","item":"Avaliação de desempenho","papel":"atendente","usuario":{"nome":"Bianca Torres","cargo":"Líder de suporte","iniciais":"BT","cor":"lc-av--c2"},"trilha":["Carreira e desenvolvimento","Ana Beatriz Souza"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Avaliação de desempenho e reunião 1:1 com a mesma pessoa. Papel: líder.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>O líder avalia com a autoavaliação da pessoa e os números do trabalho ao lado, e a conversa 1:1 tem pauta compartilhada e ações combinadas que não se perdem entre uma reunião e outra.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Abas: Avaliação do ciclo e 1:1. A pessoa é a mesma; o cabeçalho não muda.</li>
+      <li>Avaliação: nota de 1 a 5 por competência (segmentado com palavra), autoavaliação à esquerda, comentário obrigatório para 1, 2 e 5.</li>
+      <li>Ao mudar qualquer nota, a barra de salvar aparece: "Salvar rascunho" ou "Salvar e enviar à Ana" pelo "Salvar ▾".</li>
+      <li>1:1: os dois adicionam itens à pauta; ações combinadas viram tarefas com prazo.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o Lattice e o Culture Amp mostram autoavaliação e avaliação do gestor lado a lado com escala nomeada; o Qulture.Rocks (usado por empresas brasileiras) junta 1:1 e PDI; o Fellow tem pauta compartilhada com ações. Escala com palavra, nunca só número ou estrela.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="cultura"></div>
+</details>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt" style="display:flex;gap:16px;align-items:center"><span class="lc-av lc-av--48 lc-av--c6">AB</span><div><h1>Ana Beatriz Souza</h1><p class="lc-cab-pagina__desc" style="margin-top:0">Atendente de suporte desde 14/02/2025. Ciclo 2026.2, prazo da avaliação: 15/10.</p></div></div></div>
+<div class="lc-abas" role="tablist" aria-label="Seções"><button role="tab" aria-selected="true" aria-controls="ab-av">Avaliação do ciclo</button><button role="tab" aria-selected="false" aria-controls="ab-um">1:1 <span class="lc-contagem">próxima 08/10</span></button><button role="tab" aria-selected="false" aria-controls="ab-pdi">PDI</button></div>
+
+<div id="ab-av" style="margin-top:16px">
+<form data-p4-form data-p4-nome="avaliação de Ana Beatriz" onsubmit="return false">
+<div class="lc-reg">
+  <div class="lc-tabela-cont"><table class="lc-tabela av-tab" style="--_min-tab:820px">
+    <caption class="lc-sr">Competências</caption>
+    <thead><tr><th scope="col">Competência</th><th scope="col" class="lc-ctr">Ana</th><th scope="col">Sua nota</th><th scope="col">Comentário</th></tr></thead>
+    <tbody>
+      <tr><td><b>Resolver de primeira</b><span class="lc-tabela__sub">O morador não precisa voltar</span></td><td class="lc-ctr"><span class="av-auto" aria-label="Autoavaliação 4, acima do esperado">4</span></td>
+        <td><div class="lc-seg lc-seg--p" role="radiogroup" aria-label="Sua nota em Resolver de primeira" data-p4-seg><button type="button" aria-pressed="false">1</button><button type="button" aria-pressed="false">2</button><button type="button" aria-pressed="false">3</button><button type="button" aria-pressed="false">4</button><button type="button" aria-pressed="true">5</button></div><span class="lc-tabela__sub">Muito acima do esperado</span></td>
+        <td><textarea class="lc-area-texto" aria-label="Comentário sobre Resolver de primeira">Taxa de resolução no primeiro contato de 91% no trimestre, a maior da equipe.</textarea></td></tr>
+      <tr><td><b>Comunicação escrita</b><span class="lc-tabela__sub">Clara, cordial, sem erro</span></td><td class="lc-ctr"><span class="av-auto" aria-label="Autoavaliação 3, dentro do esperado">3</span></td>
+        <td><div class="lc-seg lc-seg--p" role="radiogroup" aria-label="Sua nota em Comunicação escrita" data-p4-seg><button type="button" aria-pressed="false">1</button><button type="button" aria-pressed="false">2</button><button type="button" aria-pressed="false">3</button><button type="button" aria-pressed="true">4</button><button type="button" aria-pressed="false">5</button></div><span class="lc-tabela__sub">Acima do esperado</span></td>
+        <td><textarea class="lc-area-texto" aria-label="Comentário sobre Comunicação escrita" placeholder="Opcional para nota 3 e 4"></textarea></td></tr>
+      <tr><td><b>Conhecimento de cobrança</b><span class="lc-tabela__sub">Boleto, 2ª via, acordo</span></td><td class="lc-ctr"><span class="av-auto" aria-label="Autoavaliação 3">3</span></td>
+        <td><div class="lc-seg lc-seg--p" role="radiogroup" aria-label="Sua nota em Conhecimento de cobrança" data-p4-seg><button type="button" aria-pressed="false">1</button><button type="button" aria-pressed="false">2</button><button type="button" aria-pressed="true">3</button><button type="button" aria-pressed="false">4</button><button type="button" aria-pressed="false">5</button></div><span class="lc-tabela__sub">Dentro do esperado</span></td>
+        <td><textarea class="lc-area-texto" aria-label="Comentário sobre Conhecimento de cobrança">Fazer Rotinas financeiras e rateio no Academy (GC-204).</textarea></td></tr>
+      <tr><td><b>Trabalho em equipe</b></td><td class="lc-ctr"><span class="av-auto" aria-label="Autoavaliação 4">4</span></td>
+        <td><div class="lc-seg lc-seg--p" role="radiogroup" aria-label="Sua nota em Trabalho em equipe" data-p4-seg><button type="button" aria-pressed="false">1</button><button type="button" aria-pressed="false">2</button><button type="button" aria-pressed="false">3</button><button type="button" aria-pressed="true">4</button><button type="button" aria-pressed="false">5</button></div><span class="lc-tabela__sub">Acima do esperado</span></td>
+        <td><textarea class="lc-area-texto" aria-label="Comentário sobre Trabalho em equipe"></textarea></td></tr>
+    </tbody></table></div>
+  <aside class="lc-reg__lado">
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Números do trimestre</h2><span class="lc-aux">do Suporte</span></div><ul class="lc-resumo" style="padding:0 20px 12px">
+      <li><span>Conversas atendidas</span><b>612</b></li><li><span>Resolvidas no 1º contato</span><b>91%</b></li><li><span>Tempo da 1ª resposta</span><b>4 min</b></li><li><span>Satisfação (CSAT)</span><b>94%</b></li><li><span>Reconhecimentos recebidos</span><b>3</b></li></ul></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Escala</h2></div><ol class="lc-resumo" style="padding:0 20px 12px"><li><span>1</span><b>Abaixo do esperado</b></li><li><span>2</span><b>Parcialmente</b></li><li><span>3</span><b>Dentro do esperado</b></li><li><span>4</span><b>Acima do esperado</b></li><li><span>5</span><b>Muito acima</b></li></ol></section>
+  </aside>
+</div>
+<div class="lc-barra-salvar" role="region" aria-label="Alterações não salvas"><p class="lc-barra-salvar__msg"><i data-i="aviso"></i><span></span></p>
+  <div class="lc-barra-salvar__acoes"><button class="lc-btn lc-btn--discreto" type="button" data-descartar>Descartar</button>
+    <span class="lc-dividido" style="position:relative"><button class="lc-btn lc-btn--principal" type="button" data-salvar="Rascunho da avaliação salvo.">Salvar rascunho</button><button class="lc-btn lc-btn--principal" type="button" aria-label="Outras formas de salvar" aria-haspopup="menu" aria-expanded="false" data-abrir="av-menu"><i data-i="chevron-baixo"></i></button>
+      <ul class="lc-menu" id="av-menu" role="menu" hidden style="right:0;bottom:calc(100% + 6px)"><li><button class="lc-menu__item" role="menuitem" type="button" data-toast="Avaliação enviada a Ana Beatriz e ao RH.">Salvar e enviar à Ana</button></li><li><button class="lc-menu__item" role="menuitem" type="button">Salvar e ir para a próxima pessoa<small>2 de 9, Eduardo Campos</small></button></li></ul></span></div></div>
+</form>
+</div>
+
+<div id="ab-um" hidden style="margin-top:16px">
+<div class="lc-reg">
+  <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Pauta de 08/10, 15:00</h2><span class="lc-aux">os dois editam</span></div>
+    <ul class="lc-lista">
+      <li class="um-item"><label class="lc-marcar"><input type="checkbox" aria-label="Tratado: escala de plantão de novembro"><span class="lc-marcar__caixa"></span></label><span>Escala de plantão de novembro (minhas férias)<span class="lc-lista__sub">adicionado por Ana</span></span><span class="lc-av lc-av--20 lc-av--c6">AB</span></li>
+      <li class="um-item"><label class="lc-marcar"><input type="checkbox" aria-label="Tratado: curso de rotinas financeiras"><span class="lc-marcar__caixa"></span></label><span>Curso Rotinas financeiras e rateio: como encaixar na semana<span class="lc-lista__sub">adicionado por Bianca</span></span><span class="lc-av lc-av--20 lc-av--c2">BT</span></li>
+      <li class="um-item"><label class="lc-marcar"><input type="checkbox" checked aria-label="Tratado: feedback do caso Juliana Prado"><span class="lc-marcar__caixa"></span></label><span style="color:var(--texto-3);text-decoration:line-through">Feedback do atendimento à Juliana Prado (chamado 4.812)</span><span class="lc-av lc-av--20 lc-av--c2">BT</span></li>
+      <li><input class="lc-entrada" placeholder="Adicionar item à pauta" aria-label="Adicionar item à pauta"></li></ul></section>
+  <aside class="lc-reg__lado">
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Ações combinadas</h2></div><ul class="lc-lista">
+      <li><i data-i="a-fazer"></i><span class="lc-cresce">Ana: atualizar respostas rápidas de acordo<span class="lc-lista__sub">até 06/11</span></span></li>
+      <li><i data-i="feito" style="color:var(--sucesso-texto)"></i><span class="lc-cresce">Bianca: liberar acesso à fila Escalações<span class="lc-lista__sub">feito em 24/09</span></span></li></ul></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Suas notas privadas</h2></div><div class="lc-caixa__corpo"><textarea class="lc-area-texto" aria-label="Notas privadas, só você vê">Ana quer ir para Escalações em 2027. Conversar com Paula sobre vaga.</textarea><p class="lc-ajuda"><i data-i="bloquear" class="lc-ic--12"></i> Só você vê.</p></div></section>
+  </aside>
+</div>
+</div>
+<div id="ab-pdi" hidden style="margin-top:16px"><p class="lc-legenda">PDI de Ana Beatriz: 2 de 4 ações feitas.</p></div>
+
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Abas, por competência: nota (grupo de botões 1 a 5), comentário; números do trimestre; barra de salvar. No 1:1: itens da pauta (marcar como tratado), adicionar item, ações, notas privadas.</dd>
+    <dt>O que é anunciado</dt><dd>Cada grupo de nota tem nome ("Sua nota em Resolver de primeira") e o significado aparece em palavra logo abaixo. A autoavaliação tem rótulo completo ("Autoavaliação 4, acima do esperado").</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Outras formas de salvar".</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+<script>
+document.querySelectorAll("[data-p4-seg]").forEach(function(g){ g.addEventListener("click",function(){ var tr=g.closest("tr"); if(!tr) return; var t=tr.querySelector("textarea"); t.setAttribute("data-rotulo",g.getAttribute("aria-label")); t.dispatchEvent(new Event("input",{bubbles:true})); }); });
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentos gerados</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q5.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q5.js" defer></script>
+<style>
+
+.doc{max-width:1440px;margin:0 auto;padding:16px 24px 72px}
+.doc-topo{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid var(--cm-filete)}
+.doc-topo h1{font-size:22px;font-weight:700;flex:1;min-width:240px}
+.doc-sec{margin-top:36px}
+.doc-sec>h2{font-size:17px;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+.doc-sec>p{color:var(--cm-texto-2);max-width:90ch;margin-bottom:12px}
+.mesa{background:var(--cm-camada-1);border:1px solid var(--cm-filete);padding:24px 12px;overflow-x:auto}
+@media (max-width:599px){ .doc{padding:12px 16px 56px} .mesa{padding:12px 0} }
+
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<main id="conteudo">
+<div class="doc"><div class="doc-topo"><h1>Documentos gerados</h1><div data-cm-seletor data-sem-densidade></div></div>
+<details class="cm-anotacao" open>
+<summary><i data-i="informacao"></i>Sobre esta tela: Documentos que o sistema gera na marca do cliente</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>O que esta tela resolve</h3><p>E-mail, boleto, balancete, ata, certificado, proposta e recibo saem com logo, nome e cor da administradora, e com a tipografia e as regras da V2: Hanken com números tabulares, filetes em vez de caixas, estado com ícone e palavra, nada de mono em rótulo. São sempre papel claro, mesmo com a página no tema escuro.</p></div>
+<div><h3>Fluxo</h3><ol><li>Cada documento nasce de uma ação: o boleto da emissão do mês, o recibo da baixa, a ata do encerramento da assembleia.</li><li>A cor do cliente aparece só no fio do cabeçalho, no logo e no botão do e-mail.</li><li>Todo documento que vale como prova tem QR e código de verificação (41b).</li><li>O rodapé diz quando e por onde foi gerado.</li></ol></div>
+<div><h3>Resolvemos fazer assim porque</h3><p>os boletos da Febraban têm campos fixos que o banco exige (mantidos), o Stripe e o Nubank fazem e-mail transacional com um botão e o resumo em linhas, e o Credly e as universidades verificam certificado por código. Enviamos para aprovação.</p></div>
+</div></details>
+<section class="doc-sec" id="email" aria-labelledby="email-t"><h2 id="email-t"><i data-i="email"></i>E-mail transacional: boleto disponível</h2><p>600 px, uma coluna, um botão. Funciona sem imagens.</p><div class="mesa"><div class="cm-email-cabecalho"><span>De</span><b>Administradora Alpha &lt;nao-responda@alpha.adm.br&gt;</b><span>Para</span><span>marina.costa@gmail.com</span><span>Assunto</span><b>Boleto de outubro do Bl B Ap 1204: R$ 1.284,90, vence 10/10</b></div>
+<div class="cm-email-caixa"><div class="cm-email" data-theme="light"><div class="cm-email__topo"><span class="cm-documento__logo" data-marca-inicial>A</span><span data-marca-nome>Administradora Alpha</span></div>
+<div class="cm-email__corpo"><h1>Seu boleto de outubro chegou</h1><p>Olá, Marina. O boleto do Cond. Parque das Águas, Bl B Ap 1204, está disponível.</p>
+<div class="cm-email__resumo"><div><span>Valor</span><b>R$ 1.284,90</b></div><div><span>Vencimento</span><b>sábado, 10/10/2026</b></div><div><span>Sem multa até</span><b>terça, 13/10 (12/10 é feriado)</b></div></div>
+<p><a class="cm-email__botao" href="40c-portal-boletos.html">Pagar com Pix</a></p><p style="font-size:13px;color:#454E53">O botão abre o portal com o código Pix pronto para copiar. O PDF do boleto vai anexo.</p>
+<p style="font-size:14px">Este mês inclui a parcela 4 de 10 da impermeabilização da garagem, aprovada na assembleia de 26/03.</p></div>
+<div class="cm-email__pe">Cond. Parque das Águas, Rua Cubatão, 1.120, Vila Mariana, São Paulo, SP.<br>Você recebe este e-mail por ser responsável pela unidade. <a href="#">Preferências de aviso</a>. A Administradora Alpha nunca pede senha por e-mail.</div></div></div></div></section>
+<section class="doc-sec" id="boleto" aria-labelledby="boleto-t"><h2 id="boleto-t"><i data-i="boleto"></i>Boleto em PDF</h2><p>Pix primeiro, depois a ficha de compensação no padrão Febraban.</p><div class="mesa"><div class="cm-documento cm-documento--a4" data-theme="light"><div class="cm-documento__cabeca"><span class="cm-documento__logo" data-marca-inicial>A</span><div class="cm-documento__emissor"><span data-marca-nome>Administradora Alpha</span><small>Alpha Administração de Condomínios Ltda., CNPJ 12.345.678/0001-90</small><small>Rua Vergueiro, 2.045, 8º andar, Vila Mariana, São Paulo, SP. (11) 3456-7788</small></div><div class="cm-documento__tipo"><b>Boleto de condomínio</b>Outubro de 2026</div></div>
+<h1>R$ 1.284,90, vence em 10/10/2026</h1><p>Cond. Parque das Águas, Bl B Ap 1204. Pagador: Marina Costa, CPF ***.418.276-**.</p>
+<div class="cm-linha cm-linha--topo" style="gap:20px;margin:14px 0"><div class="cm-documento__verificacao" style="flex:1"><span class="cm-qr" data-semente="pix-out-1204" data-rotulo="QR Code Pix"></span><div><b>Pague com Pix</b><br>Abra o app do banco, escolha Pix e leia o código. Cai na hora e a baixa é automática.</div></div></div>
+<h2>Composição</h2><table><tbody><tr><td>Taxa ordinária de outubro</td><td class="cm-num">R$ 986,00</td></tr><tr><td>Fundo de reserva, 10%</td><td class="cm-num">R$ 98,60</td></tr><tr><td>Rateio impermeabilização da garagem, parcela 4 de 10 (AGO de 26/03/2026)</td><td class="cm-num">R$ 142,30</td></tr><tr><td>Água da unidade, 12 m³ (leitura de 25/09: 1.482 m³)</td><td class="cm-num">R$ 58,00</td></tr><tr class="is-total"><td>Total</td><td class="cm-num">R$ 1.284,90</td></tr></tbody></table>
+<p style="margin-top:10px;font-size:11.5px;color:#454E53">Depois do vencimento: multa de 2% e juros de 1% ao mês, conforme a convenção (art. 1.336 do Código Civil). Como 10/10 cai no sábado e 12/10 é feriado, o pagamento até 13/10 não tem multa.</p>
+<hr class="cm-documento__corte" aria-label="Recorte">
+<div class="cm-linha" style="justify-content:space-between;flex-wrap:wrap;gap:8px"><b style="font-size:15px">Itaú Unibanco | 341-7</b><span class="cm-linha-digitavel" style="color:#15191B">34191.79001 01043.510047 91020.150008 1 15150000128490</span></div>
+<div class="cm-documento__campos" style="margin-top:8px"><div class="is-3"><span>Local de pagamento</span><b>Em qualquer banco ou app até o vencimento</b></div><div><span>Vencimento</span><b>10/10/2026</b></div>
+<div class="is-3"><span>Beneficiário</span><b>Cond. Parque das Águas, CNPJ 08.412.337/0001-60</b></div><div><span>Agência e código</span><b>0412 / 18820-4</b></div>
+<div><span>Data do documento</span><b>25/09/2026</b></div><div><span>Nº do documento</span><b>2026100-1204</b></div><div><span>Espécie</span><b>DM</b></div><div><span>Nosso número</span><b>109/01043510-0</b></div>
+<div class="is-3"><span>Pagador</span><b>Marina Costa, Bl B Ap 1204, Rua Cubatão, 1.120, São Paulo, SP, 04013-002</b></div><div><span>Valor do documento</span><b>R$ 1.284,90</b></div></div>
+<span class="cm-barras" data-semente="34191790010104351004791020150008115150000128490" style="margin-top:14px"></span>
+<div class="cm-documento__pe"><span>Autenticação mecânica no verso.</span><span>Gerado pela plataforma GACO em 01/10/2026 09:31. Página 1 de 1.</span></div></div></div></section>
+<section class="doc-sec" id="balancete" aria-labelledby="balancete-t"><h2 id="balancete-t"><i data-i="extrato"></i>Balancete mensal</h2><p>Previsto contra realizado, com o parecer do conselho e as assinaturas.</p><div class="mesa"><div class="cm-documento cm-documento--a4" data-theme="light"><div class="cm-documento__cabeca"><span class="cm-documento__logo" data-marca-inicial>A</span><div class="cm-documento__emissor"><span data-marca-nome>Administradora Alpha</span><small>Alpha Administração de Condomínios Ltda., CNPJ 12.345.678/0001-90</small><small>Rua Vergueiro, 2.045, 8º andar, Vila Mariana, São Paulo, SP. (11) 3456-7788</small></div><div class="cm-documento__tipo"><b>Balancete mensal</b>Setembro de 2026</div></div>
+<h1>Cond. Parque das Águas</h1><p>CNPJ 08.412.337/0001-60. Síndica: Marina Costa. 312 unidades. Período de 01/09 a 30/09/2026.</p>
+<h2>Resumo</h2><table><tbody><tr><td>Saldo em 31/08/2026</td><td class="cm-num">R$ 412.806,14</td></tr><tr><td>Entradas do mês</td><td class="cm-num">R$ 342.118,90</td></tr><tr><td>Saídas do mês</td><td class="cm-num">R$ 323.885,43</td></tr><tr class="is-total"><td>Saldo em 30/09/2026</td><td class="cm-num">R$ 431.039,61</td></tr></tbody></table>
+<h2>Entradas</h2><table><thead><tr><th>Conta</th><th class="cm-num">Previsto</th><th class="cm-num">Realizado</th></tr></thead><tbody><tr><td>1.1 Taxas condominiais</td><td class="cm-num">318.400,00</td><td class="cm-num">302.876,30</td></tr><tr><td>1.2 Rateio impermeabilização</td><td class="cm-num">37.800,00</td><td class="cm-num">36.112,60</td></tr><tr><td>1.3 Multas, juros e reservas</td><td class="cm-num">2.000,00</td><td class="cm-num">3.130,00</td></tr><tr class="is-total"><td>Total</td><td class="cm-num">358.200,00</td><td class="cm-num">342.118,90</td></tr></tbody></table>
+<h2>Saídas</h2><table><thead><tr><th>Conta</th><th class="cm-num">Previsto</th><th class="cm-num">Realizado</th></tr></thead><tbody><tr><td>2.1 Folha e encargos</td><td class="cm-num">168.000,00</td><td class="cm-num">167.412,88</td></tr><tr><td>2.2 Concessionárias</td><td class="cm-num">61.000,00</td><td class="cm-num">64.208,15</td></tr><tr><td>2.3 Manutenção e contratos</td><td class="cm-num">42.000,00</td><td class="cm-num">39.884,40</td></tr><tr><td>2.4 Impermeabilização, parcela 4</td><td class="cm-num">38.000,00</td><td class="cm-num">38.000,00</td></tr><tr><td>2.5 Administração, seguro e bancos</td><td class="cm-num">14.500,00</td><td class="cm-num">14.380,00</td></tr><tr class="is-total"><td>Total</td><td class="cm-num">323.500,00</td><td class="cm-num">323.885,43</td></tr></tbody></table>
+<h2>Inadimplência em 30/09</h2><p>17 unidades, R$ 21.844,10. 4 com acordo em dia; 2 em cobrança judicial. Fundo de reserva: R$ 186.220,40.</p>
+<h2>Parecer do conselho fiscal</h2><p><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Aprovado com ressalva</span> em 15/10/2026: condicionado à nota fiscal da Jardins Verdes (poda de 18/09, R$ 1.150,00).</p>
+<div class="cm-documento__assinaturas"><div>Marina Costa<small>Síndica</small></div><div>Helena Duarte, Rogério Tanaka e Sílvia Prado<small>Conselho fiscal, assinatura eletrônica</small></div></div>
+<div class="cm-documento__pe"><span>Comprovantes de todos os lançamentos no portal, em Documentos.</span><span>Gerado pela plataforma GACO em 01/10/2026 09:31. Página 1 de 1.</span></div></div></div></section>
+<section class="doc-sec" id="ata" aria-labelledby="ata-t"><h2 id="ata-t"><i data-i="ata"></i>Ata de assembleia</h2><p>Texto corrido de ata, com quórum, votações em porcentagem e registro em cartório.</p><div class="mesa"><div class="cm-documento cm-documento--a4" data-theme="light"><div class="cm-documento__cabeca"><span class="cm-documento__logo" data-marca-inicial>A</span><div class="cm-documento__emissor"><span data-marca-nome>Administradora Alpha</span><small>Alpha Administração de Condomínios Ltda., CNPJ 12.345.678/0001-90</small><small>Rua Vergueiro, 2.045, 8º andar, Vila Mariana, São Paulo, SP. (11) 3456-7788</small></div><div class="cm-documento__tipo"><b>Ata de assembleia</b>Registrada em 14/04/2026</div></div>
+<h1>Ata da assembleia geral ordinária do Condomínio Parque das Águas</h1>
+<p>Aos vinte e seis dias de março de 2026, às 20h30, em segunda chamada, no salão de festas do Condomínio Parque das Águas, situado na Rua Cubatão, 1.120, Vila Mariana, São Paulo, SP, e por transmissão online, reuniram-se os condôminos que assinaram a lista de presença, representando 58,4% das frações ideais (182 unidades, 47 por voto online e 9 por procuração), para deliberar sobre a ordem do dia do edital de 05/03/2026. Presidiu a assembleia a síndica Marina Costa e secretariou Renata Siqueira, da Administradora Alpha.</p>
+<h2>1. Prestação de contas de 2025</h2><p>Lido o parecer favorável do conselho fiscal, as contas foram aprovadas por 92,1% dos presentes, com 4,3% contra e 3,6% de abstenções.</p>
+<h2>2. Previsão orçamentária de 2026</h2><p>Aprovada a previsão de R$ 4.172.400,00 para o ano, com taxa ordinária de R$ 986,00 para as unidades de 2 dormitórios, a partir de abril.</p>
+<h2>3. Impermeabilização da garagem</h2><p>Aprovado o rateio extra de R$ 380.000,00 em 10 parcelas, de junho de 2026 a março de 2027, por 71,8% dos presentes. Contratada a Impermax Engenharia, menor dos três orçamentos com ART.</p>
+<h2>4. Animais na piscina</h2><p>Rejeitada a proposta de proibição, com 38,0% a favor. Fica mantido o artigo 52 do regimento.</p>
+<p>Nada mais havendo a tratar, a presidente encerrou a assembleia às 22h47, e eu, secretária, lavrei esta ata, que vai assinada por mim e pela presidente.</p>
+<div class="cm-documento__assinaturas"><div>Marina Costa<small>Presidente da mesa</small></div><div>Renata Siqueira<small>Secretária</small></div></div>
+<div class="cm-documento__verificacao" style="margin-top:24px"><span class="cm-qr" data-semente="ata-2603" data-rotulo="QR de verificação da ata"></span><div>Registro: 2º Oficial de Registro de Títulos e Documentos de São Paulo, nº 1.884.207, em 14/04/2026.<br>Lista de presença e votos online no anexo I.</div></div>
+<div class="cm-documento__pe"><span>Documento assinado eletronicamente.</span><span>Gerado pela plataforma GACO em 01/10/2026 09:31. Página 1 de 1.</span></div></div></div></section>
+<section class="doc-sec" id="certificado" aria-labelledby="certificado-t"><h2 id="certificado-t"><i data-i="certificado"></i>Certificado</h2><p>Paisagem, sem moldura decorativa nem selo. O código de verificação é a garantia.</p><div class="mesa"><div class="cm-documento cm-documento--certificado" data-theme="light"><div class="cm-documento__cabeca" style="border-bottom:0"><span class="cm-documento__logo" data-marca-inicial>A</span><div class="cm-documento__emissor">Escola de Síndicos da <span data-marca-nome>Administradora Alpha</span><small>Formação em gestão condominial</small></div></div>
+<h1>Certificado de conclusão</h1><p style="font-size:15px;line-height:22px;max-width:70ch">Certificamos que</p><p class="cm-documento__nome-aluno">Marina Costa</p>
+<p style="font-size:15px;line-height:22px;max-width:70ch">concluiu a disciplina <b>Legislação condominial</b>, com carga horária de 16 horas, no período letivo 2026.2, de 05/08 a 16/09/2026, com média final 8,75 e frequência de 100%.</p>
+<p style="font-size:13px;color:#454E53;margin-top:10px">Conteúdo: condomínio edilício no Código Civil (arts. 1.331 a 1.358), convenção e regimento, assembleias e quóruns, responsabilidades do síndico.</p>
+<div class="cm-documento__assinaturas" style="margin-top:auto"><div>Dra. Lúcia Fontana<small>Professora</small></div><div>Renata Siqueira<small>Coordenação da Escola de Síndicos</small></div></div>
+<div class="cm-documento__verificacao" style="margin-top:20px"><span class="cm-qr" data-semente="ALPHA-2026-0418-GC" data-rotulo="QR de verificação do certificado"></span><div>Código ALPHA-2026-0418-GC. Confira em portal.alpha.adm.br/certificado ou leia o QR. Emitido em 17/09/2026.</div></div></div></div></section>
+<section class="doc-sec" id="proposta" aria-labelledby="proposta-t"><h2 id="proposta-t"><i data-i="documento-editavel"></i>Proposta comercial</h2><p>A mesma proposta da página pública, em PDF, já com o registro do aceite.</p><div class="mesa"><div class="cm-documento cm-documento--a4" data-theme="light"><div class="cm-documento__cabeca"><span class="cm-documento__logo" data-marca-inicial>A</span><div class="cm-documento__emissor"><span data-marca-nome>Administradora Alpha</span><small>Alpha Administração de Condomínios Ltda., CNPJ 12.345.678/0001-90</small><small>Rua Vergueiro, 2.045, 8º andar, Vila Mariana, São Paulo, SP. (11) 3456-7788</small></div><div class="cm-documento__tipo"><b>Proposta comercial</b>Nº 2026-112, válida até 31/10/2026</div></div>
+<h1>Administração do Cond. Vila Serena</h1><p>Para Ricardo Tavares, síndico. Rua Joaquim Távora, 680, Vila Mariana, São Paulo, SP. 96 unidades em 2 blocos.</p>
+<h2>O que está incluso</h2><table><tbody><tr><td>Financeiro: boletos com Pix, cobrança, conciliação, balancete mensal com comprovantes</td><td class="cm-num">R$ 2.160,00</td></tr><tr><td>Pessoal: folha, férias e encargos de até 6 funcionários</td><td class="cm-num">R$ 980,00</td></tr><tr><td>Assembleias: edital, voto online, ata e registro</td><td class="cm-num">R$ 700,00</td></tr><tr><td>Portal e app para moradores, com atendimento no WhatsApp</td><td class="cm-num">R$ 540,00</td></tr><tr><td>Implantação em 30 dias, migração do histórico de 5 anos</td><td class="cm-num">sem custo</td></tr><tr class="is-total"><td>Total por mês</td><td class="cm-num">R$ 4.380,00</td></tr></tbody></table>
+<h2>Condições</h2><p>Contrato de 12 meses, reajuste anual pelo IPCA. Sem multa de saída após o 6º mês, com aviso de 60 dias. Primeiro vencimento 30 dias depois da assinatura.</p>
+<h2>Prazos de atendimento</h2><p>Primeira resposta no WhatsApp em até 30 minutos, em dias úteis das 8h às 20h. Emergências (vazamento, elevador parado, falta de energia) 24 horas pelo plantão.</p>
+<div class="cm-documento__verificacao" style="margin-top:20px"><div><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Aceita em 01/10/2026 às 10:12</span><br>Por Ricardo Tavares (ricardo.tavares@vilaserena.com.br), IP 189.40.112.7. Consultor: Rafael Menezes.</div></div>
+<div class="cm-documento__pe"><span>Proposta aceita eletronicamente. O contrato segue para assinatura.</span><span>Gerado pela plataforma GACO em 01/10/2026 09:31. Página 1 de 1.</span></div></div></div></section>
+<section class="doc-sec" id="recibo" aria-labelledby="recibo-t"><h2 id="recibo-t"><i data-i="recibo"></i>Recibo</h2><p>Curto: quem pagou, o quê, quando, como e a autenticação.</p><div class="mesa"><div class="cm-documento" data-theme="light"><div class="cm-documento__cabeca"><span class="cm-documento__logo" data-marca-inicial>A</span><div class="cm-documento__emissor"><span data-marca-nome>Administradora Alpha</span><small>Alpha Administração de Condomínios Ltda., CNPJ 12.345.678/0001-90</small><small>Rua Vergueiro, 2.045, 8º andar, Vila Mariana, São Paulo, SP. (11) 3456-7788</small></div><div class="cm-documento__tipo"><b>Recibo</b>Nº 2026-09-1204</div></div>
+<h1>Recebemos R$ 1.271,40</h1><p>de Marina Costa, CPF ***.418.276-**, referente à taxa de condomínio de setembro de 2026 do Bl B Ap 1204 do Cond. Parque das Águas.</p>
+<div class="cm-documento__campos" style="margin-top:12px"><div><span>Pago em</span><b>08/09/2026, 21:14</b></div><div><span>Forma</span><b>Pix</b></div><div class="is-2"><span>Autenticação</span><b>E18236120202609082114s07a9c3f1e2</b></div></div>
+<p style="margin-top:12px">Valor por extenso: mil, duzentos e setenta e um reais e quarenta centavos.</p>
+<div class="cm-documento__assinaturas"><div>Cond. Parque das Águas<small>por Administradora Alpha, assinatura eletrônica</small></div><div></div></div>
+<div class="cm-documento__pe"><span>Este recibo não quita parcelas anteriores.</span><span>Gerado pela plataforma GACO em 01/10/2026 09:31. Página 1 de 1.</span></div></div></div></section>
+<details class="cm-anotacao cm-anotacao--a11y">
+<summary><i data-i="teclado"></i>Acessibilidade desta tela</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>Ordem de foco</h3><ol><li>Seletor de cliente e tema</li><li>Seções na ordem: e-mail, boleto, balancete, ata, certificado, proposta, recibo</li></ol></div>
+<div><h3>O que é anunciado</h3><ul><li>PDF gerado com marcação de títulos e tabelas (PDF/UA)</li><li>QR com nome; linha digitável legível como texto</li></ul></div>
+<div><h3>Nome do que é só ícone</h3><ul><li>Nenhum</li></ul></div>
+</div></details>
+</div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perfil: Diego Ramos</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-perfil{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;align-items:start;margin-top:16px}
+.q3-perfil>div{display:flex;flex-direction:column;gap:16px;min-width:0}
+.q3-duas{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.q3-org{display:flex;flex-direction:column;align-items:flex-start;gap:6px;font-size:13px}
+.q3-org .cm-pessoa{padding:6px 10px;border:1px solid var(--cm-filete);background:var(--cm-camada-2)}
+.q3-org .is-aqui{border-color:var(--cm-acao-filete);box-shadow:inset 3px 0 0 var(--cm-acao)}
+.q3-org__desce{margin-left:22px;padding-left:14px;border-left:1px solid var(--cm-filete-forte);display:flex;flex-direction:column;gap:6px}
+@media (max-width:1099px){.q3-perfil{grid-template-columns:minmax(0,1fr)} .q3-duas{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Perfil da pessoa <small>Diego Ramos visto por uma colega (Beatriz), e o mesmo perfil quando é o seu, com edição no lugar.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>Responde "quem é, onde está agora, como falo com ela e o que já fez aqui". A presença com recado vem primeiro, depois os meios de contato com ação (conversar, ligar no ramal, agendar). Reconhecimentos, disciplinas e equipe dão contexto humano.</p><p>No próprio perfil os campos ganham lápis; ao mudar, a barra de salvar aparece. Dados de RH (salário, CPF, endereço) não aparecem aqui: ficam em Cultura, Cadastro de pessoas, com permissão.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Botões do cabeçalho: Conversar (abre a conversa interna), Ligar 2038, Agendar (abre a agenda com horário livre), Reconhecer.</li><li>No estado "Meu perfil": lápis em cada campo; Enter confirma, Esc desfaz; a barra "1 alteração não salva" aparece embaixo com Descartar e "Salvar ▾".</li><li>"Salvar ▾" lembra a escolha (e continuar, e voltar ao Início); Ctrl S salva de qualquer campo.</li><li>Voltar: trilha Cultura, Pessoas, ou o botão Voltar do navegador, que mantém a busca do diretório.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Microsoft Teams e o Slack abrem o perfil com presença, recado, horário local e "Conversar" no topo; o LinkedIn e o Workplace mostram reconhecimentos como prova social no perfil; e o Salesforce Lightning edita campo por campo no próprio registro, com a barra de salvar só quando há alteração.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Visto por colega</button><button type="button" data-q3-estado="meu" aria-pressed="false">Meu perfil, editando</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Cultura","tela":"Pessoas","registro":"Diego Ramos","papel":"Atendimento","usuario":{"nome":"Beatriz Nogueira","iniciais":"BN","cargo":"Atendente N2, Suporte","presenca":"disponivel","tom":2}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <section class="cm-perfil-cabeca" style="margin-top:16px" aria-labelledby="t-nome">
+  <span class="cm-avatar cm-avatar--gg cm-avatar--1">DR<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span>
+  <div>
+   <h1 class="cm-perfil-cabeca__nome" id="t-nome"><span data-se="padrao">Diego Ramos</span><span data-se="meu">Diego Ramos (você)</span></h1>
+   <div class="cm-perfil-cabeca__cargo">Atendente N3, Suporte ao cliente. Sede Paulista, 7º andar.</div>
+   <div class="cm-perfil-cabeca__status">
+    <span class="cm-presenca-texto"><span class="cm-presenca cm-presenca--disponivel"></span>Disponível</span>
+    <span class="cm-perfil-cabeca__recado">Ponte com a manutenção hoje. Chamados de vazamento comigo.</span>
+    <span class="cm-t-legenda">09:41 em São Paulo, turno até 18h</span>
+   </div>
+  </div>
+  <div class="cm-grupo-botoes" data-se="padrao">
+   <button class="cm-botao cm-botao--principal" type="button"><i data-i="conversa"></i>Conversar</button>
+   <button class="cm-botao" type="button"><i data-i="telefone"></i>Ligar 2038</button>
+   <button class="cm-botao" type="button"><i data-i="calendario"></i>Agendar</button>
+   <div class="cm-ancora cm-ancora--direita"><button class="cm-botao cm-botao--icone" type="button" aria-label="Mais ações" aria-haspopup="menu" aria-expanded="false" data-q3-menu="m-perfil"><i data-i="mais-opcoes"></i></button>
+    <div class="cm-menu cm-flutuante" id="m-perfil" role="menu" hidden><button class="cm-menu__item" role="menuitem" type="button"><i data-i="reconhecimento"></i><span>Reconhecer</span><span></span></button><button class="cm-menu__item" role="menuitem" type="button"><i data-i="copiar"></i><span>Copiar e-mail</span><span></span></button><button class="cm-menu__item" role="menuitem" type="button"><i data-i="organograma"></i><span>Ver no organograma</span><span></span></button></div></div>
+  </div>
+  <div class="cm-grupo-botoes" data-se="meu"><button class="cm-botao" type="button"><i data-i="imagem"></i>Trocar foto</button><button class="cm-botao" type="button"><i data-i="ver"></i>Ver como colega</button></div>
+ </section>
+
+ <div class="q3-perfil">
+  <div>
+   <div class="cm-abas" role="tablist" aria-label="Seções do perfil">
+    <button role="tab" aria-selected="true" type="button" aria-controls="ab-sobre">Sobre</button>
+    <button role="tab" aria-selected="false" type="button" tabindex="-1" aria-controls="ab-rec">Reconhecimentos <span class="cm-contador">12</span></button>
+    <button role="tab" aria-selected="false" type="button" tabindex="-1" aria-controls="ab-ac">Academy</button>
+   </div>
+   <div id="ab-sobre" class="cm-pilha">
+    <div class="q3-duas">
+     <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Contato</h2></header><div class="cm-cartao__corpo"><dl class="cm-ficha">
+      <div class="cm-ficha__linha" data-q3-edita><dt>E-mail</dt><dd>diego.ramos@alpha.adm.br</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar e-mail" data-se="meu"><i data-i="editar"></i></button></div>
+      <div class="cm-ficha__linha"><dt>Ramal</dt><dd>2038</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar ramal" data-se="meu"><i data-i="editar"></i></button></div>
+      <div class="cm-ficha__linha"><dt>Celular</dt><dd>(11) 97412-3308</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar celular" data-se="meu"><i data-i="editar"></i></button></div>
+      <div class="cm-ficha__linha"><dt>Mesa</dt><dd>7º andar, ilha do Suporte, 14</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar mesa" data-se="meu"><i data-i="editar"></i></button></div>
+     </dl></div></section>
+     <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Trabalho</h2></header><div class="cm-cartao__corpo"><dl class="cm-ficha">
+      <div class="cm-ficha__linha is-leitura"><dt>Equipe</dt><dd>Suporte ao cliente</dd><span></span></div>
+      <div class="cm-ficha__linha is-leitura"><dt>Gestora</dt><dd><a class="cm-link" href="#">Juliana Prado</a></dd><span></span></div>
+      <div class="cm-ficha__linha is-leitura"><dt>Na empresa</dt><dd>desde 02/10/2023, 3 anos amanhã</dd><span></span></div>
+      <div class="cm-ficha__linha"><dt>Turno</dt><dd>9h às 18h</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar turno" data-se="meu"><i data-i="editar"></i></button></div>
+     </dl></div></section>
+    </div>
+    <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Sobre o Diego</h2><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-se="meu"><i data-i="editar"></i>Editar</button></header>
+     <div class="cm-cartao__corpo cm-pilha"><p class="cm-t-corpo cm-leitura">Cuido dos chamados de manutenção e da ponte com os fornecedores (Hidrotec, Portec, Elevadores Atlas). Antes do Suporte, fui zelador do Ed. Monte Azul por 5 anos, então conheço casa de máquinas por dentro.</p>
+      <div class="cm-linha cm-linha--quebra" style="gap:6px"><span class="cm-etiqueta cm-etiqueta--3">Vazamentos</span><span class="cm-etiqueta cm-etiqueta--5">Portões e cancelas</span><span class="cm-etiqueta cm-etiqueta--1">Elevadores</span><span class="cm-etiqueta cm-etiqueta--4">Fornecedores</span><span class="cm-etiqueta cm-etiqueta--8">Libras básico</span></div></div></section>
+   </div>
+   <div id="ab-rec" class="cm-pilha" hidden>
+    <article class="cm-post cm-post--reconhecimento"><header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--4">JP</span><div><div class="cm-post__autor">Juliana Prado</div><div class="cm-post__sub">Dono do problema</div></div><span class="cm-post__quando">hoje, 08:55</span></header><h3 class="cm-post__titulo" style="margin-top:8px">Portão da Vila Serena destravado em 40 minutos</h3></article>
+    <article class="cm-post"><header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--2">BN</span><div><div class="cm-post__autor">Beatriz Nogueira</div><div class="cm-post__sub">Ensina quem chega</div></div><span class="cm-post__quando">12/09</span></header><h3 class="cm-post__titulo" style="margin-top:8px">Montou o roteiro de vazamento que a equipe usa</h3></article>
+   </div>
+   <div id="ab-ac" hidden><section class="cm-cartao"><div class="cm-cartao__corpo"><table class="cm-tabela cm-tabela--simples"><thead><tr><th>Disciplina</th><th>Turma</th><th class="cm-num">Média</th></tr></thead><tbody><tr><td>Rotinas de manutenção predial</td><td>2025.2</td><td class="cm-num">9,1</td></tr><tr><td>Atendimento ao síndico</td><td>2025.1</td><td class="cm-num">8,4</td></tr></tbody></table></div></section></div>
+  </div>
+
+  <div>
+   <section class="cm-cartao" aria-labelledby="t-org"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-org">Onde fica no organograma</h2></header>
+    <div class="cm-cartao__corpo q3-org">
+     <span class="cm-pessoa"><span class="cm-avatar cm-avatar--p cm-avatar--5">FL</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Fernanda Lopes</span><span class="cm-pessoa__sub">Diretora de operações</span></span></span>
+     <div class="q3-org__desce"><span class="cm-pessoa"><span class="cm-avatar cm-avatar--p cm-avatar--4">JP</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Juliana Prado</span><span class="cm-pessoa__sub">Gestora do Suporte</span></span></span>
+      <div class="q3-org__desce"><span class="cm-pessoa is-aqui"><span class="cm-avatar cm-avatar--p cm-avatar--1">DR</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Diego Ramos</span><span class="cm-pessoa__sub">Padrinho de Igor Matos</span></span></span></div></div>
+    </div></section>
+   <section class="cm-cartao" aria-labelledby="t-livre"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-livre">Agenda hoje</h2></header>
+    <div class="cm-cartao__corpo" style="padding-top:2px"><ul class="cm-agenda">
+     <li><span class="cm-agenda__hora">11:00</span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">Ocupado</span><span class="cm-agenda__sub">Vistoria com a Hidrotec</span></span><span></span></li>
+     <li><span class="cm-agenda__hora">13:30</span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">Livre até 15:00</span><span class="cm-agenda__sub">Primeiro horário livre</span></span><button class="cm-botao cm-botao--p" type="button">Agendar</button></li>
+    </ul></div></section>
+  </div>
+ </div>
+
+ <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" data-q3-barra hidden>
+  <div class="cm-barra-salvar__msg" aria-live="polite"><b data-q3-barra-n>1 alteração não salva</b><span data-q3-barra-quais></span></div>
+  <button class="cm-botao cm-botao--discreto" type="button" data-q3-descartar>Descartar</button>
+  <div class="cm-dividido cm-ancora cm-ancora--direita cm-ancora--cima">
+   <button class="cm-botao cm-botao--principal" type="button" data-q3-salvar>Salvar <span class="cm-dividido__lembra">e continuar</span></button>
+   <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de salvar" data-q3-menu="m-salvar"><i data-i="chevron-baixo"></i></button>
+   <div class="cm-menu cm-flutuante" id="m-salvar" role="menu" hidden>
+    <button class="cm-menu__item cm-menu__item--sem-icone" role="menuitemradio" aria-checked="true" type="button" data-q3-lembra="e continuar"><span>Salvar e continuar</span><span class="cm-menu__atalho">Ctrl S</span></button>
+    <button class="cm-menu__item cm-menu__item--sem-icone" role="menuitemradio" aria-checked="false" type="button" data-q3-lembra="e voltar"><span>Salvar e voltar ao Início</span><span></span></button>
+   </div>
+  </div>
+ </div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Trilha; foto e nome; presença e recado (texto); Conversar, Ligar, Agendar, "Mais ações"; abas; campos (no próprio perfil, cada lápis); organograma; agenda. A barra de salvar entra por último na ordem e Ctrl S funciona de qualquer campo.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Presença em palavra junto do recado. Campo em edição tem como descrição o valor anterior ("Era 2038. Enter confirma, Esc desfaz."). A barra anuncia "1 alteração não salva: Ramal" em região viva.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Mais ações", "Editar e-mail" (e cada lápis com o nome do campo), "Outras formas de salvar".</p></section>
+  </div>
+ </div>
+</footer>
+<script>document.addEventListener('q3:estado',function(e){document.querySelectorAll('.cm-ficha__lapis').forEach(function(b){b.hidden=e.detail!=='meu'})});</script>
+</body>
+</html>

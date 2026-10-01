@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Início do gestor</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-g{display:grid;grid-template-columns:330px minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start;padding-top:18px}
+.q3-col{display:flex;flex-direction:column;gap:16px;min-width:0}
+.q3-cabeca{display:flex;align-items:center;gap:10px;margin-bottom:8px;min-height:32px;flex-wrap:wrap}
+.q3-cabeca h2{font-size:var(--cm-tipo-secao);font-weight:700;margin:0}
+.q3-cabeca .cm-t-legenda{margin-right:auto}
+.q3-pv-abas{padding:0 6px;border:1px solid var(--cm-filete);border-bottom:0;background:var(--cm-camada-1)}
+.q3-frase{font-size:13px;color:var(--cm-texto-2);padding:10px 12px;border-bottom:1px solid var(--cm-filete)}
+.q3-frase b{color:var(--cm-texto-1)}
+@media (max-width:1279px){.q3-g{grid-template-columns:300px minmax(0,1fr)} .q3-g>.q3-col:last-child{grid-column:1/-1}}
+@media (max-width:899px){.q3-g{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Início do gestor <small>Juliana Prado, gestora do Suporte ao cliente, quinta-feira 01/10 às 09:41. Mesma casa da variação A, com aprovações e a equipe com carga.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>O gestor precisa decidir rápido sobre pessoas (trocas, férias, ajuste de ponto) e ver quem da equipe está sobrecarregado agora, sem abrir o painel do supervisor. O mural continua largo: é o lugar onde ele reconhece e publica comunicado com ciência.</p><p>A carga aparece como frase e número por pessoa, na lista da equipe. Não há fileira de indicadores: os números da operação moram no <a class="cm-link" href="21f-supervisor.html">painel do supervisor</a>.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Para você abre na aba Aprovações quando há aprovação pendente; as outras abas ficam a um clique.</li><li>"Aprovar" some com o item e mostra "Desfazer" por 8 s; "Ver detalhes" abre o pedido no painel lateral, com o histórico do pedido.</li><li>Na equipe, "Redistribuir" leva ao supervisor com o filtro da pessoa; "Pausar fila" pede confirmação.</li><li>"Comunicado" no publicador abre o editor com o pedido de ciência ligado; quem não confirmou recebe lembrete na véspera.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Workday e o BambooHR colocam a caixa de aprovações na primeira tela do gestor com aprovar e recusar na própria linha; o Microsoft Teams mostra a presença da equipe com o recado de cada um; e o Zendesk mantém a carga por agente na visão do gestor como lista, não como painel de indicadores. O gestor decide na Home e vai ao painel só para investigar.</p></section>
+  </div>
+  
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"tela":"Início","papel":"Atendimento","trilha":false,"sino":6,"usuario":{"nome":"Juliana Prado","iniciais":"JP","cargo":"Gestora do Suporte","presenca":"ocupado","tom":4}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <h1 class="cm-sr">Início</h1>
+ <div class="q3-g">
+  <div class="q3-col">
+   <section class="cm-cartao" aria-labelledby="t-eq">
+    <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-eq">Sua equipe agora</h2><a class="cm-link cm-t-legenda" href="21f-supervisor.html">Painel do supervisor</a></header>
+    <p class="q3-frase"><b>38 conversas abertas</b>, 4 sem dono. A Larissa está com 9, a mais carregada; a Renata, com 2.</p>
+    <ul class="cm-equipe">
+     <li><span class="cm-avatar cm-avatar--m cm-avatar--3">LM<span class="cm-presenca cm-presenca--em-atendimento" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Larissa Mendes</a></span><span class="cm-equipe__status">Em atendimento</span></span><span class="cm-equipe__carga"><b>9</b> conversas<br><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>2 perto do SLA</span></span></li>
+     <li><span class="cm-avatar cm-avatar--m cm-avatar--2">BN<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Beatriz Nogueira</a></span><span class="cm-equipe__status">Disponível: fila do WhatsApp</span></span><span class="cm-equipe__carga"><b>7</b> conversas<br><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>1 vencida</span></span></li>
+     <li><span class="cm-avatar cm-avatar--m cm-avatar--1">DR<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Diego Ramos</a></span><span class="cm-equipe__status">Disponível: ponte com a manutenção</span></span><span class="cm-equipe__carga"><b>6</b> conversas</span></li>
+     <li><span class="cm-avatar cm-avatar--m cm-avatar--1">TA<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Thiago Alves</a></span><span class="cm-equipe__status">Disponível: fila do portal</span></span><span class="cm-equipe__carga"><b>5</b> conversas</span></li>
+     <li><span class="cm-avatar cm-avatar--m cm-avatar--5">RS<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Renata Sousa</a></span><span class="cm-equipe__status">Disponível: fila de e-mail</span></span><span class="cm-equipe__carga"><b>2</b> conversas</span></li>
+     <li><span class="cm-avatar cm-avatar--m cm-avatar--4">CT<span class="cm-presenca cm-presenca--ausente" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Camila Torres</a></span><span class="cm-equipe__status">Volto logo: consulta até 11h</span></span><span class="cm-equipe__carga"><b>5</b> pausadas</span></li>
+     <li><span class="cm-avatar cm-avatar--m cm-avatar--2">PH<span class="cm-presenca cm-presenca--offline" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Paulo Henrique</a></span><span class="cm-equipe__status">De férias até 05/10</span></span><span class="cm-equipe__carga">fora</span></li>
+    </ul>
+    <div class="cm-cartao__pe"><a class="cm-botao cm-botao--p" href="21f-supervisor.html"><i data-i="troca"></i>Redistribuir</a><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-toast="Fila da Camila pausada até 11h" data-q3-toast-tipo="info" data-q3-toast-acao="Desfazer"><i data-i="pausa"></i>Pausar fila da Camila</button></div>
+   </section>
+   <section class="cm-cartao" aria-labelledby="t-ag">
+    <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-ag">Agenda de hoje</h2></header>
+    <div class="cm-cartao__corpo" style="padding-top:2px"><ul class="cm-agenda">
+     <li class="is-agora"><span class="cm-agenda__hora">09:30<small>90 min</small></span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">Síndico do Vila Serena</span><span class="cm-agenda__sub">Reclamação formal do portão</span></span><span></span></li>
+     <li><span class="cm-agenda__hora">11:30<small>30 min</small></span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">Calibração de qualidade</span><span class="cm-agenda__sub">8 conversas sorteadas</span></span><span></span></li>
+     <li><span class="cm-agenda__hora">15:30<small>30 min</small></span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">1:1 com Beatriz Nogueira</span><span class="cm-agenda__sub">Plantões de outubro</span></span><span></span></li>
+    </ul></div>
+   </section>
+  </div>
+
+  <section class="q3-col" aria-labelledby="t-pv">
+   <div>
+   <div class="q3-cabeca"><h2 id="t-pv">Para você</h2><span class="cm-t-legenda">Quinta-feira, 1 de outubro</span></div>
+   <div class="cm-abas q3-pv-abas" role="tablist" aria-label="Filtrar Para você">
+    <button role="tab" aria-selected="false" type="button" tabindex="-1">Tudo <span class="cm-contador">8</span></button>
+    <button role="tab" aria-selected="true" type="button">Aprovações <span class="cm-contador cm-contador--novo">4</span></button>
+    <button role="tab" aria-selected="false" type="button" tabindex="-1">Menções <span class="cm-contador">2</span></button>
+    <button role="tab" aria-selected="false" type="button" tabindex="-1">Prazos <span class="cm-contador">2</span></button>
+   </div>
+   <div class="cm-pv">
+    <article class="cm-pv-item is-urgente"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="troca"></i></span>
+     <div><div class="cm-pv-item__titulo">Troca de plantão: Diego Ramos e Beatriz Nogueira</div><div class="cm-pv-item__contexto">Diego faz o sábado 04/10, Beatriz o domingo 12/10. Os dois aceitaram às 09:38.</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Atenção: escala sai às 14h</span></div></div>
+     <div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button" data-q3-concluir="Troca recusada. Os dois foram avisados.">Recusar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q3-concluir="Troca aprovada. A escala de outubro foi atualizada.">Aprovar</button></div></article>
+    <article class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="ferias"></i></span>
+     <div><div class="cm-pv-item__titulo">Férias de Camila Torres, 10 a 24/11</div><div class="cm-pv-item__contexto">15 dias, saldo de 30. Ninguém da equipe está de férias no período.</div><div class="cm-pv-item__prazo"><span class="cm-t-legenda">Pedido em 29/09</span></div></div>
+     <div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-modal="painel-pedido">Ver detalhes</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q3-concluir="Férias aprovadas. A Camila foi avisada.">Aprovar</button></div></article>
+    <article class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="cronometro"></i></span>
+     <div><div class="cm-pv-item__titulo">Ajuste de ponto de Thiago Alves, 29/09</div><div class="cm-pv-item__contexto">Saída às 19:12 em vez de 18:00: ficou no vazamento do Jardim das Acácias.</div><div class="cm-pv-item__prazo"><span class="cm-t-legenda">Fecha a folha em 05/10</span></div></div>
+     <div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button" data-q3-concluir="Ajuste recusado">Recusar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q3-concluir="Ajuste aprovado, 1 h 12 de hora extra">Aprovar</button></div></article>
+    <article class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="resposta-rapida"></i></span>
+     <div><div class="cm-pv-item__titulo">Nova resposta rápida: /interdicao</div><div class="cm-pv-item__contexto">Beatriz propôs o texto de vaga interditada até o reparo. Revisar antes de liberar para a equipe.</div><div class="cm-pv-item__prazo"><span class="cm-t-legenda">Sem prazo</span></div></div>
+     <div class="cm-pv-item__acoes"><a class="cm-botao cm-botao--p" href="21d-respostas-rapidas.html">Revisar</a></div></article>
+    <div class="cm-pv__pe"><i data-i="sucesso"></i>2 aprovações feitas hoje<button class="cm-botao cm-botao--link cm-botao--p cm-empurra" type="button">Mostrar</button></div>
+   </div>
+   </div>
+  </section>
+
+  <section class="q3-col" aria-labelledby="t-mural">
+   <div>
+   <div class="q3-cabeca"><h2 id="t-mural">Mural</h2><span class="cm-t-legenda"></span>
+    <div class="cm-abas cm-abas--p cm-abas--sem-linha" role="tablist" aria-label="Mural de quem"><button role="tab" aria-selected="true" type="button">Minha equipe</button><button role="tab" aria-selected="false" type="button" tabindex="-1">Toda a empresa</button></div></div>
+   <div class="cm-publicar" style="margin-bottom:10px"><span class="cm-avatar cm-avatar--m cm-avatar--4" aria-hidden="true">JP</span><button class="cm-publicar__campo" type="button">Escreva para o Suporte ao cliente</button><button class="cm-botao cm-botao--p" type="button"><i data-i="comunicado"></i>Comunicado</button><button class="cm-botao cm-botao--p" type="button"><i data-i="reconhecimento"></i>Reconhecer</button></div>
+   <article class="cm-post">
+    <header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--4">JP</span><div><div class="cm-post__autor">Você publicou</div><div class="cm-post__sub">Comunicado para Suporte ao cliente</div></div><span class="cm-post__quando">ontem, 17:40</span></header>
+    <h3 class="cm-post__titulo" style="margin-top:10px">Novo horário do plantão a partir de 06/10</h3>
+    <p class="cm-post__corpo">O plantão de sábado passa a ser das 8h às 14h, com uma pessoa na fila do WhatsApp e outra no e-mail.</p>
+    <div class="cm-ciencia"><span class="cm-ciencia__texto">14 de 22 confirmaram. Faltam Beatriz, Camila, Paulo (de férias) e mais 5.</span><button class="cm-botao cm-botao--p" type="button" data-q3-toast="Lembrete enviado para 8 pessoas">Lembrar quem falta</button></div>
+   </article>
+   <article class="cm-post cm-post--reconhecimento">
+    <header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--4">JP</span><div><div class="cm-post__autor">Você reconheceu Diego Ramos</div><div class="cm-post__sub">Dono do problema</div></div><span class="cm-post__quando">08:55</span></header>
+    <h3 class="cm-post__titulo" style="margin-top:10px">Portão da Vila Serena destravado em 40 minutos</h3>
+    <div class="cm-post__pe"><div class="cm-reacoes"><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="parabens"></i>Parabéns <span class="cm-reacao__n">6</span></button><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="curtir"></i>Curtir <span class="cm-reacao__n">3</span></button></div></div>
+   </article>
+   <article class="cm-post">
+    <header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--empresa" data-marca-inicial>A</span><div><div class="cm-post__autor">Administradora Alpha</div><div class="cm-post__sub">Recursos humanos, para gestores</div></div><span class="cm-post__quando">ontem</span></header>
+    <h3 class="cm-post__titulo" style="margin-top:10px">Ciclo de avaliação 360° abre em 13/10</h3>
+    <p class="cm-post__corpo">Cada gestor indica até 4 avaliadores por pessoa até 10/10. O formulário está em Cultura, Performance.</p>
+   </article>
+   </div>
+  </section>
+ </div>
+
+ <aside class="cm-painel" id="painel-pedido" role="dialog" aria-labelledby="t-ped" hidden>
+  <header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="t-ped">Férias de Camila Torres</h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-fechar aria-label="Fechar"><i data-i="fechar"></i></button></header>
+  <div class="cm-painel__corpo">
+   <div class="cm-secao"><dl class="cm-ficha">
+    <div class="cm-ficha__linha is-leitura"><dt>Período</dt><dd>10/11 a 24/11, 15 dias</dd><span></span></div>
+    <div class="cm-ficha__linha is-leitura"><dt>Saldo</dt><dd>30 dias, vence em 02/2027</dd><span></span></div>
+    <div class="cm-ficha__linha is-leitura"><dt>Quem cobre</dt><dd>Renata Sousa, fila do portal</dd><span></span></div>
+    <div class="cm-ficha__linha is-leitura"><dt>Abono</dt><dd>Não pediu</dd><span></span></div>
+   </dl></div>
+   <div class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Histórico do pedido</h3></div>
+    <ol class="cm-auditoria"><li><time>29/09 16:02</time><b>Camila</b> pediu férias</li><li><time>29/09 16:02</time>Sistema conferiu saldo e conflitos: nenhum</li><li class="is-criacao"><time>30/09 08:10</time>Enviado para você aprovar</li></ol></div>
+  </div>
+  <footer class="cm-painel__pe"><button class="cm-botao" type="button" data-q3-fechar data-q3-toast="Férias recusadas. A Camila foi avisada." data-q3-toast-tipo="info">Recusar</button><button class="cm-botao cm-botao--principal" type="button" data-q3-fechar data-q3-toast="Férias aprovadas">Aprovar</button></footer>
+ </aside>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Barra de cima, favoritos e grupos; equipe (cada pessoa, depois Redistribuir e Pausar fila), agenda; abas de Para você e cada item; mural (abas, publicar, posts). O painel lateral recebe o foco no título ao abrir e devolve ao "Ver detalhes" ao fechar.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>A carga de cada pessoa é lida como frase ("Larissa Mendes, em atendimento, 9 conversas, atenção: 2 perto do SLA"). Ao aprovar, o toast anuncia a consequência ("Troca aprovada. A escala de outubro foi atualizada."). O painel é um diálogo com nome.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Fechar" no painel. Os demais botões têm palavra.</p></section>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>

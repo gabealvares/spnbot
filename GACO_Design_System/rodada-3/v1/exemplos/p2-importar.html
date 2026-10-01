@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Importar contratos de planilha</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+<style>
+.p2-imp{max-width:calc(880px + 2*var(--grade-margem));margin:0 auto;padding:var(--esp-5) var(--grade-margem) var(--esp-11)}
+.p2-imp .lc-passos{margin:8px 0 24px;padding-bottom:16px;border-bottom:var(--borda-1)}
+.p2-resumo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:var(--borda-1);background:var(--sup-1);margin:16px 0}
+.p2-resumo>div{padding:12px 16px}.p2-resumo>div+div{border-left:var(--borda-1)}
+.p2-resumo b{display:block;font:700 22px/1.2 var(--fonte-ui);font-variant-numeric:var(--num)}
+@media (max-width:639px){.p2-resumo{grid-template-columns:1fr}.p2-resumo>div+div{border-left:0;border-top:var(--borda-1)}}
+</style>
+</head>
+<body data-moldura='{"modulo":"cs","secao":"Contratos","item":"Contratos","papel":"gerente-cs","trilha":["Contratos","Importar planilha"]}'>
+<main id="conteudo"><div class="p2-imp">
+  <div class="lc-cab-pagina" style="padding-top:0"><div class="lc-cab-pagina__txt"><h1>Importar contratos de planilha</h1><p class="lc-cab-pagina__desc">Traga os contratos do sistema antigo. Nada entra antes da conferência; depois de importar, dá para desfazer a importação inteira por 24 horas.</p></div></div>
+  <ol class="lc-passos" id="passos" aria-label="Etapas da importação"></ol>
+  <section data-p="0"><h2 class="lc-t-secao">Escolha a planilha</h2><p class="lc-secao-form__desc" style="margin-top:4px">Excel (.xlsx) ou texto separado por ponto e vírgula (.csv), até 5.000 linhas. A primeira linha precisa ter os nomes das colunas.</p>
+    <label class="lc-upload" id="up" style="padding:36px 16px"><input type="file" accept=".xlsx,.csv"><i data-i="planilha"></i><span><b>Escolha o arquivo</b> ou arraste para cá</span><span class="lc-legenda">Não sabe por onde começar? <a href="#">Baixe o modelo de planilha</a> com as colunas certas.</span></label>
+    <ul class="lc-anexos" id="arq" hidden style="margin-top:12px"><li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="planilha"></i></span><span class="lc-anexo__nome">contratos-sistema-antigo-set2026.xlsx</span><span class="lc-anexo__info">212 linhas, 11 colunas, 48 KB</span><span class="lc-anexo__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Tirar arquivo"><i data-i="fechar"></i></button></span></li></ul></section>
+  <section data-p="1" hidden><h2 class="lc-t-secao">Ligue as colunas</h2><p class="lc-secao-form__desc" style="margin-top:4px">Ligamos sozinhos as que têm nome parecido. Confira as marcadas e escolha o que fazer com as que sobraram.</p>
+    <div class="lc-tabela-cont"><table class="lc-mapear"><caption class="lc-sr">Colunas da planilha e campos do GACO</caption><thead><tr><th scope="col">Coluna da planilha</th><th scope="col">Exemplo da primeira linha</th><th scope="col">Vai para o campo</th></tr></thead><tbody>
+      <tr><td>Condominio</td><td class="lc-mapear__exemplo">Cond. Parque das Águas</td><td><select class="lc-selecao" aria-label="Campo para Condominio"><option selected>Condomínio</option></select></td></tr>
+      <tr><td>CNPJ</td><td class="lc-mapear__exemplo">12.418.337/0001-09</td><td><select class="lc-selecao" aria-label="Campo para CNPJ"><option selected>CNPJ do condomínio</option></select></td></tr>
+      <tr><td>Vlr Mensal</td><td class="lc-mapear__exemplo">4380</td><td><select class="lc-selecao" aria-label="Campo para Vlr Mensal"><option selected>Valor mensal</option></select></td></tr>
+      <tr><td>Indice</td><td class="lc-mapear__exemplo">IGPM</td><td><select class="lc-selecao" aria-label="Campo para Indice"><option selected>Índice de reajuste</option></select></td></tr>
+      <tr><td>Dt Inicio</td><td class="lc-mapear__exemplo">14/10/2019</td><td><select class="lc-selecao" aria-label="Campo para Dt Inicio"><option selected>Início da vigência</option></select></td></tr>
+      <tr><td>Obs</td><td class="lc-mapear__exemplo">cliente desde 2019, pagto em dia</td><td><select class="lc-selecao" aria-label="Campo para Obs" aria-invalid="true"><option selected>Escolha: ignorar ou guardar como nota</option><option>Guardar como nota interna</option><option>Ignorar esta coluna</option></select></td></tr>
+    </tbody></table></div></section>
+  <section data-p="2" hidden><h2 class="lc-t-secao">Confira antes de importar</h2>
+    <div class="p2-resumo"><div><b>198</b><span class="lc-pequeno">prontos para entrar</span></div><div><b style="color:var(--aviso-texto)">9</b><span class="lc-pequeno">já existem no GACO</span></div><div><b style="color:var(--perigo-texto)">5</b><span class="lc-pequeno">com erro, ficam de fora</span></div></div>
+    <fieldset class="lc-grupo-opcoes" style="margin-bottom:16px"><legend class="lc-rotulo" style="margin-bottom:8px">Os 9 que já existem (mesmo CNPJ)</legend>
+      <label class="lc-radio"><input type="radio" name="dup" checked><span class="lc-radio__bola"></span>Pular: manter o que está no GACO</label><label class="lc-radio"><input type="radio" name="dup"><span class="lc-radio__bola"></span>Atualizar com os dados da planilha (fica no histórico de cada um)</label></fieldset>
+    <div class="lc-tabela-cont"><table class="lc-tabela"><caption class="lc-sr">Linhas com erro</caption><thead><tr><th scope="col" class="lc-num">Linha</th><th scope="col">Condomínio</th><th scope="col">O que corrigir</th></tr></thead><tbody>
+      <tr><td class="lc-num">14</td><td>Residencial Ventura</td><td class="lc-erro" style="display:table-cell">Valor mensal “4.380,0O” tem a letra O no lugar do zero.</td></tr>
+      <tr><td class="lc-num">37</td><td>Edifício Itapuã</td><td class="lc-erro" style="display:table-cell">CNPJ com 13 números. Falta 1.</td></tr>
+      <tr><td class="lc-num">88</td><td>(vazio)</td><td class="lc-erro" style="display:table-cell">Sem nome do condomínio.</td></tr>
+      <tr><td class="lc-num">120</td><td>Cond. Arvoredo</td><td class="lc-erro" style="display:table-cell">Índice “IGP” não existe. Use IGP-M, IPCA ou INPC.</td></tr>
+      <tr><td class="lc-num">201</td><td>Edifício Liberdade</td><td class="lc-erro" style="display:table-cell">Data de início 31/02/2021 não existe.</td></tr></tbody></table></div>
+    <p class="lc-legenda" style="margin-top:8px"><a href="#">Baixe as 5 linhas com erro</a>, corrija e importe só elas depois.</p></section>
+  <section data-p="3" hidden aria-live="polite" id="fim"></section>
+</div>
+<div class="lc-barra-salvar" role="region" aria-label="Navegar na importação" style="border-top-color:var(--filete-forte)">
+  <p class="lc-barra-salvar__msg"><button class="lc-btn lc-btn--discreto" type="button" id="voltar"><i data-i="chevron-esquerda"></i>Voltar</button><span class="lc-legenda" id="pos"></span></p>
+  <div class="lc-barra-salvar__acoes"><a class="lc-btn lc-btn--discreto" href="p2-lista.html">Cancelar importação</a><button class="lc-btn lc-btn--principal" type="button" id="seguir"></button></div></div>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2,$=P.$,$$=P.$$;
+var N=["Arquivo","Colunas","Conferência","Importação"], p=+(new URLSearchParams(location.search).get("passo")||0), tem=p>0;
+var BT=["Continuar para as colunas","Conferir 212 linhas","Importar 198 contratos",""];
+function d(){ $("#passos").innerHTML=N.map(function(n,i){ return '<li'+(i===p?' aria-current="step"':i<p?' class="lc-feito"':'')+'>'+n+'</li>'; }).join("");
+  $$("[data-p]").forEach(function(s){ s.hidden=+s.getAttribute("data-p")!==p; }); $("#arq").hidden=!tem; $("#up").hidden=tem;
+  $("#pos").textContent="Etapa "+(p+1)+" de 4"; $("#voltar").disabled=p===0||p===3; $("#seguir").hidden=p===3; $("#seguir").disabled=p===0&&!tem;
+  $("#seguir").innerHTML=(p===2?lcIcone("enviar-arquivo"):"")+BT[p]+(p<2?lcIcone("chevron-direita"):""); if(p===3) importar(); }
+function importar(){ var f=$("#fim"); f.innerHTML='<h2 class="lc-t-secao">Importando</h2><div class="lc-progresso-rot" style="margin-top:12px"><span>Criando contratos</span><b id="pc">0 de 198</b></div><div class="lc-progresso lc-progresso--g" id="pb" style="--_v:0%" role="progressbar" aria-valuemin="0" aria-valuemax="198" aria-valuenow="0" aria-label="Contratos importados"></div><p class="lc-legenda" style="margin-top:8px">Pode sair desta tela: avisamos no sino quando terminar.</p>';
+  var n=0, t=setInterval(function(){ n=Math.min(198,n+33); $("#pb").style.setProperty("--_v",(n/198*100)+"%"); $("#pb").setAttribute("aria-valuenow",n); $("#pc").textContent=n+" de 198";
+    if(n>=198){ clearInterval(t); f.innerHTML='<div class="lc-estado-tela"><div class="lc-vazio"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="sucesso"></i></span><h2 class="lc-vazio__titulo">198 contratos importados</h2><p class="lc-vazio__texto">9 já existiam e foram pulados; 5 linhas com erro ficaram de fora. Até amanhã às '+P.hora()+' dá para desfazer a importação inteira.</p><div class="lc-grupo-btn"><a class="lc-btn lc-btn--principal" href="p2-lista.html">Ver os contratos importados</a><button class="lc-btn" type="button" id="desf">Desfazer a importação</button></div></div></div>'; lcIcones(f);
+      $("#desf").addEventListener("click",function(){ P.modal({titulo:"Desfazer a importação de 198 contratos?",perigo:true,desc:"Os 198 contratos criados por ela vão para a lixeira. Os 9 que já existiam não são tocados.",pe:'<button class="lc-btn" type="button" data-m-fechar>Manter</button><button class="lc-btn lc-btn--perigo" type="button" data-ok>Desfazer a importação</button>',aoAbrir:function(el,api){ el.querySelector("[data-ok]").addEventListener("click",function(){ api.fechar(); P.toast("Importação desfeita. 198 contratos estão na lixeira por 30 dias.",{ic:"desfazer"}); }); }}); }); } },350); }
+$("#up").addEventListener("change",function(){ tem=true; d(); P.anunciar("Arquivo escolhido: 212 linhas."); });
+$("#up").addEventListener("click",function(e){ if(!tem){ e.preventDefault(); tem=true; d(); } });
+$("#seguir").addEventListener("click",function(){ if(p===1){ var o=$('select[aria-invalid="true"]'); if(o && o.selectedIndex===0){ o.focus(); P.anunciar("Escolha o que fazer com a coluna Obs."); return; } } p++; d(); });
+$("#voltar").addEventListener("click",function(){ if(p){ p--; d(); } });
+document.addEventListener("change",function(e){ if(e.target.matches('select[aria-invalid="true"]') && e.target.selectedIndex>0) e.target.removeAttribute("aria-invalid"); });
+d();
+})();
+</script>
+</body>
+</html>

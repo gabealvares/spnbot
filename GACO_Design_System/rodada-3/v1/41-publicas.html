@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Páginas públicas, acesso</title>
+<meta name="description" content="Páginas públicas da V1 na marca do cliente: entrar, verificação em 2 etapas, recuperar senha, primeiro acesso, pesquisa NPS pública e verificação de certificado.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/doc.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .pub-tela{margin-bottom:8px}
+  .pub-tela .lc-entrar,.pub-tela .lc-pub{min-height:760px}
+  .pub-tela .lc-pub__corpo{padding-top:48px}
+  .pub-pagina{max-width:1376px;margin:0 auto;padding:24px 32px 64px}
+  @media (max-width:639px){.pub-pagina{padding:16px 16px 48px}.pub-tela .lc-entrar,.pub-tela .lc-pub{min-height:0}}
+</style>
+</head>
+<body>
+<a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="lc-doc-cab">
+  <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
+  <nav aria-label="Documentação"><a href="40-portal.html">Portal</a><a href="41-publicas.html" aria-current="page">Públicas, acesso</a><a href="41b-publicas.html">Públicas, site</a><a href="50-superadmin.html">Superadmin</a><a href="60-celular.html">Celular</a><a href="61-documentos-gerados.html">Documentos</a></nav>
+  <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
+</header>
+<main id="conteudo" class="pub-pagina">
+<p class="lc-legenda" style="margin-bottom:8px">Sem moldura do sistema: a página pública é da administradora (logo, cor e nome do cliente) e segue o tema do aparelho. O GACO aparece só no rodapé, em "Tecnologia GACO". Marca de exemplo: Administradora Alpha; troque com <code>?marca=orbita</code> ou <code>?marca=sol</code>.</p>
+
+<!-- ENTRAR -->
+<section class="lc-ficha-tela" aria-label="Sobre a tela Entrar">
+  <div class="lc-ficha-tela__nome"><b>Entrar</b><span>Mesmo endereço para equipe, síndico e morador: portal.alpha.com.br. O papel decide para onde vai depois.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Entrar sem pensar: e-mail ou CPF, senha, e pronto. O lado da marca diz o que a pessoa encontra lá dentro, sem números de vitrine.</p></div>
+  <div><h2>Fluxo</h2><ol><li>E-mail ou CPF, senha com "Mostrar".</li><li>"Entrar" é o principal; Enter envia.</li><li>Erro de senha fica no campo, sem dizer se o e-mail existe.</li><li>Com 2 etapas ligadas, vai para o código; senão, para o Início do papel.</li><li>"Esqueci a senha" e "Primeiro acesso" ficam abaixo do botão.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o login do Google e o do gov.br pedem pouco por tela e explicam o erro no campo; o portal do Itaú Personnalité separa marca e formulário em duas colunas; e a orientação da OWASP manda não revelar se a conta existe.</p></div>
+</section>
+<div class="pub-tela lc-quadro-tela">
+  <div class="lc-entrar">
+    <div class="lc-entrar__lado">
+      <div class="lc-linha"><span class="lc-topo-portal__logo" data-marca-sigla>A</span><b style="font-size:17px" data-marca-nome>Administradora Alpha</b></div>
+      <h2>Seu condomínio, sem precisar ligar para a administradora.</h2>
+      <ul>
+        <li><i data-i="boleto"></i>Boleto do mês com Pix e 2ª via a qualquer hora</li>
+        <li><i data-i="chamado-pelo-portal"></i>Chamado com foto, acompanhado aqui e no WhatsApp</li>
+        <li><i data-i="reserva"></i>Reserva do salão e da churrasqueira</li>
+        <li><i data-i="assembleia"></i>Assembleia com voto online e ata registrada</li>
+      </ul>
+      <p style="margin-top:auto;font-size:13px">Atendimento de segunda a sexta, 8h às 18h. <span style="white-space:nowrap">(11) 3045-2210</span></p>
+    </div>
+    <div class="lc-entrar__form"><div>
+      <h1 class="lc-t-secao" style="font-size:22px;line-height:28px">Entrar</h1>
+      <p class="lc-pequeno lc-cor-2" style="margin:4px 0 20px">Use o e-mail ou o CPF do seu cadastro.</p>
+      <form class="lc-pilha" onsubmit="return false">
+        <div class="lc-campo"><label class="lc-rotulo" for="u">E-mail ou CPF</label><input id="u" class="lc-entrada" autocomplete="username" value="ana.souza@gmail.com"></div>
+        <div class="lc-campo"><div class="lc-linha lc-linha--entre"><label class="lc-rotulo" for="s">Senha</label><a class="lc-pequeno" href="#recuperar">Esqueci a senha</a></div>
+          <div class="lc-entrada-grupo"><input id="s" class="lc-entrada" type="password" autocomplete="current-password" value="parquedasaguas" aria-invalid="true" aria-describedby="s-e"><button class="lc-entrada-grupo__btn" type="button" aria-pressed="false" onclick="var i=this.previousElementSibling;i.type=i.type==='password'?'text':'password';this.setAttribute('aria-pressed',i.type==='text');this.lastChild.textContent=i.type==='text'?'Ocultar':'Mostrar'"><i data-i="ver"></i>Mostrar</button></div>
+          <p class="lc-erro" id="s-e"><i data-i="erro"></i>E-mail ou senha não conferem. Você tem mais 4 tentativas antes de um bloqueio de 15 minutos.</p></div>
+        <label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>Manter conectado neste aparelho por 30 dias</span></label>
+        <button class="lc-btn lc-btn--principal lc-btn--g lc-btn--bloco" type="submit">Entrar</button>
+        <p class="lc-pequeno lc-cor-2" style="text-align:center">Primeira vez aqui? <a href="#primeiro">Criar acesso com o código da carta</a></p>
+      </form>
+      <p class="lc-legenda" style="margin-top:32px;display:flex;gap:16px;justify-content:center"><span class="lc-pub__gaco">Tecnologia GACO</span><a href="#" style="color:inherit">Privacidade</a></p>
+    </div></div>
+  </div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>E-mail, Esqueci a senha, senha, Mostrar, Manter conectado, Entrar, Criar acesso.</p></div><div><h3>O que é anunciado</h3><p>Erro ligado à senha por <code>aria-describedby</code>, lido ao focar. Ao enviar com erro, o foco volta para a senha. "Mostrar" é botão alternável (<code>aria-pressed</code>).</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum. O olho tem texto "Mostrar".</p></div></div>
+
+<!-- 2 ETAPAS -->
+<section class="lc-ficha-tela" id="dois-fatores" aria-label="Sobre a tela Verificação em 2 etapas">
+  <div class="lc-ficha-tela__nome"><b>Verificação em 2 etapas</b><span>Código de 6 dígitos do app autenticador ou por SMS. Obrigatório para equipe e superadmin.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Proteger contas que veem dados de 120 famílias sem atrapalhar: o campo aceita colar, avança sozinho e confia no aparelho por 30 dias.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Seis caixas; colar o código preenche todas.</li><li>Ao completar, confere sozinho (sem botão a mais).</li><li>"Usar outro método" troca para SMS ou código de recuperação.</li><li>Código errado limpa as caixas e diz quantas tentativas restam.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o GitHub, o Google e o Nubank usam 6 caixas que avançam sozinhas e aceitam colar; o iOS sugere o código do SMS no teclado (<code>autocomplete="one-time-code"</code>).</p></div>
+</section>
+<div class="pub-tela lc-quadro-tela"><div class="lc-pub">
+  <div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span></div>
+  <div class="lc-pub__corpo"><div class="lc-pub__cartao">
+    <span class="lc-ladrilho lc-ladrilho--40" style="margin-bottom:12px"><i data-i="dois-fatores"></i></span>
+    <h1>Confirme que é você</h1><p>Digite o código de 6 dígitos do app autenticador (Google Authenticator, Microsoft Authenticator ou 1Password).</p>
+    <div class="lc-campo" style="margin-top:20px"><span class="lc-rotulo" id="c6">Código</span><div class="lc-codigo6" role="group" aria-labelledby="c6"><input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="Dígito 1" value="3"><input inputmode="numeric" maxlength="1" aria-label="Dígito 2" value="0"><input inputmode="numeric" maxlength="1" aria-label="Dígito 3" value="9"><span>-</span><input inputmode="numeric" maxlength="1" aria-label="Dígito 4"><input inputmode="numeric" maxlength="1" aria-label="Dígito 5"><input inputmode="numeric" maxlength="1" aria-label="Dígito 6"></div></div>
+    <label class="lc-marcar" style="margin-top:16px"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>Confiar neste aparelho por 30 dias<small>Chrome no Windows, São Paulo</small></span></label>
+    <div class="lc-pilha--p" style="display:flex;flex-direction:column;gap:8px;margin-top:20px"><button class="lc-btn lc-btn--principal lc-btn--bloco lc-btn--g" type="button" aria-busy="true">Conferindo</button><button class="lc-btn lc-btn--discreto lc-btn--bloco" type="button">Usar outro método</button></div>
+  </div></div>
+  <div class="lc-pub__pe"><span>Tecnologia GACO</span><a href="#">Ajuda para entrar</a></div>
+</div></div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Dígito 1 a 6 (Backspace volta), Confiar no aparelho, Conferir, Usar outro método.</p></div><div><h3>O que é anunciado</h3><p>Grupo "Código". Conferindo: botão ocupado (<code>aria-busy</code>). Erro: "Código não confere. Restam 2 tentativas." em <code>role="alert"</code>.</p></div><div><h3>Nome do que é só ícone</h3><p>Dígitos: "Dígito 1" a "Dígito 6". Ladrilho do escudo é decorativo.</p></div></div>
+
+<!-- RECUPERAR -->
+<section class="lc-ficha-tela" id="recuperar" aria-label="Sobre a tela Recuperar senha">
+  <div class="lc-ficha-tela__nome"><b>Recuperar senha</b><span>Pedido e confirmação de envio na mesma tela.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Voltar a entrar sem ligar para a administradora, sem revelar se o e-mail tem cadastro.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Informa e-mail ou CPF e toca "Enviar link".</li><li>A mesma tela mostra "Se houver cadastro, enviamos" com o e-mail mascarado e prazo do link (30 min).</li><li>"Reenviar" libera em 60 s; "Voltar para entrar" no topo.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o Gmail, o Mercado Livre e o gov.br trocam o formulário pela confirmação no mesmo lugar e mostram o e-mail parcialmente; o contador de reenvio evita cliques repetidos.</p></div>
+</section>
+<div class="lc-quadros">
+  <div class="pub-tela lc-quadro-tela"><div class="lc-pub" style="min-height:520px"><div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span><span class="lc-pub__topo-fim"><a class="lc-btn lc-btn--discreto lc-btn--p" href="#"><i data-i="seta-esquerda"></i>Voltar para entrar</a></span></div>
+    <div class="lc-pub__corpo"><div class="lc-pub__cartao"><h1>Recuperar senha</h1><p>Enviamos um link para criar uma senha nova.</p><div class="lc-campo" style="margin:20px 0 16px"><label class="lc-rotulo" for="r">E-mail ou CPF</label><input id="r" class="lc-entrada" value="ana.souza@gmail.com"></div><button class="lc-btn lc-btn--principal lc-btn--bloco lc-btn--g" type="button">Enviar link</button></div></div></div></div>
+  <div class="pub-tela lc-quadro-tela"><div class="lc-pub" style="min-height:520px"><div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span></div>
+    <div class="lc-pub__corpo"><div class="lc-pub__cartao" role="status"><span class="lc-ladrilho lc-ladrilho--40" style="margin-bottom:12px"><i data-i="email-entregue"></i></span><h1>Confira seu e-mail</h1><p>Se houver cadastro, enviamos o link para <b>an•••••@gmail.com</b>. Ele vale por 30 minutos. Olhe também o spam.</p><div class="lc-grupo-btn" style="margin-top:20px"><button class="lc-btn" type="button" disabled>Reenviar em 0:48</button><a class="lc-btn lc-btn--discreto" href="#">Voltar para entrar</a></div></div></div></div></div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Voltar para entrar, campo, Enviar link. Depois do envio, o foco vai ao título "Confira seu e-mail".</p></div><div><h3>O que é anunciado</h3><p>Confirmação em <code>role="status"</code>. Reenviar desabilitado diz o tempo que falta.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+
+<!-- PRIMEIRO ACESSO -->
+<section class="lc-ficha-tela" id="primeiro" aria-label="Sobre a tela Primeiro acesso">
+  <div class="lc-ficha-tela__nome"><b>Primeiro acesso</b><span>Morador novo com o código da carta de boas-vindas ou do convite por WhatsApp.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Criar a conta ligada à unidade certa, sem cadastro duplicado, e confirmar o telefone que vai receber avisos.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Código do convite (8 caracteres); ao validar, mostra condomínio e unidade para conferir.</li><li>Nome, celular, e-mail e senha com força medida em palavras.</li><li>Aceite dos termos e da política de privacidade (LGPD) com link.</li><li>"Criar acesso" leva ao Início da unidade com uma explicação de 3 linhas.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o convite com código é como o Slack e o Notion ligam a pessoa ao espaço certo; o 1Password mede a senha em palavras ("forte"), não só em barra; e a LGPD pede aceite separado e claro.</p></div>
+</section>
+<div class="pub-tela lc-quadro-tela"><div class="lc-pub"><div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span></div>
+  <div class="lc-pub__corpo"><div class="lc-pub__cartao lc-pub__cartao--largo"><h1>Criar seu acesso</h1><p>Você recebeu o convite da Administradora Alpha.</p>
+    <div class="lc-pilha" style="margin-top:20px">
+      <div class="lc-campo"><label class="lc-rotulo" for="cv">Código do convite</label><input id="cv" class="lc-entrada lc-entrada--cod" value="PQA-B1204" style="max-width:220px"><p class="lc-consulta-ok"><i data-i="sucesso"></i>Cond. Parque das Águas, Bloco B, apto 1204. É a sua unidade?</p></div>
+      <div class="lc-form-grade">
+        <div class="lc-campo"><label class="lc-rotulo" for="pn">Nome completo</label><input id="pn" class="lc-entrada" value="Ricardo Souza"></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="pc">Celular com WhatsApp</label><div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">+55</span><input id="pc" class="lc-entrada" type="tel" value="(11) 9 9634-2207"></div></div>
+        <div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="pe">E-mail</label><input id="pe" class="lc-entrada" type="email" value="ricardo.souza@outlook.com"></div>
+        <div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="ps">Crie uma senha</label><input id="ps" class="lc-entrada" type="password" value="caixadagua-1204" aria-describedby="ps-f"><div class="lc-forca" data-n="3"><i></i><i></i><i></i><i></i></div><p class="lc-ajuda" id="ps-f">Senha boa. Para ficar forte, junte mais uma palavra.</p></div>
+      </div>
+      <label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span><span>Li e aceito os <a href="#">termos de uso</a> e a <a href="#">política de privacidade</a><small>Seus dados ficam com a Administradora Alpha e o condomínio, para administração e cobrança.</small></span></label>
+      <button class="lc-btn lc-btn--principal lc-btn--g" type="button">Criar acesso</button>
+    </div></div></div>
+  <div class="lc-pub__pe"><span>Tecnologia GACO</span><a href="#">Não recebi o convite</a></div></div></div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Código, nome, celular, e-mail, senha, aceite (e seus dois links), Criar acesso.</p></div><div><h3>O que é anunciado</h3><p>Validação do código em região viva: "Cond. Parque das Águas, Bloco B, apto 1204". Força da senha lida pela descrição do campo.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+
+<!-- NPS -->
+<section class="lc-ficha-tela" id="nps" aria-label="Sobre a tela Pesquisa NPS">
+  <div class="lc-ficha-tela__nome"><b>Pesquisa NPS pública</b><span>Link do e-mail ou do WhatsApp, sem entrar. Uma pergunta, um porquê, obrigado.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Medir a satisfação da síndica e dos moradores com a administradora em 20 segundos, com resposta ligada ao cliente certo no CS.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Abre pelo link já com o condomínio identificado.</li><li>Toca a nota (0 a 10); o porquê aparece abaixo, com pergunta que muda pela nota.</li><li>"Enviar" agradece na mesma tela. Link usado não aceita segunda resposta.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o Delighted e o Typeform fazem uma pergunta por vez; a escala 0 a 10 com rótulos nas pontas é a da Bain (método NPS), que o CS já usa para comparar.</p></div>
+</section>
+<div class="pub-tela lc-quadro-tela"><div class="lc-pub"><div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span></div>
+  <div class="lc-pub__corpo"><div class="lc-pub__cartao lc-pub__cartao--largo"><p class="lc-legenda" style="margin-bottom:6px">Cond. Parque das Águas, pesquisa de outubro</p><h1>De 0 a 10, quanto você recomendaria a Administradora Alpha a outro síndico?</h1>
+    <fieldset class="lc-nps" style="margin-top:20px"><legend class="lc-sr">Nota de 0 a 10</legend>
+      <label><input type="radio" name="n"><span>0</span></label><label><input type="radio" name="n"><span>1</span></label><label><input type="radio" name="n"><span>2</span></label><label><input type="radio" name="n"><span>3</span></label><label><input type="radio" name="n"><span>4</span></label><label><input type="radio" name="n"><span>5</span></label><label><input type="radio" name="n"><span>6</span></label><label><input type="radio" name="n"><span>7</span></label><label><input type="radio" name="n" checked><span>8</span></label><label><input type="radio" name="n"><span>9</span></label><label><input type="radio" name="n"><span>10</span></label></fieldset>
+    <div class="lc-nps__escala"><span>0, nada provável</span><span>10, com certeza</span></div>
+    <div class="lc-campo" style="margin-top:20px"><label class="lc-rotulo" for="np">O que faltou para ser 10? <span class="lc-opcional">(opcional)</span></label><textarea id="np" class="lc-area-texto" rows="3">Resposta rápida no WhatsApp. A prestação de contas poderia sair antes do dia 30.</textarea></div>
+    <button class="lc-btn lc-btn--principal lc-btn--g" type="button" style="margin-top:16px">Enviar resposta</button></div></div>
+  <div class="lc-pub__pe"><span>Tecnologia GACO</span><span>Sua resposta vai para a equipe da Administradora Alpha, com seu nome.</span></div></div></div>
+<div class="lc-quadros" style="margin-top:12px">
+  <div class="lc-quadro-tela"><div class="lc-vazio lc-vazio--centro"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="confirmar"></i></span><p class="lc-vazio__titulo">Obrigado, Marina</p><p class="lc-vazio__texto">Sua nota 8 e o comentário chegaram à Juliana Reis, gerente da sua conta.</p></div></div>
+  <div class="lc-quadro-tela"><div class="lc-vazio lc-vazio--centro"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="relogio"></i></span><p class="lc-vazio__titulo">Esta pesquisa já foi respondida</p><p class="lc-vazio__texto">Respondida em 02/10/2026. A próxima chega em janeiro.</p></div></div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Grupo de notas (setas trocam), comentário, Enviar.</p></div><div><h3>O que é anunciado</h3><p>Grupo "Nota de 0 a 10"; cada opção é o número. A pergunta do porquê muda e é anunciada ("O que faltou para ser 10?").</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+
+<!-- VERIFICAR CERTIFICADO -->
+<section class="lc-ficha-tela" id="verificar" aria-label="Sobre a tela Verificar certificado">
+  <div class="lc-ficha-tela__nome"><b>Verificação de certificado e documento</b><span>Público, pelo código impresso ou QR. Vale para certificado, ata e comprovante de voto.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Um terceiro (outro condomínio, um banco, um cartório) confirma que o documento é autêntico, sem conta e sem expor dados além do necessário.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Abre pelo QR (código já preenchido) ou digita.</li><li>Resultado: válido com quem, o quê, quando e quem emitiu; ou não encontrado; ou revogado.</li><li>"Baixar cópia autenticada" gera o PDF original.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o validador do ITI (assinatura gov.br), o da Receita Federal (certidões) e o do Coursera mostram resultado com palavra e os dados mínimos do documento.</p></div>
+</section>
+<div class="pub-tela lc-quadro-tela"><div class="lc-pub"><div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span></div>
+  <div class="lc-pub__corpo"><div class="lc-pub__cartao lc-pub__cartao--largo"><h1>Verificar documento</h1><p>Digite o código impresso no rodapé do documento.</p>
+    <div class="lc-entrada-grupo" style="margin:16px 0"><input class="lc-entrada lc-entrada--cod" aria-label="Código do documento" value="ACAD-2026-7F3K-91QD"><button class="lc-entrada-grupo__btn" type="button"><i data-i="pesquisar"></i>Verificar</button></div>
+    <div class="lc-verifica" role="status"><i data-i="verificado"></i><b>Certificado válido</b><span class="lc-pequeno">Marina Costa concluiu <b>Legislação condominial</b> (16 h) na Formação de síndicos, turma 2026.1, em 27/06/2026, com nota 8,9. Emitido pela Academy Alpha, Administradora Alpha.</span></div>
+    <div class="lc-grupo-btn" style="margin-top:12px"><button class="lc-btn" type="button"><i data-i="baixar"></i>Baixar cópia autenticada</button></div>
+    <div class="lc-verifica lc-verifica--perigo" style="margin-top:16px"><i data-i="erro"></i><b>Documento revogado</b><span class="lc-pequeno">A ata ATA-2025-0912 foi substituída pela retificação de 03/10/2025. Peça a versão vigente ao condomínio.</span></div>
+  </div></div>
+  <div class="lc-pub__pe"><span>Tecnologia GACO</span><span>Verificações ficam registradas por 5 anos.</span></div></div></div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Código, Verificar, Baixar cópia.</p></div><div><h3>O que é anunciado</h3><p>Resultado em <code>role="status"</code>: "Certificado válido. Marina Costa concluiu…". Revogado começa pela palavra "Documento revogado".</p></div><div><h3>Nome do que é só ícone</h3><p>Ícone do resultado é decorativo; o resultado está escrito.</p></div></div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/doc.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

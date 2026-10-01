@@ -105,4 +105,14 @@ document.addEventListener("keydown",function(e){
   if(tab && (e.key==="ArrowRight"||e.key==="ArrowLeft")){ var ts=$$("[role=tab]",tab.closest("[data-abas]")), j=ts.indexOf(tab); var nx=e.key==="ArrowRight"?(ts[j+1]||ts[0]):(ts[j-1]||ts[ts.length-1]); nx.focus(); nx.click(); }
 });
 window.LCP5 = {toast:toast};
+/* ?limpo=1 esconde a documentação (fichas e variações) para mostrar só a tela, usado nos aparelhos da página 60.
+   ?abrir=gaveta|sino|cmdk|conta abre a camada da moldura depois de montar. */
+(function(){
+  var q=location.search;
+  if(/[?&]limpo=1/.test(q)) document.documentElement.classList.add("lc-limpo");
+  var m=q.match(/[?&]abrir=([a-z-]+)/);
+  if(m) window.addEventListener("load",function(){ setTimeout(function(){ var b=document.querySelector('[data-acao="'+m[1]+'"]'); if(b){ b.click(); if(document.activeElement) document.activeElement.blur(); } },120); });
+  if(/[?&]limpo=1/.test(q) && location.hash) window.addEventListener("load",function(){ var a=document.querySelector(location.hash); if(a) setTimeout(function(){ var n=a; while(n && n.classList && n.classList.contains("lc-ficha-tela")) n=n.nextElementSibling; (n||a).scrollIntoView(); },60); });
+})();
+
 })();

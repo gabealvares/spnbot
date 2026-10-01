@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carteira de clientes</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-saude{display:inline-flex;align-items:center;gap:6px}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Carteira (CS) <small>CS, Clientes. Rafael Menezes, gerente de relacionamento, com 63 condomínios. Tabela densa, visões salvas, célula editável e prévia lateral com "14 de 63".</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>O gerente trabalha a carteira inteira, não um cliente por vez: quem renova em 90 dias, quem está com saúde caindo, quem não recebe contato há 30 dias. A tabela mostra o necessário para decidir sem abrir o registro, e o "próximo passo" pode ser editado ali mesmo.</p><p>Aqui o cliente é o condomínio (a Administradora Alpha cuida da carteira de condomínios). Isso resolve a pendência de dado da crítica C1 a favor da fundação.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Visões salvas no topo; cada uma lembra filtros, colunas e ordenação. "Salvar visão" guarda a atual.</li><li>Clique na célula "Próximo passo" ou "Próximo contato" para editar; Enter confirma; a barra de salvar conta as células.</li><li>Clique no nome abre a prévia lateral (só leitura, com "Abrir registro"); J e K andam na prévia sem fechar.</li><li>Agrupar por etapa da jornada soma a mensalidade de cada grupo.</li><li>"Colunas" escolhe e ordena colunas por arrastar; a escolha fica na visão.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Salesforce e o HubSpot trabalham carteira em list views salvas com edição inline; o Gainsight e o ChurnZero mostram saúde com número e palavra e o "próximo passo" obrigatório; e o Airtable popularizou a célula editável com a barra de salvar. A prévia sem sair da lista é a do Linear e a do Front.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Carteira</button><button type="button" data-q3-estado="agrupada" aria-pressed="false">Agrupada por etapa</button><button type="button" data-q3-estado="previa" aria-pressed="false">Prévia aberta</button><button type="button" data-q3-estado="vazio" aria-pressed="false">Visão vazia</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"CS","tela":"Clientes","papel":"CS","usuario":{"nome":"Rafael Menezes","iniciais":"RM","cargo":"Gerente de relacionamento, CS","presenca":"disponivel","tom":5}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Clientes</h1>
+  <div class="cm-cabecalho-pagina__acoes"><button class="cm-botao" type="button"><i data-i="tabela"></i>Colunas</button><button class="cm-botao" type="button"><i data-i="exportar"></i>Exportar</button><button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Novo cliente</button></div></div>
+  <p class="cm-cabecalho-pagina__desc">Sua carteira: 63 condomínios, R$ 287.340,00 por mês.</p></header>
+ <div class="cm-visoes" role="tablist" aria-label="Visões salvas">
+  <button role="tab" aria-selected="true" type="button">Precisam de mim hoje <span class="cm-contador cm-contador--novo">7</span></button>
+  <button role="tab" aria-selected="false" type="button" tabindex="-1">Renovam em 90 dias <span class="cm-contador">9</span></button>
+  <button role="tab" aria-selected="false" type="button" tabindex="-1">Saúde em queda <span class="cm-contador">5</span></button>
+  <button role="tab" aria-selected="false" type="button" tabindex="-1">Sem contato há 30 dias <span class="cm-contador">4</span></button>
+  <button role="tab" aria-selected="false" type="button" tabindex="-1">Toda a carteira <span class="cm-contador">63</span></button>
+  <button type="button" class="cm-botao cm-botao--p cm-botao--discreto" style="margin-left:auto;align-self:center"><i data-i="salvar"></i>Salvar visão</button>
+ </div>
+ <div class="cm-filtros">
+  <div class="cm-entrada cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar clientes" placeholder="Condomínio, síndico, CNPJ"></div>
+  <button class="cm-filtro is-ativo" type="button">Responsável: <b>eu</b><i data-i="chevron-baixo"></i></button>
+  <button class="cm-filtro" type="button">Etapa<i data-i="chevron-baixo"></i></button>
+  <button class="cm-filtro" type="button">Saúde<i data-i="chevron-baixo"></i></button>
+  <button class="cm-filtro" type="button">Plano<i data-i="chevron-baixo"></i></button>
+  <span class="cm-empurra"></span>
+  <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Agrupar" data-q3-livre><button type="button" data-q3-estado="padrao">Sem grupo</button><button type="button" data-q3-estado="agrupada">Por etapa</button></div>
+ </div>
+ <div data-se="padrao agrupada previa">
+ <div class="cm-tabela-caixa"><table class="cm-tabela">
+  <thead><tr><th class="cm-tabela__marcar cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar todos"><span class="cm-marcar__caixa"></span></label></th><th class="cm-tabela__fixa2">Condomínio</th><th>Saúde</th><th>Etapa</th><th class="cm-num">Mensalidade</th><th aria-sort="ascending"><button class="cm-ordenar" type="button">Renovação<i data-i="seta-cima"></i></button></th><th>Último contato</th><th>Próximo passo</th><th>Próximo contato</th></tr></thead>
+  <tbody>
+   <tr class="cm-tabela__grupo" data-se="agrupada"><td colspan="9"><button type="button" aria-expanded="true"><i data-i="chevron-baixo"></i>Renovação</button><span class="cm-tabela__grupo-soma">3 clientes, R$ 21.870,00 por mês</span></td></tr>
+   <tr><td class="cm-tabela__marcar cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Res. Vila Serena"><span class="cm-marcar__caixa"></span></label></td><td class="cm-tabela__principal cm-tabela__fixa2"><a href="#" data-q3-estado="previa">Res. Vila Serena</a><span class="cm-tabela__sub">Síndico Osvaldo Brandão, 96 unidades</span></td><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>41, em risco</span></td><td>Renovação</td><td class="cm-num">R$ 4.380,00</td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>em 23 dias</span></td><td>há 6 dias, ligação</td><td class="cm-celula-editavel" tabindex="0" data-nome="Próximo passo, Vila Serena">Visita com o síndico sobre o portão</td><td class="cm-celula-editavel" tabindex="0" data-nome="Próximo contato, Vila Serena">03/10</td></tr>
+   <tr class="is-atual"><td class="cm-tabela__marcar cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Cond. Parque das Águas"><span class="cm-marcar__caixa"></span></label></td><td class="cm-tabela__principal cm-tabela__fixa2"><a href="22b-cliente.html">Cond. Parque das Águas</a><span class="cm-tabela__sub">Síndica Marina Costa, 312 unidades</span></td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>62, atenção</span></td><td>Adoção</td><td class="cm-num">R$ 9.860,00</td><td>em 106 dias</td><td>hoje, chamado 48213</td><td class="cm-celula-editavel is-editado" tabindex="0" data-nome="Próximo passo, Parque das Águas">Revisão trimestral com a Marina</td><td class="cm-celula-editavel" tabindex="0" data-nome="Próximo contato, Parque das Águas">07/10</td></tr>
+   <tr><td class="cm-tabela__marcar cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Ed. Monte Azul"><span class="cm-marcar__caixa"></span></label></td><td class="cm-tabela__principal cm-tabela__fixa2"><a href="#">Ed. Monte Azul</a><span class="cm-tabela__sub">Síndico Gilberto Moura, 64 unidades</span></td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>84, boa</span></td><td>Expansão</td><td class="cm-num">R$ 3.120,00</td><td>em 210 dias</td><td>ontem, e-mail</td><td class="cm-celula-editavel" tabindex="0" data-nome="Próximo passo, Monte Azul">Proposta do módulo Portaria</td><td class="cm-celula-editavel" tabindex="0" data-nome="Próximo contato, Monte Azul">09/10</td></tr>
+   <tr><td class="cm-tabela__marcar cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Jardim das Acácias"><span class="cm-marcar__caixa"></span></label></td><td class="cm-tabela__principal cm-tabela__fixa2"><a href="#">Jardim das Acácias</a><span class="cm-tabela__sub">Síndica Helena Duarte, 140 unidades</span></td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>58, atenção</span></td><td>Renovação</td><td class="cm-num">R$ 6.240,00</td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>em 41 dias</span></td><td>há 34 dias</td><td class="cm-celula-editavel is-erro" tabindex="0" data-nome="Próximo passo, Jardim das Acácias" aria-invalid="true"><span class="cm-texto-3">Obrigatório para renovação</span></td><td class="cm-celula-editavel" tabindex="0" data-nome="Próximo contato, Jardim das Acácias">—</td></tr>
+   <tr><td class="cm-tabela__marcar cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Ed. Solar do Bosque"><span class="cm-marcar__caixa"></span></label></td><td class="cm-tabela__principal cm-tabela__fixa2"><a href="#">Ed. Solar do Bosque</a><span class="cm-tabela__sub">Síndica Teresa Valadares, 48 unidades</span></td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>77, boa</span></td><td>Adoção</td><td class="cm-num">R$ 2.430,00</td><td>em 312 dias</td><td>há 3 dias, reunião</td><td class="cm-celula-editavel" tabindex="0" data-nome="Próximo passo, Solar do Bosque">Mandar ata da prestação de contas</td><td class="cm-celula-editavel" tabindex="0" data-nome="Próximo contato, Solar do Bosque">02/10</td></tr>
+   <tr><td class="cm-tabela__marcar cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Cond. Recanto dos Ipês"><span class="cm-marcar__caixa"></span></label></td><td class="cm-tabela__principal cm-tabela__fixa2"><a href="#">Cond. Recanto dos Ipês</a><span class="cm-tabela__sub">Síndico profissional Celso Amaral, 220 unidades</span></td><td><span class="cm-estado cm-estado--info"><i data-i="informacao"></i>Novo, sem nota</span></td><td>Implantação</td><td class="cm-num">R$ 7.980,00</td><td>em 358 dias</td><td>há 2 dias, kickoff</td><td class="cm-celula-editavel" tabindex="0" data-nome="Próximo passo, Recanto dos Ipês">Importar cadastro de 220 unidades</td><td class="cm-celula-editavel" tabindex="0" data-nome="Próximo contato, Recanto dos Ipês">06/10</td></tr>
+   <tr><td class="cm-tabela__marcar cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar Ed. Porto Belo"><span class="cm-marcar__caixa"></span></label></td><td class="cm-tabela__principal cm-tabela__fixa2"><a href="#">Ed. Porto Belo</a><span class="cm-tabela__sub">Síndico Mauro Teles, 32 unidades</span></td><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>36, em risco</span></td><td>Renovação</td><td class="cm-num">R$ 1.890,00</td><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>em 9 dias</span></td><td>há 12 dias</td><td class="cm-celula-editavel" tabindex="0" data-nome="Próximo passo, Porto Belo">Contraproposta com 8% de desconto</td><td class="cm-celula-editavel" tabindex="0" data-nome="Próximo contato, Porto Belo">hoje</td></tr>
+  </tbody>
+  <tfoot><tr><td class="cm-tabela__fixa"></td><td class="cm-tabela__fixa2">7 clientes nesta visão</td><td></td><td></td><td class="cm-num">R$ 35.900,00</td><td colspan="4"></td></tr></tfoot>
+ </table></div>
+ <nav class="cm-paginacao" aria-label="Paginação"><span class="cm-paginacao__total"><b>1–7</b> de 7</span></nav>
+ </div>
+ <div data-se="vazio"><div class="cm-vazio"><i data-i="sucesso"></i><p class="cm-vazio__titulo">Ninguém precisa de você hoje</p><p class="cm-vazio__texto">Todos os clientes desta visão têm próximo passo com data futura e saúde estável. A visão "Renovam em 90 dias" tem 9 clientes.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button">Abrir Renovam em 90 dias</button></div></div></div>
+
+ <aside class="cm-painel" role="dialog" aria-labelledby="t-pv" data-se="previa">
+  <header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="t-pv">Res. Vila Serena</h2><span class="cm-navegar-registro"><b>13 de 63</b><button class="cm-botao cm-botao--discreto cm-botao--p cm-botao--icone" type="button" aria-label="Anterior (K)"><i data-i="chevron-cima"></i></button><button class="cm-botao cm-botao--discreto cm-botao--p cm-botao--icone" type="button" aria-label="Próximo (J)"><i data-i="chevron-baixo"></i></button></span><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-estado="padrao" aria-label="Fechar prévia"><i data-i="fechar"></i></button></header>
+  <div class="cm-painel__corpo">
+   <div class="cm-secao"><dl class="cm-ficha">
+    <div class="cm-ficha__linha is-leitura"><dt>Saúde</dt><dd><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>41, em risco</span> caiu 22 em setembro</dd><span></span></div>
+    <div class="cm-ficha__linha is-leitura"><dt>Por quê</dt><dd>Portão travou 3 vezes; NPS 4 do síndico</dd><span></span></div>
+    <div class="cm-ficha__linha is-leitura"><dt>Renovação</dt><dd>24/10/2026, em 23 dias</dd><span></span></div>
+    <div class="cm-ficha__linha is-leitura"><dt>Síndico</dt><dd>Osvaldo Brandão, (11) 99812-0044</dd><span></span></div>
+   </dl></div>
+   <div class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Últimas atividades</h3></div>
+    <ul class="cm-atividade"><li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="telefone"></i></span><div><div class="cm-atividade__titulo">Ligação com Osvaldo, 14 min</div><div class="cm-atividade__desc">Pediu reunião sobre o portão antes de renovar.</div></div><span class="cm-atividade__quando">25/09</span></li><li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="chamado"></i></span><div><div class="cm-atividade__titulo">Chamado 48201, portão</div><div class="cm-atividade__desc">Aberto hoje pelo porteiro</div></div><span class="cm-atividade__quando">hoje</span></li></ul></div>
+  </div>
+  <footer class="cm-painel__pe"><button class="cm-botao" type="button">Registrar contato</button><a class="cm-botao cm-botao--principal" href="22b-cliente.html">Abrir registro</a></footer>
+ </aside>
+
+ <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" data-q3-barra hidden>
+  <div class="cm-barra-salvar__msg" aria-live="polite"><b data-q3-barra-n></b><span data-q3-barra-quais></span></div>
+  <button class="cm-botao cm-botao--discreto" type="button" data-q3-descartar>Descartar</button>
+  <button class="cm-botao cm-botao--principal" type="button" data-q3-salvar>Salvar</button>
+ </div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título e ações; visões; busca e filtros; agrupar; tabela (caixa, nome que abre a prévia, células editáveis em sequência com Tab; Enter edita); total; prévia (J, K, Fechar, Abrir registro); barra de salvar.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Saúde lida como número e palavra ("41, em risco"). Célula com erro diz "Obrigatório para renovação". A soma do grupo é lida no cabeçalho do grupo. A prévia é um diálogo com o nome do cliente e "13 de 63".</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Colunas" e "Exportar" têm palavra; "Anterior (K)", "Próximo (J)", "Fechar prévia".</p></section>
+  </div>
+ </div>
+</footer>
+<script>document.addEventListener('q3:estado',function(e){var v=e.detail==='agrupada'?'agrupada':'padrao';document.querySelectorAll('[data-q3-livre] button').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-q3-estado')===v))})});</script>
+</body>
+</html>

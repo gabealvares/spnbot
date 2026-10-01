@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversas</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-conv{display:flex;flex-direction:column}
+.q3-conv .cm-conversa{flex:1;min-height:0}
+.q3-fila-filtros{display:flex;gap:6px;align-items:center;padding:8px 10px 8px 14px;border-bottom:1px solid var(--cm-filete)}
+.q3-ficha-corpo .cm-secao{padding:12px 14px}
+.q3-mapa{width:100%;height:120px;display:block}
+.cm-coluna--fila .cm-abas{padding:0 6px}
+@media (max-width:899px){.q3-conv .cm-conversa{max-height:none}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Console de atendimento: Conversas <small>Suporte, Atendimento, Conversas. Beatriz atende a síndica Marina Costa no WhatsApp. Todos os tipos de mensagem aparecem nesta conversa.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>Quem atende 40 conversas por dia precisa ler rápido, responder sem tirar a mão do teclado e nunca perder o prazo. Fila à esquerda ordenada pelo SLA, conversa no gesto do WhatsApp no centro, ficha do chamado à direita com tarefas e histórico.</p><p>Todos os tipos: texto, foto, localização, áudio com transcrição, documento, resposta citada, apagada, falha com "Tentar de novo", nota interna (amarela, só a equipe vê), evento do sistema e o envio de modelo aprovado quando a janela de 24 h fechou.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>J e K andam na fila sem Tab; Enter abre. A conversa aberta fica marcada com filete de latão.</li><li>"/" na caixa abre as respostas rápidas filtrando enquanto digita; setas e Enter inserem o texto com as variáveis já preenchidas.</li><li>N troca para Nota interna (caixa amarela tracejada); R volta para Resposta.</li><li>"Enviar ▾" escolhe o que acontece depois (manter aberto, aguardar cliente, resolver, abrir a próxima) e lembra a última escolha; Ctrl Enter envia com ela.</li><li>Mensagem que falhou ganha "Tentar de novo" na própria bolha. Fora da janela de 24 h, a caixa vira o seletor de modelo aprovado, com prévia e variáveis.</li><li>Estado do chamado pelo botão "Aberto ▾"; "Transferir" abre a escolha de fila ou pessoa com nota. Esc volta à fila.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o WhatsApp Business usa "/" para respostas rápidas e os tiques de entregue e lida; o Zendesk Agent Workspace e o Freshdesk usam três colunas com a ficha do chamado e o "Enviar como" com próximo da fila; e o Intercom e o Front pintam a nota interna de amarelo. A regra da janela de 24 h e do modelo aprovado é da própria Meta. Tiramos o número de desempenho do rodapé, como pediu a crítica.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Conversa ativa</button><button type="button" data-q3-estado="janela" aria-pressed="false">Fora da janela de 24 h</button><button type="button" data-q3-estado="vazio" aria-pressed="false">Fila zerada</button><button type="button" data-q3-estado="carregando" aria-pressed="false">Carregando</button><button type="button" data-q3-estado="erro" aria-pressed="false">WhatsApp desconectado</button><button type="button" data-q3-estado="sem" aria-pressed="false">Sem permissão</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Suporte","tela":"Conversas","registro":"Marina Costa","papel":"Atendimento","atalhos":true,"navegar":"1 de 7","usuario":{"nome":"Beatriz Nogueira","iniciais":"BN","cargo":"Atendente N2, Suporte","presenca":"em-atendimento","tom":2}}'></div>
+
+<main id="conteudo" class="cm-app">
+ <!-- FILA -->
+ <section class="cm-coluna cm-coluna--fila" aria-labelledby="t-fila">
+  <div class="cm-coluna__cabeca"><h2 class="cm-coluna__titulo" id="t-fila">Conversas</h2>
+   <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Pesquisar conversas"><i data-i="pesquisar"></i></button>
+   <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Nova conversa com modelo aprovado"><i data-i="enviar-mensagem"></i></button></div>
+  <div class="cm-abas cm-abas--p" role="tablist" aria-label="Filas">
+   <button role="tab" aria-selected="true" type="button">Minhas <span class="cm-contador cm-contador--novo">7</span></button>
+   <button role="tab" aria-selected="false" type="button" tabindex="-1">Sem dono <span class="cm-contador">4</span></button>
+   <button role="tab" aria-selected="false" type="button" tabindex="-1">Aguardando <span class="cm-contador">9</span></button>
+   <button role="tab" aria-selected="false" type="button" tabindex="-1">Todas <span class="cm-contador">38</span></button>
+  </div>
+  <div class="q3-fila-filtros"><button class="cm-filtro" type="button">Canal: <b>todos</b><i data-i="chevron-baixo"></i></button><button class="cm-filtro" type="button"><i data-i="ordenar"></i>SLA primeiro</button></div>
+  <div class="cm-coluna__corpo" data-se="padrao janela erro">
+   <ul class="cm-fila-lista" id="fila">
+    <li class="cm-fila-item is-atual is-nao-lida" aria-current="true" tabindex="0"><span class="cm-fila-item__avatar"><span class="cm-avatar cm-avatar--3">MC</span><span class="cm-fila-item__canal"><i data-i="whatsapp" data-rotulo="WhatsApp"></i></span></span>
+     <span><span class="cm-fila-item__l1"><span class="cm-fila-item__nome">Marina Costa</span><span class="cm-fila-item__hora">09:38</span></span>
+     <span class="cm-fila-item__l2"><span class="cm-fila-item__previa">Mandei mais uma foto, a água já chegou na 38</span><span class="cm-contador cm-contador--novo">2</span></span>
+     <span class="cm-fila-item__l3"><span class="cm-fila-item__local">Parque das Águas, Bl B Ap 1204</span><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Responder em 6 min</span></span></span></li>
+    <li class="cm-fila-item is-nao-lida" tabindex="-1"><span class="cm-fila-item__avatar"><span class="cm-avatar cm-avatar--1">LF</span><span class="cm-fila-item__canal"><i data-i="whatsapp" data-rotulo="WhatsApp"></i></span></span>
+     <span><span class="cm-fila-item__l1"><span class="cm-fila-item__nome">Luiz Fernando, porteiro</span><span class="cm-fila-item__hora">09:31</span></span>
+     <span class="cm-fila-item__l2"><span class="cm-fila-item__previa">Portão da garagem travou aberto de novo</span><span class="cm-contador cm-contador--novo">1</span></span>
+     <span class="cm-fila-item__l3"><span class="cm-fila-item__local">Res. Vila Serena, portaria</span><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Responder em 9 min</span></span></span></li>
+    <li class="cm-fila-item is-nao-lida" tabindex="-1"><span class="cm-fila-item__avatar"><span class="cm-avatar cm-avatar--2">ÁP</span><span class="cm-fila-item__canal"><i data-i="whatsapp" data-rotulo="WhatsApp"></i></span></span>
+     <span><span class="cm-fila-item__l1"><span class="cm-fila-item__nome">Álvaro Pinheiro</span><span class="cm-fila-item__hora">09:35</span></span>
+     <span class="cm-fila-item__l2"><span class="cm-fila-item__previa"><i data-i="microfone"></i>Áudio, 0:42</span><span class="cm-contador cm-contador--novo">1</span></span>
+     <span class="cm-fila-item__l3"><span class="cm-fila-item__local">Jardim das Acácias, Ap 302</span><span>Responder em 14 min</span></span></span></li>
+    <li class="cm-fila-item" tabindex="-1"><span class="cm-fila-item__avatar"><span class="cm-avatar cm-avatar--4">PN</span><span class="cm-fila-item__canal"><i data-i="whatsapp" data-rotulo="WhatsApp"></i></span></span>
+     <span><span class="cm-fila-item__l1"><span class="cm-fila-item__nome">Patrícia Nunes</span><span class="cm-fila-item__hora">09:02</span></span>
+     <span class="cm-fila-item__l2"><span class="cm-fila-item__previa">Reserva do salão de festas para 18/10</span></span>
+     <span class="cm-fila-item__l3"><span class="cm-fila-item__local">Parque das Águas, Bl A Ap 804</span><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Vencido há 4 min</span></span></span></li>
+    <li class="cm-fila-item" tabindex="-1"><span class="cm-fila-item__avatar"><span class="cm-avatar cm-avatar--5">CS</span><span class="cm-fila-item__canal"><i data-i="email" data-rotulo="E-mail"></i></span></span>
+     <span><span class="cm-fila-item__l1"><span class="cm-fila-item__nome">Conselho do Ed. Solar do Bosque</span><span class="cm-fila-item__hora">09:20</span></span>
+     <span class="cm-fila-item__l2"><span class="cm-fila-item__previa"><i data-i="anexar"></i>Re: prestação de contas de agosto</span></span>
+     <span class="cm-fila-item__l3"><span class="cm-fila-item__local">3 anexos</span><span>Responder em 1 h 10</span></span></span></li>
+    <li class="cm-fila-item" tabindex="-1"><span class="cm-fila-item__avatar"><span class="cm-avatar cm-avatar--3">CR</span><span class="cm-fila-item__canal"><i data-i="canal-site" data-rotulo="Portal"></i></span></span>
+     <span><span class="cm-fila-item__l1"><span class="cm-fila-item__nome">Cláudia Rezende</span><span class="cm-fila-item__hora">08:31</span></span>
+     <span class="cm-fila-item__l2"><span class="cm-fila-item__previa">Você: A taxa extra vence dia 10, segue o Pix</span></span>
+     <span class="cm-fila-item__l3"><span class="cm-fila-item__local">Ed. Monte Azul, Ap 1101</span><span class="cm-estado cm-estado--ponto cm-estado--neutro">Aguardando cliente</span></span></span></li>
+    <li class="cm-fila-item" tabindex="-1"><span class="cm-fila-item__avatar"><span class="cm-avatar cm-avatar--2">RS</span><span class="cm-fila-item__canal"><i data-i="whatsapp" data-rotulo="WhatsApp"></i></span></span>
+     <span><span class="cm-fila-item__l1"><span class="cm-fila-item__nome">Roberto Saldanha</span><span class="cm-fila-item__hora">ontem</span></span>
+     <span class="cm-fila-item__l2"><span class="cm-fila-item__previa">Você: Registrei a reclamação do barulho</span></span>
+     <span class="cm-fila-item__l3"><span class="cm-fila-item__local">Parque das Águas, Bl C Ap 202</span><span class="cm-estado cm-estado--ponto cm-estado--neutro">Janela fechada</span></span></span></li>
+   </ul>
+  </div>
+  <div class="cm-coluna__corpo" data-se="vazio"><div class="cm-vazio"><i data-i="caixa-de-entrada"></i><p class="cm-vazio__titulo">Fila zerada</p><p class="cm-vazio__texto">Nenhuma conversa sua esperando resposta. As novas chegam aqui, ordenadas pelo prazo.</p><div class="cm-vazio__acoes"><button class="cm-botao cm-botao--p" type="button">Ver Sem dono (4)</button><button class="cm-botao cm-botao--p cm-botao--discreto" type="button">Aguardando cliente (9)</button></div></div></div>
+  <div class="cm-coluna__corpo" data-se="carregando" aria-busy="true" aria-label="Carregando conversas">
+   <div class="cm-fila-item"><span class="cm-esqueleto cm-esqueleto--avatar" style="width:36px;height:36px"></span><span><span class="cm-esqueleto cm-esqueleto--linha" style="width:60%;margin-top:2px"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:90%"></span></span></div>
+   <div class="cm-fila-item"><span class="cm-esqueleto cm-esqueleto--avatar" style="width:36px;height:36px"></span><span><span class="cm-esqueleto cm-esqueleto--linha" style="width:50%;margin-top:2px"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:80%"></span></span></div>
+   <div class="cm-fila-item"><span class="cm-esqueleto cm-esqueleto--avatar" style="width:36px;height:36px"></span><span><span class="cm-esqueleto cm-esqueleto--linha" style="width:70%;margin-top:2px"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:60%"></span></span></div>
+  </div>
+  <div class="cm-coluna__corpo" data-se="sem"></div>
+ </section>
+
+ <!-- CONVERSA -->
+ <section class="cm-coluna cm-coluna--cresce q3-conv" aria-labelledby="t-conv">
+  <div data-se="erro"><div class="cm-alerta cm-alerta--perigo" style="border-width:0 0 1px 3px"><i data-i="sem-wifi"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">O número do WhatsApp da Alpha desconectou às 09:39</span><span class="cm-alerta__desc">Mensagens novas ficam guardadas na Meta por até 30 dias e chegam quando reconectar. O que você enviar agora fica na fila de saída.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button" data-q3-toast="Reconectando o número (11) 3333-4400" data-q3-toast-tipo="info">Reconectar</button></span></div></div>
+  <div data-se="padrao janela erro" class="q3-conv" style="flex:1;min-height:0">
+  <header class="cm-conversa-cabeca">
+   <span class="cm-avatar cm-avatar--m cm-avatar--3" aria-hidden="true">MC</span>
+   <div class="cm-conversa-cabeca__quem"><h1 class="cm-conversa-cabeca__nome" id="t-conv">Marina Costa</h1><div class="cm-conversa-cabeca__sub">Síndica, Cond. Parque das Águas, Bl B Ap 1204. WhatsApp (11) 98123-4567</div></div>
+   <div class="cm-ancora cm-ancora--direita">
+    <button class="cm-estado cm-estado--caixa cm-estado--info" type="button" aria-haspopup="menu" aria-expanded="false" data-q3-menu="m-estado" aria-label="Estado do chamado: Aberto. Mudar"><i data-i="pendente"></i>Aberto<i data-i="chevron-baixo"></i></button>
+    <div class="cm-menu cm-flutuante" id="m-estado" role="menu" hidden>
+     <button class="cm-menu__item" role="menuitemradio" aria-checked="true" type="button"><i data-i="pendente"></i><span>Aberto</span><span></span></button>
+     <button class="cm-menu__item" role="menuitemradio" aria-checked="false" type="button"><i data-i="carregando"></i><span>Em andamento</span><span></span></button>
+     <button class="cm-menu__item" role="menuitemradio" aria-checked="false" type="button" data-q3-toast="Chamado aguardando cliente. O SLA pausou."><i data-i="pausado"></i><span>Aguardando cliente</span><span class="cm-menu__atalho">P</span></button>
+     <button class="cm-menu__item" role="menuitemradio" aria-checked="false" type="button" data-q3-toast="Chamado resolvido. A pesquisa de satisfação sai em 1 h."><i data-i="sucesso"></i><span>Resolvido</span><span class="cm-menu__atalho">E</span></button>
+    </div>
+   </div>
+   <button class="cm-botao" type="button" data-q3-modal="modal-transferir"><i data-i="encaminhar"></i>Transferir</button>
+   <div class="cm-ancora cm-ancora--direita"><button class="cm-botao cm-botao--icone" type="button" aria-label="Mais ações da conversa" aria-haspopup="menu" aria-expanded="false" data-q3-menu="m-conv"><i data-i="mais-opcoes"></i></button>
+    <div class="cm-menu cm-menu--240 cm-flutuante" id="m-conv" role="menu" hidden>
+     <button class="cm-menu__item" role="menuitem" type="button"><i data-i="atribuir"></i><span>Atribuir</span><span class="cm-menu__atalho">A</span></button>
+     <a class="cm-menu__item" role="menuitem" href="21g-mesclar.html"><i data-i="juntar"></i><span>Mesclar com outro chamado</span><span></span></a>
+     <button class="cm-menu__item" role="menuitem" type="button"><i data-i="ordem-de-servico"></i><span>Abrir ordem de serviço</span><span></span></button>
+     <button class="cm-menu__item" role="menuitem" type="button"><i data-i="etiquetar"></i><span>Etiquetas</span><span></span></button>
+     <button class="cm-menu__item" role="menuitem" type="button"><i data-i="silenciar"></i><span>Silenciar por 1 h</span><span></span></button>
+     <div class="cm-menu__sep"></div>
+     <button class="cm-menu__item cm-menu__item--perigo" role="menuitem" type="button"><i data-i="proibido"></i><span>Bloquear contato…</span><span></span></button>
+    </div></div>
+  </header>
+
+  <div class="cm-conversa" role="log" aria-label="Conversa com Marina Costa" aria-live="polite">
+   <span class="cm-dia">Hoje</span>
+   <div class="cm-bolha cm-bolha--entrada">Bom dia! Tem água vazando do teto da garagem, bem em cima da vaga 37. Já está empoçando. <span class="cm-bolha__meta">09:12</span></div>
+   <div class="cm-bolha cm-bolha--entrada cm-bolha--foto">
+    <svg viewBox="0 0 300 150" role="img" aria-label="Foto: teto da garagem pingando sobre a vaga 37, com poça no chão"><rect width="300" height="150" fill="#3b3f41"/><rect width="300" height="38" fill="#55595a"/><rect y="34" width="300" height="6" fill="#2d3032"/><rect x="40" y="10" width="220" height="7" fill="#8a8f8f"/><path d="M123 30q-3 6 0 9q3-3 0-9z" fill="#9fc3d6"/><path d="M130 52q-2.5 5 0 7.5q2.5-2.5 0-7.5z" fill="#9fc3d6"/><path d="M118 74q-2.5 5 0 7.5q2.5-2.5 0-7.5z" fill="#9fc3d6"/><rect y="96" width="300" height="54" fill="#4a4d4e"/><ellipse cx="128" cy="118" rx="62" ry="10" fill="#6b8593" opacity=".85"/><rect x="60" y="100" width="4" height="50" fill="#d9d4c3"/><rect x="200" y="100" width="4" height="50" fill="#d9d4c3"/><text x="226" y="138" font-family="Arial" font-weight="700" font-size="22" fill="#d9d4c3">37</text></svg>
+    <div class="cm-bolha__legenda">Vaga 37, subsolo 1 <span class="cm-bolha__meta">09:13</span></div></div>
+   <div class="cm-bolha cm-bolha--entrada cm-bolha--local">
+    <svg class="cm-local__mapa" viewBox="0 0 280 120" role="img" aria-label="Mapa com o ponto marcado na Rua das Palmeiras, 410"><rect width="280" height="120" fill="#5d6a66"/><path d="M0 70h280M120 0v120M0 30h120M200 0v120" stroke="#8b9893" stroke-width="10"/><path d="M0 70h280M120 0v120" stroke="#c8cfcb" stroke-width="2" stroke-dasharray="6 6"/><path d="M140 34l-9 14h18z" fill="none"/><path d="M140 62c-8-10-12-16-12-22a12 12 0 0 1 24 0c0 6-4 12-12 22z" fill="#d9d4c3" stroke="#1d2326" stroke-width="2"/><circle cx="140" cy="40" r="4" fill="#1d2326"/></svg>
+    <div class="cm-local__texto"><b>Localização</b><span>Rua das Palmeiras, 410, portão da garagem. Vila Mariana, São Paulo</span><span class="cm-bolha__meta">09:13</span></div></div>
+   <div class="cm-evento"><i data-i="fone-atendimento"></i>Beatriz assumiu a conversa e abriu o chamado 48213, 09:16</div>
+   <div class="cm-bolha cm-bolha--saida">Bom dia, Marina! Já estou acionando a manutenção. Consegue me dizer se a água vem da junta do teto ou de algum cano aparente? <span class="cm-bolha__meta">09:17<i data-i="lida" class="cm-tique--lida" data-rotulo="Lida"></i></span></div>
+   <div class="cm-bolha cm-bolha--entrada" id="audio"><div class="cm-audio"><button class="cm-audio__play" type="button" aria-label="Ouvir áudio de 38 segundos"><i data-i="play"></i></button><span class="cm-audio__onda" aria-hidden="true"><i class="is-tocado" style="height:8px"></i><i class="is-tocado" style="height:14px"></i><i class="is-tocado" style="height:20px"></i><i class="is-tocado" style="height:12px"></i><i style="height:18px"></i><i style="height:24px"></i><i style="height:10px"></i><i style="height:16px"></i><i style="height:22px"></i><i style="height:9px"></i><i style="height:14px"></i><i style="height:19px"></i><i style="height:11px"></i><i style="height:7px"></i><i style="height:15px"></i><i style="height:21px"></i><i style="height:12px"></i><i style="height:8px"></i><i style="height:13px"></i><i style="height:6px"></i></span><span class="cm-audio__tempo">0:38</span></div>
+    <div class="cm-transcricao"><b>Transcrição:</b> "É da junta mesmo, perto do pilar. Quando chove forte sempre pinga, mas hoje não choveu, então acho que é cano do térreo." <span class="cm-bolha__meta">09:21</span></div></div>
+   <div class="cm-bolha cm-bolha--entrada cm-bolha--apagada"><i data-i="proibido"></i>Esta mensagem foi apagada <span class="cm-bolha__meta">09:22</span></div>
+   <div class="cm-nota" role="note"><div class="cm-nota__cabeca"><i data-i="nota-interna"></i>Nota interna de Juliana Prado <span>só a equipe vê, 09:24</span></div><span class="cm-mencao">@Beatriz</span> corretiva urgente, sim. Já avisei o <span class="cm-mencao">@Diego</span>. Se for junta de dilatação, pede laudo.</div>
+   <div class="cm-cartao-vinculo"><i data-i="ordem-de-servico"></i>Vinculado à <span class="cm-plaqueta">OS 482</span><span class="cm-texto-2">Hidrotec, hoje às 11h</span><a class="cm-link" href="25b-os.html">Abrir</a></div>
+   <div class="cm-bolha cm-bolha--saida cm-bolha--arquivo"><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="pdf"></i></span><span><span class="cm-anexo__nome">interdicao-de-vaga-orientacoes.pdf</span><span class="cm-anexo__meta">PDF, 2 páginas, 184 KB</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Baixar interdicao-de-vaga-orientacoes.pdf"><i data-i="baixar"></i></button></div><span class="cm-bolha__meta">09:30<i data-i="marcar" data-rotulo="Entregue"></i></span></div>
+   <div class="cm-bolha cm-bolha--saida"><span class="cm-bolha__citacao"><b>Marina Costa</b><br>Áudio: "É da junta mesmo, perto do pilar…"</span>Obrigada, Marina. Com isso o técnico já vem com o material de junta e confere o cano do térreo. <span class="cm-bolha__meta">09:31<i data-i="lida" class="cm-tique--lida" data-rotulo="Lida"></i></span></div>
+   <div class="cm-bolha cm-bolha--saida is-falhou">Marina, o técnico Sérgio, da Hidrotec, chega às 11h. Vou pedir à portaria para interditar as vagas 37 e 38 até lá. <span class="cm-bolha__meta">09:33<i data-i="erro" class="cm-tique--falhou" data-rotulo="Não entregue"></i></span>
+    <div class="cm-bolha__reenviar"><i data-i="perigo"></i>Não entregue: o WhatsApp recusou por instabilidade. <button class="cm-botao cm-botao--link cm-botao--p" type="button" data-q3-toast="Mensagem reenviada e entregue">Tentar de novo</button></div></div>
+   <span class="cm-novas" data-se="padrao erro">2 novas</span>
+   <div class="cm-bolha cm-bolha--entrada" data-se="padrao erro">Mandei mais uma foto, a água já chegou na 38 também. <span class="cm-bolha__meta">09:38</span></div>
+   <div class="cm-bolha cm-bolha--entrada" data-se="padrao erro">O morador da 38 está pedindo para tirar o carro, pode? <span class="cm-bolha__meta">09:38</span></div>
+   <div data-se="janela" class="cm-evento"><i data-i="pendente"></i>Última mensagem da Marina ontem às 09:38. A janela de 24 h fechou hoje às 09:38.</div>
+   <div data-se="janela" class="cm-bolha cm-bolha--saida"><span class="cm-bolha__modelo"><i data-i="documento-editavel"></i>Modelo aprovado: retorno_os</span>Olá, Marina. A ordem de serviço da garagem foi concluída pela Hidrotec. Pode confirmar se está tudo certo?<span class="cm-bolha__botoes"><span>Está tudo certo</span><span>Ainda tem problema</span></span><span class="cm-bolha__meta">10:02<i data-i="marcar" data-rotulo="Entregue"></i></span></div>
+  </div>
+
+  <!-- compositor: dentro da janela -->
+  <div class="cm-compositor" data-se="padrao erro" id="compositor">
+   <div class="cm-comandos cm-lista-opcoes" id="lista-slash" role="listbox" aria-label="Respostas rápidas">
+    <div class="cm-lista-opcoes__grupo">Respostas rápidas, setas e Enter</div>
+    <div class="cm-opcao" role="option" data-atalho="interdicao" data-texto="Marina, a vaga 37 fica interditada até o reparo. A portaria orienta o morador a deixar o carro na vaga de visitante V3."><b>/interdicao</b><span>Vaga interditada até o reparo, com orientação ao morador</span><kbd class="cm-tecla">Enter</kbd></div>
+    <div class="cm-opcao" role="option" data-atalho="prazo-os" data-texto="A OS 482 está com a Hidrotec, técnico Sérgio, hoje às 11h."><b>/prazo-os</b><span>Prazo e técnico da ordem de serviço vinculada</span><span></span></div>
+    <div class="cm-opcao" role="option" data-atalho="laudo" data-texto="O laudo técnico chega para a senhora em até 48 h, por e-mail e aqui."><b>/laudo</b><span>Envio do laudo técnico ao síndico em até 48 h</span><span></span></div>
+    <div class="cm-opcao" role="option" data-atalho="2via" data-texto="Segue a 2ª via do boleto de outubro, Bl B Ap 1204, R$ 1.284,90, vencimento 10/10."><b>/2via</b><span>Segunda via do boleto com Pix copia e cola</span><span></span></div>
+   </div>
+   <div class="cm-abas" role="tablist" aria-label="Tipo de mensagem"><button role="tab" aria-selected="true" type="button" id="ab-resp"><i data-i="responder"></i>Resposta</button><button role="tab" aria-selected="false" type="button" tabindex="-1" id="ab-nota"><i data-i="nota-interna"></i>Nota interna</button><span class="cm-compositor__dica"><kbd class="cm-tecla">/</kbd>respostas rápidas, rascunho salvo</span></div>
+   <div class="cm-compositor__caixa"><textarea aria-label="Mensagem para Marina Costa" rows="2" data-q3-slash="lista-slash" aria-controls="lista-slash" aria-expanded="true" id="caixa">Entendido, Marina. /inter</textarea></div>
+   <div class="cm-compositor__barra">
+    <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Anexar arquivo"><i data-i="anexar"></i></button>
+    <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Enviar foto"><i data-i="imagem"></i></button>
+    <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Anexar boleto desta unidade"><i data-i="boleto"></i></button>
+    <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Gravar áudio"><i data-i="microfone"></i></button>
+    <span class="cm-cresce">Depois de enviar: <span id="depois">resolver e abrir a próxima</span></span>
+    <div class="cm-dividido cm-ancora cm-ancora--direita cm-ancora--cima">
+     <button class="cm-botao cm-botao--principal" type="button" data-q3-toast="Enviada. Chamado resolvido; abrindo Luiz Fernando, porteiro.">Enviar <span class="cm-dividido__lembra">e resolver</span></button>
+     <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Escolher o que acontece depois de enviar" data-q3-menu="m-enviar"><i data-i="chevron-baixo"></i></button>
+     <div class="cm-menu cm-flutuante" id="m-enviar" role="menu" hidden style="width:300px">
+      <div class="cm-menu__titulo">Enviar e depois</div>
+      <button class="cm-menu__item cm-menu__item--sem-icone" role="menuitemradio" aria-checked="false" type="button" data-q3-lembra="e manter aberto"><span>Enviar e manter aberto</span><span class="cm-menu__atalho">Ctrl Enter</span></button>
+      <button class="cm-menu__item cm-menu__item--sem-icone" role="menuitemradio" aria-checked="false" type="button" data-q3-lembra="e aguardar"><span>Enviar e aguardar cliente</span><span class="cm-menu__atalho">Ctrl P</span></button>
+      <button class="cm-menu__item cm-menu__item--sem-icone" role="menuitemradio" aria-checked="true" type="button" data-q3-lembra="e resolver"><span>Enviar e resolver</span><span class="cm-menu__atalho">Ctrl E</span></button>
+      <button class="cm-menu__item cm-menu__item--sem-icone" role="menuitemradio" aria-checked="false" type="button" data-q3-lembra="e próxima"><span>Enviar e abrir a próxima da fila</span><span class="cm-menu__atalho">Ctrl J</span></button>
+      <div class="cm-menu__pe"><label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Depois de resolver, abrir a próxima</span></label></div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- compositor: janela de 24 h fechada -->
+  <div class="cm-compositor is-janela-fechada" data-se="janela">
+   <div class="cm-alerta cm-alerta--info" style="margin-top:10px"><i data-i="informacao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">A janela de 24 h fechou</span><span class="cm-alerta__desc">Pela regra do WhatsApp, só um modelo aprovado pela Meta pode reabrir a conversa. Quando a Marina responder, a caixa normal volta.</span></span></div>
+   <div class="cm-linha" style="margin-top:10px;gap:8px;flex-wrap:wrap">
+    <div class="cm-selecao" style="min-width:260px"><select aria-label="Modelo aprovado"><option>retorno_os: confirmar conclusão da OS</option><option>boleto_disponivel: boleto do mês</option><option>assembleia_convocacao: edital publicado</option></select><i data-i="chevron-baixo"></i></div>
+    <span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Aprovado pela Meta em 12/08</span><span class="cm-t-legenda">Categoria: utilidade, cobrança da Meta: R$ 0,08</span>
+   </div>
+   <div class="cm-modelo" style="margin-top:8px"><div class="cm-modelo__cabeca"><span class="cm-modelo__nome">Prévia</span><span class="cm-t-legenda">2 variáveis, ambas preenchidas</span></div>
+    <p class="cm-modelo__texto">Olá, <span class="cm-modelo__var">Marina</span>. A ordem de serviço da <span class="cm-modelo__var">garagem</span> foi concluída pela Hidrotec. Pode confirmar se está tudo certo?</p></div>
+   <div class="cm-compositor__barra"><span class="cm-cresce">Botões de resposta: "Está tudo certo", "Ainda tem problema"</span><button class="cm-botao cm-botao--principal" type="button" data-q3-toast="Modelo enviado. A conversa reabre quando a Marina responder."><i data-i="enviar"></i>Enviar modelo</button></div>
+  </div>
+  </div>
+
+  <div data-se="vazio" style="flex:1;display:flex;align-items:center;justify-content:center"><div class="cm-vazio cm-vazio--centro"><i data-i="conversas"></i><p class="cm-vazio__titulo">Nenhuma conversa aberta</p><p class="cm-vazio__texto">Escolha uma conversa na fila ou aperte J para abrir a próxima.</p></div></div>
+  <div data-se="carregando" style="flex:1;padding:24px" aria-busy="true" aria-label="Carregando conversa"><span class="cm-esqueleto" style="width:45%;height:40px"></span><span class="cm-esqueleto" style="width:30%;height:90px;margin-top:10px"></span><span class="cm-esqueleto" style="width:40%;height:40px;margin:10px 0 0 auto"></span><span class="cm-carregando" style="margin-top:16px">Carregando a conversa com Marina Costa</span></div>
+  <div data-se="sem" style="flex:1"><div class="cm-bloqueio"><i data-i="bloquear"></i><p class="cm-vazio__titulo">Você não tem acesso às Conversas</p><p class="cm-vazio__texto">Seu papel é Financeiro, que vê chamados mas não atende filas. Quem libera é a gestora do Suporte, Juliana Prado.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button" data-q3-toast="Pedido enviado para a Juliana Prado">Pedir acesso</button><a class="cm-botao cm-botao--discreto" href="21b-chamados.html">Ver chamados</a></div></div></div>
+ </section>
+
+ <!-- FICHA -->
+ <aside class="cm-coluna cm-coluna--ficha" aria-labelledby="t-ficha" data-se="padrao janela erro">
+  <div class="cm-coluna__cabeca"><h2 class="cm-coluna__titulo" id="t-ficha">Chamado</h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Seguir chamado" aria-pressed="true"><i data-i="notificacoes"></i></button><a class="cm-botao cm-botao--icone cm-botao--discreto" href="21c-chamado.html" aria-label="Abrir chamado em tela cheia"><i data-i="maximizar"></i></a></div>
+  <div class="cm-abas cm-abas--p" role="tablist" aria-label="Ficha" style="padding:0 6px"><button role="tab" aria-selected="true" type="button" aria-controls="f-ch">Chamado</button><button role="tab" aria-selected="false" type="button" tabindex="-1" aria-controls="f-pe">Pessoa</button><button role="tab" aria-selected="false" type="button" tabindex="-1" aria-controls="f-bo">Boletos <span class="cm-contador">1</span></button><button role="tab" aria-selected="false" type="button" tabindex="-1" aria-controls="f-an">Anteriores <span class="cm-contador">3</span></button></div>
+  <div class="cm-coluna__corpo q3-ficha-corpo">
+   <div id="f-ch">
+    <div class="cm-secao"><dl class="cm-ficha">
+     <div class="cm-ficha__linha is-leitura"><dt>Número</dt><dd><button class="cm-plaqueta" type="button" data-q3-toast="Número 48213 copiado" data-q3-toast-tipo="info" aria-label="Chamado 48213, copiar">#48213</button></dd><span></span></div>
+     <div class="cm-ficha__linha"><dt>Assunto</dt><dd>Vazamento no teto da garagem</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar assunto"><i data-i="editar"></i></button></div>
+     <div class="cm-ficha__linha"><dt>Prioridade</dt><dd><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Alta</span></dd><button class="cm-ficha__lapis" type="button" aria-label="Editar prioridade"><i data-i="editar"></i></button></div>
+     <div class="cm-ficha__linha"><dt>Tipo</dt><dd>Manutenção, vazamento</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar tipo"><i data-i="editar"></i></button></div>
+     <div class="cm-ficha__linha"><dt>Responsável</dt><dd><span class="cm-avatar cm-avatar--p cm-avatar--2" aria-hidden="true">BN</span>Beatriz Nogueira</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar responsável"><i data-i="editar"></i></button></div>
+     <div class="cm-ficha__linha"><dt>Local</dt><dd>Subsolo 1, vagas 37 e 38</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar local"><i data-i="editar"></i></button></div>
+     <div class="cm-ficha__linha"><dt>Etiquetas</dt><dd><span class="cm-etiqueta cm-etiqueta--3">garagem</span><span class="cm-etiqueta cm-etiqueta--5">área comum</span></dd><button class="cm-ficha__lapis" type="button" aria-label="Editar etiquetas"><i data-i="editar"></i></button></div>
+     <div class="cm-ficha__linha is-leitura"><dt>1ª resposta</dt><dd><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Cumprida em 5 min</span></dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Resolução</dt><dd>até 14:30, restam 4 h 49</dd><span></span></div>
+    </dl></div>
+    <div class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Tarefas</h3><span class="cm-t-legenda">1 de 3 feitas</span></div>
+     <div class="cm-pilha" style="gap:8px">
+      <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Acionar manutenção, OS 482</span></label>
+      <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox"><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Interditar as vagas 37 e 38 com a portaria <span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>até 10:00</span></span></label>
+      <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox"><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Enviar o laudo da Hidrotec à síndica <span class="cm-t-legenda">Diego, amanhã</span></span></label>
+      <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" style="align-self:flex-start"><i data-i="adicionar"></i>Adicionar tarefa</button>
+     </div></div>
+    <div class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Histórico</h3><a class="cm-link cm-secao__acao" href="21c-chamado.html">Ver completo</a></div>
+     <ol class="cm-auditoria">
+      <li><time>09:31</time><b>Beatriz</b> vinculou a OS 482</li>
+      <li><time>09:24</time><b>Juliana</b> adicionou nota interna</li>
+      <li><time>09:20</time><b>Beatriz</b> mudou a prioridade: <del>Normal</del> para <ins>Alta</ins></li>
+      <li><time>09:16</time><b>Beatriz</b> assumiu</li>
+      <li class="is-criacao"><time>09:12</time>Aberto pelo WhatsApp</li>
+     </ol></div>
+   </div>
+   <div id="f-pe" hidden><div class="cm-secao"><dl class="cm-ficha"><div class="cm-ficha__linha is-leitura"><dt>Nome</dt><dd>Marina Costa</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Papel</dt><dd>Síndica até 03/2027</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Unidade</dt><dd>Bl B Ap 1204</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>E-mail</dt><dd>marina.costa@gmail.com</dd><span></span></div></dl></div></div>
+   <div id="f-bo" hidden><div class="cm-secao"><div class="cm-alerta cm-alerta--neutro"><i data-i="boleto"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Outubro, R$ 1.284,90</span><span class="cm-alerta__desc">Vence em 10/10. Em aberto, sem atraso.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button">Enviar 2ª via</button></span></div></div></div>
+   <div id="f-an" hidden><ul class="cm-atividade"><li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="chamado"></i></span><div><div class="cm-atividade__titulo"><a href="#">Barulho de obra no Bl C</a></div><div class="cm-atividade__desc">Resolvido por Diego</div></div><span class="cm-atividade__quando">12/09</span></li></ul></div>
+  </div>
+ </aside>
+
+ <div class="cm-sobreposicao" id="modal-transferir" hidden>
+  <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="t-tr">
+   <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="t-tr">Transferir a conversa com Marina Costa<span class="cm-modal__sub">A Marina não é avisada. O histórico vai junto.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+   <div class="cm-modal__corpo cm-pilha">
+    <fieldset class="cm-grupo-opcoes cm-grupo-opcoes--linha"><legend>Para</legend><label class="cm-radio"><input type="radio" name="tr" checked><span class="cm-radio__bola"></span><span>Uma pessoa</span></label><label class="cm-radio"><input type="radio" name="tr"><span class="cm-radio__bola"></span><span>Uma fila</span></label></fieldset>
+    <div class="cm-lista-opcoes" style="position:static;box-shadow:none;max-height:none">
+     <div class="cm-lista-opcoes__busca"><div class="cm-entrada cm-entrada--p cm-entrada--busca"><i data-i="pesquisar"></i><input aria-label="Buscar pessoa" placeholder="Buscar pessoa" autofocus></div></div>
+     <div class="cm-lista-opcoes__grupo">Suporte ao cliente</div>
+     <div class="cm-opcao is-ativa" role="option" aria-selected="true"><span class="cm-avatar cm-avatar--p cm-avatar--1">DR</span>Diego Ramos<span class="cm-opcao__desc">disponível, 6 conversas</span></div>
+     <div class="cm-opcao" role="option"><span class="cm-avatar cm-avatar--p cm-avatar--5">RS</span>Renata Sousa<span class="cm-opcao__desc">disponível, 2 conversas</span></div>
+     <div class="cm-opcao" role="option" aria-disabled="true"><span class="cm-avatar cm-avatar--p cm-avatar--4">CT</span>Camila Torres<span class="cm-opcao__desc">volto logo</span></div>
+    </div>
+    <div class="cm-campo"><label class="cm-campo__rotulo" for="tr-nota">Nota para o Diego <span class="cm-campo__opcional">opcional, vira nota interna</span></label><textarea class="cm-area" id="tr-nota">Vazamento da garagem, OS 482 com a Hidrotec às 11h. Falta interditar a 38.</textarea></div>
+   </div>
+   <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q3-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-q3-fechar data-q3-toast="Conversa transferida para Diego Ramos" data-q3-toast-acao="Desfazer">Transferir</button></div>
+  </div>
+ </div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Pular para o conteúdo; moldura; abas da fila e filtros; lista (um único Tab entra; J e K e setas andam); cabeçalho da conversa (estado, Transferir, Mais ações); mensagens (região de registro, leitura por item); abas Resposta e Nota; caixa de texto; anexos; Enviar e ▾; ficha (abas, campos com lápis, tarefas, histórico). Esc fecha menus e o modal e devolve o foco ao botão que abriu.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Nova mensagem entra no registro com aria-live educado. Tiques lidos como "Lida", "Entregue" ou "Não entregue". SLA em frase ("Atenção: responder em 6 min"). Nota como "Nota interna de Juliana Prado, só a equipe vê". A lista "/" é uma caixa de opções presa à área de texto (aria-controls e aria-expanded). A mensagem apagada é lida como texto. Fora da janela, o alerta explica por que a caixa mudou.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Pesquisar conversas", "Nova conversa com modelo aprovado", canal de cada conversa ("WhatsApp", "E-mail", "Portal"), "Mais ações da conversa", "Ouvir áudio de 38 segundos", "Baixar interdicao-de-vaga-orientacoes.pdf", "Anexar arquivo", "Enviar foto", "Anexar boleto desta unidade", "Gravar áudio", "Escolher o que acontece depois de enviar", "Seguir chamado", "Abrir chamado em tela cheia".</p></section>
+  </div>
+ </div>
+</footer>
+<script>(function(){
+ var lista=[].slice.call(document.querySelectorAll('#fila .cm-fila-item'));
+ function ir(i){lista.forEach(function(x,k){var on=k===i;x.classList.toggle('is-atual',on);x.setAttribute('aria-current',on?'true':'false');x.tabIndex=on?0:-1});lista[i].focus()}
+ document.addEventListener('keydown',function(e){if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;var a=lista.findIndex(function(x){return x.classList.contains('is-atual')});
+  if(e.key==='j'||e.key==='J'||(e.key==='ArrowDown'&&e.target.closest('#fila'))){e.preventDefault();ir(Math.min(lista.length-1,a+1))}
+  if(e.key==='k'||e.key==='K'||(e.key==='ArrowUp'&&e.target.closest('#fila'))){e.preventDefault();ir(Math.max(0,a-1))}
+  if(e.key==='n'||e.key==='N'){e.preventDefault();document.getElementById('ab-nota').click();document.getElementById('caixa').focus()}
+  if(e.key==='r'||e.key==='R'){e.preventDefault();document.getElementById('ab-resp').click();document.getElementById('caixa').focus()}});
+ lista.forEach(function(x,i){x.addEventListener('click',function(){ir(i)})});
+ var c=document.getElementById('compositor');
+ document.getElementById('ab-nota').addEventListener('click',function(){c.classList.add('is-nota')});
+ document.getElementById('ab-resp').addEventListener('click',function(){c.classList.remove('is-nota')});
+ window.addEventListener('load',function(){var conv=document.querySelector('.cm-conversa');if(conv) conv.scrollTop=conv.scrollHeight});
+})();</script>
+</body>
+</html>

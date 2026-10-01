@@ -97,9 +97,21 @@
 .lc-mapear .lc-selecao{height:32px}
 .lc-mapear__exemplo{color:var(--texto-2);font-size:12.5px}
 
+/* A11b. Etapa: a data embaixo do nome em todas as etapas, não só na atual */
+.lc-etapa small{display:block;font-weight:400;color:var(--texto-2);font-size:12px;line-height:15px}
+.lc-etapa--perdida small{color:var(--perigo-texto)}
+
 /* A12. Paginador do registro dentro da barra da trilha */
 .lc-barra-trilha .lc-paginador{height:32px}
 .lc-barra-trilha .lc-paginador .lc-tecla{margin-left:6px}
+
+/* A12b. Ações da linha sempre visíveis (as 1–2 mais usadas); o hover só realça. O resto fica no ⋯ */
+.lc-tabela__acoes--sempre>*{opacity:1}
+.lc-tabela__acoes--sempre{white-space:nowrap}
+.lc-tabela__acoes--sempre>*+*{margin-left:4px}
+
+/* A13. No celular a barra de salvar fica acima da barra inferior da moldura */
+@media (max-width:639px){.lc-app .lc-barra-salvar{bottom:var(--barra-inferior-alt)}.lc-barra-salvar__msg{min-width:0}}
 
 /* ============================== B. MODELOS DE PÁGINA ============================== */
 /* Larguras de região dos modelos. Abaixo de cada ponto de quebra o modelo sabe se recompor. */
@@ -188,7 +200,7 @@
 .lc-modelo-quadro{display:flex;flex-direction:column;height:100%;min-height:0;padding:0 var(--grade-margem)}
 .lc-modelo-quadro>.lc-kanban,.lc-modelo-quadro>.lc-modelo-quadro__rola{flex:1;min-height:0}
 .lc-modelo-quadro .lc-kanban{align-items:stretch}
-.lc-modelo-quadro .lc-kanban__col{max-height:100%}
+.lc-modelo-quadro .lc-kanban__col{max-height:100%;flex:1 0 240px}
 .lc-modelo-quadro .lc-kanban__lista{overflow:auto;flex:1;min-height:0}
 @media (max-width:639px){.lc-modelo-quadro{padding:0 16px}}
 

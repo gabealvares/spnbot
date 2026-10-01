@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Respostas rápidas</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-rr{display:grid;grid-template-columns:340px minmax(0,1fr) 340px;gap:0;border:1px solid var(--cm-filete);background:var(--cm-camada-1);min-height:620px;margin-top:4px}
+.q3-rr>*{min-width:0}
+.q3-rr__lista{border-right:1px solid var(--cm-filete)}
+.q3-rr__ed{padding:16px 20px;display:flex;flex-direction:column;gap:14px}
+.q3-rr__pre{border-left:1px solid var(--cm-filete);padding:16px;display:flex;flex-direction:column;gap:10px}
+.q3-item{display:block;width:100%;text-align:left;padding:10px 14px;border-bottom:1px solid var(--cm-filete)}
+.q3-item:hover{background:var(--cm-camada-2)}
+.q3-item[aria-current="true"]{background:var(--cm-selecao);box-shadow:inset 3px 0 0 var(--cm-selecao-filete)}
+.q3-item b{color:var(--cm-link);font-weight:650;font-size:13px}
+.q3-item span{display:block;font-size:12.5px;color:var(--cm-texto-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.q3-item small{display:flex;gap:8px;font-size:12px;color:var(--cm-texto-3);margin-top:3px}
+@media (max-width:1099px){.q3-rr{grid-template-columns:1fr}.q3-rr__lista,.q3-rr__pre{border:0;border-bottom:1px solid var(--cm-filete)}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Respostas rápidas (cadastro) <small>Suporte, Atendimento, Respostas rápidas. Lista à esquerda, editor com variáveis e prévia no gesto do WhatsApp à direita. Inclui os modelos aprovados pela Meta.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>O "/" do console só é bom se o texto estiver certo. Aqui a equipe cria, revisa e aprova as respostas: atalho, texto com variáveis ({nome}, {unidade}, {valor}), anexo opcional e quem pode usar. A prévia mostra como chega no celular do morador, com as variáveis preenchidas de um exemplo real.</p><p>Modelos para fora da janela de 24 h ficam na aba própria, com o estado da aprovação na Meta.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Escolha na lista (busca por atalho ou texto); a resposta abre no editor ao lado, sem trocar de página.</li><li>Clique numa variável para inserir no cursor; variável desconhecida fica vermelha na prévia.</li><li>Ao alterar, a barra de salvar aparece; resposta nova proposta por atendente vai para "Em revisão" e a gestora aprova no Início.</li><li>"Enviar para a Meta" (só modelos) cria o pedido; o estado muda para "Em análise" e depois Aprovado ou Recusado com o motivo.</li><li>Excluir vai para a lixeira; se a resposta foi usada nos últimos 30 dias, pede confirmação com o número de usos.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o WhatsApp Business chama assim e usa o "/" como atalho; o Zendesk (macros) e o Intercom (saved replies) usam lista e editor lado a lado com variáveis clicáveis; e o gerenciador de modelos da Meta exige categoria, idioma e aprovação, com o motivo da recusa.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Editando /interdicao</button><button type="button" data-q3-estado="modelo" aria-pressed="false">Modelo da Meta recusado</button><button type="button" data-q3-estado="vazio" aria-pressed="false">Nenhuma resposta ainda</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Suporte","tela":"Respostas rápidas","papel":"Atendimento"}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Respostas rápidas</h1><div class="cm-cabecalho-pagina__acoes"><button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Nova resposta</button></div></div>
+  <p class="cm-cabecalho-pagina__desc">42 respostas da equipe e 9 modelos aprovados pela Meta. Usadas 1.318 vezes em setembro.</p></header>
+ <div data-se="padrao modelo">
+ <div class="cm-abas" role="tablist" aria-label="Tipo"><button role="tab" aria-selected="true" type="button">Respostas da equipe <span class="cm-contador">42</span></button><button role="tab" aria-selected="false" type="button" tabindex="-1">Modelos da Meta <span class="cm-contador">9</span></button><button role="tab" aria-selected="false" type="button" tabindex="-1">Em revisão <span class="cm-contador cm-contador--novo">1</span></button></div>
+ <div class="q3-rr">
+  <div class="q3-rr__lista">
+   <div style="padding:10px"><div class="cm-entrada cm-entrada--p cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar respostas" placeholder="Atalho ou texto"></div></div>
+   <div class="cm-fila-grupo">Manutenção <span>8</span></div>
+   <button class="q3-item" type="button" aria-current="true"><b>/interdicao</b><span>Vaga interditada até o reparo, com orientação ao morador</span><small><span class="cm-estado cm-estado--ponto cm-estado--aviso">Em revisão</span>proposta por Beatriz</small></button>
+   <button class="q3-item" type="button"><b>/prazo-os</b><span>A OS {os} está com a {fornecedor}, técnico {tecnico}…</span><small>usada 212 vezes em setembro</small></button>
+   <button class="q3-item" type="button"><b>/laudo</b><span>O laudo técnico chega em até 48 h, por e-mail e aqui</span><small>usada 38 vezes</small></button>
+   <div class="cm-fila-grupo">Financeiro <span>11</span></div>
+   <button class="q3-item" type="button"><b>/2via</b><span>Segue a 2ª via do boleto de {mes}, {unidade}, {valor}…</span><small>usada 604 vezes</small></button>
+   <button class="q3-item" type="button"><b>/acordo</b><span>Para parcelar o débito, o condomínio aceita até 6 vezes…</span><small>usada 41 vezes</small></button>
+   <div class="cm-fila-grupo">Áreas comuns <span>6</span></div>
+   <button class="q3-item" type="button"><b>/salao</b><span>A reserva do salão de festas é pelo portal, com 7 dias…</span><small>usada 97 vezes</small></button>
+  </div>
+
+  <div class="q3-rr__ed" data-se="padrao">
+   <div class="cm-linha"><h2 class="cm-t-secao cm-cresce">/interdicao</h2><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Em revisão pela Juliana</span>
+    <div class="cm-ancora cm-ancora--direita"><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Mais ações da resposta" aria-haspopup="menu" aria-expanded="false" data-q3-menu="m-rr"><i data-i="mais-opcoes"></i></button><div class="cm-menu cm-flutuante" id="m-rr" role="menu" hidden><button class="cm-menu__item" role="menuitem" type="button"><i data-i="duplicar"></i><span>Duplicar</span><span></span></button><div class="cm-menu__sep"></div><button class="cm-menu__item cm-menu__item--perigo" role="menuitem" type="button" data-q3-toast="Resposta /interdicao foi para a lixeira" data-q3-toast-acao="Desfazer"><i data-i="excluir"></i><span>Excluir</span><span></span></button></div></div></div>
+   <div class="cm-linha" style="gap:16px;align-items:flex-start">
+    <div class="cm-campo" style="width:220px"><label class="cm-campo__rotulo" for="rr-at">Atalho</label><div class="cm-entrada"><span class="cm-entrada__prefixo">/</span><input id="rr-at" value="interdicao"></div><p class="cm-campo__ajuda">Sem espaço e sem acento.</p></div>
+    <div class="cm-campo cm-cresce"><label class="cm-campo__rotulo" for="rr-ds">Descrição</label><div class="cm-entrada"><input id="rr-ds" value="Vaga interditada até o reparo, com orientação ao morador"></div></div>
+   </div>
+   <div class="cm-campo"><label class="cm-campo__rotulo" for="rr-tx">Texto</label>
+    <textarea class="cm-area" id="rr-tx" rows="5" style="min-height:120px">{nome}, a vaga {vaga} fica interditada até o reparo. A portaria orienta o morador a deixar o carro na vaga de visitante {vaga_visitante}. Assim que o técnico liberar, aviso por aqui.</textarea>
+    <div class="cm-linha" style="justify-content:space-between"><div class="cm-variaveis" aria-label="Inserir variável"><button type="button">{nome}</button><button type="button">{unidade}</button><button type="button">{vaga}</button><button type="button">{vaga_visitante}</button><button type="button">{os}</button><button type="button">{condominio}</button></div><span class="cm-campo__contagem">183 de 1.024</span></div></div>
+   <div class="cm-linha" style="gap:16px;flex-wrap:wrap">
+    <div class="cm-campo" style="width:240px"><label class="cm-campo__rotulo" for="rr-gr">Grupo</label><div class="cm-selecao"><select id="rr-gr"><option>Manutenção</option><option>Financeiro</option></select><i data-i="chevron-baixo"></i></div></div>
+    <div class="cm-campo" style="width:280px"><span class="cm-campo__rotulo">Quem pode usar</span><div class="cm-multi"><span class="cm-etiqueta">Suporte ao cliente<button class="cm-etiqueta__remover" type="button" aria-label="Remover Suporte ao cliente"><i data-i="fechar"></i></button></span><span class="cm-etiqueta">Portaria remota<button class="cm-etiqueta__remover" type="button" aria-label="Remover Portaria remota"><i data-i="fechar"></i></button></span><input aria-label="Adicionar equipe"></div></div>
+    <div class="cm-campo"><span class="cm-campo__rotulo">Anexo</span><button class="cm-botao" type="button"><i data-i="anexar"></i>interdicao-de-vaga.pdf</button></div>
+   </div>
+   <div class="cm-alerta cm-alerta--info"><i data-i="informacao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Proposta pela Beatriz Nogueira em 01/10 às 09:35</span><span class="cm-alerta__desc">Enquanto a Juliana não aprovar, só a Beatriz vê esta resposta no "/".</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button" data-q3-toast="Resposta aprovada e liberada para a equipe">Aprovar</button></span></div>
+  </div>
+
+  <div class="q3-rr__ed" data-se="modelo">
+   <div class="cm-linha"><h2 class="cm-t-secao cm-cresce">assembleia_convocacao</h2><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Recusado pela Meta</span></div>
+   <div class="cm-alerta cm-alerta--perigo"><i data-i="perigo"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Motivo da Meta: "Conteúdo promocional em categoria de utilidade"</span><span class="cm-alerta__desc">A frase "aproveite para quitar seus débitos" é lida como cobrança promocional. Tire a frase ou mude a categoria para Marketing (mais cara por envio).</span></span></div>
+   <div class="cm-linha" style="gap:16px"><div class="cm-campo" style="width:200px"><label class="cm-campo__rotulo" for="md-cat">Categoria</label><div class="cm-selecao"><select id="md-cat"><option>Utilidade</option><option>Marketing</option></select><i data-i="chevron-baixo"></i></div></div><div class="cm-campo" style="width:200px"><label class="cm-campo__rotulo" for="md-id">Idioma</label><div class="cm-selecao"><select id="md-id"><option>Português (BR)</option></select><i data-i="chevron-baixo"></i></div></div></div>
+   <div class="cm-campo"><label class="cm-campo__rotulo" for="md-tx">Corpo</label><textarea class="cm-area" id="md-tx" rows="4" aria-invalid="true">Olá, {{1}}. O edital da assembleia {{2}} do {{3}} foi publicado. Aproveite para quitar seus débitos antes da votação.</textarea><p class="cm-campo__erro"><i data-i="perigo"></i>A Meta recusou este texto em 28/09. Edite e envie de novo.</p></div>
+   <div class="cm-linha"><span class="cm-cresce"></span><button class="cm-botao" type="button">Duplicar como Marketing</button><button class="cm-botao cm-botao--principal" type="button" data-q3-toast="Enviado para a Meta. Costuma levar até 24 h." data-q3-toast-tipo="info">Enviar de novo para a Meta</button></div>
+  </div>
+
+  <div class="q3-rr__pre">
+   <h2 class="cm-t-subsecao">Prévia no WhatsApp</h2>
+   <div class="cm-previa-whatsapp">
+    <div class="cm-bolha cm-bolha--saida">Marina, a vaga <span class="cm-modelo__var">37</span> fica interditada até o reparo. A portaria orienta o morador a deixar o carro na vaga de visitante <span class="cm-modelo__var">V3</span>. Assim que o técnico liberar, aviso por aqui. <span class="cm-bolha__meta">09:44</span></div>
+    <div class="cm-bolha cm-bolha--saida cm-bolha--arquivo"><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="pdf"></i></span><span><span class="cm-anexo__nome">interdicao-de-vaga.pdf</span><span class="cm-anexo__meta">184 KB</span></span><span></span></div></div>
+   </div>
+   <p class="cm-t-legenda">Exemplo com o chamado 48213 (Marina Costa, Parque das Águas). Troque o exemplo para conferir outra conversa.</p>
+   <button class="cm-botao cm-botao--p" type="button" style="align-self:flex-start">Trocar exemplo</button>
+  </div>
+ </div>
+ </div>
+ <div data-se="vazio"><div class="cm-vazio"><i data-i="resposta-rapida"></i><p class="cm-vazio__titulo">Sua equipe ainda não tem respostas rápidas</p><p class="cm-vazio__texto">Comece pelas três mais pedidas no condomínio. Você pode editar tudo depois.</p><div class="cm-vazio__acoes"><button class="cm-botao cm-botao--principal" type="button">Usar /2via, /salao e /prazo-os</button><button class="cm-botao" type="button">Criar do zero</button></div></div></div>
+
+ <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" data-q3-barra hidden>
+  <div class="cm-barra-salvar__msg" aria-live="polite"><b data-q3-barra-n></b><span data-q3-barra-quais></span></div>
+  <button class="cm-botao cm-botao--discreto" type="button" data-q3-descartar>Descartar</button>
+  <button class="cm-botao cm-botao--principal" type="button" data-q3-salvar>Salvar</button>
+ </div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título, Nova resposta; abas; busca e lista (cada resposta é um botão; a atual tem aria-current); editor: atalho, descrição, texto, variáveis, grupo, quem pode usar, anexo, Aprovar; prévia e Trocar exemplo; barra de salvar.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Ao trocar de resposta, o título do editor muda e é anunciado. Variável inserida é lida como texto. O motivo da recusa da Meta está ligado ao campo por aria-describedby e o campo tem aria-invalid.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Mais ações da resposta", "Remover Suporte ao cliente" (em cada etiqueta), "Buscar respostas".</p></section>
+  </div>
+ </div>
+</footer>
+<script>(function(){var ta=document.getElementById('rr-tx');var orig=ta.value;ta.addEventListener('input',function(){window.q3Registrar('Texto',function(){ta.value=orig},ta)});
+document.querySelectorAll('.cm-variaveis button').forEach(function(b){b.addEventListener('click',function(){var p=ta.selectionStart||ta.value.length;ta.value=ta.value.slice(0,p)+b.textContent+ta.value.slice(p);ta.focus();ta.dispatchEvent(new Event('input'))})});})();</script>
+</body>
+</html>

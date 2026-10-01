@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chamado 48213</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-reg{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;align-items:start;margin-top:16px}
+.q3-reg>div{display:flex;flex-direction:column;gap:16px;min-width:0}
+.q3-linha .cm-conversa{max-height:none;padding:14px 18px;overflow:visible}
+@media (max-width:1099px){.q3-reg{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Chamado em detalhe <small>Chamado 48213 aberto em tela cheia: cabeçalho de registro com a plaqueta, barra de etapas do chamado, linha do tempo de todos os canais e a ficha editável.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>Quando o chamado passa de uma conversa (envolve OS, fornecedor, laudo, mais de um morador), ele precisa de uma tela própria: o cabeçalho com os campos-chave, a etapa em que está, tudo o que aconteceu em ordem (mensagens, notas, OS, e-mails) e os vínculos.</p><p>A plaqueta aparece uma vez, no cabeçalho. Na linha do tempo os números são texto.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Path: Aberto, Em andamento, Aguardando, Resolvido, Fechado. Clicar numa etapa futura pede o motivo quando é "Aguardando" e a solução quando é "Resolvido".</li><li>Campos da ficha com lápis; a barra de salvar aparece com a alteração; "Salvar ▾" lembra "e próximo" (14 de 63).</li><li>"Transferir", "Mesclar" e "Abrir OS" no cabeçalho e no "⋯"; Excluir é o último item, em vermelho, e manda para a lixeira.</li><li>Responder pela caixa no pé da linha do tempo (mesmo compositor das Conversas).</li><li>J e K na trilha passam para o próximo chamado da lista de onde veio.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Zendesk e o Jira dão ao chamado uma página com a chave do protocolo no cabeçalho e a atividade em ordem; o Salesforce Service Cloud usa o Path para a etapa com o que ela pede; e o HubSpot junta e-mail, ligação e nota numa só linha do tempo filtrável.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Chamado aberto</button><button type="button" data-q3-estado="editando" aria-pressed="false">Com alteração não salva</button><button type="button" data-q3-estado="sem" aria-pressed="false">Sem permissão</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Suporte","tela":"Chamados","registro":"48213","navegar":"14 de 63","papel":"Atendimento"}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <div data-se="padrao editando">
+ <header class="cm-cabecalho-registro" style="margin-top:16px">
+  <div class="cm-cabecalho-registro__topo">
+   <span class="cm-ladrilho"><i data-i="vazamento"></i></span>
+   <div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Chamado de manutenção</span><h1 class="cm-cabecalho-registro__titulo">Vazamento no teto da garagem <span class="cm-plaqueta cm-plaqueta--g">#48213</span></h1></div>
+   <div class="cm-grupo-botoes">
+    <button class="cm-botao" type="button" data-q3-modal="modal-transferir"><i data-i="encaminhar"></i>Transferir</button>
+    <button class="cm-botao cm-botao--principal" type="button"><i data-i="responder"></i>Responder</button>
+    <div class="cm-ancora cm-ancora--direita"><button class="cm-botao cm-botao--icone" type="button" aria-label="Mais ações do chamado" aria-haspopup="menu" aria-expanded="false" data-q3-menu="m-ch"><i data-i="mais-opcoes"></i></button>
+     <div class="cm-menu cm-menu--240 cm-flutuante" id="m-ch" role="menu" hidden>
+      <a class="cm-menu__item" role="menuitem" href="21g-mesclar.html"><i data-i="juntar"></i><span>Mesclar</span><span></span></a>
+      <button class="cm-menu__item" role="menuitem" type="button"><i data-i="ordem-de-servico"></i><span>Abrir nova OS</span><span></span></button>
+      <button class="cm-menu__item" role="menuitem" type="button"><i data-i="copiar"></i><span>Copiar link</span><span></span></button>
+      <button class="cm-menu__item" role="menuitem" type="button"><i data-i="imprimir"></i><span>Imprimir</span><span></span></button>
+      <div class="cm-menu__sep"></div>
+      <button class="cm-menu__item cm-menu__item--perigo" role="menuitem" type="button" data-q3-toast="Chamado 48213 foi para a lixeira por 30 dias" data-q3-toast-acao="Desfazer"><i data-i="excluir"></i><span>Excluir</span><span></span></button>
+     </div></div>
+   </div>
+  </div>
+  <dl class="cm-destaques">
+   <div><dt>Solicitante</dt><dd>Marina Costa, síndica</dd></div>
+   <div><dt>Condomínio</dt><dd>Parque das Águas</dd></div>
+   <div><dt>Prioridade</dt><dd><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Alta</span></dd></div>
+   <div><dt>Resolução</dt><dd>até 14:30, restam 4 h 49</dd></div>
+   <div><dt>Responsável</dt><dd>Beatriz Nogueira</dd></div>
+   <div><dt>Canal</dt><dd>WhatsApp</dd></div>
+  </dl>
+ </header>
+ <div class="cm-cartao" style="padding:10px 12px;margin-top:12px">
+  <div class="cm-path"><ol aria-label="Etapas do chamado">
+   <li class="is-feito"><button type="button"><i data-i="marcar"></i>Aberto</button></li>
+   <li class="is-atual"><button type="button" aria-current="step">Em andamento, há 25 min</button></li>
+   <li><button type="button" data-q3-modal="modal-aguardar">Aguardando</button></li>
+   <li><button type="button">Resolvido</button></li>
+   <li><button type="button">Fechado</button></li></ol>
+   <button class="cm-botao" type="button">Marcar como resolvido</button></div>
+  <div class="cm-path__orientacao"><span><b>O que a etapa pede:</b> OS vinculada (feito), vaga interditada (falta), retorno à síndica a cada mudança.</span><span><b>Próximo prazo:</b> interditar até 10:00</span></div>
+ </div>
+
+ <div class="q3-reg">
+  <div>
+   <section class="cm-cartao q3-linha" aria-labelledby="t-lt">
+    <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-lt">Linha do tempo</h2>
+     <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Mostrar"><button type="button" aria-pressed="true">Tudo</button><button type="button" aria-pressed="false">Mensagens</button><button type="button" aria-pressed="false">Notas</button><button type="button" aria-pressed="false">Sistema</button></div></header>
+    <div class="cm-conversa" role="log" aria-label="Linha do tempo do chamado 48213">
+     <span class="cm-dia">Hoje</span>
+     <div class="cm-bolha cm-bolha--entrada"><span class="cm-bolha__autor">Marina Costa, WhatsApp</span>Bom dia! Tem água vazando do teto da garagem, bem em cima da vaga 37. Já está empoçando. <span class="cm-bolha__meta">09:12</span></div>
+     <div class="cm-evento"><i data-i="fone-atendimento"></i>Beatriz assumiu, 09:16</div>
+     <div class="cm-bolha cm-bolha--saida"><span class="cm-bolha__autor">Beatriz Nogueira</span>Bom dia, Marina! Já estou acionando a manutenção. <span class="cm-bolha__meta">09:17<i data-i="lida" class="cm-tique--lida" data-rotulo="Lida"></i></span></div>
+     <div class="cm-nota" role="note"><div class="cm-nota__cabeca"><i data-i="nota-interna"></i>Nota interna de Juliana Prado <span>só a equipe vê, 09:24</span></div><span class="cm-mencao">@Beatriz</span> corretiva urgente, sim. Se for junta de dilatação, pede laudo.</div>
+     <div class="cm-cartao-vinculo"><i data-i="ordem-de-servico"></i>Vinculado à <span class="cm-plaqueta">OS 482</span><span class="cm-texto-2">Hidrotec, técnico Sérgio, hoje às 11h</span><a class="cm-link" href="25b-os.html">Abrir</a></div>
+     <div class="cm-bolha cm-bolha--entrada"><span class="cm-bolha__autor">Henrique Abreu, portal (chamado 48216, mesclado)</span>A água chegou na minha vaga, a 38. Posso tirar o carro? <span class="cm-bolha__meta">09:40</span></div>
+     <div class="cm-evento"><i data-i="juntar"></i>Beatriz mesclou o chamado 48216 neste, 09:41</div>
+    </div>
+    <div class="cm-compositor"><div class="cm-compositor__caixa"><textarea aria-label="Responder" rows="1" placeholder="Responder pelo WhatsApp à Marina Costa. / para respostas rápidas"></textarea></div></div>
+   </section>
+  </div>
+  <div>
+   <section class="cm-cartao" aria-labelledby="t-det"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-det">Detalhes</h2><span class="cm-ficha__alterado" data-se="editando">1 alteração</span></header>
+    <div class="cm-cartao__corpo"><dl class="cm-ficha">
+     <div class="cm-ficha__linha"><dt>Tipo</dt><dd>Manutenção, vazamento</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar tipo"><i data-i="editar"></i></button></div>
+     <div class="cm-ficha__linha" id="l-local"><dt>Local</dt><dd>Subsolo 1, vagas 37 e 38</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar local"><i data-i="editar"></i></button></div>
+     <div class="cm-ficha__linha"><dt>Unidade</dt><dd>Bl B Ap 1204</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar unidade"><i data-i="editar"></i></button></div>
+     <div class="cm-ficha__linha"><dt>Fornecedor</dt><dd>Hidrotec Instalações</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar fornecedor"><i data-i="editar"></i></button></div>
+     <div class="cm-ficha__linha"><dt>Seguidores</dt><dd><span class="cm-avatares"><span class="cm-avatar cm-avatar--p cm-avatar--4">JP</span><span class="cm-avatar cm-avatar--p cm-avatar--1">DR</span></span>Juliana, Diego</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar seguidores"><i data-i="editar"></i></button></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Criado em</dt><dd>01/10/2026, 09:12 <span class="cm-ficha__cadeado" title="Campo do sistema"><i data-i="bloquear"></i></span></dd><span></span></div>
+    </dl></div></section>
+   <section class="cm-cartao" aria-labelledby="t-vin"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-vin">Vínculos</h2><button class="cm-botao cm-botao--p cm-botao--discreto" type="button"><i data-i="vincular"></i>Vincular</button></header>
+    <ul class="cm-atividade">
+     <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="ordem-de-servico"></i></span><div><div class="cm-atividade__titulo"><a href="25b-os.html">OS 482, corretiva</a></div><div class="cm-atividade__desc">Agendada, Hidrotec, 11h</div></div><span class="cm-atividade__quando">09:31</span></li>
+     <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="chamado"></i></span><div><div class="cm-atividade__titulo"><a href="#">Chamado 48216 (mesclado)</a></div><div class="cm-atividade__desc">Henrique Abreu, vaga 38</div></div><span class="cm-atividade__quando">09:41</span></li>
+    </ul></section>
+   <section class="cm-cartao" aria-labelledby="t-hist"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-hist">Histórico</h2></header><div class="cm-cartao__corpo">
+    <ol class="cm-auditoria"><li class="cm-auditoria__dia">Hoje</li><li><time>09:41</time><b>Beatriz</b> mesclou o 48216</li><li><time>09:31</time><b>Beatriz</b> vinculou a OS 482</li><li><time>09:20</time><b>Beatriz</b> mudou a prioridade: <del>Normal</del> para <ins>Alta</ins></li><li class="is-criacao"><time>09:12</time>Aberto pelo WhatsApp</li></ol></div></section>
+  </div>
+ </div>
+ <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" data-q3-barra hidden>
+  <div class="cm-barra-salvar__msg" aria-live="polite"><b data-q3-barra-n>1 alteração não salva</b><span data-q3-barra-quais>Local</span></div>
+  <button class="cm-botao cm-botao--discreto" type="button" data-q3-descartar>Descartar</button>
+  <div class="cm-dividido cm-ancora cm-ancora--direita cm-ancora--cima">
+   <button class="cm-botao cm-botao--principal" type="button" data-q3-salvar>Salvar <span class="cm-dividido__lembra">e próximo</span></button>
+   <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de salvar" data-q3-menu="m-salvar"><i data-i="chevron-baixo"></i></button>
+   <div class="cm-menu cm-flutuante" id="m-salvar" role="menu" hidden style="width:280px">
+    <button class="cm-menu__item cm-menu__item--sem-icone" role="menuitemradio" aria-checked="false" type="button" data-q3-lembra="e continuar"><span>Salvar e continuar</span><span class="cm-menu__atalho">Ctrl S</span></button>
+    <button class="cm-menu__item cm-menu__item--sem-icone" role="menuitemradio" aria-checked="true" type="button" data-q3-lembra="e próximo"><span>Salvar e próximo (15 de 63)</span><span class="cm-menu__atalho">Ctrl Enter</span></button>
+    <button class="cm-menu__item cm-menu__item--sem-icone" role="menuitemradio" aria-checked="false" type="button" data-q3-lembra="e voltar"><span>Salvar e voltar à lista</span><span></span></button>
+   </div></div>
+ </div>
+ </div>
+ <div data-se="sem"><div class="cm-bloqueio"><i data-i="bloquear"></i><p class="cm-vazio__titulo">Este chamado é de outra carteira</p><p class="cm-vazio__texto">O chamado 48213 é do Cond. Parque das Águas, que não está nas carteiras que você atende. A gestora pode liberar ou transferir.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button">Pedir acesso</button><a class="cm-botao cm-botao--discreto" href="21b-chamados.html">Voltar à lista</a></div></div></div>
+
+ <div class="cm-sobreposicao" id="modal-aguardar" hidden>
+  <div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="t-ag"><div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="t-ag">Aguardando o quê?<span class="cm-modal__sub">O SLA pausa enquanto o chamado espera.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+   <div class="cm-modal__corpo"><fieldset class="cm-grupo-opcoes"><legend class="cm-sr">Motivo</legend><label class="cm-radio"><input type="radio" name="ag" checked><span class="cm-radio__bola"></span><span>Cliente responder</span></label><label class="cm-radio"><input type="radio" name="ag"><span class="cm-radio__bola"></span><span>Fornecedor (OS 482)</span></label><label class="cm-radio"><input type="radio" name="ag"><span class="cm-radio__bola"></span><span>Outra equipe</span></label></fieldset></div>
+   <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q3-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-q3-fechar data-q3-toast="Chamado aguardando o fornecedor. SLA pausado.">Mover para Aguardando</button></div></div></div>
+ <div class="cm-sobreposicao" id="modal-transferir" hidden>
+  <div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="t-tr"><div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="t-tr">Transferir o chamado</h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+   <div class="cm-modal__corpo cm-pilha"><div class="cm-campo"><label class="cm-campo__rotulo" for="tr-p">Para</label><div class="cm-selecao"><select id="tr-p"><option>Fila Manutenção (Operações)</option><option>Diego Ramos</option></select><i data-i="chevron-baixo"></i></div></div><div class="cm-campo"><label class="cm-campo__rotulo" for="tr-n">Nota</label><textarea class="cm-area" id="tr-n">OS 482 agendada às 11h.</textarea></div></div>
+   <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q3-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-q3-fechar data-q3-toast="Chamado transferido para a fila Manutenção" data-q3-toast-acao="Desfazer">Transferir</button></div></div></div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Trilha com "14 de 63" (K e J); título com a plaqueta (lida como "Chamado 48213"); Transferir, Responder, "Mais ações"; etapas do Path em ordem; linha do tempo e filtro; caixa de resposta; detalhes (lápis), vínculos, histórico; barra de salvar.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Etapa atual "Passo atual: Em andamento, há 25 min". Campos-chave como lista de definição. A barra de salvar entra em região viva. O modal de Aguardando é um diálogo com o título como pergunta.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Mais ações do chamado", "Editar local" (e cada lápis), "Outras formas de salvar", "Fechar" nos modais, o cadeado "Campo do sistema".</p></section>
+  </div>
+ </div>
+</footer>
+<script>document.addEventListener('q3:estado',function(e){if(e.detail==='editando'){var l=document.getElementById('l-local');var dd=l.querySelector('dd');var orig=dd.innerHTML;dd.innerHTML='Subsolo 1, vagas 37, 38 e 39 <span class="cm-ficha__alterado">alterado</span>';l.classList.add('is-editado');window.q3Registrar('Local',function(){dd.innerHTML=orig;l.classList.remove('is-editado')},l)}});</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Renovações</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Renovações <small>CS, Contratos, Renovações. Os contratos que vencem nos próximos 120 dias, agrupados por mês, com risco, proposta e o que falta para fechar.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>Renovação perdida custa mais do que venda nova. A tela agrupa por mês de vencimento, soma o valor em jogo, mostra o risco com motivo e a etapa da negociação (sem contato, proposta enviada, em negociação, assinada). A ação de cada linha é a próxima da etapa: enviar proposta, registrar contraproposta, mandar para assinatura.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Agrupado por mês; cada grupo tem a soma em jogo e quanto já está assinado.</li><li>"Enviar proposta" abre o modelo com reajuste calculado (IGP-M de 4,26% no período) e permite desconto com aprovação acima de 5%.</li><li>Contraproposta registrada muda a etapa e o prazo; "Mandar para assinatura" gera o aditivo e acompanha as assinaturas.</li><li>"Não vai renovar" pede o motivo (lista fixa) e abre o playbook de saída.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Gainsight e o ChurnZero tratam renovação como uma fila por data com risco e motivo; o Salesforce CPQ calcula o reajuste na proposta; e o DocuSign e o Clicksign acompanham a assinatura no próprio registro. Motivo obrigatório na perda segue o Pipedrive.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Próximos 120 dias</button><button type="button" data-q3-estado="vazio" aria-pressed="false">Nenhuma renovação no período</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"CS","tela":"Renovações","papel":"CS","usuario":{"nome":"Rafael Menezes","iniciais":"RM","cargo":"Gerente de relacionamento, CS","presenca":"disponivel","tom":5}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Renovações</h1><div class="cm-cabecalho-pagina__acoes"><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Período"><button type="button" aria-pressed="false">60 dias</button><button type="button" aria-pressed="true">120 dias</button><button type="button" aria-pressed="false">Ano</button></div><button class="cm-botao" type="button"><i data-i="exportar"></i>Exportar</button></div></div>
+  <p class="cm-cabecalho-pagina__desc">9 contratos, R$ 41.230,00 por mês em jogo. 2 já assinados, 1 com aviso de saída.</p></header>
+ <div data-se="padrao">
+ <div class="cm-tabela-caixa"><table class="cm-tabela">
+  <thead><tr><th>Cliente</th><th>Vence</th><th class="cm-num">Mensalidade</th><th class="cm-num">Proposta</th><th>Risco</th><th>Etapa</th><th>Responsável</th><th><span class="cm-sr">Ação</span></th></tr></thead>
+  <tbody>
+   <tr class="cm-tabela__grupo"><td colspan="8"><button type="button" aria-expanded="true"><i data-i="chevron-baixo"></i>Outubro</button><span class="cm-tabela__grupo-soma">3 contratos, R$ 8.270,00 em jogo, nenhum assinado</span></td></tr>
+   <tr><td class="cm-tabela__principal"><a href="#">Ed. Porto Belo</a><span class="cm-tabela__sub">32 unidades</span></td><td>10/10, em 9 dias</td><td class="cm-num">R$ 1.890,00</td><td class="cm-num">R$ 1.808,00</td><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Alto: síndico cotou concorrente</span></td><td>Em negociação</td><td>Rafael M.</td><td><button class="cm-botao cm-botao--p" type="button">Registrar contraproposta</button></td></tr>
+   <tr><td class="cm-tabela__principal"><a href="#">Res. Vila Serena</a><span class="cm-tabela__sub">96 unidades</span></td><td>24/10, em 23 dias</td><td class="cm-num">R$ 4.380,00</td><td class="cm-num">—</td><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Alto: portão e NPS 4</span></td><td>Sem contato</td><td>Rafael M.</td><td><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q3-modal="modal-proposta">Enviar proposta</button></td></tr>
+   <tr><td class="cm-tabela__principal"><a href="#">Cond. Morada do Sol</a><span class="cm-tabela__sub">48 unidades</span></td><td>30/10, em 29 dias</td><td class="cm-num">R$ 2.000,00</td><td class="cm-num">R$ 2.085,20</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Baixo</span></td><td>Proposta enviada</td><td>Rafael M.</td><td><button class="cm-botao cm-botao--p" type="button">Lembrar o síndico</button></td></tr>
+   <tr class="cm-tabela__grupo"><td colspan="8"><button type="button" aria-expanded="true"><i data-i="chevron-baixo"></i>Novembro</button><span class="cm-tabela__grupo-soma">4 contratos, R$ 18.110,00 em jogo, 2 assinados</span></td></tr>
+   <tr><td class="cm-tabela__principal"><a href="#">Jardim das Acácias</a><span class="cm-tabela__sub">140 unidades</span></td><td>11/11, em 41 dias</td><td class="cm-num">R$ 6.240,00</td><td class="cm-num">—</td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Médio: 34 dias sem contato</span></td><td>Sem contato</td><td>Rafael M.</td><td><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q3-modal="modal-proposta">Enviar proposta</button></td></tr>
+   <tr><td class="cm-tabela__principal"><a href="#">Ed. Aurora</a><span class="cm-tabela__sub">60 unidades</span></td><td>15/11</td><td class="cm-num">R$ 2.700,00</td><td class="cm-num">R$ 2.815,00</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Baixo</span></td><td><span class="cm-estado cm-estado--sucesso"><i data-i="assinatura"></i>Assinado em 28/09</span></td><td>Rafael M.</td><td></td></tr>
+   <tr><td class="cm-tabela__principal"><a href="#">Cond. Bela Vista</a><span class="cm-tabela__sub">210 unidades</span></td><td>20/11</td><td class="cm-num">R$ 7.420,00</td><td class="cm-num">R$ 7.736,00</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Baixo</span></td><td><span class="cm-estado cm-estado--sucesso"><i data-i="assinatura"></i>Assinado em 30/09</span></td><td>Rafael M.</td><td></td></tr>
+   <tr><td class="cm-tabela__principal"><a href="#">Ed. Ilha Grande</a><span class="cm-tabela__sub">24 unidades</span></td><td>28/11</td><td class="cm-num">R$ 1.750,00</td><td class="cm-num">—</td><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Saída avisada: vai para autogestão</span></td><td>Não vai renovar</td><td>Rafael M.</td><td><a class="cm-botao cm-botao--p" href="22e-playbooks.html">Playbook de saída</a></td></tr>
+   <tr class="cm-tabela__grupo"><td colspan="8"><button type="button" aria-expanded="false"><i data-i="chevron-direita"></i>Dezembro e janeiro</button><span class="cm-tabela__grupo-soma">2 contratos, R$ 14.850,00 em jogo</span></td></tr>
+  </tbody></table></div>
+ </div>
+ <div data-se="vazio"><div class="cm-vazio"><i data-i="calendario"></i><p class="cm-vazio__titulo">Nenhum contrato vence nos próximos 60 dias</p><p class="cm-vazio__texto">O próximo é do Cond. Parque das Águas, em 14/01/2027. Aumente o período para 120 dias ou para o ano.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button">Ver 120 dias</button></div></div></div>
+
+ <div class="cm-sobreposicao" id="modal-proposta" hidden><div class="cm-modal cm-modal--g" role="dialog" aria-modal="true" aria-labelledby="t-pr"><div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="t-pr">Proposta de renovação: Res. Vila Serena<span class="cm-modal__sub">Contrato CT-2023-0341, vence em 24/10/2026.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+  <div class="cm-modal__corpo cm-pilha">
+   <table class="cm-tabela cm-tabela--simples"><tbody><tr><td>Mensalidade atual</td><td class="cm-num">R$ 4.380,00</td></tr><tr><td>Reajuste IGP-M de 10/2025 a 09/2026</td><td class="cm-num">+ 4,26%</td></tr><tr><td>Mensalidade reajustada</td><td class="cm-num">R$ 4.566,59</td></tr></tbody></table>
+   <div class="cm-linha" style="gap:16px;align-items:flex-start"><div class="cm-campo" style="width:200px"><label class="cm-campo__rotulo" for="desc">Desconto</label><div class="cm-entrada cm-entrada--porcentagem"><input id="desc" inputmode="decimal" value="4" aria-describedby="desc-a"><span class="cm-entrada__sufixo">%</span></div><p class="cm-campo__ajuda" id="desc-a">Acima de 5% vai para aprovação da diretoria.</p></div>
+    <div class="cm-campo"><span class="cm-campo__rotulo">Proposta</span><span class="cm-t-registro">R$ 4.383,93</span><p class="cm-campo__antes">Antes: R$ 4.380,00 por mês</p></div></div>
+   <div class="cm-campo"><label class="cm-campo__rotulo" for="msg">Mensagem ao síndico</label><textarea class="cm-area" id="msg">Osvaldo, segue a proposta de renovação. Mantivemos praticamente o valor atual e incluímos a revisão mensal do portão com a Portec.</textarea></div>
+  </div>
+  <div class="cm-modal__pe"><span class="cm-modal__pe-esq">Vai por e-mail e WhatsApp, com link de aceite.</span><button class="cm-botao" type="button" data-q3-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-q3-fechar data-q3-toast="Proposta enviada ao Osvaldo Brandão">Enviar proposta</button></div></div></div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título, período, Exportar; tabela agrupada (cabeçalho do grupo é botão de abrir e fechar, depois as linhas com a ação de cada uma); modal: campos em ordem e Enviar.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Grupo lido com a soma ("Outubro, 3 contratos, R$ 8.270,00 em jogo, nenhum assinado"). Risco com motivo em palavra. O desconto acima de 5% anuncia que vai para aprovação.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Fechar" no modal.</p></section>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>

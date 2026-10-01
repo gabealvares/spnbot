@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Início no celular</title>
+<meta name="description" content="Sistema interno no celular: Início com Para você, equipe com presença, mural com reconhecimento e comunicado com ciência.">
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p5.css">
+<script src="../sistema/marca.js"></script>
+<style>
+  .c-pagina{padding:16px 16px 24px;max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+  .c-quem{display:flex;gap:12px;align-items:center}
+  .c-quem b{display:block;font:600 17px/22px var(--fonte-ui)}
+  .c-equipe{display:flex;gap:14px;overflow-x:auto;padding:2px 0 4px}
+  .c-equipe span.c-p{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;min-width:56px;text-align:center}
+</style>
+</head>
+<body data-moldura='{"modulo":"inicio","secao":"Mural","papel":"gerente-cs"}'>
+<main id="conteudo" class="c-pagina">
+  <div class="c-quem"><span class="lc-av lc-av--48 lc-av--c3">LA<span class="lc-presenca lc-presenca--on"></span></span><div><b>Letícia Araújo</b><span class="lc-legenda">Coordenadora de Relacionamento, disponível</span></div></div>
+  <section class="lc-caixa" aria-labelledby="pv"><div class="lc-caixa__cab"><h2 id="pv">Para você</h2><span class="lc-contagem">5</span></div><div class="lc-caixa__corpo"><ul class="lc-pv">
+    <li class="lc-pv__item"><span class="lc-pv__o-que"><b>Rafael Lima</b> pede aprovação de reembolso, R$ 186,40</span><span class="lc-pv__prazo lc-pv__prazo--hoje">Hoje</span><a class="lc-btn lc-btn--p lc-pv__acao" href="c-aprovar.html">Revisar</a></li>
+    <li class="lc-pv__item"><span class="lc-pv__o-que"><b>Cond. Parque das Águas</b> esfriando há 12 dias</span><span class="lc-pv__prazo lc-pv__prazo--atrasado">Renovação em 15/11</span><a class="lc-btn lc-btn--p lc-pv__acao" href="c-cs.html">Registrar</a></li>
+    <li class="lc-pv__item"><span class="lc-pv__o-que"><b>3 conversas</b> vencem o prazo até 11h</span><span class="lc-pv__prazo">Suporte</span><a class="lc-btn lc-btn--p lc-pv__acao" href="c-conversas.html">Abrir</a></li>
+  </ul></div><div class="lc-caixa__pe"><a href="#">Ver os 5</a></div></section>
+  <section aria-labelledby="eq"><div class="lc-linha lc-linha--entre" style="margin-bottom:8px"><h2 id="eq" class="lc-t-subsecao">Relacionamento, 9 disponíveis</h2><a class="lc-pequeno" href="#">Equipe</a></div>
+    <div class="c-equipe"><span class="c-p"><span class="lc-av lc-av--40 lc-av--c7">RL<span class="lc-presenca lc-presenca--on"></span></span>Rafael</span><span class="c-p"><span class="lc-av lc-av--40 lc-av--c4">JR<span class="lc-presenca lc-presenca--reuniao"></span></span>Juliana</span><span class="c-p"><span class="lc-av lc-av--40 lc-av--c2">PM<span class="lc-presenca lc-presenca--on"></span></span>Paula</span><span class="c-p"><span class="lc-av lc-av--40 lc-av--c6">DS<span class="lc-presenca lc-presenca--ausente"></span></span>Diego</span><span class="c-p"><span class="lc-av lc-av--40 lc-av--c8">CA<span class="lc-presenca lc-presenca--off"></span></span>Camila</span></div></section>
+  <article class="lc-post"><div class="lc-post__cab"><span class="lc-av lc-av--40 lc-av--c2">PM</span><div class="lc-post__quem"><b>Paula Mendes</b> reconheceu <b>Rafael Lima</b><span class="lc-post__meta">Há 2 h</span></div></div>
+    <div class="lc-post__corpo"><div class="lc-reconhece"><i data-i="reconhecimento"></i><span>Valor: <span class="lc-reconhece__valor">Cliente no centro</span></span></div><p>Resolveu o vazamento do bloco B com a síndica em 40 minutos, num sábado.</p></div>
+    <div class="lc-reacoes-resumo"><span class="lc-reacoes-resumo__pilha"><span><i data-i="parabens"></i></span><span><i data-i="curtir"></i></span></span>12, Juliana, Diego e mais 10</div>
+    <div class="lc-post__acoes"><button type="button" aria-pressed="true"><i data-i="parabens"></i>Parabéns</button><button type="button"><i data-i="comentario"></i>Comentar</button></div></article>
+  <article class="lc-post"><div class="lc-post__cab"><span class="lc-ladrilho lc-ladrilho--marca" data-marca-sigla>A</span><div class="lc-post__quem"><b>Diretoria</b>, comunicado<span class="lc-post__meta">Ontem, 17:30</span></div></div>
+    <div class="lc-post__corpo"><h2 class="lc-post__titulo">Plantão do feriado de 12/10</h2><p>Suporte com 2 pessoas das 8h às 14h. Escala no Cultura.</p></div>
+    <div class="lc-ciencia"><button class="lc-btn" type="button" data-ciente="Letícia Araújo"><i data-i="confirmar"></i>Li e estou ciente</button><span class="lc-ciencia__conta">41 de 58</span></div></article>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p5-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p5.js"></script>
+</body>
+</html>

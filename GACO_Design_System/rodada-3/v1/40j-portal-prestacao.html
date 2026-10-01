@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal, prestação de contas</title>
+<meta name="description" content="Portal do conselheiro e do síndico: prestação de contas mensal com balancete, despesas contra o orçamento, lançamentos com comprovante, pergunta por lançamento e parecer do conselho com assinatura.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .p-pc{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:24px;align-items:start}
+  @media (max-width:1023px){.p-pc{grid-template-columns:minmax(0,1fr)}}
+  .p-pc .lc-kpis{margin-bottom:0}
+</style>
+</head>
+<body data-moldura='{"contexto":"portal","secao":"Prestação de contas","papel":"conselheiro","cliente":{"nome":"Administradora Alpha","sigla":"A"},"unidade":"Conselheiro, Cond. Parque das Águas"}'>
+<main id="conteudo" class="lc-pagina">
+<section class="lc-ficha-tela" aria-label="Sobre a tela Prestação de contas">
+  <div class="lc-ficha-tela__nome"><b>Prestação de contas e parecer do conselho</b><span>Papel conselheiro (Antônio Ribeiro). O síndico vê a mesma tela com "Enviar ao conselho" no lugar do parecer.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>O conselheiro confere o mês sem planilha: o que entrou, o que saiu contra o orçamento aprovado, cada lançamento com comprovante, e assina o parecer com registro.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Prestação de contas, mês mais recente aberto (seletor de mês no topo).</li><li>Resumo do mês (aqui os números cabem: é relatório) e despesas por categoria contra o orçamento.</li><li>Lançamentos com o comprovante a um clique; "Perguntar" abre comentário ligado ao lançamento, que a administradora responde.</li><li>Parecer à direita: Aprovar, Aprovar com ressalvas ou Reprovar, texto e assinatura com código.</li><li>Assinado: carimbo "Aprovado" com nome e data, e o balancete vai para Documentos dos moradores.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o Conta Azul e o Omie mostram realizado contra previsto por categoria; o Google Docs liga um comentário a um trecho, aqui a um lançamento; e o Clicksign e o gov.br assinam com código, o que dá validade ao parecer previsto no art. 1.356 do Código Civil.</p></div>
+</section>
+<div class="lc-portal-cab"><div class="lc-portal-cab__txt"><h1>Prestação de contas</h1><p>Cond. Parque das Águas. Enviada pela síndica Marina Costa em 30/09/2026, 18:40.</p></div><div class="lc-grupo-btn"><label class="lc-sr" for="mes">Mês</label><select id="mes" class="lc-selecao" style="width:200px"><option>Setembro de 2026</option><option>Agosto de 2026</option><option>Julho de 2026</option></select><button class="lc-btn" type="button" data-toast="Balancete baixado."><i data-i="baixar"></i>Balancete em PDF</button></div></div>
+<div class="p-pc">
+  <div class="lc-pilha">
+    <div class="lc-kpis">
+      <div class="lc-kpi"><span class="lc-kpi__rotulo">Receitas</span><span class="lc-kpi__valor">R$ 132.418,20</span><span class="lc-kpi__var lc-kpi__var--pos">96,1% do previsto</span></div>
+      <div class="lc-kpi"><span class="lc-kpi__rotulo">Despesas</span><span class="lc-kpi__valor">R$ 127.903,55</span><span class="lc-kpi__var">92,8% do orçamento</span></div>
+      <div class="lc-kpi"><span class="lc-kpi__rotulo">Inadimplência</span><span class="lc-kpi__valor">4,2%</span><span class="lc-kpi__var lc-kpi__var--neg">5 unidades, R$ 6.421,85</span></div>
+      <div class="lc-kpi"><span class="lc-kpi__rotulo">Saldo em 30/09</span><span class="lc-kpi__valor">R$ 214.770,31</span><span class="lc-kpi__var">Fundo de reserva R$ 162.004,10</span></div>
+    </div>
+    <section class="lc-caixa" aria-labelledby="dc-t"><div class="lc-caixa__cab"><h2 id="dc-t">Despesas contra o orçamento aprovado</h2></div>
+      <div class="lc-tabela-cont" style="border:0"><table class="lc-tabela"><caption class="lc-sr">Despesas por categoria</caption><thead><tr><th scope="col">Categoria</th><th scope="col" class="lc-num">Orçado</th><th scope="col" class="lc-num">Realizado</th><th scope="col">Uso</th></tr></thead><tbody>
+        <tr><td>Folha e encargos (portaria, limpeza)</td><td class="lc-num">R$ 68.400,00</td><td class="lc-num">R$ 67.912,40</td><td><span class="lc-progresso" style="--_v:99%"></span></td></tr>
+        <tr><td>Consumo (água, energia, gás)</td><td class="lc-num">R$ 31.200,00</td><td class="lc-num">R$ 29.118,72</td><td><span class="lc-progresso" style="--_v:93%"></span></td></tr>
+        <tr><td>Manutenção preventiva</td><td class="lc-num">R$ 12.800,00</td><td class="lc-num">R$ 11.940,00</td><td><span class="lc-progresso" style="--_v:93%"></span></td></tr>
+        <tr><td>Manutenção corretiva</td><td class="lc-num">R$ 4.000,00</td><td class="lc-num">R$ 6.582,43</td><td><span class="lc-progresso lc-progresso--perigo" style="--_v:100%"></span><span class="lc-legenda lc-valor-neg">165%, acima do orçado</span></td></tr>
+        <tr><td>Administração e honorários</td><td class="lc-num">R$ 9.850,00</td><td class="lc-num">R$ 9.850,00</td><td><span class="lc-progresso" style="--_v:100%"></span></td></tr>
+        <tr><td>Bancárias e diversas</td><td class="lc-num">R$ 3.590,00</td><td class="lc-num">R$ 2.500,00</td><td><span class="lc-progresso" style="--_v:70%"></span></td></tr>
+      </tbody><tfoot><tr><td>Total</td><td class="lc-num">R$ 129.840,00</td><td class="lc-num"><span class="lc-total">R$ 127.903,55</span></td><td></td></tr></tfoot></table></div></section>
+    <section class="lc-caixa" aria-labelledby="lc-t"><div class="lc-caixa__cab"><h2 id="lc-t">Lançamentos de manutenção corretiva</h2><span class="lc-aux">7 lançamentos</span></div>
+      <div class="lc-tabela-cont" style="border:0"><table class="lc-tabela"><caption class="lc-sr">Lançamentos</caption><thead><tr><th scope="col">Data</th><th scope="col">Descrição</th><th scope="col" class="lc-num">Valor</th><th scope="col"><span class="lc-sr">Ações</span></th></tr></thead><tbody>
+        <tr><td>04/09</td><td><b>Troca do motor do portão da garagem</b><span class="lc-tabela__sub">PPA Portões, NF 22.917</span></td><td class="lc-num">R$ 2.980,00</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--p lc-btn--discreto" type="button">Comprovante</button><button class="lc-btn lc-btn--p" type="button" data-abrir="#perg">Perguntar</button></td></tr>
+        <tr><td>12/09</td><td><b>Desentupimento, coluna do bloco A</b><span class="lc-tabela__sub">Desentupidora Lider, NF 8.104</span></td><td class="lc-num">R$ 780,00</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--p lc-btn--discreto" type="button">Comprovante</button><button class="lc-btn lc-btn--p" type="button" data-abrir="#perg">Perguntar</button></td></tr>
+        <tr><td>21/09</td><td><b>Vidro da portaria quebrado</b><span class="lc-tabela__sub">Vidraçaria Paulista, NF 1.552. Ressarcir do apto 702?</span></td><td class="lc-num">R$ 1.240,00</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--p lc-btn--discreto" type="button">Comprovante</button><span class="lc-estado lc-estado--info">1 pergunta</span></td></tr>
+      </tbody></table></div>
+      <div class="lc-caixa__corpo" id="perg" hidden data-fechavel style="padding-top:12px;border-top:var(--borda-1)"><div class="lc-comentario" style="border:0;padding:0"><span class="lc-av lc-av--32 lc-av--c5">AR</span><div class="lc-cresce"><label class="lc-rotulo" for="pq">Pergunta sobre "Troca do motor do portão"</label><textarea id="pq" class="lc-area-texto" rows="2">O motor tinha garantia? Foi trocado em 2024.</textarea><div class="lc-grupo-btn" style="margin-top:8px"><button class="lc-btn" type="button" data-fechar-alvo="#perg">Cancelar</button><button class="lc-btn lc-btn--secundario" type="button" data-fechar-alvo="#perg" data-toast="Pergunta enviada à Administradora Alpha.">Enviar pergunta</button></div></div></div></div>
+      <div class="lc-comentario"><span class="lc-av lc-av--32 lc-av--c4">JR</span><div class="lc-comentario__bolha"><b>Juliana Reis, Administradora Alpha</b>, sobre o vidro da portaria: o apto 702 reconheceu o dano; a cobrança entra no boleto de outubro.<span class="lc-legenda" style="display:block">Ontem, 17:22</span></div></div>
+    </section>
+  </div>
+  <aside class="lc-pilha" aria-label="Parecer do conselho">
+    <section class="lc-caixa lc-caixa--contorno" aria-labelledby="par-t"><div class="lc-caixa__cab"><h2 id="par-t">Seu parecer</h2><span class="lc-aux">Prazo 10/10</span></div><div class="lc-caixa__corpo lc-pilha--p" style="display:flex;flex-direction:column;gap:12px">
+      <fieldset class="lc-grupo-opcoes"><legend class="lc-sr">Parecer</legend>
+        <label class="lc-radio"><input type="radio" name="p"><span class="lc-radio__bola"></span>Aprovar</label>
+        <label class="lc-radio"><input type="radio" name="p" checked><span class="lc-radio__bola"></span>Aprovar com ressalvas</label>
+        <label class="lc-radio"><input type="radio" name="p"><span class="lc-radio__bola"></span>Reprovar</label></fieldset>
+      <div class="lc-campo"><label class="lc-rotulo" for="res">Ressalvas</label><textarea id="res" class="lc-area-texto" rows="4">Manutenção corretiva 65% acima do orçado. Pedimos à administradora 3 orçamentos para reparos acima de R$ 1.500,00.</textarea></div>
+      <div class="lc-campo"><span class="lc-rotulo" id="cod-r">Assinar com o código enviado ao seu celular</span><div class="lc-codigo6" role="group" aria-labelledby="cod-r"><input inputmode="numeric" maxlength="1" aria-label="Dígito 1"><input inputmode="numeric" maxlength="1" aria-label="Dígito 2"><input inputmode="numeric" maxlength="1" aria-label="Dígito 3"><span>-</span><input inputmode="numeric" maxlength="1" aria-label="Dígito 4"><input inputmode="numeric" maxlength="1" aria-label="Dígito 5"><input inputmode="numeric" maxlength="1" aria-label="Dígito 6"></div></div>
+      <button class="lc-btn lc-btn--principal" type="button" data-toast="Parecer assinado e enviado à síndica.">Assinar parecer</button></div></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Conselho fiscal</h2></div><ul class="lc-lista">
+      <li><span class="lc-av lc-av--32 lc-av--c6">CN</span><span class="lc-cresce"><b>Cláudia Nunes</b><span class="lc-lista__sub">Conselheira</span></span><span class="lc-carimbo lc-carimbo--aprovado">Aprovado<small>30/09 21:10</small></span></li>
+      <li><span class="lc-av lc-av--32 lc-av--c5">AR</span><span class="lc-cresce"><b>Antônio Ribeiro</b><span class="lc-lista__sub">Você</span></span><span class="lc-estado lc-estado--aviso">Pendente</span></li>
+      <li><span class="lc-av lc-av--32 lc-av--c7">PT</span><span class="lc-cresce"><b>Paulo Teixeira</b><span class="lc-lista__sub">Conselheiro</span></span><span class="lc-estado lc-estado--aviso">Pendente</span></li></ul></section>
+  </aside>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Mês, Balancete em PDF, tabelas, Comprovante e Perguntar por linha, parecer (rádios), ressalvas, código, Assinar.</p></div><div><h3>O que é anunciado</h3><p>Categoria acima do orçado: "165%, acima do orçado" em texto, não só a barra vermelha. Ao assinar, carimbo "Aprovado com ressalvas, Antônio Ribeiro" em <code>role="status"</code>.</p></div><div><h3>Nome do que é só ícone</h3><p>Barras de uso são decorativas; o realizado está na coluna ao lado.</p></div></div>
+<div class="lc-variacao">Visão do síndico depois dos pareceres</div>
+<div class="lc-quadro-tela" style="padding:16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><span class="lc-carimbo lc-carimbo--aprovado lc-carimbo--g">Aprovado com ressalvas<small>Conselho fiscal, 3 de 3, 02/10/26</small></span><p class="lc-pequeno lc-cor-2" style="flex:1;min-width:240px">O balancete de setembro foi publicado em Documentos para os 120 condôminos, com o parecer anexo.</p><a class="lc-btn" href="40f-portal-comunicados.html#documentos">Ver em Documentos</a></div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-contexto="portal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal: Comunicados e documentos</title>
+<script>window.CM_LINKS={"Início": "40-portal.html", "Chamados": "40b-portal-chamados.html", "Boletos": "40c-portal-boletos.html", "Reservas": "40d-portal-reservas.html", "Assembleias": "40e-portal-assembleias.html", "Comunicados": "40f-portal-comunicados.html", "Documentos": "40f-portal-comunicados.html#documentos", "Minha unidade": "40h-portal-perfil.html", "Moradores e veículos": "40h-portal-perfil.html#moradores", "Meu perfil": "40h-portal-perfil.html", "Encomendas": "40i-portal-portaria.html#encomendas", "Visitantes": "40i-portal-portaria.html"}</script>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q5.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q5.js" defer></script>
+<style>
+
+.portal{max-width:1200px;margin:0 auto;padding:8px 24px 72px}
+.portal-grade{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.portal-estreito{max-width:var(--cm-largura-portal)}
+.portal-cabeca{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;padding:20px 0 14px}
+.portal-cabeca h1{font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em;margin:0}
+.portal-cabeca p{color:var(--cm-texto-2);margin-top:2px}
+.portal-cabeca .cm-empurra{display:flex;gap:8px;flex-wrap:wrap}
+.cm-tabela--simples td:not(.cm-num){white-space:normal}
+.sec-t{font-size:17px;line-height:24px;font-weight:700;margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+.sec-t .cm-link{margin-left:auto;font-size:14px}
+@media (max-width:899px){ .portal-grade{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:599px){ .portal{padding:4px 16px 56px} .portal-cabeca h1{font-size:20px;line-height:26px} .portal-cabeca .cm-empurra{width:100%} }
+
+.com-grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px;align-items:start}
+.leitura{background:var(--cm-camada-1);border:1px solid var(--cm-filete);padding:20px 24px}
+.leitura h2{font-size:22px;line-height:28px;font-weight:700;letter-spacing:-.01em;margin:4px 0 6px}
+.leitura .cm-leitura p{line-height:23px}
+.pastas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.pasta{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--cm-filete);background:var(--cm-camada-1);text-align:left;width:100%}
+.pasta[aria-pressed="true"]{border:2px solid var(--cm-texto-1);padding:11px}
+.pasta b{display:block;font-size:14.5px}.pasta small{color:var(--cm-texto-2);font-size:12.5px}
+@media (max-width:899px){ .com-grade{grid-template-columns:minmax(0,1fr)} .pastas{grid-template-columns:repeat(2,minmax(0,1fr))} .leitura{padding:16px} }
+
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"contexto": "portal", "tela": "Comunicados", "unidade": "Bl B Ap 1204", "sino": 3}'></div>
+<main id="conteudo">
+<div class="portal">
+<details class="cm-anotacao" open>
+<summary><i data-i="informacao"></i>Sobre esta tela: Comunicados com ciência e documentos</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>O que esta tela resolve</h3><p>O morador lê o aviso que muda a rotina dele e confirma a leitura em um toque; a confirmação vira registro com data e hora. Os documentos ficam em quatro pastas que todo condomínio tem.</p></div>
+<div><h3>Fluxo</h3><ol><li>Comunicados no topo; os que pedem ciência ficam primeiro, com triângulo e palavra.</li><li>Clique na linha abre a leitura ao lado (no celular, abaixo).</li><li>"Li e estou ciente" troca o botão pela confirmação verde com a hora.</li><li>Documentos: pasta, depois o arquivo; o PDF abre em nova aba.</li></ol></div>
+<div><h3>Resolvemos fazer assim porque</h3><p>o Teams e o Workplace usam "confirmar leitura" em comunicado, o Slack destaca o não lido com um ponto e o Google Drive organiza por pastas fixas. Enviamos para aprovação.</p></div>
+</div></details>
+<section class="cm-tela" id="comunicados" aria-labelledby="comunicados-t">
+<h2 class="cm-tela__titulo" id="comunicados-t">Comunicados <small>Tela 1 de 2, lista e leitura com ciência</small></h2>
+<div class="portal-cabeca"><div><h1>Comunicados</h1><p>Da administração e da síndica. Os que pedem ciência ficam no topo até você confirmar.</p></div></div>
+<div class="com-grade"><div>
+<div class="cm-filtros"><div class="cm-entrada cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar comunicados" placeholder="Buscar"></div><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Mostrar"><button type="button" aria-pressed="true">Todos</button><button type="button" aria-pressed="false">Pedem ciência</button></div></div>
+<div class="cm-lista-linhas" style="margin-top:10px">
+ <a class="cm-linha-lista is-nao-lida" href="#leitura" aria-current="true"><span class="cm-ladrilho"><i data-i="garagem"></i></span><span><span class="cm-linha-lista__titulo">Garagem do subsolo 1 interditada na terça, 06/10</span><span class="cm-linha-lista__sub">Administração, ontem, 16:05</span><span class="cm-estado cm-estado--aviso" style="margin-top:4px"><i data-i="atencao"></i>Atenção: pede ciência</span></span><span></span><i data-i="chevron-direita"></i></a>
+ <a class="cm-linha-lista" href="#leitura"><span class="cm-ladrilho"><i data-i="extintor"></i></span><span><span class="cm-linha-lista__titulo">Vistoria anual dos extintores em 08 e 09/10</span><span class="cm-linha-lista__sub">Administração, ontem, 16:20</span></span><span></span><i data-i="chevron-direita"></i></a>
+ <a class="cm-linha-lista" href="#leitura"><span class="cm-ladrilho"><i data-i="agua"></i></span><span><span class="cm-linha-lista__titulo">Limpeza das caixas d'água: sem água das 9h às 15h, 22/09</span><span class="cm-linha-lista__sub">Síndica, 15/09</span><span class="cm-estado cm-estado--sucesso" style="margin-top:4px"><i data-i="sucesso"></i>Você confirmou em 15/09</span></span><span></span><i data-i="chevron-direita"></i></a>
+ <a class="cm-linha-lista" href="#leitura"><span class="cm-ladrilho"><i data-i="regimento"></i></span><span><span class="cm-linha-lista__titulo">Novo horário da academia: 6h às 23h</span><span class="cm-linha-lista__sub">Síndica, 02/09</span></span><span></span><i data-i="chevron-direita"></i></a>
+</div></div>
+<article class="leitura" id="leitura" aria-labelledby="lt">
+ <div class="cm-pessoa"><span class="cm-avatar cm-avatar--m cm-avatar--empresa" data-marca-inicial>A</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Administração do Parque das Águas</span><span class="cm-pessoa__sub">Para os Blocos A, B e C, ontem às 16:05</span></span></div>
+ <h2 id="lt" style="margin-top:14px">Garagem do subsolo 1 interditada na terça, 06/10</h2>
+ <div class="cm-leitura"><p>Na terça-feira, 06/10, a Hidrotec Instalações faz a vedação das juntas de dilatação do teto do subsolo 1, das 8h às 17h.</p><p>Os carros do subsolo 1 precisam sair até as 7h30. Durante o dia, use as vagas de visitante do térreo e o subsolo 2, que fica liberado para todos.</p><p>Quem não tirar o carro a tempo será chamado pelo interfone. O condomínio não move veículos de moradores.</p></div>
+ <div class="cm-anexos" style="margin-top:12px"><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="pdf"></i></span><span><span class="cm-anexo__nome">mapa-vagas-provisorias.pdf</span><span class="cm-anexo__meta">380 KB</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Baixar mapa-vagas-provisorias.pdf"><i data-i="baixar"></i></button></div></div>
+ <div class="cm-ciencia" id="ciencia"><span class="cm-ciencia__texto">A administração pede que cada unidade confirme a leitura até 05/10. 214 de 312 unidades já confirmaram.</span><button class="cm-botao cm-botao--principal" type="button" id="btn-ciencia">Li e estou ciente</button></div>
+</article></div>
+</section>
+<section class="cm-tela" id="documentos" aria-labelledby="doc-t"><h2 class="cm-tela__titulo" id="doc-t">Documentos <small>Tela 2 de 2</small></h2><div class="portal-cabeca"><div><h1>Documentos</h1><p>Tudo o que o condomínio publicou para os moradores.</p></div><div class="cm-empurra"><div class="cm-entrada cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar documentos" placeholder="Buscar em todos"></div></div></div>
+<div class="pastas" role="group" aria-label="Pastas">
+<button class="pasta" type="button" aria-pressed="true"><i data-i="pasta" class="cm-icone--24"></i><span><b>Prestação de contas</b><small>24 balancetes</small></span></button>
+<button class="pasta" type="button" aria-pressed="false"><i data-i="pasta" class="cm-icone--24"></i><span><b>Atas e editais</b><small>11 documentos</small></span></button>
+<button class="pasta" type="button" aria-pressed="false"><i data-i="pasta" class="cm-icone--24"></i><span><b>Convenção e regimento</b><small>3 documentos</small></span></button>
+<button class="pasta" type="button" aria-pressed="false"><i data-i="pasta" class="cm-icone--24"></i><span><b>Seguro, AVCB e laudos</b><small>7 documentos</small></span></button>
+</div>
+<div class="cm-lista-linhas" style="margin-top:12px">
+<a class="cm-linha-lista" href="61-documentos-gerados.html#balancete"><span class="cm-ladrilho"><i data-i="pdf"></i></span><span><span class="cm-linha-lista__titulo">Balancete de agosto de 2026</span><span class="cm-linha-lista__sub">Publicado em 25/09 com parecer do conselho fiscal</span></span><span class="cm-linha-lista__meta">PDF, 6 páginas</span><i data-i="chevron-direita"></i></a>
+<a class="cm-linha-lista" href="61-documentos-gerados.html#balancete"><span class="cm-ladrilho"><i data-i="pdf"></i></span><span><span class="cm-linha-lista__titulo">Balancete de julho de 2026</span><span class="cm-linha-lista__sub">Publicado em 26/08</span></span><span class="cm-linha-lista__meta">PDF, 6 páginas</span><i data-i="chevron-direita"></i></a>
+<a class="cm-linha-lista" href="#"><span class="cm-ladrilho"><i data-i="planilha"></i></span><span><span class="cm-linha-lista__titulo">Previsão orçamentária de 2026</span><span class="cm-linha-lista__sub">Aprovada em 26/03</span></span><span class="cm-linha-lista__meta">XLSX, 48 KB</span><i data-i="chevron-direita"></i></a>
+</div></section>
+<details class="cm-anotacao cm-anotacao--a11y">
+<summary><i data-i="teclado"></i>Acessibilidade desta tela</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>Ordem de foco</h3><ol><li>Busca, filtro Todos e Pedem ciência</li><li>Linhas da lista</li><li>Leitura: anexo, Li e estou ciente</li><li>Pastas, arquivos</li></ol></div>
+<div><h3>O que é anunciado</h3><ul><li>Ponto azul de não lido tem texto oculto pela linha (aria-current na aberta)</li><li>"Ciente às 09:14" substitui o botão e é anunciado</li></ul></div>
+<div><h3>Nome do que é só ícone</h3><ul><li>Baixar: "Baixar mapa-vagas-provisorias.pdf"</li></ul></div>
+</div></details>
+</div>
+</main>
+<script>document.getElementById('btn-ciencia').addEventListener('click',function(){var c=document.getElementById('ciencia');c.classList.add('is-confirmada');c.innerHTML='<span class="cm-ciencia__texto"><i data-i="sucesso"></i> Ciente em 01/10 às 09:14. O comprovante fica no histórico da unidade.</span>';q5Toast('Ciência registrada.','sucesso')});
+document.querySelectorAll('.pasta').forEach(function(a){a.addEventListener('click',function(){document.querySelectorAll('.pasta').forEach(function(x){x.setAttribute('aria-pressed',String(x===a))})})});</script>
+</body>
+</html>

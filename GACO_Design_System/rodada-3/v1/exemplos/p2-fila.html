@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conciliação, Financeiro</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+<style>
+.p2-fila-tela{display:flex;flex-direction:column;height:100%;min-height:0}
+.p2-fila-topo{flex:none;padding:14px var(--grade-margem) 0;background:var(--sup-1);border-bottom:var(--borda-1)}
+.p2-fila-topo .lc-cab-pagina{padding:0 0 8px}
+.p2-fila-topo .lc-abas{border-bottom:0}
+.p2-fila-tela>.lc-modelo-fila{flex:1}
+.p2-valor{font-weight:600;font-variant-numeric:var(--num);white-space:nowrap}
+.p2-par{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);gap:12px;align-items:stretch;margin:16px 0}
+.p2-par>.lc-caixa{padding:14px 16px}
+.p2-par__seta{display:flex;align-items:center;justify-content:center;color:var(--texto-3)}
+.p2-item-corpo{padding:20px var(--grade-margem)}
+.p2-sug{border-left:var(--borda-marcador) solid var(--sucesso-ponto)}
+@media (max-width:1023px){.p2-par{grid-template-columns:1fr}.p2-par__seta{transform:rotate(90deg);height:24px}}
+@media (max-width:639px){.p2-fila-topo{padding:10px 16px 0}.p2-item-corpo{padding:16px}}
+</style>
+</head>
+<body data-moldura='{"modulo":"financeiro","secao":"Conciliação","papel":"financeiro","fixa":true}'>
+<main id="conteudo" class="p2-fila-tela">
+  <div class="p2-fila-topo">
+    <div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Conciliação</h1><p class="lc-cab-pagina__desc" id="progresso-txt">18 de 58 lançamentos conciliados hoje. Confirme a sugestão com Enter; o próximo abre sozinho.</p></div>
+      <div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="enviar-arquivo"></i>Importar extrato (OFX)</button></div></div>
+    <div class="lc-progresso lc-progresso--sucesso" id="progresso" style="--_v:31%;margin-bottom:6px" role="progressbar" aria-label="Conciliados" aria-valuemin="0" aria-valuemax="58" aria-valuenow="18"></div>
+    <div class="lc-abas lc-abas--p" role="tablist" aria-label="Conta bancária"><button role="tab" type="button" aria-selected="true">Itaú, ag. 0412 <span class="lc-contagem" id="n-itau">31</span></button><button role="tab" type="button" aria-selected="false">Bradesco, ag. 2290 <span class="lc-contagem">20</span></button><button role="tab" type="button" aria-selected="false">Caixa, ag. 1803 <span class="lc-contagem">7</span></button></div>
+  </div>
+  <div class="lc-modelo-fila" id="fila">
+    <section class="lc-modelo-fila__lista" aria-label="Lançamentos do extrato para revisar">
+      <div class="lc-modelo-fila__cab lc-linha lc-linha--entre"><span class="lc-pequeno"><b id="n-rev">13</b> para revisar, 30/09</span><button class="lc-btn lc-btn--p" type="button" id="lote"><i data-i="confirmar"></i>Confirmar as <span id="n-sug">9</span> sugestões</button></div>
+      <div class="lc-modelo-fila__rola" id="lista" role="listbox" aria-label="Extrato" tabindex="0"></div>
+    </section>
+    <section class="lc-modelo-fila__item" aria-label="Lançamento aberto">
+      <div class="lc-modelo-fila__rola" id="item"></div>
+      <div class="lc-modelo-fila__pe">
+        <button class="lc-btn lc-btn--discreto" type="button" id="voltar-lista" hidden><i data-i="chevron-esquerda"></i>Lista</button>
+        <span class="lc-legenda lc-cresce"><span class="lc-tecla">J</span> próximo <span class="lc-tecla">K</span> anterior <span class="lc-tecla">S</span> pular</span>
+        <button class="lc-btn" type="button" id="pular">Pular</button>
+        <button class="lc-btn lc-btn--principal" type="button" id="confirmar"><i data-i="confirmar"></i>Confirmar e ir para o próximo</button>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2,$=P.$,$$=P.$$,esc=P.esc;
+var EX=[
+ ["PIX RECEBIDO COND PARQUE DAS AGUAS",4380,"30/09",["Boleto 2026-0412, taxa de setembro","Cond. Parque das Águas","28/09",4380,"Mesmo valor, 2 dias depois do vencimento"]],
+ ["LIQ COBRANCA 0401 RES MORADA DO SOL",5300,"30/09",["Boleto 2026-0401, taxa de setembro","Residencial Morada do Sol","30/09",5300,"Mesmo valor e mesma data"]],
+ ["TED 341 EDIF ATLANTICO",5840,"30/09",["Boleto 2026-0399, taxa de setembro","Edifício Atlântico","30/09",5840,"Mesmo valor e mesma data"]],
+ ["PIX ENVIADO ELEVADORES ATLAS LTDA",-1290,"30/09",["Conta a pagar, manutenção de elevador","Elevadores Atlas, filial Campinas","30/09",-1290,"Mesmo valor e mesmo fornecedor"]],
+ ["TARIFA PACOTE SERVICOS",-89.9,"30/09",null],
+ ["LIQ COBRANCA 0405 MIRANTE DO VALE",3900,"29/09",["Boleto 2026-0405, taxa de setembro","Edifício Mirante do Vale","28/09",3900,"Mesmo valor, 1 dia depois"]],
+ ["PIX RECEBIDO MARCOS VIEIRA",1950,"29/09",["Boleto 2026-0405, metade","Edifício Mirante do Vale","28/09",3900,"Valor diferente: pode ser pagamento parcial"]],
+ ["DEB AUTOMATICO SABESP",-412.37,"29/09",["Conta a pagar, água da sede","Sabesp","29/09",-412.37,"Mesmo valor e mesma data"]],
+ ["LIQ COBRANCA 0407 VILLAGGIO TOSCANA",7370,"29/09",["Boleto 2026-0407, taxa de setembro","Residencial Villaggio Toscana","28/09",7370,"Mesmo valor, 1 dia depois"]],
+ ["PIX RECEBIDO 12.418.337/0001-09",640,"29/09",null],
+ ["LIQ COBRANCA 0408 MAISON LUMIERE",6300,"28/09",["Boleto 2026-0408, taxa de setembro","Edifício Maison Lumière","28/09",6300,"Mesmo valor e mesma data"]],
+ ["TED RECEBIDA ALTO DA BOA VISTA",2180,"28/09",["Boleto 2026-0409, taxa de setembro","Cond. Alto da Boa Vista","28/09",2180,"Mesmo valor e mesma data"]],
+ ["IOF",-3.12,"28/09",null]];
+var feitos=new Set(), atual=0, conc=18;
+function val(v){ return '<span class="p2-valor '+(v<0?'lc-valor-neg':'lc-valor-pos')+'">'+(v<0?"":"+")+P.moeda(v)+'</span>'; }
+function lista(){
+  $("#lista").innerHTML=EX.map(function(e,i){ var f=feitos.has(i);
+    return '<div class="lc-fila-item'+(f?' lc-fila-item--feito':'')+'" role="option" id="op'+i+'" aria-selected="'+(i===atual)+'" aria-current="'+(i===atual)+'" data-i="'+i+'"><b class="lc-reticencias">'+esc(e[0])+'</b>'+val(e[1])+'<small>'+e[2]+(f?', conciliado':e[3]?', sugestão: '+esc(e[3][0]):', sem sugestão')+'</small></div>'; }).join("");
+  $("#lista").setAttribute("aria-activedescendant","op"+atual);
+  var rest=EX.length-feitos.size, sug=EX.filter(function(e,i){return e[3]&&!feitos.has(i)&&e[3][3]===e[1];}).length;
+  $("#n-rev").textContent=rest; $("#n-sug").textContent=sug; $("#lote").hidden=!sug; $("#n-itau").textContent=31-feitos.size;
+  $("#progresso").style.setProperty("--_v",Math.round(conc/58*100)+"%"); $("#progresso").setAttribute("aria-valuenow",conc);
+  $("#progresso-txt").textContent=conc+" de 58 lançamentos conciliados hoje. Confirme a sugestão com Enter; o próximo abre sozinho.";
+}
+function item(){
+  var e=EX[atual], s=e[3], f=feitos.has(atual);
+  $("#item").innerHTML='<div class="p2-item-corpo"><p class="lc-legenda">Lançamento '+(atual+1)+' de '+EX.length+' do extrato do Itaú</p><h2 class="lc-t-secao" style="margin-top:4px">'+esc(e[0])+'</h2>'+
+    '<div class="p2-par"><div class="lc-caixa"><p class="lc-legenda">No extrato do banco</p><p style="margin:6px 0 2px">'+val(e[1])+'</p><p class="lc-pequeno lc-cor-2">'+e[2]+'/2026, conta Itaú 0412</p></div>'+
+    '<div class="p2-par__seta" aria-hidden="true"><i data-i="seta-direita"></i></div>'+
+    (s?'<div class="lc-caixa p2-sug"><p class="lc-legenda">Sugestão do GACO</p><p style="margin:6px 0 2px"><b>'+esc(s[0])+'</b></p><p class="lc-pequeno">'+esc(s[1])+', vencimento '+s[2]+', '+P.moeda(s[3])+'</p><p class="lc-pequeno '+(s[3]===e[1]?'lc-cor-2':'')+'" style="margin-top:6px;'+(s[3]===e[1]?'':'color:var(--aviso-texto)')+'">'+(s[3]===e[1]?lcIcone("sucesso","lc-ic--14")+' ':lcIcone("aviso","lc-ic--14")+' ')+esc(s[4])+'</p></div>'
+      :'<div class="lc-caixa lc-caixa--poço"><p class="lc-legenda">Sem sugestão</p><p class="lc-pequeno" style="margin-top:6px">Nenhum boleto ou conta com esse valor perto dessa data. Busque um lançamento ou crie um novo; a categoria já vem sugerida.</p></div>')+'</div>'+
+    (f?'<div class="lc-alerta lc-alerta--sucesso"><i data-i="sucesso"></i><div class="lc-alerta__corpo">Conciliado por você às '+P.hora()+'.</div></div>':'')+
+    '<div class="lc-grupo-btn"><button class="lc-btn lc-btn--p" type="button"><i data-i="pesquisar"></i>Buscar outro lançamento</button><button class="lc-btn lc-btn--p" type="button" id="criar-l"><i data-i="mais"></i>Criar lançamento'+(e[1]<0?' de despesa':' de receita')+'</button><button class="lc-btn lc-btn--p lc-btn--discreto" type="button"><i data-i="dividir"></i>Dividir em dois</button></div>'+
+    '<h3 class="lc-t-subsecao" style="margin:24px 0 8px">Quem é</h3><dl class="lc-props" style="max-width:520px"><dt>Pagador no banco</dt><dd>'+esc(e[0].replace(/^(PIX RECEBIDO|LIQ COBRANCA \d+|TED( RECEBIDA)? ?\d*|PIX ENVIADO|DEB AUTOMATICO) ?/,""))+'</dd><dt>Data no banco</dt><dd>'+e[2]+'/2026, 10:42</dd><dt>Documento</dt><dd>'+(e[1]>0?"Crédito em conta":"Débito em conta")+'</dd></dl></div>';
+  lcIcones($("#item"));
+  $("#confirmar").disabled=!s||f; $("#confirmar").innerHTML=lcIcone("confirmar")+(s?"Confirmar e ir para o próximo":"Sem sugestão para confirmar");
+  if(!s) $("#confirmar").innerHTML=lcIcone("confirmar")+"Confirmar e ir para o próximo";
+  $("#criar-l").addEventListener("click",function(){ P.modal({titulo:"Novo lançamento de "+(e[1]<0?"despesa":"receita"),desc:"A partir da linha do extrato. Valor e data já vêm do banco.",
+    corpo:'<div class="lc-form-grade"><div class="lc-campo"><label class="lc-rotulo" for="nl-v">Valor</label><input id="nl-v" class="lc-entrada lc-entrada--num" readonly value="'+P.moeda(e[1])+'"></div><div class="lc-campo"><label class="lc-rotulo" for="nl-d">Data</label><input id="nl-d" class="lc-entrada" readonly value="'+e[2]+'/2026"></div><div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="nl-c">Categoria</label><select id="nl-c" class="lc-selecao"><option>Tarifas bancárias</option><option>Impostos sobre operações</option><option>Receita a identificar</option></select><p class="lc-ajuda">Sugerida pela regra “TARIFA” criada por Patrícia em 12/08.</p></div><div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="nl-h">Histórico</label><input id="nl-h" class="lc-entrada" value="'+esc(e[0])+'"></div></div>',
+    pe:'<button class="lc-btn" type="button" data-m-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-ok>Criar e conciliar</button>',
+    aoAbrir:function(el,api){ el.querySelector("[data-ok]").addEventListener("click",function(){ api.fechar(); concluir(true); }); }}); });
+  if(innerWidth<900) $("#fila").setAttribute("data-vendo","item");
+}
+function ir(i){ if(i<0||i>=EX.length) return; atual=i; lista(); item(); var el=$("#op"+i); if(el) el.scrollIntoView({block:"nearest"}); }
+function proximo(){ for(var j=atual+1;j<EX.length;j++) if(!feitos.has(j)) return j; for(j=0;j<EX.length;j++) if(!feitos.has(j)) return j; return -1; }
+function concluir(semSug){ var i=atual, e=EX[i]; if(feitos.has(i)) return; feitos.add(i); conc++;
+  var n=proximo();
+  P.toast("Conciliado: <b>"+esc(e[0].slice(0,34))+"</b> com "+(semSug?"lançamento novo":esc(e[3][0]))+".",{ic:"conciliacao",acao:"Desfazer",aoAcao:function(){ feitos.delete(i); conc--; ir(i); P.anunciar("Desfeito. O lançamento voltou para revisar."); }});
+  if(n<0){ lista(); $("#item").innerHTML='<div class="lc-estado-tela"><div class="lc-vazio"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="sucesso"></i></span><h2 class="lc-vazio__titulo">Extrato do Itaú conciliado</h2><p class="lc-vazio__texto">Os 31 lançamentos de hoje batem com boletos e contas. Faltam Bradesco (20) e Caixa (7).</p><div class="lc-grupo-btn"><button class="lc-btn lc-btn--principal" type="button">Ir para o Bradesco</button></div></div></div>'; lcIcones($("#item")); return; }
+  ir(n); P.anunciar("Conciliado. Próximo: "+EX[n][0]);
+}
+$("#confirmar").addEventListener("click",function(){ concluir(false); });
+$("#pular").addEventListener("click",function(){ var n=atual+1; if(n<EX.length) ir(n); });
+$("#lista").addEventListener("click",function(e){ var o=e.target.closest("[data-i]"); if(o) ir(+o.getAttribute("data-i")); });
+$("#lista").addEventListener("keydown",function(e){ if(e.key==="ArrowDown"){ e.preventDefault(); ir(atual+1); } if(e.key==="ArrowUp"){ e.preventDefault(); ir(atual-1); } });
+$("#lote").addEventListener("click",function(){ var ids=[]; EX.forEach(function(e,i){ if(e[3]&&!feitos.has(i)&&e[3][3]===e[1]){ feitos.add(i); ids.push(i); } }); conc+=ids.length; lista(); item();
+  P.toast("<b>"+ids.length+" lançamentos</b> conciliados com as sugestões de mesmo valor.",{ic:"conciliacao",acao:"Desfazer",aoAcao:function(){ ids.forEach(function(i){feitos.delete(i);}); conc-=ids.length; lista(); item(); }}); });
+$("#voltar-lista").addEventListener("click",function(){ $("#fila").removeAttribute("data-vendo"); });
+P.atalho("j",function(){ ir(atual+1); }); P.atalho("k",function(){ ir(atual-1); }); P.atalho("s",function(){ $("#pular").click(); });
+P.atalho("enter",function(e){ if(document.activeElement && /BUTTON|A/.test(document.activeElement.tagName) && document.activeElement!==document.body) return; if(!$("#confirmar").disabled){ e.preventDefault(); concluir(false); } });
+function tam(){ $("#voltar-lista").hidden=innerWidth>=900; } addEventListener("resize",tam); tam();
+lista(); item(); $("#fila").removeAttribute("data-vendo");
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plataforma, painel</title>
+<meta name="description" content="Superadmin da plataforma GACO: painel em forma de lista do que pede atenção (incidente, pedidos de acesso, faturas, implantações, limites), sem fileira decorativa de números.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<script>/* casca da plataforma: marca do GACO (padrão de tokens.css), nunca a de um cliente */ (function(){var r=document.documentElement,f=function(){["--marca","--marca-txt","--marca-forte","--marca-suave"].forEach(function(v){r.style.removeProperty(v);});};f();document.addEventListener("lc:tema",f);document.addEventListener("lc:marca",f);})();</script>
+<style>
+  .sa-painel{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+  @media (max-width:1023px){.sa-painel{grid-template-columns:minmax(0,1fr)}}
+  .sa-att{list-style:none;margin:0;padding:0}
+  .sa-att>li{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:2px 14px;padding:14px 16px;border-top:var(--borda-1);align-items:start}
+  .sa-att>li:first-child{border-top:0}
+  .sa-att b{font-weight:600}
+  .sa-att p{font-size:13px;color:var(--texto-2);margin-top:2px}
+  .sa-att .lc-grupo-btn{grid-column:3;grid-row:1/3;align-self:center}
+  @media (max-width:639px){.sa-att>li{grid-template-columns:32px minmax(0,1fr)}.sa-att .lc-grupo-btn{grid-column:2;grid-row:auto;margin-top:8px}}
+  .sa-grupo{font:600 12.5px/18px var(--fonte-ui);color:var(--texto-2);padding:12px 16px 6px;border-top:var(--borda-2);background:var(--sup-2)}
+  .sa-grupo:first-child{border-top:0}
+</style>
+</head>
+<body data-moldura='{"contexto":"superadmin","modulo":"painel","secao":"Visão geral","usuario":{"nome":"Bruno Tavares","iniciais":"BT","cor":"lc-av--c5","cargo":"Suporte da plataforma"},"cliente":{"nome":"GACO Plataforma","sigla":"G"}}'>
+<main id="conteudo" class="lc-pagina">
+<section class="lc-ficha-tela" aria-label="Sobre o painel da plataforma">
+  <div class="lc-ficha-tela__nome"><b>Painel da plataforma</b><span>Superadmin. Marca GACO. Lista do que pede atenção, agrupada por urgência.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Quem cuida da plataforma abre e sabe o que fazer agora: um incidente, um pedido de acesso esperando, uma fatura vencida, um cliente batendo no limite. Número sem ação não entra aqui.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Abre em Painel, Visão geral.</li><li>Grupos: "Agora", "Hoje", "Esta semana". Cada linha tem o verbo à direita.</li><li>"Assumir" marca o item como seu (avatar aparece); "Resolver" leva à tela certa.</li><li>Item resolvido sai da lista com toast e "Desfazer".</li><li>Os números da plataforma ficam em Relatórios, não aqui.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o PagerDuty e o Opsgenie abrem na fila de alertas, não num gráfico; o "Inbox" do Linear e o "Para você" do GitHub mostram o que espera você com ação; e a crítica C1 pediu tirar fileiras decorativas de números de painel inicial.</p></div>
+</section>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Visão geral</h1><p class="lc-cab-pagina__desc">7 itens pedem atenção. 38 clientes ativos, versão 2026.10.1 em produção.</p></div><div class="lc-cab-pagina__acoes"><a class="lc-btn" href="50g-sa-saude.html"><i data-i="atividade-grafico"></i>Saúde do serviço</a><button class="lc-btn lc-btn--principal" type="button"><i data-i="megafone"></i>Publicar aviso da plataforma</button></div></div>
+<div class="sa-painel">
+  <section class="lc-caixa" aria-labelledby="att-t"><h2 id="att-t" class="lc-sr">O que pede atenção</h2>
+    <div class="sa-grupo">Agora</div>
+    <ul class="sa-att">
+      <li><span class="lc-ladrilho"><i data-i="incidente"></i></span><div><b>Atraso no envio de WhatsApp</b> <span class="lc-estado lc-estado--perigo">Incidente aberto</span><p>Fila de mensagens com 6 min de atraso desde 09:12. Afeta 11 clientes (Suporte e cobrança). Provedor: Meta Cloud API.</p></div><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="50g-sa-saude.html">Ver incidente</a></div></li>
+      <li><span class="lc-ladrilho"><i data-i="sessao"></i></span><div><b>Órbita Condomínios pediu suporte com acesso</b> <span class="lc-estado lc-estado--aviso">Esperando há 22 min</span><p>Chamado 1.204: boleto duplicado na unidade 302 do Residencial Ipês. Pedido por Carla Mendes, gestora. Acesso só leitura, 1 hora.</p></div><div class="lc-grupo-btn"><button class="lc-btn lc-btn--p" type="button" data-toast="Você assumiu o pedido da Órbita.">Assumir</button><a class="lc-btn lc-btn--p" href="50b-sa-clientes.html#entrar">Entrar no cliente</a></div></li>
+    </ul>
+    <div class="sa-grupo">Hoje</div>
+    <ul class="sa-att">
+      <li><span class="lc-ladrilho"><i data-i="boleto-vencido"></i></span><div><b>Fatura de setembro da Lar Gestão Predial vencida</b> <span class="lc-estado lc-estado--perigo">Vencida há 6 dias</span><p>R$ 4.980,00. Segundo lembrete enviado em 29/09. Bloqueio parcial previsto para 10/10, conforme contrato.</p></div><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="50d-sa-planos.html#cobranca">Ver fatura</a></div></li>
+      <li><span class="lc-ladrilho"><i data-i="medidor"></i></span><div><b>Vértice Administração usa 96% dos usuários do plano</b> <span class="lc-estado lc-estado--aviso">Perto do limite</span><p>96 de 100 usuários. Ao passar, novos convites ficam pendentes até a troca de plano.</p></div><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="50b-sa-clientes.html">Avisar o cliente</a></div></li>
+      <li><span class="lc-ladrilho"><i data-i="dois-fatores"></i></span><div><b>Rafael Prado está sem 2º fator há 3 dias</b> <span class="lc-estado lc-estado--aviso">Acesso restrito</span><p>Superadmin desde 26/09. Sem 2º fator, só vê o Painel.</p></div><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="50e-sa-equipe.html">Lembrar</a></div></li>
+    </ul>
+    <div class="sa-grupo">Esta semana</div>
+    <ul class="sa-att">
+      <li><span class="lc-ladrilho"><i data-i="homologacao"></i></span><div><b>Versão 2026.10.2 em homologação</b> <span class="lc-estado lc-estado--andamento">3 de 5 clientes testaram</span><p>Faltam Sol Nascente e Prisma. Publicação prevista para 07/10, 23h.</p></div><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="50h-sa-homologacao.html">Acompanhar</a></div></li>
+      <li><span class="lc-ladrilho"><i data-i="obra"></i></span><div><b>Implantação da Prisma Condomínios atrasada</b> <span class="lc-estado lc-estado--aviso">Atrasada 4 dias</span><p>Importação de 23 condomínios parada em "Plano de contas". Responsável: Helena Duarte.</p></div><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="#">Abrir implantação</a></div></li>
+    </ul>
+  </section>
+  <aside class="lc-pilha">
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Em sessões de suporte agora</h2></div><ul class="lc-lista">
+      <li><span class="lc-av lc-av--32 lc-av--c7">LS</span><span class="lc-cresce"><b>Lucas Siqueira</b> em Sol Nascente<span class="lc-lista__sub">Só leitura, 31 min restantes. Motivo: chamado 988.</span></span></li>
+      <li><span class="lc-av lc-av--32 lc-av--c3">HD</span><span class="lc-cresce"><b>Helena Duarte</b> em Prisma<span class="lc-lista__sub">Pode alterar, aprovado por Ivone Prates. 1 h 12 min.</span></span></li></ul>
+      <div class="lc-caixa__pe"><a href="#">Histórico de acessos</a></div></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Avisos publicados</h2></div><ul class="lc-lista"><li><i data-i="manutencao"></i><span class="lc-cresce">Manutenção programada<span class="lc-lista__sub">Domingo 05/10, 2h às 6h. Visível para 38 clientes.</span></span></li></ul></section>
+    <section class="lc-caixa lc-caixa--poço"><div class="lc-caixa__corpo" style="padding-top:14px"><b class="lc-t-subsecao">Feito hoje</b><ul class="lc-pv" style="margin-top:6px"><li class="lc-pv__item lc-pv__item--feito"><span class="lc-pv__o-que">Liberar módulo Academy para Vértice</span></li><li class="lc-pv__item lc-pv__item--feito"><span class="lc-pv__o-que">Resetar 2º fator de Carla Mendes (Órbita)</span></li></ul></div></section>
+  </aside>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Pular, trilho da plataforma, barra (seções, busca, sino, conta), Saúde do serviço, Publicar aviso, itens na ordem dos grupos (cada verbo), coluna direita.</p></div><div><h3>O que é anunciado</h3><p>Grupos lidos como texto antes da lista ("Agora"). Estado com palavra: "Incidente aberto". Ao assumir: "Você assumiu o pedido da Órbita."</p></div><div><h3>Nome do que é só ícone</h3><p>Ladrilhos de tipo são decorativos. No trilho, o ladrilho "G" se chama "GACO Plataforma, início".</p></div></div>
+
+<div class="lc-variacao">Estados do painel</div>
+<div class="lc-quadros">
+  <div class="lc-quadro-tela"><div class="lc-vazio"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="confirmar"></i></span><p class="lc-vazio__titulo">Nada pede atenção agora</p><p class="lc-vazio__texto">Sem incidente, sem pedido de acesso e sem fatura vencida. Última verificação às 10:14.</p></div></div>
+  <div class="lc-quadro-tela" style="padding:16px" aria-busy="true"><span class="lc-esqueleto lc-esqueleto--curta"></span><div style="display:grid;grid-template-columns:32px 1fr;gap:12px;margin-top:14px"><span class="lc-esqueleto lc-esqueleto--av" style="border-radius:3px"></span><span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha"></span></span><span class="lc-esqueleto lc-esqueleto--av" style="border-radius:3px"></span><span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha"></span></span></div></div>
+  <div class="lc-quadro-tela" style="padding:16px"><div class="lc-alerta lc-alerta--aviso"><i data-i="permissao"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Ative o 2º fator para ver o painel completo</span>Superadmin sem 2º fator só vê avisos. Leva 1 minuto com o app autenticador.<div class="lc-alerta__acoes"><a class="lc-btn lc-btn--p" href="41-publicas.html#dois-fatores">Ativar agora</a></div></div></div></div>
+</div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

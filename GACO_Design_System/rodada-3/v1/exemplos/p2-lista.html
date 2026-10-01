@@ -233,6 +233,9 @@ $("#m-excluir").addEventListener("click",function(){ var ids=todosDoFiltro?filtr
   else remover(ids,"excluir"); });
 $("#m-atribuir").addEventListener("click",function(e){ var n=todosDoFiltro?filtrados().length:sel.size; P.menu(e.currentTarget,["LA","RL","CM","BT"].map(function(k){ return {t:PES[k].nome,ic:"pessoa",acao:function(){ var antes=Array.from(sel); sel.clear(); todosDoFiltro=false; desenhar(); P.toast("<b>"+n+" renovações</b> atribuídas a "+PES[k].nome+".",{ic:"atribuir",acao:"Desfazer",aoAcao:function(){ P.anunciar("Atribuição desfeita."); }}); }}; }),{lado:"esquerda",rotulo:"Atribuir a"}); });
 
+/* aviso deixado pelo registro (salvar e voltar, excluir, arquivar) */
+var pend=P.guarda.sget("toast-pendente-lista",null);
+if(pend){ sessionStorage.removeItem("toast-pendente-lista"); setTimeout(function(){ P.toast(pend.txt,{tipo:pend.acao?null:"sucesso",ic:pend.acao?"lixeira":"sucesso",acao:pend.acao,aoAcao:function(){ removidos=removidos.filter(function(x){return x!==st.ultimo;}); P.guarda.sset("renov-removidos",removidos); desenhar(); }}); },300); }
 /* primeira pintura + volta ao lugar */
 st.por=+P.guarda.get("lc-por:renovacoes",st.por)||50;
 desenhar();

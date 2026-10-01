@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filas e SLA</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-duas{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:1099px){.q3-duas{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Filas e SLA <small>Suporte, Atendimento, Filas (e Configuração de SLA). Quem entra em qual fila, como distribui e quanto tempo cada prioridade tem.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>Define o motor da fila: as filas (WhatsApp, E-mail, Portal, Manutenção urgente), quem atende cada uma, a regra de distribuição (rodízio, menor carga, manual) e o SLA por prioridade, contado só no horário de atendimento.</p><p>Mudança de SLA vale só para chamados novos; a tela diz isso antes de salvar.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Tabela de filas: clique numa fila abre o painel lateral com membros, distribuição e horário.</li><li>SLA por prioridade é uma tabela editável: clique na célula, digite, Enter. A barra de salvar mostra quantas células mudaram.</li><li>"Salvar" pergunta se aplica só a chamados novos (padrão) ou também aos abertos.</li><li>Calendário de atendimento: feriados de São Paulo já entram; "Adicionar feriado local" para o aniversário da cidade.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Zendesk e o Freshdesk separam "grupos" (quem atende) de "políticas de SLA" (prazo por prioridade, em horário comercial) e mostram a política como tabela; o Intercom deixa escolher rodízio ou menor carga por fila. Edição em célula segue o Airtable e o Salesforce.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Filas e SLA</button><button type="button" data-q3-estado="painel" aria-pressed="false">Fila aberta no painel</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Suporte","tela":"Filas","papel":"Atendimento"}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Filas e SLA</h1><div class="cm-cabecalho-pagina__acoes"><button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Nova fila</button></div></div></header>
+ <div class="q3-duas">
+  <section aria-labelledby="t-filas">
+   <h2 class="cm-t-secao" id="t-filas" style="margin-bottom:8px">Filas</h2>
+   <div class="cm-tabela-caixa"><table class="cm-tabela">
+    <thead><tr><th>Fila</th><th>Canal</th><th>Distribuição</th><th class="cm-num">Pessoas</th><th class="cm-num">Abertas agora</th><th>Estado</th><th class="cm-tabela__acoes"><span class="cm-sr">Ações</span></th></tr></thead>
+    <tbody>
+     <tr><td class="cm-tabela__principal"><a href="#" data-q3-modal="painel-fila">WhatsApp, moradores e síndicos</a><span class="cm-tabela__sub">(11) 3333-4400</span></td><td>WhatsApp</td><td>Menor carga</td><td class="cm-num">5</td><td class="cm-num">24</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Ativa</span></td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações da fila WhatsApp"><i data-i="mais-opcoes"></i></button></td></tr>
+     <tr><td class="cm-tabela__principal"><a href="#" data-q3-modal="painel-fila">E-mail, conselhos e financeiro</a><span class="cm-tabela__sub">atendimento@alpha.adm.br</span></td><td>E-mail</td><td>Rodízio</td><td class="cm-num">2</td><td class="cm-num">8</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Ativa</span></td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações da fila E-mail"><i data-i="mais-opcoes"></i></button></td></tr>
+     <tr><td class="cm-tabela__principal"><a href="#" data-q3-modal="painel-fila">Portal do morador</a><span class="cm-tabela__sub">Chamados abertos no portal</span></td><td>Portal</td><td>Rodízio</td><td class="cm-num">2</td><td class="cm-num">6</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Ativa</span></td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações da fila Portal"><i data-i="mais-opcoes"></i></button></td></tr>
+     <tr><td class="cm-tabela__principal"><a href="#" data-q3-modal="painel-fila">Manutenção urgente</a><span class="cm-tabela__sub">Vazamento, elevador parado, portão</span></td><td>Todos</td><td>Manual</td><td class="cm-num">3</td><td class="cm-num">2</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Ativa</span></td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações da fila Manutenção urgente"><i data-i="mais-opcoes"></i></button></td></tr>
+     <tr><td class="cm-tabela__principal"><a href="#" data-q3-modal="painel-fila">Plantão de fim de semana</a><span class="cm-tabela__sub">Sáb 8h às 14h</span></td><td>WhatsApp, e-mail</td><td>Menor carga</td><td class="cm-num">2</td><td class="cm-num">0</td><td><span class="cm-estado cm-estado--neutro"><i data-i="pausado"></i>Fora do horário</span></td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações da fila Plantão"><i data-i="mais-opcoes"></i></button></td></tr>
+    </tbody></table></div>
+  </section>
+  <section aria-labelledby="t-sla">
+   <h2 class="cm-t-secao" id="t-sla" style="margin-bottom:8px">SLA por prioridade</h2>
+   <div class="cm-tabela-caixa"><table class="cm-tabela">
+    <thead><tr><th>Prioridade</th><th class="cm-num">1ª resposta</th><th class="cm-num">Próxima resposta</th><th class="cm-num">Resolução</th></tr></thead>
+    <tbody>
+     <tr><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Urgente</span><span class="cm-tabela__sub">risco a pessoas ou ao prédio</span></td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Urgente, 1ª resposta">5 min</td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Urgente, próxima">15 min</td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Urgente, resolução">4 h</td></tr>
+     <tr><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Alta</span></td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Alta, 1ª resposta">15 min</td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Alta, próxima">1 h</td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Alta, resolução">8 h</td></tr>
+     <tr><td><span class="cm-estado cm-estado--neutro"><i data-i="pendente"></i>Normal</span></td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Normal, 1ª resposta">1 h</td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Normal, próxima">4 h</td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Normal, resolução">2 dias úteis</td></tr>
+     <tr><td><span class="cm-estado cm-estado--neutro"><i data-i="rascunho"></i>Baixa</span></td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Baixa, 1ª resposta">4 h</td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Baixa, próxima">1 dia útil</td><td class="cm-num cm-celula-editavel" tabindex="0" data-nome="Baixa, resolução">5 dias úteis</td></tr>
+    </tbody></table></div>
+   <p class="cm-t-legenda" style="margin-top:6px">Contado no horário de atendimento. "Aguardando cliente" e "Aguardando terceiro" pausam o relógio.</p>
+   <section class="cm-cartao" style="margin-top:16px" aria-labelledby="t-hor"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo" id="t-hor">Horário de atendimento</h3><button class="cm-botao cm-botao--p cm-botao--discreto" type="button"><i data-i="editar"></i>Editar seção</button></header>
+    <div class="cm-cartao__corpo"><dl class="cm-ficha cm-ficha--larga">
+     <div class="cm-ficha__linha is-leitura"><dt>Segunda a sexta</dt><dd>8h às 20h</dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Sábado</dt><dd>8h às 14h (plantão)</dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Feriados</dt><dd>Nacionais e de São Paulo; próximo: 12/10</dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Fora do horário</dt><dd>Resposta automática com o telefone de emergência da portaria</dd><span></span></div>
+    </dl></div></section>
+  </section>
+ </div>
+ <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" data-q3-barra hidden>
+  <div class="cm-barra-salvar__msg" aria-live="polite"><b data-q3-barra-n></b><span data-q3-barra-quais></span></div>
+  <label class="cm-marcar"><input type="checkbox"><span class="cm-marcar__caixa"></span><span>Aplicar também aos 40 chamados abertos</span></label>
+  <button class="cm-botao cm-botao--discreto" type="button" data-q3-descartar>Descartar</button>
+  <button class="cm-botao cm-botao--principal" type="button" data-q3-salvar>Salvar para chamados novos</button>
+ </div>
+
+ <aside class="cm-painel cm-painel--g" id="painel-fila" role="dialog" aria-labelledby="t-pf" hidden data-se="painel">
+  <header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="t-pf">WhatsApp, moradores e síndicos</h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-fechar data-q3-estado="padrao" aria-label="Fechar"><i data-i="fechar"></i></button></header>
+  <div class="cm-painel__corpo">
+   <div class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Distribuição</h3></div>
+    <fieldset class="cm-grupo-opcoes"><legend class="cm-sr">Distribuição</legend><label class="cm-radio"><input type="radio" name="d" checked><span class="cm-radio__bola"></span><span>Menor carga<span class="cm-marcar__desc">Vai para quem tem menos conversas abertas, entre os disponíveis.</span></span></label><label class="cm-radio"><input type="radio" name="d"><span class="cm-radio__bola"></span><span>Rodízio<span class="cm-marcar__desc">Um para cada, na ordem.</span></span></label><label class="cm-radio"><input type="radio" name="d"><span class="cm-radio__bola"></span><span>Manual<span class="cm-marcar__desc">Fica em Sem dono até alguém assumir.</span></span></label></fieldset>
+    <div class="cm-campo" style="margin-top:12px;width:220px"><label class="cm-campo__rotulo" for="lim">Limite por pessoa</label><div class="cm-entrada cm-entrada--numero"><input id="lim" value="10" inputmode="numeric"><span class="cm-entrada__passo"><button type="button" aria-label="Aumentar"><i data-i="chevron-cima"></i></button><button type="button" aria-label="Diminuir"><i data-i="chevron-baixo"></i></button></span></div></div></div>
+   <div class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Pessoas (5)</h3><button class="cm-botao cm-botao--p cm-botao--discreto" type="button"><i data-i="adicionar-pessoa"></i>Adicionar</button></div>
+    <ul class="cm-equipe"><li><span class="cm-avatar cm-avatar--m cm-avatar--2">BN</span><span><span class="cm-equipe__nome">Beatriz Nogueira</span><span class="cm-equipe__status">N2, recebe vazamento</span></span><span></span></li><li><span class="cm-avatar cm-avatar--m cm-avatar--3">LM</span><span><span class="cm-equipe__nome">Larissa Mendes</span><span class="cm-equipe__status">N2</span></span><span></span></li><li><span class="cm-avatar cm-avatar--m cm-avatar--1">DR</span><span><span class="cm-equipe__nome">Diego Ramos</span><span class="cm-equipe__status">N3, fila de transbordo</span></span><span></span></li></ul></div>
+  </div>
+  <footer class="cm-painel__pe"><button class="cm-botao" type="button" data-q3-fechar data-q3-estado="padrao">Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-q3-fechar data-q3-estado="padrao" data-q3-toast="Fila atualizada">Salvar fila</button></footer>
+ </aside>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título e Nova fila; tabela de filas (link de cada fila abre o painel; Ações); tabela de SLA (cada célula editável é focável; Enter edita, Esc desfaz); horário; barra de salvar com a caixa "aplicar aos abertos".</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Célula em edição tem como nome "Alta, resolução". Estado da fila em palavra. O painel é um diálogo com o nome da fila.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Ações da fila WhatsApp" (em cada linha), "Aumentar", "Diminuir", "Fechar".</p></section>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>

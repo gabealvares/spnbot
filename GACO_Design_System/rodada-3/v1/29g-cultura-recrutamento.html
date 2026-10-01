@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recrutamento, Cultura</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.rc-grade{display:grid;grid-template-columns:280px minmax(0,1fr);gap:20px;align-items:start}
+.rc-vagas a{display:block;padding:10px 14px;border-top:var(--borda-1);text-decoration:none;color:var(--texto-1);font-size:13.5px}
+.rc-vagas a:first-child{border-top:0}
+.rc-vagas a:hover{background:var(--sup-2)}
+.rc-vagas a[aria-current="page"]{background:var(--selecao);box-shadow:inset var(--borda-marcador) 0 0 var(--atual)}
+.rc-vagas b{display:block;font-weight:600}
+.rc-vagas small{color:var(--texto-2);font-size:12px}
+.lc-kanban{--larg-coluna-kanban:230px}
+@media (max-width:1023px){.rc-grade{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body data-moldura='{"modulo":"cultura","secao":"Recrutamento","item":"Pessoas candidatas","papel":"rh","usuario":{"nome":"Fernanda Lopes","cargo":"Analista de RH","iniciais":"FL","cor":"lc-av--c4"},"trilha":["Recrutamento","Atendente de suporte"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Vagas e pessoas candidatas em quadro. Papel: RH.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Conduzir cada vaga do anúncio à contratação: em que etapa está cada pessoa, há quanto tempo, quem precisa agir, e encerrar com resposta para quem não segue.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Vagas abertas à esquerda; a escolhida mostra o quadro das pessoas candidatas.</li>
+      <li>Arrastar o cartão muda a etapa; ao entrar em "Entrevista" o sistema pede data e entrevistador.</li>
+      <li>Soltar em "Não seguir" pede o motivo e manda a resposta padrão (com o nome da pessoa) por e-mail.</li>
+      <li>"Contratada" abre a admissão em Pessoas, com os dados já preenchidos.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>a Gupy, o Greenhouse e o Pipedrive (que o Comercial já usa) mostram o funil em colunas com contagem e tempo parado; a zona "Não seguir / Banco de talentos" no pé repete o "Ganho / Perdido" do Comercial. A palavra é "pessoa candidata", como pede o glossário.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="cultura"></div>
+</details>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Recrutamento</h1><p class="lc-cab-pagina__desc">4 vagas abertas, 92 pessoas candidatas em andamento.</p></div>
+  <div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="compartilhar"></i>Página de vagas</button><button class="lc-btn lc-btn--principal" type="button"><i data-i="mais"></i>Abrir vaga</button></div></div>
+<div class="rc-grade">
+  <nav class="lc-caixa rc-vagas" aria-label="Vagas abertas">
+    <a href="#" aria-current="page"><b>Atendente de suporte, WhatsApp</b><small>2 posições, 47 pessoas, aberta há 12 dias</small></a>
+    <a href="#"><b>Analista financeiro pleno</b><small>1 posição, 22 pessoas</small></a>
+    <a href="#"><b>Gerente de condomínios</b><small>2 posições, 18 pessoas</small></a>
+    <a href="#"><b>Estágio em Produto</b><small>1 posição, 5 pessoas, só indicação</small></a>
+  </nav>
+  <div>
+    <div class="lc-filtros" style="padding-top:0"><label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Nome da pessoa" aria-label="Pesquisar pessoas candidatas"></label><button class="lc-filtro" type="button">Origem<i data-i="chevron-baixo"></i></button><span class="lc-legenda">Gestora da vaga: Bianca Torres. Salário: R$ 2.450,00 + VR.</span></div>
+    <div class="lc-kanban" aria-label="Etapas da vaga">
+      <section class="lc-kanban__col"><div class="lc-kanban__cab"><h3>Triagem <span class="lc-contagem">31</span></h3><div class="lc-kanban__soma">12 novas desde ontem</div></div><div class="lc-kanban__lista">
+        <button class="lc-cartao-k" type="button"><span class="lc-cartao-k__titulo">Larissa Gomes</span><span class="lc-cartao-k__sub">Gupy. 2 anos de call center, Bradesco</span><span class="lc-cartao-k__pe"><span class="lc-cresce">há 1 dia</span></span></button>
+        <button class="lc-cartao-k" type="button"><span class="lc-cartao-k__titulo">Matheus Pereira</span><span class="lc-cartao-k__sub">LinkedIn. Atendimento em imobiliária</span><span class="lc-cartao-k__pe"><span class="lc-cresce">há 2 dias</span></span></button>
+        <button class="lc-kanban__add" type="button" style="border:0">Mostrar mais 29</button></div></section>
+      <section class="lc-kanban__col"><div class="lc-kanban__cab"><h3>Entrevista com RH <span class="lc-contagem">6</span></h3></div><div class="lc-kanban__lista">
+        <button class="lc-cartao-k" type="button"><span class="lc-cartao-k__titulo">Priscila Andrade</span><span class="lc-cartao-k__sub">Indicação de Ana Beatriz Souza</span><span class="lc-cartao-k__pe"><i data-i="calendario" class="lc-ic--14"></i><span class="lc-cresce">hoje, 14:00 com você</span></span></button>
+        <button class="lc-cartao-k lc-cartao-k--esfriando" type="button"><span class="lc-cartao-k__titulo">Diego Martins</span><span class="lc-cartao-k__sub">Gupy</span><span class="lc-cartao-k__pe"><span class="lc-cresce">sem data, parado há 5 dias</span></span></button></div></section>
+      <section class="lc-kanban__col"><div class="lc-kanban__cab"><h3>Teste prático <span class="lc-contagem">4</span></h3><div class="lc-kanban__soma">simulação de 5 conversas</div></div><div class="lc-kanban__lista">
+        <button class="lc-cartao-k" type="button"><span class="lc-cartao-k__titulo">Renan Oliveira</span><span class="lc-cartao-k__sub">Nota do teste: 8,5 de 10</span><span class="lc-cartao-k__pe"><span class="lc-cresce">há 1 dia</span></span></button></div></section>
+      <section class="lc-kanban__col"><div class="lc-kanban__cab"><h3>Entrevista com a líder <span class="lc-contagem">3</span></h3></div><div class="lc-kanban__lista">
+        <button class="lc-cartao-k" type="button"><span class="lc-cartao-k__titulo">Tatiane Souza</span><span class="lc-cartao-k__sub">Teste 9,0. Já atendeu condomínio na Lello</span><span class="lc-cartao-k__pe"><i data-i="calendario" class="lc-ic--14"></i><span class="lc-cresce">02/10, 10:00 com Bianca</span></span></button></div></section>
+      <section class="lc-kanban__col"><div class="lc-kanban__cab"><h3>Proposta <span class="lc-contagem">1</span></h3></div><div class="lc-kanban__lista">
+        <button class="lc-cartao-k" type="button"><span class="lc-cartao-k__titulo">Gustavo Lima</span><span class="lc-cartao-k__sub">Proposta enviada 29/09, resposta até 03/10</span></button></div></section>
+    </div>
+    <div class="lc-zona-soltar" aria-hidden="true" style="margin-top:8px"><div class="lc-perdido"><i data-i="pessoa-recusada"></i>Não seguir</div><div><i data-i="arquivar"></i>Banco de talentos</div><div class="lc-ganho"><i data-i="pessoa-aprovada"></i>Contratada</div></div>
+    <p class="lc-legenda" style="margin-top:6px">As zonas aparecem enquanto um cartão é arrastado. Pelo teclado: no cartão, a tecla M abre "Mover para".</p>
+  </div>
+</div>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Página de vagas, Abrir vaga, lista de vagas, busca, Origem, colunas e cartões, Mostrar mais.</dd>
+    <dt>O que é anunciado</dt><dd>Cada cartão lê nome, origem e situação ("sem data, parado há 5 dias"). A tecla M no cartão abre o menu "Mover para" com as etapas e as saídas; o resultado é lido ("Diego Martins movido para Banco de talentos").</dd>
+    <dt>Nome do que é só ícone</dt><dd>Não há botão só ícone.</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

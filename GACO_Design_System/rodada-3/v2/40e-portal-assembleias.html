@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-contexto="portal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal: Assembleias</title>
+<script>window.CM_LINKS={"Início": "40-portal.html", "Chamados": "40b-portal-chamados.html", "Boletos": "40c-portal-boletos.html", "Reservas": "40d-portal-reservas.html", "Assembleias": "40e-portal-assembleias.html", "Comunicados": "40f-portal-comunicados.html", "Documentos": "40f-portal-comunicados.html#documentos", "Minha unidade": "40h-portal-perfil.html", "Moradores e veículos": "40h-portal-perfil.html#moradores", "Meu perfil": "40h-portal-perfil.html", "Encomendas": "40i-portal-portaria.html#encomendas", "Visitantes": "40i-portal-portaria.html"}</script>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q5.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q5.js" defer></script>
+<style>
+
+.portal{max-width:1200px;margin:0 auto;padding:8px 24px 72px}
+.portal-grade{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.portal-estreito{max-width:var(--cm-largura-portal)}
+.portal-cabeca{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;padding:20px 0 14px}
+.portal-cabeca h1{font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em;margin:0}
+.portal-cabeca p{color:var(--cm-texto-2);margin-top:2px}
+.portal-cabeca .cm-empurra{display:flex;gap:8px;flex-wrap:wrap}
+.cm-tabela--simples td:not(.cm-num){white-space:normal}
+.sec-t{font-size:17px;line-height:24px;font-weight:700;margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+.sec-t .cm-link{margin-left:auto;font-size:14px}
+@media (max-width:899px){ .portal-grade{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:599px){ .portal{padding:4px 16px 56px} .portal-cabeca h1{font-size:20px;line-height:26px} .portal-cabeca .cm-empurra{width:100%} }
+
+.ass-grade{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;align-items:start}
+.ass-painel{padding:16px 0}
+.edital{background:var(--cm-camada-1);border:1px solid var(--cm-filete);padding:20px 24px;max-width:var(--cm-largura-leitura)}
+.edital p{margin-bottom:10px;line-height:22px}
+@media (max-width:899px){ .ass-grade{grid-template-columns:minmax(0,1fr)} .edital{padding:16px} }
+@media (max-width:599px){ .cm-resultado{grid-template-columns:90px minmax(0,1fr) 70px} }
+
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"contexto": "portal", "tela": "Assembleias", "unidade": "Bl B Ap 1204", "sino": 3}'></div>
+<main id="conteudo">
+<div class="portal">
+<details class="cm-anotacao" open>
+<summary><i data-i="informacao"></i>Sobre esta tela: Assembleias: edital, pauta, votação online, ata</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>O que esta tela resolve</h3><p>Participar da assembleia sem estar no salão: ler o edital, ver a pauta com anexos, votar item a item com a fração ideal e baixar a ata registrada. A regra de quórum de cada item fica escrita junto do item.</p></div>
+<div><h3>Fluxo</h3><ol><li>Assembleias no menu do topo, linha da assembleia.</li><li>Abas Edital, Pauta, Votação online, Ata. Na hora da assembleia, abre em Votação.</li><li>Escolher a opção (linhas de 52px) e "Confirmar meu voto"; o comprovante aparece logo abaixo.</li><li>"Mandar procuração" abre um modal; Cancelar ou Esc fecha.</li><li>"Assembleias" no topo volta à lista.</li></ol></div>
+<div><h3>Resolvemos fazer assim porque</h3><p>o Assembleia Online da Superlógica e o voto do Condomob mostram a votação item a item com fração ideal, o Zoom e o Meet põem "pedir a palavra" ao lado da transmissão e o gov.br entrega comprovante logo após confirmar. Enviamos para aprovação.</p></div>
+</div></details>
+<section class="cm-tela" id="lista" aria-labelledby="lista-t">
+<h2 class="cm-tela__titulo" id="lista-t">Lista de assembleias <small>Tela 1 de 3</small></h2>
+<div class="portal-cabeca"><div><h1>Assembleias</h1></div></div>
+<div class="cm-lista-linhas"><div class="cm-linha-lista__grupo">Próximas</div>
+<a class="cm-linha-lista" href="#detalhe"><span class="cm-ladrilho"><i data-i="assembleia"></i></span><span><span class="cm-linha-lista__titulo">Extraordinária, quarta, 28/10, às 20h</span><span class="cm-linha-lista__sub">Elevadores do Bloco B, rateio do subsolo 2, bicicletário. Presencial e online.</span></span><span class="cm-linha-lista__meta"><span class="cm-estado cm-estado--info"><i data-i="edital"></i>Edital publicado</span></span><i data-i="chevron-direita"></i></a>
+<div class="cm-linha-lista__grupo">Realizadas</div>
+<a class="cm-linha-lista" href="#detalhe"><span class="cm-ladrilho"><i data-i="ata"></i></span><span><span class="cm-linha-lista__titulo">Ordinária, quinta, 26/03/2026</span><span class="cm-linha-lista__sub">Contas de 2025, previsão orçamentária, impermeabilização da garagem.</span></span><span class="cm-linha-lista__meta"><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Ata registrada</span></span><i data-i="chevron-direita"></i></a>
+<a class="cm-linha-lista" href="#detalhe"><span class="cm-ladrilho"><i data-i="ata"></i></span><span><span class="cm-linha-lista__titulo">Extraordinária, terça, 18/11/2025</span><span class="cm-linha-lista__sub">Eleição da síndica e do conselho para 2026 e 2027.</span></span><span class="cm-linha-lista__meta"><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Ata registrada</span></span><i data-i="chevron-direita"></i></a></div>
+</section>
+<section class="cm-tela" id="detalhe" aria-labelledby="detalhe-t">
+<h2 class="cm-tela__titulo" id="detalhe-t">Assembleia em andamento <small>Tela 2 de 3, abas com edital, pauta, voto e ata</small></h2>
+<div class="portal-cabeca"><div><p class="cm-saudacao"><a class="cm-link" href="#lista">Assembleias</a></p><h1>Assembleia geral extraordinária</h1><p>Quarta, 28/10/2026, às 20h. Salão de festas e online. 2ª chamada às 20h30.</p></div>
+<div class="cm-empurra"><button class="cm-botao" type="button" data-toast="Evento salvo na sua agenda."><i data-i="calendario-mais"></i>Pôr na agenda</button><button class="cm-botao" type="button" data-abrir="procuracao"><i data-i="assinatura"></i>Mandar procuração</button></div></div>
+<div class="ass-grade"><div>
+<div class="cm-abas" role="tablist" data-abas aria-label="Assembleia"><button role="tab" aria-selected="false" aria-controls="p-edital" tabindex="-1" data-cena="edital">Edital</button><button role="tab" aria-selected="false" aria-controls="p-pauta" tabindex="-1">Pauta <span class="cm-contador">3</span></button><button role="tab" aria-selected="true" aria-controls="p-votacao" data-cena="votacao-aba">Votação online</button><button role="tab" aria-selected="false" aria-controls="p-ata" tabindex="-1" data-cena="ata">Ata</button></div>
+<div class="ass-painel" id="p-edital" role="tabpanel" hidden><div class="edital cm-leitura">
+<p><b>Edital de convocação</b></p>
+<p>A síndica do Condomínio Parque das Águas, Marina Costa, no uso do artigo 1.350 do Código Civil e do artigo 22 da convenção, convoca os condôminos para a assembleia geral extraordinária a se realizar em 28 de outubro de 2026, quarta-feira, no salão de festas, com transmissão e votação online pelo portal, às 20h em primeira chamada com metade das frações ideais e às 20h30 em segunda chamada com qualquer número, para deliberar sobre a pauta abaixo.</p>
+<p>Podem votar os condôminos em dia com as taxas até a data da assembleia (convenção, artigo 25). O voto online fica aberto da abertura dos trabalhos até o encerramento de cada item.</p>
+<p>São Paulo, 28 de setembro de 2026.<br>Marina Costa, síndica</p>
+<a class="cm-botao" href="61-documentos-gerados.html#ata"><i data-i="pdf"></i>Baixar edital em PDF</a></div></div>
+<div class="ass-painel" id="p-pauta" role="tabpanel" hidden><ol class="cm-pauta">
+<li><div><div class="cm-pauta__titulo">Troca dos dois elevadores do Bloco B</div><div class="cm-pauta__desc">Três orçamentos anexados: R$ 412.000,00, R$ 438.500,00 e R$ 465.900,00. Pede 2/3 dos condôminos (obra não necessária, art. 1.341).</div></div><a class="cm-botao cm-botao--p" href="#">3 anexos</a></li>
+<li><div><div class="cm-pauta__titulo">Rateio extra para a impermeabilização do subsolo 2</div><div class="cm-pauta__desc">R$ 186.400,00 em 10 parcelas, cerca de R$ 59,70 por mês para uma unidade de 2 dormitórios. Maioria dos presentes.</div></div><a class="cm-botao cm-botao--p" href="#">Laudo</a></li>
+<li><div><div class="cm-pauta__titulo">Regras de uso do bicicletário</div><div class="cm-pauta__desc">Cadastro da bicicleta com foto e limite de 2 vagas por unidade. Maioria dos presentes.</div></div><span></span></li>
+</ol></div>
+<div class="ass-painel" id="p-votacao" role="tabpanel"><div class="cm-pilha cm-pilha--6">
+<div class="cm-alerta cm-alerta--info"><i data-i="urna"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Votação aberta: item 1 de 3</span><span class="cm-alerta__desc">Seu voto vale a fração ideal do Bl B Ap 1204: 0,3184%. Você pode trocar o voto até o item ser encerrado.</span></span></div>
+<fieldset style="border:0;padding:0;margin:0"><legend class="cm-t-secao" style="margin-bottom:10px">Aprovar a troca dos dois elevadores do Bloco B pelo orçamento de R$ 412.000,00?</legend>
+<div class="cm-voto"><label><input type="radio" name="v1">Aprovo</label><label><input type="radio" name="v1">Não aprovo</label><label><input type="radio" name="v1">Me abstenho</label></div></fieldset>
+<button class="cm-botao cm-botao--principal cm-botao--portal" type="button" id="votar"><i data-i="urna"></i>Confirmar meu voto</button>
+<p class="cm-t-legenda">O voto é registrado com data, hora e unidade, e entra na ata. Os outros condôminos não veem como você votou.</p>
+<div class="cm-cartao" id="recibo-voto" hidden><div class="cm-cartao__corpo cm-pilha"><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Voto registrado às 20:41</span><p>Comprovante 7F3A-21C9. Você pode trocar até o encerramento do item 1.</p></div></div>
+<h3 class="cm-t-secao" style="margin-top:8px">Apuração parcial do item 1</h3>
+<div><div class="cm-resultado"><span>Aprovo</span><span class="cm-resultado__barra"><i style="width:58%"></i></span><span class="cm-resultado__valor">58,2%</span></div>
+<div class="cm-resultado"><span>Não aprovo</span><span class="cm-resultado__barra"><i style="width:31%"></i></span><span class="cm-resultado__valor">31,4%</span></div>
+<div class="cm-resultado"><span>Abstenção</span><span class="cm-resultado__barra"><i style="width:10%"></i></span><span class="cm-resultado__valor">10,4%</span></div></div>
+<p class="cm-t-legenda">Das frações presentes: 61,2% do condomínio (191 de 312 unidades). Para aprovar, o item 1 precisa de 66,7% do condomínio.</p>
+</div></div>
+<div class="ass-painel" id="p-ata" role="tabpanel" hidden><div class="cm-pilha cm-pilha--6"><div class="cm-alerta cm-alerta--neutro"><i data-i="ata"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">A ata desta assembleia sai até 05/11</span><span class="cm-alerta__desc">Avisamos no portal e no WhatsApp quando for registrada em cartório.</span></span></div>
+<h3 class="cm-t-secao">Assembleia geral ordinária de 26/03/2026</h3>
+<div class="cm-lista-linhas"><a class="cm-linha-lista" href="61-documentos-gerados.html#ata"><span class="cm-ladrilho"><i data-i="ata"></i></span><span><span class="cm-linha-lista__titulo">Ata registrada</span><span class="cm-linha-lista__sub">2º Registro de Títulos e Documentos de São Paulo, 14/04/2026</span></span><span class="cm-linha-lista__meta">PDF, 4 páginas</span><i data-i="chevron-direita"></i></a>
+<div class="cm-linha-lista"><span class="cm-ladrilho"><i data-i="sucesso"></i></span><span><span class="cm-linha-lista__titulo">Contas de 2025</span><span class="cm-linha-lista__sub">Aprovadas por 92,1% dos presentes</span></span><span class="cm-linha-lista__meta"><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Aprovado</span></span><span></span></div>
+<div class="cm-linha-lista"><span class="cm-ladrilho"><i data-i="rateio"></i></span><span><span class="cm-linha-lista__titulo">Impermeabilização da garagem, 10 parcelas</span><span class="cm-linha-lista__sub">Aprovada por 71,8% dos presentes</span></span><span class="cm-linha-lista__meta"><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Aprovado</span></span><span></span></div>
+<div class="cm-linha-lista"><span class="cm-ladrilho"><i data-i="animal"></i></span><span><span class="cm-linha-lista__titulo">Proibir animais na piscina</span><span class="cm-linha-lista__sub">Rejeitada, 38,0% a favor</span></span><span class="cm-linha-lista__meta"><span class="cm-estado cm-estado--neutro"><i data-i="fechar"></i>Rejeitado</span></span><span></span></div></div></div></div>
+</div>
+<aside class="cm-pilha cm-pilha--6">
+<section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Acompanhar ao vivo</h2><span class="cm-estado cm-estado--perigo"><i data-i="video"></i>Ao vivo</span></header><div class="cm-cartao__corpo cm-pilha"><p class="cm-texto-2">Transmissão com a mesa: Marina Costa (presidente) e Renata Siqueira, da Alpha (secretária).</p><button class="cm-botao cm-botao--bloco" type="button" data-toast="Abrindo a transmissão." data-toast-tipo="info"><i data-i="play"></i>Assistir</button><button class="cm-botao cm-botao--bloco" type="button" data-toast="Pedido de fala enviado à mesa. Você é o 3º da fila."><i data-i="microfone"></i>Pedir a palavra</button></div></section>
+<section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Sua presença</h2></header><div class="cm-cartao__corpo"><span class="cm-estado cm-estado--sucesso"><i data-i="pessoa-confirmada"></i>Presente online desde 20:02</span><p class="cm-t-legenda" style="margin-top:6px">Contada no quórum da 1ª chamada.</p></div></section>
+</aside></div>
+<div class="cm-sobreposicao" id="procuracao" data-janela hidden><div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="pr-t"><div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="pr-t">Mandar procuração<span class="cm-modal__sub">Outra pessoa vota pela sua unidade nesta assembleia.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+<div class="cm-modal__corpo cm-pilha cm-pilha--6"><div class="cm-campo"><label class="cm-campo__rotulo" for="pr-n">Nome de quem vai votar</label><div class="cm-entrada"><input id="pr-n" value="Paulo Costa"></div></div><div class="cm-campo"><label class="cm-campo__rotulo" for="pr-c">CPF</label><div class="cm-entrada"><input id="pr-c" inputmode="numeric" placeholder="000.000.000-00"></div></div><label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Só para os itens 1 e 2</span></label><p class="cm-t-legenda">A procuração é assinada no próprio celular e vai para a mesa. O limite da convenção é de 3 procurações por pessoa.</p></div>
+<div class="cm-modal__pe"><button class="cm-botao" type="button" data-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-fechar data-toast="Procuração enviada para assinatura no seu celular.">Assinar e enviar</button></div></div></div>
+</section>
+<details class="cm-anotacao cm-anotacao--a11y">
+<summary><i data-i="teclado"></i>Acessibilidade desta tela</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>Ordem de foco</h3><ol><li>Pôr na agenda, Mandar procuração</li><li>Abas (setas trocam)</li><li>Opções de voto em grupo de rádio</li><li>Confirmar meu voto</li><li>Assistir, Pedir a palavra</li></ol></div>
+<div><h3>O que é anunciado</h3><ul><li>Pergunta do item é a legenda do grupo de rádio</li><li>"Voto registrado às 20:41" em região viva</li><li>"Ao vivo" tem ícone e palavra, não só o vermelho</li></ul></div>
+<div><h3>Nome do que é só ícone</h3><ul><li>X do modal: "Fechar"</li></ul></div>
+</div></details>
+<section class="cm-tela" id="estados" aria-labelledby="estados-t">
+<h2 class="cm-tela__titulo" id="estados-t">Estados da votação <small>Tela 3 de 3</small></h2>
+<div class="cm-palcos">
+<div class="cm-palco pendente"><div class="cm-palco__rotulo"><i data-i="ver"></i>Antes de abrir: votação ainda fechada</div><div class="cm-palco__corpo"><div class="cm-vazio"><i data-i="urna"></i><p class="cm-vazio__titulo">A votação abre com a assembleia, 28/10 às 20h</p><p class="cm-vazio__texto">Leia a pauta e os orçamentos antes. Se não puder participar, mande uma procuração.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button" data-toast="Lembrete marcado para 28/10, 19h45.">Me lembrar às 19h45</button></div></div></div></div>
+<div class="cm-palco atencao"><div class="cm-palco__rotulo"><i data-i="ver"></i>Unidade sem direito a voto</div><div class="cm-palco__corpo"><div class="cm-alerta cm-alerta--aviso"><i data-i="atencao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Atenção: esta unidade não pode votar hoje</span><span class="cm-alerta__desc">A convenção (art. 25) pede as taxas em dia. Você pode assistir e pedir a palavra. Pagando o boleto de agosto com Pix agora, o voto libera em minutos.</span></span><span class="cm-alerta__acoes"><a class="cm-botao cm-botao--p" href="40c-portal-boletos.html">Ver boleto</a></span></div></div></div>
+<div class="cm-palco urna"><div class="cm-palco__rotulo"><i data-i="ver"></i>Item encerrado: resultado final</div><div class="cm-palco__corpo"><div class="cm-pilha"><span class="cm-estado cm-estado--neutro"><i data-i="fechar"></i>Item 1 não aprovado</span><p>Aprovo teve 58,2% dos presentes, 35,6% do condomínio. Eram precisos 66,7% do condomínio.</p></div></div></div>
+</div>
+</section>
+</div>
+</main>
+<script>document.getElementById('votar').addEventListener('click',function(){var c=document.querySelector('input[name=v1]:checked');if(!c){q5Toast('Escolha uma opção antes de confirmar.','aviso');return}document.getElementById('recibo-voto').hidden=false;q5Toast('Voto registrado às 20:41. Comprovante 7F3A-21C9.','sucesso')});</script>
+</body>
+</html>

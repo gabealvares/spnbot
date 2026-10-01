@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal do aluno, Academy</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.ac-grade{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:24px;align-items:start}
+.ac-topo{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin:8px 0 20px}
+.ac-topo h1{font:var(--t-pagina);margin:0}
+.ac-topo p{color:var(--texto-2);font-size:13.5px;display:flex;gap:6px 18px;flex-wrap:wrap;margin-top:4px}
+.ac-topo .lc-campo{margin-left:auto;width:220px}
+.ac-sec{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 8px;flex-wrap:wrap}
+.ac-sec h2{font:var(--t-secao);margin:0}
+.ac-sec span{font:var(--t-legenda);color:var(--texto-2)}
+.ac-bol td{height:52px}
+.ac-pend{color:var(--texto-3);font-size:12.5px}
+.ac-fim{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;background:var(--sup-1);border:var(--borda-1)}
+.ac-fim>div{display:flex;gap:14px;align-items:center;padding:16px 18px;min-width:0}
+.ac-fim>div+div{border-left:var(--borda-1)}
+@media (max-width:1023px){.ac-grade{grid-template-columns:minmax(0,1fr)}.ac-fim{grid-template-columns:1fr}.ac-fim>div+div{border-left:0;border-top:var(--borda-1)}}
+</style>
+</head>
+<body data-moldura='{"modulo":"academy","secao":"Painel do aluno","papel":"atendente","usuario":{"nome":"Ana Beatriz Souza","cargo":"Atendente de suporte","iniciais":"AB","cor":"lc-av--c6"},"trilha":["Painel do aluno"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Portal do aluno: a entrada do Academy. Papel: colaboradora matriculada.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Responder em uma olhada as perguntas de quem estuda: em que período estou, como estão minhas notas e faltas, tenho risco de reprovar por falta, que aula tenho hoje, o que vence esta semana, onde está meu histórico e meu certificado.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Período letivo no topo troca o boletim inteiro (2026.2 é o atual).</li>
+      <li>Boletim: N1, N2, média e frequência com o mínimo de 75% marcado. Abaixo do mínimo vira "Risco por falta" com a conta do que falta.</li>
+      <li>Clicar na disciplina abre a sala (30b). Clicar na aula da grade abre a aula (30c).</li>
+      <li>Avisos e calendário acadêmico à direita; histórico e certificado no pé, com código de verificação.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>os portais acadêmicos brasileiros (Unimestre, Júpiter da USP, Gennera) usam boletim por disciplina com N1, N2 e frequência, e o dono pediu "faculdade", não gamificação. A grade da semana vem do Canvas e do Google Sala de Aula; o certificado verificável por código, das universidades (diploma digital).</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Estado</span><div class="lc-seg lc-seg--p" role="group" aria-label="Estado" data-p4-estados><button type="button" data-v="dados" aria-pressed="true">Com dados</button><button type="button" data-v="carregando">Carregando</button><button type="button" data-v="vazio">Sem matrícula</button></div>
+    <span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="academy"></div>
+</details>
+
+<div class="ac-topo">
+  <div><h1>Formação em Gestão Condominial</h1><p><span>Ana Beatriz Souza, matrícula 2025.1.0417</span><span>3º período de 4</span><span>Coeficiente 8,4</span></p></div>
+  <div class="lc-campo"><label class="lc-rotulo" for="per">Período letivo</label><select id="per" class="lc-selecao"><option>2026.2, 04/08 a 12/12</option><option>2026.1</option><option>2025.2</option></select></div>
+</div>
+
+<div data-estado="vazio" hidden><div class="lc-caixa"><div class="lc-vazio lc-vazio--centro"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="capelo"></i></span><h2 class="lc-vazio__titulo">Você ainda não está matriculada em nenhum curso</h2><p class="lc-vazio__texto">A rematrícula para 2027.1 abre em 16/11. Até lá, os cursos livres do catálogo podem ser feitos a qualquer momento.</p><div class="lc-grupo-btn"><button class="lc-btn" type="button">Ver catálogo</button></div></div></div></div>
+<div data-estado="carregando" hidden aria-busy="true"><p class="lc-sr" role="status">Carregando o boletim.</p><span class="lc-esqueleto lc-esqueleto--bloco" style="height:320px"></span></div>
+
+<div class="ac-grade" data-estado="dados">
+  <div class="lc-pilha lc-pilha--g">
+    <section aria-labelledby="bol-t">
+      <div class="ac-sec"><h2 id="bol-t">Disciplinas matriculadas</h2><span>Frequência mínima: 75%. Média para aprovação: 7,0.</span></div>
+      <div class="lc-tabela-cont"><table class="lc-tabela ac-bol" style="--_min-tab:900px">
+        <caption class="lc-sr">Boletim do período 2026.2</caption>
+        <thead><tr><th scope="col">Disciplina</th><th scope="col">Professor</th><th scope="col" class="lc-num">CH</th><th scope="col">Frequência</th><th scope="col" class="lc-num">N1</th><th scope="col" class="lc-num">N2</th><th scope="col" class="lc-num">Média</th><th scope="col">Situação</th></tr></thead>
+        <tbody>
+          <tr><td><a class="lc-tabela__primaria" href="30b-academy-disciplina.html">Legislação condominial e convenção</a><span class="lc-tabela__sub">GC-201, turma T01</span></td><td>Dra. Helena Vasconcelos</td><td class="lc-num">40 h</td><td><span class="lc-frequencia"><span class="lc-frequencia__barra" style="--_v:92%"></span>92%</span></td><td class="lc-num">8,5</td><td class="lc-num ac-pend">03/10</td><td class="lc-num">8,5</td><td><span class="lc-estado lc-estado--andamento">Em curso</span></td></tr>
+          <tr><td><a class="lc-tabela__primaria" href="#">Rotinas financeiras e rateio</a><span class="lc-tabela__sub">GC-204, turma T02</span></td><td>Prof. Márcio Tanaka</td><td class="lc-num">60 h</td><td><span class="lc-frequencia"><span class="lc-frequencia__barra" style="--_v:88%"></span>88%</span></td><td class="lc-num">7,0</td><td class="lc-num ac-pend">08/10</td><td class="lc-num">7,0</td><td><span class="lc-estado lc-estado--andamento">Em curso</span></td></tr>
+          <tr><td><a class="lc-tabela__primaria" href="#">Atendimento ao condômino</a><span class="lc-tabela__sub">GC-207, turma T01</span></td><td>Profa. Beatriz Nogueira</td><td class="lc-num">30 h</td><td><span class="lc-frequencia"><span class="lc-frequencia__barra" style="--_v:100%"></span>100%</span></td><td class="lc-num">9,0</td><td class="lc-num">9,5</td><td class="lc-num">9,3</td><td><span class="lc-estado lc-estado--andamento">Em curso</span></td></tr>
+          <tr><td><a class="lc-tabela__primaria" href="#">Assembleias, editais e atas</a><span class="lc-tabela__sub">GC-210, turma T01</span></td><td>Prof. Ricardo Tavares</td><td class="lc-num">40 h</td><td><span class="lc-frequencia lc-frequencia--baixa"><span class="lc-frequencia__barra" style="--_v:72%"></span>72%</span><span class="lc-tabela__sub lc-valor-neg">precisa ir às 2 aulas restantes</span></td><td class="lc-num">6,5</td><td class="lc-num ac-pend">14/10</td><td class="lc-num">6,5</td><td><span class="lc-estado lc-estado--perigo">Risco por falta</span></td></tr>
+          <tr><td><a class="lc-tabela__primaria" href="#">Manutenção predial preventiva</a><span class="lc-tabela__sub">GC-212, turma T03</span></td><td>Eng. Rogério Alves</td><td class="lc-num">40 h</td><td><span class="lc-frequencia lc-frequencia--atencao"><span class="lc-frequencia__barra" style="--_v:78%"></span>78%</span><span class="lc-tabela__sub">pode faltar a mais 1 aula</span></td><td class="lc-num">7,8</td><td class="lc-num ac-pend">06/11</td><td class="lc-num">7,8</td><td><span class="lc-estado lc-estado--andamento">Em curso</span></td></tr>
+          <tr><td><a class="lc-tabela__primaria" href="#">LGPD no condomínio</a><span class="lc-tabela__sub">GC-215, a distância</span></td><td>Profa. Camila Rezende</td><td class="lc-num">30 h</td><td><span class="lc-frequencia"><span class="lc-frequencia__barra" style="--_v:100%"></span>100%</span></td><td class="lc-num">10,0</td><td class="lc-num">9,0</td><td class="lc-num">9,5</td><td><span class="lc-estado lc-estado--sucesso">Aprovada</span></td></tr>
+        </tbody>
+        <tfoot><tr><td>6 disciplinas</td><td></td><td class="lc-num"><span class="lc-total">240 h</span></td><td colspan="3"></td><td class="lc-num"><span class="lc-total">8,1</span></td><td>média parcial</td></tr></tfoot>
+      </table></div>
+      <p class="lc-legenda" style="margin-top:6px">Data no lugar da N2: dia da avaliação. A frequência mostra a marca dos 75%.</p>
+    </section>
+
+    <section aria-labelledby="gs-t">
+      <div class="ac-sec"><h2 id="gs-t">Grade da semana</h2><span>28/09 a 02/10</span></div>
+      <div class="lc-semana-cont"><div class="lc-semana">
+        <div></div><div class="lc-semana__dia">Seg 28</div><div class="lc-semana__dia">Ter 29</div><div class="lc-semana__dia">Qua 30</div><div class="lc-semana__dia lc-semana__dia--hoje">Qui 01, hoje</div><div class="lc-semana__dia">Sex 02</div>
+        <div class="lc-semana__hora">08:00<br>09:40</div><div><a class="lc-semana__aula" href="30c-academy-aula.html"><b>Legislação</b><small>Sala 2</small></a></div><div></div><div></div><div class="lc-semana__hoje"><a class="lc-semana__aula" href="30c-academy-aula.html"><b>Atendimento</b><small>Sala 2</small></a></div><div></div>
+        <div class="lc-semana__hora">14:00<br>15:40</div><div></div><div><a class="lc-semana__aula" href="#"><b>Rotinas financeiras</b><small>Laboratório</small></a></div><div></div><div class="lc-semana__hoje"></div><div><a class="lc-semana__aula" href="#"><b>Manutenção</b><small>Visita, Ed. Aurora</small></a></div>
+        <div class="lc-semana__hora">19:00<br>20:40</div><div></div><div></div><div><a class="lc-semana__aula" href="#"><b>Assembleias</b><small>Online, link na turma</small></a></div><div class="lc-semana__hoje"><a class="lc-semana__aula" href="#"><b>Rotinas financeiras</b><small>Online</small></a></div><div><a class="lc-semana__aula lc-semana__aula--prova" href="#"><b>Assembleia simulada</b><small>Vale a N2, salão do Parque das Águas</small></a></div>
+      </div></div>
+    </section>
+
+    <div class="ac-fim">
+      <div><i data-i="boletim" class="lc-ic--32"></i><div class="lc-cresce"><b>Histórico escolar</b><p class="lc-legenda">2025.1 a 2026.1, 11 disciplinas concluídas, 420 h</p></div><a class="lc-btn" href="30j-academy-historico-calendario.html">Abrir</a></div>
+      <div><span class="lc-carimbo lc-carimbo--emitido">Emitido em 18/07/26<small>Verificação GC-7Q4K-2M9P</small></span><div class="lc-cresce"><b>Atendimento e comunicação com o condomínio</b><p class="lc-legenda">Certificado de módulo, 120 h</p></div><a class="lc-btn lc-btn--icone" href="30i-academy-certificados.html" aria-label="Abrir certificado de Atendimento e comunicação"><i data-i="certificado"></i></a></div>
+    </div>
+  </div>
+
+  <aside class="lc-pilha">
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Avisos</h2><a class="lc-aux" href="#">Todos</a></div>
+      <ul class="lc-lista">
+        <li style="align-items:flex-start"><span class="lc-av lc-av--32 lc-av--c4">HV</span><span class="lc-cresce"><b>Dra. Helena Vasconcelos</b> <span class="lc-legenda">29/09</span><span class="lc-lista__sub">Legislação condominial</span><span style="display:block;margin-top:4px">O trabalho sobre alteração de convenção vai até 03/10, 23:59, em PDF. Quem citar o art. 1.351 do Código Civil precisa explicar o quórum.</span></span></li>
+        <li style="align-items:flex-start"><span class="lc-av lc-av--32 lc-av--c1">CO</span><span class="lc-cresce"><b>Coordenação do curso</b> <span class="lc-legenda">26/09</span><span class="lc-lista__sub">Para todas as turmas</span><span style="display:block;margin-top:4px">Rematrícula para 2027.1 de 16/11 a 27/11. Quem estiver abaixo de 75% em alguma disciplina deve falar com a coordenação antes.</span></span></li>
+      </ul></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Calendário acadêmico</h2><a class="lc-aux" href="30j-academy-historico-calendario.html">Ver o período</a></div>
+      <ul class="lc-agenda" style="padding:0 20px 8px">
+        <li><span class="lc-data"><b>03</b><span>out</span></span><span>Entrega do trabalho<span class="lc-agenda__sub">Legislação condominial</span></span><span class="lc-estado lc-estado--aviso">Entrega</span></li>
+        <li><span class="lc-data"><b>08</b><span>out</span></span><span>Prova N2<span class="lc-agenda__sub">Rotinas financeiras e rateio</span></span><span class="lc-estado lc-estado--perigo">Prova</span></li>
+        <li><span class="lc-data"><b>12</b><span>out</span></span><span>Feriado, sem aulas<span class="lc-agenda__sub">Nossa Senhora Aparecida</span></span><span class="lc-estado lc-estado--neutro">Feriado</span></li>
+        <li><span class="lc-data"><b>16</b><span>nov</span></span><span>Abre a rematrícula 2027.1<span class="lc-agenda__sub">Até 27/11</span></span><span class="lc-estado lc-estado--info">Secretaria</span></li>
+      </ul></section>
+  </aside>
+</div>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Período letivo, disciplinas no boletim (nome é link), grade da semana (aulas são links), Histórico, Certificado, avisos, calendário.</dd>
+    <dt>O que é anunciado</dt><dd>A frequência é número com a barra decorativa; o risco é palavra ("Risco por falta") e a conta vem escrita ("precisa ir às 2 aulas restantes"). A tabela tem cabeçalhos de coluna; "03/10" na N2 tem o título da coluna, lido como data da avaliação.</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Abrir certificado de Atendimento e comunicação".</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

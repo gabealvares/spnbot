@@ -209,7 +209,7 @@ var pend=P.guarda.sget("toast-pendente",null); if(pend){ sessionStorage.removeIt
 var ed=new P.Edicao({raiz:$("#esq"),onde:$("#conteudo"),objeto:"Contrato de administração",chave:"lc-salvar:renovacao",
   opcoes:[{id:"salvar",t:"Salvar",sub:"Fica neste contrato.",ic:"salvar"},
           {id:"proximo",t:"Salvar e ir para o próximo",curto:"Salvar e próximo",sub:prox?(R.i+2)+" de "+R.cj.ids.length+", "+prox.nome:"Este é o último da lista.",ic:"chevron-direita"},
-          {id:"voltar",t:"Salvar e voltar para a lista",curto:"Salvar e voltar",sub:R.cj.rotulo+", na mesma posição.",ic:"voltar-faixa"},
+          {id:"voltar",t:"Salvar e voltar para a lista",curto:"Salvar e voltar",sub:R.cj.rotulo+", na mesma posição.",ic:"seta-esquerda"},
           {id:"novo",t:"Salvar e criar outro contrato",curto:"Salvar e novo",sub:"Abre um contrato em branco.",ic:"mais"}],
   aoMudar:function(m){ $$(".lc-secao-reg[data-secao]").forEach(function(s){ s.classList.toggle("lc-secao-reg--sujo",m.some(function(x){return s.contains(x.el);})); });
     var v=$("#e-valor"), a=$("#e-valor-a"); if(m.some(function(x){return x.el===v;})){ a.hidden=false; a.innerHTML='Antes: <s>'+P.moeda(c.valor)+'</s>. Muda os boletos a partir de novembro.'; } else a.hidden=true; },
@@ -217,7 +217,7 @@ var ed=new P.Edicao({raiz:$("#esq"),onde:$("#conteudo"),objeto:"Contrato de admi
     var vv=$("#e-valor").value.trim();
     if(simular==="erro" || !vv || isNaN(P.lerMoeda(vv))){ simular=null; var e=$("#e-valor"); e.setAttribute("aria-invalid","true");
       var pe=$("#e-valor-e"); if(!pe){ pe=document.createElement("p"); pe.className="lc-erro"; pe.id="e-valor-e"; e.closest(".lc-campo").appendChild(pe); e.setAttribute("aria-describedby","e-valor-a e-valor-e"); }
-      pe.innerHTML=P.lcIc?'':lcIcone("erro")+'Informe o valor mensal em reais, por exemplo 4.620,00.';
+      pe.innerHTML=lcIcone("erro")+'Informe o valor mensal em reais, por exemplo 4.620,00.';
       e.focus(); return falha({tipo:"validacao",erros:[{campo:"Valor mensal",id:"e-valor"}]}); }
     if(simular==="rede"){ simular=null; return falha({tipo:"rede"}); }
     if(simular==="conflito"){ simular=null; conflito(m,ok,falha); return; }

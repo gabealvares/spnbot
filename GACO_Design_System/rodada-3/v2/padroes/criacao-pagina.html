@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novo cliente</title>
+<script src="../sistema/marca.js"></script>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-q2.css">
+<script src="../sistema/icones.js"></script>
+<script src="links.js"></script>
+<script src="../sistema/moldura.js" defer></script>
+<script src="../sistema/extra-q2.js" defer></script>
+<style>
+.cp{max-width:1040px}
+.cp-contato{display:grid;grid-template-columns:1.3fr 1fr 1fr 32px;gap:8px;align-items:end;padding:8px 0;border-bottom:1px dotted var(--cm-filete)}
+@media (max-width:899px){.cp-contato{grid-template-columns:1fr 1fr}.cp-contato>:first-child{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"CS","tela":"Clientes","papel":"CS","registro":"Novo cliente","usuario":{"nome":"Rafael Lima","iniciais":"RL","cargo":"CS sênior","presenca":"disponivel","tom":3}}'></div>
+<main id="conteudo" class="cm-pagina" data-q2-form="novo-cliente" data-q2-salvo="Cliente criado.">
+  <div class="cp">
+    <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Novo cliente</h1><span class="cm-t-legenda">Campos com * são obrigatórios. O resto se completa depois, na ficha.</span></div></header>
+    <div class="cm-resumo-erros" data-q2-resumo="novo-cliente" hidden tabindex="-1"></div>
+    <section class="cm-form-secao">
+      <div><h2 class="cm-form-secao__titulo">Identificação</h2><p class="cm-form-secao__desc">O CNPJ preenche razão social e endereço pela Receita.</p></div>
+      <div class="cm-form-secao__campos">
+        <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="cp-cnpj">CNPJ <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="cp-cnpj" inputmode="numeric" placeholder="00.000.000/0000-00" required data-q2-valida="^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$" data-q2-msg="O CNPJ tem 14 dígitos, no formato 00.000.000/0000-00."></div></div>
+        <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="cp-tipo">Tipo</label><div class="cm-selecao"><select id="cp-tipo"><option>Condomínio residencial</option><option>Condomínio comercial</option><option>Associação de moradores</option></select><i data-i="chevron-baixo"></i></div></div>
+        <div class="cm-campo cm-col-4"><label class="cm-campo__rotulo" for="cp-nome">Nome de uso <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="cp-nome" required placeholder="Como a equipe chama o condomínio" data-q2-msg="Diga como a equipe chama o condomínio."></div></div>
+        <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cp-un">Unidades</label><div class="cm-entrada cm-entrada--numero"><input id="cp-un" inputmode="numeric" value=""></div></div>
+      </div>
+    </section>
+    <section class="cm-form-secao">
+      <div><h2 class="cm-form-secao__titulo">Endereço</h2></div>
+      <div class="cm-form-secao__campos">
+        <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cp-cep">CEP</label><div class="cm-entrada"><input id="cp-cep" inputmode="numeric" placeholder="00000-000"><button class="cm-entrada__acao" type="button" data-q2-toast="Av. Sete de Setembro, Batel, Curitiba.|sucesso">Consultar</button></div></div>
+        <div class="cm-campo cm-col-4"><label class="cm-campo__rotulo" for="cp-rua">Rua e número</label><div class="cm-entrada"><input id="cp-rua"></div></div>
+      </div>
+    </section>
+    <section class="cm-form-secao">
+      <div><h2 class="cm-form-secao__titulo">Contatos</h2><p class="cm-form-secao__desc">Se a pessoa já existe no GACO, o nome sugere e liga as duas.</p></div>
+      <div id="cp-contatos">
+        <div class="cp-contato"><div class="cm-campo"><label class="cm-campo__rotulo" for="c1n">Nome</label><div class="cm-entrada"><input id="c1n" data-rotulo="Contato 1, nome"></div></div><div class="cm-campo"><label class="cm-campo__rotulo" for="c1p">Papel</label><div class="cm-selecao"><select id="c1p" data-rotulo="Contato 1, papel"><option>Síndico</option><option>Subsíndico</option><option>Conselheiro</option><option>Zelador</option></select><i data-i="chevron-baixo"></i></div></div><div class="cm-campo"><label class="cm-campo__rotulo" for="c1t">WhatsApp</label><div class="cm-entrada"><input id="c1t" type="tel" placeholder="(41) 98765-4321" data-rotulo="Contato 1, WhatsApp"></div></div><span></span></div>
+        <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" id="cp-add" style="margin-top:8px"><i data-i="adicionar"></i>Adicionar contato</button>
+      </div>
+    </section>
+    <section class="cm-form-secao">
+      <div><h2 class="cm-form-secao__titulo">Contrato</h2></div>
+      <div class="cm-form-secao__campos">
+        <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cp-plano">Plano</label><div class="cm-selecao"><select id="cp-plano"><option>Completo</option><option>Essencial</option></select><i data-i="chevron-baixo"></i></div></div>
+        <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cp-valor">Mensalidade</label><div class="cm-entrada cm-entrada--moeda"><span class="cm-entrada__prefixo">R$</span><input id="cp-valor" inputmode="decimal"></div></div>
+        <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cp-ini">Início</label><div class="cm-entrada"><i data-i="calendario"></i><input id="cp-ini" placeholder="dd/mm/aaaa"></div></div>
+      </div>
+    </section>
+  </div>
+  <div class="cm-barra-salvar" role="region" aria-label="Cliente ainda não criado" data-q2-barra="novo-cliente" hidden>
+    <div class="cm-barra-salvar__msg" data-q2-msg aria-live="polite"><b></b><span></span></div>
+    <button class="cm-botao cm-botao--discreto" type="button" data-q2-descartar>Descartar</button>
+    <div class="cm-dividido cm-ancora">
+      <button class="cm-botao cm-botao--principal" type="button" data-q2-salvar>Criar cliente <span class="cm-dividido__lembra"></span></button>
+      <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de criar" data-q2-abre="menu-criar"><i data-i="chevron-baixo"></i></button>
+      <div class="cm-menu cm-flutuante cm-flutuante--cima" role="menu" id="menu-criar" data-q2-menu-de="novo-cliente" hidden style="width:290px">
+        <button class="cm-menu__item" role="menuitemradio" type="button" data-q2-opcao="continuar"><i data-i="abrir-fora"></i><span>Criar e abrir a ficha</span><span class="cm-menu__atalho">Ctrl S</span></button>
+        <button class="cm-menu__item" role="menuitemradio" type="button" data-q2-opcao="novo"><i data-i="adicionar"></i><span>Criar e começar outro<span class="cm-menu__desc">Para cadastrar vários seguidos</span></span><span></span></button>
+        <button class="cm-menu__item" role="menuitemradio" type="button" data-q2-opcao="voltar"><i data-i="voltar"></i><span>Criar e voltar à lista</span><span></span></button>
+        <div class="cm-menu__sep"></div>
+        <label class="cm-marcar" style="padding:6px 12px" data-q2-fica><input type="checkbox" checked data-q2-lembrar="novo-cliente" data-q2-ignora><span class="cm-marcar__caixa"></span><span>Lembrar minha escolha</span></label>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+(function(){
+  var n=1;
+  document.getElementById('cp-add').onclick=function(){n++;var d=document.createElement('div');d.className='cp-contato';
+    d.innerHTML='<div class="cm-campo"><label class="cm-campo__rotulo" for="c'+n+'n">Nome</label><div class="cm-entrada"><input id="c'+n+'n" data-rotulo="Contato '+n+', nome"></div></div><div class="cm-campo"><label class="cm-campo__rotulo" for="c'+n+'p">Papel</label><div class="cm-selecao"><select id="c'+n+'p" data-rotulo="Contato '+n+', papel"><option>Conselheiro</option><option>Síndico</option><option>Zelador</option></select>'+cmIcone('chevron-baixo')+'</div></div><div class="cm-campo"><label class="cm-campo__rotulo" for="c'+n+'t">WhatsApp</label><div class="cm-entrada"><input id="c'+n+'t" type="tel" data-rotulo="Contato '+n+', WhatsApp"></div></div><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Tirar contato '+n+'">'+cmIcone('remover')+'</button>';
+    this.parentNode.insertBefore(d,this);d.querySelectorAll('input,select').forEach(function(c){c.setAttribute('data-q2-orig',c.type==='checkbox'?'0':c.value)});d.querySelector('input').focus()};
+  document.getElementById('cp-contatos').addEventListener('click',function(e){var b=e.target.closest('[aria-label^="Tirar contato"]');if(b){b.closest('.cp-contato').remove();cmQ2.form('novo-cliente').atualizar()}});
+  var m=document.getElementById('conteudo');
+  m.addEventListener('q2:salvo',function(e){e.preventDefault();var op=e.detail.opcao;var nome=document.getElementById('cp-nome').value;
+    if(op==='novo'){cmQ2.toast(nome+' criado. Formulário limpo para o próximo.','sucesso','Abrir '+nome);m.querySelectorAll('input:not([data-q2-ignora])').forEach(function(i){i.value='';i.setAttribute('data-q2-orig','')});cmQ2.form('novo-cliente').atualizar();document.getElementById('cp-cnpj').focus()}
+    else if(op==='voltar') cmQ2.toast(nome+' criado. Voltando à lista, com o novo cliente destacado no topo.','sucesso');
+    else cmQ2.toast(nome+' criado. Abrindo a ficha.','sucesso')});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova assembleia, Cond. Parque das Águas</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+<style>
+.p2-et{max-width:calc(var(--cont-form) + 2*var(--grade-margem));margin:0 auto;padding:var(--esp-5) var(--grade-margem) var(--esp-11)}
+.p2-et .lc-passos{margin:8px 0 24px;padding-bottom:16px;border-bottom:var(--borda-1)}
+.p2-et .lc-passos button{font:inherit;color:inherit}
+.p2-et .lc-passos button:hover{text-decoration:underline}
+.p2-pauta{list-style:none;margin:0;padding:0;counter-reset:pt}
+.p2-pauta li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:8px;align-items:center;padding:8px 0;border-bottom:var(--borda-1);counter-increment:pt}
+.p2-pauta li::before{content:counter(pt)".";font-weight:600;color:var(--texto-2);text-align:right}
+.p2-edital{background:var(--sup-1);border:var(--borda-1);padding:32px 40px;max-width:680px}
+.p2-edital h2{font:var(--t-registro);margin:0 0 4px}
+.p2-rodape{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+@media (max-width:639px){.p2-edital{padding:20px}.p2-et .lc-passos{gap:8px 14px}}
+</style>
+</head>
+<body data-moldura='{"modulo":"cs","secao":"Clientes","item":"Clientes","papel":"gerente-cs","trilha":["Clientes","Cond. Parque das Águas","Nova assembleia"]}'>
+<main id="conteudo">
+<div class="p2-et">
+  <div class="lc-cab-pagina" style="padding-top:0"><div class="lc-cab-pagina__txt"><h1>Nova assembleia</h1><p class="lc-cab-pagina__desc">Cond. Parque das Águas, 120 unidades. O edital é um documento: guardamos o rascunho sozinhos a cada alteração.</p></div></div>
+  <div id="recuperar"></div>
+  <ol class="lc-passos" id="passos" aria-label="Etapas"></ol>
+  <form id="form" novalidate>
+  <section data-passo="0" aria-labelledby="p0"><h2 class="lc-t-secao" id="p0">Dados da assembleia</h2><p class="lc-secao-form__desc" style="margin-top:4px">Tipo, data e local. A segunda convocação é calculada sozinha, 30 minutos depois, como manda a convenção.</p>
+    <div class="lc-form-grade">
+      <fieldset class="lc-grupo-opcoes lc-grupo-opcoes--linha lc-inteiro"><legend class="lc-rotulo" style="margin-bottom:8px;width:100%">Tipo <span class="lc-obrig" aria-hidden="true">*</span></legend>
+        <label class="lc-radio"><input type="radio" name="tipo" value="Ordinária" checked><span class="lc-radio__bola"></span>Ordinária (AGO)</label><label class="lc-radio"><input type="radio" name="tipo" value="Extraordinária"><span class="lc-radio__bola"></span>Extraordinária (AGE)</label></fieldset>
+      <div class="lc-campo"><label class="lc-rotulo" for="a-data">Data <span class="lc-obrig" aria-hidden="true">*</span></label><input id="a-data" class="lc-entrada" type="date" value="2026-10-20" required></div>
+      <div class="lc-campo"><label class="lc-rotulo" for="a-hora">Primeira convocação <span class="lc-obrig" aria-hidden="true">*</span></label><input id="a-hora" class="lc-entrada" type="time" value="19:30"><p class="lc-ajuda">Segunda convocação às 20:00.</p></div>
+      <div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="a-local">Local</label><select id="a-local" class="lc-selecao"><option>Salão de festas, bloco A</option><option>Online, pelo portal</option><option>Presencial e online</option></select></div>
+    </div></section>
+  <section data-passo="1" aria-labelledby="p1" hidden><h2 class="lc-t-secao" id="p1">Pauta e edital</h2><p class="lc-secao-form__desc" style="margin-top:4px">Cada item vira um ponto de votação no portal. O texto do edital é livre.</p>
+    <ol class="p2-pauta" id="pauta"></ol>
+    <div class="lc-linha" style="margin:10px 0 20px"><input class="lc-entrada" id="novo-item" placeholder="Novo item da pauta. Ex.: aprovação do orçamento de 2027" aria-label="Novo item da pauta" style="flex:1;min-width:200px"><button class="lc-btn" type="button" id="add-item"><i data-i="mais"></i>Adicionar à pauta</button></div>
+    <div class="lc-campo"><label class="lc-rotulo" id="ed-r">Texto do edital</label>
+      <div class="lc-editor"><div class="lc-editor__barra" role="toolbar" aria-label="Formatação"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Negrito"><i data-i="negrito"></i></button><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Itálico"><i data-i="italico"></i></button><span class="lc-sep"></span><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Lista numerada"><i data-i="lista-numerada"></i></button></div>
+        <div class="lc-editor__area" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="ed-r" id="edital" data-placeholder="Escreva o edital"></div>
+        <div class="lc-editor__pe"><span class="lc-rascunho" id="rascunho" role="status"><i data-i="sucesso"></i>Rascunho salvo às 14:32</span><span class="lc-cresce"></span><span id="palavras">0 palavras</span></div></div></div>
+  </section>
+  <section data-passo="2" aria-labelledby="p2t" hidden><h2 class="lc-t-secao" id="p2t">Quem é convocado</h2><p class="lc-secao-form__desc" style="margin-top:4px">Todos os condôminos, pelos canais que cada um escolheu no portal.</p>
+    <dl class="lc-props" style="max-width:520px;margin-bottom:16px"><dt>Unidades</dt><dd>120, em 2 blocos</dd><dt>Por e-mail</dt><dd>104</dd><dt>Por WhatsApp</dt><dd>97</dd><dt>Sem contato válido</dt><dd><span class="lc-estado lc-estado--aviso">6 unidades</span> <a href="#">ver quais</a></dd></dl>
+    <fieldset class="lc-grupo-opcoes"><legend class="lc-rotulo" style="margin-bottom:8px">Enviar também</legend>
+      <label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>Afixar no quadro de avisos do portal<small>Fica visível até a data da assembleia</small></span></label>
+      <label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>Pedir “Li e estou ciente” no portal<small>A ciência vira registro com data e hora</small></span></label>
+      <label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span><span>Carta registrada para as 6 unidades sem contato</span></label></fieldset></section>
+  <section data-passo="3" aria-labelledby="p3" hidden><h2 class="lc-t-secao" id="p3">Revisar e enviar</h2><p class="lc-secao-form__desc" style="margin-top:4px">É assim que o edital chega aos condôminos. Confira antes de enviar: depois de enviado, só sai uma retificação.</p>
+    <article class="p2-edital lc-documento" id="previa"></article></section>
+  </form>
+</div>
+<div class="lc-barra-salvar" role="region" aria-label="Navegar entre as etapas" style="border-top-color:var(--filete-forte)">
+  <p class="lc-barra-salvar__msg"><button class="lc-btn lc-btn--discreto" type="button" id="voltar"><i data-i="chevron-esquerda"></i>Voltar</button><span class="lc-legenda" id="pos">Etapa 1 de 4</span></p>
+  <div class="lc-barra-salvar__acoes"><a class="lc-btn lc-btn--discreto" href="p2-registro.html" id="sair">Sair e continuar depois</a><button class="lc-btn lc-btn--principal" type="button" id="seguir"></button></div>
+</div>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2,$=P.$,$$=P.$$,esc=P.esc,u=new URLSearchParams(location.search);
+var NOMES=["Dados","Pauta e edital","Convocados","Revisar e enviar"], passo=+(u.get("passo")||0), feitos=new Set();
+for(var k=0;k<passo;k++) feitos.add(k);
+var pauta=["Prestação de contas de janeiro a setembro de 2026","Reajuste da taxa de administração (IGP-M, 5,48%)","Obra de impermeabilização da garagem G1: três orçamentos"];
+var EDITAL="<p>Ficam convocados os senhores condôminos do Condomínio Parque das Águas para a Assembleia Geral Ordinária, no salão de festas do bloco A, em primeira convocação às 19h30 e em segunda às 20h, para deliberar sobre a pauta abaixo.</p><p>Procurações devem ser entregues à administração até 24 horas antes, com firma reconhecida.</p>";
+function passos(){ $("#passos").innerHTML=NOMES.map(function(n,i){ return '<li'+(i===passo?' aria-current="step"':'')+(feitos.has(i)&&i!==passo?' class="lc-feito"':'')+'>'+(feitos.has(i)&&i!==passo?'<button type="button" data-ir="'+i+'">'+n+'<span class="lc-sr">, concluída. Voltar a esta etapa</span></button>':n+(i===passo?'<span class="lc-sr">, etapa atual</span>':''))+'</li>'; }).join("");
+  $$("#passos [data-ir]").forEach(function(b){ b.addEventListener("click",function(){ ir(+b.getAttribute("data-ir")); }); });
+  $$("[data-passo]").forEach(function(s){ s.hidden=+s.getAttribute("data-passo")!==passo; });
+  $("#pos").textContent="Etapa "+(passo+1)+" de 4: "+NOMES[passo]; $("#voltar").disabled=passo===0;
+  $("#seguir").innerHTML=passo<3?'Continuar para '+NOMES[passo+1]+lcIcone("chevron-direita"):lcIcone("enviar")+'Enviar edital a 120 unidades';
+  if(passo===3) previa(); lcIcones(document);
+}
+function validar(){ if(passo===1 && !pauta.length){ var n=$("#novo-item"); n.setAttribute("aria-invalid","true"); n.focus(); P.anunciar("A pauta precisa de pelo menos um item."); return false; } return true; }
+function ir(i){ if(i>passo && !validar()) return; if(i>passo) feitos.add(passo); passo=i; passos(); var h=$('[data-passo="'+i+'"] h2'); h.setAttribute("tabindex","-1"); h.focus(); window.scrollTo(0,0); }
+$("#voltar").addEventListener("click",function(){ if(passo) ir(passo-1); });
+$("#seguir").addEventListener("click",function(){ if(passo<3) return ir(passo+1);
+  var b=this; b.setAttribute("aria-busy","true"); setTimeout(function(){ b.removeAttribute("aria-busy"); P.guarda.set("rasc-assembleia",null);
+    $(".p2-et").innerHTML='<div class="lc-estado-tela"><div class="lc-vazio"><span class="lc-carimbo lc-carimbo--g lc-carimbo--emitido">Edital enviado<small>01/10/2026 às '+P.hora()+', por Letícia Araújo</small></span><h1 class="lc-vazio__titulo" style="margin-top:12px">Assembleia de 20/10 convocada</h1><p class="lc-vazio__texto">O edital foi para 104 e-mails e 97 WhatsApps e está no quadro de avisos do portal. As ciências aparecem na assembleia conforme chegam.</p><div class="lc-grupo-btn"><a class="lc-btn lc-btn--principal" href="#">Abrir a assembleia</a><a class="lc-btn" href="p2-registro.html">Voltar para o condomínio</a></div></div></div>';
+    document.querySelector(".lc-barra-salvar").remove(); }, 900); });
+function desenhaPauta(){ $("#pauta").innerHTML=pauta.map(function(p,i){ return '<li><span>'+esc(p)+'</span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" data-tira="'+i+'" aria-label="Tirar da pauta: '+esc(p)+'"><i data-i="fechar"></i></button></li>'; }).join(""); lcIcones($("#pauta")); }
+$("#pauta").addEventListener("click",function(e){ var b=e.target.closest("[data-tira]"); if(!b) return; var i=+b.getAttribute("data-tira"), t=pauta.splice(i,1)[0]; desenhaPauta(); salvarRasc(); P.toast("Item tirado da pauta: "+esc(t)+".",{ic:"fechar",acao:"Desfazer",aoAcao:function(){ pauta.splice(i,0,t); desenhaPauta(); salvarRasc(); }}); });
+$("#add-item").addEventListener("click",function(){ var n=$("#novo-item"); if(!n.value.trim()){ n.focus(); return; } pauta.push(n.value.trim()); n.value=""; n.removeAttribute("aria-invalid"); desenhaPauta(); salvarRasc(); n.focus(); });
+$("#novo-item").addEventListener("keydown",function(e){ if(e.key==="Enter"){ e.preventDefault(); $("#add-item").click(); } });
+/* rascunho automático: 2 s depois da última tecla; sem conexão, guarda no navegador e diz isso */
+var t, offline=u.get("offline")==="1";
+function salvarRasc(){ var r=$("#rascunho"); r.setAttribute("aria-busy","true"); r.className="lc-rascunho"; r.innerHTML="Salvando…"; clearTimeout(t);
+  t=setTimeout(function(){ r.removeAttribute("aria-busy"); P.guarda.set("rasc-assembleia",{pauta:pauta,edital:$("#edital").innerHTML,hora:P.hora()});
+    if(offline){ r.className="lc-rascunho lc-rascunho--local"; r.innerHTML=lcIcone("wifi-desligado")+"Sem conexão. Guardado neste computador às "+P.hora()+"; enviamos quando voltar."; }
+    else r.innerHTML=lcIcone("sucesso")+"Rascunho salvo às "+P.hora(); },1200); }
+$("#edital").addEventListener("input",function(){ salvarRasc(); conta(); });
+function conta(){ var n=($("#edital").innerText.trim().match(/\S+/g)||[]).length; $("#palavras").textContent=n+(n===1?" palavra":" palavras"); }
+function previa(){ var d=$("#a-data").value.split("-"); $("#previa").innerHTML='<h2>Edital de convocação</h2><p class="lc-legenda" style="font-family:var(--fonte-ui)">Assembleia Geral '+$("input[name=tipo]:checked").value+', '+d[2]+'/'+d[1]+'/'+d[0]+'</p>'+$("#edital").innerHTML+'<p><b>Pauta</b></p><ol>'+pauta.map(function(p){return '<li>'+esc(p)+'</li>';}).join("")+'</ol><p>São Paulo, 1º de outubro de 2026.<br>Marina Costa, síndica. Administradora Alpha.</p>'; }
+/* volta ao formulário: se havia rascunho, oferece continuar */
+var r=P.guarda.get("rasc-assembleia",null);
+if(u.get("recuperar")==="1" && !r) r={pauta:pauta.concat(["Eleição do conselho fiscal"]),edital:EDITAL,hora:"18:40"};
+if(r && r.edital){ $("#recuperar").innerHTML='<div class="lc-alerta lc-alerta--info" style="margin-bottom:16px"><i data-i="recentes"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Você tem um rascunho desta assembleia, de ontem às '+esc(r.hora)+'</span>Pauta com '+r.pauta.length+' itens e edital começado. Continue de onde parou ou comece do zero; o rascunho antigo fica na assembleia por 30 dias.<div class="lc-alerta__acoes"><button class="lc-btn lc-btn--p lc-btn--principal" type="button" id="rec-sim">Continuar o rascunho</button><button class="lc-btn lc-btn--p" type="button" id="rec-nao">Começar do zero</button></div></div></div>';
+  $("#rec-sim").addEventListener("click",function(){ pauta=r.pauta; $("#edital").innerHTML=r.edital; desenhaPauta(); conta(); $("#recuperar").innerHTML=""; feitos.add(0); ir(1); P.toast("Rascunho de ontem às "+esc(r.hora)+" recuperado.",{tipo:"sucesso"}); });
+  $("#rec-nao").addEventListener("click",function(){ $("#recuperar").innerHTML=""; $("#edital").innerHTML=EDITAL; P.anunciar("Começando do zero."); });
+} else { $("#edital").innerHTML=EDITAL; }
+desenhaPauta(); conta(); passos();
+if(offline && passo===1) setTimeout(salvarRasc,200);
+})();
+</script>
+</body>
+</html>

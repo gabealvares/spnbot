@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projetos</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.pj-prog{display:flex;align-items:center;gap:8px;min-width:120px}
+.pj-prog .lc-progresso{flex:1}
+.pj-prog span{font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--texto-2);width:34px;text-align:right}
+.lc-kanban{min-height:420px}
+</style>
+</head>
+<body data-moldura='{"modulo":"projetos","secao":"Projetos","item":"Todos os projetos","papel":"gerente-cs","usuario":{"nome":"Letícia Araújo","cargo":"Gerente de implantação","iniciais":"LA","cor":"lc-av--c3"},"trilha":["Projetos"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Projetos em lista e em quadro. Papel: gerente de implantação.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p>
+      <p>Ver todos os projetos da administradora (implantações de cliente, obras acompanhadas, projetos internos) e saber quais estão atrasados, de quem são e quanto falta, na lista ou no quadro por fase.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Abre na visão que a pessoa usou por último (Lista ou Quadro, no canto direito dos filtros).</li>
+      <li>Visões salvas: Meus projetos, Implantações, Atrasados.</li>
+      <li>No quadro, arrastar o cartão muda a fase; o teclado faz o mesmo (Espaço pega, setas movem, Espaço solta).</li>
+      <li>Clicar no nome abre o projeto (27b), com "2 de 7" para andar.</li>
+      <li>"Novo projeto" pergunta o modelo (implantação, obra, interno) e cai na tela 27d.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p>
+      <p>o Asana, o Monday e o ClickUp oferecem a mesma lista em tabela e em quadro com a troca no topo, o Jira lembra a última visão, e o Basecamp mostra o progresso como barra com número. A saúde é palavra (Em dia, Em risco, Atrasado), como no Asana.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Estado</span>
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela" data-p4-estados>
+      <button type="button" data-v="lista" aria-pressed="true">Lista</button><button type="button" data-v="quadro">Quadro</button><button type="button" data-v="vazio">Vazio</button><button type="button" data-v="carregando">Carregando</button></div>
+    <span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="projetos"></div>
+</details>
+
+<div class="lc-cab-pagina">
+  <div class="lc-cab-pagina__txt"><h1>Projetos</h1><p class="lc-cab-pagina__desc">7 projetos ativos. 2 pedem atenção esta semana.</p></div>
+  <div class="lc-cab-pagina__acoes"><button class="lc-btn lc-btn--principal" type="button" data-abrir="m-novo"><i data-i="mais"></i>Novo projeto</button></div>
+</div>
+<div class="lc-visoes lc-abas" role="tablist" aria-label="Visões salvas">
+  <button role="tab" aria-selected="true">Todos <span class="lc-contagem">7</span></button><button role="tab" aria-selected="false">Meus projetos <span class="lc-contagem">3</span></button><button role="tab" aria-selected="false">Implantações <span class="lc-contagem">3</span></button><button role="tab" aria-selected="false">Atrasados <span class="lc-contagem">1</span></button></div>
+<div class="lc-filtros">
+  <label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Projeto ou cliente" aria-label="Pesquisar projetos"></label>
+  <button class="lc-filtro" type="button">Responsável<i data-i="chevron-baixo"></i></button><button class="lc-filtro" type="button">Tipo<i data-i="chevron-baixo"></i></button><button class="lc-filtro" type="button">Saúde<i data-i="chevron-baixo"></i></button>
+  <div class="lc-filtros__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Visão" data-p4-estados><button type="button" data-v="lista" aria-pressed="true"><i data-i="visao-lista"></i>Lista</button><button type="button" data-v="quadro"><i data-i="visao-quadro"></i>Quadro</button></div></div>
+</div>
+
+<div data-estado="lista">
+<div class="lc-tabela-cont">
+<table class="lc-tabela">
+  <caption class="lc-sr">Projetos ativos</caption>
+  <thead><tr><th scope="col" aria-sort="ascending"><button class="lc-ordenar" type="button">Projeto</button></th><th scope="col">Fase</th><th scope="col">Progresso</th><th scope="col">Saúde</th><th scope="col">Responsável</th><th scope="col"><button class="lc-ordenar" type="button">Entrega</button></th></tr></thead>
+  <tbody>
+    <tr class="lc-tabela__grupo"><td colspan="6"><button type="button" aria-expanded="true"><i data-i="chevron-baixo"></i>Implantações de cliente</button><span class="lc-contagem">3</span></td></tr>
+    <tr><td><a href="27b-projetos-detalhe.html" class="lc-tabela__primaria">Implantação Residencial Aurora</a><span class="lc-tabela__sub">96 unidades, Santo André, contrato desde 01/09</span></td><td>Migração de dados</td><td><span class="pj-prog"><span class="lc-progresso" style="--_v:46%"></span><span>46%</span></span></td><td><span class="lc-estado lc-estado--aviso">Em risco</span></td><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c3">LA</span>Letícia Araújo</span></td><td>30/10/2026</td></tr>
+    <tr><td><a href="#" class="lc-tabela__primaria">Implantação Ed. Monte Verde</a><span class="lc-tabela__sub">40 unidades, São Paulo</span></td><td>Treinamento</td><td><span class="pj-prog"><span class="lc-progresso" style="--_v:85%"></span><span>85%</span></span></td><td><span class="lc-estado lc-estado--sucesso">Em dia</span></td><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c7">RL</span>Rafael Lima</span></td><td>15/10/2026</td></tr>
+    <tr><td><a href="#" class="lc-tabela__primaria">Implantação Cond. Vila Real</a><span class="lc-tabela__sub">210 unidades, Guarulhos</span></td><td>Kickoff</td><td><span class="pj-prog"><span class="lc-progresso" style="--_v:8%"></span><span>8%</span></span></td><td><span class="lc-estado lc-estado--sucesso">Em dia</span></td><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c3">LA</span>Letícia Araújo</span></td><td>20/11/2026</td></tr>
+    <tr class="lc-tabela__grupo"><td colspan="6"><button type="button" aria-expanded="true"><i data-i="chevron-baixo"></i>Obras acompanhadas</button><span class="lc-contagem">2</span></td></tr>
+    <tr><td><a href="#" class="lc-tabela__primaria">Impermeabilização da laje do bloco C</a><span class="lc-tabela__sub">Cond. Parque das Águas, aprovada na AGE de 15/09</span></td><td>Execução</td><td><span class="pj-prog"><span class="lc-progresso lc-progresso--perigo" style="--_v:40%"></span><span>40%</span></span></td><td><span class="lc-estado lc-estado--perigo">Atrasado</span><span class="lc-tabela__sub">8 dias, chuva</span></td><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c8">MT</span>Marcos Teixeira</span></td><td>12/12/2026</td></tr>
+    <tr><td><a href="#" class="lc-tabela__primaria">Troca da motobomba do reservatório</a><span class="lc-tabela__sub">Cond. Parque das Águas</span></td><td>Compra</td><td><span class="pj-prog"><span class="lc-progresso" style="--_v:30%"></span><span>30%</span></span></td><td><span class="lc-estado lc-estado--sucesso">Em dia</span></td><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c8">MT</span>Marcos Teixeira</span></td><td>24/10/2026</td></tr>
+    <tr class="lc-tabela__grupo"><td colspan="6"><button type="button" aria-expanded="true"><i data-i="chevron-baixo"></i>Internos</button><span class="lc-contagem">2</span></td></tr>
+    <tr><td><a href="#" class="lc-tabela__primaria">Migração de 12 condomínios para o Banco Inter</a><span class="lc-tabela__sub">Financeiro</span></td><td>Em andamento</td><td><span class="pj-prog"><span class="lc-progresso" style="--_v:70%"></span><span>70%</span></span></td><td><span class="lc-estado lc-estado--aviso">Em risco</span></td><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c5">RO</span>Renata Oliveira</span></td><td>31/10/2026</td></tr>
+    <tr><td><a href="#" class="lc-tabela__primaria">Recadastramento de moradores (LGPD)</a><span class="lc-tabela__sub">Todos os condomínios</span></td><td>Coleta</td><td><span class="pj-prog"><span class="lc-progresso" style="--_v:33%"></span><span>33%</span></span></td><td><span class="lc-estado lc-estado--sucesso">Em dia</span></td><td><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c4">PM</span>Paula Mendes</span></td><td>15/01/2027</td></tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<div data-estado="quadro" hidden>
+<div class="lc-kanban" aria-label="Quadro de projetos por fase">
+  <section class="lc-kanban__col"><div class="lc-kanban__cab"><h3>Planejamento <span class="lc-contagem">2</span></h3><div class="lc-kanban__soma">entregas até jan/2027</div></div>
+    <div class="lc-kanban__lista">
+      <button class="lc-cartao-k" type="button"><span class="lc-cartao-k__titulo">Implantação Cond. Vila Real</span><span class="lc-cartao-k__sub">210 unidades, Guarulhos</span><span class="lc-cartao-k__pe"><span class="lc-av lc-av--20 lc-av--c3">LA</span><span class="lc-cresce">8%</span>20/11</span></button>
+      <button class="lc-cartao-k" type="button"><span class="lc-cartao-k__titulo">Recadastramento de moradores (LGPD)</span><span class="lc-cartao-k__sub">Todos os condomínios</span><span class="lc-cartao-k__pe"><span class="lc-av lc-av--20 lc-av--c4">PM</span><span class="lc-cresce">33%</span>15/01</span></button>
+    </div><button class="lc-kanban__add" type="button"><i data-i="mais"></i>Adicionar projeto</button></section>
+  <section class="lc-kanban__col"><div class="lc-kanban__cab"><h3>Em andamento <span class="lc-contagem">4</span></h3></div>
+    <div class="lc-kanban__lista">
+      <a class="lc-cartao-k" href="27b-projetos-detalhe.html" style="text-decoration:none"><span class="lc-cartao-k__titulo">Implantação Residencial Aurora</span><span class="lc-cartao-k__sub">Migração de dados</span><span class="lc-cartao-k__pe"><span class="lc-av lc-av--20 lc-av--c3">LA</span><span class="lc-cresce"><span class="lc-estado lc-estado--aviso">Em risco</span></span>30/10</span></a>
+      <button class="lc-cartao-k lc-cartao-k--atrasado" type="button"><span class="lc-cartao-k__titulo">Impermeabilização da laje do bloco C</span><span class="lc-cartao-k__sub">Cond. Parque das Águas</span><span class="lc-cartao-k__pe"><span class="lc-av lc-av--20 lc-av--c8">MT</span><span class="lc-cresce"><span class="lc-estado lc-estado--perigo">Atrasado 8 dias</span></span>12/12</span></button>
+      <button class="lc-cartao-k" type="button"><span class="lc-cartao-k__titulo">Troca da motobomba do reservatório</span><span class="lc-cartao-k__sub">Compra</span><span class="lc-cartao-k__pe"><span class="lc-av lc-av--20 lc-av--c8">MT</span><span class="lc-cresce">30%</span>24/10</span></button>
+      <button class="lc-cartao-k" type="button"><span class="lc-cartao-k__titulo">Migração de 12 condomínios para o Banco Inter</span><span class="lc-cartao-k__sub">8 de 12 migrados</span><span class="lc-cartao-k__pe"><span class="lc-av lc-av--20 lc-av--c5">RO</span><span class="lc-cresce"><span class="lc-estado lc-estado--aviso">Em risco</span></span>31/10</span></button>
+    </div><button class="lc-kanban__add" type="button"><i data-i="mais"></i>Adicionar projeto</button></section>
+  <section class="lc-kanban__col"><div class="lc-kanban__cab"><h3>Com o cliente <span class="lc-contagem">1</span></h3><div class="lc-kanban__soma">validação e treinamento</div></div>
+    <div class="lc-kanban__lista">
+      <button class="lc-cartao-k" type="button"><span class="lc-cartao-k__titulo">Implantação Ed. Monte Verde</span><span class="lc-cartao-k__sub">Treinamento do síndico marcado para 08/10</span><span class="lc-cartao-k__pe"><span class="lc-av lc-av--20 lc-av--c7">RL</span><span class="lc-cresce">85%</span>15/10</span></button>
+    </div></section>
+  <section class="lc-kanban__col"><div class="lc-kanban__cab"><h3>Concluído <span class="lc-contagem">14</span></h3><div class="lc-kanban__soma">em 2026</div></div>
+    <div class="lc-kanban__lista">
+      <button class="lc-cartao-k" type="button"><span class="lc-cartao-k__titulo">Implantação Edifício Solar das Palmeiras</span><span class="lc-cartao-k__sub">Entregue em 18/09, 2 dias antes</span></button>
+      <button class="lc-cartao-k" type="button"><span class="lc-cartao-k__titulo">Pintura da fachada, Jardim Botânico</span><span class="lc-cartao-k__sub">Entregue em 02/09</span></button>
+    </div></section>
+</div>
+<p class="lc-sr" aria-live="polite" id="kb-voz"></p>
+</div>
+
+<div data-estado="vazio" hidden><div class="lc-caixa"><div class="lc-vazio lc-vazio--centro">
+  <span class="lc-ladrilho lc-ladrilho--48"><i data-i="quadro-kanban"></i></span><h2 class="lc-vazio__titulo">Nenhum projeto ainda</h2>
+  <p class="lc-vazio__texto">Projetos nascem de três jeitos: um contrato ganho no Comercial vira implantação, uma obra aprovada em assembleia vira acompanhamento, ou você cria um do zero.</p>
+  <div class="lc-grupo-btn"><button class="lc-btn" type="button">Ver modelos de projeto</button><button class="lc-btn lc-btn--principal" type="button" data-abrir="m-novo">Novo projeto</button></div></div></div></div>
+
+<div data-estado="carregando" hidden aria-busy="true"><p class="lc-sr" role="status">Carregando projetos.</p>
+  <div class="lc-caixa"><div class="lc-caixa__corpo" style="padding-top:16px"><span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span></div></div></div>
+
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl>
+    <dt>Ordem de foco</dt><dd>Novo projeto, visões salvas, busca, filtros, Lista/Quadro, tabela (ordenar, grupos, nome do projeto). No quadro: colunas na ordem, cartões de cima para baixo, Adicionar projeto.</dd>
+    <dt>O que é anunciado</dt><dd>Progresso tem o número escrito ao lado da barra. Saúde é palavra. No quadro, ao pegar um cartão com Espaço: "Implantação Residencial Aurora pego, coluna Em andamento, posição 1 de 4"; ao soltar: "Movido para Com o cliente".</dd>
+    <dt>Nome do que é só ícone</dt><dd>Lista e Quadro têm texto; chevrons de grupo levam o nome do grupo.</dd>
+  </dl>
+</details>
+</main>
+
+<div class="lc-sobreposicao" id="m-novo" hidden>
+  <div class="lc-modal" role="dialog" aria-modal="true" aria-labelledby="m-novo-t">
+    <div class="lc-modal__cab"><div style="flex:1"><h2 id="m-novo-t">Novo projeto</h2><p>Comece por um modelo; fases e tarefas vêm prontas.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+    <div class="lc-modal__corpo"><fieldset class="lc-grupo-opcoes"><legend class="lc-sr">Modelo</legend>
+      <label class="lc-radio"><input type="radio" name="mod" checked><span class="lc-radio__bola"></span><span>Implantação de cliente<small>6 fases, 48 tarefas, 45 dias</small></span></label>
+      <label class="lc-radio"><input type="radio" name="mod"><span class="lc-radio__bola"></span><span>Obra acompanhada<small>Orçamentos, aprovação, execução, vistoria</small></span></label>
+      <label class="lc-radio"><input type="radio" name="mod"><span class="lc-radio__bola"></span><span>Projeto interno em branco</span></label></fieldset></div>
+    <div class="lc-modal__pe"><button class="lc-btn" type="button" data-fechar>Cancelar</button><a class="lc-btn lc-btn--principal" href="27d-projetos-implantacao.html">Continuar</a></div>
+  </div>
+</div>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

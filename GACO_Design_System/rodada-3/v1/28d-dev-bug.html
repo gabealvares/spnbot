@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BUG-1187, Desenvolvimento</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+</head>
+<body data-moldura='{"modulo":"desenvolvimento","secao":"Bugs","item":"Abertos","papel":"dev","usuario":{"nome":"Igor Bezerra","cargo":"Desenvolvedor","iniciais":"IB","cor":"lc-av--c7"},"trilha":["Bugs","BUG-1187"]}'>
+<main id="conteudo">
+<div class="lc-envolto">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Bug com passos para reproduzir, esperado e obtido, e clientes afetados.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Quem corrige precisa reproduzir em minutos. O bug traz versão, ambiente, passos numerados, esperado contra obtido, o log e os chamados de origem, e quem atende sabe o que dizer ao cliente.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>O Suporte cria o bug a partir do chamado; o chamado fica ligado e é avisado quando o bug muda de estado.</li>
+      <li>O desenvolvedor assume ("Assumir"), reproduz e marca "Reproduzido em homologação".</li>
+      <li>O PR ligado aparece em "Correção"; ao mesclar, o bug vai para QA com a versão.</li>
+      <li>"Avisar clientes" manda a resposta pronta nos 3 chamados quando a versão é publicada.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o modelo de relatório de bug do Jira e do GitHub Issues (passos, esperado, obtido, ambiente) é o que o time já escreve; o Linear e o Zendesk ligam o bug ao ticket e avisam o atendente; o Sentry mostra o erro com o contexto. Severidade é palavra, não só cor.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="produto"></div>
+</details>
+</div>
+<div class="lc-cab-registro">
+  <div class="lc-cab-registro__titulo">
+    <span class="lc-ladrilho lc-ladrilho--48"><i data-i="bug"></i></span>
+    <div><h1>2ª via cobra juros em dobro quando o vencimento cai no domingo</h1>
+      <div class="lc-cab-registro__meta" style="margin:4px 0 0"><span class="lc-protocolo"><span>Bug</span> BUG-1187</span><span class="lc-estado-forma"><i data-i="em-andamento"></i>Em correção</span><span><span class="lc-prioridade lc-prioridade--urgente" aria-hidden="true">!</span> Urgente: afeta valor cobrado</span></div></div>
+    <div class="lc-cab-registro__acoes"><button class="lc-btn" type="button"><i data-i="copiar"></i>Copiar link</button><button class="lc-btn lc-btn--principal" type="button" data-toast="Mensagem pronta nos 3 chamados. Sai quando a 2026.10.2 for publicada.">Avisar clientes</button></div>
+  </div>
+  <dl class="lc-campos-chave" style="margin-top:12px">
+    <div><dt>Versão</dt><dd>2026.10.1</dd></div><div><dt>Módulo</dt><dd>Financeiro, cobrança</dd></div><div><dt>Clientes afetados</dt><dd>3 condomínios, 11 boletos</dd></div><div><dt>Reproduzido</dt><dd>Sim, em homologação</dd></div><div><dt>Correção</dt><dd>PR 2291, aberto</dd></div>
+  </dl>
+</div>
+<div class="lc-envolto">
+<div class="lc-reg">
+  <div class="lc-reg__principal">
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Passos para reproduzir</h2></div><div class="lc-caixa__corpo">
+      <ol class="lc-repro">
+        <li>Entrar como analista financeira em homologação, Cond. Parque das Águas.</li>
+        <li>Abrir a cobrança Taxa 08/2026 do Bloco B, 702 (venceu em 10/08/2026, domingo).</li>
+        <li>Clicar em "Enviar 2ª via" e escolher novo vencimento 03/10/2026.</li>
+        <li>Ver o valor calculado no modal.</li></ol>
+      <div class="lc-esperado" style="margin-top:12px">
+        <div><b class="lc-valor-pos"><i data-i="sucesso" class="lc-ic--14"></i>Esperado</b>Vencimento em domingo passa para segunda (11/08). Juros de 53 dias: R$ 14,49. Total R$ 851,30.</div>
+        <div><b class="lc-valor-neg"><i data-i="erro" class="lc-ic--14"></i>Obtido</b>Juros contados duas vezes no período 10/08–11/08 e mês cheio de agosto: R$ 28,98. Total R$ 865,79.</div>
+      </div></div></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Registro do erro</h2><span class="lc-aux">homologação, 01/10 10:21</span></div><div class="lc-caixa__corpo">
+<pre class="lc-log">calcularEncargos(cobranca=0004.812.207-1)
+  vencimentoOriginal: 2026-08-10 (domingo)
+  vencimentoUtil:     2026-08-11
+  dias: 53  base: 820,40
+  juros[periodo 1]: 2026-08-10..2026-08-31  = 7,14
+  juros[periodo 2]: 2026-08-11..2026-10-03  = 14,49   &lt;- conta o dia 11 de novo
+  juros[mes cheio]: 2026-08               = 7,35
+  total juros: 28,98  (esperado 14,49)</pre></div></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Anexos</h2></div><div class="lc-caixa__corpo"><ul class="lc-anexos">
+      <li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="arquivo-imagem"></i></span><span class="lc-anexo__nome">modal-2a-via-valor-errado.png</span><span class="lc-anexo__info">enviado pelo Suporte, 1.280 × 800</span><span class="lc-anexo__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Ver modal-2a-via-valor-errado.png"><i data-i="ver"></i></button></span></li>
+      <li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="arquivo-codigo"></i></span><span class="lc-anexo__nome">teste-encargos-domingo.spec.ts</span><span class="lc-anexo__info">teste que falha, Igor Bezerra</span><span class="lc-anexo__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Ver teste-encargos-domingo.spec.ts"><i data-i="ver"></i></button></span></li></ul></div></section>
+  </div>
+  <aside class="lc-reg__lado">
+    <section class="lc-caixa"><div class="lc-caixa__corpo" style="padding-top:16px"><dl class="lc-props">
+      <dt>Responsável</dt><dd><span class="lc-pessoa"><span class="lc-av lc-av--20 lc-av--c7">IB</span>Igor Bezerra</span></dd>
+      <dt>Relatado por</dt><dd>Bianca Torres, Suporte</dd><dt>Sprint</dt><dd>Sprint 41</dd><dt>Ambiente</dt><dd>Produção e homologação</dd><dt>Navegador</dt><dd>Todos (cálculo no servidor)</dd></dl></div></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Chamados ligados</h2><span class="lc-aux">3</span></div><ul class="lc-lista">
+      <li><i data-i="chamado"></i><span class="lc-cresce"><a href="#">Chamado 4.812</a><span class="lc-lista__sub">Parque das Águas, Juliana Prado</span></span><span class="lc-estado lc-estado--aviso">Esperando correção</span></li>
+      <li><i data-i="chamado"></i><span class="lc-cresce"><a href="#">Chamado 4.830</a><span class="lc-lista__sub">Jardim Botânico</span></span><span class="lc-estado lc-estado--aviso">Esperando correção</span></li>
+      <li><i data-i="chamado"></i><span class="lc-cresce"><a href="#">Chamado 4.841</a><span class="lc-lista__sub">Solar das Palmeiras</span></span><span class="lc-estado lc-estado--aviso">Esperando correção</span></li></ul></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Correção</h2></div><div class="lc-caixa__corpo">
+      <p style="display:flex;gap:8px;align-items:center"><i data-i="pull-request"></i><a href="#">PR 2291: conta o dia útil uma vez só</a></p><p class="lc-legenda" style="margin-top:4px">2 aprovações de 2, testes passando. Entra na 2026.10.2.</p></div></section>
+  </aside>
+</div>
+</div>
+<div class="lc-envolto lc-envolto--pe">
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Copiar link, Avisar clientes, passos (lista numerada), registro (pre rolável com foco pelo teclado), anexos, propriedades, chamados, PR.</dd>
+    <dt>O que é anunciado</dt><dd>Esperado e Obtido são títulos com palavra além da cor. Severidade "Urgente: afeta valor cobrado" em texto. O log é texto, lido linha a linha.</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Ver modal-2a-via-valor-errado.png", "Ver teste-encargos-domingo.spec.ts".</dd></dl>
+</details>
+</div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

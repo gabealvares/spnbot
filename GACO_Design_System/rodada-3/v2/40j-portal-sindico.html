@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-contexto="portal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal: Síndica</title>
+<script>window.CM_LINKS={"Início": "40-portal.html", "Chamados": "40b-portal-chamados.html", "Boletos": "40c-portal-boletos.html", "Reservas": "40d-portal-reservas.html", "Assembleias": "40e-portal-assembleias.html", "Comunicados": "40f-portal-comunicados.html", "Documentos": "40f-portal-comunicados.html#documentos", "Minha unidade": "40h-portal-perfil.html", "Moradores e veículos": "40h-portal-perfil.html#moradores", "Meu perfil": "40h-portal-perfil.html", "Encomendas": "40i-portal-portaria.html#encomendas", "Visitantes": "40i-portal-portaria.html"}</script>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q5.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q5.js" defer></script>
+<style>
+
+.portal{max-width:1200px;margin:0 auto;padding:8px 24px 72px}
+.portal-grade{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.portal-estreito{max-width:var(--cm-largura-portal)}
+.portal-cabeca{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;padding:20px 0 14px}
+.portal-cabeca h1{font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em;margin:0}
+.portal-cabeca p{color:var(--cm-texto-2);margin-top:2px}
+.portal-cabeca .cm-empurra{display:flex;gap:8px;flex-wrap:wrap}
+.cm-tabela--simples td:not(.cm-num){white-space:normal}
+.sec-t{font-size:17px;line-height:24px;font-weight:700;margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+.sec-t .cm-link{margin-left:auto;font-size:14px}
+@media (max-width:899px){ .portal-grade{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:599px){ .portal{padding:4px 16px 56px} .portal-cabeca h1{font-size:20px;line-height:26px} .portal-cabeca .cm-empurra{width:100%} }
+
+.orc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.orc .cm-cartao[aria-current="true"]{border:2px solid var(--cm-texto-1)}
+.contas-grade{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+.rolar{overflow-x:auto}
+.resumo-contas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--cm-filete);background:var(--cm-camada-1)}
+.resumo-contas>div{padding:12px 14px;border-right:1px solid var(--cm-filete)}
+.resumo-contas>div:last-child{border-right:0}
+.resumo-contas dt{font-size:13px;color:var(--cm-texto-2)}.resumo-contas dd{margin:0;font-size:19px;font-weight:700}
+@media (max-width:899px){ .orc,.contas-grade{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:599px){ .resumo-contas{grid-template-columns:minmax(0,1fr)} .resumo-contas>div{border-right:0;border-bottom:1px solid var(--cm-filete)} }
+
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"contexto": "portal", "tela": "Início", "unidade": "Bl B Ap 1204", "sino": 3}'></div>
+<main id="conteudo">
+<div class="portal">
+<details class="cm-anotacao" open>
+<summary><i data-i="informacao"></i>Sobre esta tela: Síndica: aprovações e prestação de contas</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>O que esta tela resolve</h3><p>A síndica decide no celular o que a administração preparou (orçamento, pagamento, exceção ao regimento) e envia a prestação de contas ao conselho já conferida, com o comprovante de cada lançamento.</p></div>
+<div><h3>Fluxo</h3><ol><li>Aprovações: pendentes primeiro; Aprovar e Recusar no próprio item, com Desfazer.</li><li>Orçamentos abrem um comparativo em modal; escolher um e "Aprovar o escolhido".</li><li>Prestação de contas: resumo de saldos, tabela previsto contra realizado, comprovantes por conta.</li><li>"Enviar ao conselho" leva a prestação para o parecer; o conselho vê em 40k.</li></ol></div>
+<div><h3>Resolvemos fazer assim porque</h3><p>o Superlógica e o Group Software mostram previsto contra realizado por conta, os bancos digitais (Itaú Empresas, Cora) aprovam pagamento com um toque e o Mercado Livre compara ofertas lado a lado com a recomendação marcada em palavra, não em cor. Enviamos para aprovação.</p></div>
+</div></details>
+<section class="cm-tela" id="aprovacoes" aria-labelledby="aprovacoes-t">
+<h2 class="cm-tela__titulo" id="aprovacoes-t">Aprovações da síndica <small>Tela 1 de 2</small></h2>
+<div class="portal-cabeca"><div><h1>Aprovações</h1><p>O que a administração preparou e só a síndica decide.</p></div></div>
+<div class="cm-abas" role="tablist" data-abas aria-label="Aprovações"><button role="tab" aria-selected="true" aria-controls="ap-p">Pendentes <span class="cm-contador cm-contador--novo">3</span></button><button role="tab" aria-selected="false" aria-controls="ap-d" tabindex="-1">Decididas</button></div>
+<div id="ap-p" role="tabpanel"><section class="cm-pv" style="border-top:0">
+<div class="cm-pv-item is-urgente"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="ordem-de-servico"></i></span><div><div class="cm-pv-item__titulo">Orçamento para vedar a junta da garagem, chamado 48213</div><div class="cm-pv-item__contexto">3 orçamentos. A administração recomenda a Hidrotec: menor preço com garantia de 5 anos.</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Atenção: obra marcada para 06/10</span></div></div><div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--principal" type="button" data-abrir="orcamento" data-cena="orcamento">Comparar e decidir</button></div></div>
+<div class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="dinheiro"></i></span><div><div class="cm-pv-item__titulo">Pagamento: Elevadores Paulista, manutenção de outubro, R$ 2.940,00</div><div class="cm-pv-item__contexto">Contrato 2023/014, nota fiscal 18.442 anexada. Vence 05/10.</div></div><div class="cm-pv-item__acoes"><button class="cm-botao" type="button" data-toast="Pagamento recusado. O financeiro da Alpha foi avisado.">Recusar</button><button class="cm-botao cm-botao--principal" type="button" data-toast="Pagamento aprovado para 05/10." data-toast-acao="Desfazer">Aprovar</button></div></div>
+<div class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="reserva"></i></span><div><div class="cm-pv-item__titulo">Exceção: churrasqueira 2 até 23h, domingo, 18/10</div><div class="cm-pv-item__contexto">Pedido do Bl C Ap 803, aniversário de 60 anos. Regimento: até 22h.</div></div><div class="cm-pv-item__acoes"><button class="cm-botao" type="button" data-toast="Exceção recusada com o motivo.">Recusar</button><button class="cm-botao cm-botao--principal" type="button" data-toast="Exceção aprovada.">Aprovar</button></div></div>
+</section></div>
+<div id="ap-d" role="tabpanel" hidden><div class="cm-lista-linhas" style="border-top:0"><div class="cm-linha-lista"><span class="cm-ladrilho"><i data-i="sucesso"></i></span><span><span class="cm-linha-lista__titulo">Compra de 6 extintores ABC, R$ 1.302,00</span><span class="cm-linha-lista__sub">Você aprovou em 22/09, 08:14</span></span><span></span><span></span></div></div></div>
+<div class="cm-sobreposicao" id="orcamento" data-janela hidden><div class="cm-modal cm-modal--gg" role="dialog" aria-modal="true" aria-labelledby="oc-t"><div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="oc-t">Comparar orçamentos: vedação da junta da garagem<span class="cm-modal__sub">Vagas 37 e 38, subsolo 1. Fotos e laudo no chamado 48213.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+<div class="cm-modal__corpo"><div class="orc" role="radiogroup" aria-label="Orçamento escolhido">
+<article class="cm-cartao" aria-current="true"><header class="cm-cartao__cabeca"><label class="cm-radio"><input type="radio" name="oc" checked><span class="cm-radio__bola"></span><span class="cm-cartao__titulo">Hidrotec Instalações</span></label></header><div class="cm-cartao__corpo"><p class="cm-valor-grande" style="font-size:24px">R$ 3.480,00</p><p class="cm-texto-2">1 dia de obra, garantia de 5 anos. Atende o prédio desde 2022, 14 OS sem retrabalho.</p><span class="cm-estado cm-estado--info"><i data-i="informacao"></i>Recomendado pela administração</span></div></article>
+<article class="cm-cartao"><header class="cm-cartao__cabeca"><label class="cm-radio"><input type="radio" name="oc"><span class="cm-radio__bola"></span><span class="cm-cartao__titulo">Impermax Engenharia</span></label></header><div class="cm-cartao__corpo"><p class="cm-valor-grande" style="font-size:24px">R$ 4.120,00</p><p class="cm-texto-2">2 dias de obra, garantia de 5 anos. Nunca atendeu o prédio.</p></div></article>
+<article class="cm-cartao"><header class="cm-cartao__cabeca"><label class="cm-radio"><input type="radio" name="oc"><span class="cm-radio__bola"></span><span class="cm-cartao__titulo">JR Reformas</span></label></header><div class="cm-cartao__corpo"><p class="cm-valor-grande" style="font-size:24px">R$ 2.900,00</p><p class="cm-texto-2">1 dia de obra, garantia de 1 ano, sem ART do engenheiro.</p><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Atenção: sem ART</span></div></article></div>
+<div class="cm-campo" style="margin-top:14px"><label class="cm-campo__rotulo" for="oc-obs">Observação para a ata do conselho <span class="cm-campo__opcional">opcional</span></label><textarea class="cm-area" id="oc-obs" rows="2"></textarea></div></div>
+<div class="cm-modal__pe"><span class="cm-modal__pe-esq">Valor dentro do limite da síndica (até R$ 5.000,00 sem assembleia)</span><button class="cm-botao" type="button" data-fechar>Decidir depois</button><button class="cm-botao cm-botao--principal" type="button" data-fechar data-toast="Hidrotec aprovada. A OS sai hoje e a obra fica em 06/10." data-toast-acao="Desfazer">Aprovar o escolhido</button></div></div></div>
+</section>
+<section class="cm-tela" id="contas" aria-labelledby="ct-t"><h2 class="cm-tela__titulo" id="ct-t">Prestação de contas <small>Tela 2 de 2</small></h2><div class="portal-cabeca"><div><h1>Prestação de contas de setembro de 2026</h1><p>Preparada pela Administradora Alpha em 30/09. Conselho fiscal dá o parecer até 15/10; depois fica aberta a todos os moradores.</p></div><div class="cm-empurra"><a class="cm-botao" href="61-documentos-gerados.html#balancete"><i data-i="pdf"></i>Balancete em PDF</a><button class="cm-botao cm-botao--principal" type="button" data-toast="Enviado ao conselho fiscal: Helena Duarte, Rogério Tanaka e Sílvia Prado.">Enviar ao conselho</button></div></div>
+<div class="contas-grade"><div class="cm-pilha cm-pilha--6">
+<dl class="resumo-contas"><div><dt>Saldo em 31/08</dt><dd>R$ 412.806,14</dd></div><div><dt>Entradas menos saídas</dt><dd>+ R$ 18.233,47</dd></div><div><dt>Saldo em 30/09</dt><dd>R$ 431.039,61</dd></div></dl>
+<div class="cm-tabela-caixa rolar"><table class="cm-tabela"><thead><tr><th>Conta</th><th class="cm-num">Previsto</th><th class="cm-num">Realizado</th><th class="cm-num">Diferença</th><th>Comprovantes</th></tr></thead><tbody>
+<tr class="cm-tabela__grupo"><td colspan="5"><button type="button" aria-expanded="true"><i data-i="chevron-baixo"></i>Entradas</button><span class="cm-tabela__grupo-soma">R$ 342.118,90</span></td></tr>
+<tr><td>Taxas condominiais recebidas</td><td class="cm-num">R$ 318.400,00</td><td class="cm-num">R$ 302.876,30</td><td class="cm-num">– R$ 15.523,70</td><td>extrato</td></tr>
+<tr><td>Rateio impermeabilização</td><td class="cm-num">R$ 37.800,00</td><td class="cm-num">R$ 36.112,60</td><td class="cm-num">– R$ 1.687,40</td><td>extrato</td></tr>
+<tr><td>Multas, juros e reservas de áreas</td><td class="cm-num">R$ 2.000,00</td><td class="cm-num">R$ 3.130,00</td><td class="cm-num">+ R$ 1.130,00</td><td>extrato</td></tr>
+<tr class="cm-tabela__grupo"><td colspan="5"><button type="button" aria-expanded="true"><i data-i="chevron-baixo"></i>Saídas</button><span class="cm-tabela__grupo-soma">R$ 323.885,43</span></td></tr>
+<tr><td>Folha e encargos (portaria, zeladoria, limpeza)</td><td class="cm-num">R$ 168.000,00</td><td class="cm-num">R$ 167.412,88</td><td class="cm-num">+ R$ 587,12</td><td>12 de 12</td></tr>
+<tr><td>Concessionárias (água, luz, gás)</td><td class="cm-num">R$ 61.000,00</td><td class="cm-num">R$ 64.208,15</td><td class="cm-num">– R$ 3.208,15</td><td>3 de 3</td></tr>
+<tr><td>Manutenção e contratos</td><td class="cm-num">R$ 42.000,00</td><td class="cm-num">R$ 39.884,40</td><td class="cm-num">+ R$ 2.115,60</td><td>14 de 15 <span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>falta 1</span></td></tr>
+<tr><td>Impermeabilização, parcela 4 da obra</td><td class="cm-num">R$ 38.000,00</td><td class="cm-num">R$ 38.000,00</td><td class="cm-num">R$ 0,00</td><td>1 de 1</td></tr>
+<tr><td>Administração, seguro e despesas bancárias</td><td class="cm-num">R$ 14.500,00</td><td class="cm-num">R$ 14.380,00</td><td class="cm-num">+ R$ 120,00</td><td>8 de 8</td></tr>
+</tbody></table></div>
+</div><aside class="cm-pilha cm-pilha--6"><section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Inadimplência em 30/09</h2></header><div class="cm-cartao__corpo"><p><b>17 unidades</b>, R$ 21.844,10 em aberto. 4 com acordo em dia; 2 em cobrança judicial.</p><a class="cm-link" href="#">Ver por unidade</a></div></section>
+<section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Pendência para o conselho</h2></header><div class="cm-cartao__corpo"><p class="cm-texto-2">Falta a nota fiscal da Jardins Verdes (poda de 18/09, R$ 1.150,00). A administração pediu ao fornecedor em 29/09.</p></div></section></aside></div></section>
+<details class="cm-anotacao cm-anotacao--a11y">
+<summary><i data-i="teclado"></i>Acessibilidade desta tela</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>Ordem de foco</h3><ol><li>Abas Pendentes e Decididas</li><li>Itens e suas ações</li><li>No modal: orçamentos como grupo de rádio, observação, Decidir depois, Aprovar</li><li>PDF, Enviar ao conselho, tabela</li></ol></div>
+<div><h3>O que é anunciado</h3><ul><li>Grupo da tabela anuncia "expandido"</li><li>"Atenção: falta 1" no comprovante</li></ul></div>
+<div><h3>Nome do que é só ícone</h3><ul><li>X do modal: "Fechar"</li></ul></div>
+</div></details>
+</div>
+</main>
+
+</body>
+</html>

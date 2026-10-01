@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa de Máquinas: formulários</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q1.css">
+<link rel="stylesheet" href="sistema/extra-q1-doc.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-q1-doc.js" defer></script>
+<style>
+/* só disposição desta página */
+.ex-w300{width:300px;max-width:100%}
+.ex-w360{width:360px;max-width:100%}
+.ex-w460{width:460px;max-width:100%}
+.ex-campos{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px 20px}
+.ex-matriz-campo{width:230px}
+.ex-lista-abs{position:absolute;left:0;top:calc(100% + 4px);width:100%;z-index:5}
+.ex-ancora{position:relative}
+/* formulário real 2: ficha */
+.ficha-grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 340px;gap:12px;margin-top:12px;align-items:start}
+.ficha-col{display:flex;flex-direction:column;gap:12px;min-width:0}
+.ficha-palco{border:1px solid var(--cm-filete-forte);background:var(--cm-fundo);padding:16px 16px 0;margin-top:12px}
+.ficha-palco .cm-barra-salvar{margin:12px -16px 0}
+/* formulário real 3: cadastro com etapas */
+.cad{display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px;border:1px solid var(--cm-filete-forte);background:var(--cm-camada-1);padding:18px 20px 0;margin-top:12px}
+.cad__lado{position:sticky;top:calc(var(--cm-moldura-altura,93px) + 12px);align-self:start;padding-bottom:18px}
+.cad__corpo{min-width:0}
+.cad__pe{position:sticky;bottom:0;display:flex;align-items:center;gap:8px;padding:12px 0;margin-top:12px;border-top:1px solid var(--cm-filete);background:var(--cm-camada-1);flex-wrap:wrap}
+.cad__pe .cm-empurra{display:flex;gap:8px}
+.cad .cm-form-secao{grid-template-columns:minmax(180px,230px) 1fr;gap:12px 28px}
+.cad-revisao{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+/* validação */
+.val-grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:1180px){ .ficha-grade{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} .ficha-grade>.ficha-col:last-child{grid-column:1/-1} }
+@media (max-width:899px){ .ficha-grade,.val-grade,.cad-revisao{grid-template-columns:minmax(0,1fr)} .cad{grid-template-columns:minmax(0,1fr);padding:14px 14px 0} .cad__lado{position:static} .cad .cm-etapas{display:flex;overflow-x:auto;gap:4px} .cad .cm-etapas li{min-width:150px} .cad .cm-etapas li+li{margin-top:0} .cad .cm-form-secao{grid-template-columns:minmax(0,1fr)} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"papel":"Produto","trilha":false,"sino":3,"usuario":{"nome":"Juliana Reis","iniciais":"JR","cargo":"Gestora do Suporte","presenca":"disponivel","tom":2}}'></div>
+<header class="doc-topo">
+  <nav aria-label="Páginas do sistema">
+    <a href="00-fundamentos.html">Fundamentos</a>
+    <a href="01-iconografia.html">Iconografia</a>
+    <a href="02-navegacao.html">Navegação</a>
+    <a href="03-componentes.html">Componentes</a>
+    <a href="04-formularios.html" aria-current="page">Formulários</a>
+    <a href="05-tabelas-e-listas.html">Tabelas e listas</a>
+  </nav>
+  <div data-cm-seletor></div>
+</header>
+
+<div class="doc">
+<nav class="doc-indice" aria-label="Campos e formulários">
+  <div class="doc-indice__busca"><div class="cm-entrada cm-entrada--p cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" placeholder="Filtrar campos" aria-label="Filtrar campos"></div></div>
+  <div class="doc-indice__familia">O campo</div>
+  <a href="#anatomia">Anatomia e tamanhos</a>
+  <div class="doc-indice__familia">Texto e números</div>
+  <a href="#texto">Texto, e-mail, telefone</a><a href="#area">Área de texto</a><a href="#numero">Número, moeda, %</a>
+  <div class="doc-indice__familia">Datas</div>
+  <a href="#data">Data, data-hora, hora</a><a href="#periodo">Período</a>
+  <div class="doc-indice__familia">Documentos e endereço</div>
+  <a href="#documento">CPF e CNPJ</a><a href="#cep">CEP com consulta</a>
+  <div class="doc-indice__familia">Acesso e busca</div>
+  <a href="#senha">Senha</a><a href="#busca">Busca</a>
+  <div class="doc-indice__familia">Escolha</div>
+  <a href="#selecao">Seleção</a><a href="#combo">Combo com busca</a><a href="#multi">Multisseleção</a><a href="#marcar">Marcar, rádio, interruptor</a>
+  <div class="doc-indice__familia">Arquivos e texto rico</div>
+  <a href="#upload">Upload</a><a href="#editor">Editor com @ e #</a>
+  <div class="doc-indice__familia">Formulários reais</div>
+  <a href="#novo-contato">Novo contato (modal)</a><a href="#ficha">Ficha do cliente</a><a href="#cadastro">Cadastro de condomínio</a>
+  <div class="doc-indice__familia">Regras</div>
+  <a href="#validacao">Validação</a><a href="#limites">Casos-limite</a><a href="#acessibilidade">Foco e leitores de tela</a>
+</nav>
+
+<main id="conteudo" class="doc-main">
+
+<section class="doc-abre" aria-labelledby="titulo-pagina">
+  <div>
+    <p class="cm-t-legenda">Catálogo vivo, V2 Casa de Máquinas. Fonte: sistema/componentes.css, seções 04 a 10</p>
+    <h1 id="titulo-pagina">Formulários</h1>
+    <p>Todos os campos do GACO em todos os estados, nos dois temas, e três formulários de verdade que funcionam: o novo contato num modal, a ficha do cliente com edição no próprio campo e a barra de salvar, e o cadastro longo de um condomínio em etapas. No fim, a regra de validação.</p>
+    <p class="porque"><b>Resolvemos fazer assim porque</b> o GOV.UK Design System validou com usuários o campo com rótulo em cima, ajuda abaixo do rótulo e o resumo de erros no topo com links; o HubSpot e o Salesforce mostram a edição no próprio campo da ficha com "Antes:" e uma barra que só aparece com alteração; e o Shopify Polaris e o Stripe ensinam a máscara que aceita colar com ou sem pontuação e a mensagem que diz quantos dígitos faltam. Enviamos para aprovação.</p>
+  </div>
+  <div>
+    <div class="doc-bloco"><h2>O que esta tela resolve</h2><p>Define como cada dado entra no GACO: o campo certo para cada tipo, como ele avisa, como salva e como volta atrás. Quem monta tela copia o campo pronto; quem decide vê o fluxo inteiro funcionando.</p></div>
+    <div class="doc-bloco"><h2>Fluxo de um formulário no GACO</h2><ol>
+      <li>Registro existente: a pessoa edita no lugar, campo a campo (lápis) ou por seção ("Editar seção").</li>
+      <li>A primeira alteração faz a barra de salvar subir, grudada embaixo, com quantas e quais alterações.</li>
+      <li>Salvar ▾ lembra a escolha: e continuar, e próximo (Ctrl Enter), e voltar à lista, e novo. Ctrl S salva de qualquer campo.</li>
+      <li>Descartar desfaz tudo; sair com alteração pergunta antes.</li>
+      <li>Registro novo curto: modal com o principal no pé. Registro novo longo: tela com etapas à esquerda, Anterior e Próximo no pé, rascunho salvo sozinho.</li>
+    </ol></div>
+    <div class="doc-bloco"><h2>Ordem e tamanho</h2><p>Rótulo em cima, ajuda logo abaixo do rótulo quando muda o que se digita, erro embaixo do campo. Largura do campo diz o tamanho do dado: CEP é curto, endereço é longo. Obrigatório marcado com asterisco; quando quase tudo é obrigatório, marque o opcional.</p></div>
+  </div>
+</section>
+
+<!-- ================================================================= O CAMPO -->
+<section class="doc-familia" aria-labelledby="f-campo">
+<h2 id="f-campo">O campo</h2>
+<p>Todo campo tem as mesmas partes e reage do mesmo jeito. A altura vem da densidade da pessoa: 32px na compacta (interno), 36px na padrão, 44px na confortável (portal).</p>
+
+<section class="doc-comp" id="anatomia">
+  <h3>Anatomia e tamanhos <code>.cm-campo</code> <code>.cm-entrada</code></h3>
+  <p class="lead">Rótulo, marca de obrigatório ou opcional, ajuda, a caixa (com prefixo, sufixo e ação quando precisa), contagem e erro. A caixa editada e não salva fica tingida até salvar; a de só leitura perde o fundo e ganha borda tracejada.</p>
+  <template class="doc-ex-t" data-titulo="<b>Todas as partes.</b> Obrigatório, opcional, ajuda, prefixo, ação, contagem, antes, erro." data-densidades="escuro">
+<div class="ex-campos">
+  <div class="cm-campo">
+    <label class="cm-campo__rotulo" for="an-nome">Nome do condomínio <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label>
+    <div class="cm-entrada"><input id="an-nome" required value="Cond. Parque das Águas" aria-describedby="an-nome-a"></div>
+    <p class="cm-campo__ajuda" id="an-nome-a">Como aparece no boleto e no portal.</p>
+  </div>
+  <div class="cm-campo">
+    <label class="cm-campo__rotulo" for="an-tel">Telefone da portaria <span class="cm-campo__opcional">opcional</span></label>
+    <div class="cm-entrada"><span class="cm-entrada__prefixo">+55</span><input id="an-tel" type="tel" placeholder="(11) 3456-7788"></div>
+  </div>
+  <div class="cm-campo">
+    <label class="cm-campo__rotulo" for="an-mens">Mensalidade</label>
+    <div class="cm-entrada cm-entrada--moeda is-editado"><span class="cm-entrada__prefixo">R$</span><input id="an-mens" inputmode="decimal" value="4.620,00"></div>
+    <p class="cm-campo__antes">Antes: R$ 4.380,00</p>
+  </div>
+  <div class="cm-campo">
+    <label class="cm-campo__rotulo" for="an-cnpj">CNPJ <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label>
+    <div class="cm-entrada"><input id="an-cnpj" inputmode="numeric" aria-invalid="true" aria-describedby="an-cnpj-e" value="12.345.678/0001-0"></div>
+    <p class="cm-campo__erro" id="an-cnpj-e"><i data-i="perigo"></i>Falta 1 dígito. O CNPJ tem 14.</p>
+  </div>
+  <div class="cm-campo">
+    <label class="cm-campo__rotulo" for="an-obs">Recado para a portaria<span class="cm-campo__contagem" id="an-obs-c">38 de 140</span></label>
+    <div class="cm-entrada"><input id="an-obs" maxlength="140" aria-describedby="an-obs-c" value="Entregas só até 18h, pelo portão B."></div>
+  </div>
+  <div class="cm-campo">
+    <label class="cm-campo__rotulo" for="an-cod">Código do condomínio</label>
+    <div class="cm-entrada"><input id="an-cod" readonly value="PDA-0187"><span class="cm-ficha__cadeado"><i data-i="bloquear" data-rotulo="Campo do sistema"></i></span></div>
+    <p class="cm-campo__ajuda">Gerado pelo sistema. Não muda.</p>
+  </div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-titulo="<b>Tamanhos.</b> Pequeno (filtro, célula), padrão, grande (busca de página vazia), toque 44px (celular). Rótulo à esquerda só em configuração com muitos campos curtos." data-codigo="sim">
+<div class="doc-pilha doc-pilha--esticar ex-w460">
+  <div class="cm-entrada cm-entrada--p"><input aria-label="Pequeno" value="Pequeno"></div>
+  <div class="cm-entrada"><input aria-label="Padrão" value="Padrão"></div>
+  <div class="cm-entrada cm-entrada--g"><input aria-label="Grande" value="Grande"></div>
+  <div class="cm-entrada cm-entrada--toque"><input aria-label="Toque" value="Toque, 44px"></div>
+  <div class="cm-campo cm-campo--horizontal"><label class="cm-campo__rotulo" for="an-h">Dia do vencimento</label><div class="cm-entrada cm-entrada--numero" style="width:120px"><input id="an-h" inputmode="numeric" value="10"><span class="cm-entrada__passo"><button type="button" aria-label="Aumentar"><i data-i="chevron-cima"></i></button><button type="button" aria-label="Diminuir"><i data-i="chevron-baixo"></i></button></span></div><p class="cm-campo__ajuda">Vale para todas as unidades.</p></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div><h5>Anatomia</h5><ol class="doc-anatomia"><li>Rótulo <code>.cm-campo__rotulo</code> com <code>__obrigatorio</code> ou <code>__opcional</code></li><li>Ajuda <code>__ajuda</code>, ligada por <code>aria-describedby</code></li><li>Caixa <code>.cm-entrada</code> com <code>__prefixo</code>, <code>__sufixo</code>, <code>__acao</code>, <code>__limpar</code>, <code>__passo</code></li><li>Contagem <code>__contagem</code> e "Antes" <code>__antes</code></li><li>Erro <code>__erro</code> com ícone</li></ol></div>
+    <div><h5>Estados, em uma linha cada</h5><ul><li>Foco: borda de latão de 1px + anel de 1px.</li><li>Editado: fundo <code>--cm-editado</code> até salvar.</li><li>Erro: borda vermelha e filete de 3px à esquerda, mensagem embaixo.</li><li>Desabilitado: fundo apagado, sem cursor de texto.</li><li>Só leitura: sem fundo, borda tracejada, cadeado quando é do sistema.</li><li>Carregando: giro dentro da caixa, à direita.</li></ul></div>
+    <div class="sim"><h5><i data-i="sucesso"></i>Conteúdo</h5><ul><li>Rótulo é substantivo curto, sem dois-pontos.</li><li>Placeholder só mostra o formato ("dd/mm/aaaa"), nunca substitui o rótulo.</li><li>Ajuda diz para que serve ou de onde vem o dado.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li><code>label for</code> sempre; ajuda e erro em <code>aria-describedby</code>; erro também com <code>aria-invalid="true"</code>.</li><li>O asterisco é <code>aria-hidden</code>; o campo tem <code>required</code>.</li><li><code>autocomplete</code> certo (name, email, tel, postal-code) e <code>inputmode</code> para o teclado do celular.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= TEXTO E NÚMEROS -->
+<section class="doc-familia" aria-labelledby="f-texto">
+<h2 id="f-texto">Texto e números</h2>
+<p>As linhas das matrizes são os estados; as colunas, os tipos. "Editado" é o campo alterado e ainda não salvo; "Só leitura" mostra quem altera.</p>
+
+<section class="doc-comp" id="texto">
+  <h3>Texto, e-mail e telefone <code>input</code> em <code>.cm-entrada</code></h3>
+  <p class="lead">Texto livre de uma linha. E-mail com <code>type="email"</code> e telefone com <code>type="tel"</code>, prefixo +55 e máscara que aceita colar com ou sem parênteses. Digite no telefone abaixo.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> A máscara do telefone se ajusta a fixo (8 dígitos) e celular (9).">
+<div class="ex-campos">
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="tx-n">Nome completo</label><div class="cm-entrada"><input id="tx-n" autocomplete="name" placeholder=""></div></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="tx-e">E-mail</label><div class="cm-entrada"><input id="tx-e" type="email" autocomplete="email" placeholder="nome@condominio.com.br" data-validar="email"></div></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="tx-t">WhatsApp</label><div class="cm-entrada"><span class="cm-entrada__prefixo">+55</span><input id="tx-t" type="tel" autocomplete="tel-national" placeholder="(11) 98765-4321" data-mascara="tel" data-validar="tel"></div></div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="texto" data-layout="empilhado" data-codigo="nao" data-titulo="Estados."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Nome, assunto, e-mail, telefone, qualquer texto de uma linha até 140 caracteres.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Texto que passa de uma linha: área de texto.</li><li>Lista fechada de valores: seleção ou combo.</li><li>Dois campos para DDD e número.</li></ul></div>
+    <div><h5>Conteúdo e validação</h5><ul><li>E-mail: "Falta o @ no e-mail" ou "O e-mail termina sem o domínio, como .com.br".</li><li>Telefone: "Faltam 2 dígitos. Celular tem 11 com o DDD".</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li><code>autocomplete</code> e <code>inputmode</code> certos; a máscara não move o cursor para o fim ao corrigir no meio; o prefixo +55 é lido junto do rótulo.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="area">
+  <h3>Área de texto <code>.cm-area</code></h3>
+  <p class="lead">Texto de várias linhas: descrição do chamado, observação da ficha, motivo. Cresce com o conteúdo até 8 linhas, depois rola. Contagem quando há limite.</p>
+  <template class="doc-ex-t" data-matriz="area" data-layout="empilhado" data-titulo="Estados."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Descrição, observação, motivo de perda, justificativa.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Texto com formatação, menção ou anexo: editor.</li><li>Comunicado para o mural: editor.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>A contagem é lida ao chegar no limite ("10 caracteres restantes"), não a cada tecla.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="numero">
+  <h3>Número, moeda e porcentagem <code>--numero</code> <code>--moeda</code> <code>--porcentagem</code></h3>
+  <p class="lead">Alinhados à direita, com números tabulares. Moeda com R$ à esquerda e vírgula decimal; porcentagem com % à direita. Número inteiro pequeno ganha os botões de passo. Digite na moeda: ela formata ao sair do campo.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Moeda aceita “4380”, “4.380” ou “4380,5” e mostra R$ 4.380,50.">
+<div class="ex-campos">
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="nu-u">Unidades</label><div class="cm-entrada cm-entrada--numero"><input id="nu-u" inputmode="numeric" value="312" data-passo><span class="cm-entrada__passo"><button type="button" aria-label="Aumentar unidades" data-passo-mais><i data-i="chevron-cima"></i></button><button type="button" aria-label="Diminuir unidades" data-passo-menos><i data-i="chevron-baixo"></i></button></span></div></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="nu-m">Taxa condominial</label><div class="cm-entrada cm-entrada--moeda"><span class="cm-entrada__prefixo">R$</span><input id="nu-m" inputmode="decimal" value="1.284,90" data-mascara="moeda"></div><p class="cm-campo__ajuda">Por unidade, antes do rateio.</p></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="nu-p">Multa por atraso</label><div class="cm-entrada cm-entrada--porcentagem"><input id="nu-p" inputmode="decimal" value="2,00"><span class="cm-entrada__sufixo">%</span></div><p class="cm-campo__ajuda">O Código Civil limita a 2%.</p></div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="numero" data-layout="empilhado" data-codigo="nao" data-titulo="Estados."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Número: quantidade (unidades, vagas, convidados). Passo só até 3 dígitos.</li><li>Moeda: valor em reais. Porcentagem: multa, juros, fração ideal.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para CPF, CEP, telefone, número de unidade ("1204"): são códigos, não números. Use texto com <code>inputmode="numeric"</code>.</li><li><code>type="number"</code>: a rodinha do mouse muda o valor sem querer.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Vírgula decimal, ponto de milhar, duas casas na moeda. Negativo com sinal de menos, nunca entre parênteses.</li><li>Limite no erro: "A multa vai até 2%".</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Prefixo e sufixo são lidos ("R$", "%"); botões de passo com rótulo; setas do teclado sobem e descem 1, Shift + seta 10.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= DATAS -->
+<section class="doc-familia" aria-labelledby="f-datas">
+<h2 id="f-datas">Datas</h2>
+<p>Data se digita: dd/mm/aaaa, com a barra entrando sozinha. O calendário abre pelo ícone, para quem prefere escolher.</p>
+
+<section class="doc-comp" id="data">
+  <h3>Data, data-hora e hora</h3>
+  <p class="lead">Data com ícone de calendário; hora com o relógio e formato 24h; data-hora junta os dois numa caixa só. Digite: as barras e os dois-pontos entram sozinhos.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Digite só os números. O calendário abre pelo ícone.">
+<div class="ex-campos">
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="dt-d">Data da vistoria</label>
+    <div class="ex-ancora" data-doc-ancora><div class="cm-entrada"><button class="cm-entrada__acao" type="button" aria-label="Abrir calendário" aria-haspopup="dialog" aria-expanded="false" data-doc-alterna style="margin:0 0 0 -6px"><i data-i="calendario"></i></button><input id="dt-d" inputmode="numeric" placeholder="dd/mm/aaaa" data-mascara="data" value="02/10/2025"></div>
+      <div class="cm-popover cm-flutuante" role="dialog" aria-label="Escolher data" data-doc-alvo hidden style="width:280px"><div class="cm-popover__corpo">
+        <table class="cm-calendario" aria-label="Outubro de 2025"><caption class="cm-t-subsecao" style="text-align:left;padding-bottom:6px">Outubro de 2025</caption><thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead><tbody>
+        <tr><td class="is-fora"><button type="button">28</button></td><td class="is-fora"><button type="button">29</button></td><td class="is-fora"><button type="button">30</button></td><td class="is-hoje"><button type="button">1</button></td><td><button type="button" aria-pressed="true">2</button></td><td><button type="button">3</button></td><td><button type="button">4</button></td></tr>
+        <tr><td><button type="button">5</button></td><td><button type="button">6</button></td><td><button type="button">7</button></td><td><button type="button">8</button></td><td><button type="button">9</button></td><td><button type="button">10</button></td><td><button type="button">11</button></td></tr>
+        </tbody></table></div></div></div>
+  </div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="dt-dh">Início da assembleia</label><div class="cm-entrada"><i data-i="calendario"></i><input id="dt-dh" inputmode="numeric" placeholder="dd/mm/aaaa hh:mm" data-mascara="datahora" value="23/10/2025 19:30"></div><p class="cm-campo__ajuda">Segunda chamada 30 min depois.</p></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="dt-h">Horário da portaria</label><div class="cm-entrada" style="width:120px"><i data-i="pendente"></i><input id="dt-h" inputmode="numeric" placeholder="hh:mm" data-mascara="hora" value="07:00"></div></div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="data" data-layout="empilhado" data-codigo="nao" data-titulo="Estados."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Data: vencimento, vistoria, nascimento. Data-hora: assembleia, reunião, reserva. Hora: horário de funcionamento.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Seletor nativo do navegador (muda de cara em cada sistema).</li><li>Três seleções para dia, mês e ano.</li></ul></div>
+    <div><h5>Conteúdo e validação</h5><ul><li>"31/02/2025 não existe", "A vistoria não pode ser antes de hoje", "Assembleia precisa de 8 dias de antecedência (convenção, art. 21)".</li><li>Atalhos ao digitar: "hoje", "amanhã", "+7".</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>O formato vai no placeholder e no rótulo acessível ("Data da vistoria, dia barra mês barra ano"). O calendário é opcional: tudo se faz digitando.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="periodo">
+  <h3>Período <code>.cm-periodo</code></h3>
+  <p class="lead">Duas datas com "até" no meio, e atalhos para os períodos de sempre. O fim não pode ser antes do começo.</p>
+  <template class="doc-ex-t" data-titulo="Normal, com atalhos, com erro e só leitura.">
+<div class="doc-pilha doc-pilha--esticar ex-w460">
+  <div class="cm-campo"><span class="cm-campo__rotulo" id="pe-r">Mandato da síndica</span><div class="cm-periodo" role="group" aria-labelledby="pe-r"><div class="cm-entrada"><i data-i="calendario"></i><input aria-label="Início do mandato" inputmode="numeric" placeholder="dd/mm/aaaa" value="01/04/2024"></div><span class="cm-periodo__ate">até</span><div class="cm-entrada"><i data-i="calendario"></i><input aria-label="Fim do mandato" inputmode="numeric" placeholder="dd/mm/aaaa" value="31/03/2026"></div></div></div>
+  <div class="cm-campo"><span class="cm-campo__rotulo" id="pe-r2">Período do extrato</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Atalhos de período"><button type="button" aria-pressed="false">Este mês</button><button type="button" aria-pressed="true">Mês passado</button><button type="button" aria-pressed="false">90 dias</button><button type="button" aria-pressed="false">Este ano</button></div><div class="cm-periodo" role="group" aria-labelledby="pe-r2"><div class="cm-entrada cm-entrada--p"><input aria-label="Início" value="01/09/2025"></div><span class="cm-periodo__ate">até</span><div class="cm-entrada cm-entrada--p"><input aria-label="Fim" value="30/09/2025"></div></div></div>
+  <div class="cm-campo"><span class="cm-campo__rotulo" id="pe-r3">Obra no elevador</span><div class="cm-periodo" role="group" aria-labelledby="pe-r3"><div class="cm-entrada"><input aria-label="Início da obra" value="20/10/2025"></div><span class="cm-periodo__ate">até</span><div class="cm-entrada"><input aria-label="Fim da obra" aria-invalid="true" aria-describedby="pe-e" value="10/10/2025"></div></div><p class="cm-campo__erro" id="pe-e"><i data-i="perigo"></i>O fim (10/10) é antes do início (20/10).</p></div>
+  <div class="cm-campo"><span class="cm-campo__rotulo" id="pe-r4">Vigência do contrato</span><div class="cm-periodo" role="group" aria-labelledby="pe-r4"><div class="cm-entrada"><input aria-label="Início" readonly value="01/03/2024"></div><span class="cm-periodo__ate">até</span><div class="cm-entrada"><input aria-label="Fim" readonly value="28/02/2026"></div></div><p class="cm-campo__ajuda">Muda pelo aditivo do contrato.</p></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Mandato, vigência, obra, filtro de relatório, férias.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para um dia só com horário: data-hora.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Grupo com o rótulo comum; cada caixa tem o seu ("Início do mandato"). O erro fica no fim e cita as duas datas.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= DOCUMENTOS E ENDEREÇO -->
+<section class="doc-familia" aria-labelledby="f-doc">
+<h2 id="f-doc">Documentos e endereço</h2>
+<p>Campos com máscara e verificação. Aceitam colar do jeito que vier (com ou sem pontos), mostram com a pontuação e guardam só os dígitos.</p>
+
+<section class="doc-comp" id="documento">
+  <h3>CPF e CNPJ</h3>
+  <p class="lead">Máscara 000.000.000-00 e 00.000.000/0000-00. O erro diz quantos dígitos faltam e, quando estão todos, se o dígito verificador não bate. O campo "CPF ou CNPJ" troca a máscara pelo tamanho. Digite e saia do campo.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Experimente colar “12345678000195” ou apagar um dígito.">
+<div class="ex-campos">
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="dc-cpf">CPF da síndica</label><div class="cm-entrada"><input id="dc-cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" data-mascara="cpf" data-validar="cpf" value="529.982.247-25"></div></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="dc-cnpj">CNPJ do condomínio</label><div class="cm-entrada"><input id="dc-cnpj" inputmode="numeric" placeholder="00.000.000/0000-00" data-mascara="cnpj" data-validar="cnpj" value="12.345.678/0001-9"></div></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="dc-doc">CPF ou CNPJ do pagador</label><div class="cm-entrada"><input id="dc-doc" inputmode="numeric" placeholder="Só os números" data-mascara="doc" data-validar="doc"></div><p class="cm-campo__ajuda">Até 11 dígitos é CPF; 14 é CNPJ.</p></div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="documento" data-layout="empilhado" data-codigo="nao" data-titulo="Estados. O carregando é a consulta à Receita, que preenche a razão social."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Cadastro de condomínio, síndico, fornecedor, pagador de boleto.</li><li>CNPJ completo consulta a razão social e oferece preencher.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Bloquear a digitação de letras sem avisar: o campo ignora e mostra a ajuda.</li><li>Mostrar CPF inteiro em lista: lá aparece ***.982.247-**.</li></ul></div>
+    <div><h5>Mensagens</h5><ul><li>"Falta 1 dígito. O CNPJ tem 14."</li><li>"O CPF tem 11 dígitos, mas o último não confere. Confira com o documento."</li><li>"Este CNPJ já é do Cond. Vila Serena. Abrir?"</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>A máscara não é lida caractere a caractere; o valor é anunciado com a pontuação. O erro aparece ao sair do campo, nunca enquanto se digita.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="cep">
+  <h3>CEP com consulta <code>.cm-cep-resultado</code></h3>
+  <p class="lead">Ao completar os 8 dígitos (ou apertar Consultar), o GACO busca o endereço e preenche rua, bairro, cidade e UF, que continuam editáveis. Número e complemento ficam para a pessoa. Tente 80240-000 ou 00000-000.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Consulta, preenchimento e CEP que não existe.">
+<div class="ex-campos" data-cep-grupo>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="cp-c">CEP</label><div class="cm-entrada" style="max-width:220px"><input id="cp-c" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" data-mascara="cep" data-cep value="80240-000"><button class="cm-entrada__acao" type="button" data-cep-consultar>Consultar</button></div><p class="cm-campo__ajuda" data-cep-saida>Não sabe o CEP? <a class="cm-link" href="#cep">Buscar pelo endereço</a></p></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="cp-r">Rua</label><div class="cm-entrada"><input id="cp-r" autocomplete="address-line1" data-cep-campo="rua"></div></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="cp-n">Número</label><div class="cm-entrada" style="max-width:120px"><input id="cp-n" inputmode="numeric"></div></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="cp-b">Bairro</label><div class="cm-entrada"><input id="cp-b" data-cep-campo="bairro"></div></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="cp-ci">Cidade e UF</label><div class="cm-entrada"><input id="cp-ci" autocomplete="address-level2" data-cep-campo="cidade"></div></div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-titulo="Parado: consultando, achado, não achado." data-codigo="nao">
+<div class="doc-pilha doc-pilha--esticar ex-w300">
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="cp-1">CEP</label><div class="cm-entrada is-carregando"><input id="cp-1" value="80240-000"><button class="cm-entrada__acao" type="button" disabled>Consultar</button></div><p class="cm-campo__ajuda" role="status">Buscando o endereço</p></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="cp-2">CEP</label><div class="cm-entrada"><input id="cp-2" value="80240-000"><button class="cm-entrada__acao" type="button">Consultar</button></div><p class="cm-cep-resultado" role="status"><i data-i="sucesso"></i>Av. Sete de Setembro, Batel, Curitiba, PR</p></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="cp-3">CEP</label><div class="cm-entrada"><input id="cp-3" aria-invalid="true" aria-describedby="cp-3e" value="00000-000"><button class="cm-entrada__acao" type="button">Consultar</button></div><p class="cm-campo__erro" id="cp-3e"><i data-i="perigo"></i>Os Correios não acharam este CEP. Confira ou preencha o endereço à mão.</p></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Endereço de condomínio, fornecedor, pessoa.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Bloquear rua e bairro depois da consulta: o Correios erra, a pessoa corrige.</li><li>Apagar o que a pessoa já digitou na rua ao consultar de novo: pergunte.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>O resultado é região <code>status</code>: "Endereço preenchido: Av. Sete de Setembro, Batel, Curitiba". O foco vai para Número.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= ACESSO E BUSCA -->
+<section class="doc-familia" aria-labelledby="f-acesso">
+<h2 id="f-acesso">Acesso e busca</h2>
+
+<section class="doc-comp" id="senha">
+  <h3>Senha <code>--senha</code> <code>.cm-forca</code></h3>
+  <p class="lead">Com botão de mostrar, régua de força em quatro partes e a regra escrita. A cor da régua acompanha uma palavra ("fraca", "boa", "forte"). Digite.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Mostrar e esconder, força ao digitar.">
+<div class="ex-campos">
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="se-a">Senha atual</label><div class="cm-entrada cm-entrada--senha"><input id="se-a" type="password" autocomplete="current-password" value="parque2024"><button class="cm-entrada__acao" type="button" aria-label="Mostrar senha"><i data-i="ver"></i></button></div><a class="cm-link cm-t-legenda" href="#senha">Esqueci a senha</a></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="se-n">Nova senha</label><div class="cm-entrada cm-entrada--senha"><input id="se-n" type="password" autocomplete="new-password" aria-describedby="se-n-f" data-forca value="agua"><button class="cm-entrada__acao" type="button" aria-label="Mostrar senha"><i data-i="ver"></i></button></div><div class="cm-forca" data-nivel="1" aria-hidden="true"><i></i><i></i><i></i><i></i></div><p class="cm-campo__ajuda" id="se-n-f" aria-live="polite">Fraca. Use 10 caracteres ou mais; uma frase funciona bem.</p></div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="senha" data-layout="empilhado" data-codigo="nao" data-titulo="Estados e as quatro forças."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Login, troca de senha, primeiro acesso do síndico.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>"Confirmar senha": o botão mostrar resolve o erro de digitação.</li><li>Regra de "um símbolo, uma maiúscula": o tamanho protege mais.</li><li>Bloquear colar.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Mostrar é botão com rótulo que troca ("Ocultar senha"); a força é texto em região viva; a régua é decorativa.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="busca">
+  <h3>Busca <code>--busca</code></h3>
+  <p class="lead">Lupa à esquerda, limpar quando há texto, e a tecla "/" que leva o foco para ela. Filtra enquanto se digita (300 ms depois da última tecla).</p>
+  <template class="doc-ex-t" data-titulo="Vazia, com texto, carregando, sem resultado." data-codigo="sim">
+<div class="doc-pilha doc-pilha--esticar ex-w360">
+  <div class="cm-entrada cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar chamados" placeholder="Buscar por número, condomínio ou pessoa"><kbd class="cm-tecla">/</kbd></div>
+  <div class="cm-entrada cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar chamados" value="vazamento garagem"><button class="cm-entrada__limpar" type="button" aria-label="Limpar busca"><i data-i="fechar"></i></button></div>
+  <div class="cm-entrada cm-entrada--busca is-carregando"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar chamados" value="parque das"></div>
+  <div class="cm-campo"><div class="cm-entrada cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar chamados" value="hidrotek" aria-describedby="bu-s"><button class="cm-entrada__limpar" type="button" aria-label="Limpar busca"><i data-i="fechar"></i></button></div><p class="cm-campo__ajuda" id="bu-s" role="status">Nada com "hidrotek". Você quis dizer <a class="cm-link" href="#busca">Hidrotec</a>?</p></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>No topo de toda lista e tabela, à esquerda dos filtros.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para ir a outra tela: Ctrl K.</li><li>Com botão "Buscar" quando filtra sozinha.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li><code>type="search"</code> dentro de <code>role="search"</code>; resultado anunciado ("12 chamados"); Esc limpa; "/" fora de campo leva o foco.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= ESCOLHA -->
+<section class="doc-familia" aria-labelledby="f-escolha">
+<h2 id="f-escolha">Escolha</h2>
+<p>Até 5 opções visíveis: rádio ou opções em botão. Até 15: seleção. Mais de 15, ou opções que crescem (pessoas, condomínios): combo com busca. Várias de uma lista aberta: multisseleção.</p>
+
+<section class="doc-comp" id="selecao">
+  <h3>Seleção <code>.cm-selecao</code></h3>
+  <p class="lead">O <code>select</code> do navegador com a cara do GACO. Abre a lista nativa, que no celular é a roda do sistema, a mais fácil de usar com o polegar.</p>
+  <template class="doc-ex-t" data-matriz="selecao" data-layout="empilhado" data-titulo="Estados."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>De 6 a 15 opções fixas: prioridade, tipo de chamado, UF, papel.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Com uma opção só: mostre o valor como texto e explique.</li><li>Lista de pessoas ou condomínios: combo com busca.</li><li>"Selecione..." como opção válida: o vazio é o placeholder.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>É o controle nativo: teclado e leitor funcionam sem nada a mais. A seta é decorativa.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="combo">
+  <h3>Combo com busca <code>.cm-gatilho</code> <code>.cm-lista-opcoes</code></h3>
+  <p class="lead">Escolher uma pessoa, um condomínio, um fornecedor numa lista grande. Busca no topo, grupos, descrição à direita, e "criar" no pé quando não acha. Abra e digite "ma".</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Busca ignora acento, setas andam, Enter escolhe.">
+<div class="cm-campo ex-w300"><span class="cm-campo__rotulo" id="cb-r">Responsável</span>
+  <div class="ex-ancora" data-doc-ancora data-combo>
+    <button class="cm-gatilho" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="cb-r cb-v" data-doc-alterna><span class="cm-avatar cm-avatar--p cm-avatar--2" data-combo-av>BN</span><span class="cm-gatilho__valor" id="cb-v">Beatriz Nogueira</span><i data-i="chevron-baixo"></i></button>
+    <div class="cm-lista-opcoes cm-flutuante" role="listbox" aria-labelledby="cb-r" data-doc-alvo hidden style="width:100%">
+      <div class="cm-lista-opcoes__busca"><div class="cm-entrada cm-entrada--p cm-entrada--busca"><i data-i="pesquisar"></i><input aria-label="Buscar pessoa" placeholder="Buscar pessoa" data-combo-busca></div></div>
+      <div class="cm-lista-opcoes__grupo">Equipe do Suporte</div>
+      <div class="cm-opcao" role="option" aria-selected="true" tabindex="-1" data-av="BN"><span class="cm-avatar cm-avatar--p cm-avatar--2">BN</span>Beatriz Nogueira<span class="cm-opcao__desc">disponível</span></div>
+      <div class="cm-opcao" role="option" aria-selected="false" tabindex="-1" data-av="DM"><span class="cm-avatar cm-avatar--p cm-avatar--1">DM</span>Diego Martins<span class="cm-opcao__desc">3 conversas</span></div>
+      <div class="cm-opcao" role="option" aria-selected="false" tabindex="-1" data-av="RS"><span class="cm-avatar cm-avatar--p cm-avatar--3">RS</span>Renata Sousa<span class="cm-opcao__desc">volta às 14h</span></div>
+      <div class="cm-lista-opcoes__grupo">Gestão</div>
+      <div class="cm-opcao" role="option" aria-selected="false" tabindex="-1" data-av="JR"><span class="cm-avatar cm-avatar--p cm-avatar--5">JR</span>Juliana Reis<span class="cm-opcao__desc">gestora</span></div>
+      <div class="cm-opcao" role="option" aria-selected="false" tabindex="-1" data-av="MA"><span class="cm-avatar cm-avatar--p cm-avatar--4">MA</span>Marcos Almeida<span class="cm-opcao__desc">férias até 10/10</span></div>
+      <div class="cm-lista-opcoes__vazio" hidden data-combo-vazio>Ninguém com esse nome na equipe.</div>
+      <div class="cm-lista-opcoes__criar"><div class="cm-opcao" role="option" aria-selected="false" tabindex="-1" data-toast="Convite enviado|sucesso"><i data-i="adicionar-pessoa"></i>Convidar pessoa</div></div>
+    </div>
+  </div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-titulo="Parado: aberto com a busca “par”, destaque do trecho e opção indisponível." data-codigo="nao">
+<div class="ex-w300">
+  <button class="cm-gatilho" type="button" aria-haspopup="listbox" aria-expanded="true"><span class="cm-gatilho__valor">Cond. Parque das Águas</span><i data-i="chevron-baixo"></i></button>
+  <div class="cm-lista-opcoes cm-flutuante" role="listbox" aria-label="Condomínios" style="margin-top:4px">
+    <div class="cm-lista-opcoes__busca"><div class="cm-entrada cm-entrada--p cm-entrada--busca"><i data-i="pesquisar"></i><input aria-label="Buscar condomínio" value="par"></div></div>
+    <div class="cm-opcao is-ativa" role="option" aria-selected="true"><mark>Par</mark>que das Águas<span class="cm-opcao__desc">312 un.</span></div>
+    <div class="cm-opcao" role="option" aria-selected="false">Res. <mark>Par</mark>aíso do Sol<span class="cm-opcao__desc">96 un.</span></div>
+    <div class="cm-opcao" role="option" aria-selected="false" aria-disabled="true">Ed. <mark>Par</mark>ati<span class="cm-opcao__desc">contrato encerrado</span></div>
+    <div class="cm-lista-opcoes__criar"><div class="cm-opcao" role="option"><i data-i="adicionar"></i>Cadastrar "par…" como novo condomínio</div></div>
+  </div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="combo" data-layout="empilhado" data-codigo="nao" data-titulo="Estados do gatilho."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Responsável, condomínio, fornecedor, unidade, conta bancária.</li><li>Com "criar" no pé quando a pessoa pode cadastrar ali mesmo.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para até 15 opções fixas: seleção.</li><li>Para várias escolhas: multisseleção.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>A descrição à direita ajuda a decidir: presença, tamanho, motivo de estar indisponível.</li><li>Sem resultado: diz o que não achou e oferece criar.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Padrão combobox do WAI-ARIA: gatilho com <code>aria-expanded</code>, lista <code>listbox</code>, opção ativa por <code>aria-activedescendant</code>, setas, Home, End, Enter, Esc.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="multi">
+  <h3>Multisseleção <code>.cm-multi</code></h3>
+  <p class="lead">Várias etiquetas, pessoas ou blocos na mesma caixa. Digite e aperte Enter para acrescentar; Backspace com a caixa vazia tira a última.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Etiquetas do chamado e blocos do condomínio.">
+<div class="ex-campos">
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="mu-1">Etiquetas</label><div class="cm-multi"><span class="cm-etiqueta cm-etiqueta--1">Manutenção<button class="cm-etiqueta__remover" type="button" aria-label="Remover Manutenção"><i data-i="fechar"></i></button></span><span class="cm-etiqueta cm-etiqueta--4">Garagem<button class="cm-etiqueta__remover" type="button" aria-label="Remover Garagem"><i data-i="fechar"></i></button></span><input id="mu-1" placeholder="Acrescentar" data-multi></div></div>
+  <div class="cm-campo"><label class="cm-campo__rotulo" for="mu-2">Blocos</label><div class="cm-multi"><span class="cm-etiqueta">Bloco A<button class="cm-etiqueta__remover" type="button" aria-label="Remover Bloco A"><i data-i="fechar"></i></button></span><span class="cm-etiqueta">Bloco B<button class="cm-etiqueta__remover" type="button" aria-label="Remover Bloco B"><i data-i="fechar"></i></button></span><span class="cm-etiqueta">Bloco C<button class="cm-etiqueta__remover" type="button" aria-label="Remover Bloco C"><i data-i="fechar"></i></button></span><span class="cm-multi__mais">+2</span><input id="mu-2" placeholder="Bloco" data-multi></div><p class="cm-campo__ajuda">5 blocos, 312 unidades.</p></div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="multi" data-layout="empilhado" data-codigo="nao" data-titulo="Estados."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Etiquetas, participantes, blocos, destinatários do comunicado.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para até 6 opções fixas: caixas de marcar.</li><li>Com mais de 3 linhas de fichas: mostre "+n" e a lista ao abrir.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Cada ficha tem remover com nome; a quantidade é anunciada ao acrescentar ("Garagem acrescentada, 3 etiquetas").</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="marcar">
+  <h3>Marcar, rádio e interruptor <code>.cm-marcar</code> <code>.cm-radio</code> <code>.cm-interruptor</code></h3>
+  <p class="lead">Caixa de marcar escolhe várias ou confirma uma; tarefa concluída fica verde e riscada. Rádio escolhe uma entre poucas. Interruptor liga uma coisa que vale na hora, sem salvar. Opções em botão são o rádio grande do portal.</p>
+  <template class="doc-ex-t" data-titulo="<b>Grupos de verdade.</b> Clique em tudo." data-densidades="escuro">
+<div class="doc-grade3">
+  <fieldset class="cm-grupo-opcoes"><legend>Avisar sobre o chamado</legend>
+    <label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>A síndica<span class="cm-marcar__desc">por WhatsApp</span></span></label>
+    <label class="cm-marcar"><input type="checkbox"><span class="cm-marcar__caixa"></span><span>Os moradores do Bloco B<span class="cm-marcar__desc">pelo comunicado do portal</span></span></label>
+    <label class="cm-marcar"><input type="checkbox" disabled><span class="cm-marcar__caixa"></span><span>O conselho<span class="cm-marcar__desc">sem conselho cadastrado</span></span></label>
+  </fieldset>
+  <fieldset class="cm-grupo-opcoes"><legend>Tipo de manutenção</legend>
+    <label class="cm-radio"><input type="radio" name="rd-tipo" checked><span class="cm-radio__bola"></span><span>Corretiva</span></label>
+    <label class="cm-radio"><input type="radio" name="rd-tipo"><span class="cm-radio__bola"></span><span>Preventiva</span></label>
+    <label class="cm-radio"><input type="radio" name="rd-tipo"><span class="cm-radio__bola"></span><span>Emergencial<span class="cm-marcar__desc">aciona o plantão 24h</span></span></label>
+  </fieldset>
+  <div class="cm-pilha">
+    <label class="cm-interruptor"><input type="checkbox" role="switch" checked><span class="cm-interruptor__trilho"></span><span>Há risco às pessoas</span></label>
+    <label class="cm-interruptor"><input type="checkbox" role="switch"><span class="cm-interruptor__trilho"></span><span>Mostrar no portal</span></label>
+    <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Acionar manutenção</span></label>
+    <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox"><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Interditar vagas 37 e 38</span></label>
+  </div>
+  <fieldset class="cm-grupo-opcoes cm-grupo-opcoes--linha" style="grid-column:1/-1"><legend>Rateio</legend>
+    <label class="cm-radio"><input type="radio" name="rd-rat" checked><span class="cm-radio__bola"></span><span>Por fração ideal</span></label>
+    <label class="cm-radio"><input type="radio" name="rd-rat"><span class="cm-radio__bola"></span><span>Igual entre unidades</span></label>
+    <label class="cm-radio"><input type="radio" name="rd-rat"><span class="cm-radio__bola"></span><span>Por metragem</span></label>
+  </fieldset>
+  <div style="grid-column:1/-1" class="cm-pilha"><span class="cm-campo__rotulo">O que aconteceu? (portal)</span><div class="cm-opcoes-botao" role="group" aria-label="Tipo do chamado"><button type="button" aria-pressed="true"><i data-i="vazamento"></i>Vazamento</button><button type="button" aria-pressed="false"><i data-i="barulho"></i>Barulho</button><button type="button" aria-pressed="false"><i data-i="elevador"></i>Elevador</button><button type="button" aria-pressed="false"><i data-i="portao"></i>Portão</button><button type="button" aria-pressed="false"><i data-i="mais-opcoes"></i>Outro</button></div></div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="marcar" data-layout="empilhado" data-codigo="nao" data-titulo="Todos os estados das quatro peças."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Marcar: várias escolhas, aceite, tarefa.</li><li>Rádio: uma entre 2 a 5, todas visíveis.</li><li>Interruptor: liga algo que vale na hora ("Mostrar no portal").</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Interruptor dentro de formulário que tem "Salvar": use caixa de marcar.</li><li>Uma caixa de marcar sozinha para escolher entre duas coisas opostas: rádio.</li><li>Latão na tarefa concluída: é verde.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Rótulo afirmativo ("Mostrar no portal"), nunca negativo ("Não esconder").</li><li>Descrição embaixo, em cinza, quando a consequência não é óbvia.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Controles nativos escondidos sob o desenho; o rótulo inteiro é clicável; grupo em <code>fieldset</code> + <code>legend</code>; interruptor com <code>role="switch"</code>; alvo de 44px no portal (<code>--toque</code>).</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= ARQUIVOS E TEXTO RICO -->
+<section class="doc-familia" aria-labelledby="f-arq">
+<h2 id="f-arq">Arquivos e texto rico</h2>
+
+<section class="doc-comp" id="upload">
+  <h3>Upload com erro por arquivo <code>.cm-upload</code> <code>.cm-anexo</code></h3>
+  <p class="lead">Área de soltar com o tipo e o tamanho aceitos escritos. Cada arquivo mostra o próprio progresso e o próprio erro; um arquivo ruim não derruba os outros. Clique na área para simular o envio de quatro arquivos.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Um envia, um passa do tamanho, um tem o tipo errado, um falha na rede e pode tentar de novo.">
+<div class="doc-pilha doc-pilha--esticar ex-w460" data-upload-demo>
+  <div class="cm-campo"><span class="cm-campo__rotulo" id="up-r">Laudo e fotos do vazamento</span>
+  <label class="cm-upload" data-upload><i data-i="enviar-arquivo"></i><span><b>Arraste arquivos</b> ou clique para escolher</span><span class="cm-t-legenda">PDF, JPG ou PNG até 20 MB cada</span><input type="file" hidden multiple aria-labelledby="up-r"></label></div>
+  <div class="cm-anexos" aria-live="polite"></div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-titulo="Parado: arrastando, erro geral, desabilitado, e cada estado de arquivo." data-codigo="nao">
+<div class="doc-pilha doc-pilha--esticar ex-w460">
+  <label class="cm-upload is-arrastando"><i data-i="enviar-arquivo"></i><span><b>Solte para enviar 3 arquivos</b></span></label>
+  <label class="cm-upload is-erro"><i data-i="enviar-arquivo"></i><span><b>Falta o laudo</b></span><span class="cm-t-legenda" style="color:var(--cm-perigo-texto)">A OS só fecha com o laudo do técnico em PDF.</span></label>
+  <label class="cm-upload is-desabilitado"><i data-i="enviar-arquivo"></i><span>Limite de 10 arquivos atingido</span></label>
+  <div class="cm-anexos">
+    <div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="pdf"></i></span><span><span class="cm-anexo__nome">laudo-hidrotec.pdf</span><span class="cm-anexo__meta">1,2 MB, enviando 64%</span><span class="cm-anexo__barra"><i style="width:64%"></i></span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Cancelar envio de laudo-hidrotec.pdf"><i data-i="fechar"></i></button></div>
+    <div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="imagem"></i></span><span><span class="cm-anexo__nome">teto-vaga-37.jpg</span><span class="cm-anexo__meta">3,4 MB, enviado</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Remover teto-vaga-37.jpg"><i data-i="excluir"></i></button></div>
+    <div class="cm-anexo is-erro"><span class="cm-anexo__tipo"><i data-i="video"></i></span><span><span class="cm-anexo__nome">video-garagem.mov</span><span class="cm-anexo__meta">68 MB: passa do limite de 20 MB</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Tirar video-garagem.mov"><i data-i="fechar"></i></button></div>
+    <div class="cm-anexo is-erro"><span class="cm-anexo__tipo"><i data-i="arquivo"></i></span><span><span class="cm-anexo__nome">orcamento.docx</span><span class="cm-anexo__meta">Tipo não aceito aqui. Salve como PDF.</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Tirar orcamento.docx"><i data-i="fechar"></i></button></div>
+    <div class="cm-anexo is-erro"><span class="cm-anexo__tipo"><i data-i="imagem"></i></span><span><span class="cm-anexo__nome">pilar-p12.png</span><span class="cm-anexo__meta">A conexão caiu no meio do envio.</span></span><button class="cm-botao cm-botao--p" type="button">Tentar de novo</button></div>
+  </div>
+  <div class="cm-miniaturas"><div class="cm-miniatura"><svg viewBox="0 0 88 88" role="img" aria-label="Foto do teto da garagem"><rect width="88" height="88" fill="#5b5f5c"/><ellipse cx="44" cy="30" rx="26" ry="9" fill="#3f4a4f"/></svg><button class="cm-miniatura__remover" type="button" aria-label="Remover foto do teto"><i data-i="fechar"></i></button></div><button class="cm-miniatura cm-miniatura--adicionar" type="button"><i data-i="adicionar"></i>Foto</button></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Laudo, contrato, ata, foto de ocorrência, comprovante.</li><li>Miniaturas para fotos no celular e no portal.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Erro único para o lote ("Falha no envio").</li><li>Recusar o lote inteiro por um arquivo.</li></ul></div>
+    <div><h5>Mensagens</h5><ul><li>Tamanho: "68 MB: passa do limite de 20 MB".</li><li>Tipo: "Tipo não aceito aqui. Salve como PDF".</li><li>Rede: "A conexão caiu no meio do envio" + Tentar de novo.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>A área é um <code>label</code> do input de arquivo: Enter e Espaço abrem a escolha. Progresso e erros em região viva. Remover com o nome do arquivo.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="editor">
+  <h3>Editor com menção @ e citação # <code>.cm-editor</code></h3>
+  <p class="lead">Para comunicado, ata, resposta longa e descrição de projeto. "@" menciona uma pessoa (ela é avisada); "#" cita um registro (chamado, OS, contrato), que vira link com ícone, nunca plaqueta. Escreva "@" ou "#" no editor abaixo.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Digite @ ou # e escolha da lista." data-layout="empilhado">
+<div class="cm-campo"><span class="cm-campo__rotulo" id="ed-r">Comunicado aos moradores do Bloco B</span>
+<div class="cm-editor ex-ancora" data-editor>
+  <div class="cm-editor__barra" role="toolbar" aria-label="Formatação">
+    <button type="button" aria-pressed="false" aria-label="Negrito" data-dica="Negrito, Ctrl B"><i data-i="negrito"></i></button><button type="button" aria-pressed="false" aria-label="Itálico" data-dica="Itálico, Ctrl I"><i data-i="italico"></i></button><button type="button" aria-pressed="false" aria-label="Sublinhado"><i data-i="sublinhado"></i></button>
+    <span class="cm-separador-v"></span>
+    <button type="button" aria-pressed="false" aria-label="Título"><i data-i="titulo"></i></button><button type="button" aria-pressed="false" aria-label="Lista"><i data-i="lista"></i></button><button type="button" aria-pressed="false" aria-label="Lista numerada"><i data-i="lista-numerada"></i></button><button type="button" aria-pressed="false" aria-label="Citação"><i data-i="citacao"></i></button>
+    <span class="cm-separador-v"></span>
+    <button type="button" aria-label="Link"><i data-i="vincular"></i></button><button type="button" aria-label="Anexar"><i data-i="anexar"></i></button><button type="button" aria-label="Mencionar pessoa" data-editor-inserir="@"><i data-i="mencao"></i></button><button type="button" aria-label="Citar registro" data-editor-inserir="#"><i data-i="hashtag"></i></button>
+  </div>
+  <div class="cm-editor__area" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="ed-r" data-vazio="Escreva o comunicado"><p>Pessoal do Bloco B, as vagas 37 e 38 do subsolo 1 ficam interditadas até sexta por causa do vazamento no teto. <span class="cm-mencao" contenteditable="false">@Diego Martins</span> confirma o horário da Hidrotec.</p><p>Acompanhem pelo <a class="cm-referencia" href="#editor" contenteditable="false"><i data-i="chamado"></i>Chamado 48213</a>. </p></div>
+  <div class="cm-editor__pe"><span><kbd class="cm-tecla">@</kbd> menciona</span><span><kbd class="cm-tecla">#</kbd> cita um registro</span><span class="cm-empurra">Rascunho salvo às 09:42</span></div>
+  <div class="cm-lista-opcoes cm-flutuante" role="listbox" aria-label="Mencionar pessoa" data-editor-lista="@" hidden style="left:12px;top:120px;width:300px">
+    <div class="cm-lista-opcoes__grupo">Pessoas</div>
+    <div class="cm-opcao is-ativa" role="option" aria-selected="false" data-inserir="Beatriz Nogueira"><span class="cm-avatar cm-avatar--p cm-avatar--2">BN</span>Beatriz Nogueira<span class="cm-opcao__desc">Suporte</span></div>
+    <div class="cm-opcao" role="option" aria-selected="false" data-inserir="Juliana Reis"><span class="cm-avatar cm-avatar--p cm-avatar--5">JR</span>Juliana Reis<span class="cm-opcao__desc">Gestão</span></div>
+    <div class="cm-opcao" role="option" aria-selected="false" data-inserir="Marina Costa"><span class="cm-avatar cm-avatar--p cm-avatar--4">MC</span>Marina Costa<span class="cm-opcao__desc">síndica, não é avisada aqui</span></div>
+  </div>
+  <div class="cm-lista-opcoes cm-flutuante" role="listbox" aria-label="Citar registro" data-editor-lista="#" hidden style="left:12px;top:120px;width:360px">
+    <div class="cm-lista-opcoes__grupo">Registros recentes</div>
+    <div class="cm-opcao is-ativa" role="option" aria-selected="false" data-inserir="Chamado 48213" data-icone="chamado"><span class="cm-ladrilho cm-ladrilho--pp"><i data-i="chamado"></i></span>Chamado 48213<span class="cm-opcao__desc">vazamento</span></div>
+    <div class="cm-opcao" role="option" aria-selected="false" data-inserir="OS 482" data-icone="ordem-de-servico"><span class="cm-ladrilho cm-ladrilho--pp"><i data-i="ordem-de-servico"></i></span>OS 482<span class="cm-opcao__desc">Hidrotec</span></div>
+    <div class="cm-opcao" role="option" aria-selected="false" data-inserir="Assembleia de 23/10" data-icone="assembleia"><span class="cm-ladrilho cm-ladrilho--pp"><i data-i="assembleia"></i></span>Assembleia de 23/10<span class="cm-opcao__desc">Vila Serena</span></div>
+  </div>
+</div></div>
+  </template>
+  <template class="doc-ex-t" data-titulo="Referências citadas: normal, sem acesso e excluída. Editor só leitura e com limite estourado." data-codigo="nao">
+<div class="doc-pilha doc-pilha--esticar">
+  <p class="cm-t-corpo"><a class="cm-referencia" href="#editor"><i data-i="chamado"></i>Chamado 48213</a>, <span class="cm-referencia is-sem-acesso"><i data-i="bloquear"></i>Contrato sem acesso</span>, <span class="cm-referencia is-excluida"><i data-i="ordem-de-servico"></i>OS 470</span> <span class="cm-texto-3">(excluída)</span></p>
+  <div class="cm-editor is-leitura"><div class="cm-editor__area" role="textbox" aria-readonly="true" aria-label="Ata">Ata publicada em 24/09. Alterações só por nova assembleia.</div></div>
+  <div class="cm-campo"><div class="cm-editor" style="border-color:var(--cm-perigo-texto);box-shadow:inset 3px 0 0 var(--cm-perigo-texto)"><div class="cm-editor__area" contenteditable="true" role="textbox" aria-invalid="true" aria-label="Resumo para o SMS" aria-describedby="ed-e">Vazamento na garagem do Bl B: vagas 37 e 38 interditadas até sexta, técnico da Hidrotec amanhã às 10h, dúvidas com a portaria.</div><div class="cm-editor__pe"><span class="cm-campo__contagem" style="color:var(--cm-perigo-texto)">172 de 160</span></div></div><p class="cm-campo__erro" id="ed-e"><i data-i="perigo"></i>O SMS aceita 160 caracteres. Tire 12.</p></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Comunicado, ata, descrição longa, resposta por e-mail.</li><li>@ para avisar alguém da equipe; # para ligar um registro.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para a conversa do WhatsApp (o WhatsApp não aceita formatação rica): compositor.</li><li>Plaqueta na referência: é texto com ícone.</li><li>Menção a morador ou síndico dentro de nota interna: eles não veem.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Barra com o que se usa: negrito, itálico, título, listas, citação, link, anexo. Sem cor de texto e sem tamanho de fonte.</li><li>Rascunho salvo sozinho a cada 10 s, com a hora no pé.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li><code>role="textbox"</code> multilinha com rótulo; barra <code>toolbar</code> com setas; atalhos Ctrl B, I, K. Lista de @ e # como combobox: setas, Enter, Esc. Menção é lida como "menção a Diego Martins".</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= FORMULÁRIOS REAIS -->
+<section class="doc-familia" aria-labelledby="f-reais">
+<h2 id="f-reais">Formulários reais</h2>
+<p>Três formas de pôr dado no GACO, do menor para o maior. Todos funcionam nesta página, no tema escolhido no topo.</p>
+
+<section class="doc-comp" id="novo-contato">
+  <h3>Novo contato, em modal</h3>
+  <p class="lead">Criar algo curto sem sair da ficha do condomínio. Cinco campos, um obrigatório. "Criar ▾" lembra se a pessoa quer criar e fechar ou criar e cadastrar outro.</p>
+  <div class="doc-grade2" style="margin:10px 0">
+    <div class="doc-bloco"><h2>Fluxo</h2><ol><li>Na ficha do cliente, aba Contatos, botão "Novo contato" no cabeçalho da aba (ou tecla N).</li><li>O foco cai em Nome. Tab anda pelos campos na ordem da tela.</li><li>"Criar" no pé, à direita; Cancelar à esquerda dele; Esc fecha. Se algo foi digitado, Esc pergunta antes.</li><li>Criar sem nome: o erro aparece no campo e o foco volta para ele.</li><li>Criado: o modal fecha (ou limpa, em "Criar e novo"), toast "Contato criado" com "Abrir", e a lista de contatos ganha a linha nova destacada por 2 s.</li></ol></div>
+    <div class="cm-pilha"><button class="cm-botao cm-botao--principal" type="button" data-doc-modal="dlg-novo-contato" style="align-self:flex-start"><i data-i="adicionar-pessoa"></i>Novo contato</button><p class="cm-t-legenda">Abre o modal de verdade. Tente criar sem nome, depois com um WhatsApp incompleto.</p></div>
+  </div>
+  <template class="doc-ex-t" data-titulo="O modal parado, depois de tentar criar sem nome." data-palco="600" data-codigo="sim">
+<div class="cm-sobreposicao">
+  <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="nc-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="nc-t">Novo contato<span class="cm-modal__sub">Cond. Parque das Águas</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar"><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo"><div class="cm-form-secao__campos" style="padding-top:4px">
+      <div class="cm-campo cm-col-6"><label class="cm-campo__rotulo" for="nc-n">Nome <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="nc-n" required aria-invalid="true" aria-describedby="nc-n-e"></div><p class="cm-campo__erro" id="nc-n-e"><i data-i="perigo"></i>Escreva o nome do contato.</p></div>
+      <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="nc-p">Papel</label><div class="cm-selecao"><select id="nc-p"><option>Síndico</option><option selected>Conselheiro</option><option>Morador</option><option>Funcionário</option></select><i data-i="chevron-baixo"></i></div></div>
+      <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="nc-u">Unidade <span class="cm-campo__opcional">opcional</span></label><div class="cm-entrada"><input id="nc-u" placeholder="Bl B Ap 1204"></div></div>
+      <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="nc-w">WhatsApp</label><div class="cm-entrada"><span class="cm-entrada__prefixo">+55</span><input id="nc-w" type="tel" value="(41) 99812-3344"></div></div>
+      <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="nc-e">E-mail</label><div class="cm-entrada"><input id="nc-e" type="email" placeholder="nome@email.com"></div></div>
+      <label class="cm-marcar cm-col-6"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Mandar o link do portal pelo WhatsApp</span></label>
+    </div></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button">Cancelar</button><div class="cm-dividido"><button class="cm-botao cm-botao--principal" type="button">Criar <span class="cm-dividido__lembra">e fechar</span></button><button class="cm-botao cm-botao--principal" type="button" aria-label="Outras formas de criar"><i data-i="chevron-baixo"></i></button></div></div>
+  </div>
+</div>
+  </template>
+</section>
+
+<section class="doc-comp" id="ficha">
+  <h3>Ficha do cliente, com edição no próprio campo</h3>
+  <p class="lead">O registro aberto é o formulário. Passe o mouse numa linha e clique no lápis (ou chegue pelo Tab e aperte Enter); Enter confirma, Esc desfaz. A barra de salvar sobe na primeira alteração. "Editar seção" abre o endereço inteiro de uma vez. Experimente pôr um CNPJ incompleto e salvar.</p>
+  <div class="doc-grade2" style="margin:10px 0">
+    <div class="doc-bloco"><h2>Fluxo</h2><ol><li>Abrir a ficha pela lista (a trilha mostra "14 de 63").</li><li>Editar campo a campo; cada alteração fica tingida e marcada "alterado", com "Era…" embaixo enquanto edita.</li><li>A barra embaixo diz quantas e quais. Descartar volta tudo. "Salvar ▾" lembra a escolha (e continuar, e próximo, e voltar, e novo).</li><li>Com erro, a barra fica vermelha e leva ao campo; nada é perdido.</li><li>Salvo, o histórico à direita ganha as linhas com antes e depois.</li><li>Voltar à lista com alteração pergunta antes.</li></ol></div>
+    <div class="doc-bloco"><h2>Onde fica cada botão</h2><ul><li>Ações do registro no cabeçalho: Registrar contato e "⋯".</li><li>Editar seção no cabeçalho do cartão.</li><li>Lápis na ponta direita de cada linha.</li><li>Descartar e Salvar ▾ na barra de baixo, à direita, sempre no mesmo lugar.</li><li>Ctrl S salva de qualquer campo.</li></ul></div>
+  </div>
+  <div class="ficha-palco" id="ficha-palco">
+    <nav aria-label="Trilha" class="cm-linha" style="margin-bottom:10px"><ol class="cm-trilha"><li><a href="#ficha" data-ficha-sair>CS</a></li><li><a href="#ficha" data-ficha-sair>Clientes</a></li><li aria-current="page">Cond. Parque das Águas</li></ol><span class="cm-navegar-registro cm-empurra"><b>14 de 63</b><button class="cm-botao cm-botao--p cm-botao--icone cm-botao--discreto" type="button" aria-label="Anterior (K)" data-ficha-sair><i data-i="chevron-cima"></i></button><button class="cm-botao cm-botao--p cm-botao--icone cm-botao--discreto" type="button" aria-label="Próximo (J)" data-ficha-sair><i data-i="chevron-baixo"></i></button></span></nav>
+    <header class="cm-cabecalho-registro">
+      <div class="cm-cabecalho-registro__topo">
+        <span class="cm-ladrilho"><i data-i="condominio"></i></span>
+        <div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Cliente</span><h2 class="cm-cabecalho-registro__titulo" style="font-size:var(--cm-tipo-registro)">Cond. Parque das Águas <span class="cm-plaqueta cm-plaqueta--g">CT-2024-0187</span></h2></div>
+        <div class="cm-grupo-botoes"><button class="cm-botao" type="button"><i data-i="telefone"></i>Registrar contato</button><button class="cm-botao cm-botao--icone" type="button" aria-label="Mais ações"><i data-i="mais-opcoes"></i></button></div>
+      </div>
+      <dl class="cm-destaques"><div><dt>Saúde</dt><dd><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>82, boa</span></dd></div><div><dt>Unidades</dt><dd data-espelho="unidades">312</dd></div><div><dt>Síndica</dt><dd data-espelho="sindica">Marina Costa</dd></div><div><dt>Mensalidade</dt><dd data-espelho="mensalidade">R$ 4.380,00</dd></div><div><dt>Renovação</dt><dd>em 106 dias</dd></div></dl>
+    </header>
+    <div class="ficha-grade">
+      <div class="ficha-col">
+        <section class="cm-cartao" aria-labelledby="fc-1"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo" id="fc-1">Dados do condomínio</h3></header><div class="cm-cartao__corpo"><dl class="cm-ficha">
+          <div class="cm-ficha__linha" data-campo="nome" data-rotulo="Nome"><dt>Nome</dt><dd>Cond. Parque das Águas</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar nome"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-campo="cnpj" data-rotulo="CNPJ" data-validar="cnpj" data-mascara="cnpj"><dt>CNPJ</dt><dd>12.345.678/0001-95</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar CNPJ"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-campo="unidades" data-rotulo="Unidades" data-validar="numero"><dt>Unidades</dt><dd>312</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar unidades"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-campo="tipo" data-rotulo="Tipo" data-opcoes="Residencial|Comercial|Misto"><dt>Tipo</dt><dd>Residencial</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar tipo"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha is-leitura"><dt>Código</dt><dd>PDA-0187 <span class="cm-ficha__cadeado"><i data-i="bloquear" data-rotulo="Campo do sistema"></i></span></dd><span></span></div>
+        </dl></div></section>
+        <section class="cm-cartao" aria-labelledby="fc-2" data-secao><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo" id="fc-2">Endereço</h3><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-editar-secao><i data-i="editar"></i>Editar seção</button></header><div class="cm-cartao__corpo"><dl class="cm-ficha">
+          <div class="cm-ficha__linha" data-campo="cep" data-rotulo="CEP" data-mascara="cep" data-validar="cep"><dt>CEP</dt><dd>80240-000</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar CEP"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-campo="rua" data-rotulo="Rua e número"><dt>Rua e número</dt><dd>Av. Sete de Setembro, 4210</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar rua e número"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-campo="bairro" data-rotulo="Bairro"><dt>Bairro</dt><dd>Batel</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar bairro"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-campo="cidade" data-rotulo="Cidade"><dt>Cidade</dt><dd>Curitiba, PR</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar cidade"><i data-i="editar"></i></button></div>
+        </dl></div></section>
+      </div>
+      <div class="ficha-col">
+        <section class="cm-cartao" aria-labelledby="fc-3"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo" id="fc-3">Síndica</h3></header><div class="cm-cartao__corpo"><dl class="cm-ficha">
+          <div class="cm-ficha__linha" data-campo="sindica" data-rotulo="Nome da síndica"><dt>Nome</dt><dd>Marina Costa</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar nome da síndica"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-campo="tel" data-rotulo="WhatsApp" data-validar="tel" data-mascara="tel"><dt>WhatsApp</dt><dd>(41) 98765-4321</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar WhatsApp"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-campo="email" data-rotulo="E-mail" data-validar="email"><dt>E-mail</dt><dd>marina.costa@parquedasaguas.com.br</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar e-mail"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-campo="mandato" data-rotulo="Mandato"><dt>Mandato</dt><dd>01/04/2024 até 31/03/2026</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar mandato"><i data-i="editar"></i></button></div>
+        </dl></div></section>
+        <section class="cm-cartao" aria-labelledby="fc-4"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo" id="fc-4">Contrato e cobrança</h3></header><div class="cm-cartao__corpo"><dl class="cm-ficha">
+          <div class="cm-ficha__linha"><dt>Contrato</dt><dd><span class="cm-plaqueta">CT-2024-0187</span></dd><span></span></div>
+          <div class="cm-ficha__linha" data-campo="mensalidade" data-rotulo="Mensalidade" data-mascara="moeda" data-validar="moeda"><dt>Mensalidade</dt><dd>R$ 4.380,00</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar mensalidade"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-campo="vencimento" data-rotulo="Vencimento" data-opcoes="Dia 5|Dia 10|Dia 15|Dia 20"><dt>Vencimento</dt><dd>Dia 10</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar vencimento"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha" data-campo="responsavel" data-rotulo="Responsável no CS" data-opcoes="Rodrigo Mello|Juliana Reis|Beatriz Nogueira"><dt>Responsável</dt><dd>Rodrigo Mello</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar responsável no CS"><i data-i="editar"></i></button></div>
+          <div class="cm-ficha__linha is-leitura"><dt>Criado em</dt><dd>12/03/2024 <span class="cm-ficha__cadeado"><i data-i="bloquear" data-rotulo="Campo do sistema"></i></span></dd><span></span></div>
+        </dl></div></section>
+      </div>
+      <div class="ficha-col">
+        <section class="cm-cartao" aria-labelledby="fc-5"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo" id="fc-5">Histórico</h3></header><div class="cm-cartao__corpo">
+          <ol class="cm-auditoria" aria-label="Alterações da ficha" id="ficha-historico"><li class="cm-auditoria__dia">15/09</li><li><time>11:02</time><b>Rodrigo Mello</b> mudou a síndica: <del>Paulo Andrade</del> → <ins>Marina Costa</ins></li><li class="cm-auditoria__dia">12/03/2024</li><li class="is-criacao"><time>10:15</time>Cliente criado por <b>Juliana Reis</b></li></ol>
+        </div></section>
+      </div>
+    </div>
+    <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" id="ficha-barra" hidden>
+      <div class="cm-barra-salvar__msg"><b data-barra-titulo>1 alteração não salva</b><span data-barra-quais></span></div>
+      <button class="cm-botao cm-botao--discreto" type="button" data-ficha-descartar>Descartar</button>
+      <div class="cm-dividido" data-doc-ancora><button class="cm-botao cm-botao--principal" type="button" data-ficha-salvar>Salvar <span class="cm-dividido__lembra">e continuar</span></button><button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de salvar" data-doc-alterna><i data-i="chevron-baixo"></i></button>
+        <div class="cm-menu cm-menu--240 cm-flutuante doc-direita doc-acima" role="menu" aria-label="Formas de salvar" data-doc-alvo hidden>
+          <button class="cm-menu__item" role="menuitem" type="button" data-ficha-modo="e continuar"><i data-i="salvar"></i><span>Salvar e continuar</span><span class="cm-menu__atalho">Ctrl S</span></button>
+          <button class="cm-menu__item" role="menuitem" type="button" data-ficha-modo="e próximo"><i data-i="proximo"></i><span>Salvar e próximo</span><span class="cm-menu__atalho">Ctrl Enter</span></button>
+          <button class="cm-menu__item" role="menuitem" type="button" data-ficha-modo="e voltar"><i data-i="voltar"></i><span>Salvar e voltar à lista</span><span></span></button>
+          <button class="cm-menu__item" role="menuitem" type="button" data-ficha-modo="e novo"><i data-i="adicionar"></i><span>Salvar e novo</span><span></span></button>
+        </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="doc-comp" id="cadastro">
+  <h3>Cadastro de condomínio, longo e em etapas</h3>
+  <p class="lead">Sete etapas à esquerda, clicáveis: a pessoa vai e volta quando quiser. Próximo confere a etapa; se falta algo, diz o quê e a etapa fica marcada. O rascunho se salva sozinho. A última etapa revisa tudo, com "Editar" em cada bloco.</p>
+  <div class="doc-grade2" style="margin:10px 0">
+    <div class="doc-bloco"><h2>Fluxo</h2><ol><li>Clientes › "Novo condomínio" abre esta tela (não um modal: são 30 campos).</li><li>Anterior e Próximo no pé, que fica grudado; "Salvar rascunho e sair" à esquerda.</li><li>Etapa com erro: número vermelho e "2 campos com erro" embaixo do nome; o resumo no topo leva a cada campo.</li><li>Revisão: tudo em leitura, com "Editar" que volta à etapa.</li><li>"Cadastrar condomínio" cria e abre a ficha nova, com toast "Cond. … cadastrado".</li></ol></div>
+    <div class="doc-bloco"><h2>Resolvemos fazer assim porque</h2><p>o Salesforce e o Pipefy usam a barra de etapas clicável para cadastros longos, o GOV.UK recomenda "uma coisa por página" com revisão no fim ("Check answers"), e o QuintoAndar e o Nubank mostram que etapas curtas no celular rendem menos abandono. O rascunho automático vem do Google Docs e do Notion. Enviamos para aprovação.</p></div>
+  </div>
+  <div class="cad" id="cad">
+    <aside class="cad__lado">
+      <ol class="cm-etapas" aria-label="Etapas do cadastro">
+        <li class="is-atual"><button type="button" aria-current="step" data-ir="0"><span class="cm-etapas__n"></span><span class="cm-etapas__titulo">Identificação</span><span class="cm-etapas__sub">Nome, CNPJ, tipo</span></button></li>
+        <li><button type="button" data-ir="1"><span class="cm-etapas__n"></span><span class="cm-etapas__titulo">Endereço</span><span class="cm-etapas__sub">CEP preenche o resto</span></button></li>
+        <li><button type="button" data-ir="2"><span class="cm-etapas__n"></span><span class="cm-etapas__titulo">Síndico e conselho</span><span class="cm-etapas__sub">Quem responde</span></button></li>
+        <li><button type="button" data-ir="3"><span class="cm-etapas__n"></span><span class="cm-etapas__titulo">Blocos e unidades</span><span class="cm-etapas__sub">Estrutura do prédio</span></button></li>
+        <li><button type="button" data-ir="4"><span class="cm-etapas__n"></span><span class="cm-etapas__titulo">Cobrança</span><span class="cm-etapas__sub">Taxa, multa, rateio</span></button></li>
+        <li><button type="button" data-ir="5"><span class="cm-etapas__n"></span><span class="cm-etapas__titulo">Documentos</span><span class="cm-etapas__sub">Convenção, regimento</span></button></li>
+        <li><button type="button" data-ir="6"><span class="cm-etapas__n"></span><span class="cm-etapas__titulo">Revisão</span><span class="cm-etapas__sub">Conferir e cadastrar</span></button></li>
+      </ol>
+      <p class="cm-t-legenda" style="margin-top:12px" data-rascunho role="status">Rascunho salvo às 09:41</p>
+    </aside>
+    <div class="cad__corpo">
+      <div class="cm-resumo-erros" tabindex="-1" role="alert" hidden data-resumo><div class="cm-resumo-erros__titulo"><i data-i="perigo"></i><span data-resumo-titulo>Falta 1 coisa nesta etapa</span></div><ul data-resumo-lista></ul></div>
+
+      <div data-etapa="0">
+        <section class="cm-form-secao"><div><h4 class="cm-form-secao__titulo">Identificação</h4><p class="cm-form-secao__desc">Como o condomínio aparece no boleto, no portal e nos relatórios.</p></div>
+          <div class="cm-form-secao__campos">
+            <div class="cm-campo cm-col-4"><label class="cm-campo__rotulo" for="cd-nome">Nome do condomínio <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="cd-nome" required data-msg="Escreva o nome do condomínio" data-rev="Nome"></div></div>
+            <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cd-apelido">Nome curto <span class="cm-campo__opcional">opcional</span></label><div class="cm-entrada"><input id="cd-apelido" placeholder="Parque das Águas" data-rev="Nome curto"></div></div>
+            <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="cd-cnpj">CNPJ <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="cd-cnpj" required inputmode="numeric" placeholder="00.000.000/0000-00" data-mascara="cnpj" data-validar="cnpj" data-msg="Escreva o CNPJ do condomínio" data-rev="CNPJ"></div></div>
+            <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="cd-tipo">Tipo</label><div class="cm-selecao"><select id="cd-tipo" data-rev="Tipo"><option>Residencial</option><option>Comercial</option><option>Misto</option></select><i data-i="chevron-baixo"></i></div></div>
+            <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cd-inicio">Início da administração <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><i data-i="calendario"></i><input id="cd-inicio" required inputmode="numeric" placeholder="dd/mm/aaaa" data-mascara="data" data-msg="Escreva a data em que a administração começa" data-rev="Início"></div></div>
+          </div></section>
+      </div>
+      <div data-etapa="1" hidden>
+        <section class="cm-form-secao" data-cep-grupo><div><h4 class="cm-form-secao__titulo">Endereço</h4><p class="cm-form-secao__desc">O CEP preenche rua, bairro e cidade. Confira o número.</p></div>
+          <div class="cm-form-secao__campos">
+            <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cd-cep">CEP <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="cd-cep" required inputmode="numeric" placeholder="00000-000" data-mascara="cep" data-cep data-msg="Escreva o CEP" data-rev="CEP"><button class="cm-entrada__acao" type="button" data-cep-consultar>Consultar</button></div><p class="cm-campo__ajuda" data-cep-saida>Tente 80240-000.</p></div>
+            <div class="cm-campo cm-col-4"><label class="cm-campo__rotulo" for="cd-rua">Rua <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="cd-rua" required data-cep-campo="rua" data-msg="Escreva a rua" data-rev="Rua"></div></div>
+            <div class="cm-campo cm-col-1"><label class="cm-campo__rotulo" for="cd-num">Número <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="cd-num" required inputmode="numeric" data-msg="Escreva o número" data-rev="Número"></div></div>
+            <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cd-comp">Complemento <span class="cm-campo__opcional">opcional</span></label><div class="cm-entrada"><input id="cd-comp" data-rev="Complemento"></div></div>
+            <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="cd-bairro">Bairro</label><div class="cm-entrada"><input id="cd-bairro" data-cep-campo="bairro" data-rev="Bairro"></div></div>
+            <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="cd-cidade">Cidade e UF</label><div class="cm-entrada"><input id="cd-cidade" data-cep-campo="cidade" data-rev="Cidade"></div></div>
+          </div></section>
+      </div>
+      <div data-etapa="2" hidden>
+        <section class="cm-form-secao"><div><h4 class="cm-form-secao__titulo">Síndico</h4><p class="cm-form-secao__desc">Recebe o acesso ao portal e os avisos do condomínio.</p></div>
+          <div class="cm-form-secao__campos">
+            <div class="cm-campo cm-col-4"><label class="cm-campo__rotulo" for="cd-sin">Nome <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="cd-sin" required autocomplete="off" data-msg="Escreva o nome do síndico" data-rev="Síndico"></div></div>
+            <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cd-cpf">CPF</label><div class="cm-entrada"><input id="cd-cpf" inputmode="numeric" placeholder="000.000.000-00" data-mascara="cpf" data-validar="cpf" data-rev="CPF"></div></div>
+            <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="cd-sw">WhatsApp <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><span class="cm-entrada__prefixo">+55</span><input id="cd-sw" required type="tel" placeholder="(41) 98765-4321" data-mascara="tel" data-validar="tel" data-msg="Escreva o WhatsApp do síndico" data-rev="WhatsApp"></div></div>
+            <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="cd-se">E-mail</label><div class="cm-entrada"><input id="cd-se" type="email" data-validar="email" data-rev="E-mail"></div></div>
+            <div class="cm-campo cm-col-4"><span class="cm-campo__rotulo" id="cd-mand">Mandato</span><div class="cm-periodo" role="group" aria-labelledby="cd-mand"><div class="cm-entrada"><input aria-label="Início do mandato" placeholder="dd/mm/aaaa" data-mascara="data"></div><span class="cm-periodo__ate">até</span><div class="cm-entrada"><input aria-label="Fim do mandato" placeholder="dd/mm/aaaa" data-mascara="data"></div></div></div>
+          </div></section>
+        <section class="cm-form-secao"><div><h4 class="cm-form-secao__titulo">Conselho</h4><p class="cm-form-secao__desc">Opcional. Pode cadastrar depois pela ficha.</p></div>
+          <div class="cm-form-secao__campos"><div class="cm-campo cm-col-6"><label class="cm-campo__rotulo" for="cd-cons">Conselheiros</label><div class="cm-multi"><input id="cd-cons" placeholder="Nome e Enter" data-multi></div></div></div></section>
+      </div>
+      <div data-etapa="3" hidden>
+        <section class="cm-form-secao"><div><h4 class="cm-form-secao__titulo">Blocos e unidades</h4><p class="cm-form-secao__desc">Gera as unidades de uma vez. Ajustes finos ficam em Unidades.</p></div>
+          <div class="cm-form-secao__campos">
+            <div class="cm-campo cm-col-6"><label class="cm-campo__rotulo" for="cd-blocos">Blocos</label><div class="cm-multi"><span class="cm-etiqueta">Bloco A<button class="cm-etiqueta__remover" type="button" aria-label="Remover Bloco A"><i data-i="fechar"></i></button></span><span class="cm-etiqueta">Bloco B<button class="cm-etiqueta__remover" type="button" aria-label="Remover Bloco B"><i data-i="fechar"></i></button></span><input id="cd-blocos" placeholder="Bloco" data-multi></div></div>
+            <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cd-and">Andares por bloco <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada cm-entrada--numero"><input id="cd-and" required inputmode="numeric" value="16" data-msg="Diga quantos andares" data-rev="Andares"><span class="cm-entrada__passo"><button type="button" aria-label="Aumentar" data-passo-mais><i data-i="chevron-cima"></i></button><button type="button" aria-label="Diminuir" data-passo-menos><i data-i="chevron-baixo"></i></button></span></div></div>
+            <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cd-upa">Unidades por andar <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada cm-entrada--numero"><input id="cd-upa" required inputmode="numeric" value="4" data-msg="Diga quantas unidades por andar" data-rev="Por andar"><span class="cm-entrada__passo"><button type="button" aria-label="Aumentar" data-passo-mais><i data-i="chevron-cima"></i></button><button type="button" aria-label="Diminuir" data-passo-menos><i data-i="chevron-baixo"></i></button></span></div></div>
+            <div class="cm-campo cm-col-2"><span class="cm-campo__rotulo">Total</span><p class="cm-t-corpo" style="padding-top:6px"><b data-total>128 unidades</b></p></div>
+          </div></section>
+      </div>
+      <div data-etapa="4" hidden>
+        <section class="cm-form-secao"><div><h4 class="cm-form-secao__titulo">Cobrança</h4><p class="cm-form-secao__desc">Valem para o primeiro boleto. Mudam depois na ficha.</p></div>
+          <div class="cm-form-secao__campos">
+            <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cd-taxa">Taxa condominial <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada cm-entrada--moeda"><span class="cm-entrada__prefixo">R$</span><input id="cd-taxa" required inputmode="decimal" data-mascara="moeda" data-msg="Escreva o valor da taxa" data-rev="Taxa"></div></div>
+            <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="cd-venc">Vencimento</label><div class="cm-selecao"><select id="cd-venc" data-rev="Vencimento"><option>Dia 5</option><option selected>Dia 10</option><option>Dia 15</option></select><i data-i="chevron-baixo"></i></div></div>
+            <div class="cm-campo cm-col-1"><label class="cm-campo__rotulo" for="cd-multa">Multa</label><div class="cm-entrada cm-entrada--porcentagem"><input id="cd-multa" inputmode="decimal" value="2,00" data-validar="multa" data-rev="Multa"><span class="cm-entrada__sufixo">%</span></div></div>
+            <div class="cm-campo cm-col-1"><label class="cm-campo__rotulo" for="cd-juros">Juros ao mês</label><div class="cm-entrada cm-entrada--porcentagem"><input id="cd-juros" inputmode="decimal" value="1,00" data-rev="Juros"><span class="cm-entrada__sufixo">%</span></div></div>
+            <fieldset class="cm-grupo-opcoes cm-grupo-opcoes--linha cm-col-6"><legend>Rateio das despesas</legend>
+              <label class="cm-radio"><input type="radio" name="cd-rateio" checked value="Por fração ideal"><span class="cm-radio__bola"></span><span>Por fração ideal</span></label>
+              <label class="cm-radio"><input type="radio" name="cd-rateio" value="Igual entre unidades"><span class="cm-radio__bola"></span><span>Igual entre unidades</span></label>
+              <label class="cm-radio"><input type="radio" name="cd-rateio" value="Por metragem"><span class="cm-radio__bola"></span><span>Por metragem</span></label></fieldset>
+            <label class="cm-interruptor cm-col-6"><input type="checkbox" role="switch" checked><span class="cm-interruptor__trilho"></span><span>Gerar Pix junto com o boleto</span></label>
+          </div></section>
+      </div>
+      <div data-etapa="5" hidden>
+        <section class="cm-form-secao" data-upload-demo><div><h4 class="cm-form-secao__titulo">Documentos</h4><p class="cm-form-secao__desc">Ficam na pasta do condomínio e no portal do síndico.</p></div>
+          <div class="cm-form-secao__campos">
+            <div class="cm-campo cm-col-6"><span class="cm-campo__rotulo" id="cd-docs">Convenção, regimento e última ata</span><label class="cm-upload" data-upload><i data-i="enviar-arquivo"></i><span><b>Arraste arquivos</b> ou clique para escolher</span><span class="cm-t-legenda">PDF até 20 MB cada</span><input type="file" hidden multiple aria-labelledby="cd-docs"></label></div>
+            <div class="cm-anexos cm-col-6" aria-live="polite"></div>
+          </div></section>
+      </div>
+      <div data-etapa="6" hidden>
+        <section class="cm-form-secao"><div><h4 class="cm-form-secao__titulo">Revisão</h4><p class="cm-form-secao__desc">Confira antes de cadastrar. "Editar" volta à etapa.</p></div>
+          <div class="cad-revisao" data-revisao></div></section>
+      </div>
+
+      <div class="cad__pe">
+        <button class="cm-botao cm-botao--discreto" type="button" data-toast="Rascunho salvo. Ele fica em Clientes › Rascunhos.|sucesso">Salvar rascunho e sair</button>
+        <span class="cm-empurra"><button class="cm-botao" type="button" data-cad-anterior disabled><i data-i="chevron-esquerda"></i>Anterior</button><button class="cm-botao cm-botao--principal" type="button" data-cad-proximo>Próximo: Endereço</button></span>
+      </div>
+    </div>
+  </div>
+</section>
+</section>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Respostas rápidas</title>
+<meta name="description" content="Cadastro das respostas rápidas usadas com / na conversa: atalho, texto com variáveis, quem usa e prévia.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+.rr-var{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:6px;font:var(--t-legenda);color:var(--texto-2)}
+.rr-var button{height:24px;padding:0 8px;border:1px dashed var(--filete-forte);border-radius:var(--raio-1);font:500 12px/1 var(--fonte-ui);color:var(--texto-1);background:var(--sup-1)}
+.rr-var button:hover{border-style:solid}
+.rr-grade{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:var(--esp-7);align-items:start}
+.rr-previa{position:sticky;top:12px}
+.rr-previa .lc-conversa{padding:14px;border:var(--borda-1)}
+.rr-previa .lc-bolha{max-width:100%}
+.rr-uso{font:var(--t-legenda);color:var(--texto-2);margin-top:8px}
+.rr-cab{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:var(--borda-1)}
+.rr-cab .lc-busca{flex:1}
+.lc-mestre-detalhe__lista .lc-opcoes__grupo{border-bottom:var(--borda-1);background:var(--sup-2)}
+@media (max-width:1099px){.rr-grade{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-moldura='{"papel": "gerente-cs", "usuario": {"nome": "Letícia Araújo", "cargo": "Coordenadora de Relacionamento", "iniciais": "LA", "cor": "lc-av--c3"}, "contadores": {"suporte": 7, "cs": 3, "academy": 1}, "modulo": "suporte", "secao": "Respostas rápidas"}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-nota-projeto" open>
+  <summary><b>Nota de projeto</b> Respostas rápidas, cadastro<span class="lc-nota-projeto__serie"><a href="21-suporte.html">Conversas</a> <a href="21b-suporte-modo-fila.html">Modo fila</a> <a href="21c-suporte-chamados.html">Chamados</a> <a href="21d-suporte-chamado.html">Chamado</a> <a href="21e-suporte-respostas-rapidas.html" aria-current="page">Respostas rápidas</a> <a href="21f-suporte-filas-sla.html">Filas e SLA</a> <a href="21g-suporte-painel.html">Painel do supervisor</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2><p>Onde a equipe cria e mantém os textos prontos que aparecem ao digitar "/" na conversa. O que importa aqui é o atalho (o que se digita), o texto com variáveis, quem pode usar e como a mensagem chega para o cliente.</p><p>A prévia à direita mostra a mensagem já com as variáveis trocadas por um caso real.</p></section>
+    <section><h2>Fluxo</h2><ol><li>Escolha uma resposta na lista à esquerda; a busca filtra por atalho e por texto.</li><li>Edite no lugar. Ao mudar qualquer campo, a barra de salvar aparece no pé com Descartar e Salvar.</li><li>"Inserir variável" põe a variável no ponto do cursor; a prévia atualiza na hora.</li><li>Atalho repetido na mesma equipe é recusado com a sugestão de outro.</li><li>Nova resposta (botão principal) abre o formulário em branco no mesmo lugar.</li></ol></section>
+    <section><h2>Por que assim</h2><p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o WhatsApp Business (respostas rápidas por "/"), o Zendesk (macros com ação seguinte) e o Intercom e o Front (texto com variáveis e prévia, permissão por equipe) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div><div class="lc-estados-tela" data-estados-para="tela-rr">Ver estado:<div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela"><button type="button" aria-pressed="true" data-estado="dados">Com dados</button><button type="button" aria-pressed="false" data-estado="duplicado">Atalho repetido</button><button type="button" aria-pressed="false" data-estado="vazio">Nenhuma ainda</button><button type="button" aria-pressed="false" data-estado="sem-permissao">Só leitura</button></div></div>
+</details><div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Respostas rápidas</h1><p class="lc-cab-pagina__desc">10 respostas da equipe de Atendimento. Na conversa, digite / para usar.</p></div>
+<div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="planilha"></i>Importar</button><button class="lc-btn lc-btn--principal" type="button"><i data-i="mais"></i>Nova resposta</button></div></div>
+<div id="tela-rr" data-estado="dados">
+<div class="lc-alerta lc-alerta--info" data-so-estado="sem-permissao" hidden style="margin-bottom:12px"><i data-i="info"></i><div class="lc-alerta__corpo">Você pode usar estas respostas, mas só a coordenação do Atendimento edita. Para sugerir uma mudança, comente na resposta.</div></div>
+<div class="lc-mestre-detalhe" data-so-estado="dados duplicado sem-permissao">
+<div class="lc-mestre-detalhe__lista"><div class="rr-cab"><label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Atalho ou texto" aria-label="Buscar respostas"></label></div><ul aria-label="Respostas rápidas"><li><div class="lc-opcoes__grupo">Manutenção <span class="lc-contagem">4</span></div></li><li><button type="button" aria-current="true"><b>/visita</b> Confirmação de visita técnica<small>Usada 214 vezes em 30 dias</small></button></li><li><button type="button"><b>/vistoria</b> Agendamento de vistoria<small>Toda a equipe de Atendimento</small></button></li><li><button type="button"><b>/vizinho</b> Infiltração vinda de unidade vizinha<small>Toda a equipe de Atendimento</small></button></li><li><button type="button"><b>/fornecedor</b> Fornecedor a caminho<small>Toda a equipe de Atendimento</small></button></li><li><div class="lc-opcoes__grupo">Financeiro <span class="lc-contagem">3</span></div></li><li><button type="button"><b>/boleto</b> 2ª via de boleto<small>Toda a equipe de Atendimento</small></button></li><li><button type="button"><b>/acordo</b> Proposta de acordo de débito<small>Toda a equipe de Atendimento</small></button></li><li><button type="button"><b>/multa</b> Multa por atraso, como é calculada<small>Toda a equipe de Atendimento</small></button></li><li><div class="lc-opcoes__grupo">Reservas e convivência <span class="lc-contagem">3</span></div></li><li><button type="button"><b>/salao</b> Reserva do salão de festas<small>Toda a equipe de Atendimento</small></button></li><li><button type="button"><b>/mudanca</b> Regras de mudança<small>Toda a equipe de Atendimento</small></button></li><li><button type="button"><b>/barulho</b> Barulho fora do horário<small>Toda a equipe de Atendimento</small></button></li></ul></div>
+<div class="lc-mestre-detalhe__corpo"><div data-salvar="rr-barra" data-salvar-onde="em /visita">
+<div class="lc-linha lc-linha--entre" style="margin-bottom:12px;flex-wrap:wrap;gap:8px"><h2 class="lc-t-secao" style="margin:0">/visita</h2>
+<span class="lc-linha" style="gap:6px"><span class="lc-ancora-menu"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p " type="button" aria-label="Mais opções da resposta" aria-haspopup="menu" aria-expanded="false" data-abre="rr-mais"><i data-i="mais-opcoes"></i></button><div class="lc-menu" role="menu" id="rr-mais" hidden><button class="lc-menu__item" role="menuitem" type="button"><i data-i="duplicar"></i>Duplicar</button><button class="lc-menu__item" role="menuitem" type="button"><i data-i="arquivar"></i>Arquivar</button><hr class="lc-menu__sep"><button class="lc-menu__item lc-menu__item--perigo" role="menuitem" type="button"><i data-i="lixeira"></i>Mover para a lixeira</button></div></span></span></div>
+<div class="rr-grade"><div class="lc-form-grade">
+<div class="lc-campo"><label class="lc-rotulo" for="rr-at">Atalho <span class="lc-obrig" aria-hidden="true">*</span></label><div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">/</span><input class="lc-entrada lc-entrada--cod" id="rr-at" value="visita" aria-describedby="rr-at-a"></div><p class="lc-ajuda" id="rr-at-a" data-so-estado="dados vazio sem-permissao">Sem espaço e sem acento. É o que se digita depois da barra.</p><p class="lc-erro" data-so-estado="duplicado" hidden><i data-i="erro"></i>Já existe /visita na equipe Financeiro. Use outro atalho, como /visita-tecnica.</p></div>
+<div class="lc-campo"><label class="lc-rotulo" for="rr-tit">Título</label><input class="lc-entrada" id="rr-tit" value="Confirmação de visita técnica"></div>
+<div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="rr-txt">Texto <span class="lc-obrig" aria-hidden="true">*</span></label><textarea class="lc-area-texto" id="rr-txt" rows="4">{{nome}}, o técnico chega {{data}} às {{hora}}. Ele vai se identificar na portaria com o crachá da Alpha. Se precisar remarcar, é só responder aqui.</textarea>
+<div class="rr-var">Inserir variável: <button type="button">nome</button><button type="button">unidade</button><button type="button">condomínio</button><button type="button">data</button><button type="button">hora</button><button type="button">número do chamado</button></div></div>
+<fieldset class="lc-grupo-opcoes lc-inteiro"><legend class="lc-rotulo">Quem pode usar</legend>
+<label class="lc-radio"><input type="radio" name="rr-q"><span class="lc-radio__bola"></span>Só eu</label><label class="lc-radio"><input type="radio" name="rr-q" checked><span class="lc-radio__bola"></span>Equipe de Atendimento (12 pessoas)</label><label class="lc-radio"><input type="radio" name="rr-q"><span class="lc-radio__bola"></span>Toda a empresa</label></fieldset>
+<fieldset class="lc-grupo-opcoes lc-grupo-opcoes--linha lc-inteiro"><legend class="lc-rotulo">Aparece em</legend>
+<label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span>WhatsApp</label><label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span>E-mail</label><label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span>Portal</label></fieldset>
+<div class="lc-campo"><label class="lc-rotulo" for="rr-cat">Categoria</label><select class="lc-selecao" id="rr-cat"><option>Manutenção</option><option>Financeiro</option><option>Reservas e convivência</option></select></div>
+<div class="lc-campo"><label class="lc-rotulo" for="rr-est">Depois de inserir</label><select class="lc-selecao" id="rr-est"><option>Não mudar o estado</option><option>Sugerir "Enviar e aguardar"</option><option>Sugerir "Enviar e resolver"</option></select></div>
+</div>
+<aside class="rr-previa" aria-label="Prévia"><span class="lc-rotulo" style="display:block;margin-bottom:6px">Como chega para a Marina Costa</span>
+<div class="lc-conversa"><div class="lc-bolha lc-bolha--enviada lc-bolha--primeira">Marina, o técnico chega hoje às 11h. Ele vai se identificar na portaria com o crachá da Alpha. Se precisar remarcar, é só responder aqui.<span class="lc-bolha__meta">10:14</span></div></div>
+<p class="rr-uso">Usada 214 vezes em 30 dias, a mais usada da equipe. Criada por Beatriz Nogueira em 12/03/2025; última alteração por Letícia Araújo em 18/09.</p></aside></div></div></div></div>
+<div class="lc-vazio lc-vazio--centro" data-so-estado="vazio" hidden><span class="lc-ladrilho lc-ladrilho--48"><i data-i="resposta-rapida"></i></span><p class="lc-vazio__titulo">Nenhuma resposta rápida ainda</p><p class="lc-vazio__texto">Respostas rápidas são textos prontos que a equipe chama digitando / na conversa. Comece pelas perguntas que mais se repetem: 2ª via de boleto, reserva do salão, visita técnica.</p><div class="lc-grupo-btn"><button class="lc-btn lc-btn--principal" type="button">Criar a primeira</button><button class="lc-btn" type="button">Importar de planilha</button></div></div>
+</div>
+<div class="lc-barra-salvar" id="rr-barra" role="region" aria-label="Alterações não salvas" hidden><p class="lc-barra-salvar__msg"><i data-i="aviso"></i><span data-salvar-msg><b>1 alteração não salva</b></span></p><div class="lc-barra-salvar__acoes"><button class="lc-btn lc-btn--discreto" type="button" data-descartar>Descartar</button><button class="lc-btn lc-btn--principal" type="button" data-salvar-ok="/visita salva. A equipe já vê a versão nova.">Salvar</button></div></div>
+<section class="lc-nota-a11y" aria-labelledby="a11y-tit">
+  <h2 id="a11y-tit">Acessibilidade desta tela</h2>
+  <dl><dt>Ordem de foco</dt><dd>Pular para o conteúdo; trilho; barra do módulo; Importar, Nova resposta; busca; lista (cada resposta é um botão, a atual marcada); Mais opções; campos na ordem; botões de variável; barra de salvar quando aparece.</dd><dt>O que é anunciado</dt><dd>A resposta atual como "/visita, Confirmação de visita técnica, selecionada"; erro de atalho repetido ligado ao campo; ao inserir variável, "Variável nome inserida"; ao salvar, toast com Desfazer.</dd><dt>Nome do que é só ícone</dt><dd>Mais opções da resposta. Os botões de variável têm o nome escrito.</dd></dl>
+</section>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+<script>document.addEventListener("click",function(e){var b=e.target.closest(".rr-var button");if(!b)return;var t=document.getElementById("rr-txt"),v="{{"+b.textContent+"}}",p=t.selectionStart||t.value.length;t.value=t.value.slice(0,p)+v+t.value.slice(p);t.dispatchEvent(new Event("input",{bubbles:true}));t.focus();lcAnunciar("Variável "+b.textContent+" inserida");});
+document.querySelectorAll('[data-estado="duplicado"]').forEach(function(b){b.addEventListener("click",function(){var i=document.getElementById("rr-at");i.setAttribute("aria-invalid","true");});});
+document.querySelectorAll('[data-estado="dados"],[data-estado="sem-permissao"]').forEach(function(b){b.addEventListener("click",function(){document.getElementById("rr-at").removeAttribute("aria-invalid");});});
+document.querySelector('.lc-mestre-detalhe__lista').addEventListener("click",function(e){var b=e.target.closest("li>button");if(!b)return;this.querySelectorAll("li>button").forEach(function(x){x.setAttribute("aria-current",x===b);});});</script>
+</body>
+</html>

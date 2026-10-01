@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plataforma, clientes</title>
+<meta name="description" content="Superadmin: clientes da plataforma em lista, detalhe do cliente com uso, plano, módulos, marca e acessos da plataforma, e o modal de entrar no cliente com motivo e prazo.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<script>(function(){var r=document.documentElement,f=function(){["--marca","--marca-txt","--marca-forte","--marca-suave"].forEach(function(v){r.style.removeProperty(v);});};f();document.addEventListener("lc:tema",f);document.addEventListener("lc:marca",f);})();</script>
+<style>
+  .sa-det{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start;margin-top:16px}
+  @media (max-width:1023px){.sa-det{grid-template-columns:minmax(0,1fr)}}
+  .sa-cor{display:inline-block;width:14px;height:14px;border-radius:2px;border:1px solid var(--filete-forte);vertical-align:-2px;margin-right:6px}
+</style>
+</head>
+<body data-moldura='{"contexto":"superadmin","modulo":"clientes","secao":"Clientes da plataforma","usuario":{"nome":"Bruno Tavares","iniciais":"BT","cor":"lc-av--c5","cargo":"Suporte da plataforma"},"cliente":{"nome":"GACO Plataforma","sigla":"G"},"trilha":["Clientes da plataforma"]}'>
+<main id="conteudo" class="lc-pagina">
+<section class="lc-ficha-tela" aria-label="Sobre a lista de clientes">
+  <div class="lc-ficha-tela__nome"><b>Clientes da plataforma</b><span>Administradoras e empresas de serviço que contratam o GACO.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Achar um cliente e ver, na linha, plano, uso, cobrança e se alguém da plataforma está dentro dele agora.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Busca por nome, CNPJ ou domínio; filtros salvos em visões ("Perto do limite", "Fatura vencida").</li><li>Clicar no nome abre o detalhe; a lista lembra filtro e posição.</li><li>"Entrar no cliente" fica no detalhe, nunca na linha (exige motivo).</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o painel de contas do Stripe e o "Organizations" do Zendesk mostram plano e cobrança na linha; o Intercom e o Retool deixam a impersonação dentro do detalhe, com justificativa, para não acontecer por engano.</p></div>
+</section>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Clientes da plataforma</h1><p class="lc-cab-pagina__desc">38 ativos, 2 em implantação, 1 suspenso.</p></div><div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="baixar"></i>Exportar</button><button class="lc-btn lc-btn--principal" type="button"><i data-i="mais"></i>Novo cliente</button></div></div>
+<div class="lc-visoes lc-abas" role="tablist" aria-label="Visões"><button role="tab" aria-selected="true">Todos <span class="lc-contagem">41</span></button><button role="tab" aria-selected="false">Perto do limite <span class="lc-contagem">3</span></button><button role="tab" aria-selected="false">Fatura vencida <span class="lc-contagem">1</span></button><button role="tab" aria-selected="false">Em implantação <span class="lc-contagem">2</span></button></div>
+<div class="lc-filtros" style="margin-top:12px"><label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Nome, CNPJ ou domínio" aria-label="Pesquisar clientes"></label><button class="lc-filtro" type="button">Plano<i data-i="chevron-baixo"></i></button><button class="lc-filtro" type="button">Tipo<i data-i="chevron-baixo"></i></button></div>
+<div class="lc-tabela-cont"><table class="lc-tabela"><caption class="lc-sr">Clientes da plataforma</caption>
+  <thead><tr><th scope="col" aria-sort="ascending"><button class="lc-ordenar" type="button">Cliente</button></th><th scope="col">Plano</th><th scope="col">Uso de usuários</th><th scope="col" class="lc-num">Mensalidade</th><th scope="col">Cobrança</th><th scope="col">Agora</th></tr></thead>
+  <tbody>
+    <tr aria-selected="true"><td><a class="lc-tabela__primaria" href="#detalhe">Administradora Alpha</a><span class="lc-tabela__sub">São Paulo, 214 condomínios, alpha.gaco.com.br</span></td><td>Completo</td><td><div class="lc-uso" style="grid-template-columns:minmax(0,1fr) auto"><span class="lc-progresso" style="--_v:71%"></span><span class="lc-uso__n">142 de 200</span></div></td><td class="lc-num">R$ 12.400,00</td><td><span class="lc-estado lc-estado--sucesso">Em dia</span></td><td></td></tr>
+    <tr><td><a class="lc-tabela__primaria" href="#">Órbita Condomínios</a><span class="lc-tabela__sub">Campinas, 88 condomínios</span></td><td>Gestão</td><td><div class="lc-uso" style="grid-template-columns:minmax(0,1fr) auto"><span class="lc-progresso" style="--_v:58%"></span><span class="lc-uso__n">29 de 50</span></div></td><td class="lc-num">R$ 5.900,00</td><td><span class="lc-estado lc-estado--sucesso">Em dia</span></td><td><span class="lc-estado lc-estado--aviso">Pediu suporte</span></td></tr>
+    <tr><td><a class="lc-tabela__primaria" href="#">Vértice Administração</a><span class="lc-tabela__sub">Belo Horizonte, 132 condomínios</span></td><td>Completo</td><td><div class="lc-uso" style="grid-template-columns:minmax(0,1fr) auto"><span class="lc-progresso lc-progresso--aviso" style="--_v:96%"></span><span class="lc-uso__n">96 de 100</span></div></td><td class="lc-num">R$ 9.800,00</td><td><span class="lc-estado lc-estado--sucesso">Em dia</span></td><td></td></tr>
+    <tr><td><a class="lc-tabela__primaria" href="#">Sol Nascente Gestão</a><span class="lc-tabela__sub">Ribeirão Preto, 41 condomínios</span></td><td>Essencial</td><td><div class="lc-uso" style="grid-template-columns:minmax(0,1fr) auto"><span class="lc-progresso" style="--_v:40%"></span><span class="lc-uso__n">8 de 20</span></div></td><td class="lc-num">R$ 2.300,00</td><td><span class="lc-estado lc-estado--sucesso">Em dia</span></td><td><span class="lc-pessoa"><span class="lc-av lc-av--20 lc-av--c7">LS</span><span class="lc-pessoa__sub">Lucas, só leitura</span></span></td></tr>
+    <tr><td><a class="lc-tabela__primaria" href="#">Lar Gestão Predial</a><span class="lc-tabela__sub">Curitiba, 57 condomínios</span></td><td>Gestão</td><td><div class="lc-uso" style="grid-template-columns:minmax(0,1fr) auto"><span class="lc-progresso" style="--_v:62%"></span><span class="lc-uso__n">31 de 50</span></div></td><td class="lc-num">R$ 4.980,00</td><td><span class="lc-estado lc-estado--perigo">Vencida há 6 dias</span></td><td></td></tr>
+    <tr><td><a class="lc-tabela__primaria" href="#">Prisma Condomínios</a><span class="lc-tabela__sub">Porto Alegre, 23 condomínios</span></td><td>Essencial</td><td><span class="lc-estado lc-estado--andamento">Em implantação</span></td><td class="lc-num">R$ 2.300,00</td><td><span class="lc-estado lc-estado--neutro">1ª fatura em 10/11</span></td><td><span class="lc-pessoa"><span class="lc-av lc-av--20 lc-av--c3">HD</span><span class="lc-pessoa__sub">Helena, alterando</span></span></td></tr>
+    <tr><td><a class="lc-tabela__primaria" href="#">Horizonte Serviços Prediais</a><span class="lc-tabela__sub">Recife, empresa de serviço, 96 contratos</span></td><td>Serviços</td><td><div class="lc-uso" style="grid-template-columns:minmax(0,1fr) auto"><span class="lc-progresso" style="--_v:47%"></span><span class="lc-uso__n">47 de 100</span></div></td><td class="lc-num">R$ 6.700,00</td><td><span class="lc-estado lc-estado--sucesso">Em dia</span></td><td></td></tr>
+  </tbody></table></div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Exportar, Novo cliente, visões (setas), busca, filtros, cabeçalhos ordenáveis, nome de cada cliente.</p></div><div><h3>O que é anunciado</h3><p>Uso como texto: "142 de 200". Coluna "Agora": "Lucas, só leitura" diz quem está dentro do cliente.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+
+<!-- DETALHE -->
+<section class="lc-ficha-tela" id="detalhe" aria-label="Sobre o detalhe do cliente">
+  <div class="lc-ficha-tela__nome"><b>Detalhe do cliente da plataforma</b><span>Uso, plano, módulos, marca e acessos. "Entrar no cliente" no topo.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Responder em segundos "o que este cliente tem, quanto usa, quanto paga e quem da plataforma entrou nele", e mudar módulo ou plano com registro.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Cabeçalho com campos-chave (plano, mensalidade, desde, gerente).</li><li>Abas: Visão, Módulos, Marca, Acessos da plataforma, Faturas.</li><li>Ligar um módulo mostra a barra de salvar com o impacto na mensalidade; "Salvar ▾" (e voltar à lista, e ir ao próximo).</li><li>"Entrar no cliente" abre o modal de motivo e prazo.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o Salesforce e o HubSpot colocam campos-chave no topo da ficha; o Shopify Admin liga recursos do plano com interruptor e mostra o preço; e o "Login as" do Intercom pede motivo e deixa trilha de auditoria.</p></div>
+</section>
+<div class="lc-cab-registro" style="margin:0 calc(-1*var(--grade-margem));">
+  <div class="lc-cab-registro__topo"><nav aria-label="Trilha"><ol class="lc-trilha"><li><a href="#">Clientes da plataforma</a></li><li><span aria-current="page">Administradora Alpha</span></li></ol></nav><span class="lc-paginador"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" aria-label="Cliente anterior"><i data-i="chevron-esquerda"></i></button><b>1</b> de 41<button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" aria-label="Próximo cliente"><i data-i="chevron-direita"></i></button></span></div>
+  <div class="lc-cab-registro__titulo"><span class="lc-ladrilho lc-ladrilho--48" style="background:#0E5E6F;color:#fff;border:0">A</span><h1>Administradora Alpha</h1><span class="lc-estado lc-estado--sucesso">Ativo</span><div class="lc-cab-registro__acoes"><button class="lc-btn" type="button"><i data-i="email"></i>Avisar o cliente</button><button class="lc-btn lc-btn--principal" type="button" data-abrir="#entrar"><i data-i="sessao"></i>Entrar no cliente</button></div></div>
+  <div class="lc-cab-registro__meta"><span>CNPJ 08.412.337/0001-55</span><span>alpha.gaco.com.br</span><span>Cliente desde 03/2023</span></div>
+  <dl class="lc-campos-chave"><div><dt>Plano</dt><dd>Completo</dd></div><div><dt>Mensalidade</dt><dd>R$ 12.400,00</dd></div><div><dt>Condomínios</dt><dd>214</dd></div><div><dt>Usuários internos</dt><dd>142 de 200</dd></div><div><dt>Gerente da conta</dt><dd>Paula Mendes</dd></div><div><dt>Próxima fatura</dt><dd>10/10/2026</dd></div></dl>
+</div>
+<nav class="lc-abas" aria-label="Seções do cliente" style="margin-top:12px"><a href="#ab-v" aria-current="page">Visão</a><a href="#ab-m">Módulos</a><a href="#ab-mc">Marca</a><a href="#ab-a">Acessos da plataforma <span class="lc-contagem">12</span></a></nav>
+<div class="sa-det" data-editavel>
+  <div class="lc-pilha">
+    <section class="lc-caixa" id="ab-v"><div class="lc-caixa__cab"><h2>Uso do plano em setembro</h2></div><div class="lc-caixa__corpo"><div class="lc-uso">
+      <span>Usuários internos</span><span class="lc-progresso" style="--_v:71%"></span><span class="lc-uso__n">142 de 200</span>
+      <span>Acessos ao portal</span><span class="lc-progresso" style="--_v:48%"></span><span class="lc-uso__n">11.940 moradores ativos</span>
+      <span>Mensagens de WhatsApp</span><span class="lc-progresso lc-progresso--aviso" style="--_v:88%"></span><span class="lc-uso__n">43.920 de 50.000</span>
+      <span>Armazenamento</span><span class="lc-progresso" style="--_v:34%"></span><span class="lc-uso__n">170 de 500 GB</span>
+      <span>Boletos emitidos</span><span class="lc-progresso" style="--_v:62%"></span><span class="lc-uso__n">18.640, sem limite</span></div>
+      <p class="lc-legenda" style="margin-top:12px">WhatsApp a 88%: o pacote extra de 10.000 mensagens custa R$ 690,00 e liga sozinho a 100%, conforme contrato.</p></div></section>
+    <section class="lc-caixa" id="ab-m"><div class="lc-caixa__cab"><h2>Módulos</h2><span class="lc-aux">Plano Completo inclui 11 de 13</span></div><div class="lc-caixa__corpo"><ul class="lc-modulos-plano">
+      <li><i data-i="fone-atendimento"></i>Suporte<label class="lc-interruptor"><input type="checkbox" role="switch" checked aria-label="Suporte ligado"><span class="lc-interruptor__trilho"></span></label></li>
+      <li><i data-i="relacionamento"></i>CS<label class="lc-interruptor"><input type="checkbox" role="switch" checked aria-label="CS ligado"><span class="lc-interruptor__trilho"></span></label></li>
+      <li><i data-i="carteira"></i>Financeiro<label class="lc-interruptor"><input type="checkbox" role="switch" checked aria-label="Financeiro ligado"><span class="lc-interruptor__trilho"></span></label></li>
+      <li><i data-i="chave-inglesa"></i>Operações<label class="lc-interruptor"><input type="checkbox" role="switch" checked aria-label="Operações ligado"><span class="lc-interruptor__trilho"></span></label></li>
+      <li><i data-i="capelo"></i>Academy<label class="lc-interruptor"><input type="checkbox" role="switch" checked aria-label="Academy ligado"><span class="lc-interruptor__trilho"></span></label></li>
+      <li><i data-i="megafone"></i>Marketing <span class="lc-legenda">+R$ 1.200,00</span><label class="lc-interruptor"><input type="checkbox" role="switch" aria-label="Marketing desligado"><span class="lc-interruptor__trilho"></span></label></li>
+      <li><i data-i="codigo"></i>Desenvolvimento <span class="lc-legenda">Fora do plano</span><label class="lc-interruptor"><input type="checkbox" role="switch" disabled aria-label="Desenvolvimento indisponível"><span class="lc-interruptor__trilho"></span></label></li>
+    </ul></div></section>
+    <div class="lc-barra-salvar" role="region" aria-label="Alterações não salvas" data-barra-salvar hidden>
+      <p class="lc-barra-salvar__msg"><i data-i="aviso"></i><span><b data-conta-alt>1 alteração não salva</b> em Módulos. A mensalidade muda a partir da próxima fatura.</span></p>
+      <div class="lc-barra-salvar__acoes"><button class="lc-btn lc-btn--discreto" type="button" data-fechar-alvo="[data-barra-salvar]">Descartar</button><span class="lc-dividido"><button class="lc-btn lc-btn--principal" type="button" data-fechar-alvo="[data-barra-salvar]" data-toast="Módulos salvos. O cliente foi avisado por e-mail.">Salvar</button><button class="lc-btn lc-btn--principal" type="button" aria-label="Outras formas de salvar" aria-haspopup="menu" data-alternar="#salvar-menu"><i data-i="chevron-baixo"></i></button></span>
+        <div class="lc-menu" id="salvar-menu" hidden style="position:absolute;right:0;bottom:calc(100% + 6px)" role="menu"><button class="lc-menu__item" role="menuitem" type="button">Salvar e ir para o próximo<small>2 de 41, Órbita Condomínios</small></button><button class="lc-menu__item" role="menuitem" type="button">Salvar e voltar para a lista</button></div></div></div>
+  </div>
+  <aside class="lc-pilha">
+    <section class="lc-caixa" id="ab-mc"><div class="lc-caixa__cab"><h2>Marca</h2><a class="lc-aux" href="#">Ver como o cliente</a></div><div class="lc-caixa__corpo"><dl class="lc-props"><dt>Cor enviada</dt><dd><span class="sa-cor" style="background:#0E5E6F"></span>#0E5E6F</dd><dt>Cor aplicada</dt><dd><span class="sa-cor" style="background:#0E5E6F"></span>#0E5E6F, sem ajuste</dd><dt>Texto sobre a marca</dt><dd>Branco, 7,4:1</dd><dt>Estado mais próximo</dt><dd>Verde de sucesso, ΔE 18,2</dd><dt>Domínio do portal</dt><dd>portal.alpha.com.br, certificado até 02/2027</dd><dt>E-mail de envio</dt><dd>avisos@alpha.com.br, SPF e DKIM certos</dd></dl></div></section>
+    <section class="lc-caixa" id="ab-a"><div class="lc-caixa__cab"><h2>Acessos da plataforma</h2><span class="lc-aux">Últimos 90 dias</span></div><ul class="lc-auditoria" style="padding:0 16px 8px">
+      <li><span class="lc-av lc-av--24 lc-av--c5">BT</span><span class="lc-auditoria__quem"><b>Bruno Tavares</b> entrou, só leitura</span><span class="lc-auditoria__quando">28/09, 14:02 a 14:31</span><dl class="lc-auditoria__mudanca"><dt>Motivo</dt><dd>Chamado 1.188, rateio da obra com centavos errados</dd><dt>Viu</dt><dd>Financeiro, Rateios (3 telas)</dd></dl></li>
+      <li><span class="lc-av lc-av--24 lc-av--c3">HD</span><span class="lc-auditoria__quem"><b>Helena Duarte</b> entrou, pode alterar</span><span class="lc-auditoria__quando">12/09, 10:10 a 11:40</span><dl class="lc-auditoria__mudanca"><dt>Aprovado por</dt><dd>Paula Mendes, Administradora Alpha</dd><dt>Alterou</dt><dd>Plano de contas: <del>4.1.02 Limpeza</del> <ins>4.1.02 Limpeza e conservação</ins></dd></dl></li></ul></section>
+  </aside>
+</div>
+
+<div class="lc-sobreposicao" id="entrar" data-fechavel style="position:relative;inset:auto;z-index:auto;padding:24px 0;background:transparent;animation:none">
+  <div class="lc-modal" role="dialog" aria-modal="true" aria-labelledby="en-t" style="margin:0 auto">
+    <div class="lc-modal__cab"><div style="flex:1"><h2 id="en-t">Entrar na Administradora Alpha</h2><p>Você verá o sistema como a equipe deles. Tudo o que fizer fica na auditoria do cliente e da plataforma.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" data-fechar-alvo="#entrar" aria-label="Fechar"><i data-i="fechar"></i></button></div>
+    <div class="lc-modal__corpo lc-pilha">
+      <div class="lc-campo"><label class="lc-rotulo" for="en-m">Motivo <span class="lc-obrig" aria-hidden="true">*</span></label><input id="en-m" class="lc-entrada" value="Chamado 1.204: boleto duplicado na unidade 302"><p class="lc-ajuda">O cliente vê este motivo no registro de acessos.</p></div>
+      <fieldset class="lc-grupo-opcoes lc-grupo-opcoes--linha"><legend class="lc-rotulo">Prazo</legend><label class="lc-radio"><input type="radio" name="pz"><span class="lc-radio__bola"></span>15 min</label><label class="lc-radio"><input type="radio" name="pz" checked><span class="lc-radio__bola"></span>1 hora</label><label class="lc-radio"><input type="radio" name="pz"><span class="lc-radio__bola"></span>4 horas</label></fieldset>
+      <fieldset class="lc-grupo-opcoes"><legend class="lc-rotulo">Modo</legend><label class="lc-radio"><input type="radio" name="md" checked><span class="lc-radio__bola"></span>Só leitura<small class="lc-legenda" style="display:block;margin-left:28px">Padrão. Não grava nada.</small></label><label class="lc-radio"><input type="radio" name="md"><span class="lc-radio__bola"></span>Pode alterar<small class="lc-legenda" style="display:block;margin-left:28px">Precisa da aprovação de um administrador do cliente.</small></label></fieldset>
+    </div>
+    <div class="lc-modal__pe"><span class="lc-modal__aux">Expira às 11:42</span><button class="lc-btn" type="button" data-fechar-alvo="#entrar">Cancelar</button><a class="lc-btn lc-btn--principal" href="50c-sa-dentro.html">Entrar só para ler</a></div>
+  </div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Trilha, anterior/próximo, Avisar, Entrar no cliente, âncoras das seções (no computador as seções ficam lado a lado; a âncora rola até elas), interruptores de módulo, barra de salvar. No modal: motivo, prazo, modo, Cancelar, Entrar.</p></div><div><h3>O que é anunciado</h3><p>Interruptor: "Marketing, desligado, botão de alternância". Ao mudar: barra "1 alteração não salva em Módulos". Modal: título e descrição pelo <code>aria-labelledby</code>.</p></div><div><h3>Nome do que é só ícone</h3><p>Setas: "Cliente anterior", "Próximo cliente". Chevron do salvar: "Outras formas de salvar".</p></div></div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

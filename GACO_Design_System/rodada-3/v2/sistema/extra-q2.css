@@ -220,3 +220,18 @@
   .cm-conflito>.cm-conflito__cab:not(:first-child){display:none}
 }
 @media (prefers-reduced-motion:reduce){ .cm-gravacao.is-salvando .cm-icone,.cm-barra-tempo i{animation:none;transition:none} }
+
+/* ===== K Ações da linha sempre visíveis (regra A3 §4: hover só realça; no toque e no teclado elas existem) ===== */
+.cm-tabela--acoes-visiveis .cm-tabela__acoes{width:76px}
+.cm-tabela--acoes-visiveis .cm-tabela__acoes .cm-botao{opacity:.62}
+.cm-tabela--acoes-visiveis tr:hover .cm-tabela__acoes .cm-botao,.cm-tabela--acoes-visiveis tr.is-atual .cm-tabela__acoes .cm-botao{opacity:1}
+@media (hover:none){ .cm-tabela__acoes .cm-botao{opacity:1} }
+
+/* ===== L Toast acima do rodapé de atalhos e da barra de salvar ===== */
+body:has(.cm-rodape-atalhos--fixo) .cm-toasts{bottom:46px}
+body:has(.cm-barra-salvar:not([hidden])) .cm-toasts{bottom:72px}
+
+/* ===== M Barra de salvar dentro de palco de documentação (não gruda na janela) ===== */
+.cm-palco .cm-barra-salvar{position:relative;animation:none}
+.cm-demo-grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:899px){.cm-demo-grade{grid-template-columns:1fr}}

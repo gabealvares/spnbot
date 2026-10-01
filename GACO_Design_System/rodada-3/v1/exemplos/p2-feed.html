@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mural, Início</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+</head>
+<body data-moldura='{"modulo":"inicio","secao":"Mural","papel":"gerente-cs"}'>
+<main id="conteudo">
+<div class="lc-modelo-feed">
+  <div>
+    <h1 class="lc-sr">Mural</h1>
+    <div class="lc-novas" id="novas" hidden><button class="lc-btn lc-btn--p" type="button" id="ver-novas"><i data-i="seta-cima"></i><span>3 publicações novas</span></button></div>
+    <div class="lc-post"><div class="lc-publicar"><span class="lc-av lc-av--40 lc-av--c3">LA</span><button class="lc-publicar__falso" type="button" id="publicar">Reconhecer alguém ou publicar para a equipe</button>
+      <div class="lc-publicar__acoes"><button class="lc-btn lc-btn--p lc-btn--discreto" type="button"><i data-i="reconhecimento"></i>Reconhecer</button><button class="lc-btn lc-btn--p lc-btn--discreto" type="button"><i data-i="imagem"></i>Foto</button><button class="lc-btn lc-btn--p lc-btn--discreto" type="button"><i data-i="comunicado"></i>Comunicado</button></div></div></div>
+    <div id="feed" style="margin-top:12px"></div>
+    <div class="lc-carregar-mais" id="fim" role="status"><span class="lc-girador" aria-hidden="true"></span><span>Carregando publicações mais antigas</span></div>
+  </div>
+  <aside class="lc-modelo-feed__lado">
+    <section class="lc-caixa" aria-labelledby="pv"><div class="lc-caixa__cab"><h2 id="pv">Para você</h2></div><div class="lc-caixa__corpo"><ul class="lc-pv">
+      <li class="lc-pv__item"><span class="lc-pv__o-que"><b>Horizonte</b>: reunião às 10h</span><span class="lc-pv__prazo lc-pv__prazo--hoje">hoje</span><button class="lc-btn lc-btn--p lc-pv__acao" type="button">Preparar</button></li>
+      <li class="lc-pv__item"><span class="lc-pv__o-que">Comentário de <b>Juliana Souza</b> no contrato do Parque das Águas</span><span class="lc-pv__prazo">há 20 min</span><a class="lc-btn lc-btn--p lc-pv__acao" href="p2-registro.html?id=2026-0412#comentario-1182">Responder</a></li></ul></div></section>
+    <section class="lc-caixa" aria-labelledby="eq"><div class="lc-caixa__cab"><h2 id="eq">Equipe de CS</h2><span class="lc-aux">4 online</span></div><div class="lc-caixa__corpo"><ul class="lc-lista">
+      <li style="padding:6px 0"><span class="lc-av lc-av--32 lc-av--c7">RL<span class="lc-presenca lc-presenca--on"></span></span><span>Rafael Lima<span class="lc-lista__sub">Online</span></span></li>
+      <li style="padding:6px 0"><span class="lc-av lc-av--32 lc-av--c5">BT<span class="lc-presenca lc-presenca--reuniao"></span></span><span>Bruno Tavares<span class="lc-lista__sub">Em reunião até 11h</span></span></li>
+      <li style="padding:6px 0"><span class="lc-av lc-av--32 lc-av--c4">CM<span class="lc-presenca lc-presenca--ausente"></span></span><span>Carla Mendes<span class="lc-lista__sub">De férias até 10/10</span></span></li></ul></div></section>
+  </aside>
+</div>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2,$=P.$,$$=P.$$,esc=P.esc;
+var POSTS=[
+ {av:"PM",c:"lc-av--c3",q:"Paula Mendes",m:"Diretoria, há 2 h",t:"comunicado",tit:"Nova política de home office a partir de 1º de novembro",txt:"Cada equipe combina dois dias no escritório da Faria Lima. A escala de cada um fica em Cultura › Pessoas até sexta.",ciencia:"38 de 52 deram ciência"},
+ {av:"RL",c:"lc-av--c7",q:"Rafael Lima",m:"CS, há 3 h",t:"rec",para:"Beatriz Couto",valor:"Cliente no centro",txt:"Resolveu o vazamento do Parque das Águas em um dia, com a síndica informada a cada passo.",r:"12, Ana, Bruno e mais 10"},
+ {av:"G",c:"lc-av--c8",q:"Aniversários de hoje",m:"Sistema",t:"aniv",txt:"Hoje é aniversário de Carla Mendes e de Diego Ramos. Deixe uma mensagem."},
+ {av:"BT",c:"lc-av--c5",q:"Bruno Tavares",m:"CS, ontem",t:"post",txt:"Fechamos a implantação da Adm. Bandeirantes: 71 condomínios migrados, boletos de novembro já saem pelo GACO.",r:"23, Paula, Rafael e mais 21"}];
+var lote=0;
+function post(p){ var h='<article class="lc-post"><div class="lc-post__cab"><span class="lc-av lc-av--40 '+p.c+'">'+p.av+'</span><span class="lc-post__quem"><b>'+esc(p.q)+'</b><span class="lc-post__meta">'+p.m+'</span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Mais opções da publicação"><i data-i="mais-opcoes"></i></button></div><div class="lc-post__corpo">';
+  if(p.t==="comunicado") h+='<h2 class="lc-post__titulo">'+esc(p.tit)+'</h2><p>'+esc(p.txt)+'</p>';
+  else if(p.t==="rec") h+='<div class="lc-reconhece"><i data-i="reconhecimento"></i><span>Reconheceu <b>'+esc(p.para)+'</b> por <span class="lc-reconhece__valor">'+esc(p.valor)+'</span></span></div><p>'+esc(p.txt)+'</p>';
+  else h+='<p>'+esc(p.txt)+'</p>';
+  h+='</div>'+(p.r?'<div class="lc-reacoes-resumo"><span class="lc-reacoes-resumo__pilha"><span><i data-i="curtir"></i></span><span><i data-i="parabens"></i></span></span>'+esc(p.r)+'</div>':'');
+  if(p.ciencia) h+='<div class="lc-ciencia"><button class="lc-btn lc-btn--p" type="button" data-ciente>Li e estou ciente</button><span class="lc-ciencia__conta">'+p.ciencia+'</span></div>';
+  else h+='<div class="lc-post__acoes"><button type="button" aria-pressed="false" data-curtir><i data-i="curtir"></i>Curtir</button><button type="button"><i data-i="comentario"></i>Comentar</button></div>';
+  return h+'</article>'; }
+function carregar(){ var ps=POSTS.map(function(p,i){ var q=Object.assign({},p); if(lote) q.m=q.m.replace(/há \d h|ontem/,(lote+1)+" dias atrás"); return q; });
+  $("#feed").insertAdjacentHTML("beforeend",ps.map(post).join("")); lcIcones($("#feed")); lote++;
+  if(lote>=3){ io&&io.disconnect(); $("#fim").innerHTML='<span>Você viu tudo dos últimos 7 dias.</span><button class="lc-btn lc-btn--p" type="button">Ver publicações mais antigas</button>'; } }
+var io=null;
+carregar();
+if("IntersectionObserver" in window){ io=new IntersectionObserver(function(es){ if(es[0].isIntersecting) setTimeout(carregar,500); }); io.observe($("#fim")); }
+$("#feed").addEventListener("click",function(e){ var c=e.target.closest("[data-ciente]"); if(c){ c.outerHTML='<span class="lc-carimbo lc-carimbo--ciente">Ciente<small>Letícia Araújo, 01/10/26 '+P.hora()+'</small></span>'; P.anunciar("Ciência registrada."); }
+  var k=e.target.closest("[data-curtir]"); if(k){ var on=k.getAttribute("aria-pressed")!=="true"; k.setAttribute("aria-pressed",on); } });
+$("#publicar").addEventListener("click",function(){ P.modal({titulo:"Publicar no mural",desc:"A equipe toda vê. Para reconhecer, comece com @ e o nome.",corpo:'<label class="lc-sr" for="pb">Texto</label><textarea id="pb" class="lc-area-texto" style="min-height:120px" placeholder="Ex.: @Beatriz Couto resolveu o vazamento do Parque das Águas em um dia"></textarea><p class="lc-ajuda" style="margin-top:6px">Texto curto não tem rascunho no servidor: se você fechar, perguntamos antes.</p>',
+  pe:'<button class="lc-btn" type="button" data-m-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-ok>Publicar</button>',
+  aoAbrir:function(el,api){ el.querySelector("[data-ok]").addEventListener("click",function(){ var t=el.querySelector("#pb").value.trim(); if(!t){ el.querySelector("#pb").focus(); return; } api.fechar(); $("#feed").insertAdjacentHTML("afterbegin",post({av:"LA",c:"lc-av--c3",q:"Letícia Araújo",m:"CS, agora",t:"post",txt:t})); lcIcones($("#feed")); P.toast("Publicado no mural.",{tipo:"sucesso",acao:"Desfazer",aoAcao:function(){ $("#feed .lc-post").remove(); }}); }); }}); });
+setTimeout(function(){ $("#novas").hidden=false; },2500);
+$("#ver-novas").addEventListener("click",function(){ $("#novas").hidden=true; window.scrollTo({top:0}); P.anunciar("3 publicações novas no topo."); });
+})();
+</script>
+</body>
+</html>

@@ -32,7 +32,7 @@
 </head>
 <body>
 <a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
-<div data-moldura='{"papel":"Diretoria","trilha":false,"sino":3,"usuario":{"nome":"Juliana Reis","iniciais":"JR","cargo":"Gestora do Suporte","presenca":"disponivel","tom":2}}'></div>
+<div data-moldura='{"papel":"Produto","trilha":false,"sino":3,"usuario":{"nome":"Juliana Reis","iniciais":"JR","cargo":"Gestora do Suporte","presenca":"disponivel","tom":2}}'></div>
 <header class="doc-topo">
   <nav aria-label="Páginas do sistema">
     <a href="00-fundamentos.html">Fundamentos</a>
@@ -184,8 +184,8 @@
   </div>
 </div>
   </template>
-  <template class="doc-ex-t" data-titulo="<b>Menu do Enviar aberto</b>, parado para revisão." data-codigo="nao" data-palco="300">
-<div style="padding:40px 18px">
+  <template class="doc-ex-t" data-titulo="<b>Menu do Enviar aberto</b>, parado para revisão." data-codigo="nao">
+<div>
   <div class="cm-dividido">
     <button class="cm-botao cm-botao--principal" type="button">Enviar <span class="cm-dividido__lembra">e resolver</span></button>
     <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="true" aria-label="Outras formas de enviar"><i data-i="chevron-baixo"></i></button>
@@ -421,7 +421,7 @@
   <h2 class="cm-cabecalho-registro__titulo">Vazamento no teto da garagem <span class="cm-plaqueta cm-plaqueta--g">#48213</span></h2>
   <dl class="cm-ficha ex-w320"><div class="cm-ficha__linha"><dt>Contrato</dt><dd><span class="cm-plaqueta">CT-2024-0187</span></dd><span></span></div></dl>
   <div class="doc-fileira"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="chave"></i></span><span>Chave da casa de bombas</span><span class="cm-plaqueta">CH-014</span></div>
-  <div class="cm-cartao-vinculo"><i data-i="ordem-de-servico"></i>Vinculado à <span class="cm-plaqueta">OS 482</span></div>
+  <div class="cm-cartao-vinculo" style="align-self:flex-start"><i data-i="ordem-de-servico"></i>Vinculado à <span class="cm-plaqueta">OS 482</span></div>
   <button class="cm-plaqueta" type="button" aria-label="Copiar número do chamado 48213" data-toast="Número 48213 copiado|sucesso">#48213</button>
 </div>
   </template>
@@ -692,7 +692,7 @@
 <section class="doc-comp" id="popover">
   <h3>Popover <code>.cm-popover</code></h3>
   <p class="lead">Um painelzinho com conteúdo e até duas ações, preso a quem abriu: filtro de coluna, prévia de pessoa, ajuste rápido. Não bloqueia a tela.</p>
-  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Filtro "Estado" de uma lista.">
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Filtro “Estado” de uma lista.">
 <div style="min-height:280px">
   <span data-doc-ancora class="doc-ancora">
     <button class="cm-filtro is-ativo" type="button" aria-haspopup="dialog" aria-expanded="false" data-doc-alterna>Estado: <b>Aberto, Aguardando</b><i data-i="chevron-baixo"></i></button>
@@ -741,7 +741,7 @@
 <section class="doc-comp" id="paleta">
   <h3>Paleta Ctrl K <code>.cm-paleta</code></h3>
   <p class="lead">Acha qualquer tela, registro ou ação pelo nome. É a pesquisa central da moldura. <button class="cm-botao cm-botao--p" type="button" data-doc-paleta><i data-i="pesquisar"></i>Abrir a paleta de verdade</button></p>
-  <template class="doc-ex-t" data-titulo="<b>Digitando "par".</b> Telas com o caminho, registros com o tipo, ações com o atalho. A busca ignora acento." data-codigo="sim">
+  <template class="doc-ex-t" data-layout="empilhado" data-titulo="<b>Digitando “par”.</b> Telas com o caminho, registros com o tipo, ações com o atalho. A busca ignora acento." data-codigo="sim">
 <div class="cm-paleta" role="dialog" aria-label="Pesquisar">
   <div class="cm-paleta__busca"><i data-i="pesquisar"></i><input value="par" aria-label="Pesquisar telas, clientes, chamados" role="combobox" aria-expanded="true" aria-controls="pal-l"><kbd class="cm-tecla">Esc</kbd></div>
   <div class="cm-paleta__lista" role="listbox" id="pal-l">
@@ -762,3 +762,856 @@
     <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Campo <code>combobox</code> que controla um <code>listbox</code>; o item ativo é anunciado por <code>aria-activedescendant</code>; grupos lidos como cabeçalhos.</li><li>Sem resultado: "Nada com par. Tente o nome do condomínio ou o número do chamado."</li></ul></div>
   </div>
 </section>
+
+<section class="doc-comp" id="modal">
+  <h3>Modal <code>.cm-modal</code></h3>
+  <p class="lead">Interrompe a tela para uma decisão ou um formulário curto que não faz sentido fora dela. Quatro larguras: 400, 560, 720 e 960. A exclusão usa a variante de perigo, que é o terceiro nível da regra de exclusão.</p>
+  <div class="doc-fileira" style="margin:10px 0">
+    <button class="cm-botao" type="button" data-doc-modal="dlg-excluir"><i data-i="excluir"></i>Abrir: excluir chamado</button>
+    <button class="cm-botao" type="button" data-doc-modal="dlg-definitivo">Abrir: exclusão definitiva</button>
+    <button class="cm-botao" type="button" data-doc-modal="dlg-contato"><i data-i="adicionar-pessoa"></i>Abrir: novo contato</button>
+  </div>
+  <template class="doc-ex-t" data-titulo="<b>Confirmação de exclusão com vínculos</b> (pequeno, perigo), parada no palco." data-palco="400">
+<div class="cm-sobreposicao">
+  <div class="cm-modal cm-modal--p cm-modal--perigo" role="dialog" aria-modal="true" aria-labelledby="m-exc">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="m-exc">Excluir o chamado 48213?<span class="cm-modal__sub">Ele vai para a lixeira por 30 dias.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-doc-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo"><p>Este chamado tem vínculos que também saem da lista:</p><ul style="margin:6px 0 0;padding-left:18px"><li>OS 482, com a Hidrotec</li><li>3 tarefas, 1 concluída</li></ul></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-doc-fechar>Cancelar</button><button class="cm-botao cm-botao--perigo-cheio" type="button" data-doc-fechar data-toast="Chamado 48213 movido para a lixeira|sucesso|Desfazer">Excluir</button></div>
+  </div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-titulo="<b>Formulário em modal</b> (padrão, 560) com rodapé de ajuda à esquerda." data-palco="520" data-codigo="sim">
+<div class="cm-sobreposicao">
+  <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="m-res">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="m-res">Reservar o salão de festas<span class="cm-modal__sub">Cond. Parque das Águas, Bl B Ap 1204</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-doc-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo cm-pilha">
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="m-data">Data</label><div class="cm-entrada"><i data-i="calendario"></i><input id="m-data" value="18/10/2025"></div><p class="cm-campo__ajuda">Sábado. O salão está livre neste dia.</p></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="m-conv">Convidados</label><div class="cm-entrada cm-entrada--numero"><input id="m-conv" inputmode="numeric" value="60"><span class="cm-entrada__passo"><button type="button" aria-label="Aumentar"><i data-i="chevron-cima"></i></button><button type="button" aria-label="Diminuir"><i data-i="chevron-baixo"></i></button></span></div><p class="cm-campo__ajuda">Máximo de 80 pelo regimento.</p></div>
+    </div>
+    <div class="cm-modal__pe"><span class="cm-modal__pe-esq">Taxa de R$ 180,00 no boleto de novembro</span><button class="cm-botao" type="button" data-doc-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-doc-fechar data-toast="Reserva feita para 18/10|sucesso">Reservar</button></div>
+  </div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div><h5>Anatomia</h5><ol class="doc-anatomia"><li>Sobreposição <code>.cm-sobreposicao</code></li><li>Cabeça: título como pergunta ou tarefa, subtítulo com a consequência, fechar</li><li>Corpo com rolagem própria</li><li>Pé: cancelar à esquerda da ação, principal por último</li></ol></div>
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Confirmação de exclusão com vínculos (nível 2) e exclusão definitiva (nível 3, digitando o nome).</li><li>Criar algo curto sem sair da tela: novo contato, reserva, motivo de perda.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para confirmar o que se desfaz: item comum vai para a lixeira com toast "Desfazer", sem modal.</li><li>Para editar registro inteiro: a edição é no próprio registro.</li><li>Modal sobre modal.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li><code>role="dialog"</code>, <code>aria-modal="true"</code>, <code>aria-labelledby</code> no título.</li><li>Foco entra no primeiro campo (ou em Cancelar, na exclusão), fica preso dentro, Esc fecha e devolve ao botão que abriu.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="painel">
+  <h3>Painel lateral <code>.cm-painel</code></h3>
+  <p class="lead">Abre à direita sem tirar a lista da vista: prévia de um registro, detalhes de uma linha, filtros avançados. 400px, ou 560 no <code>--g</code>; <code>--no-lugar</code> vira coluna fixa da tela.</p>
+  <div class="doc-fileira" style="margin:10px 0"><button class="cm-botao" type="button" data-doc-modal="dlg-painel"><i data-i="painel-direito"></i>Abrir: prévia do cliente</button></div>
+  <template class="doc-ex-t" data-titulo="Prévia com “14 de 63” e ações no pé." data-palco="460">
+<aside class="cm-painel" role="dialog" aria-labelledby="pn-t">
+  <header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="pn-t">Cond. Parque das Águas</h2><span class="cm-navegar-registro"><b>14 de 63</b></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Anterior"><i data-i="chevron-cima"></i></button><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Próximo"><i data-i="chevron-baixo"></i></button><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-doc-fechar><i data-i="fechar"></i></button></header>
+  <div class="cm-painel__corpo">
+    <section class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Resumo</h3></div><dl class="cm-ficha"><div class="cm-ficha__linha"><dt>Síndica</dt><dd>Marina Costa</dd><span></span></div><div class="cm-ficha__linha"><dt>Saúde</dt><dd><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>82, boa</span></dd><span></span></div><div class="cm-ficha__linha"><dt>Renovação</dt><dd>em 106 dias</dd><span></span></div></dl></section>
+    <section class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Próximo passo</h3></div><p class="cm-t-corpo-p">Reunião de resultados até 30/10.</p></section>
+  </div>
+  <footer class="cm-painel__pe"><button class="cm-botao" type="button">Registrar contato</button><button class="cm-botao cm-botao--principal" type="button">Abrir ficha</button></footer>
+</aside>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Prévia ao clicar numa linha da carteira, com J e K para andar.</li><li>Filtros avançados; detalhes de um evento da agenda.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para formulário longo: abra a ficha.</li><li>Dois painéis ao mesmo tempo.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Prévia que não bloqueia: <code>role="complementary"</code> com rótulo, e o foco vai ao título. Painel que bloqueia: <code>role="dialog"</code> e foco preso. Esc fecha nos dois casos.</li><li>No celular o painel ocupa a largura toda.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="folha">
+  <h3>Folha inferior <code>.cm-folha</code></h3>
+  <p class="lead">O menu e o diálogo do celular: sobe de baixo, com a alça, itens de 48px e o pé com a ação. Substitui menu, menu de contexto e popover abaixo de 600px.</p>
+  <div class="doc-fileira" style="margin:10px 0"><button class="cm-botao" type="button" data-doc-modal="dlg-folha"><i data-i="celular"></i>Abrir: Enviar no celular</button></div>
+  <template class="doc-ex-t" data-titulo="Enviar ▾ no celular." data-palco="420">
+<div class="cm-sobreposicao"></div>
+<div class="cm-folha" role="dialog" aria-modal="true" aria-labelledby="fo-t">
+  <div class="cm-folha__alca" aria-hidden="true"></div>
+  <div class="cm-folha__cabeca"><h2 class="cm-folha__titulo" id="fo-t">Enviar resposta</h2><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--toque" type="button" aria-label="Fechar" data-doc-fechar><i data-i="fechar"></i></button></div>
+  <div class="cm-folha__corpo">
+    <button class="cm-folha__item" type="button" data-doc-fechar data-toast="Enviada. Conversa segue aberta.|sucesso"><i data-i="enviar"></i>Enviar e manter aberto</button>
+    <button class="cm-folha__item" type="button" data-doc-fechar data-toast="Enviada. Aguardando cliente.|sucesso"><i data-i="pendente"></i>Enviar e aguardar cliente</button>
+    <button class="cm-folha__item" type="button" data-doc-fechar data-toast="Enviada e resolvida.|sucesso"><i data-i="sucesso"></i>Enviar e resolver</button>
+  </div>
+  <div class="cm-folha__pe"><label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Depois de resolver, abrir a próxima</span></label></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Abaixo de 600px, no lugar de menu, popover e modal curto.</li><li>Portal: ações do boleto (copiar Pix, baixar PDF).</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>No computador.</li><li>Com formulário que precisa de teclado aberto e rolagem longa: tela própria.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Diálogo modal; a alça é decorativa; fechar tem 44px; arrastar para baixo e tocar fora também fecham.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= RETORNO -->
+<section class="doc-familia" aria-labelledby="f-retorno">
+<h2 id="f-retorno">Retorno ao usuário</h2>
+<p>O que o sistema diz depois de uma ação, durante uma espera ou quando não há nada. Erros dizem o que aconteceu e como resolver; não pedem desculpas e não são vagos.</p>
+
+<section class="doc-comp" id="toast">
+  <h3>Toast <code>.cm-toast</code></h3>
+  <p class="lead">Confirma uma ação que deu certo e oferece desfazer. Aparece no canto de baixo à esquerda, longe do botão principal e da barra de salvar, por 6 segundos (10 quando tem "Desfazer").</p>
+  <div class="doc-fileira" style="margin:10px 0">
+    <button class="cm-botao" type="button" data-toast="Chamado 48213 movido para a lixeira.|sucesso|Desfazer">Disparar: sucesso com desfazer</button>
+    <button class="cm-botao" type="button" data-toast="Sem conexão. Suas mensagens saem quando a internet voltar.|aviso">Disparar: atenção</button>
+    <button class="cm-botao" type="button" data-toast="O boleto não foi gerado: o banco recusou o CPF do pagador.|perigo|Ver detalhe">Disparar: erro</button>
+    <button class="cm-botao" type="button" data-toast="Exportação começou. Avisamos no sino quando terminar.|info">Disparar: informação</button>
+  </div>
+  <template class="doc-ex-t" data-titulo="Quatro tons, com ação, com tempo e com fechar.">
+<div class="cm-toasts" role="status" aria-live="polite">
+  <div class="cm-toast cm-toast--sucesso"><i data-i="sucesso"></i><span class="cm-toast__texto">Chamado movido para a lixeira.</span><button class="cm-toast__acao" type="button">Desfazer</button><button class="cm-toast__fechar" type="button" aria-label="Fechar"><i data-i="fechar"></i></button></div>
+  <div class="cm-toast cm-toast--aviso"><i data-i="atencao"></i><span class="cm-toast__texto">Sem conexão. Tentando de novo.</span><span class="cm-toast__tempo">em 8 s</span></div>
+  <div class="cm-toast cm-toast--perigo"><i data-i="erro"></i><span class="cm-toast__texto">O boleto não foi gerado: CPF do pagador recusado.</span><button class="cm-toast__acao" type="button">Ver detalhe</button></div>
+  <div class="cm-toast"><i data-i="informacao"></i><span class="cm-toast__texto">Exportação começou. Avisamos no sino.</span></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Depois de salvar, enviar, mover, arquivar, excluir para a lixeira.</li><li>Quando a ação pode ser desfeita: sempre com "Desfazer".</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Erro de campo: ele fica no campo.</li><li>Erro que impede continuar: alerta na tela.</li><li>Mais de três ao mesmo tempo: o mais velho sai.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>O mesmo verbo do botão no particípio: "Arquivar" vira "Arquivado".</li><li>Uma frase. Erro diz o motivo e o caminho.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Região <code>role="status"</code> <code>aria-live="polite"</code>; erro usa <code>role="alert"</code>.</li><li>Não some enquanto o mouse ou o foco estão nele. Atalho Ctrl Z desfaz o último.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="alerta">
+  <h3>Alerta <code>.cm-alerta</code></h3>
+  <p class="lead">Mensagem dentro da tela, junto do que ela fala. Filete colorido à esquerda e ícone; o fundo continua o da camada.</p>
+  <template class="doc-ex-t" data-titulo="Cinco tons, com título, descrição e ação.">
+<div class="doc-pilha doc-pilha--esticar">
+  <div class="cm-alerta cm-alerta--aviso" role="status"><i data-i="atencao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Atenção: o SLA vence em 6 min</span><span class="cm-alerta__desc">Responda até 09:44 ou passe a conversa para outra pessoa.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button">Passar</button></span></div>
+  <div class="cm-alerta cm-alerta--perigo" role="alert"><i data-i="perigo"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Unidade inadimplente há 3 meses</span><span class="cm-alerta__desc">R$ 3.854,70 em aberto. Reserva do salão bloqueada pelo regimento.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button">Ver boletos</button></span></div>
+  <div class="cm-alerta cm-alerta--sucesso"><i data-i="sucesso"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Importação concluída</span><span class="cm-alerta__desc">312 unidades e 498 moradores entraram. 4 linhas ficaram de fora.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p cm-botao--link" type="button">Ver as 4 linhas</button></span></div>
+  <div class="cm-alerta cm-alerta--info"><i data-i="informacao"></i><span class="cm-alerta__texto">O condomínio usa rateio por fração ideal. Os valores abaixo já consideram isso.</span></div>
+  <div class="cm-alerta cm-alerta--neutro"><i data-i="bloquear"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Você está vendo sem poder editar</span><span class="cm-alerta__desc">Peça acesso à gestora do CS, Juliana Reis.</span></span></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Algo sobre este registro que a pessoa precisa saber antes de agir.</li><li>Resultado de uma ação longa (importação).</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Aviso do sistema todo (manutenção): faixa.</li><li>Confirmação passageira: toast.</li><li>Dois alertas iguais na mesma tela.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Alerta que aparece depois de uma ação: <code>role="alert"</code> (perigo) ou <code>role="status"</code>. Alerta presente desde o carregamento não precisa de região viva.</li><li>Título diz o fato; a descrição diz o que fazer.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="faixa">
+  <h3>Faixas <code>.cm-faixa</code> <code>.cm-faixa-contexto</code></h3>
+  <p class="lead">Avisos de largura toda, acima da moldura: manutenção, conexão, versão nova. A faixa de contexto mostra quando a superadmin está dentro de um cliente (com motivo e prazo) e quando o ambiente é de homologação. A moldura gera a faixa de contexto.</p>
+  <template class="doc-ex-t" data-titulo="Informação, atenção, perigo; superadmin e homologação." data-layout="empilhado">
+<div class="doc-pilha doc-pilha--esticar" style="gap:6px">
+  <div class="cm-faixa cm-faixa--info" role="status"><i data-i="informacao"></i><span class="cm-faixa__texto">Manutenção programada hoje às 23h, por 20 minutos. As conversas do WhatsApp ficam guardadas.</span><button class="cm-botao cm-botao--p cm-botao--discreto" type="button">Entendi</button></div>
+  <div class="cm-faixa cm-faixa--aviso" role="status"><i data-i="sem-wifi"></i><span class="cm-faixa__texto">Atenção: sem conexão desde 14:02. O que você escrever sai quando a internet voltar.</span></div>
+  <div class="cm-faixa cm-faixa--perigo" role="alert"><i data-i="perigo"></i><span class="cm-faixa__texto">O WhatsApp da Administradora Alpha está desconectado. Novas mensagens não estão chegando.</span><button class="cm-botao cm-botao--p" type="button">Reconectar</button></div>
+  <div class="cm-faixa-contexto cm-faixa-contexto--superadmin" role="region" aria-label="Acesso em nome do cliente"><i data-i="superadmin"></i><span>Você está dentro de <b>Administradora Alpha</b> como superadmin</span><span class="cm-faixa-contexto__meta">Motivo: chamado de suporte 9921. Expira em 42 min.</span><span class="cm-empurra"><button class="cm-botao cm-botao--p" type="button">Sair do cliente</button></span></div>
+  <div class="cm-faixa-contexto cm-faixa-contexto--homologacao" role="region" aria-label="Ambiente"><i data-i="homologacao"></i><span><b>Homologação.</b> Nada aqui chega aos condomínios.</span></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Estado do sistema que vale para todas as telas.</li><li>Superadmin em nome do cliente: sempre visível, com motivo e prazo.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para propaganda ou novidade de produto. Novidade vai no sino.</li><li>Mais de uma faixa de sistema ao mesmo tempo (a de contexto pode somar).</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Faixa que surge: região viva; a de contexto é <code>region</code> com rótulo e aparece na lista de marcos do leitor.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="barra-salvar">
+  <h3>Barra de salvar <code>.cm-barra-salvar</code></h3>
+  <p class="lead">Só existe quando há alteração. Diz quantas e quais, oferece descartar e o "Salvar ▾" que lembra a escolha. Fica grudada no fim da área que está sendo editada. Veja funcionando na ficha do cliente em <a class="cm-link" href="04-formularios.html#ficha">04-formularios</a>.</p>
+  <template class="doc-ex-t" data-titulo="Com alteração, salvando e com erro." data-layout="empilhado">
+<div class="doc-pilha doc-pilha--esticar">
+  <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" style="position:relative">
+    <div class="cm-barra-salvar__msg"><b>2 alterações não salvas</b><span>Telefone e responsável</span></div>
+    <button class="cm-botao cm-botao--discreto" type="button">Descartar</button>
+    <div class="cm-dividido" data-doc-ancora><button class="cm-botao cm-botao--principal" type="button" data-toast="Alterações salvas|sucesso">Salvar <span class="cm-dividido__lembra">e próximo</span></button><button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de salvar" data-doc-alterna><i data-i="chevron-baixo"></i></button>
+      <div class="cm-menu cm-menu--240 cm-flutuante doc-direita doc-acima" role="menu" aria-label="Formas de salvar" data-doc-alvo hidden>
+        <button class="cm-menu__item" role="menuitem" type="button" data-lembra="e continuar"><i data-i="salvar"></i><span>Salvar e continuar</span><span class="cm-menu__atalho">Ctrl S</span></button>
+        <button class="cm-menu__item" role="menuitem" type="button" data-lembra="e próximo"><i data-i="proximo"></i><span>Salvar e próximo</span><span class="cm-menu__atalho">Ctrl Enter</span></button>
+        <button class="cm-menu__item" role="menuitem" type="button" data-lembra="e voltar"><i data-i="voltar"></i><span>Salvar e voltar à lista</span><span></span></button>
+        <button class="cm-menu__item" role="menuitem" type="button" data-lembra="e novo"><i data-i="adicionar"></i><span>Salvar e novo</span><span></span></button>
+      </div></div>
+  </div>
+  <div class="cm-barra-salvar is-salvando" role="region" aria-label="Salvando" style="position:relative;animation:none">
+    <div class="cm-barra-salvar__msg"><b>Salvando 2 alterações</b><span>Telefone e responsável</span></div>
+    <button class="cm-botao cm-botao--discreto" type="button" disabled>Descartar</button>
+    <div class="cm-dividido"><button class="cm-botao cm-botao--principal" type="button" aria-busy="true">Salvar <span class="cm-dividido__lembra">e próximo</span></button><button class="cm-botao cm-botao--principal" type="button" disabled aria-label="Outras formas de salvar"><i data-i="chevron-baixo"></i></button></div>
+  </div>
+  <div class="cm-barra-salvar is-erro" role="alert" style="position:relative;animation:none">
+    <div class="cm-barra-salvar__msg"><b>Não salvou: 1 campo com erro</b><span><a class="cm-link" href="#barra-salvar">CNPJ falta 1 dígito</a></span></div>
+    <button class="cm-botao cm-botao--discreto" type="button">Descartar</button>
+    <div class="cm-dividido"><button class="cm-botao cm-botao--principal" type="button">Tentar de novo</button><button class="cm-botao cm-botao--principal" type="button" aria-label="Outras formas de salvar"><i data-i="chevron-baixo"></i></button></div>
+  </div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Ficha com edição no lugar e formulário longo.</li><li>Ao tentar sair com alteração: "Você tem 2 alterações. Salvar, descartar ou continuar editando?"</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Sempre visível, com o botão desabilitado. Ela aparece quando a primeira alteração acontece.</li><li>Junto com "Salvar" no cabeçalho: um lugar só.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Ao surgir, anuncia "2 alterações não salvas" (região <code>polite</code>), sem roubar o foco. Ctrl S salva de qualquer campo. Erro: <code>role="alert"</code> e link que leva ao campo.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="esqueleto">
+  <h3>Esqueleto e carregando <code>.cm-esqueleto</code> <code>.cm-carregando</code></h3>
+  <p class="lead">Enquanto o conteúdo chega, o esqueleto desenha o lugar dele, para a tela não pular. O giro com texto é para esperas curtas dentro de um pedaço.</p>
+  <template class="doc-ex-t" data-titulo="Esqueleto de um cartão e de uma lista, giro com texto, progresso indeterminado.">
+<div class="doc-grade2">
+  <div class="cm-cartao" aria-busy="true" aria-label="Carregando ficha"><div class="cm-cartao__corpo"><span class="cm-esqueleto cm-esqueleto--titulo"></span><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:70%"></span><span class="cm-esqueleto cm-esqueleto--bloco" style="margin-top:12px"></span></div></div>
+  <div class="cm-pilha">
+    <div class="cm-linha"><span class="cm-esqueleto cm-esqueleto--avatar"></span><span class="cm-cresce"><span class="cm-esqueleto" style="width:60%"></span><span class="cm-esqueleto" style="width:85%;margin-top:6px;height:10px"></span></span></div>
+    <div class="cm-linha"><span class="cm-esqueleto cm-esqueleto--avatar"></span><span class="cm-cresce"><span class="cm-esqueleto" style="width:45%"></span><span class="cm-esqueleto" style="width:75%;margin-top:6px;height:10px"></span></span></div>
+    <span class="cm-carregando" role="status">Carregando boletos</span>
+    <div class="cm-progresso cm-progresso--indeterminado" role="progressbar" aria-label="Importando planilha"><span class="cm-progresso__barra"><i></i></span><span class="cm-progresso__valor">Importando planilha</span></div>
+  </div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Esqueleto: primeira carga de lista, ficha e cartões.</li><li>Giro: CEP, CNPJ, filtro aplicado, até 3 s.</li><li>Progresso: importação, exportação, envio de arquivo.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Tela inteira com giro no meio.</li><li>Esqueleto acima de 10 s: depois disso, diga o que está acontecendo.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Área que carrega com <code>aria-busy="true"</code>; o texto do giro é lido. Respeita "reduzir movimento": o brilho para.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="vazio">
+  <h3>Estado vazio <code>.cm-vazio</code></h3>
+  <p class="lead">Quando não há nada, a tela diz por quê e oferece o próximo passo. Cinco motivos diferentes, cinco textos diferentes.</p>
+  <template class="doc-ex-t" data-titulo="Fila zerada, primeiro uso, filtro sem resultado, sem permissão e erro de carga." data-layout="empilhado">
+<div class="doc-grade3">
+  <div class="cm-vazio"><i data-i="caixa-de-entrada"></i><p class="cm-vazio__titulo">Fila zerada</p><p class="cm-vazio__texto">As novas conversas do WhatsApp chegam aqui. Enquanto isso, há 9 aguardando cliente.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button">Ver aguardando cliente</button></div></div>
+  <div class="cm-vazio"><i data-i="condominio"></i><p class="cm-vazio__titulo">Nenhum condomínio cadastrado</p><p class="cm-vazio__texto">Cadastre o primeiro ou importe a planilha que você já usa.</p><div class="cm-vazio__acoes"><button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Novo condomínio</button><button class="cm-botao" type="button"><i data-i="importar"></i>Importar planilha</button></div></div>
+  <div class="cm-vazio"><i data-i="filtrar"></i><p class="cm-vazio__titulo">Nada com estes filtros</p><p class="cm-vazio__texto">Estado "Aberto" e canal "E-mail" não têm chamados hoje.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button">Limpar filtros</button></div></div>
+  <div class="cm-vazio"><i data-i="bloquear"></i><p class="cm-vazio__titulo">Você não tem acesso ao Financeiro</p><p class="cm-vazio__texto">Quem libera é a diretoria. Pedimos por você, se quiser.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button">Pedir acesso</button></div></div>
+  <div class="cm-vazio"><i data-i="erro"></i><p class="cm-vazio__titulo">Os boletos não carregaram</p><p class="cm-vazio__texto">O banco não respondeu em 30 s. Seus dados estão salvos.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button" data-doc-ocupar="Boletos carregados">Tentar de novo</button></div></div>
+  <div class="cm-vazio cm-vazio--centro"><i data-i="sucesso"></i><p class="cm-vazio__titulo">Tudo em dia</p><p class="cm-vazio__texto">Nada para você agora. Centralizado, só em painel pequeno.</p></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Lista, fila, painel ou aba sem itens; resultado vazio de busca ou filtro; sem permissão; erro.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Ilustração grande ou piada. Ícone de 32px e duas frases.</li><li>O mesmo texto para "sem dados" e "sem resultado".</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Título diz o fato; texto diz o próximo passo; botão é o próximo passo.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Vazio por filtro é anunciado ("Nenhum resultado"); o foco fica no filtro.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= HISTÓRICO E CONVERSA -->
+<section class="doc-familia" aria-labelledby="f-conversa">
+<h2 id="f-conversa">Histórico e conversa</h2>
+<p>O que aconteceu com o registro e a conversa com o cliente. O Suporte usa o gesto do WhatsApp (bolhas, tiques, áudio, "/") com o traço e as cores do GACO.</p>
+
+<section class="doc-comp" id="linha-tempo">
+  <h3>Linhas do tempo <code>.cm-auditoria</code> <code>.cm-atividade</code></h3>
+  <p class="lead">Duas linhas, dois públicos. A auditoria é o registro frio de quem mudou o quê (antes e depois). A atividade é o histórico de relacionamento: ligação, e-mail, reunião, nota.</p>
+  <template class="doc-ex-t" data-titulo="Auditoria do chamado e atividade do cliente.">
+<div class="doc-grade2">
+  <ol class="cm-auditoria" aria-label="Histórico de alterações">
+    <li class="cm-auditoria__dia">Hoje</li>
+    <li><time datetime="09:31">09:31</time><b>Beatriz Nogueira</b> mudou a prioridade: <del>Normal</del> → <ins>Alta</ins></li>
+    <li><time>09:24</time><b>Juliana Prado</b> escreveu uma nota interna</li>
+    <li><time>09:16</time><b>Beatriz Nogueira</b> assumiu a conversa</li>
+    <li class="is-criacao"><time>09:12</time>Aberto pelo WhatsApp por Marina Costa</li>
+    <li class="cm-auditoria__dia">02/09</li>
+    <li class="is-exclusao"><time>16:40</time><b>Diego Martins</b> excluiu o anexo foto-portao.jpg</li>
+  </ol>
+  <div class="cm-cartao"><div class="cm-atividade__grupo">Esta semana <span>3 contatos</span></div>
+  <ul class="cm-atividade">
+    <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="telefone"></i></span><div><div class="cm-atividade__titulo"><a href="#linha-tempo">Ligação com Marina Costa</a></div><div class="cm-atividade__desc">Combinaram a vistoria do telhado para quinta, 9h.</div></div><span class="cm-atividade__quando">ontem</span></li>
+    <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="email"></i></span><div><div class="cm-atividade__titulo"><a href="#linha-tempo">Proposta do módulo de reservas enviada</a></div><blockquote>"Segue a proposta com o valor por unidade, como conversamos."</blockquote></div><span class="cm-atividade__quando">seg, 14:10</span></li>
+    <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="assembleia"></i></span><div><div class="cm-atividade__titulo"><a href="#linha-tempo">Reunião de resultados do 3º trimestre</a></div><div class="cm-atividade__desc">Rodrigo Mello e Marina Costa, 40 min.</div></div><span class="cm-atividade__quando">29/09</span></li>
+  </ul></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Auditoria: aba "Histórico" de todo registro; antes e depois sempre.</li><li>Atividade: ficha do cliente e da pessoa, sempre visível na coluna da direita.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Plaqueta dentro da linha do tempo.</li><li>Misturar mudanças de campo na atividade: elas poluem o relacionamento.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Quem, verbo no passado, o quê. Hora em 24h; dia agrupado ("Hoje", "02/09").</li><li>Até 7 dias: "ontem", "seg, 14:10"; depois, a data.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li><code>ol</code> com rótulo, <code>time</code> com <code>datetime</code>. "→" entre antes e depois é lido como "para" pelo texto oculto quando necessário; o <code>del</code>/<code>ins</code> é anunciado como removido e inserido.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="conversa">
+  <h3>Conversa <code>.cm-conversa</code> <code>.cm-bolha</code></h3>
+  <p class="lead">A conversa já é o chamado. Bolha de entrada à esquerda, de saída à direita, separador de dia, evento do sistema no meio, marcador de "novas", nota interna em amarelo-papel, foto, áudio com transcrição e mensagem que falhou.</p>
+  <template class="doc-ex-t" data-titulo="Uma conversa real do Suporte, com todas as peças." data-layout="empilhado">
+<div class="cm-conversa ex-conversa" role="log" aria-label="Conversa com Marina Costa">
+  <span class="cm-dia">Hoje</span>
+  <div class="cm-bolha cm-bolha--entrada"><span class="cm-bolha__autor">Marina Costa</span>Bom dia! Tem água vazando do teto da garagem, em cima da vaga 37. <span class="cm-bolha__meta">09:12</span></div>
+  <div class="cm-bolha cm-bolha--foto cm-bolha--entrada">
+    <svg class="ex-bolha-foto" viewBox="0 0 300 150" role="img" aria-label="Foto: teto da garagem com mancha de umidade sobre a vaga 37"><rect width="300" height="150" fill="#5b5f5c"/><rect y="0" width="300" height="40" fill="#6c706c"/><path d="M0 40h300" stroke="#4a4d4a" stroke-width="3"/><ellipse cx="150" cy="30" rx="70" ry="16" fill="#3f4a4f"/><path d="M150 46v26M140 50v14M162 48v18" stroke="#9fb6c2" stroke-width="2"/><rect x="40" y="96" width="220" height="4" fill="#d9d4c7"/><text x="140" y="130" fill="#d9d4c7" font-size="16" font-family="sans-serif">37</text></svg>
+    <div class="cm-bolha__legenda">Vaga 37, subsolo 1 <span class="cm-bolha__meta">09:13</span></div></div>
+  <div class="cm-bolha cm-bolha--entrada"><div class="cm-audio"><button class="cm-audio__play" type="button" aria-label="Ouvir áudio de 38 segundos" aria-pressed="false"><i data-i="play"></i></button><span class="cm-audio__onda" aria-hidden="true"><i class="is-tocado" style="height:8px"></i><i class="is-tocado" style="height:14px"></i><i class="is-tocado" style="height:20px"></i><i class="is-tocado" style="height:12px"></i><i style="height:18px"></i><i style="height:24px"></i><i style="height:10px"></i><i style="height:16px"></i><i style="height:22px"></i><i style="height:8px"></i><i style="height:14px"></i><i style="height:19px"></i><i style="height:11px"></i><i style="height:6px"></i><i style="height:15px"></i><i style="height:21px"></i><i style="height:9px"></i><i style="height:13px"></i></span><span class="cm-audio__tempo">0:38</span></div><div class="cm-transcricao"><b>Transcrição:</b> "É da junta mesmo, perto do pilar. Já molhou o carro do 1204 duas vezes." <span class="cm-bolha__meta">09:14</span></div></div>
+  <div class="cm-evento"><i data-i="fone-atendimento"></i>Beatriz Nogueira assumiu a conversa, 09:16</div>
+  <div class="cm-bolha cm-bolha--saida">Bom dia, Marina! Já estou acionando a manutenção e volto com o horário. <span class="cm-bolha__meta">09:17<i data-i="lida" class="cm-tique--lida" data-rotulo="Lida"></i></span></div>
+  <div class="cm-bolha cm-bolha--saida cm-bolha--seguida"><span class="cm-bolha__citacao">Marina: Já molhou o carro do 1204 duas vezes.</span>Vou pedir para interditarem as vagas 37 e 38 até o reparo. <span class="cm-bolha__meta">09:18<i data-i="marcar" data-rotulo="Entregue"></i></span></div>
+  <div class="cm-nota" role="note"><div class="cm-nota__cabeca"><i data-i="nota-interna"></i>Nota interna de Juliana Prado <span>só a equipe vê, 09:24</span></div>@Beatriz a Hidrotec atende o Parque das Águas pelo contrato, abre a OS com eles.</div>
+  <div class="cm-cartao-vinculo"><i data-i="ordem-de-servico"></i>Vinculado à <span class="cm-plaqueta">OS 482</span><button class="cm-botao cm-botao--p cm-botao--link" type="button">Abrir</button></div>
+  <span class="cm-novas" role="separator">2 novas</span>
+  <div class="cm-bolha cm-bolha--entrada">Que horas eles vêm? <span class="cm-bolha__meta">09:40</span></div>
+  <div class="cm-bolha cm-bolha--saida is-falhou">Entre 10h e 11h. O técnico se chama Wellington. <span class="cm-bolha__meta">09:41<i data-i="erro" class="cm-tique--falhou" data-rotulo="Não enviada"></i></span><span class="cm-bolha__reenviar"><i data-i="perigo"></i>Não enviada: o WhatsApp não respondeu. <button class="cm-botao cm-botao--p cm-botao--link" type="button" data-doc-ocupar="Mensagem enviada">Reenviar</button></span></div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-titulo="<b>Tiques.</b> Enviado e entregue (um tique), lida (dois, no azul de informação, nunca no verde do WhatsApp), não enviada (X vermelho)." data-codigo="nao">
+<div class="doc-fileira">
+  <span class="cm-bolha__meta" style="float:none;margin:0">09:17<i data-i="marcar" data-rotulo="Entregue"></i>entregue</span>
+  <span class="cm-bolha__meta" style="float:none;margin:0">09:17<i data-i="lida" class="cm-tique--lida" data-rotulo="Lida"></i>lida</span>
+  <span class="cm-bolha__meta" style="float:none;margin:0">09:41<i data-i="erro" class="cm-tique--falhou" data-rotulo="Não enviada"></i>não enviada</span>
+  <span class="cm-bolha__meta" style="float:none;margin:0">09:42<i data-i="pendente" data-rotulo="Enviando"></i>enviando</span>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div><h5>Anatomia</h5><ol class="doc-anatomia"><li>Fundo da conversa <code>--cm-conversa-fundo</code></li><li>Bolha: canto vivo do lado de quem fala; autor em grupo; meta com hora e tique</li><li>Citação, foto com legenda, áudio com transcrição, arquivo</li><li>Separadores: dia, evento, "novas"</li><li>Nota interna amarela e cartão de vínculo</li></ol></div>
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Suporte (WhatsApp, e-mail, site), comentários de chamado, conversa com o síndico no portal.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Bolha na cor do cliente ou em latão.</li><li>Plaqueta dentro da bolha. O número da vaga é texto.</li><li>Nota interna na mesma cor da resposta: ela precisa ser inconfundível.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Emoji escrito pelo morador aparece como ele escreveu; o sistema não põe emoji.</li><li>Transcrição de áudio sempre visível, para ler sem ouvir.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li><code>role="log"</code> com rótulo: mensagens novas são anunciadas em <code>polite</code>. Cada tique tem nome ("Lida"). Foto com <code>alt</code> descrevendo o que mostra; quando a foto vem do morador sem descrição, o texto alternativo é "Foto enviada por Marina Costa, 09:13".</li><li>Áudio: botão com a duração no rótulo; transcrição em texto.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="compositor">
+  <h3>Compositor com "/" <code>.cm-compositor</code></h3>
+  <p class="lead">Onde se escreve a resposta. Abas Resposta e Nota interna (a nota troca a caixa para o amarelo-papel), "/" abre as respostas rápidas, e o "Enviar ▾" escolhe o que acontece depois. Troque a aba para ver a nota.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Resposta com a lista de “/” aberta." data-palco="380">
+<div style="position:absolute;left:0;right:0;bottom:0">
+<div class="cm-compositor">
+  <div class="cm-abas" role="tablist" aria-label="Tipo de mensagem"><button role="tab" type="button" aria-selected="true"><i data-i="responder"></i>Resposta</button><button role="tab" type="button" aria-selected="false" tabindex="-1"><i data-i="nota-interna"></i>Nota interna</button><span class="cm-compositor__dica"><kbd class="cm-tecla">/</kbd>respostas rápidas</span></div>
+  <div class="cm-compositor__caixa"><textarea aria-label="Mensagem para Marina Costa" rows="2">/2v</textarea></div>
+  <div class="cm-compositor__barra">
+    <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Anexar" data-dica="Anexar"><i data-i="anexar"></i></button>
+    <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Gravar áudio" data-dica="Gravar áudio"><i data-i="microfone"></i></button>
+    <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Respostas rápidas" data-dica="Respostas rápidas"><i data-i="resposta-rapida"></i></button>
+    <span class="cm-cresce">Depois de enviar: resolver e abrir a próxima</span>
+    <div class="cm-dividido"><button class="cm-botao cm-botao--principal" type="button" data-toast="Enviada a Marina Costa|sucesso">Enviar <span class="cm-dividido__lembra">e resolver</span></button><button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-label="Outras formas de enviar"><i data-i="chevron-baixo"></i></button></div>
+  </div>
+  <div class="cm-comandos cm-lista-opcoes" role="listbox" aria-label="Respostas rápidas">
+    <div class="cm-lista-opcoes__grupo">Respostas rápidas com "2v"</div>
+    <div class="cm-opcao is-ativa" role="option" aria-selected="false"><b>/2via</b><span>Segue a 2ª via do boleto de {mês}, com vencimento em {data}.</span><kbd class="cm-tecla">Enter</kbd></div>
+    <div class="cm-opcao" role="option" aria-selected="false"><b>/2via-pix</b><span>Segue o Pix copia e cola do boleto de {mês}.</span><span></span></div>
+  </div>
+</div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-titulo="Nota interna e gravando áudio." data-codigo="nao" data-layout="empilhado">
+<div class="doc-pilha doc-pilha--esticar">
+<div class="cm-compositor is-nota">
+  <div class="cm-abas" role="tablist" aria-label="Tipo de mensagem"><button role="tab" type="button" aria-selected="false"><i data-i="responder"></i>Resposta</button><button role="tab" type="button" aria-selected="true"><i data-i="nota-interna"></i>Nota interna</button><span class="cm-compositor__dica">só a equipe vê</span></div>
+  <div class="cm-compositor__caixa"><textarea aria-label="Nota interna" rows="2">@Diego confirma se a Hidrotec cobre a junta de dilatação.</textarea></div>
+  <div class="cm-compositor__barra"><span class="cm-cresce">A nota não vai para o WhatsApp</span><button class="cm-botao cm-botao--principal" type="button">Salvar nota</button></div>
+</div>
+<div class="cm-compositor is-gravando">
+  <div class="cm-abas" role="tablist" aria-label="Tipo de mensagem"><button role="tab" type="button" aria-selected="true"><i data-i="responder"></i>Resposta</button></div>
+  <div class="cm-compositor__caixa" role="status"><span class="cm-gravando" aria-hidden="true"></span>Gravando 0:12. Solte para enviar, arraste para cancelar.</div>
+  <div class="cm-compositor__barra"><button class="cm-botao cm-botao--discreto" type="button">Cancelar</button><span class="cm-cresce"></span><button class="cm-botao cm-botao--principal" type="button"><i data-i="parar"></i>Parar e revisar</button></div>
+</div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Pé da conversa do Suporte e dos comentários de chamado.</li><li>"/" para respostas rápidas cadastradas, com variáveis entre chaves.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para texto longo formatado (comunicado): use o editor.</li><li>Nota interna sem a troca de cor.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Caixa com rótulo ("Mensagem para Marina Costa"); "/" no início abre a lista ligada por <code>aria-controls</code>; setas escolhem, Enter insere, Esc fecha. Enter envia, Shift Enter quebra a linha, Ctrl Enter envia com a escolha lembrada.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="rodape-atalhos">
+  <h3>Rodapé de atalhos <code>.cm-rodape-atalhos</code></h3>
+  <p class="lead">Lembrete fixo das teclas da tela de trabalho. Só nas telas de fila; some abaixo de 900px. Nunca leva número de desempenho.</p>
+  <template class="doc-ex-t" data-titulo="Atalhos da tela Conversas." data-layout="empilhado">
+<div class="cm-rodape-atalhos" role="note" aria-label="Atalhos de teclado">
+  <span><kbd class="cm-tecla">J</kbd><kbd class="cm-tecla">K</kbd>próxima e anterior</span>
+  <span><kbd class="cm-tecla">R</kbd>responder</span>
+  <span><kbd class="cm-tecla">N</kbd>nota interna</span>
+  <span><kbd class="cm-tecla">/</kbd>respostas rápidas</span>
+  <span><kbd class="cm-tecla">Ctrl Enter</kbd>enviar e resolver</span>
+  <span><kbd class="cm-tecla">Esc</kbd>voltar à fila</span>
+  <span class="cm-empurra"><kbd class="cm-tecla">?</kbd>todos os atalhos</span>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Conversas, fila de chamados, modo fila do CS. Pela moldura: <code>"atalhos":true</code>.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>"Hoje: 23 atendidas, tempo médio 4 min". Desempenho vai no relatório.</li><li>No portal e no celular.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= PESSOAS E HOME -->
+<section class="doc-familia" aria-labelledby="f-home">
+<h2 id="f-home">Pessoas e Home</h2>
+<p>A Home é de gente: o que espera por você, o mural da empresa, reconhecimentos e comunicados com ciência. Nunca fileira de números.</p>
+
+<section class="doc-comp" id="para-voce">
+  <h3>Para você <code>.cm-pv</code></h3>
+  <p class="lead">O que espera a pessoa agora, com a ação no próprio item: responder, aprovar, passar. Ordenado por prazo. Faixa à esquerda só para urgente (atenção) e vencido (perigo), sempre com a palavra.</p>
+  <template class="doc-ex-t" data-titulo="Urgente, vencido, aprovação, menção, feito e o pé com o que já foi feito hoje.">
+<section class="cm-pv" aria-label="Para você">
+  <div class="cm-pv-item is-urgente"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="whatsapp"></i></span>
+    <div><div class="cm-pv-item__titulo"><a href="#para-voce">Responder Marina Costa</a></div><div class="cm-pv-item__contexto">Vazamento no teto da garagem, Parque das Águas</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Responde em 6 min</span></div></div>
+    <div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button">Passar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button">Abrir</button></div></div>
+  <div class="cm-pv-item is-vencido"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="ordem-de-servico"></i></span>
+    <div><div class="cm-pv-item__titulo"><a href="#para-voce">Fechar a OS 482</a></div><div class="cm-pv-item__contexto">Hidrotec Instalações, interditar vagas 37 e 38</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Venceu às 10:00</span></div></div>
+    <div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button">Adiar</button></div></div>
+  <div class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="ferias"></i></span>
+    <div><div class="cm-pv-item__titulo"><a href="#para-voce">Aprovar férias de Diego Martins</a></div><div class="cm-pv-item__contexto">10 a 24/11, 15 dias. Ninguém da equipe sai no período.</div></div>
+    <div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button" data-toast="Férias recusadas. Diego foi avisado.|info">Recusar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-toast="Férias de Diego aprovadas|sucesso|Desfazer">Aprovar</button></div></div>
+  <div class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="mencao"></i></span>
+    <div><div class="cm-pv-item__titulo"><a href="#para-voce">Juliana Prado mencionou você</a></div><div class="cm-pv-item__contexto">"@Beatriz a Hidrotec atende o Parque das Águas pelo contrato"</div></div>
+    <div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button">Responder</button></div></div>
+  <div class="cm-pv-item is-feito"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="boleto"></i></span>
+    <div><div class="cm-pv-item__titulo">Enviar 2ª via para o Bl C Ap 302</div><div class="cm-pv-item__contexto"><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Feito às 08:52</span></div></div><div></div></div>
+  <div class="cm-pv__pe"><i data-i="sucesso"></i>4 itens concluídos hoje</div>
+</section>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Home de todo papel, numa coluna larga; o sino usa a mesma lógica.</li><li>Abas Tudo, Menções, Aprovações, Prazos acima, quando passa de 10 itens.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Como fila de trabalho do atendente (essa é a tela Conversas).</li><li>Com número de desempenho ou "Você atendeu 23 hoje".</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Título é o que fazer ("Responder Marina Costa"); contexto diz sobre o quê; prazo em estado.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Região com rótulo; cada item é um bloco com link e botões nomeados ("Aprovar férias de Diego Martins" no rótulo acessível quando o botão diz só "Aprovar").</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="post">
+  <h3>Post do mural <code>.cm-post</code></h3>
+  <p class="lead">O feed da empresa: comunicado com ciência, reconhecimento, aniversário. Reações têm nome (Curtir, Parabéns, Amei, Genial, Apoio) e ícone de traço, nunca emoji. Clique nas reações e em "Li e estou ciente".</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Publicar, comunicado fixado com ciência e reconhecimento." data-layout="empilhado">
+<div class="doc-pilha doc-pilha--esticar" style="max-width:640px">
+  <div class="cm-publicar"><span class="cm-avatar cm-avatar--m cm-avatar--2">BN</span><button class="cm-publicar__campo" type="button">Compartilhe algo com a equipe</button><button class="cm-botao" type="button"><i data-i="reconhecimento"></i>Reconhecer</button></div>
+  <article class="cm-post">
+    <header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--empresa">A</span><div><div class="cm-post__autor">Administradora Alpha</div><div class="cm-post__sub">Diretoria</div></div><span class="cm-post__quando">ontem, 17:20</span></header>
+    <div class="cm-post__tipo"><i data-i="comunicado"></i>Comunicado <span class="cm-post__fixado"><i data-i="fixar"></i>Fixado até 06/10</span></div>
+    <h3 class="cm-post__titulo">Novo horário do plantão a partir de 06/10</h3>
+    <p class="cm-post__corpo">O plantão de sábado passa a ser das 8h às 14h, com uma pessoa na fila do WhatsApp e outra no e-mail. A escala de outubro está em Cultura › Escalas.</p>
+    <div class="cm-ciencia"><span class="cm-ciencia__texto">24 de 28 confirmaram a leitura</span><button class="cm-botao cm-botao--p cm-botao--principal" type="button">Li e estou ciente</button></div>
+  </article>
+  <article class="cm-post cm-post--reconhecimento">
+    <header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--5">JR</span><div><div class="cm-post__autor">Juliana Reis</div><div class="cm-post__sub">Gestora do Suporte</div></div><span class="cm-post__quando">há 2 h</span></header>
+    <div class="cm-post__tipo"><i data-i="reconhecimento"></i>Reconhecimento</div>
+    <h3 class="cm-post__titulo">Resolveu com calma o que era urgente</h3>
+    <div class="cm-reconhecido"><span class="cm-avatar cm-avatar--g cm-avatar--2">BN</span><div><div class="cm-post__autor">Beatriz Nogueira</div><div class="cm-post__sub">Atendente, Suporte</div></div></div>
+    <p class="cm-post__corpo">O vazamento do Parque das Águas chegou às 9h12 e às 9h40 a Hidrotec já estava a caminho, com as vagas interditadas e a síndica informada a cada passo.</p>
+    <div class="cm-post__pe"><div class="cm-reacoes"><button class="cm-reacao" type="button" aria-pressed="true"><i data-i="curtir"></i>Curtir <span class="cm-reacao__n">12</span></button><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="parabens"></i>Parabéns <span class="cm-reacao__n">5</span></button><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="amei"></i>Amei</button><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="genial"></i>Genial</button><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="apoio"></i>Apoio</button></div></div>
+    <div class="cm-reacoes__quem"><a href="#post">Ana, Bruno e mais 10</a> curtiram</div>
+  </article>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Mural da Home e de equipe. Comunicado com ciência quando a leitura precisa ficar registrada (vira registro com data e hora).</li><li>A conta da empresa usa o avatar quadrado na cor do cliente.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para aviso de sistema: faixa.</li><li>Reação com emoji ou com contagem de quem não reagiu.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Título diz a novidade; corpo até 68 caracteres por linha.</li><li>Reconhecimento diz o que a pessoa fez, com fato, não adjetivo.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li><code>article</code> com título; reação é botão <code>aria-pressed</code> com a palavra e a contagem; "Li e estou ciente" anuncia a confirmação e vira "Ciente".</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= PLANEJAMENTO -->
+<section class="doc-familia" aria-labelledby="f-plano">
+<h2 id="f-plano">Planejamento</h2>
+<p>Quando as coisas acontecem e em que etapa estão.</p>
+
+<section class="doc-comp" id="agenda">
+  <h3>Agenda e calendário <code>.cm-agenda</code> <code>.cm-calendario</code> <code>.cm-grade-semana</code></h3>
+  <p class="lead">A agenda do dia em lista (o que está agora tem a barra de latão), o calendário do mês para escolher data e ver dias com evento, e a grade da semana para aulas e plantões.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Clique num dia do calendário.">
+<div class="doc-grade2">
+  <ul class="cm-agenda" aria-label="Agenda de hoje">
+    <li class="cm-agenda__dia">Hoje, quarta, 01/10</li>
+    <li class="is-passado"><span class="cm-agenda__hora">08:30<small>15 min</small></span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">Passagem de plantão</span><span class="cm-agenda__sub">Equipe do Suporte</span></span><span></span></li>
+    <li class="is-agora"><span class="cm-agenda__hora">10:00<small>30 min</small></span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">1:1 com Juliana</span><span class="cm-agenda__sub">Sala 2 ou Teams</span></span><button class="cm-botao cm-botao--p" type="button">Entrar</button></li>
+    <li><span class="cm-agenda__hora">14:00<small>1 h</small></span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">Vistoria do telhado</span><span class="cm-agenda__sub">Cond. Parque das Águas, com Hidrotec</span></span><span></span></li>
+    <li><span class="cm-agenda__hora">19:30<small>2 h</small></span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">Assembleia ordinária</span><span class="cm-agenda__sub">Vila Serena, salão de festas</span></span><span></span></li>
+  </ul>
+  <table class="cm-calendario" aria-label="Outubro de 2025">
+    <caption class="cm-t-subsecao" style="text-align:left;padding-bottom:6px">Outubro de 2025</caption>
+    <thead><tr><th scope="col" abbr="domingo">D</th><th scope="col" abbr="segunda">S</th><th scope="col" abbr="terça">T</th><th scope="col" abbr="quarta">Q</th><th scope="col" abbr="quinta">Q</th><th scope="col" abbr="sexta">S</th><th scope="col" abbr="sábado">S</th></tr></thead>
+    <tbody>
+      <tr><td class="is-fora"><button type="button">28</button></td><td class="is-fora"><button type="button">29</button></td><td class="is-fora"><button type="button">30</button></td><td class="is-hoje is-evento"><button type="button" aria-label="1 de outubro, hoje, 4 eventos">1</button></td><td><button type="button">2</button></td><td class="is-evento"><button type="button" aria-label="3 de outubro, 1 evento">3</button></td><td><button type="button">4</button></td></tr>
+      <tr><td><button type="button">5</button></td><td class="is-evento"><button type="button">6</button></td><td><button type="button">7</button></td><td><button type="button">8</button></td><td><button type="button">9</button></td><td class="is-evento"><button type="button" aria-pressed="true">10</button></td><td><button type="button">11</button></td></tr>
+      <tr><td><button type="button">12</button></td><td><button type="button">13</button></td><td class="is-periodo"><button type="button">14</button></td><td class="is-periodo"><button type="button">15</button></td><td class="is-periodo"><button type="button">16</button></td><td><button type="button">17</button></td><td class="is-evento"><button type="button">18</button></td></tr>
+      <tr><td><button type="button">19</button></td><td><button type="button">20</button></td><td><button type="button">21</button></td><td><button type="button">22</button></td><td class="is-evento"><button type="button">23</button></td><td><button type="button">24</button></td><td><button type="button">25</button></td></tr>
+      <tr><td><button type="button">26</button></td><td><button type="button">27</button></td><td><button type="button">28</button></td><td><button type="button">29</button></td><td><button type="button">30</button></td><td><button type="button">31</button></td><td class="is-fora"><button type="button">1</button></td></tr>
+    </tbody>
+  </table>
+</div>
+  </template>
+  <template class="doc-ex-t" data-titulo="Grade da semana: aulas da Academy." data-layout="empilhado">
+<div class="cm-grade-semana ex-semana" role="table" aria-label="Semana de 29/09 a 03/10">
+  <div class="cm-grade-semana__cab" role="columnheader"></div><div class="cm-grade-semana__cab" role="columnheader">Seg 29</div><div class="cm-grade-semana__cab" role="columnheader">Ter 30</div><div class="cm-grade-semana__cab is-hoje" role="columnheader">Qua 01</div><div class="cm-grade-semana__cab" role="columnheader">Qui 02</div><div class="cm-grade-semana__cab" role="columnheader">Sex 03</div>
+  <div class="cm-texto-3">19h</div><div><span class="cm-grade-semana__evento">Gestão condominial, sala 3</span></div><div></div><div><span class="cm-grade-semana__evento">Legislação do condomínio</span></div><div></div><div><span class="cm-grade-semana__evento">Atendimento ao síndico</span></div>
+  <div class="cm-texto-3">20h</div><div></div><div><span class="cm-grade-semana__evento">Rateio e fração ideal</span></div><div></div><div><span class="cm-grade-semana__evento">Prova N1, sala 2</span></div><div></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Agenda: coluna da Home, ficha da pessoa.</li><li>Calendário: escolher data, ver reservas do salão, período selecionado.</li><li>Grade: aulas, escalas, plantão.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Cor de categoria no evento da grade: o tipo vai no texto.</li><li>Calendário para data de nascimento: campo de data digitável.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Calendário é tabela com legenda; dia com evento e hoje dizem isso no rótulo; setas andam entre dias, Page Up e Page Down trocam o mês.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="kanban">
+  <h3>Kanban <code>.cm-kanban</code></h3>
+  <p class="lead">Colunas por etapa, cartões que se arrastam. Funil comercial, projetos, OS. Todo cartão tem "Mover para…" no menu, para quem usa teclado.</p>
+  <template class="doc-ex-t" data-titulo="Funil comercial: esfriando, atrasado, sendo arrastado e coluna como alvo." data-layout="empilhado">
+<div class="cm-kanban ex-kanban">
+  <section class="cm-kanban__coluna" aria-label="Contato, 3 negócios"><header class="cm-kanban__cabeca"><h3 class="cm-kanban__titulo">Contato</h3><span class="cm-contador">3</span></header><div class="cm-kanban__soma">R$ 9.700,00 por mês</div>
+    <div class="cm-kanban__cartoes">
+      <a class="cm-kanban-cartao" href="#kanban"><span class="cm-kanban-cartao__titulo">Res. Jardim Botânico</span><span class="cm-kanban-cartao__sub">186 unidades, R$ 3.100,00 por mês</span><span class="cm-kanban-cartao__pe"><span>indicado pela Vértice</span><span class="cm-avatar cm-avatar--p cm-avatar--4">RM</span></span></a>
+      <a class="cm-kanban-cartao is-arrastando" href="#kanban" aria-grabbed="true"><span class="cm-kanban-cartao__titulo">Cond. Morada do Sol</span><span class="cm-kanban-cartao__sub">R$ 2.850,00 por mês</span><span class="cm-kanban-cartao__pe"><span>sendo arrastado</span><span class="cm-avatar cm-avatar--p cm-avatar--2">BN</span></span></a>
+    </div><button class="cm-kanban__adicionar" type="button"><i data-i="adicionar"></i>Adicionar</button></section>
+  <section class="cm-kanban__coluna" aria-label="Proposta, 4 negócios"><header class="cm-kanban__cabeca"><h3 class="cm-kanban__titulo">Proposta</h3><span class="cm-contador">4</span></header><div class="cm-kanban__soma">R$ 18.400,00 por mês</div>
+    <div class="cm-kanban__cartoes is-alvo">
+      <a class="cm-kanban-cartao is-esfriando" href="#kanban"><span class="cm-kanban-cartao__titulo">Cond. Vila Serena</span><span class="cm-kanban-cartao__sub">R$ 4.380,00 por mês</span><span class="cm-kanban-cartao__pe"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Esfriando há 12 dias</span><span class="cm-avatar cm-avatar--p cm-avatar--4">RM</span></span></a>
+      <a class="cm-kanban-cartao is-atrasado" href="#kanban"><span class="cm-kanban-cartao__titulo">Ed. Solar das Palmeiras</span><span class="cm-kanban-cartao__sub">R$ 5.900,00 por mês</span><span class="cm-kanban-cartao__pe"><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Proposta venceu em 28/09</span><span class="cm-avatar cm-avatar--p cm-avatar--1">DM</span></span></a>
+    </div><button class="cm-kanban__adicionar" type="button"><i data-i="adicionar"></i>Adicionar</button></section>
+  <section class="cm-kanban__coluna" aria-label="Fechado, 0 negócios"><header class="cm-kanban__cabeca"><h3 class="cm-kanban__titulo">Fechado</h3><span class="cm-contador">0</span></header><div class="cm-kanban__soma">Nenhum neste mês</div>
+    <div class="cm-kanban__cartoes"><p class="cm-t-legenda" style="padding:4px 2px">Arraste para cá o negócio fechado.</p></div></section>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Fluxo com até 7 etapas e poucos itens por coluna (até 40).</li><li>Como alternativa à lista ("Lista | Quadro"), lembrando a escolha.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Fila do atendente com 40 conversas: lista.</li><li>Cartão com mais de 4 linhas de informação.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Coluna é região com rótulo e contagem; cartão é link; o arraste tem alternativa no menu "Mover para…" e pelo teclado (Espaço pega, setas movem, Espaço solta, Esc cancela), com anúncio "Cond. Vila Serena movido para Fechado".</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= MEDIDAS -->
+<section class="doc-familia" aria-labelledby="f-medidas">
+<h2 id="f-medidas">Medidas</h2>
+<p>Quanto falta, quanto foi, como está contra o mínimo.</p>
+
+<section class="doc-comp" id="progresso">
+  <h3>Progresso <code>.cm-progresso</code></h3>
+  <p class="lead">Quanto de uma coisa finita já foi feito. Sempre com o valor escrito ao lado.</p>
+  <template class="doc-ex-t" data-titulo="Neutro, concluindo (verde), ação (latão, só em envio do próprio usuário) e indeterminado.">
+<div class="doc-pilha doc-pilha--esticar ex-w420">
+  <div class="cm-progresso" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="Implantação"><span class="cm-progresso__barra"><i style="--p:40%"></i></span><span class="cm-progresso__valor">4 de 10 etapas</span></div>
+  <div class="cm-progresso cm-progresso--sucesso" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" aria-label="Curso"><span class="cm-progresso__barra"><i style="--p:62%"></i></span><span class="cm-progresso__valor">5 de 8 aulas</span></div>
+  <div class="cm-progresso cm-progresso--acao" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Envio"><span class="cm-progresso__barra"><i style="--p:64%"></i></span><span class="cm-progresso__valor">Enviando 64%</span></div>
+  <div class="cm-progresso cm-progresso--indeterminado" role="progressbar" aria-label="Conferindo extrato"><span class="cm-progresso__barra"><i></i></span><span class="cm-progresso__valor">Conferindo extrato</span></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Etapas de implantação, aulas de um curso, envio de arquivo, importação.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para meta comercial em vermelho e verde: relatório.</li><li>Sem o número escrito.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="frequencia">
+  <h3>Frequência <code>.cm-frequencia</code></h3>
+  <p class="lead">Presença contra o mínimo exigido, da Academy: a barra, a marca do mínimo e o número. Abaixo do mínimo, a barra vira vermelha e o texto diz o risco.</p>
+  <template class="doc-ex-t" data-titulo="Acima do mínimo e em risco.">
+<div class="doc-pilha doc-pilha--esticar ex-w420" style="gap:22px;padding-top:12px">
+  <div class="cm-frequencia" role="meter" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" aria-label="Frequência em Gestão condominial, 88%, mínimo 75%"><span>Gestão condominial</span><span class="cm-frequencia__barra"><i style="--f:88%"></i><span class="cm-frequencia__minimo" style="--min:75%" data-rotulo="mínimo 75%"></span></span><b>88%</b></div>
+  <div class="cm-frequencia is-risco" role="meter" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" aria-label="Frequência em Rateio, 71%, abaixo do mínimo de 75%"><span>Rateio e fração ideal</span><span class="cm-frequencia__barra"><i style="--f:71%"></i><span class="cm-frequencia__minimo" style="--min:75%" data-rotulo="mínimo 75%"></span></span><b>71%</b></div>
+  <span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Abaixo do mínimo: faltam 2 presenças até 30/10</span>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Portal do aluno e boletim, por disciplina.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para presença no trabalho (ponto): é registro, não meta.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li><code>role="meter"</code> com o rótulo inteiro (disciplina, valor, mínimo). O risco vem escrito ao lado, não só pela cor.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="kpi">
+  <h3>KPI simples <code>.cm-kpi</code></h3>
+  <p class="lead">Um número de desempenho com a comparação. Só em relatório e no cabeçalho de painel. Nunca na Home, nunca no rodapé de uma tela de trabalho.</p>
+  <template class="doc-ex-t" data-titulo="Cabeçalho do Painel do suporte, setembro." data-layout="empilhado">
+<div class="cm-kpis" role="group" aria-label="Resumo de setembro">
+  <div class="cm-kpi"><span class="cm-kpi__rotulo">Tempo da 1ª resposta</span><span class="cm-kpi__valor">4 min</span><span class="cm-kpi__variacao is-melhor"><i data-i="baixa"></i>1 min <span>contra agosto</span></span></div>
+  <div class="cm-kpi"><span class="cm-kpi__rotulo">Resolvidos no 1º contato</span><span class="cm-kpi__valor">68%</span><span class="cm-kpi__variacao is-pior"><i data-i="baixa"></i>3 pontos <span>contra agosto</span></span></div>
+  <div class="cm-kpi"><span class="cm-kpi__rotulo">Conversas</span><span class="cm-kpi__valor">1.284</span><span class="cm-kpi__variacao"><i data-i="alta"></i>112 <span>contra agosto</span></span></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Topo de relatório e de painel gerencial, até 4 números.</li><li>Variação diz se é melhor ou pior (tempo menor é melhor), em palavra e ícone.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Fileira de KPIs na Home.</li><li>No rodapé da fila ("Hoje: 23 atendidas").</li><li>Número sem comparação nem período.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Grupo com rótulo do período; a variação é lida inteira ("melhorou 1 min contra agosto" no texto oculto quando o ícone indica a direção).</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= LISTAS -->
+<section class="doc-familia" aria-labelledby="f-listas">
+<h2 id="f-listas">Listas</h2>
+<p>A tabela, os filtros e a lista de conversas estão em <a class="cm-link" href="05-tabelas-e-listas.html">05-tabelas-e-listas</a>. Aqui fica a paginação, que serve a todas.</p>
+
+<section class="doc-comp" id="paginacao">
+  <h3>Paginação <code>.cm-paginacao</code></h3>
+  <p class="lead">Total escrito, páginas e linhas por página. A lista lembra a página ao voltar do registro. Clique nas páginas.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Primeira página, meio e última." data-layout="empilhado">
+<div class="doc-pilha doc-pilha--esticar">
+  <nav class="cm-paginacao" aria-label="Paginação dos chamados"><span class="cm-paginacao__total"><b>1–50</b> de 312 chamados</span>
+    <div class="cm-paginacao__paginas"><button type="button" disabled aria-label="Página anterior"><i data-i="chevron-esquerda"></i></button><button type="button" aria-current="page">1</button><button type="button">2</button><button type="button">3</button><span aria-hidden="true" class="cm-texto-3" style="padding:0 4px;align-self:center">…</span><button type="button">7</button><button type="button" aria-label="Próxima página"><i data-i="chevron-direita"></i></button></div>
+    <div class="cm-selecao"><select aria-label="Linhas por página"><option>50 por página</option><option>100 por página</option><option>200 por página</option></select><i data-i="chevron-baixo"></i></div></nav>
+  <nav class="cm-paginacao" aria-label="Paginação dos boletos"><span class="cm-paginacao__total"><b>301–312</b> de 312 boletos</span>
+    <div class="cm-paginacao__paginas"><button type="button" aria-label="Página anterior"><i data-i="chevron-esquerda"></i></button><button type="button">1</button><span aria-hidden="true" class="cm-texto-3" style="padding:0 4px;align-self:center">…</span><button type="button">6</button><button type="button" aria-current="page">7</button><button type="button" disabled aria-label="Próxima página"><i data-i="chevron-direita"></i></button></div></nav>
+  <nav class="cm-paginacao" aria-label="Paginação curta"><span class="cm-paginacao__total"><b>12</b> pessoas</span></nav>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Tabela com mais de 50 linhas em que a posição importa (financeiro, auditoria).</li><li>Com uma página só, fica apenas o total.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Fila, feed e conversas: "carregar mais" ou rolagem contínua (05-tabelas-e-listas).</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li><code>nav</code> com rótulo; página atual com <code>aria-current="page"</code>; setas com rótulo. Ao trocar de página, o foco vai para o topo da tabela e o total é anunciado.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= CASOS-LIMITE -->
+<section class="doc-familia" id="limites" aria-labelledby="f-limites">
+<h2 id="f-limites">Casos-limite</h2>
+<p>O que acontece quando o dado real não é o dado bonito: nome comprido, valor de sete dígitos, registro renomeado, zero, um e muitos.</p>
+
+<h4>Texto longo</h4>
+<template class="doc-ex-t" data-titulo="Nome de condomínio com 64 caracteres no cabeçalho (quebra), na pessoa (corta com reticências e nome inteiro na dica), na etiqueta (corta em 24) e no botão (o rótulo nunca quebra: encurte o texto)." data-layout="empilhado">
+<div class="doc-pilha doc-pilha--esticar">
+  <header class="cm-cabecalho-registro"><div class="cm-cabecalho-registro__topo"><span class="cm-ladrilho"><i data-i="condominio"></i></span><div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Cliente</span><h1 class="cm-cabecalho-registro__titulo">Condomínio Residencial Parque das Águas Claras do Alto da Boa Vista <span class="cm-plaqueta cm-plaqueta--g">CT-2024-0187</span></h1></div></div><dl class="cm-destaques"><div><dt>Síndica</dt><dd>Maria Aparecida dos Santos Albuquerque</dd></div></dl></header>
+  <div class="doc-fileira">
+    <div class="cm-pessoa ex-w260" title="Maria Aparecida dos Santos Albuquerque de Vasconcellos"><span class="cm-avatar cm-avatar--4">MA</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Maria Aparecida dos Santos Albuquerque de Vasconcellos</span><span class="cm-pessoa__sub">Síndica, Condomínio Residencial Parque das Águas Claras</span></span></div>
+    <span class="cm-etiqueta cm-etiqueta--4" style="max-width:190px" title="Aguardando aprovação do conselho fiscal"><span class="cm-truncar">Aguardando aprovação do conselho fiscal</span></span>
+    <button class="cm-botao" type="button">Gerar 2ª via</button>
+  </div>
+  <div class="cm-bolha cm-bolha--entrada" style="align-self:flex-start">https://drive.google.com/file/d/1aB2cD3eF4gH5iJ6kL7mN8oP9qR0sT/view?usp=sharing_eil_m&ts=6512 <span class="cm-bolha__meta">09:12</span></div>
+</div>
+</template>
+
+<h4>Números grandes</h4>
+<template class="doc-ex-t" data-titulo="Valores de sete dígitos alinham pelo número tabular e não quebram; contadores acima de 99 viram 99+ só sobre ícone." data-layout="empilhado">
+<div class="doc-pilha doc-pilha--esticar">
+  <dl class="cm-destaques"><div><dt>Inadimplência acumulada</dt><dd class="cm-valor-grande">R$ 1.284.937,40</dd></div><div><dt>Unidades</dt><dd>2.418</dd></div><div><dt>Fundo de reserva</dt><dd class="cm-valor-grande">R$ 12.480.000,00</dd></div></dl>
+  <div class="doc-fileira"><span class="cm-contador">1.284</span><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Avisos, 312 novos" style="position:relative"><i data-i="notificacoes"></i><span class="cm-contador cm-contador--novo cm-contador--p cm-contador--sobre" aria-hidden="true">99+</span></button><div class="cm-abas cm-abas--sem-linha" role="tablist" aria-label="Filas"><button role="tab" type="button" aria-selected="true">Todas <span class="cm-contador">12.408</span></button></div></div>
+  <div class="cm-kanban__soma" style="padding:0;border:0">R$ 1.218.400,00 por mês em 43 negócios</div>
+</div>
+</template>
+
+<h4>Registro renomeado</h4>
+<template class="doc-ex-t" data-titulo="O nome novo manda; o antigo aparece pequeno no cabeçalho por 90 dias e continua achável no Ctrl K. A auditoria guarda a troca." data-layout="empilhado">
+<div class="doc-grade2">
+  <header class="cm-cabecalho-registro"><div class="cm-cabecalho-registro__topo"><span class="cm-ladrilho"><i data-i="condominio"></i></span><div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Cliente</span><h1 class="cm-cabecalho-registro__titulo">Cond. Parque das Águas</h1><span class="cm-antes-chamado">Antes chamado Residencial Águas Claras, até 15/09/2025</span></div></div><div style="height:12px"></div></header>
+  <ol class="cm-auditoria" aria-label="Histórico"><li class="cm-auditoria__dia">15/09</li><li><time>11:02</time><b>Rodrigo Mello</b> renomeou o cliente: <del>Residencial Águas Claras</del> → <ins>Cond. Parque das Águas</ins></li><li><time>11:02</time><b>Rodrigo Mello</b> mudou a síndica: <del>Paulo Andrade</del> → <ins>Marina Costa</ins></li></ol>
+</div>
+</template>
+
+<h4>Zero, um e muitos</h4>
+<template class="doc-ex-t" data-titulo="O plural é escrito para cada caso; zero tem frase própria, nunca “0 itens”." data-layout="empilhado">
+<div class="doc-grade3">
+  <div class="cm-pilha"><b class="cm-t-rotulo">Zero</b><span>Nenhuma alteração</span><span>Nenhum chamado aberto</span><div class="cm-abas cm-abas--sem-linha" role="tablist" aria-label="Fila"><button role="tab" type="button" aria-selected="true">Aguardando <span class="cm-contador">0</span></button></div><span class="cm-paginacao__total">Nenhuma pessoa com este filtro</span></div>
+  <div class="cm-pilha"><b class="cm-t-rotulo">Um</b><div class="cm-barra-salvar" style="position:relative;animation:none;padding:8px 12px"><div class="cm-barra-salvar__msg"><b>1 alteração não salva</b></div><button class="cm-botao cm-botao--principal cm-botao--p" type="button">Salvar</button></div><span>1 chamado aberto</span><span class="cm-ciencia__texto">1 de 1 confirmou a leitura</span></div>
+  <div class="cm-pilha"><b class="cm-t-rotulo">Muitos</b><div class="cm-barra-salvar" style="position:relative;animation:none;padding:8px 12px"><div class="cm-barra-salvar__msg"><b>14 alterações não salvas</b></div><button class="cm-botao cm-botao--principal cm-botao--p" type="button">Salvar</button></div><span>312 chamados abertos</span><span class="cm-reacoes__quem">Ana, Bruno e mais 10 curtiram</span></div>
+</div>
+</template>
+<div class="doc-regras">
+  <div><h5>Regras de plural</h5><ul><li>Escreva as três frases (zero, um, muitos) no texto da interface; não use "(s)".</li><li>Gênero acompanha o objeto: "1 alteração salva", "1 chamado salvo".</li><li>"Ana, Bruno e mais 10": até dois nomes, depois o número.</li></ul></div>
+  <div><h5>Regras de corte</h5><ul><li>Título do registro quebra em até duas linhas; nunca corta.</li><li>Nome em lista corta com reticências e leva o nome inteiro na dica.</li><li>Valor monetário nunca corta nem quebra; a coluna cresce.</li><li>Link colado na conversa quebra em qualquer ponto (<code>overflow-wrap:anywhere</code>).</li></ul></div>
+</div>
+</section>
+
+<!-- ================================================================= COMPOSIÇÕES -->
+<section class="doc-familia" id="composicoes" aria-labelledby="f-comp">
+<h2 id="f-comp">Mais exemplos</h2>
+<p>As peças juntas, como aparecem nas telas.</p>
+
+<template class="doc-ex-t" data-titulo="<b>Coluna da ficha do chamado</b> no Suporte: estado em caixa, ficha editável, tarefas e histórico.">
+<aside class="cm-cartao ex-w320" aria-label="Ficha do chamado 48213">
+  <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Chamado <span class="cm-plaqueta">#48213</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações do chamado"><i data-i="mais-opcoes"></i></button></header>
+  <section class="cm-secao"><button class="cm-estado cm-estado--caixa cm-estado--info" type="button" aria-haspopup="menu"><i data-i="pendente"></i>Aberto<i data-i="chevron-baixo"></i></button></section>
+  <section class="cm-secao"><dl class="cm-ficha">
+    <div class="cm-ficha__linha"><dt>Tipo</dt><dd>Vazamento</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar tipo"><i data-i="editar"></i></button></div>
+    <div class="cm-ficha__linha"><dt>Prioridade</dt><dd><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Alta</span></dd><button class="cm-ficha__lapis" type="button" aria-label="Editar prioridade"><i data-i="editar"></i></button></div>
+    <div class="cm-ficha__linha"><dt>Responsável</dt><dd><span class="cm-avatar cm-avatar--p cm-avatar--2">BN</span>Beatriz Nogueira</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar responsável"><i data-i="editar"></i></button></div>
+    <div class="cm-ficha__linha"><dt>Local</dt><dd>Garagem, vaga 37</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar local"><i data-i="editar"></i></button></div>
+  </dl></section>
+  <section class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Tarefas</h3><span class="cm-texto-3 cm-t-legenda">1 de 3</span></div><div class="cm-pilha" style="gap:6px">
+    <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Acionar manutenção</span></label>
+    <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox"><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Interditar vagas 37 e 38</span></label>
+    <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox"><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Avisar o Bl B pelo comunicado</span></label></div></section>
+  <section class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Histórico</h3></div><ol class="cm-auditoria"><li><time>09:31</time><b>Beatriz</b> mudou a prioridade: <del>Normal</del> → <ins>Alta</ins></li><li class="is-criacao"><time>09:12</time>Aberto pelo WhatsApp</li></ol></section>
+</aside>
+</template>
+
+<template class="doc-ex-t" data-titulo="<b>Portal do síndico, celular:</b> boleto com o botão grande na cor do cliente (Vértice), sem plaqueta." data-tema="light">
+<div data-contexto="portal" data-brand="vertice" class="ex-w320">
+  <section class="cm-cartao"><div class="cm-cartao__corpo cm-pilha">
+    <div class="cm-linha"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="boleto"></i></span><div class="cm-cresce"><b>Boleto de outubro</b><div class="cm-t-legenda">Bl B Ap 1204, vence em 10/10</div></div></div>
+    <div style="font-size:28px;font-weight:700;font-variant-numeric:tabular-nums">R$ 1.284,90</div>
+    <span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Em aberto, vence em 9 dias</span>
+    <button class="cm-botao cm-botao--principal cm-botao--portal" type="button" data-toast="Código Pix copiado|sucesso"><i data-i="pix"></i>Copiar código Pix</button>
+    <button class="cm-botao cm-botao--toque cm-botao--bloco" type="button"><i data-i="baixar"></i>Baixar PDF</button>
+  </div></section>
+</div>
+</template>
+
+<template class="doc-ex-t" data-titulo="<b>Arquivo na conversa</b> e anexo com erro.">
+<div class="cm-conversa" style="padding:12px">
+  <div class="cm-bolha cm-bolha--entrada cm-bolha--arquivo"><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="pdf"></i></span><span><span class="cm-anexo__nome">ata-assembleia-agosto.pdf</span><span class="cm-anexo__meta">PDF, 1,2 MB</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Baixar ata-assembleia-agosto.pdf"><i data-i="baixar"></i></button></div><span class="cm-bolha__meta">10:02</span></div>
+  <div class="cm-anexo is-erro" style="align-self:flex-end;max-width:360px"><span class="cm-anexo__tipo"><i data-i="video"></i></span><span><span class="cm-anexo__nome">video-garagem.mov</span><span class="cm-anexo__meta">68 MB: o WhatsApp aceita até 16 MB</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Remover video-garagem.mov"><i data-i="fechar"></i></button></div>
+</div>
+</template>
+</section>
+
+<!-- ================================================================= ACESSIBILIDADE DA PÁGINA -->
+<section class="doc-a11y" id="acessibilidade" aria-labelledby="f-a11y">
+<h2 id="f-a11y">Foco e leitores de tela nesta página</h2>
+<div class="doc-rolar"><table class="doc-tab">
+  <thead><tr><th>Ordem de foco</th><th>O que é anunciado</th></tr></thead>
+  <tbody>
+    <tr><td>1. "Pular para o conteúdo"</td><td>Link; leva ao <code>main</code>.</td></tr>
+    <tr><td>2. Moldura: testeira, pesquisa (Ctrl K), sino, engrenagem, conta, favoritos, grupos</td><td>"Início, Administradora Alpha, link"; "Pesquisar telas, clientes, chamados, Ctrl K"; "Avisos, 3 novos".</td></tr>
+    <tr><td>3. Páginas do sistema e seletor de cliente, tema e densidade</td><td>"Páginas do sistema, navegação"; cada seletor é um grupo com o valor marcado.</td></tr>
+    <tr><td>4. Índice lateral: filtro e links por família</td><td>"Componentes por família, navegação"; o link da seção visível tem <code>aria-current</code>.</td></tr>
+    <tr><td>5. Cada componente: exemplos do tema escuro, depois do claro, depois as densidades; "HTML de exemplo"; "Copiar HTML"</td><td>Cada palco tem o rótulo "Escuro" ou "Claro" antes do conteúdo; o bloco de código é um <code>details</code> fechado; "Copiar HTML" vira "Copiado".</td></tr>
+    <tr><td>6. Diálogos abertos pelos botões "Abrir"</td><td>O foco entra no diálogo, fica preso nele, Esc fecha e volta ao botão.</td></tr>
+  </tbody>
+</table></div>
+<h4>Nome do que é só ícone</h4>
+<div class="doc-rolar"><table class="doc-tab">
+  <thead><tr><th>Ícone</th><th>Nome acessível</th><th>Onde</th></tr></thead>
+  <tbody>
+    <tr><td><i data-i="mais-opcoes"></i> <code>mais-opcoes</code></td><td>"Mais ações" ou "Ações do chamado 48213"</td><td>Cabeçalho, linha, cartão</td></tr>
+    <tr><td><i data-i="chevron-baixo"></i> <code>chevron-baixo</code> no dividido</td><td>"Outras formas de salvar", "Outras formas de enviar"</td><td>Botão dividido</td></tr>
+    <tr><td><i data-i="fechar"></i> <code>fechar</code></td><td>"Fechar"; na etiqueta, "Remover etiqueta Vazamento"; no chip, "Tirar filtro Canal"</td><td>Modal, painel, folha, toast, etiqueta, chip</td></tr>
+    <tr><td><i data-i="editar"></i> <code>editar</code> (lápis da ficha)</td><td>"Editar telefone" (com o nome do campo)</td><td>Ficha</td></tr>
+    <tr><td><i data-i="lida" class="cm-tique--lida"></i> <code>lida</code>, <i data-i="marcar"></i> <code>marcar</code>, <i data-i="erro"></i> <code>erro</code></td><td>"Lida", "Entregue", "Não enviada"</td><td>Meta da bolha</td></tr>
+    <tr><td><i data-i="play"></i> <code>play</code></td><td>"Ouvir áudio de 38 segundos"</td><td>Áudio</td></tr>
+    <tr><td><i data-i="anexar"></i> <i data-i="microfone"></i> <i data-i="resposta-rapida"></i></td><td>"Anexar", "Gravar áudio", "Respostas rápidas"</td><td>Compositor</td></tr>
+    <tr><td><i data-i="chevron-cima"></i> <i data-i="chevron-baixo"></i> no navegar</td><td>"Anterior (K)", "Próximo (J)"</td><td>Trilha, painel</td></tr>
+    <tr><td><i data-i="chevron-esquerda"></i> <i data-i="chevron-direita"></i></td><td>"Página anterior", "Próxima página"</td><td>Paginação</td></tr>
+    <tr><td><i data-i="notificacoes"></i> <code>notificacoes</code></td><td>"Avisos, 3 novos"</td><td>Sino</td></tr>
+    <tr><td><i data-i="bloquear"></i> cadeado da ficha</td><td>"Campo do sistema"</td><td>Ficha</td></tr>
+  </tbody>
+</table></div>
+</section>
+
+</main>
+</div>
+
+<!-- ================================================================= DIÁLOGOS REAIS -->
+<template id="dlg-excluir">
+<div class="cm-sobreposicao">
+  <div class="cm-modal cm-modal--p cm-modal--perigo" role="dialog" aria-modal="true" aria-labelledby="dx-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="dx-t">Excluir o chamado 48213?<span class="cm-modal__sub">Ele vai para a lixeira por 30 dias.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-doc-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo"><p>Este chamado tem vínculos que também saem da lista:</p><ul style="margin:6px 0 0;padding-left:18px"><li>OS 482, com a Hidrotec</li><li>3 tarefas, 1 concluída</li></ul></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-doc-fechar autofocus>Cancelar</button><button class="cm-botao cm-botao--perigo-cheio" type="button" data-doc-fechar data-toast="Chamado 48213 movido para a lixeira|sucesso|Desfazer">Excluir</button></div>
+  </div>
+</div>
+</template>
+<template id="dlg-definitivo">
+<div class="cm-sobreposicao">
+  <div class="cm-modal cm-modal--p cm-modal--perigo" role="dialog" aria-modal="true" aria-labelledby="dd-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="dd-t">Excluir de vez o Cond. Vila Serena?<span class="cm-modal__sub">Sai da lixeira e não volta. 1.204 registros vão junto.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-doc-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo"><div class="cm-campo"><label class="cm-campo__rotulo" for="dd-nome">Digite o nome do condomínio para confirmar</label><div class="cm-entrada"><input id="dd-nome" autocomplete="off" placeholder="Cond. Vila Serena" oninput="this.closest('.cm-modal').querySelector('.cm-botao--perigo-cheio').disabled=this.value.trim()!=='Cond. Vila Serena'"></div><p class="cm-campo__ajuda">Exatamente como está escrito acima.</p></div></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-doc-fechar>Cancelar</button><button class="cm-botao cm-botao--perigo-cheio" type="button" disabled data-doc-fechar data-toast="Cond. Vila Serena excluído de vez|sucesso">Excluir de vez</button></div>
+  </div>
+</div>
+</template>
+<template id="dlg-contato">
+<div class="cm-sobreposicao">
+  <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="dc-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="dc-t">Novo contato<span class="cm-modal__sub">Cond. Parque das Águas</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-doc-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo cm-pilha">
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="dc-n">Nome <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="dc-n" autocomplete="name" required></div></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="dc-f">WhatsApp <span class="cm-campo__opcional">opcional</span></label><div class="cm-entrada"><span class="cm-entrada__prefixo">+55</span><input id="dc-f" type="tel" placeholder="(11) 98765-4321"></div></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="dc-p">Papel</label><div class="cm-selecao"><select id="dc-p"><option>Síndico</option><option>Subsíndico</option><option>Conselheiro</option><option>Morador</option></select><i data-i="chevron-baixo"></i></div></div>
+    </div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-doc-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-doc-fechar data-toast="Contato criado|sucesso">Criar contato</button></div>
+  </div>
+</div>
+</template>
+<template id="dlg-painel">
+<aside class="cm-painel" role="dialog" aria-labelledby="dp-t">
+  <header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="dp-t">Cond. Parque das Águas</h2><span class="cm-navegar-registro"><b>14 de 63</b></span><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-doc-fechar><i data-i="fechar"></i></button></header>
+  <div class="cm-painel__corpo"><section class="cm-secao"><dl class="cm-ficha"><div class="cm-ficha__linha"><dt>Síndica</dt><dd>Marina Costa</dd><span></span></div><div class="cm-ficha__linha"><dt>Saúde</dt><dd><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>82, boa</span></dd><span></span></div><div class="cm-ficha__linha"><dt>Renovação</dt><dd>em 106 dias</dd><span></span></div></dl></section></div>
+  <footer class="cm-painel__pe"><button class="cm-botao" type="button" data-doc-fechar>Fechar</button><button class="cm-botao cm-botao--principal" type="button" data-doc-fechar>Abrir ficha</button></footer>
+</aside>
+</template>
+<template id="dlg-folha">
+<div class="cm-sobreposicao" style="align-items:flex-end;padding:0"></div>
+<div class="cm-folha" role="dialog" aria-modal="true" aria-labelledby="df-t">
+  <div class="cm-folha__alca" aria-hidden="true"></div>
+  <div class="cm-folha__cabeca"><h2 class="cm-folha__titulo" id="df-t">Enviar resposta</h2><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--toque" type="button" aria-label="Fechar" data-doc-fechar><i data-i="fechar"></i></button></div>
+  <div class="cm-folha__corpo">
+    <button class="cm-folha__item" type="button" data-doc-fechar data-toast="Enviada. Conversa segue aberta.|sucesso"><i data-i="enviar"></i>Enviar e manter aberto</button>
+    <button class="cm-folha__item" type="button" data-doc-fechar data-toast="Enviada. Aguardando cliente.|sucesso"><i data-i="pendente"></i>Enviar e aguardar cliente</button>
+    <button class="cm-folha__item" type="button" data-doc-fechar data-toast="Enviada e resolvida.|sucesso"><i data-i="sucesso"></i>Enviar e resolver</button>
+  </div>
+</div>
+</template>
+
+<script>
+/* matrizes de estado desta página (o motor está em sistema/extra-q1-doc.js) */
+(function(){
+var EST=['Normal','Mouse por cima','Foco do teclado','Pressionado','Desabilitado','Carregando','Erro','Só leitura'];
+var SIM=['',' cm-sim-hover',' cm-sim-foco',' cm-sim-ativo','','','',''];
+function at(i){return i===4?' disabled':i===5?' aria-busy="true"':''}
+function NA(t){return {na:t}}
+function M(cols,fn){return docMatriz(cols,EST.map(function(e,i){return [e,cols.map(function(c,j){return fn(i,j)})]}))}
+var semErro='Botão não tem erro: o erro fica no campo e no resumo.';
+var semLeitura='Sem só leitura: quem não pode agir não vê o botão, ou o vê desabilitado com o motivo na dica.';
+function bot(v,rot,i,extra){return '<button class="cm-botao'+v+SIM[i]+'" type="button"'+at(i)+(extra||'')+'>'+rot+'</button>'}
+var M_=window.DOC_MATRIZES=window.DOC_MATRIZES||{};
+M_.botao1=function(){var V=[[' cm-botao--principal','<i data-i="salvar"></i>Salvar'],['','Cancelar'],[' cm-botao--discreto','<i data-i="anexar"></i>Anexar'],[' cm-botao--perigo','<i data-i="excluir"></i>Excluir…']];
+  return M(['Principal','Padrão','Discreto','Perigo'],function(i,j){if(i===6)return NA(j?'Idem.':semErro);if(i===7)return NA(j?'Idem.':semLeitura);return bot(V[j][0],V[j][1],i)})};
+M_.botao2=function(){
+  return M(['Perigo cheio','Link','Só ícone','Portal (marca)'],function(i,j){if(i===6)return NA(j?'Idem.':semErro);if(i===7)return NA(j?'Idem.':semLeitura);
+    if(j===0)return bot(' cm-botao--perigo-cheio','Excluir',i);
+    if(j===1)return i===5?NA('Link não carrega: leva a outra tela.'):bot(' cm-botao--link','Ver histórico',i);
+    if(j===2)return bot(' cm-botao--icone',' <i data-i="editar"></i>',i,' aria-label="Editar"');
+    return '<div data-contexto="portal" style="width:180px">'+bot(' cm-botao--principal cm-botao--portal','Enviar chamado',i)+'</div>'})};
+M_.dividido=function(){
+  return M(['Salvar ▾ (principal)','Exportar ▾ (padrão, pequeno)'],function(i,j){
+    if(i===6)return NA('Sem erro próprio: a barra de salvar mostra o erro.');if(i===7)return NA('Some com o registro em só leitura.');
+    var v=j?' cm-botao--p':' cm-botao--principal',rot=j?'Exportar <span class="cm-dividido__lembra">PDF</span>':'Salvar <span class="cm-dividido__lembra">e próximo</span>';
+    var a1=(i===1?' cm-sim-hover':''),a2=(i===2?' cm-sim-foco':i===3?' cm-sim-ativo':'');
+    var b1='<button class="cm-botao'+v+a1+'" type="button"'+(i===4?' disabled':'')+(i===5?' aria-busy="true"':'')+'>'+rot+'</button>';
+    var b2='<button class="cm-botao'+v+a2+'" type="button" aria-label="Outras formas" aria-haspopup="menu" aria-expanded="'+(i===3)+'"'+(i===4||i===5?' disabled':'')+'><i data-i="chevron-baixo"></i></button>';
+    var nota=i===2?'<span class="doc-na">foco na seta</span>':i===3?'<span class="doc-na">seta pressionada, menu abrindo</span>':'';
+    return '<div class="cm-dividido">'+b1+b2+'</div>'+nota})};
+M_.segmentado=function(){
+  var V=[['','<i data-i="lista"></i>Lista','<i data-i="quadro"></i>Quadro'],[' cm-segmentado--p','Dia','Semana'],[' cm-segmentado--icones','<i data-i="lista"></i>','<i data-i="quadro"></i>']];
+  return M(['Texto e ícone','Pequeno','Só ícones'],function(i,j){
+    if(i===5)return NA('A troca é na hora; se a vista demora, o esqueleto aparece nela.');if(i===6)return NA('Não tem erro.');if(i===7)return NA('Quem não pode trocar não vê o grupo.');
+    var c=SIM[i]===' cm-sim-ativo'?'':SIM[i];var lab=j===2?' aria-label="Lista"':'';var lab2=j===2?' aria-label="Quadro"':'';
+    return '<div class="cm-segmentado'+V[j][0]+'" role="group" aria-label="Visão"><button type="button" class="'+c.trim()+'" aria-pressed="'+(i===3)+'"'+(i===4?' disabled':'')+lab+'>'+V[j][1]+'</button><button type="button" aria-pressed="'+(i!==3)+'"'+lab2+'>'+V[j][2]+'</button></div>'+(i===3?'<span class="doc-na">primeiro escolhido</span>':'')})};
+M_.estado=function(){
+  var V=[['info','pendente','Aberto'],['sucesso','sucesso','Resolvido'],['perigo','perigo','Vencido']];
+  return M(['Informação','Sucesso','Perigo'],function(i,j){var v=V[j];
+    if(i===4)return j?NA('Idem.'):NA('Sem permissão de mudar: vira só leitura, sem a seta.');
+    if(i===6)return j?NA('Idem.'):NA('Erro na troca vira toast: "Não mudou: o chamado tem tarefa aberta".');
+    if(i===5)return '<span class="cm-carregando">Mudando</span>';
+    if(i===7)return '<span class="cm-estado cm-estado--caixa cm-estado--'+v[0]+'"><i data-i="'+v[1]+'"></i>'+v[2]+'</span>';
+    return '<button class="cm-estado cm-estado--caixa cm-estado--'+v[0]+SIM[i]+'" type="button" aria-haspopup="menu" aria-expanded="'+(i===3)+'"><i data-i="'+v[1]+'"></i>'+v[2]+'<i data-i="chevron-baixo"></i></button>'+(i===3?'<span class="doc-na">menu de estados aberto</span>':'')})};
+M_.etiqueta=function(){
+  return M(['Etiqueta com remover'],function(i){
+    if(i===4)return NA('Sem permissão: a etiqueta aparece sem o X.');if(i===5)return NA('Remover é na hora, com "Desfazer" no toast.');if(i===6)return NA('Não tem erro.');
+    if(i===7)return '<span class="cm-etiqueta cm-etiqueta--4">Vazamento</span>';
+    return '<span class="cm-etiqueta cm-etiqueta--4">Vazamento<button class="cm-etiqueta__remover'+SIM[i]+'" type="button" aria-label="Remover etiqueta Vazamento"><i data-i="fechar"></i></button></span>'})};
+M_.plaqueta=function(){
+  return M(['Plaqueta que copia'],function(i){
+    if(i===4)return NA('Não existe: o identificador sempre pode ser copiado.');if(i===5)return NA('Copiar é na hora; confirma com toast.');if(i===6)return NA('Não tem erro.');
+    if(i===7)return '<span class="cm-plaqueta">#48213</span><span class="doc-na">span, sem cursor de copiar</span>';
+    return '<button class="cm-plaqueta'+SIM[i]+'" type="button" aria-label="Copiar número 48213">#48213</button>'+(i===3?'<span class="doc-na">toast "Número 48213 copiado"</span>':'')})};
+M_.ficha=function(){
+  function L(cls,dd,lapis){return '<dl class="cm-ficha" style="width:360px;max-width:100%;padding:0 12px"><div class="cm-ficha__linha '+cls+'"><dt>Telefone</dt><dd>'+dd+'</dd>'+(lapis||'<span></span>')+'</div></dl>'}
+  var lap=function(c){return '<button class="cm-ficha__lapis'+(c||'')+'" type="button" aria-label="Editar telefone"><i data-i="editar"></i></button>'};
+  return docMatriz(['Linha da ficha'],[
+    ['Normal',[L('','(11) 3456-7788',lap())]],
+    ['Mouse por cima',[L('cm-sim-hover','(11) 3456-7788',lap())]],
+    ['Foco no lápis',[L('','(11) 3456-7788',lap(' cm-sim-foco'))]],
+    ['Editando',[L('is-editando','<div class="cm-campo cm-cresce"><div class="cm-entrada cm-entrada--p is-editado"><input aria-label="Telefone" value="(11) 3456-7790"></div><p class="cm-campo__antes">Era (11) 3456-7788. Enter confirma, Esc desfaz.</p></div>')]],
+    ['Editado, sem salvar',[L('is-editado','(11) 3456-7790 <span class="cm-ficha__alterado">alterado</span>',lap())]],
+    ['Carregando',[L('is-editando','<div class="cm-entrada cm-entrada--p is-carregando"><input aria-label="CEP" value="80240-000"></div>')]],
+    ['Erro',[L('is-editando','<div class="cm-campo cm-cresce"><div class="cm-entrada cm-entrada--p"><input aria-label="Telefone" aria-invalid="true" value="(11) 3456-77"></div><p class="cm-campo__erro"><i data-i="perigo"></i>Faltam 2 dígitos.</p></div>')]],
+    ['Só leitura (sistema)',[L('is-leitura','12/03/2024 <span class="cm-ficha__cadeado"><i data-i="bloquear" data-rotulo="Campo do sistema"></i></span>')]],
+    ['Desabilitado (sem permissão)',[L('is-leitura','(11) 3456-7788 <span class="doc-na">sem lápis; dica "Só o CS edita"</span>')]]
+  ])};
+M_.abas=function(){
+  return M(['Aba','Aba com contador'],function(i,j){
+    if(i===5)return j?NA('Idem.'):NA('O painel carrega com esqueleto; a aba não muda.');if(i===6)return j?NA('Idem.'):NA('O erro aparece dentro do painel.');if(i===7)return j?NA('Idem.'):NA('Não se aplica.');
+    var rot=j?'Boletos <span class="cm-contador">1</span>':'Histórico';
+    return '<div class="cm-abas cm-abas--sem-linha" role="tablist" aria-label="Exemplo"><button role="tab" type="button" class="'+SIM[i].trim()+'" aria-selected="'+(i===3)+'"'+(i===4?' aria-disabled="true"':'')+'>'+rot+'</button></div>'+(i===3?'<span class="doc-na">selecionada</span>':'')})};
+M_.path=function(){
+  var V=[['is-feito','<i data-i="marcar"></i>Adoção'],['is-atual','Expansão'],['','Renovação'],['is-perdido','<i data-i="erro"></i>Perdido']];
+  return M(['Feito','Atual','Futuro','Perdido'],function(i,j){
+    if(i===3)return j?NA('Idem.'):NA('O clique abre "O que a etapa pede".');if(i===4)return j?NA('Idem.'):NA('Etapa que não se escolhe usa span (veja Só leitura).');
+    if(i===5)return j?NA('Idem.'):NA('Marcar etapa mostra o giro no botão ao lado.');if(i===6)return j?NA('Idem.'):NA('Etapa com pendência fica atual e a orientação diz o que falta.');
+    var tag=i===7?'span':'button';
+    return '<div class="cm-path" style="width:150px"><ol aria-label="Etapa"><li class="'+V[j][0]+'"><'+tag+(tag==='button'?' type="button" class="'+SIM[i].trim()+'"':'')+(j===1?' aria-current="step"':'')+'>'+V[j][1]+'</'+tag+'></li></ol></div>'})};
+})();
+</script>
+</body>
+</html>

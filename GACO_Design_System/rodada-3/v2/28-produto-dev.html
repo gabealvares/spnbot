@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Produto e desenvolvimento</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q4.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q4-icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q4.js" defer></script>
+<style>
+.pd-roteiro{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pd-roteiro .cm-kanban__coluna{width:auto}
+.pd-reg{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;margin-top:12px;align-items:start}
+.pd-corpo h3{font-size:13.5px;font-weight:700;margin:14px 0 4px}
+.pd-corpo p,.pd-corpo li{font-size:13.5px;line-height:20px;max-width:72ch}
+.pd-corpo ol{padding-left:20px;margin:0}
+.pd-sprint-topo{display:flex;gap:24px;align-items:center;flex-wrap:wrap;padding:6px 0 12px}
+.pd-burn{width:340px}
+.pd-notas{display:grid;grid-template-columns:240px minmax(0,1fr);gap:20px;margin-top:12px;align-items:start}
+.pd-versoes{list-style:none;margin:0;padding:0;border-left:1px solid var(--cm-filete)}
+.pd-versoes a{display:flex;justify-content:space-between;gap:8px;padding:7px 12px;margin-left:-1px;border-left:2px solid transparent;font-size:13px;color:var(--cm-texto-2);text-decoration:none}
+.pd-versoes a[aria-current="page"]{border-left-color:var(--cm-acao);color:var(--cm-texto-1);font-weight:650}
+.pd-nota-doc{max-width:760px}
+.pd-nota-doc h2{font-size:20px;line-height:26px;font-weight:700}
+.pd-nota-doc h3{font-size:14px;font-weight:700;margin:18px 0 6px;display:flex;align-items:center;gap:8px}
+.pd-nota-doc ul{margin:0;padding-left:18px}
+.pd-nota-doc li{font-size:13.5px;line-height:20px;margin-bottom:6px}
+@media (max-width:1099px){ .pd-roteiro,.pd-reg,.pd-notas{grid-template-columns:minmax(0,1fr)} .pd-burn{width:100%} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Produto","tela":"Demandas","papel":"Produto","sino":5,"usuario":{"nome":"Thiago Monteiro","iniciais":"TM","cargo":"Gerente de produto","presenca":"disponivel","tom":1},"links":{"Demandas":"28-produto-dev.html","Roteiro":"28-produto-dev.html","Sprints":"28-produto-dev.html#t-sprint","Bugs":"28-produto-dev.html#t-bug"}}'></div>
+
+<main id="conteudo" class="cm-doc">
+<header class="cm-doc-capa">
+  <div>
+    <h1>Produto e desenvolvimento</h1>
+    <p>Do pedido do cliente à versão publicada: o backlog com o roteiro, a demanda com quem pediu, a sprint em quadro, o bug com os chamados que ele gerou e as notas da versão que vão para os síndicos.</p>
+  </div>
+  <div data-cm-seletor></div>
+  <nav class="cm-doc-indice" aria-label="Telas desta página">
+    <a href="#t-backlog"><b>28.1</b>Backlog e roteiro</a><a href="#t-demanda"><b>28.2</b>Demanda</a><a href="#t-sprint"><b>28.3</b>Sprint em quadro</a><a href="#t-bug"><b>28.4</b>Bug</a><a href="#t-notas"><b>28.5</b>Notas da versão</a>
+  </nav>
+</header>
+
+<!-- 28.1 -->
+<section class="cm-doc-tela" id="t-backlog" aria-labelledby="t-bk-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">28.1</span><h2 class="cm-doc-tela__titulo" id="t-bk-h">Backlog e roteiro</h2><span class="cm-doc-tela__sub">o que vem agora, depois e mais tarde, e por quê</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>O gerente de produto decide o que entra no próximo ciclo com base em quantos clientes pediram, quanto eles pagam e quanto custa fazer. O roteiro em três colunas (Agora, Próximo, Depois) é o que ele mostra à diretoria e ao CS; o backlog abaixo é a lista completa com a pontuação.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>Roteiro em cima, backlog embaixo, na mesma página: arrastar do backlog para uma coluna põe no roteiro.</li>
+      <li>A pontuação (alcance × impacto × confiança ÷ esforço) é calculada; as quatro entradas são editáveis na célula.</li>
+      <li>"Pedido por" conta administradoras e soma a mensalidade delas, vindo das demandas ligadas.</li>
+      <li>Clicar no título abre a demanda (28.2).</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Productboard e o Aha! consagraram "Agora, Próximo, Depois" no lugar de datas que ninguém cumpre; o Intercom popularizou o RICE como pontuação simples e explicável; e o Canny mostra quem pediu ao lado do item, o que o CS do GACO pediu para responder ao cliente.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Roteiro e backlog</h1><div class="cm-cabecalho-pagina__acoes"><button class="cm-botao" type="button"><i data-i="compartilhar"></i>Compartilhar roteiro com o CS</button><button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Nova demanda</button></div></div></header>
+      <div class="pd-roteiro" id="pd-roteiro"></div>
+      <h2 class="cm-t-secao" style="margin:20px 0 6px">Backlog <span class="cm-contador">64</span></h2>
+      <div class="cm-tabela-caixa"><table class="cm-tabela"><caption class="cm-sr">Backlog ordenado pela pontuação</caption>
+        <thead><tr><th>Demanda</th><th>Pedido por</th><th class="cm-num">Alcance</th><th class="cm-num">Impacto</th><th class="cm-num">Confiança</th><th class="cm-num">Esforço</th><th class="cm-num" aria-sort="descending"><button class="cm-ordenar" type="button">Pontuação<i data-i="seta-baixo"></i></button></th><th>Estado</th></tr></thead>
+        <tbody id="pd-backlog"></tbody></table></div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Compartilhar, Nova demanda</li><li>Colunas do roteiro e cartões</li><li>Backlog: ordenação, células editáveis</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Cartão: "Reserva do salão com pagamento por Pix, Agora, pedido por 23 administradoras".</li><li>Pontuação: "Pontuação 412, calculada".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Ícone do tipo no cartão: "melhoria", "novidade", "bug"</li></ul></div>
+  </div>
+</section>
+
+<!-- 28.2 -->
+<section class="cm-doc-tela" id="t-demanda" aria-labelledby="t-dm-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">28.2</span><h2 class="cm-doc-tela__titulo" id="t-dm-h">Demanda</h2><span class="cm-doc-tela__sub">o problema, quem pediu e o que foi decidido</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Uma demanda junta, num lugar só, o problema descrito pelo cliente, as conversas do Suporte e do CS que pediram a mesma coisa, a decisão do produto e o caminho até a entrega. Quando ficar pronta, todo cliente que pediu é avisado.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>O <b>Path</b> mostra a etapa: Nova, Em análise, Priorizada, No roteiro, Em desenvolvimento, Entregue.</li>
+      <li>Campos editáveis no lugar (lápis no passar do mouse); a barra de salvar aparece com alteração.</li>
+      <li>"Pedido por" lista as administradoras com a conversa de origem; "Ligar conversa" junta mais um pedido.</li>
+      <li>Ao entregar, "Avisar quem pediu" manda a nota da versão para as 23 administradoras.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Productboard liga cada nota de cliente a uma funcionalidade; o Jira Product Discovery mostra o caminho em etapas; e o HubSpot ensinou a ficha com campos-chave no alto e histórico sempre à direita, padrão que o GACO usa em todo registro.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" style="padding-top:16px" data-form data-barra="barra-demanda">
+      <header class="cm-cabecalho-registro">
+        <div class="cm-cabecalho-registro__topo"><span class="cm-ladrilho"><i data-i="backlog"></i></span><div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Demanda, melhoria</span><h1 class="cm-cabecalho-registro__titulo">Reserva do salão com pagamento por Pix <span class="cm-plaqueta cm-plaqueta--g">DEM-318</span></h1></div>
+          <div class="cm-grupo-botoes"><button class="cm-botao" type="button"><i data-i="vincular"></i>Ligar conversa</button><button class="cm-botao cm-botao--principal" type="button"><i data-i="roteiro"></i>Pôr no roteiro</button></div></div>
+        <dl class="cm-destaques"><div><dt>Pedido por</dt><dd>23 administradoras</dd></div><div><dt>Mensalidade somada</dt><dd>R$ 118.400,00</dd></div><div><dt>Pontuação</dt><dd>412</dd></div><div><dt>Responsável</dt><dd>Thiago Monteiro</dd></div><div><dt>Roteiro</dt><dd>Agora, out a nov</dd></div></dl>
+        <div class="cm-path" style="padding:12px 0"><ol><li class="is-feito"><button type="button"><i data-i="marcar"></i>Nova</button></li><li class="is-feito"><button type="button"><i data-i="marcar"></i>Em análise</button></li><li class="is-atual"><button type="button" aria-current="step">Priorizada</button></li><li><button type="button">No roteiro</button></li><li><button type="button">Em desenvolvimento</button></li><li><button type="button">Entregue</button></li></ol></div>
+      </header>
+      <div class="pd-reg">
+        <div class="cm-pilha cm-pilha--6">
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Problema e proposta</h2><button class="cm-botao cm-botao--p cm-botao--discreto" type="button"><i data-i="editar"></i>Editar seção</button></header>
+            <div class="cm-cartao__corpo pd-corpo">
+              <h3 style="margin-top:0">O problema</h3><p>Hoje o morador reserva o salão de festas no portal, mas a taxa de uso (R$ 180,00 no Parque das Águas) entra no boleto do mês seguinte. A portaria libera o salão sem saber se foi pago, e 1 em cada 8 reservas vira cobrança atrasada.</p>
+              <h3>O que propomos</h3><ol><li>Ao confirmar a reserva, o portal gera um Pix com validade de 30 minutos.</li><li>Pago o Pix, a reserva fica confirmada e a portaria vê "pago" na lista do dia.</li><li>Sem pagamento, a data volta a ficar livre e o morador recebe aviso.</li></ol>
+              <h3>Fora do escopo</h3><p>Cartão de crédito e parcelamento ficam para depois (DEM-344).</p>
+            </div></section>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Pedido por</h2><span class="cm-contador">23</span></header>
+            <div class="cm-tabela-caixa" style="border:0"><table class="cm-tabela"><thead><tr><th>Administradora</th><th>Origem</th><th class="cm-num">Mensalidade</th><th>Quando</th></tr></thead><tbody>
+              <tr><td class="cm-tabela__principal"><a href="#">Lar Gestão Condominial</a><span class="cm-tabela__sub">Belo Horizonte, 84 condomínios</span></td><td>Chamado 47 102, Suporte</td><td class="cm-num">R$ 12.600,00</td><td>12/08</td></tr>
+              <tr><td class="cm-tabela__principal"><a href="#">Vértice Condomínios</a><span class="cm-tabela__sub">Curitiba, 61 condomínios</span></td><td>Reunião de CS, Paula Siqueira</td><td class="cm-num">R$ 9.150,00</td><td>03/09</td></tr>
+              <tr><td class="cm-tabela__principal"><a href="#">Administradora Horizonte</a><span class="cm-tabela__sub">Campinas, 40 condomínios</span></td><td>NPS 6, comentário</td><td class="cm-num">R$ 6.000,00</td><td>19/09</td></tr>
+              <tr><td colspan="4" class="cm-texto-2">Mais 20 administradoras</td></tr></tbody></table></div></section>
+          <div class="cm-form-secao__campos" style="grid-template-columns:repeat(6,minmax(0,1fr))">
+            <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="dm-imp">Impacto</label><div class="cm-selecao"><select id="dm-imp"><option>3, alto</option><option selected>2, médio</option><option>1, baixo</option></select><i data-i="chevron-baixo"></i></div></div>
+            <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="dm-esf">Esforço, em semanas de time</label><div class="cm-entrada cm-entrada--numero"><input id="dm-esf" value="3"></div></div>
+            <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="dm-conf">Confiança</label><div class="cm-entrada cm-entrada--porcentagem"><input id="dm-conf" value="80"><span class="cm-entrada__sufixo">%</span></div></div>
+          </div>
+        </div>
+        <aside class="cm-cartao" aria-label="Histórico"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Histórico</h2></header><div class="cm-cartao__corpo"><ol class="cm-auditoria">
+          <li class="cm-auditoria__dia">Hoje</li><li><time>09:10</time><b>Thiago Monteiro</b> mudou a etapa: <del>Em análise</del> para <ins>Priorizada</ins></li>
+          <li class="cm-auditoria__dia">29/09</li><li><time>16:22</time><b>Larissa Okada</b> estimou o esforço em <ins>3 semanas</ins></li><li><time>11:05</time><b>Paula Siqueira</b> ligou o pedido da Vértice Condomínios</li>
+          <li class="cm-auditoria__dia">12/08</li><li class="is-criacao"><time>10:41</time>Criada a partir do chamado 47 102 por <b>Beatriz Nogueira</b></li></ol></div></aside>
+      </div>
+      <div class="cm-barra-salvar" id="barra-demanda" role="region" aria-label="Alterações não salvas" hidden><div class="cm-barra-salvar__msg"><b data-contagem></b><span data-campos></span></div><button class="cm-botao cm-botao--discreto" type="button" data-descartar>Descartar</button><button class="cm-botao cm-botao--principal" type="button" data-salvar="Demanda salva. Pontuação recalculada.">Salvar</button></div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Ligar conversa, Pôr no roteiro</li><li>Etapas</li><li>Editar seção</li><li>Pedido por (links)</li><li>Impacto, esforço, confiança</li><li>Histórico</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Título com a chave: "Reserva do salão com pagamento por Pix, DEM-318".</li><li>Mudar impacto: barra de salvar anuncia "1 alteração não salva, Impacto".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Lápis de seção tem texto ("Editar seção").</li></ul></div>
+  </div>
+</section>
+
+<!-- 28.3 -->
+<section class="cm-doc-tela" id="t-sprint" aria-labelledby="t-sp-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">28.3</span><h2 class="cm-doc-tela__titulo" id="t-sp-h">Sprint em quadro</h2><span class="cm-doc-tela__sub">colunas do fluxo, pontos e o que está parado</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>A equipe de desenvolvimento abre a reunião diária nesta tela: o que está em cada etapa, o que está parado há mais de dois dias e se a sprint fecha a tempo. O gráfico de pontos restantes fica no cabeçalho do painel, que é o único lugar onde número de desempenho aparece.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>Colunas: A fazer, Em andamento, Em revisão, Em teste, Feito, com limite de itens por coluna.</li>
+      <li>Arrastar muda a etapa; pelo teclado, "Mover para…" no menu do cartão.</li>
+      <li>"Agrupar por pessoa" vira raias horizontais para a reunião diária.</li>
+      <li>Encerrar a sprint pergunta o que fazer com os itens não feitos (voltar ao backlog ou ir para a próxima).</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Jira e o Linear consagraram o quadro de sprint com colunas do fluxo, limite por coluna e o cartão com chave, tipo, pontos e pessoa; o gráfico de pontos restantes é o burndown do Scrum, que o time já lê; e "parado há 3 dias" vem do Kanban (idade do item).</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Sprint 41</h1><span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Dia 7 de 10</span><div class="cm-cabecalho-pagina__acoes"><div class="cm-segmentado" role="group" aria-label="Agrupar"><button type="button" aria-pressed="true">Sem grupo</button><button type="button" aria-pressed="false">Por pessoa</button></div><button class="cm-botao" type="button">Encerrar sprint…</button></div></div><p class="cm-cabecalho-pagina__desc">23/09 a 06/10. Objetivo: reserva com Pix no portal, e zerar os bugs críticos de boleto.</p></header>
+      <div class="pd-sprint-topo">
+        <div class="cm-kpis" style="border:0;padding:0"><div class="cm-kpi"><span class="cm-kpi__rotulo">Pontos feitos</span><span class="cm-kpi__valor">21 de 34</span></div><div class="cm-kpi"><span class="cm-kpi__rotulo">Parados há mais de 2 dias</span><span class="cm-kpi__valor">2</span></div></div>
+        <figure class="cm-grafico pd-burn" style="margin:0;padding:8px 10px"><figcaption class="cm-grafico__cabeca" style="margin-bottom:2px"><span class="cm-grafico__titulo" style="font-size:12.5px">Pontos restantes</span></figcaption><div id="burn"></div><div class="cm-grafico__legenda" style="margin-top:2px"><span><i style="--c:var(--cm-grafico-2)"></i>Restantes</span><span><i class="is-linha" style="--c:var(--cm-grafico-1)"></i>Ritmo ideal</span></div></figure>
+      </div>
+      <div class="cm-kanban" id="pd-sprint"></div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Agrupar, Encerrar sprint</li><li>Gráfico (cada dia focável)</li><li>Colunas e cartões, da esquerda para a direita</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Cartão: "GAC-1182, história, Pix na confirmação da reserva, 5 pontos, Larissa Okada, parado há 3 dias".</li><li>Coluna: "Em revisão, 3 de no máximo 3".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Tipo: "história", "bug", "tarefa técnica"</li></ul></div>
+  </div>
+</section>
+
+<!-- 28.4 -->
+<section class="cm-doc-tela" id="t-bug" aria-labelledby="t-bug-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">28.4</span><h2 class="cm-doc-tela__titulo" id="t-bug-h">Bug</h2><span class="cm-doc-tela__sub">como reproduzir, o que se esperava e quem foi afetado</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Um bug chega do Suporte com chamados de moradores. A tela junta como reproduzir, o esperado contra o obtido, o ambiente, a gravidade com o número de afetados e os commits da correção. Quando a correção sai, os chamados ligados recebem a resposta pronta.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>Criado a partir do chamado (botão "Virar bug" no Suporte), já com os dados do morador e a captura.</li>
+      <li>Gravidade e prioridade em caixa de estado no cabeçalho, trocáveis por menu.</li>
+      <li>Commits e pull request aparecem sozinhos pela integração com o GitHub.</li>
+      <li>"Fechar e responder 14 chamados" usa a resposta escrita aqui.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Jira e o Linear organizam o bug em passos, esperado e obtido; o Sentry mostra quantas pessoas foram afetadas; e o Zendesk com Jira liga chamados ao bug para responder todos de uma vez, que é o que a equipe de Suporte do GACO pediu.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" style="padding-top:16px">
+      <header class="cm-cabecalho-registro">
+        <div class="cm-cabecalho-registro__topo"><span class="cm-ladrilho"><i data-i="bug"></i></span><div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Bug</span><h1 class="cm-cabecalho-registro__titulo">Boleto com vencimento em feriado não passa para o dia útil seguinte <span class="cm-plaqueta cm-plaqueta--g">GAC-1190</span></h1></div>
+          <div class="cm-grupo-botoes"><button class="cm-estado cm-estado--caixa cm-estado--perigo" type="button" aria-haspopup="menu"><i data-i="perigo"></i>Gravidade alta<i data-i="chevron-baixo"></i></button><button class="cm-estado cm-estado--caixa cm-estado--info" type="button" aria-haspopup="menu"><i data-i="pendente"></i>Em andamento<i data-i="chevron-baixo"></i></button><button class="cm-botao cm-botao--principal" type="button" data-toast="Bug fechado. 14 chamados receberam a resposta." data-toast-acao="Desfazer">Fechar e responder 14 chamados</button></div></div>
+        <dl class="cm-destaques"><div><dt>Afetados</dt><dd>1.204 boletos, 9 administradoras</dd></div><div><dt>Chamados ligados</dt><dd>14</dd></div><div><dt>Versão</dt><dd>4.11.2</dd></div><div><dt>Responsável</dt><dd>Bruno Teixeira</dd></div><div><dt>Corrigir até</dt><dd>06/10, antes do vencimento de 12/10</dd></div></dl>
+      </header>
+      <div class="pd-reg">
+        <div class="cm-pilha cm-pilha--6">
+          <section class="cm-cartao"><div class="cm-cartao__corpo pd-corpo">
+            <h3 style="margin-top:0">Como reproduzir</h3><ol><li>Gerar cobranças de outubro com vencimento no dia 12 (feriado de Nossa Senhora Aparecida).</li><li>Abrir o boleto no portal do morador.</li><li>Pagar pelo app do banco no dia 13.</li></ol>
+            <div class="cm-q-duas" style="grid-template-columns:1fr 1fr;margin-top:10px"><div><h3>Esperado</h3><p>Vencimento impresso em 13/10 (dia útil seguinte) e pagamento no dia 13 sem multa.</p></div><div><h3>Obtido</h3><p>Vencimento impresso em 12/10; o banco cobra multa de 2% no dia 13 e o morador abre chamado.</p></div></div>
+            <h3>Ambiente</h3><p>Produção, versão 4.11.2. Banco do Brasil e Itaú. Calendário de feriados nacional carregado; o municipal não interfere.</p>
+          </div></section>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Código</h2></header><div class="cm-cartao__corpo"><ul class="cm-atividade">
+            <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="pull-request"></i></span><div><div class="cm-atividade__titulo"><a href="#">Pull request 2214: posterga vencimento em feriado bancário</a></div><div class="cm-atividade__desc">Bruno Teixeira, 2 aprovações de 2, testes passando</div></div><span class="cm-atividade__quando">hoje 10:02</span></li>
+            <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="commit"></i></span><div><div class="cm-atividade__titulo">a41f9c2 usa o calendário Febraban no cálculo do vencimento</div><div class="cm-atividade__desc">no ramo correcao/gac-1190-feriado</div></div><span class="cm-atividade__quando">ontem</span></li>
+          </ul></div></section>
+        </div>
+        <aside class="cm-pilha cm-pilha--6">
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Chamados ligados</h2><span class="cm-contador">14</span></header><div class="cm-cartao__corpo"><ul class="cm-atividade" style="margin:-8px -12px">
+            <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="whatsapp"></i></span><div><div class="cm-atividade__titulo"><a href="#">Chamado 48 177, Paulo Menezes</a></div><div class="cm-atividade__desc">"Paguei no dia 13 e veio multa"</div></div><span class="cm-atividade__quando">ontem</span></li>
+            <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="email"></i></span><div><div class="cm-atividade__titulo"><a href="#">Chamado 48 190, Lar Gestão</a></div><div class="cm-atividade__desc">Pedido de correção em lote</div></div><span class="cm-atividade__quando">ontem</span></li></ul></div></section>
+          <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Resposta aos chamados</h2></header><div class="cm-cartao__corpo"><textarea class="cm-area" aria-label="Resposta que vai para os chamados ligados">Corrigimos o vencimento dos boletos de outubro: quem pagar no dia 13 não paga multa. Se você já pagou com multa, o valor volta como crédito no boleto de novembro.</textarea></div></section>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Gravidade, Estado, Fechar e responder</li><li>Descrição</li><li>Código</li><li>Chamados ligados, resposta</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>"Gravidade alta, menu" e "Estado Em andamento, menu".</li><li>Pull request: "2 aprovações de 2, testes passando".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Ícones de canal no chamado: "WhatsApp", "e-mail"</li></ul></div>
+  </div>
+</section>
+
+<!-- 28.5 -->
+<section class="cm-doc-tela" id="t-notas" aria-labelledby="t-nt-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">28.5</span><h2 class="cm-doc-tela__titulo" id="t-nt-h">Notas da versão</h2><span class="cm-doc-tela__sub">o que mudou, escrito para quem usa</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>A cada versão, o produto publica o que mudou na central de ajuda, no sino de quem usa o GACO e, quando interessa, no portal dos síndicos. O texto nasce das demandas e bugs entregues; o gerente só reescreve para a linguagem do cliente e escolhe o público.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>À esquerda as versões; a atual está em rascunho.</li>
+      <li>"Puxar itens da sprint" preenche Novidades, Melhorias e Correções com os títulos; cada item tem o link de volta.</li>
+      <li>Público: equipe interna, administradoras, síndicos. Cada público vê só os itens marcados para ele.</li>
+      <li><b>Publicar</b> pede a data; a versão vai para o sino e para a central de ajuda.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Linear e o Notion publicam o changelog em três grupos fixos e com data; o Intercom separa o que vai para o cliente do que é interno; e o GitHub Releases puxa os itens entregues para não esquecer nenhum.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Notas da versão</h1><div class="cm-cabecalho-pagina__acoes"><button class="cm-botao" type="button"><i data-i="importar"></i>Puxar itens da sprint 41</button><button class="cm-botao cm-botao--principal" type="button" data-toast="Versão 4.12 publicada para administradoras e síndicos.">Publicar</button></div></div></header>
+      <div class="pd-notas">
+        <nav aria-label="Versões"><ul class="pd-versoes">
+          <li><a href="#" aria-current="page"><span>4.12</span><span class="cm-estado cm-estado--neutro cm-estado--leve">rascunho</span></a></li>
+          <li><a href="#"><span>4.11.2</span><span class="cm-t-legenda">22/09</span></a></li><li><a href="#"><span>4.11</span><span class="cm-t-legenda">09/09</span></a></li><li><a href="#"><span>4.10</span><span class="cm-t-legenda">26/08</span></a></li><li><a href="#"><span>4.9</span><span class="cm-t-legenda">12/08</span></a></li></ul></nav>
+        <div>
+          <div class="cm-linha cm-linha--quebra" style="margin-bottom:12px"><span class="cm-campo__rotulo">Público</span><label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Equipe interna</span></label><label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Administradoras</span></label><label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Síndicos, no portal</span></label><span class="cm-empurra cm-segmentado cm-segmentado--p" role="group" aria-label="Modo"><button type="button" aria-pressed="false">Editar</button><button type="button" aria-pressed="true">Prévia</button></span></div>
+          <article class="cm-cartao pd-nota-doc"><div class="cm-cartao__corpo" style="padding:20px 24px">
+            <h2>Versão 4.12</h2><p class="cm-t-legenda">Publicação prevista para 07/10/2026</p>
+            <h3><i data-i="lancamento"></i>Novidades</h3><ul><li><b>Reserva com Pix.</b> O morador paga a taxa do salão de festas na hora de reservar, e a portaria vê na lista do dia quem já pagou.</li><li><b>Prestação de contas com comentários do conselho.</b> O conselheiro pergunta na própria linha do balancete e a administradora responde ali.</li></ul>
+            <h3><i data-i="alta"></i>Melhorias</h3><ul><li>A conciliação aceita Enter para confirmar e mostra o que é igual e o que difere em cada par.</li><li>A 2ª via com novo vencimento mostra o antes e o depois do valor.</li></ul>
+            <h3><i data-i="bug"></i>Correções</h3><ul><li>Boleto com vencimento em feriado bancário passa para o dia útil seguinte. Quem pagou com multa no dia 13/10 recebe crédito em novembro.</li><li>O portal não mostrava o boleto do mês para inquilinos com mais de uma unidade.</li></ul>
+          </div></article>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Puxar itens, Publicar</li><li>Versões</li><li>Público, Editar ou Prévia</li><li>Texto</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Versão: "4.12, rascunho, página atual".</li><li>Publicar: aviso "Versão 4.12 publicada para administradoras e síndicos".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Os ícones dos grupos acompanham o título e são decorativos.</li></ul></div>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+var R={'Agora, out a nov':[['Reserva do salão com pagamento por Pix','23 administradoras','lancamento'],['Prestação de contas com comentários do conselho','11 administradoras','alta'],['Correção do vencimento em feriado','bug crítico','bug']],
+ 'Próximo, dez a jan':[['Assembleia virtual com votação por fração','17 administradoras','lancamento'],['Leitura de hidrômetro pelo celular do zelador','9 administradoras','lancamento'],['2ª via pelo WhatsApp sem login','14 administradoras','alta']],
+ 'Depois':[['Cartão de crédito parcelado na reserva','6 administradoras','alta'],['Integração com fechaduras do salão','3 administradoras','lancamento']]};
+var tipos={lancamento:'novidade',alta:'melhoria',bug:'bug'};
+document.getElementById('pd-roteiro').innerHTML=Object.keys(R).map(function(k){return '<section class="cm-kanban__coluna" aria-label="'+k+'"><header class="cm-kanban__cabeca"><h3 class="cm-kanban__titulo">'+k+'</h3><span class="cm-contador">'+R[k].length+'</span></header><div class="cm-kanban__cartoes">'+R[k].map(function(c){return '<a class="cm-kanban-cartao" href="#t-demanda" draggable="true"><span class="cm-kanban-cartao__titulo">'+c[0]+'</span><span class="cm-kanban-cartao__pe"><i data-i="'+c[2]+'" data-rotulo="'+tipos[c[2]]+'"></i>'+c[1]+'</span></a>'}).join('')+'</div></section>'}).join('');
+var B=[['Reserva do salão com pagamento por Pix','23',8,2,80,3,'No roteiro'],['2ª via pelo WhatsApp sem login','14',9,2,70,2,'Priorizada'],['Assembleia virtual com votação por fração','17',6,3,60,6,'Em análise'],['Leitura de hidrômetro pelo celular','9',5,2,80,3,'Priorizada'],['Relatório de inadimplência por bloco','12',7,1,90,1,'Nova'],['Cartão de crédito parcelado na reserva','6',4,1,50,4,'Nova']];
+document.getElementById('pd-backlog').innerHTML=B.map(function(b){var p=Math.round(b[2]*10*b[3]*b[4]/100/b[5]*10);return [p,b]}).sort(function(a,b){return b[0]-a[0]}).map(function(x){var b=x[1];return '<tr><td class="cm-tabela__principal"><a href="#t-demanda">'+b[0]+'</a></td><td>'+b[1]+' administradoras</td><td class="cm-num cm-celula-editavel" tabindex="0" aria-label="Alcance">'+b[2]+'</td><td class="cm-num cm-celula-editavel" tabindex="0" aria-label="Impacto">'+b[3]+'</td><td class="cm-num cm-celula-editavel" tabindex="0" aria-label="Confiança">'+b[4]+'%</td><td class="cm-num cm-celula-editavel" tabindex="0" aria-label="Esforço em semanas">'+b[5]+' sem</td><td class="cm-num cm-forte">'+x[0]+'</td><td><span class="cm-estado cm-estado--ponto cm-estado--neutro">'+b[6]+'</span></td></tr>'}).join('');
+var S={'A fazer':[['GAC-1188','tarefa','Aviso de reserva expirada','3','PS','']],'Em andamento':[['GAC-1182','historia','Pix na confirmação da reserva','5','LO','parado há 3 dias'],['GAC-1190','bug','Vencimento em feriado bancário','3','BT','']],'Em revisão':[['GAC-1179','historia','Lista do dia na portaria com "pago"','3','PS',''],['GAC-1185','tarefa','Webhook do Pix do Banco do Brasil','2','BT','parado há 4 dias'],['GAC-1186','bug','Inquilino com duas unidades','2','LO','']],'Em teste':[['GAC-1176','historia','Comentário na linha do balancete','5','PS','']],'Feito':[['GAC-1170','historia','Conciliação com Enter','8','LO',''],['GAC-1172','bug','Juros pro rata na 2ª via','3','BT','']]};
+var lim={'Em andamento':4,'Em revisão':3,'Em teste':3};var ti={historia:['livro','história'],bug:['bug','bug'],tarefa:['ferramentas','tarefa técnica']};
+document.getElementById('pd-sprint').innerHTML=Object.keys(S).map(function(k){return '<section class="cm-kanban__coluna" aria-label="'+k+'" style="width:250px"><header class="cm-kanban__cabeca"><h3 class="cm-kanban__titulo">'+k+'</h3><span class="cm-contador">'+S[k].length+(lim[k]?' de '+lim[k]:'')+'</span></header><div class="cm-kanban__cartoes">'+S[k].map(function(c){return '<a class="cm-kanban-cartao'+(c[5]?' is-esfriando':'')+'" href="#t-bug" draggable="true"><span class="cm-t-legenda">'+c[0]+'</span><span class="cm-kanban-cartao__titulo">'+c[2]+'</span><span class="cm-kanban-cartao__pe"><i data-i="'+ti[c[1]][0]+'" data-rotulo="'+ti[c[1]][1]+'"></i>'+c[3]+' pontos'+(c[5]?'<span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>'+c[5]+'</span>':'')+'<span class="cm-avatar cm-avatar--p">'+c[4]+'</span></span></a>'}).join('')+'</div></section>'}).join('');
+window.addEventListener('load',function(){qGrafico(document.getElementById('burn'),{categorias:['23','24','25','26','29','30','01'],altura:120,rotulo:'Pontos restantes por dia',formato:function(v){return String(Math.round(v))},series:[{nome:'Restantes',valores:[34,34,31,28,26,21,13],tipo:'barra',cor:2},{nome:'Ritmo ideal',valores:[34,30.6,27.2,23.8,20.4,17,13.6],tipo:'linha',cor:1}]})});
+})();
+</script>
+</body>
+</html>

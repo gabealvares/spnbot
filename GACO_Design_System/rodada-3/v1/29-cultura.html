@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pessoas, Cultura</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.pe-letra td{height:30px;background:var(--sup-2)!important;font:600 12.5px/1 var(--fonte-ui);color:var(--texto-2)}
+.pe-contato{display:flex;gap:2px}
+</style>
+</head>
+<body data-moldura='{"modulo":"cultura","secao":"Pessoas","item":"Pessoas","papel":"rh","usuario":{"nome":"Fernanda Lopes","cargo":"Analista de RH","iniciais":"FL","cor":"lc-av--c4"},"trilha":["Pessoas"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Diretório de pessoas da empresa. Papel: qualquer colaborador (RH vê mais colunas).</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Achar alguém da Administradora Alpha e falar com a pessoa: quem é, o que faz, em que equipe, se está disponível agora, e o caminho mais rápido (conversa interna, WhatsApp, ramal).</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Busca por nome, cargo ou habilidade ("quem sabe de CNAB?").</li>
+      <li>Filtros rápidos: Equipe, Local, Disponíveis agora, Aniversariantes do mês.</li>
+      <li>Ações na linha: abrir conversa interna (33), copiar ramal, ligar pelo WhatsApp.</li>
+      <li>Clicar no nome abre o perfil (29b); o organograma (29c) está no botão do topo.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o diretório do Microsoft Teams e do Slack mostra presença no avatar e a ação de conversar na linha, o BambooHR e a Gupy ordenam por nome com letra de índice e põem aniversário à mão. Lista em vez de grade de cartões: lê mais rápido e cabe 20 pessoas na tela.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Estado</span>
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Estado" data-p4-estados><button type="button" data-v="dados" aria-pressed="true">Com dados</button><button type="button" data-v="vazio">Busca sem resultado</button><button type="button" data-v="carregando">Carregando</button></div>
+    <span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="cultura"></div>
+</details>
+<div class="lc-cab-pagina">
+  <div class="lc-cab-pagina__txt"><h1>Pessoas</h1><p class="lc-cab-pagina__desc">86 pessoas na Administradora Alpha. 41 disponíveis agora.</p></div>
+  <div class="lc-cab-pagina__acoes"><a class="lc-btn" href="29c-cultura-organograma.html"><i data-i="organograma"></i>Organograma</a><button class="lc-btn lc-btn--principal" type="button"><i data-i="adicionar-pessoa"></i>Admitir pessoa</button></div>
+</div>
+<div class="lc-filtros">
+  <label class="lc-busca" style="width:340px"><i data-i="pesquisar"></i><input type="search" placeholder="Nome, cargo ou o que a pessoa sabe" aria-label="Pesquisar pessoas"></label>
+  <button class="lc-filtro" type="button">Equipe<i data-i="chevron-baixo"></i></button><button class="lc-filtro" type="button">Local<i data-i="chevron-baixo"></i></button>
+  <button class="lc-filtro" type="button" aria-pressed="false" data-alterna><span class="lc-presenca lc-presenca--on" style="position:static;border:0"></span>Disponíveis agora</button>
+  <button class="lc-filtro" type="button"><i data-i="aniversario"></i>Aniversariantes de outubro <span class="lc-contagem">6</span></button>
+</div>
+
+<div data-estado="dados">
+<div class="lc-tabela-cont"><table class="lc-tabela">
+  <caption class="lc-sr">Pessoas da empresa</caption>
+  <thead><tr><th scope="col" aria-sort="ascending"><button class="lc-ordenar" type="button">Pessoa</button></th><th scope="col">Equipe</th><th scope="col">Local</th><th scope="col">Agora</th><th scope="col">Aniversário</th><th scope="col"><span class="lc-sr">Falar com</span></th></tr></thead>
+  <tbody>
+    <tr class="pe-letra"><td colspan="6">A</td></tr>
+    <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c6">AB<span class="lc-presenca lc-presenca--on"></span></span><span><a class="lc-tabela__primaria" href="29b-cultura-perfil.html">Ana Beatriz Souza</a><span class="lc-pessoa__sub">Atendente de suporte</span></span></span></td><td>Suporte</td><td>Sede, São Paulo</td><td><span class="lc-estado lc-estado--sucesso">Disponível</span></td><td>14/03</td>
+      <td class="pe-contato"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Ana Beatriz Souza" data-dica="Conversar"><i data-i="conversa"></i></button><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Ligar para Ana Beatriz Souza, ramal 214" data-dica="Ramal 214"><i data-i="telefone"></i></button></td></tr>
+    <tr class="pe-letra"><td colspan="6">B</td></tr>
+    <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c2">BT<span class="lc-presenca lc-presenca--on"></span></span><span><a class="lc-tabela__primaria" href="29b-cultura-perfil.html">Bianca Torres</a><span class="lc-pessoa__sub">Líder de suporte</span></span></span></td><td>Suporte</td><td>Sede, São Paulo</td><td><span class="lc-estado lc-estado--sucesso">Disponível</span></td><td>08/10 <span class="lc-etiqueta lc-etiqueta--sistema">semana que vem</span></td>
+      <td class="pe-contato"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Bianca Torres"><i data-i="conversa"></i></button><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Ligar para Bianca Torres, ramal 201"><i data-i="telefone"></i></button></td></tr>
+    <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c1">BS<span class="lc-presenca lc-presenca--reuniao"></span></span><span><a class="lc-tabela__primaria" href="#">Bruno Siqueira</a><span class="lc-pessoa__sub">Executivo de vendas</span></span></span></td><td>Comercial</td><td>Campinas, remoto</td><td><span class="lc-estado lc-estado--aviso">Em reunião até 11:30</span></td><td>22/07</td>
+      <td class="pe-contato"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Bruno Siqueira"><i data-i="conversa"></i></button><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Ligar para Bruno Siqueira"><i data-i="telefone"></i></button></td></tr>
+    <tr class="pe-letra"><td colspan="6">C</td></tr>
+    <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c2">CF<span class="lc-presenca lc-presenca--ocupado"></span></span><span><a class="lc-tabela__primaria" href="#">Camila Freitas</a><span class="lc-pessoa__sub">Designer de produto</span></span></span></td><td>Produto</td><td>Remoto, Recife</td><td><span class="lc-estado lc-estado--perigo">Não perturbe até 12:00</span></td><td>30/01</td>
+      <td class="pe-contato"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Camila Freitas"><i data-i="conversa"></i></button></td></tr>
+    <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c2">CP<span class="lc-presenca lc-presenca--on"></span></span><span><a class="lc-tabela__primaria" href="#">Cláudio Prates</a><span class="lc-pessoa__sub">Diretor</span></span></span></td><td>Diretoria</td><td>Sede, São Paulo</td><td><span class="lc-estado lc-estado--sucesso">Disponível</span></td><td>05/12</td>
+      <td class="pe-contato"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Cláudio Prates"><i data-i="conversa"></i></button><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Ligar para Cláudio Prates"><i data-i="telefone"></i></button></td></tr>
+    <tr class="pe-letra"><td colspan="6">E</td></tr>
+    <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c8">EC<span class="lc-presenca lc-presenca--ausente"></span></span><span><a class="lc-tabela__primaria" href="#">Eduardo Campos</a><span class="lc-pessoa__sub">Atendente de suporte</span></span></span></td><td>Suporte</td><td>Sede, São Paulo</td><td><span class="lc-estado lc-estado--neutro">De férias até 13/10</span></td><td>19/10</td>
+      <td class="pe-contato"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Eduardo Campos"><i data-i="conversa"></i></button></td></tr>
+    <tr class="pe-letra"><td colspan="6">M</td></tr>
+    <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c8">MT<span class="lc-presenca lc-presenca--off"></span></span><span><a class="lc-tabela__primaria" href="#">Marcos Teixeira</a><span class="lc-pessoa__sub">Engenheiro de manutenção</span></span></span></td><td>Operações</td><td>Em campo</td><td><span class="lc-estado lc-estado--info">Vistoria no Parque das Águas</span></td><td>11/04</td>
+      <td class="pe-contato"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Marcos Teixeira"><i data-i="conversa"></i></button><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Ligar para Marcos Teixeira pelo WhatsApp"><i data-i="telefone"></i></button></td></tr>
+  </tbody></table></div>
+<div class="lc-paginacao"><span class="lc-paginacao__info">Mostrando <b>8</b> de <b>86</b></span><div class="lc-paginacao__pags"><button type="button" aria-current="page">1</button><button type="button">2</button><button type="button">3</button><button type="button">…</button><button type="button">11</button></div></div>
+</div>
+<div data-estado="vazio" hidden><div class="lc-caixa"><div class="lc-vazio lc-vazio--centro"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="pessoa"></i></span><h2 class="lc-vazio__titulo">Ninguém com "Gabriela"</h2><p class="lc-vazio__texto">Talvez a pessoa ainda não tenha sido admitida no sistema, ou o nome esteja diferente. Tente o sobrenome ou o cargo.</p><div class="lc-grupo-btn"><button class="lc-btn" type="button">Limpar busca</button></div></div></div></div>
+<div data-estado="carregando" hidden aria-busy="true"><p class="lc-sr" role="status">Carregando pessoas.</p><div class="lc-caixa"><ul class="lc-lista">
+  <li><span class="lc-esqueleto lc-esqueleto--av"></span><span class="lc-cresce"><span class="lc-esqueleto lc-esqueleto--media"></span></span></li><li><span class="lc-esqueleto lc-esqueleto--av"></span><span class="lc-cresce"><span class="lc-esqueleto lc-esqueleto--media"></span></span></li><li><span class="lc-esqueleto lc-esqueleto--av"></span><span class="lc-cresce"><span class="lc-esqueleto lc-esqueleto--media"></span></span></li></ul></div></div>
+
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Organograma, Admitir pessoa, busca, filtros, ordenar, e por linha: nome, Conversar, Ligar. Linhas de letra não recebem foco.</dd>
+    <dt>O que é anunciado</dt><dd>Presença é dita pela coluna "Agora" em palavra ("Em reunião até 11:30"); o ponto no avatar é reforço visual. A busca anuncia o número de resultados.</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Conversar com Bianca Torres", "Ligar para Bianca Torres, ramal 201", "Ligar para Marcos Teixeira pelo WhatsApp".</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

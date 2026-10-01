@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playbooks do CS</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-pb{display:grid;grid-template-columns:320px minmax(0,1fr);gap:16px;align-items:start}
+.q3-pbi{display:block;width:100%;text-align:left;padding:10px 12px;border-bottom:1px solid var(--cm-filete)}
+.q3-pbi:hover{background:var(--cm-camada-2)}
+.q3-pbi[aria-current="true"]{background:var(--cm-selecao);box-shadow:inset 3px 0 0 var(--cm-selecao-filete)}
+.q3-pbi b{display:block;font-size:13.5px;font-weight:650}
+.q3-pbi span{display:block;font-size:12.5px;color:var(--cm-texto-2)}
+@media (max-width:899px){.q3-pb{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Playbooks <small>CS, Trabalho do CS, Playbooks do CS. Biblioteca à esquerda; à direita, o playbook "Risco de renovação" aplicado ao Res. Vila Serena, com passos, prazos e quem faz.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>Playbook é a receita que a equipe repete quando algo acontece (saúde cai, NPS baixo, renovação em 60 dias, síndico novo). Aplicado a um cliente, vira uma sequência de tarefas com prazo relativo, dono e modelo de mensagem. Os passos são uma sequência de verdade, então ganham número.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Escolha o playbook na biblioteca; a coluna da direita mostra os passos.</li><li>"Aplicar a um cliente" pede o cliente e a data de início; os prazos são calculados a partir dela.</li><li>Cada passo tem botão que faz a ação (ligar, enviar modelo, agendar visita); concluir marca o tique verde e libera o próximo.</li><li>"Editar playbook" (só gestor) abre os passos em modo de edição com arrastar para reordenar.</li><li>Gatilho automático: "quando a saúde ficar abaixo de 45" aplica sozinho e avisa o responsável no Para você.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Gainsight (CTAs e playbooks), o ChurnZero (plays) e o HubSpot (sequences) organizam a resposta a um sinal como passos com prazo relativo e modelo de mensagem; o gatilho por regra de saúde é o padrão do Gainsight.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Aplicado ao Vila Serena</button><button type="button" data-q3-estado="biblioteca" aria-pressed="false">Só a biblioteca</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"CS","tela":"Playbooks do CS","papel":"CS","usuario":{"nome":"Rafael Menezes","iniciais":"RM","cargo":"Gerente de relacionamento, CS","presenca":"disponivel","tom":5}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Playbooks</h1><div class="cm-cabecalho-pagina__acoes"><button class="cm-botao" type="button"><i data-i="adicionar"></i>Novo playbook</button></div></div></header>
+ <div class="q3-pb">
+  <section class="cm-cartao" aria-labelledby="t-bib"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-bib">Biblioteca</h2><span class="cm-t-legenda">8</span></header>
+   <button class="q3-pbi" type="button" aria-current="true"><b>Risco de renovação</b><span>7 passos em 21 dias. Gatilho: renova em 60 dias e saúde abaixo de 50.</span></button>
+   <button class="q3-pbi" type="button"><b>Detrator de NPS</b><span>4 passos em 7 dias. Gatilho: nota de 0 a 6.</span></button>
+   <button class="q3-pbi" type="button"><b>Síndico novo eleito</b><span>5 passos em 30 dias. Gatilho: troca de síndico na ata.</span></button>
+   <button class="q3-pbi" type="button"><b>Implantação de condomínio</b><span>12 passos em 45 dias. Aplicado na passagem do Comercial.</span></button>
+   <button class="q3-pbi" type="button"><b>Inadimplência acima de 15%</b><span>4 passos em 14 dias.</span></button>
+   <button class="q3-pbi" type="button"><b>Saída do cliente</b><span>6 passos. Entrega de documentos e acesso.</span></button>
+  </section>
+  <section class="cm-cartao" aria-labelledby="t-pb">
+   <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-pb">Risco de renovação <span data-se="padrao" class="cm-texto-2" style="font-weight:500">, aplicado ao Res. Vila Serena</span></h2><button class="cm-botao cm-botao--p cm-botao--discreto" type="button"><i data-i="editar"></i>Editar playbook</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-se="biblioteca" data-q3-modal="modal-aplicar">Aplicar a um cliente</button></header>
+   <div class="cm-cartao__corpo" data-se="padrao" style="border-bottom:1px solid var(--cm-filete)"><div class="cm-linha" style="flex-wrap:wrap"><span>Iniciado em 25/09 por regra de saúde (41). Renova em 24/10.</span><div class="cm-progresso cm-progresso--sucesso cm-empurra" style="width:220px"><span class="cm-progresso__barra"><i style="--p:43%"></i></span><span class="cm-progresso__valor">3 de 7</span></div></div></div>
+   <div class="cm-cartao__corpo" style="padding-top:4px">
+    <ol class="cm-passos">
+     <li class="is-feito"><div><div class="cm-passos__titulo">Ler o histórico e os chamados dos últimos 90 dias</div><div class="cm-passos__desc">Feito por Rafael. Achado: 3 chamados de portão, NPS 4.</div></div><span class="cm-passos__meta">dia 1, feito 25/09</span></li>
+     <li class="is-feito"><div><div class="cm-passos__titulo">Ligar para o síndico e ouvir</div><div class="cm-passos__desc">Ligação de 14 min com Osvaldo Brandão.</div></div><span class="cm-passos__meta">dia 2, feito 25/09</span></li>
+     <li class="is-feito"><div><div class="cm-passos__titulo">Alinhar com Operações a causa do problema</div><div class="cm-passos__desc">Márcio Azevedo trocou o motor do portão pela Portec, OS 471.</div></div><span class="cm-passos__meta">dia 5, feito 29/09</span></li>
+     <li class="is-atual"><div><div class="cm-passos__titulo">Visita presencial com o síndico</div><div class="cm-passos__desc">Levar o relatório de chamados e a revisão mensal do portão como proposta.</div></div><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q3-toast="Visita agendada para 03/10 às 10h">Agendar visita</button></li>
+     <li><div><div class="cm-passos__titulo">Enviar proposta de renovação</div><div class="cm-passos__desc">Modelo "Renovação com reajuste". Desconto até 5% sem aprovação.</div></div><span class="cm-passos__meta">dia 10, 04/10</span></li>
+     <li><div><div class="cm-passos__titulo">Retorno em 3 dias se não houver resposta</div><div class="cm-passos__desc">WhatsApp ao síndico com o modelo "lembrete_proposta".</div></div><span class="cm-passos__meta">dia 13, 07/10</span></li>
+     <li><div><div class="cm-passos__titulo">Assinatura ou registro do motivo de saída</div><div class="cm-passos__desc">Se sair, aplica o playbook "Saída do cliente".</div></div><span class="cm-passos__meta">dia 21, 15/10</span></li>
+    </ol></div>
+  </section>
+ </div>
+ <div class="cm-sobreposicao" id="modal-aplicar" hidden><div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="t-ap"><div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="t-ap">Aplicar "Risco de renovação"</h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+  <div class="cm-modal__corpo cm-pilha"><div class="cm-campo"><label class="cm-campo__rotulo" for="ap-c">Cliente</label><div class="cm-entrada"><i data-i="condominio"></i><input id="ap-c" value="Ed. Porto Belo"></div></div><div class="cm-campo"><label class="cm-campo__rotulo" for="ap-d">Começa em</label><div class="cm-entrada"><i data-i="calendario"></i><input id="ap-d" value="01/10/2026"></div><p class="cm-campo__ajuda">O último passo cai em 22/10, 12 dias antes do vencimento.</p></div></div>
+  <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q3-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-q3-fechar data-q3-toast="Playbook aplicado ao Ed. Porto Belo. 7 tarefas criadas.">Aplicar</button></div></div></div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título e Novo playbook; biblioteca (cada playbook é um botão; o atual tem aria-current); cabeçalho do playbook, Editar, Aplicar; progresso; passos em ordem, com o botão do passo atual.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Lista ordenada; cada passo diz se está feito e quando, e o atual tem o botão. Progresso "3 de 7".</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Fechar" no modal.</p></section>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>

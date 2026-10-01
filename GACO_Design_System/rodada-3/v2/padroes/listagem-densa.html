@@ -71,8 +71,8 @@
     <span class="cm-empurra"><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" id="ld-limpar">Limpar seleção</button></span>
   </div>
   <div class="ld-total"><span><b>1–23</b> de 23 com o filtro</span><span class="cm-chips"><span class="cm-chip"><span>Condomínio</span> Parque das Águas<button type="button" aria-label="Tirar filtro Condomínio"><i data-i="fechar"></i></button></span></span><span>Ordenado por prazo, mais urgente primeiro</span></div>
-  <div class="cm-tabela-caixa cm-tabela-caixa--alta" style="--tabela-altura:calc(100vh - 360px)">
-    <table class="cm-tabela">
+  <div class="cm-tabela-caixa cm-tabela-caixa--alta" style="--tabela-altura:calc(100vh - 410px)">
+    <table class="cm-tabela cm-tabela--acoes-visiveis">
       <thead><tr>
         <th class="cm-tabela__marcar cm-tabela__fixa"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar todas desta página" id="ld-todas"><span class="cm-marcar__caixa"></span></label></th>
         <th>Nº</th>
@@ -97,7 +97,7 @@
     <div class="cm-modal__corpo">
       <div class="ld-modal-grade">
         <div class="cm-campo"><label class="cm-campo__rotulo" for="mo-c">Condomínio <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-selecao"><select id="mo-c"><option>Cond. Parque das Águas</option><option>Cond. Vila Serena</option><option>Edifício Solar do Batel</option></select><i data-i="chevron-baixo"></i></div></div>
-        <div class="cm-campo"><label class="cm-campo__rotulo" for="mo-l">Local <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="mo-l" value="Subsolo 1, vagas 37 e 38" autofocus></div></div>
+        <div class="cm-campo"><label class="cm-campo__rotulo" for="mo-l">Local <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="mo-l" value="Subsolo 1, vagas 37 e 38" data-q2-foco></div></div>
         <div class="cm-campo"><label class="cm-campo__rotulo" for="mo-tp">Tipo</label><div class="cm-selecao"><select id="mo-tp"><option>Corretiva</option><option>Preventiva</option><option>Emergencial</option></select><i data-i="chevron-baixo"></i></div></div>
         <div class="cm-campo"><label class="cm-campo__rotulo" for="mo-p">Prazo</label><div class="cm-entrada"><i data-i="calendario"></i><input id="mo-p" value="02/10/2026"></div></div>
         <div class="cm-campo largo"><label class="cm-campo__rotulo" for="mo-f">Fornecedor</label>
@@ -170,6 +170,10 @@
   function sel(){var n=corpo.querySelectorAll('input:checked').length;massa.hidden=!n;filtros.hidden=!!n;document.getElementById('ld-nsel').textContent=n===1?'1 selecionada':n+' selecionadas';
     corpo.querySelectorAll('tr').forEach(function(tr){tr.setAttribute('aria-selected',tr.querySelector('input').checked)})}
   corpo.addEventListener('change',sel);
+  var ultimo=null;corpo.addEventListener('click',function(e){var cb=e.target.closest('input[type=checkbox]');if(!cb) return;var trs=[].slice.call(corpo.querySelectorAll('tr'));var i=trs.indexOf(cb.closest('tr'));if(e.shiftKey&&ultimo!=null){var a=Math.min(i,ultimo),b=Math.max(i,ultimo);for(var k=a;k<=b;k++) trs[k].querySelector('input').checked=cb.checked;sel()}ultimo=i});
+  document.addEventListener('keydown',function(e){if(cmQ2.digitando(e)||document.querySelector('.cm-sobreposicao:not([hidden])')) return;
+    if(e.key==='Escape'&&!massa.hidden){e.preventDefault();document.getElementById('ld-limpar').click()}
+    if(e.key==='X'&&e.shiftKey&&cmQ2.lista){e.preventDefault();e.stopImmediatePropagation();var it=cmQ2.lista.itens()[cmQ2.lista.i];var cb=it&&it.querySelector('input');if(cb){cb.dispatchEvent(new MouseEvent('click',{bubbles:true,shiftKey:true}))}}},true);
   document.getElementById('ld-todas').addEventListener('change',function(){var c=this.checked;corpo.querySelectorAll('input').forEach(function(i){i.checked=c});sel()});
   document.getElementById('ld-limpar').addEventListener('click',function(){corpo.querySelectorAll('input').forEach(function(i){i.checked=false});document.getElementById('ld-todas').checked=false;sel()});
   document.getElementById('ld-excluir').addEventListener('click',function(){var tr=[].slice.call(corpo.querySelectorAll('tr[aria-selected="true"]'));var n=tr.length;tr.forEach(function(t){t.hidden=true});document.getElementById('ld-limpar').click();

@@ -286,3 +286,19 @@ button.cm-linha-lista{width:100%;text-align:left}
 .cm-ancora>.cm-menu{position:absolute;right:0;top:calc(100% + 4px);z-index:var(--cm-z-menu)}
 .cm-ancora>.cm-menu.is-acima{top:auto;bottom:calc(100% + 4px)}
 .cm-ancora>.cm-menu.is-esquerda{right:auto;left:0}
+
+/* ===== Q15 Tabela simples quebra texto (composição de valor no celular) ===== */
+.cm-tabela--simples td:not(.cm-num){white-space:normal}
+
+/* ===== Q16 Celular: teclado simulado (só para mostrar o compositor acima do teclado) ===== */
+.cm-teclado-simulado{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;padding:8px 4px 10px;background:var(--cm-camada-3);border-top:1px solid var(--cm-filete)}
+.cm-teclado-simulado span{height:38px;display:flex;align-items:center;justify-content:center;background:var(--cm-camada-1);border-radius:var(--cm-raio-3);font-size:15px;color:var(--cm-texto-1)}
+.cm-teclado-simulado span.is-largo{grid-column:span 6}
+.cm-teclado-simulado span.is-medio{grid-column:span 2}
+/* tela de celular com a altura toda: conversa rola, compositor fica no pé */
+.cm-tela-celular{display:flex;flex-direction:column;height:calc(100dvh - var(--cm-moldura-altura,52px) - var(--cm-trilha-altura,0px) - var(--cm-barra-inferior,62px))}
+.cm-tela-celular--sem-barra{height:calc(100dvh - var(--cm-moldura-altura,52px) - var(--cm-trilha-altura,0px))}
+.cm-tela-celular>.cm-conversa{flex:1;overflow:auto;padding:12px}
+.cm-cabeca-celular{display:flex;align-items:center;gap:8px;min-height:52px;padding:0 6px;border-bottom:1px solid var(--cm-filete);background:var(--cm-camada-1)}
+.cm-cabeca-celular__titulo{flex:1;min-width:0;font-weight:700;font-size:15px;line-height:18px}
+.cm-cabeca-celular__titulo small{display:block;font-weight:400;font-size:12px;color:var(--cm-texto-2)}

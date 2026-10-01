@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Implantação Residencial Aurora, Projetos</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.pd-feita .lc-tabela__primaria{color:var(--texto-3);text-decoration:line-through}
+.pd-nova td{height:44px}
+.pd-nova .lc-entrada{border-style:dashed}
+</style>
+</head>
+<body data-moldura='{"modulo":"projetos","secao":"Projetos","item":"Todos os projetos","papel":"gerente-cs","usuario":{"nome":"Letícia Araújo","cargo":"Gerente de implantação","iniciais":"LA","cor":"lc-av--c3"},"trilha":["Projetos","Implantação Residencial Aurora"],"acaoTrilha":"<span class=\"lc-paginador\"><button class=\"lc-btn lc-btn--icone lc-btn--discreto\" type=\"button\" aria-label=\"Projeto anterior\"><svg class=\"lc-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m15 18-6-6 6-6\"/></svg></button><b>1</b> de 7<button class=\"lc-btn lc-btn--icone lc-btn--discreto\" type=\"button\" aria-label=\"Próximo projeto\"><svg class=\"lc-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></button></span>"}'>
+<main id="conteudo">
+<div class="lc-envolto">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Projeto em detalhe: fases na barra de etapas, tarefas agrupadas por fase.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p>
+      <p>Tocar uma implantação do começo ao fim: em que fase está, o que trava, quem faz o quê até quando, e o que falta para o primeiro boleto sair pela administradora nova.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>A barra de etapas mostra as 6 fases; clicar numa fase filtra as tarefas dela. "Avançar fase" só libera com as tarefas obrigatórias feitas.</li>
+      <li>Marcar a caixa conclui a tarefa (com desfazer). Clicar no nome abre o painel lateral com subtarefas e comentários.</li>
+      <li>"Adicionar tarefa" é uma linha no fim do grupo: escreve, Enter salva, Esc cancela.</li>
+      <li>Aba Cronograma leva ao Gantt (27c); "1 de 7" anda entre projetos.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p>
+      <p>o Asana e o Todoist concluem tarefa pela caixa ao lado do nome, o Salesforce Path mostra a fase como barra clicável (padrão já usado no CS), e o Linear abre a tarefa num painel sem perder a lista. O bloqueio entre tarefas vem do Jira ("bloqueada por").</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="projetos"></div>
+</details>
+</div>
+
+<div class="lc-cab-registro">
+  <div class="lc-cab-registro__titulo">
+    <span class="lc-ladrilho lc-ladrilho--48"><i data-i="condominio"></i></span>
+    <div><h1>Implantação Residencial Aurora</h1>
+      <div class="lc-cab-registro__meta" style="margin:4px 0 0"><span>Modelo: Implantação de cliente</span><span class="lc-estado lc-estado--aviso">Em risco</span><span>Atualizado por Renata Oliveira há 2 h</span></div></div>
+    <button class="lc-btn lc-btn--icone lc-btn--discreto lc-estrela" type="button" aria-pressed="true" aria-label="Favorito" data-alterna><i data-i="estrela"></i></button>
+    <div class="lc-cab-registro__acoes"><button class="lc-btn" type="button"><i data-i="comentario"></i>Comentar</button><button class="lc-btn lc-btn--principal" type="button" disabled aria-describedby="av-d">Avançar fase</button></div>
+  </div>
+  <p id="av-d" class="lc-sr">Faltam 4 tarefas obrigatórias da fase Migração de dados.</p>
+  <dl class="lc-campos-chave" style="margin-top:12px">
+    <div><dt>Cliente</dt><dd><a href="#">Residencial Aurora</a></dd></div>
+    <div><dt>Síndico</dt><dd>Jorge Bastos</dd></div>
+    <div><dt>Início</dt><dd>01/09/2026</dd></div>
+    <div><dt>Entrega</dt><dd>30/10/2026</dd></div>
+    <div><dt>Progresso</dt><dd>22 de 48 tarefas</dd></div>
+    <div><dt>Primeiro boleto pela Alpha</dt><dd>10/11/2026</dd></div>
+  </dl>
+  <div class="lc-etapas-cont" style="padding:4px 0 12px">
+    <ol class="lc-etapas" aria-label="Fases">
+      <li class="lc-etapa lc-etapa--feita"><button type="button"><i data-i="feito"></i>Kickoff</button></li>
+      <li class="lc-etapa lc-etapa--feita"><button type="button"><i data-i="feito"></i>Levantamento</button></li>
+      <li class="lc-etapa lc-etapa--atual"><button type="button" aria-current="step">Migração de dados<small>há 12 dias</small></button></li>
+      <li class="lc-etapa"><button type="button">Configuração</button></li>
+      <li class="lc-etapa"><button type="button">Treinamento</button></li>
+      <li class="lc-etapa"><button type="button">Entrada em operação</button></li>
+    </ol>
+  </div>
+</div>
+
+<div class="lc-envolto">
+<div class="lc-reg">
+  <div class="lc-reg__principal">
+    <div class="lc-abas" role="tablist" aria-label="Seções do projeto">
+      <button role="tab" aria-selected="true" aria-controls="ab-tar">Tarefas <span class="lc-contagem">48</span></button>
+      <a href="27c-projetos-cronograma.html">Cronograma</a>
+      <button role="tab" aria-selected="false" aria-controls="ab-arq">Arquivos <span class="lc-contagem">14</span></button>
+      <button role="tab" aria-selected="false" aria-controls="ab-ativ">Atividade</button>
+    </div>
+    <div id="ab-tar">
+      <div class="lc-tabela-cont">
+      <table class="lc-tabela">
+        <caption class="lc-sr">Tarefas por fase</caption>
+        <thead><tr><th class="lc-tabela__sel"><span class="lc-sr">Concluída</span></th><th scope="col">Tarefa</th><th scope="col">Responsável</th><th scope="col">Prazo</th><th scope="col">Estado</th></tr></thead>
+        <tbody>
+          <tr class="lc-tabela__grupo"><td colspan="5"><button type="button" aria-expanded="false"><i data-i="chevron-baixo"></i>Kickoff e levantamento</button><span class="lc-contagem">14 de 14 feitas</span></td></tr>
+          <tr class="lc-tabela__grupo"><td colspan="5"><button type="button" aria-expanded="true"><i data-i="chevron-baixo"></i>Migração de dados</button><span class="lc-contagem">2 de 6 feitas</span></td></tr>
+          <tr class="pd-feita"><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" checked aria-label="Concluída: Receber saldos bancários de 31/08"><span class="lc-marcar__caixa"></span></label></td><td><a href="#" class="lc-tabela__primaria">Receber saldos bancários de 31/08</a></td><td>Renata Oliveira</td><td>05/09</td><td><span class="lc-estado-forma"><i data-i="feito"></i>Feita</span></td></tr>
+          <tr class="pd-feita"><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" checked aria-label="Concluída: Importar cadastro de 96 unidades"><span class="lc-marcar__caixa"></span></label></td><td><a href="#" class="lc-tabela__primaria">Importar cadastro de 96 unidades e moradores</a></td><td>Letícia Araújo</td><td>10/09</td><td><span class="lc-estado-forma"><i data-i="feito"></i>Feita</span></td></tr>
+          <tr aria-selected="true"><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Concluir: Importar inadimplência histórica"><span class="lc-marcar__caixa"></span></label></td><td><a href="#" class="lc-tabela__primaria" data-abrir="painel-tarefa">Importar inadimplência histórica (18 meses)</a><span class="lc-tabela__sub">Esperando a planilha da Habitat Administradora</span></td><td>Renata Oliveira</td><td class="lc-valor-neg">30/09, ontem</td><td><span class="lc-estado lc-estado--perigo">Atrasada</span></td></tr>
+          <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Concluir: Conferir frações ideais"><span class="lc-marcar__caixa"></span></label></td><td><a href="#" class="lc-tabela__primaria">Conferir frações ideais com a convenção</a><span class="lc-tabela__sub">Soma dá 99,98%; faltam 0,02% na torre 2</span></td><td>Letícia Araújo</td><td>03/10</td><td><span class="lc-estado-forma"><i data-i="em-andamento"></i>Em andamento</span></td></tr>
+          <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Concluir: Migrar boletos de outubro"><span class="lc-marcar__caixa"></span></label></td><td><a href="#" class="lc-tabela__primaria">Migrar boletos de novembro para o Banco Inter</a><span class="lc-tabela__sub">Bloqueada por: Importar inadimplência histórica</span></td><td>Renata Oliveira</td><td>06/10</td><td><span class="lc-estado-forma"><i data-i="bloquear"></i>Bloqueada</span></td></tr>
+          <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Concluir: Cadastrar fornecedores"><span class="lc-marcar__caixa"></span></label></td><td><a href="#" class="lc-tabela__primaria">Cadastrar 9 fornecedores e contratos ativos</a></td><td>Rafael Lima</td><td>08/10</td><td><span class="lc-estado-forma"><i data-i="a-fazer"></i>A fazer</span></td></tr>
+          <tr class="pd-nova"><td></td><td colspan="4"><label class="lc-sr" for="nova">Nova tarefa em Migração de dados</label><input id="nova" class="lc-entrada" placeholder="Adicionar tarefa e apertar Enter"></td></tr>
+          <tr class="lc-tabela__grupo"><td colspan="5"><button type="button" aria-expanded="false"><i data-i="chevron-baixo"></i>Configuração</button><span class="lc-contagem">0 de 11</span></td></tr>
+          <tr class="lc-tabela__grupo"><td colspan="5"><button type="button" aria-expanded="false"><i data-i="chevron-baixo"></i>Treinamento e entrada em operação</button><span class="lc-contagem">0 de 17</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div id="ab-arq" hidden><ul class="lc-anexos">
+      <li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="convencao"></i></span><span class="lc-anexo__nome">Convenção do Residencial Aurora.pdf</span><span class="lc-anexo__info">recebida em 02/09</span></li>
+      <li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="planilha"></i></span><span class="lc-anexo__nome">Unidades e moradores.xlsx</span><span class="lc-anexo__info">96 linhas importadas</span></li></ul></div>
+    <div id="ab-ativ" hidden><p class="lc-legenda">Atividade do projeto.</p></div>
+  </div>
+
+  <aside class="lc-reg__lado" aria-label="Contexto do projeto">
+    <div class="lc-alerta lc-alerta--aviso"><i data-i="aviso"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Por que está em risco</span>A Habitat Administradora (anterior) não mandou a inadimplência dos últimos 18 meses. Sem ela, o boleto de novembro sai sem débitos antigos.<div class="lc-alerta__acoes"><button class="lc-btn lc-btn--p" type="button">Cobrar a Habitat por e-mail</button></div></div></div>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Equipe</h2></div>
+      <ul class="lc-lista">
+        <li><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c3">LA<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-pessoa__nome">Letícia Araújo</span><span class="lc-pessoa__sub">Gerente do projeto</span></span></span></li>
+        <li><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c5">RO<span class="lc-presenca lc-presenca--reuniao"></span></span><span><span class="lc-pessoa__nome">Renata Oliveira</span><span class="lc-pessoa__sub">Financeiro</span></span></span></li>
+        <li><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c7">RL<span class="lc-presenca lc-presenca--off"></span></span><span><span class="lc-pessoa__nome">Rafael Lima</span><span class="lc-pessoa__sub">Operações</span></span></span></li>
+      </ul></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Marcos</h2></div>
+      <ul class="lc-agenda" style="padding:0 20px 8px">
+        <li><span class="lc-data"><b>08</b><span>out</span></span><span>Reunião de configuração com o síndico<span class="lc-agenda__sub">Jorge Bastos, online</span></span><span></span></li>
+        <li><span class="lc-data"><b>22</b><span>out</span></span><span>Treinamento do conselho<span class="lc-agenda__sub">Salão de festas, 19:00</span></span><span></span></li>
+        <li><span class="lc-data"><b>10</b><span>nov</span></span><span>Primeiro boleto pela Alpha</span><span></span></li>
+      </ul></section>
+  </aside>
+</div>
+</div>
+
+<div class="lc-envolto lc-envolto--pe">
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl>
+    <dt>Ordem de foco</dt><dd>Favorito, Comentar, Avançar fase (desabilitado com motivo em aria-describedby), campos-chave, fases, abas, tabela (caixa de concluir, nome da tarefa), Adicionar tarefa, painel lateral.</dd>
+    <dt>O que é anunciado</dt><dd>Cada caixa diz o que conclui ("Concluir: Importar inadimplência histórica"). Bloqueada é ícone + palavra. O painel da tarefa é diálogo com título; Esc fecha e devolve o foco ao nome da tarefa.</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Favorito" (estrela, aria-pressed), "Projeto anterior", "Próximo projeto", "Fechar tarefa".</dd>
+  </dl>
+</details>
+</div>
+</main>
+
+<aside class="lc-painel" id="painel-tarefa" hidden role="dialog" aria-modal="false" aria-labelledby="pt-t">
+  <div class="lc-painel__cab"><h2 id="pt-t">Importar inadimplência histórica</h2><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Fechar tarefa" data-fechar><i data-i="fechar"></i></button></div>
+  <div class="lc-painel__corpo lc-pilha">
+    <dl class="lc-props"><dt>Estado</dt><dd><span class="lc-estado lc-estado--perigo">Atrasada</span></dd><dt>Responsável</dt><dd>Renata Oliveira</dd><dt>Prazo</dt><dd>30/09/2026</dd><dt>Bloqueia</dt><dd>Migrar boletos de novembro</dd></dl>
+    <div><p class="lc-t-subsecao">Subtarefas</p>
+      <div class="lc-pilha lc-pilha--p" style="margin-top:6px"><label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span>Pedir a planilha à Habitat (e-mail de 12/09)</label>
+      <label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span>Conferir com o livro do síndico</label>
+      <label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span>Importar e lançar acordos ativos</label></div></div>
+    <div class="lc-comentario" style="padding:0;border:0"><span class="lc-av lc-av--24 lc-av--c5">RO</span><div class="lc-comentario__bolha"><b>Renata Oliveira</b>: liguei na Habitat, prometeram até sexta. Se não vier, uso o livro do síndico.<div class="lc-legenda">hoje, 09:12</div></div></div>
+    <div class="lc-campo"><label class="lc-rotulo" for="com">Comentar</label><textarea id="com" class="lc-area-texto" style="min-height:64px" placeholder="Escreva e use @ para mencionar"></textarea></div>
+  </div>
+  <div class="lc-painel__pe"><button class="lc-btn" type="button" data-fechar>Fechar</button><button class="lc-btn lc-btn--principal" type="button" data-fechar data-toast="Tarefa concluída." data-toast-desfazer>Concluir tarefa</button></div>
+</aside>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+<script>
+document.getElementById("nova").addEventListener("keydown",function(e){ if(e.key==="Enter"&&this.value.trim()){ P4.toast("Tarefa criada em Migração de dados: "+this.value.trim()); this.value=""; } if(e.key==="Escape") this.value=""; });
+</script>
+</body>
+</html>

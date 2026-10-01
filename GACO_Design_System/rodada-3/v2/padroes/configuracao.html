@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Configuração de SLA</title>
+<script src="../sistema/marca.js"></script>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-q2.css">
+<script src="../sistema/icones.js"></script>
+<script src="links.js"></script>
+<script src="../sistema/moldura.js" defer></script>
+<script src="../sistema/extra-q2.js" defer></script>
+<style>
+.cf{display:grid;grid-template-columns:200px minmax(0,var(--cm-largura-formulario));gap:40px;max-width:1040px}
+.cf-nav{position:sticky;top:calc(var(--cm-moldura-altura,93px) + var(--cm-trilha-altura,0px) + 16px);align-self:start;font-size:13px}
+.cf-nav a{display:block;padding:5px 10px;color:var(--cm-texto-2);text-decoration:none;border-left:2px solid var(--cm-filete)}
+.cf-nav a:hover{color:var(--cm-texto-1)}
+.cf-nav a[aria-current="true"]{color:var(--cm-texto-1);border-left-color:var(--cm-acao);font-weight:600}
+.cf .cm-form-secao{grid-template-columns:1fr;gap:12px}
+.cf-tabela td,.cf-tabela th{vertical-align:middle}
+.cf-tabela .cm-entrada{width:110px}
+@media (max-width:899px){.cf{grid-template-columns:1fr}.cf-nav{position:static;display:flex;overflow-x:auto;gap:4px}.cf-nav a{white-space:nowrap;border-left:0;border-bottom:2px solid var(--cm-filete)}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Suporte","tela":"Configuração de SLA","papel":"Atendimento","usuario":{"nome":"Juliana Reis","iniciais":"JR","cargo":"Gestora do Suporte","presenca":"disponivel","tom":2}}'></div>
+<main id="conteudo" class="cm-pagina" data-q2-form="sla" data-q2-salvo="Configuração de SLA salva. Vale para as conversas que chegarem a partir de agora.">
+  <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Configuração de SLA</h1><div class="cm-cabecalho-pagina__acoes"><button class="cm-botao cm-botao--icone" type="button" aria-label="Histórico de alterações" data-dica="Histórico de alterações" data-q2-toast="Última alteração: Juliana Reis, 12/09 às 16:20, prazo de Urgente de 15 para 10 min.|info"><i data-i="recentes"></i></button></div></div>
+    <p class="cm-cabecalho-pagina__desc">Prazos de resposta e de solução por prioridade. Mudar aqui não altera o prazo de conversas que já estão abertas.</p></header>
+  <div class="cf">
+    <nav class="cf-nav" aria-label="Seções desta configuração"><a href="#cf-prazos" aria-current="true">Prazos</a><a href="#cf-horario">Horário de contagem</a><a href="#cf-avisos">Avisos</a><a href="#cf-pausa">Pausa do prazo</a></nav>
+    <div>
+      <div class="cm-resumo-erros" data-q2-resumo="sla" hidden tabindex="-1"></div>
+      <section class="cm-form-secao" id="cf-prazos">
+        <div><h2 class="cm-form-secao__titulo">Prazos por prioridade</h2><p class="cm-form-secao__desc" style="max-width:none">Primeira resposta e solução, em minutos ou horas úteis.</p></div>
+        <div class="cm-rolar-x"><table class="cm-tabela cm-tabela--simples cf-tabela"><thead><tr><th>Prioridade</th><th>1ª resposta</th><th>Solução</th></tr></thead><tbody>
+          <tr><td>Urgente</td><td><div class="cm-entrada cm-entrada--p"><input id="u1" value="10" inputmode="numeric" data-rotulo="Urgente, 1ª resposta" required data-q2-valida="^[0-9]+$" data-q2-msg="Use só números, em minutos."><span class="cm-entrada__sufixo">min</span></div></td><td><div class="cm-entrada cm-entrada--p"><input value="4" inputmode="numeric" data-rotulo="Urgente, solução"><span class="cm-entrada__sufixo">h</span></div></td></tr>
+          <tr><td>Alta</td><td><div class="cm-entrada cm-entrada--p"><input id="a1" value="30" inputmode="numeric" data-rotulo="Alta, 1ª resposta" required data-q2-valida="^[0-9]+$" data-q2-msg="Use só números, em minutos."><span class="cm-entrada__sufixo">min</span></div></td><td><div class="cm-entrada cm-entrada--p"><input value="8" inputmode="numeric" data-rotulo="Alta, solução"><span class="cm-entrada__sufixo">h</span></div></td></tr>
+          <tr><td>Normal</td><td><div class="cm-entrada cm-entrada--p"><input value="60" inputmode="numeric" data-rotulo="Normal, 1ª resposta"><span class="cm-entrada__sufixo">min</span></div></td><td><div class="cm-entrada cm-entrada--p"><input value="24" inputmode="numeric" data-rotulo="Normal, solução"><span class="cm-entrada__sufixo">h</span></div></td></tr>
+          <tr><td>Baixa</td><td><div class="cm-entrada cm-entrada--p"><input value="240" inputmode="numeric" data-rotulo="Baixa, 1ª resposta"><span class="cm-entrada__sufixo">min</span></div></td><td><div class="cm-entrada cm-entrada--p"><input value="72" inputmode="numeric" data-rotulo="Baixa, solução"><span class="cm-entrada__sufixo">h</span></div></td></tr>
+        </tbody></table></div>
+      </section>
+      <section class="cm-form-secao" id="cf-horario">
+        <div><h2 class="cm-form-secao__titulo">Horário de contagem</h2><p class="cm-form-secao__desc" style="max-width:none">Fora deste horário o prazo para de correr.</p></div>
+        <div class="cm-form-secao__campos">
+          <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="cf-cal">Calendário</label><div class="cm-selecao"><select id="cf-cal"><option>Comercial de Curitiba (seg a sex, 8h às 18h)</option><option>Plantão 24 horas</option></select><i data-i="chevron-baixo"></i></div></div>
+          <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="cf-fer">Feriados</label><div class="cm-selecao"><select id="cf-fer"><option>Nacionais e de Curitiba</option><option>Só nacionais</option></select><i data-i="chevron-baixo"></i></div></div>
+          <label class="cm-interruptor cm-col-6"><input type="checkbox" role="switch" checked data-rotulo="Urgente conta 24 horas"><span class="cm-interruptor__trilho"></span><span>Urgente conta 24 horas, todos os dias</span></label>
+        </div>
+      </section>
+      <section class="cm-form-secao" id="cf-avisos">
+        <div><h2 class="cm-form-secao__titulo">Avisos antes de vencer</h2></div>
+        <div class="cm-form-secao__campos">
+          <label class="cm-marcar cm-col-6"><input type="checkbox" checked data-rotulo="Avisar o responsável"><span class="cm-marcar__caixa"></span><span>Avisar o responsável quando faltar 20% do prazo<span class="cm-marcar__desc">No sino e na linha da conversa: “Atenção: responde em 6 min”.</span></span></label>
+          <label class="cm-marcar cm-col-6"><input type="checkbox" data-rotulo="Avisar a gestora"><span class="cm-marcar__caixa"></span><span>Avisar a gestora quando vencer<span class="cm-marcar__desc">Juliana Reis recebe a lista a cada hora.</span></span></label>
+        </div>
+      </section>
+      <section class="cm-form-secao" id="cf-pausa">
+        <div><h2 class="cm-form-secao__titulo">Pausa do prazo</h2></div>
+        <div class="cm-form-secao__campos">
+          <fieldset class="cm-grupo-opcoes cm-col-6"><legend class="cm-campo__rotulo">O prazo pausa quando</legend>
+            <label class="cm-radio"><input type="radio" name="pausa" checked data-rotulo="Pausa"><span class="cm-radio__bola"></span><span>A conversa está aguardando o cliente</span></label>
+            <label class="cm-radio"><input type="radio" name="pausa" data-rotulo="Pausa"><span class="cm-radio__bola"></span><span>Nunca pausa</span></label>
+          </fieldset>
+        </div>
+      </section>
+      <div style="padding:20px 0;border-top:1px solid var(--cm-filete)"><button class="cm-botao cm-botao--link" type="button" data-q2-toast="Prazos voltaram ao padrão do GACO. Salve para valer.|info">Restaurar o padrão do GACO</button></div>
+    </div>
+  </div>
+  <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" data-q2-barra="sla" hidden>
+    <div class="cm-barra-salvar__msg" data-q2-msg aria-live="polite"><b></b><span></span></div>
+    <button class="cm-botao cm-botao--discreto" type="button" data-q2-descartar>Descartar</button>
+    <button class="cm-botao cm-botao--principal" type="button" data-q2-salvar>Salvar <span class="cm-dividido__lembra"></span></button>
+  </div>
+</main>
+</body>
+</html>

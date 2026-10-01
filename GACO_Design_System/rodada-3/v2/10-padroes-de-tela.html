@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Padrões de tela</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q2.css">
+<script src="sistema/icones.js"></script>
+<script src="padroes/links-doc.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q2.js" defer></script>
+<style>
+.leituras td.cm-num{width:120px}
+.resumo-padroes td:first-child{font-weight:600;white-space:nowrap}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"CS","tela":"Clientes","papel":"CS","trilha":false,"usuario":{"nome":"Rafael Lima","iniciais":"RL","cargo":"CS sênior","presenca":"disponivel","tom":3}}'></div>
+<main id="conteudo" class="cm-doc">
+  <nav class="cm-doc__indice" aria-label="Nesta página">
+    <h2>Nesta página</h2>
+    <ol>
+      <li><a href="#escolher">Qual padrão usar</a></li>
+      <li><a href="#listagem">Listagem densa</a></li>
+      <li><a href="#previa">Listagem com prévia</a></li>
+      <li><a href="#fila">Modo fila</a></li>
+      <li><a href="#registro">Registro</a></li>
+      <li><a href="#rapida">Criação rápida</a></li>
+      <li><a href="#pagina">Criação em página</a></li>
+      <li><a href="#inline">Edição no lugar</a></li>
+      <li><a href="#etapas">Formulário com etapas</a></li>
+      <li><a href="#quadro">Quadro</a></li>
+      <li><a href="#agenda">Agenda</a></li>
+      <li><a href="#painel">Painel e relatório</a></li>
+      <li><a href="#config">Configuração</a></li>
+      <li><a href="#console">Console de atendimento</a></li>
+      <li><a href="#mural">Mural</a></li>
+      <li><a href="#resumo">Resumo</a></li>
+    </ol>
+  </nav>
+  <div class="cm-doc__corpo">
+    <header class="cm-doc__cabeca">
+      <h1>Padrões de tela</h1>
+      <p>Catorze modelos cobrem as 131 telas do GACO. Cada um diz quando usar, que blocos tem, quanto mede, o que fica parado enquanto o resto rola, onde mora cada botão e que teclas funcionam. Os exemplos são telas de verdade, com a moldura do sistema: clique, digite e use o teclado dentro deles.</p>
+      <p>A regra que atravessa todos: <b>quem trabalha muito não volta para a lista, não sai do registro para mudar um campo e não perde o lugar.</b> É o que A3 e A4 mediram em cliques e o que a V2 transforma em padrão.</p>
+      <div class="cm-doc__regras"><span><b>Largura útil</b> 1440 de referência, 1488 máxima</span><span><b>Densidade</b> compacta no interno, linha de tabela 32</span><span><b>Teclado</b> todo padrão tem atalho, e o rodapé mostra os da tela</span><span><b>Salvar</b> barra só com alteração</span></div>
+    </header>
+
+    <section class="cm-doc-sec" id="escolher">
+      <h2>Qual padrão usar</h2>
+      <p>Pergunte o que a pessoa faz na tela, não que objeto ela mostra. O mesmo objeto (ordem de serviço) aparece em listagem, quadro e agenda; o trabalho decide qual abre primeiro.</p>
+      <div class="cm-rolar-x"><table class="cm-tabela-doc">
+        <thead><tr><th>A pessoa precisa…</th><th>Padrão</th><th>Exemplo no GACO</th></tr></thead>
+        <tbody>
+          <tr><td>achar, filtrar e agir em lote</td><td><a class="cm-link" href="#listagem">Listagem densa</a></td><td>Ordens de serviço, Contas a receber, Contratos</td></tr>
+          <tr><td>olhar vários antes de decidir qual abrir</td><td><a class="cm-link" href="#previa">Listagem com prévia</a></td><td>Carteira do CS, Leads, Pessoas candidatas</td></tr>
+          <tr><td>fazer o mesmo trabalho item a item</td><td><a class="cm-link" href="#fila">Modo fila</a></td><td>Conciliação, Aprovações de férias, Minhas tarefas, Leituras</td></tr>
+          <tr><td>ver e mudar um registro com contexto</td><td><a class="cm-link" href="#registro">Registro</a></td><td>Cliente, Contrato, Negócio, Chamado fora do console</td></tr>
+          <tr><td>criar com até 10 campos sem perder a tela</td><td><a class="cm-link" href="#rapida">Criação rápida</a></td><td>Nova OS, Novo contato, Nova reserva</td></tr>
+          <tr><td>cadastrar algo completo</td><td><a class="cm-link" href="#pagina">Criação em página</a></td><td>Novo cliente, Novo fornecedor, Nova vaga</td></tr>
+          <tr><td>cadastrar algo com passos que dependem um do outro</td><td><a class="cm-link" href="#etapas">Formulário com etapas</a></td><td>Implantação, Assembleia, Importação, Admissão</td></tr>
+          <tr><td>ver o andamento por etapa e mover</td><td><a class="cm-link" href="#quadro">Quadro</a></td><td>Negócios, Projetos, Sprints</td></tr>
+          <tr><td>ocupar horários e recursos</td><td><a class="cm-link" href="#agenda">Agenda</a></td><td>Reservas, Reuniões, Grade horária</td></tr>
+          <tr><td>decidir com números</td><td><a class="cm-link" href="#painel">Painel e relatório</a></td><td>Painel do suporte, DRE, Churn e retenção</td></tr>
+          <tr><td>mudar como o sistema funciona</td><td><a class="cm-link" href="#config">Configuração</a></td><td>SLA, Marca, Permissões, Automações</td></tr>
+          <tr><td>conversar com o cliente e resolver</td><td><a class="cm-link" href="#console">Console de atendimento</a></td><td>Conversas</td></tr>
+          <tr><td>saber da empresa e das pessoas</td><td><a class="cm-link" href="#mural">Mural</a></td><td>Início, Comunicados, Reconhecimentos</td></tr>
+        </tbody></table></div>
+    </section>
+
+    <!-- 1 LISTAGEM DENSA -->
+    <section class="cm-doc-sec" id="listagem">
+      <h2>Listagem densa <small>Ordens de serviço</small></h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Achar, entre centenas, os registros que importam agora e agir neles sem abrir um por um.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Escolhe a visão salva nas abas (Vencem hoje).</li><li>Refina com os filtros em linha; o total e os chips dizem o que está valendo.</li><li>Anda com J e K; Enter abre a OS. Ao voltar, filtro, página, rolagem e linha estão iguais.</li><li>X marca linhas; a barra de massa toma o lugar dos filtros, com a destrutiva por último.</li><li>Prazo se muda na célula: F2 ou clique, Enter grava, Esc desfaz.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Jira anda na lista com J e K e volta para a mesma posição, o Salesforce guarda visões por pessoa e o Carbon troca a barra de ferramentas pela barra de massa quando há seleção. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Ordens de serviço</b><span>teste: J, K, X, F2 na coluna Prazo, N para nova OS</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/listagem-densa.html" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Abrir em tela cheia</a></span></div><iframe title="Exemplo: listagem densa de ordens de serviço" data-q2-src="padroes/listagem-densa.html" loading="lazy" style="height:780px"></iframe></div>
+      <table class="cm-especificacao">
+        <tr><th>Quando usar</th><td>Mais de 20 registros do mesmo tipo e trabalho de busca ou consulta. Se a pessoa faz o mesmo gesto em cada item, é modo fila.</td></tr>
+        <tr><th>Blocos, de cima para baixo</th><td>Cabeçalho da página (título, ações) · visões salvas · barra de filtros · total e chips · tabela · paginação.</td></tr>
+        <tr><th>Larguras</th><td>Conteúdo até 1488, margem 24. Busca 280. Coluna de marcar 36, Nº 64 em texto tabular (sem plaqueta), principal flexível com linha de apoio, ações 76. Abaixo de 900 somem as colunas marcadas como opcionais e o nome segura a linha.</td></tr>
+        <tr><th>O que fica fixo</th><td>Moldura e trilha. Cabeçalho da tabela e coluna de marcar grudam ao rolar. A barra de massa vira flutuante no pé quando a lista passa de uma tela.</td></tr>
+        <tr><th>Botões</th><td>Principal (Nova OS) à direita do título; até uma secundária antes dele; o resto no ⋯. Exportar fica na barra da tabela e diz quantos ("Exportar 23"). Ações da linha: as duas mais usadas sempre visíveis, o resto no ⋯ da linha. Excluir só no ⋯ e na barra de massa, por último.</td></tr>
+        <tr><th>Atalhos</th><td><kbd class="cm-tecla">J</kbd> <kbd class="cm-tecla">K</kbd> linha, <kbd class="cm-tecla">Enter</kbd> abre, <kbd class="cm-tecla">X</kbd> marca, <kbd class="cm-tecla">Shift</kbd> <kbd class="cm-tecla">X</kbd> marca o intervalo, <kbd class="cm-tecla">/</kbd> busca, <kbd class="cm-tecla">N</kbd> novo, <kbd class="cm-tecla">F2</kbd> edita a célula, <kbd class="cm-tecla">Esc</kbd> limpa a seleção.</td></tr>
+        <tr><th>Paginação</th><td>50 por linha de página, escolha lembrada por tela. Ordenar e filtrar sempre no servidor; coluna que o servidor não ordena não mostra a seta.</td></tr>
+      </table>
+      <h3>Cliques: reprogramar 3 ordens de serviço do Parque das Águas</h3>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>17 cliques, 12 trocas de tela</span></h4><div class="cm-regua" data-regua="17,12,0"></div><ol><li>Menu Operações, Manutenção, Ordens de serviço (3).</li><li>Filtro de condomínio (2).</li><li>Para cada OS: abrir (1), Editar (1), Salvar (1), voltar (1). Cada passo recarrega a página.</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>4 cliques, 3 teclas, nenhuma troca</span></h4><div class="cm-regua" data-regua="4,0,3"></div><ol><li>Favorito Ordens de serviço (1); a visão lembra o filtro.</li><li>X em três linhas (3 teclas).</li><li>Mudar prazo (1), escolher a data (1), Aplicar (1). Toast com Desfazer.</li></ol></section>
+      </div>
+      <div class="cm-regua-legenda"><span><span class="cm-regua"><i></i></span>clique</span><span><span class="cm-regua"><i class="is-tecla"></i></span>tecla</span><span><span class="cm-regua"><i class="is-troca"></i></span>troca de tela ou modal por cima</span></div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Pular para o conteúdo, moldura.</li><li>Título, Preventivas, Nova OS, ⋯.</li><li>Visões (setas entre abas), busca, filtros, visão, Exportar, Colunas.</li><li>Tabela: uma parada; dentro, J e K ou setas.</li><li>Paginação.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Ordem de serviço 476, linha 4 de 23, selecionada".</li><li>Barra de massa: "2 selecionadas, região ações em massa".</li><li>Ordenação: "Prazo, crescente".</li><li>Toast: "3 ordens atribuídas a Diego Martins. Desfazer".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>⋯ do cabeçalho: "Mais ações".</li><li>Lista, quadro, agenda: "Tabela", "Quadro", "Agenda".</li><li>Colunas: "Escolher colunas".</li><li>Na linha: "Atribuir OS 476", "Ações da OS 476".</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 2 PRÉVIA -->
+    <section class="cm-doc-sec" id="previa">
+      <h2>Listagem com prévia <small>Clientes, Renovam em 90 dias</small></h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Olhar dez clientes em um minuto e abrir só o que precisa de atenção, sem ida e volta.</p></div>
+        <div><h3>Fluxo</h3><ol><li>J e K andam na lista; a prévia à direita acompanha e diz "15 de 63".</li><li>A prévia é só leitura: saúde, renovação, último contato, próximo passo, duas últimas atividades.</li><li>Enter, ou Abrir ficha no pé da prévia, leva ao registro.</li><li>Clique no nome abre a ficha direto; Ctrl e clique abre em nova aba.</li><li>Abaixo de 1200 de largura a prévia some e a linha abre a ficha.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Gmail e o Outlook ensinaram o painel de leitura, o Salesforce tem o Split View nas listas e o HubSpot abre a prévia do registro sem sair do índice. Prévia não edita, para não virar um segundo registro. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Clientes</b><span>teste: J e K, depois Enter</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/listagem-previa.html" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Abrir em tela cheia</a></span></div><iframe title="Exemplo: listagem de clientes com prévia" data-q2-src="padroes/listagem-previa.html" loading="lazy" style="height:760px"></iframe></div>
+      <table class="cm-especificacao">
+        <tr><th>Quando usar</th><td>Listas em que a decisão depende de 4 a 6 dados que não cabem numa linha: carteira, leads, candidatos, fornecedores em cotação.</td></tr>
+        <tr><th>Blocos</th><td>Coluna da lista (cabeçalho, visões, filtros, tabela, paginação) e coluna da prévia (cabeçalho com posição, ficha só leitura, pé com Abrir ficha).</td></tr>
+        <tr><th>Larguras</th><td>Lista flexível, mínimo 560. Prévia 420 fixa. Abaixo de 1200 a prévia não aparece.</td></tr>
+        <tr><th>O que fica fixo</th><td>As duas colunas ocupam a altura toda e rolam cada uma por si. O pé da prévia não rola.</td></tr>
+        <tr><th>Botões</th><td>Principal da página (Novo cliente) à direita do título. Na prévia, só Abrir ficha, principal, à direita do pé. Nenhum lápis.</td></tr>
+        <tr><th>Atalhos</th><td><kbd class="cm-tecla">J</kbd> <kbd class="cm-tecla">K</kbd> andam e trocam a prévia, <kbd class="cm-tecla">Enter</kbd> abre a ficha, <kbd class="cm-tecla">Espaço</kbd> mostra ou esconde a prévia, <kbd class="cm-tecla">X</kbd> marca.</td></tr>
+      </table>
+      <h3>Cliques: revisar os 10 primeiros que renovam</h3>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>20 cliques, 20 trocas</span></h4><div class="cm-regua" data-regua="20,20,0"></div><ol><li>Abrir cada cliente (1, troca) e voltar (1, troca), dez vezes.</li><li>Na volta a lista perde a rolagem e é preciso achar a linha de novo.</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>1 clique, 10 teclas, 1 troca</span></h4><div class="cm-regua" data-regua="1,1,10"></div><ol><li>J dez vezes, lendo a prévia.</li><li>Abrir ficha só no Cond. Jardim das Acácias, que está em risco (1, troca).</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Moldura, título, Novo cliente.</li><li>Visões, busca, filtros.</li><li>Tabela (J e K), paginação.</li><li>Prévia: Abrir ficha.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>A prévia é região viva educada: ao mudar a linha, lê "Edifício Mirante do Juvevê, 15 de 63".</li><li>"Prévia só leitura. Para editar, abra a ficha."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Ladrilho da prévia é decorativo (escondido do leitor).</li><li>Setas da paginação: "Página anterior", "Próxima página".</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 3 MODO FILA -->
+    <section class="cm-doc-sec" id="fila">
+      <h2>Modo fila <small>Conciliação bancária</small></h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Fazer o mesmo trabalho em 60 itens sem nenhuma volta para a lista e sem perder a conta de quantos faltam.</p></div>
+        <div><h3>Fluxo</h3><ol><li>A fila à esquerda mostra o que falta, com o motivo em palavra (Com sugestão, Sem sugestão).</li><li>O item atual ocupa o centro, com o par lado a lado.</li><li>Enter confirma; a próxima linha abre sozinha e o contador sobe.</li><li>Errou: Ctrl Z ou Desfazer no toast.</li><li>Sem sugestão: B busca outro, C cria o lançamento.</li><li>Fila vazia diz o que falta nas outras contas.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o QuickBooks concilia na aba "Para revisar" com o par sugerido e um botão, a fila de tarefas do HubSpot carrega a próxima ao concluir e o Zendesk tem "próximo chamado da visão". Desfazer no lugar de confirmar segue a NN/g para ação frequente e reversível. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Conciliação</b><span>teste: Enter confirma, Ctrl Z desfaz, J e K andam</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/modo-fila.html" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Abrir em tela cheia</a></span></div><iframe title="Exemplo: conciliação em modo fila" data-q2-src="padroes/modo-fila.html" loading="lazy" style="height:700px"></iframe></div>
+      <table class="cm-especificacao">
+        <tr><th>Quando usar</th><td>Volume repetido com a mesma decisão: Conciliação, Aprovações (férias, comissões, despesas), Minhas tarefas da cadência, Leituras de hidrômetro, Respostas NPS sem retorno. A exceção à regra "lista só lista" vale só para essas filas declaradas, e cada item continua com endereço próprio.</td></tr>
+        <tr><th>Blocos</th><td>Fila (cabeçalho com escolha da conta ou da fila, progresso, itens) · área do item (título, contexto, comparação, ações) · estado vazio com o próximo destino.</td></tr>
+        <tr><th>Larguras</th><td>Fila 356. Centro flexível, conteúdo até 1040. Abaixo de 900 a fila vira uma faixa no topo e o item ocupa a tela.</td></tr>
+        <tr><th>O que fica fixo</th><td>A fila e a barra de ações do item. Só o conteúdo do item rola.</td></tr>
+        <tr><th>Botões</th><td>A ação da fila é o único principal da tela, grande (40), no centro, abaixo do que se compara, com a tecla impressa. Alternativas como secundárias ao lado. Nada no cabeçalho da página.</td></tr>
+        <tr><th>Atalhos</th><td><kbd class="cm-tecla">Enter</kbd> faz a ação da fila, <kbd class="cm-tecla">J</kbd> <kbd class="cm-tecla">K</kbd> pulam sem fazer, <kbd class="cm-tecla">B</kbd> buscar, <kbd class="cm-tecla">C</kbd> criar, <kbd class="cm-tecla">Ctrl</kbd> <kbd class="cm-tecla">Z</kbd> desfaz a última.</td></tr>
+        <tr><th>Salva como</th><td>Cada ação grava na hora, com toast de 8 segundos e Desfazer. Nada de barra de salvar na fila.</td></tr>
+      </table>
+      <h3>Cliques: conciliar 60 linhas do Itaú (40 com sugestão)</h3>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>180 cliques, 3 páginas de 20</span></h4><div class="cm-regua" data-regua="60,3,0" aria-label="180 cliques: cada quadrado vale 3"></div><ol><li>Por linha: abrir o par (1), escolher o lançamento (1), confirmar (1).</li><li>Paginação de 20 obriga a trocar de página duas vezes.</li><li>Cada quadrado aqui vale 3 cliques.</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>40 teclas e 20 decisões</span></h4><div class="cm-regua" data-regua="20,0,40"></div><ol><li>Linhas com sugestão: Enter (40 teclas).</li><li>As 20 sem sugestão: Buscar outro ou Criar lançamento (1 clique cada).</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Conta bancária.</li><li>Fila (uma parada, J e K).</li><li>Confirmar par, Buscar outro, Criar lançamento.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Área do item é região viva: "Linha 44 de 60. PIX recebido Cond. Parque das Águas, R$ 1.850,00. Sugestão: boleto 0412, mesmo valor e data".</li><li>Barra de progresso com valor em texto: "43 de 60 conciliados".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Ícone de comparação entre as colunas é decorativo.</li><li>Ícone do banco no cartão é decorativo; o título diz "No banco".</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 4 REGISTRO -->
+    <section class="cm-doc-sec" id="registro">
+      <h2>Registro estilo Lightning <small>Cliente Cond. Parque das Águas</small></h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Ver tudo de um cliente e mudar o que for preciso sem sair dele, e passar ao próximo da carteira sem voltar à lista.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Cabeçalho com campos-chave (saúde, plano, mensalidade, renovação, NPS, responsável).</li><li>Path logo abaixo: em que etapa está, há quantos dias e o que a etapa pede.</li><li>Esquerda: detalhes com lápis por campo e Editar seção. Centro: atividade com o compositor aberto. Direita: listas relacionadas com Adicionar.</li><li>Mudou algo: a barra de salvar sobe no pé com a contagem e "Salvar ▾".</li><li>J e K, ou as setas da trilha, passam ao 15 de 63; com alteração pendente, pergunta antes.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Salesforce Lightning junta painel de destaques, Path, detalhes, atividade e listas relacionadas; o HubSpot divide o registro em três colunas; o Jira e o Salesforce editam campo a campo. O Histórico fica sempre visível, mas por último no grupo de ações (A3 §4). Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Registro do cliente</b><span>teste: lápis do telefone, Enter, depois Salvar ▾; J e K trocam de cliente; H abre o histórico</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/registro.html" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Abrir em tela cheia</a></span></div><iframe title="Exemplo: registro do cliente Cond. Parque das Águas" data-q2-src="padroes/registro.html" loading="lazy" style="height:900px"></iframe></div>
+      <table class="cm-especificacao">
+        <tr><th>Quando usar</th><td>Todo objeto com vida própria: cliente, contrato, negócio, OS, pessoa, fornecedor, vaga. O chamado tem o console; fora dele, usa este registro.</td></tr>
+        <tr><th>Blocos</th><td>Cabeçalho (ladrilho, tipo, título com a plaqueta, que é a única do bloco; ações; destaques com até 6 campos) · Path (só para objeto com máquina de estados) · 3 colunas: Detalhes, Atividade, Relacionadas · barra de salvar.</td></tr>
+        <tr><th>Larguras</th><td>Registro até 1280. Colunas 340, flexível e 300. Abaixo de 1280, Relacionadas desce para baixo em grade. Abaixo de 900, uma coluna nesta ordem: cabeçalho, Path, Detalhes, Atividade, Relacionadas.</td></tr>
+        <tr><th>O que fica fixo</th><td>Moldura e trilha com "14 de 63". A página rola inteira (registro é leitura longa). A barra de salvar gruda no pé enquanto houver alteração.</td></tr>
+        <tr><th>Botões, da esquerda para a direita</th><td>Secundária (Enviar e-mail) → principal (Registrar contato) → ⋯ (Duplicar, Copiar link, Imprimir ou PDF, Arquivar, Excluir… por último em vermelho) → Histórico, ícone, sempre visível. No Path: "Avançar para Renovação" à direita; saídas (Perdido, Pausar) em "Encerrar ▾", fora da faixa.</td></tr>
+        <tr><th>Atalhos</th><td><kbd class="cm-tecla">J</kbd> <kbd class="cm-tecla">K</kbd> registro, <kbd class="cm-tecla">E</kbd> edita o campo em foco, <kbd class="cm-tecla">Ctrl</kbd> <kbd class="cm-tecla">S</kbd> salva e fica, <kbd class="cm-tecla">Ctrl</kbd> <kbd class="cm-tecla">Enter</kbd> salva e vai ao próximo, <kbd class="cm-tecla">H</kbd> histórico, <kbd class="cm-tecla">L</kbd> registrar contato, <kbd class="cm-tecla">M</kbd> e-mail, <kbd class="cm-tecla">G</kbd> <kbd class="cm-tecla">L</kbd> volta à lista de origem.</td></tr>
+        <tr><th>Salva como</th><td>Campo de dado: Enter confirma no campo e soma na barra. Campo de ação (responsável, prioridade): grava na hora com Desfazer. Seção: Salvar seção no pé da própria seção. Etapa: Path, com o que a etapa pede.</td></tr>
+      </table>
+      <h3>Cliques: corrigir o índice de reajuste de um contrato e voltar à lista</h3>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>8 cliques, 4 trocas, posição perdida</span></h4><div class="cm-regua" data-regua="8,4,0"></div><ol><li>Linha na página 3 (1, troca), Editar (1, troca), mudar o índice (1), Salvar (1, recarga).</li><li>Trilha Contratos (1, troca), refazer 2 filtros (2), ir à página 3 (1), rolar até a linha.</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>4 cliques, 1 tecla, 1 troca</span></h4><div class="cm-regua" data-regua="4,1,1"></div><ol><li>Linha (1, troca). Editar seção (1), índice (1), Salvar seção (1).</li><li>J leva ao próximo contrato da mesma lista (1 tecla). G L volta com filtro, página e linha.</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Moldura, trilha, anterior e próximo.</li><li>Ações do cabeçalho.</li><li>Path: etapas, Avançar, Encerrar.</li><li>Detalhes (cada lápis), seção, Atividade (abas, caixa, Publicar, itens), Relacionadas.</li><li>Barra de salvar, quando existe.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Path: "Expansão, etapa atual, 3 de 5".</li><li>Campo em edição: "Telefone, editando. Era (41) 3456-7788. Enter confirma, Esc desfaz".</li><li>Barra de salvar é região viva: "2 alterações não salvas: Telefone, Síndica".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>⋯: "Mais ações". Relógio: "Histórico de alterações".</li><li>Lápis: "Editar telefone", "Trocar responsável".</li><li>Cadeado: "Campo do sistema, não editável".</li><li>Seta do Salvar: "Outras formas de salvar".</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 5 CRIAÇÃO RÁPIDA -->
+    <section class="cm-doc-sec" id="rapida">
+      <h2>Criação rápida em modal <small>Nova OS, com fornecedor criado no caminho</small></h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Criar com o essencial sem perder a lista de trás, e criar o que falta (o fornecedor) sem abandonar o que se estava criando.</p></div>
+        <div><h3>Fluxo</h3><ol><li>N, ou Nova OS à direita do título.</li><li>Modal de 560 com até 10 campos, o primeiro já em foco.</li><li>Fornecedor não existe: o campo oferece "Criar fornecedor Elevadores Atlas", que abre um modal curto e volta com ele escolhido.</li><li>Criar OS (principal, à direita do pé), Criar e outra, ou "Abrir formulário completo" à esquerda, levando o que já foi digitado.</li><li>A OS nova aparece no topo da lista, com toast e "Abrir".</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Dynamics 365 tem a criação rápida que abre até de dentro de um campo de busca, o HubSpot cria e associa num painel sem tirar a pessoa do registro e o Cloudscape limita o modal ao que se resolve em poucos campos. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Nova OS</b><span>o modal abre sozinho; teste a lista de fornecedores</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/listagem-densa.html?abrir=modal-os" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Abrir em tela cheia</a></span></div><iframe title="Exemplo: criação rápida de ordem de serviço" data-q2-src="padroes/listagem-densa.html?abrir=modal-os" loading="lazy" style="height:760px"></iframe></div>
+      <table class="cm-especificacao">
+        <tr><th>Quando usar</th><td>Só os campos obrigatórios, até 10, sem regra entre seções. O cliente escolhe quais campos aparecem (Configuração › Listas e opções).</td></tr>
+        <tr><th>Modal ou painel</th><td>Modal 560 (720 com duas colunas) quando a tela de trás não importa. Painel lateral 400 quando a pessoa precisa ler a tela de trás enquanto digita: novo contato dentro do registro, nova reserva clicando na agenda.</td></tr>
+        <tr><th>O que fica fixo</th><td>Cabeça e pé do modal; só o corpo rola.</td></tr>
+        <tr><th>Botões</th><td>Pé à direita: Cancelar, Criar e outra, Criar (principal, por último). À esquerda do pé: "Abrir formulário completo". Fechar (X) no canto. Nunca modal sobre modal, exceto a criação a partir de um campo, que é curta e devolve o valor.</td></tr>
+        <tr><th>Atalhos</th><td><kbd class="cm-tecla">N</kbd> abre, <kbd class="cm-tecla">Enter</kbd> no último campo cria, <kbd class="cm-tecla">Ctrl</kbd> <kbd class="cm-tecla">Enter</kbd> cria e outra, <kbd class="cm-tecla">Esc</kbd> fecha (se algo foi digitado, pergunta).</td></tr>
+      </table>
+      <h3>Cliques: OS para um fornecedor que ainda não existe</h3>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>8 cliques, 3 trocas</span></h4><div class="cm-regua" data-regua="8,3,0"></div><ol><li>Abandonar a OS, menu Operações › Fornecedores (3, troca).</li><li>Novo, preencher, Salvar (2, troca).</li><li>Voltar à OS, recarregar o campo, escolher (3, troca). A OS digitada se perde.</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>3 cliques, nenhuma troca</span></h4><div class="cm-regua" data-regua="3,0,0"></div><ol><li>Abrir o campo Fornecedor (1), "Criar fornecedor…" (1).</li><li>Criar e usar na OS (1). Volta escolhido.</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Primeiro campo útil (Local).</li><li>Campos na ordem visual, duas colunas lidas linha a linha.</li><li>Abrir formulário completo, Cancelar, Criar e outra, Criar OS, Fechar.</li><li>O foco fica preso no modal e volta ao botão que abriu.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Nova ordem de serviço, diálogo. Só o essencial."</li><li>Lista vazia: "Nenhum fornecedor com Elevadores Atlas. Criar fornecedor Elevadores Atlas".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>X: "Fechar".</li><li>Calendário no campo de prazo é decorativo; o rótulo é "Prazo".</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 6 CRIAÇÃO EM PÁGINA -->
+    <section class="cm-doc-sec" id="pagina">
+      <h2>Criação em página <small>Novo cliente</small></h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Cadastrar algo completo, com seções, contatos em linha e validação clara, sem medo de perder o que foi digitado.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Novo cliente abre a página; a trilha diz Clientes › Novo cliente.</li><li>Seções com título à esquerda e campos à direita.</li><li>No primeiro campo mudado, a barra sobe no pé: "3 alterações não salvas".</li><li>"Criar cliente ▾": criar e abrir, criar e começar outro, criar e voltar à lista; lembra a escolha.</li><li>Erro: resumo no topo com link para cada campo, campo em vermelho com o que fazer, a barra diz que nada foi gravado.</li><li>Sair pela trilha ou pelo menu com algo digitado: Continuar editando, Descartar e sair, Salvar e sair.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Shopify Polaris e o Elastic só mostram a barra de salvar quando há alteração, o SAP Fiori e o Salesforce oferecem salvar e novo e salvar e próximo, e o GitLab pergunta com três saídas nomeadas antes de sair. O resumo de erros com link vem do GOV.UK Design System. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Novo cliente</b><span>teste: digite um nome, clique Criar cliente com o CNPJ vazio; depois clique na trilha</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/criacao-pagina.html" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Abrir em tela cheia</a></span></div><iframe title="Exemplo: criação de cliente em página" data-q2-src="padroes/criacao-pagina.html" loading="lazy" style="height:780px"></iframe></div>
+      <table class="cm-especificacao">
+        <tr><th>Quando usar</th><td>Mais de 10 campos, ou seções, ou linhas repetidas (contatos, itens), ou documento (ata, comunicado, modelo de contrato). Acima de 20 campos com dependência entre partes: etapas.</td></tr>
+        <tr><th>Blocos</th><td>Cabeçalho (título, aviso dos obrigatórios) · resumo de erros (só quando há) · seções · barra de salvar.</td></tr>
+        <tr><th>Larguras</th><td>Formulário 760, até 1040 com a coluna de títulos (280). Campos na grade de 6: CNPJ e tipo em 3, nome em 4, unidades em 2. Abaixo de 900, título da seção em cima e um campo por linha.</td></tr>
+        <tr><th>O que fica fixo</th><td>A barra de salvar, enquanto houver alteração. O resto rola.</td></tr>
+        <tr><th>Botões</th><td>Barra do pé: mensagem à esquerda; Descartar (discreto) e o botão dividido "Criar cliente ▾" à direita. Nenhum botão de salvar no topo. Destrutivo não existe na criação.</td></tr>
+        <tr><th>Atalhos</th><td><kbd class="cm-tecla">Ctrl</kbd> <kbd class="cm-tecla">S</kbd> cria com a opção lembrada, <kbd class="cm-tecla">Ctrl</kbd> <kbd class="cm-tecla">Enter</kbd> cria e abre, <kbd class="cm-tecla">Esc</kbd> fecha menus; sair é sempre pela pergunta de três saídas.</td></tr>
+      </table>
+      <h3>Cliques: criar um condomínio com dois contatos</h3>
+      <div class="cm-antes-depois">
+        <section><h4>Antes <span>8 cliques, 4 trocas</span></h4><div class="cm-regua" data-regua="8,4,0"></div><ol><li>Novo cliente (1, troca), Salvar (1, troca para o detalhe).</li><li>Aba Contatos (1), Novo contato (1, modal), Salvar (1), de novo (2, modal).</li></ol></section>
+        <section class="cm-antes-depois__depois"><h4>Depois <span>4 cliques, 2 trocas</span></h4><div class="cm-regua" data-regua="4,2,0"></div><ol><li>Novo cliente (1, troca). Contatos na própria página: Adicionar contato (1) duas vezes.</li><li>Criar cliente (1, troca para a ficha).</li></ol></section>
+      </div>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Título, resumo de erros (quando aparece, recebe o foco).</li><li>Campos seção a seção.</li><li>Descartar, Criar cliente, seta do menu.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Resumo: "2 campos precisam de correção. CNPJ: o CNPJ tem 14 dígitos…".</li><li>Campo com erro: inválido, com a mensagem ligada por aria-describedby.</li><li>Barra: "3 alterações não salvas".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>"Tirar contato 2".</li><li>Seta do botão dividido: "Outras formas de criar".</li><li>O asterisco é escondido do leitor; o campo é obrigatório pelo atributo.</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 7 EDIÇÃO NO LUGAR -->
+    <section class="cm-doc-sec" id="inline">
+      <h2>Edição no lugar: por campo, por seção e na célula</h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Mudar um dado onde ele está, com a mesma regra em todo o sistema, para a pessoa nunca adivinhar se já gravou.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Campo de dado (telefone, e-mail, data): lápis ou clique, Enter confirma no campo, a mudança vai para a barra de salvar.</li><li>Campo de ação (responsável, prioridade, etiqueta): escolher grava na hora, com Desfazer.</li><li>Seção (endereço, vigência e valores, dados bancários): Editar seção, o cartão vira formulário com Cancelar e Salvar seção no pé; as outras seções ficam travadas até terminar.</li><li>Célula de objeto-linha (leitura de hidrômetro, item de rateio): Enter grava a linha e já abre a de baixo.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o SAP Fiori recomenda edição parcial no lugar, o Cloudscape edita por contêiner, o Salesforce junta edições de campo numa barra de salvar e o Linear grava atribuição na hora. Planilha é o gesto que o síndico e a zeladora já conhecem para leituras. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Registro com seção em edição</b><span>o palco abre a seção Contrato e cobrança; mude a mensalidade e salve</span></div><iframe title="Exemplo: edição por seção no registro" data-q2-src="padroes/registro.html?clicar=%5Bdata-q2-editar-secao%5D" loading="lazy" style="height:820px"></iframe></div>
+      <h3>Objeto-linha: leituras de hidrômetro, Bloco B, outubro</h3>
+      <div class="cm-palco"><div class="cm-palco__corpo">
+        <div class="cm-rolar-x"><table class="cm-tabela leituras" aria-label="Leituras de hidrômetro do Bloco B">
+          <thead><tr><th>Unidade</th><th>Morador</th><th class="cm-num">Leitura anterior</th><th class="cm-num">Leitura de outubro</th><th class="cm-num">Consumo</th></tr></thead>
+          <tbody>
+            <tr><td>Bl B Ap 101</td><td>Sérgio Valente</td><td class="cm-num">1.204</td><td class="cm-num cm-celula-editavel" tabindex="0" data-q2-celula data-rotulo="Leitura do 101">1.219</td><td class="cm-num">15 m³</td></tr>
+            <tr><td>Bl B Ap 102</td><td>Helena Cordeiro</td><td class="cm-num">988</td><td class="cm-num cm-celula-editavel" tabindex="0" data-q2-celula data-rotulo="Leitura do 102">1.001</td><td class="cm-num">13 m³</td></tr>
+            <tr><td>Bl B Ap 201</td><td>Família Okamoto</td><td class="cm-num">1.530</td><td class="cm-num cm-celula-editavel" tabindex="0" data-q2-celula data-rotulo="Leitura do 201"></td><td class="cm-num cm-texto-3">falta</td></tr>
+            <tr><td>Bl B Ap 202</td><td>Ricardo Prates</td><td class="cm-num">743</td><td class="cm-num cm-celula-editavel" tabindex="0" data-q2-celula data-rotulo="Leitura do 202"></td><td class="cm-num cm-texto-3">falta</td></tr>
+          </tbody></table></div>
+        <p class="cm-palco__legenda">Clique numa leitura, digite e aperte Enter: grava a linha e abre a de baixo. Esc desfaz a célula. O toast traz Desfazer.</p>
+      </div></div>
+      <table class="cm-especificacao">
+        <tr><th>Campo de dado</th><td>Lápis visível no hover e no foco; clique no valor também abre. Enquanto edita: fundo de "editado", "Era …" embaixo, "Enter confirma, Esc desfaz". Depois de confirmar: a linha fica marcada "alterado" até salvar.</td></tr>
+        <tr><th>Campo de ação</th><td>Ícone do verbo no lugar do lápis (atribuir). Lista curta; escolher grava. Toast "Responsável: Carla Mendes. Gravado. Desfazer".</td></tr>
+        <tr><th>Seção</th><td>Botão "Editar seção" no cabeçalho do cartão; o cartão ganha filete latão e "Alterações não salvas". Pé da seção: legenda de teclas, Cancelar, Salvar seção (principal). Ctrl S salva a seção, Esc cancela.</td></tr>
+        <tr><th>Célula</th><td>Só em objeto-linha declarado, sem regra entre campos. Contorno de foco 2px; Enter grava e desce; Tab grava e anda; marca de canto latão por 2 segundos depois de gravar.</td></tr>
+        <tr><th>Estado nunca é campo</th><td>Etapa e estado mudam pelo Path ou por ação nomeada. A regra de 26/09 se mantém.</td></tr>
+      </table>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Cada linha da ficha: o lápis é a parada; E também abre.</li><li>Em edição o foco vai para o campo e volta ao lápis ao confirmar.</li><li>Na tabela, cada célula editável é parada; Enter ou F2 abre.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Leitura do 201, editando."</li><li>"Leitura do 201 gravada: 1.544. Desfazer."</li><li>Seção: "Contrato e cobrança salva. 1 campo alterado."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Lápis: "Editar" + nome do campo.</li><li>Ícone de atribuir: "Trocar responsável".</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 8 ETAPAS -->
+    <section class="cm-doc-sec" id="etapas">
+      <h2>Formulário longo com etapas <small>Nova implantação</small></h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Cadastros grandes em que uma parte depende da outra, que se fazem em mais de uma sentada.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Etapas numeradas no topo, com o resumo do que já foi preenchido em cada uma.</li><li>Continuar valida e grava a etapa; o registro fica "Em preenchimento" e aparece em Minhas.</li><li>Volta-se a qualquer etapa feita clicando nela; para a frente, só pelo Continuar.</li><li>Erro marca a etapa com "!" e diz o que falta.</li><li>Revisão final, e "Concluir implantação".</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Cloudscape usa assistente acima de 15 campos e mostra o resumo por etapa, o SAP Fiori tem o modelo de assistente com revisão no fim e o Shopify configura a loja em etapas que se retomam depois. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Nova implantação</b><span>teste: Continuar duas vezes com o e-mail vazio</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/formulario-etapas.html" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Abrir em tela cheia</a></span></div><iframe title="Exemplo: implantação em etapas" data-q2-src="padroes/formulario-etapas.html" loading="lazy" style="height:640px"></iframe></div>
+      <table class="cm-especificacao">
+        <tr><th>Quando usar</th><td>Acima de 20 campos com dependência: implantação, assembleia (edital, pauta, convocação, ata), importação, admissão de pessoa, renegociação de dívida.</td></tr>
+        <tr><th>Larguras</th><td>Etapas e formulário em 960. Até 5 etapas; cada etapa cabe em uma tela de 900 de altura.</td></tr>
+        <tr><th>O que fica fixo</th><td>O pé com Voltar, posição, Terminar depois e Continuar gruda no fim da tela.</td></tr>
+        <tr><th>Botões</th><td>Voltar à esquerda; "Etapa 2 de 4"; Terminar depois (discreto); Continuar (principal) à direita; na última, "Concluir implantação". O estado de gravação fica à direita do título: "Etapa 1 gravada às 14:32".</td></tr>
+        <tr><th>Atalhos</th><td><kbd class="cm-tecla">Ctrl</kbd> <kbd class="cm-tecla">Enter</kbd> continua, <kbd class="cm-tecla">Alt</kbd> <kbd class="cm-tecla">←</kbd> não é usado (é do navegador); Voltar é botão.</td></tr>
+      </table>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Título, estado de gravação.</li><li>Etapas (feitas e a atual).</li><li>Campos da etapa; ao trocar de etapa, o foco vai ao título dela.</li><li>Pé.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Condomínios, etapa atual, 2 de 4."</li><li>Estado de gravação é status: "Etapa 2 gravada às 14:40."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Tique da etapa feita vem com o nome da etapa e o resumo em texto.</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 9 QUADRO -->
+    <section class="cm-doc-sec" id="quadro">
+      <h2>Quadro <small>Negócios do Comercial</small></h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Ver de relance onde está cada negócio, o que esfriou e quanto vale cada etapa, e mover sem abrir.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Colunas são etapas, com contagem e soma mensal.</li><li>Cartão parado além do limite mostra "Atenção: parado há 16 dias" com triângulo.</li><li>Arrastar move; pelo teclado, M abre "Mover para…" e Shift seta avança.</li><li>Ganho e Perdido não são colunas: estão no Mover e pedem passagem para o CS ou motivo.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Pipedrive mostra dias na etapa e o valor da coluna, o Trello e o Jira fizeram do quadro o signo de "andamento", e o Jira oferece "Mover para" no menu do cartão para quem não arrasta. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Negócios</b><span>teste: Tab até um cartão, H, J, K, L e M</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/quadro.html" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Abrir em tela cheia</a></span></div><iframe title="Exemplo: quadro de negócios" data-q2-src="padroes/quadro.html" loading="lazy" style="height:720px"></iframe></div>
+      <table class="cm-especificacao">
+        <tr><th>Quando usar</th><td>Objeto com máquina de estados e até uns 30 itens por coluna. Acima disso, listagem com agrupamento por etapa. Toda tela de quadro tem o alternador Lista e Quadro.</td></tr>
+        <tr><th>Larguras</th><td>Colunas dividem a largura, mínimo 236; com mais de 6 etapas, rolagem horizontal da área do quadro (nunca da página).</td></tr>
+        <tr><th>O que fica fixo</th><td>Cabeça das colunas (nome, contagem, soma). Cada coluna rola na vertical.</td></tr>
+        <tr><th>Botões</th><td>Novo negócio à direita do título, alternador antes dele. "Adicionar" no pé de cada coluna cria já naquela etapa.</td></tr>
+        <tr><th>Atalhos</th><td><kbd class="cm-tecla">H</kbd> <kbd class="cm-tecla">L</kbd> colunas, <kbd class="cm-tecla">J</kbd> <kbd class="cm-tecla">K</kbd> cartões, <kbd class="cm-tecla">M</kbd> mover para…, <kbd class="cm-tecla">Shift</kbd> <kbd class="cm-tecla">&gt;</kbd> avança uma etapa, <kbd class="cm-tecla">Enter</kbd> abre.</td></tr>
+      </table>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Filtros, alternador, Novo negócio.</li><li>Cartões por coluna, de cima para baixo; H e L pulam de coluna.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Cartão: "Cond. Vila Serena, R$ 4.380,00 por mês, Atenção: parado há 12 dias, coluna Proposta".</li><li>Depois de mover: "Cond. Vila Serena foi para Negociação. Desfazer".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Avatar do dono tem o nome no título.</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 10 AGENDA -->
+    <section class="cm-doc-sec" id="agenda">
+      <h2>Agenda <small>Reservas de áreas comuns</small></h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Ver o que está ocupado por área e por dia, reservar no livre e entender por que algo está fechado.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Linhas são áreas, colunas são dias; hoje com filete latão.</li><li>Clique num dia livre abre o painel de reserva com área e data preenchidas.</li><li>O painel mostra a taxa e a regra do regimento antes do Reservar.</li><li>Área fechada aparece hachurada com o motivo (OS 449).</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>no Google Agenda clicar no horário livre já cria, o Outlook mostra salas lado a lado por recurso e os apps de condomínio (TownSq, Superlógica) reservam por área. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Reservas</b><span>teste: clique num dia livre do Salão de festas</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/agenda.html" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Abrir em tela cheia</a></span></div><iframe title="Exemplo: agenda de reservas" data-q2-src="padroes/agenda.html" loading="lazy" style="height:640px"></iframe></div>
+      <table class="cm-especificacao">
+        <tr><th>Larguras</th><td>Lateral 260 (mês e filtros). Grade com coluna de recurso 150 e dias com mínimo de 96; abaixo de 1100 a lateral sobe e a grade rola na horizontal dentro do seu quadro.</td></tr>
+        <tr><th>Botões</th><td>Navegação de período à esquerda das ações: anterior, Hoje, próxima, período escrito; Dia, Semana, Mês; Nova reserva (principal) por último.</td></tr>
+        <tr><th>Atalhos</th><td><kbd class="cm-tecla">J</kbd> <kbd class="cm-tecla">K</kbd> semana, <kbd class="cm-tecla">T</kbd> hoje, <kbd class="cm-tecla">D</kbd> <kbd class="cm-tecla">S</kbd> <kbd class="cm-tecla">M</kbd> período, <kbd class="cm-tecla">N</kbd> nova, setas entre células, <kbd class="cm-tecla">Enter</kbd> reserva ou abre.</td></tr>
+      </table>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Período e Nova reserva.</li><li>Mês, condomínio e áreas.</li><li>Grade: célula a célula.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Salão de festas, Sáb 03: Aniversário, Bl A 302, 18:00 a 23:00."</li><li>"Churrasqueira 2, Seg 28: fechada para manutenção."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>"Semana anterior", "Próxima semana".</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 11 PAINEL -->
+    <section class="cm-doc-sec" id="painel">
+      <h2>Painel e relatório <small>Painel do suporte</small></h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Decidir com números: como o mês foi, onde piorou e quem precisa de apoio. É o único lugar com fileira de indicadores.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Período e equipe numa linha acima de tudo.</li><li>Indicadores no topo com a comparação escrita ("1 min contra agosto").</li><li>Cada gráfico tem Gráfico e Tabela; passar o mouse ou o foco mostra o valor.</li><li>Clicar numa linha da tabela leva às conversas daquela pessoa.</li><li>Exportar, agendar envio, copiar link com filtros.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Zendesk Explore e o HubSpot põem os filtros acima dos gráficos e deixam abrir o dado por trás; o Carbon pede tabela alternativa para cada gráfico. Indicador fica no painel para quem decide, como pede o princípio 9 do A4. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Painel do suporte</b><span>teste: passe o mouse nas barras; troque para Tabela</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/painel.html" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Abrir em tela cheia</a></span></div><iframe title="Exemplo: painel do suporte" data-q2-src="padroes/painel.html" loading="lazy" style="height:760px"></iframe></div>
+      <table class="cm-especificacao">
+        <tr><th>Regras do gráfico</th><td>Série única em latão (série 1 do sistema), fim de semana em chapa; uma escala só; rótulo direto só no que importa (o pico); texto em tinta de texto, nunca na cor da série. Estado só quando o dado é estado.</td></tr>
+        <tr><th>Larguras</th><td>Grade 1,6 para 1 no topo; tabela larga embaixo. Abaixo de 1100, uma coluna.</td></tr>
+        <tr><th>Botões</th><td>Período, equipe, Exportar e ⋯ (agendar envio, copiar link) à direita do título. Nada de principal latão: painel não cria.</td></tr>
+      </table>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Filtros, Exportar, ⋯.</li><li>Alternador Gráfico/Tabela; cada barra é focável.</li><li>Tabela por pessoa.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Barra: "15/09: 96 conversas".</li><li>Variação: "1 min a menos contra agosto, melhor".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Setas de alta e baixa vêm com palavra e número.</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 12 CONFIGURAÇÃO -->
+    <section class="cm-doc-sec" id="config">
+      <h2>Configuração <small>Configuração de SLA</small></h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Mudar como o sistema se comporta sabendo exatamente o efeito, quem mudou antes e como voltar ao padrão.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Índice das seções à esquerda, fixo.</li><li>A descrição do cabeçalho diz o efeito ("não altera conversas já abertas").</li><li>Mudou: barra de salvar com a lista do que mudou.</li><li>Erro de valor: resumo no topo e campo marcado.</li><li>Histórico no ícone do cabeçalho; "Restaurar o padrão do GACO" no fim.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o GitHub e o Zendesk Admin Center organizam ajustes em seções com índice lateral, e o Shopify usa a barra de salvar contextual também nas configurações. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Configuração de SLA</b><span>teste: mude um prazo para "dez" e Salvar</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/configuracao.html" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Abrir em tela cheia</a></span></div><iframe title="Exemplo: configuração de SLA" data-q2-src="padroes/configuracao.html" loading="lazy" style="height:720px"></iframe></div>
+      <table class="cm-especificacao">
+        <tr><th>Larguras</th><td>Índice 200 fixo, formulário 760. Seções empilhadas (título em cima), porque ajustes têm descrição longa.</td></tr>
+        <tr><th>Botões</th><td>Salvar só na barra (sem Salvar ▾: configurar não tem "próximo"). Restaurar padrão como link no fim. Histórico como ícone no cabeçalho.</td></tr>
+        <tr><th>Atalhos</th><td><kbd class="cm-tecla">Ctrl</kbd> <kbd class="cm-tecla">S</kbd> salva.</td></tr>
+      </table>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Histórico, índice, seções, Restaurar, barra.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Interruptor: "Urgente conta 24 horas, ligado".</li><li>Campo com sufixo: "Urgente, 1ª resposta, 10, minutos".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Relógio: "Histórico de alterações".</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 13 CONSOLE -->
+    <section class="cm-doc-sec" id="console">
+      <h2>Console de atendimento <small>Conversas</small></h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Responder 40 conversas por dia sem sair da tela: fila, conversa e ficha juntas, cada uma rolando por si.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Fila ordenada por SLA, com o prazo em palavra.</li><li>R responde, N vira nota interna (amarela), / abre respostas prontas.</li><li>"Enviar ▾" diz o que acontece depois e lembra a escolha.</li><li>Tipo, prioridade e responsável na ficha gravam na hora.</li><li>Passar (T) leva a conversa a outra fila com nota.</li><li>Esc volta o foco à fila; J abre a próxima.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Zendesk Agent Workspace e o Front juntam fila, conversa e contexto; o Freshdesk tem "enviar e definir estado" e o Help Scout lembra o que fazer depois de responder; o WhatsApp Web é o signo que a atendente já usa. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Conversas</b><span>teste: abra o menu da seta do Enviar; N e R; T passa a conversa</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/console.html" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Abrir em tela cheia</a></span></div><iframe title="Exemplo: console de atendimento" data-q2-src="padroes/console.html" loading="lazy" style="height:760px"></iframe></div>
+      <table class="cm-especificacao">
+        <tr><th>Larguras</th><td>Fila 356, conversa flexível (bolha até 62% ou 560), ficha 348. Abaixo de 1280 a ficha vira painel sob demanda; abaixo de 900 uma região por vez.</td></tr>
+        <tr><th>O que fica fixo</th><td>Tudo, menos o miolo de cada região: cabeça da fila, faixa do chamado, compositor e cabeça da ficha não rolam. Ver o modelo de rolagem em <a class="cm-link" href="15-auditoria-paginacao-rolagem.html#rolagem">Rolagem</a>.</td></tr>
+        <tr><th>Botões</th><td>Faixa do chamado: estado (botão que abre as transições), Passar, Resolver. Compositor: anexar e áudio à esquerda, "depois de enviar" em texto, "Enviar ▾" à direita. Nenhum botão de salvar.</td></tr>
+        <tr><th>Atalhos</th><td>Os do rodapé: <kbd class="cm-tecla">J</kbd> <kbd class="cm-tecla">K</kbd> <kbd class="cm-tecla">R</kbd> <kbd class="cm-tecla">N</kbd> <kbd class="cm-tecla">/</kbd> <kbd class="cm-tecla">E</kbd> <kbd class="cm-tecla">A</kbd> <kbd class="cm-tecla">T</kbd> <kbd class="cm-tecla">Ctrl</kbd> <kbd class="cm-tecla">Enter</kbd> <kbd class="cm-tecla">Esc</kbd>.</td></tr>
+      </table>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Fila (uma parada).</li><li>Faixa do chamado.</li><li>Conversa (log), compositor, Enviar.</li><li>Ficha.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Conversa é log: mensagens novas são lidas sem roubar o foco.</li><li>"Enviada. Aguardando a cliente, SLA pausado. Desfazer."</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>"Anexar", "Gravar áudio", "Outras formas de enviar".</li><li>Tique azul: "Lida".</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 14 MURAL -->
+    <section class="cm-doc-sec" id="mural">
+      <h2>Mural <small>Comunicados, reconhecimentos e gente</small></h2>
+      <div class="cm-decisao">
+        <div><h3>O que esta tela resolve</h3><p>Saber o que a empresa comunicou, confirmar a leitura e reconhecer quem ajudou, com a mesma facilidade de uma rede social.</p></div>
+        <div><h3>Fluxo</h3><ol><li>Publicar no topo, com Reconhecer e Publicar.</li><li>Comunicado fixado com "Li e estou ciente", que vira registro com nome e hora.</li><li>Reações com nome de quem reagiu.</li><li>Lateral com aniversários e chegadas, com ação ("Dar parabéns").</li><li>Ao chegar no fim, carrega mais sozinho; o botão "Ver publicações anteriores" fica para teclado e leitor.</li></ol></div>
+        <div class="cm-decisao__porque"><h3>Resolvemos fazer assim porque</h3><p>o Workplace e o Workvivo abrem a empresa como um feed, o LinkedIn ensinou reconhecer e reagir com nome, e o Slack separa o que pede leitura confirmada. Enviamos para aprovação.</p></div>
+      </div>
+      <div class="cm-palco"><div class="cm-palco__barra"><b>Mural</b><span>teste: Li e estou ciente; reações</span><span class="cm-empurra"><a class="cm-botao cm-botao--p" href="padroes/mural.html" target="_blank" rel="noopener"><i data-i="abrir-fora"></i>Abrir em tela cheia</a></span></div><iframe title="Exemplo: mural" data-q2-src="padroes/mural.html" loading="lazy" style="height:760px"></iframe></div>
+      <table class="cm-especificacao">
+        <tr><th>Larguras</th><td>Feed 640, lateral 300, centralizados. Abaixo de 1000 a lateral desce.</td></tr>
+        <tr><th>O que fica fixo</th><td>A lateral gruda enquanto o feed rola.</td></tr>
+        <tr><th>Botões</th><td>Publicar abre modal; ciência é o único latão do comunicado; a marca do cliente só no avatar da conta da empresa.</td></tr>
+      </table>
+      <div class="cm-a11y">
+        <div><h3><i data-i="teclado"></i>Ordem de foco</h3><ol><li>Publicar, filtros, publicações em ordem, botão de anteriores, lateral.</li></ol></div>
+        <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>Reação: "Curtir, 12, pressionado".</li><li>Ciência: "Ciente, Beatriz Nogueira, 01/10/26 às 09:44".</li></ul></div>
+        <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>"Publicar foto".</li></ul></div>
+      </div>
+    </section>
+
+    <section class="cm-doc-sec" id="resumo">
+      <h2>Resumo dos 14 padrões</h2>
+      <div class="cm-rolar-x"><table class="cm-tabela-doc resumo-padroes">
+        <thead><tr><th>Padrão</th><th>Largura</th><th>Rola</th><th>Principal fica</th><th>Salva</th><th>Volta</th></tr></thead>
+        <tbody>
+          <tr><td>Listagem densa</td><td>até 1488</td><td>página; cabeça da tabela gruda</td><td>à direita do título</td><td>célula na hora, massa com Desfazer</td><td>lista lembra tudo</td></tr>
+          <tr><td>Listagem com prévia</td><td>lista + 420</td><td>cada coluna</td><td>pé da prévia: Abrir ficha</td><td>não edita</td><td>não sai</td></tr>
+          <tr><td>Modo fila</td><td>356 + centro</td><td>só o item</td><td>centro, com a tecla</td><td>na hora, Desfazer</td><td>não volta: próxima abre</td></tr>
+          <tr><td>Registro</td><td>até 1280</td><td>página</td><td>cabeçalho, antes do ⋯ e do Histórico</td><td>barra só com alteração</td><td>14 de 63, G L</td></tr>
+          <tr><td>Criação rápida</td><td>560 / 720 / painel 400</td><td>corpo do modal</td><td>pé, à direita</td><td>Criar, Criar e outra</td><td>fecha no lugar</td></tr>
+          <tr><td>Criação em página</td><td>760 a 1040</td><td>página</td><td>barra do pé</td><td>Criar ▾ lembrado</td><td>pergunta de 3 saídas</td></tr>
+          <tr><td>Etapas</td><td>960</td><td>página; pé gruda</td><td>pé, à direita</td><td>a cada etapa</td><td>Terminar depois</td></tr>
+          <tr><td>Quadro</td><td>colunas ≥ 236</td><td>cada coluna</td><td>à direita do título</td><td>mover grava, Desfazer</td><td>alternador Lista</td></tr>
+          <tr><td>Agenda</td><td>260 + grade</td><td>página</td><td>por último no cabeçalho</td><td>painel de reserva</td><td>Hoje</td></tr>
+          <tr><td>Painel</td><td>até 1488</td><td>página</td><td>sem latão</td><td>não salva; exporta</td><td>link com filtros</td></tr>
+          <tr><td>Configuração</td><td>200 + 760</td><td>página; índice gruda</td><td>barra</td><td>barra, sem ▾</td><td>pergunta de 3 saídas</td></tr>
+          <tr><td>Console</td><td>356 + flex + 348</td><td>por região</td><td>Enviar ▾ no compositor</td><td>cada ação grava</td><td>Esc à fila</td></tr>
+          <tr><td>Mural</td><td>640 + 300</td><td>página; lateral gruda</td><td>Publicar</td><td>publicar, ciência</td><td>—</td></tr>
+        </tbody></table></div>
+    </section>
+  </div>
+</main>
+</body>
+</html>

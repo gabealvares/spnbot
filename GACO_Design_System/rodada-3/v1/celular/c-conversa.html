@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR" class="lc-com-teclado">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
+<title>Conversa no celular, teclado aberto</title>
+<meta name="description" content="Suporte no celular: conversa com o morador, nota interna, compositor com modo Responder e Nota, e teclado do sistema aberto.">
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p5.css">
+<script src="../sistema/marca.js"></script>
+<style>
+  .lc-com-teclado .lc-barra-inferior{display:none!important}
+  .lc-com-teclado .lc-app{padding-bottom:0}
+  .c-cab{display:flex;align-items:center;gap:8px;padding:6px 8px;background:var(--sup-1);border-bottom:var(--borda-1);position:sticky;top:0;z-index:5}
+  .c-cab b{display:block;font:600 15px/19px var(--fonte-ui)}
+  .c-cab span.lc-legenda{display:block}
+  .c-conv .lc-conversa{padding:10px 12px 12px;min-height:calc(100vh - 52px - 56px)}
+  .c-conv .lc-bolha{max-width:84%}
+  .c-comp{position:fixed;left:0;right:0;bottom:292px;z-index:60}
+  .c-comp .lc-compositor{padding:6px 8px 8px}
+</style>
+</head>
+<body data-moldura='{"modulo":"suporte","secao":"Conversas","item":"Minhas","papel":"atendente","usuario":{"nome":"Rafael Lima","iniciais":"RL","cor":"lc-av--c7","cargo":"Atendente"}}'>
+<main id="conteudo" class="c-conv">
+  <div class="c-cab"><a class="lc-btn lc-btn--icone lc-btn--discreto" href="c-conversas.html" aria-label="Voltar para Conversas"><i data-i="seta-esquerda"></i></a><span class="lc-av lc-av--32 lc-av--c4">MC</span><span class="lc-cresce"><b>Marina Costa</b><span class="lc-legenda">Síndica, Parque das Águas. Chamado 4.812</span></span><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Dados do chamado"><i data-i="info"></i></button></div>
+  <div class="lc-conversa" role="log" aria-label="Mensagens">
+    <span class="lc-dia">Hoje</span>
+    <div class="lc-bolha lc-bolha--recebida lc-bolha--primeira">Bom dia. O bloco B está sem água desde as 7h. A água voltou?<span class="lc-bolha__meta">08:50</span></div>
+    <div class="lc-bolha lc-bolha--nota lc-bolha--primeira"><span class="lc-bolha__nota-rotulo"><i data-i="nota-interna"></i>Nota interna, só a equipe vê</span>@Juliana a Hidráulica Souza fechou o registro para trocar a prumada. Previsão 11h.<span class="lc-bolha__meta">08:51</span></div>
+    <div class="lc-bolha lc-bolha--recebida">Tem gente reclamando no grupo.<span class="lc-bolha__meta">08:52</span></div>
+  </div>
+  <div class="c-comp"><div class="lc-compositor">
+    <div class="lc-compositor__modo" role="group" aria-label="Modo"><button type="button" aria-pressed="true" data-modo="responder">Responder</button><button type="button" aria-pressed="false" data-modo="nota"><i data-i="nota-interna" class="lc-ic--14"></i>Nota</button></div>
+    <div class="lc-compositor__linha"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Anexar"><i data-i="anexo"></i></button><label class="lc-sr" for="cx">Resposta para Marina Costa</label><textarea id="cx" class="lc-compositor__caixa" rows="2">Marina, a água volta até as 11h. O técnico está trocando a prumada entre o 12º e o 13º</textarea><button class="lc-btn lc-btn--icone lc-btn--secundario" type="button" aria-label="Enviar"><i data-i="enviar"></i></button></div>
+  </div></div>
+  <div class="lc-teclado" aria-hidden="true">
+    <div class="lc-teclado__sug"><span>13º</span><span>andar</span><span>andares</span></div>
+    <div class="lc-teclado__fila"><span>q</span><span>w</span><span>e</span><span>r</span><span>t</span><span>y</span><span>u</span><span>i</span><span>o</span><span>p</span></div>
+    <div class="lc-teclado__fila"><span>a</span><span>s</span><span>d</span><span>f</span><span>g</span><span>h</span><span>j</span><span>k</span><span>l</span><span>ç</span></div>
+    <div class="lc-teclado__fila"><span class="l">⇧</span><span>z</span><span>x</span><span>c</span><span>v</span><span>b</span><span>n</span><span>m</span><span class="l">⌫</span></div>
+    <div class="lc-teclado__fila"><span class="l">123</span><span class="l">☺</span><span class="e">espaço</span><span class="l">enviar</span></div>
+  </div>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p5-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p5.js"></script>
+<script>
+(function(){var t=document.querySelector(".lc-teclado"),c=document.querySelector(".c-comp");function a(){c.style.bottom=t.offsetHeight+"px";}a();window.addEventListener("resize",a);})();
+document.addEventListener("click",function(e){ var b=e.target.closest(".lc-compositor__modo button"); if(!b) return; var c=b.closest(".lc-compositor"); c.querySelectorAll(".lc-compositor__modo button").forEach(function(x){x.setAttribute("aria-pressed",x===b);}); c.classList.toggle("lc-compositor--nota",b.getAttribute("data-modo")==="nota"); });
+</script>
+</body>
+</html>

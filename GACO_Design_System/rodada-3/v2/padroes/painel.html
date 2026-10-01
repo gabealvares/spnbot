@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel do suporte</title>
+<script src="../sistema/marca.js"></script>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-q2.css">
+<script src="../sistema/icones.js"></script>
+<script src="links.js"></script>
+<script src="../sistema/moldura.js" defer></script>
+<script src="../sistema/extra-q2.js" defer></script>
+<style>
+.pn-grade{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:12px;margin-top:12px}
+.pn-barras{display:grid;grid-template-columns:repeat(30,minmax(0,1fr));gap:2px;align-items:end;height:180px;padding:8px 0 0;border-bottom:1px solid var(--cm-grafico-grade);position:relative}
+.pn-barras button{display:block;background:var(--cm-grafico-1);border-radius:4px 4px 0 0;min-height:2px;padding:0;position:relative}
+.pn-barras button:hover,.pn-barras button:focus-visible{background:var(--cm-acao-hover)}
+.pn-barras button.is-fds{background:var(--cm-grafico-3)}
+.pn-eixo{display:flex;justify-content:space-between;font-size:11.5px;color:var(--cm-texto-3);padding-top:4px}
+.pn-dica{position:absolute;pointer-events:none;background:var(--cm-camada-2);border:1px solid var(--cm-filete-forte);box-shadow:var(--cm-sombra-flutuante);padding:6px 8px;font-size:12px;white-space:nowrap;z-index:5;transform:translate(-50%,-100%);margin-top:-8px}
+.pn-h{display:grid;grid-template-columns:120px 1fr 44px;gap:8px;align-items:center;font-size:12.5px;padding:4px 0}
+.pn-h i{display:block;height:12px;background:var(--cm-grafico-1);border-radius:0 4px 4px 0}
+.pn-h span:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--cm-texto-2)}
+@media (max-width:1099px){.pn-grade{grid-template-columns:1fr}}
+@media (max-width:599px){.pn-barras{height:140px}.pn-h{grid-template-columns:96px 1fr 36px}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Suporte","tela":"Painel do suporte","papel":"Atendimento","usuario":{"nome":"Juliana Reis","iniciais":"JR","cargo":"Gestora do Suporte","presenca":"disponivel","tom":2}}'></div>
+<main id="conteudo" class="cm-pagina">
+  <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Painel do suporte</h1>
+    <div class="cm-cabecalho-pagina__acoes"><div class="cm-periodo"><div class="cm-entrada cm-entrada--p"><i data-i="calendario"></i><input aria-label="De" value="01/09/2026"></div><span class="cm-periodo__ate">até</span><div class="cm-entrada cm-entrada--p"><input aria-label="Até" value="30/09/2026"></div></div>
+      <div class="cm-selecao"><select aria-label="Equipe"><option>Todas as equipes</option><option>Condomínios PR</option></select><i data-i="chevron-baixo"></i></div>
+      <button class="cm-botao" type="button" data-q2-toast="Exportando o painel de setembro em PDF, com os filtros atuais.|info"><i data-i="exportar"></i>Exportar</button>
+      <span class="cm-ancora"><button class="cm-botao cm-botao--icone" type="button" aria-label="Mais ações" aria-haspopup="menu" aria-expanded="false" data-q2-abre="pn-menu"><i data-i="mais-opcoes"></i></button>
+        <div class="cm-menu cm-menu--240 cm-flutuante" role="menu" id="pn-menu" hidden><button class="cm-menu__item" role="menuitem" type="button" data-q2-toast="Envio agendado: toda segunda às 8h, para a diretoria.|sucesso"><i data-i="agendar"></i><span>Enviar por e-mail toda semana</span><span></span></button><button class="cm-menu__item" role="menuitem" type="button" data-q2-toast="Link do painel com o período e a equipe copiado.|sucesso"><i data-i="vincular"></i><span>Copiar link com filtros</span><span></span></button></div></span>
+    </div></div>
+    <p class="cm-cabecalho-pagina__desc">Setembro de 2026, comparado com agosto. Atualizado às 09:40.</p>
+  </header>
+  <div class="cm-kpis">
+    <div class="cm-kpi"><span class="cm-kpi__rotulo">Conversas atendidas</span><span class="cm-kpi__valor">1.284</span><span class="cm-kpi__variacao is-melhor"><i data-i="alta"></i>9% <span>contra agosto</span></span></div>
+    <div class="cm-kpi"><span class="cm-kpi__rotulo">Tempo da 1ª resposta</span><span class="cm-kpi__valor">4 min</span><span class="cm-kpi__variacao is-melhor"><i data-i="baixa"></i>1 min <span>contra agosto</span></span></div>
+    <div class="cm-kpi"><span class="cm-kpi__rotulo">Resolvidas no 1º contato</span><span class="cm-kpi__valor">71%</span><span class="cm-kpi__variacao is-pior"><i data-i="baixa"></i>3 pontos <span>contra agosto</span></span></div>
+    <div class="cm-kpi"><span class="cm-kpi__rotulo">CSAT</span><span class="cm-kpi__valor">4,6</span><span class="cm-kpi__variacao"><span>igual a agosto</span></span></div>
+  </div>
+  <div class="pn-grade">
+    <section class="cm-cartao" aria-labelledby="pn-g1">
+      <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="pn-g1">Conversas por dia</h2><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Ver como" data-q2-alterna><button type="button" aria-pressed="true" data-mostra="pn-graf">Gráfico</button><button type="button" aria-pressed="false" data-mostra="pn-tab">Tabela</button></div></header>
+      <div class="cm-cartao__corpo">
+        <div id="pn-graf"><div class="pn-barras" id="pn-barras" role="list" aria-label="Conversas por dia em setembro"></div><div class="pn-eixo"><span>01/09</span><span>15/09</span><span>30/09</span></div><p class="cm-t-legenda" style="margin-top:6px">Fim de semana em cinza. Pico em 15/09: falha do banco nas segundas vias.</p></div>
+        <div id="pn-tab" hidden class="cm-rolar-x" style="max-height:220px;overflow:auto"><table class="cm-tabela cm-tabela--simples"><thead><tr><th>Dia</th><th class="cm-num">Conversas</th></tr></thead><tbody id="pn-tb"></tbody></table></div>
+      </div>
+    </section>
+    <section class="cm-cartao" aria-labelledby="pn-g2">
+      <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="pn-g2">Motivo das conversas</h2></header>
+      <div class="cm-cartao__corpo" id="pn-motivos"></div>
+    </section>
+  </div>
+  <section class="cm-cartao" style="margin-top:12px" aria-labelledby="pn-g3">
+    <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="pn-g3">Por pessoa</h2><span class="cm-t-legenda">Clique no nome para ver as conversas da pessoa</span></header>
+    <div class="cm-rolar-x"><table class="cm-tabela"><thead><tr><th>Pessoa</th><th class="cm-num">Atendidas</th><th class="cm-num">1ª resposta</th><th class="cm-num">Resolvidas no 1º contato</th><th class="cm-num">CSAT</th></tr></thead><tbody>
+      <tr><td class="cm-tabela__principal"><a href="console.html">Beatriz Nogueira</a></td><td class="cm-num">412</td><td class="cm-num">3 min</td><td class="cm-num">76%</td><td class="cm-num">4,8</td></tr>
+      <tr><td class="cm-tabela__principal"><a href="console.html">Juliana Prado</a></td><td class="cm-num">388</td><td class="cm-num">4 min</td><td class="cm-num">72%</td><td class="cm-num">4,6</td></tr>
+      <tr><td class="cm-tabela__principal"><a href="console.html">Rodrigo Mello</a></td><td class="cm-num">301</td><td class="cm-num">6 min</td><td class="cm-num">64%</td><td class="cm-num">4,4</td></tr>
+      <tr><td class="cm-tabela__principal"><a href="console.html">Ana Lúcia Brandão</a></td><td class="cm-num">183</td><td class="cm-num">5 min</td><td class="cm-num">69%</td><td class="cm-num">4,5</td></tr>
+    </tbody></table></div>
+  </section>
+</main>
+<script>
+(function(){
+  var v=[38,41,44,40,36,12,9,45,47,42,49,43,14,10,96,58,47,44,41,13,8,46,44,42,45,39,11,9,44,41];
+  var b=document.getElementById('pn-barras'),max=100,tb='';
+  v.forEach(function(n,i){var d=(i+1<10?'0':'')+(i+1)+'/09',fds=[5,6,12,13,19,20,26,27].indexOf(i)>=0;
+    b.insertAdjacentHTML('beforeend','<button type="button" role="listitem" class="'+(fds?'is-fds':'')+'" style="height:'+(n/max*100)+'%" aria-label="'+d+': '+n+' conversas" data-d="'+d+'" data-n="'+n+'"></button>');tb+='<tr><td>'+d+'</td><td class="cm-num">'+n+'</td></tr>'});
+  document.getElementById('pn-tb').innerHTML=tb;
+  var dica=document.createElement('div');dica.className='pn-dica';dica.hidden=true;b.appendChild(dica);
+  function mostra(e){var x=e.target.closest('button');if(!x){dica.hidden=true;return}dica.hidden=false;dica.innerHTML='<b>'+x.dataset.d+'</b> '+x.dataset.n+' conversas';dica.style.left=(x.offsetLeft+x.offsetWidth/2)+'px';dica.style.top=(x.offsetTop)+'px'}
+  b.addEventListener('mouseover',mostra);b.addEventListener('focusin',mostra);b.addEventListener('mouseleave',function(){dica.hidden=true});b.addEventListener('focusout',function(){dica.hidden=true});
+  var M=[['Segunda via de boleto',412],['Manutenção',287],['Reserva de área',198],['Barulho e convivência',126],['Assembleia',84],['Outros',177]];
+  document.getElementById('pn-motivos').innerHTML=M.map(function(m){return '<div class="pn-h"><span>'+m[0]+'</span><i style="width:'+(m[1]/412*100)+'%" title="'+m[0]+': '+m[1]+'"></i><span>'+m[1]+'</span></div>'}).join('');
+})();
+</script>
+</body>
+</html>

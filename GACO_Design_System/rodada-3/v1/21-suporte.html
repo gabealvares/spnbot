@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversas do suporte</title>
+<meta name="description" content="Atendimento no desenho do WhatsApp Web: conversas, mensagem de todos os tipos, nota interna, respostas rápidas, Enviar com ação seguinte e ficha do chamado retrátil.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .sp-nota{padding-bottom:var(--esp-5)}
+  .sp-acoes-cab{display:flex;gap:2px;align-items:center}
+  .sp-ficha-contato{display:grid;grid-template-columns:48px minmax(0,1fr);gap:4px 12px;align-items:center}
+  .sp-ficha-contato b{display:block;font-size:15px}
+  .sp-ficha-contato small{display:block;font:var(--t-legenda);color:var(--texto-2)}
+  .sp-ficha-contato .lc-grupo-btn{grid-column:1/-1;margin-top:8px}
+  .sp-ligado{list-style:none;margin:0;padding:0;font-size:13px}
+  .sp-ligado li{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:6px 0}
+  .sp-ligado li+li{border-top:var(--borda-1)}
+  .sp-ligado small{display:block;font:var(--t-legenda);color:var(--texto-2)}
+  .sp-midia{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+  .sp-midia span{aspect-ratio:1;background:var(--sup-3);border:var(--borda-1);display:flex;align-items:center;justify-content:center;color:var(--texto-3)}
+  .sp-etqs{display:flex;gap:4px;flex-wrap:wrap}
+  .sp-comp-dir{position:relative;display:inline-flex}
+  .sp-transf{list-style:none;margin:0;padding:0}
+  .sp-transf li{display:grid;grid-template-columns:24px 32px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 0;border-top:var(--borda-1)}
+  .sp-transf li:first-child{border-top:0}
+  .sp-transf small{display:block;font:var(--t-legenda);color:var(--texto-2)}
+  .sp-vazio-conv{flex:1;display:flex;align-items:center;justify-content:center}
+  .sp-tipos__grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+  .sp-tipo{margin:0;border:var(--borda-1);background:var(--sup-1);min-width:0}
+  .sp-tipo figcaption{font:600 12.5px/16px var(--fonte-ui);color:var(--texto-2);padding:8px 12px;border-bottom:var(--borda-1)}
+  .sp-tipo .lc-conversa{padding:12px 14px;overflow:visible}
+  .sp-tipo .lc-bolha{max-width:92%}
+  .sp-sel-msg{display:flex;flex-direction:column;gap:6px;max-height:200px;overflow:auto;padding:8px;background:var(--conversa-fundo);border:var(--borda-1)}
+</style>
+</head>
+<body data-moldura='{"modulo":"suporte","secao":"Conversas","item":"Minhas","papel":"gerente-cs","usuario":{"nome":"Letícia Araújo","cargo":"Coordenadora de Relacionamento","iniciais":"LA","cor":"lc-av--c3"},"contadores":{"suporte":7,"cs":3,"academy":1}}'>
+<main id="conteudo">
+<div class="lc-pagina lc-pagina--larga sp-nota">
+<details class="lc-nota-projeto" open style="margin-bottom:0">
+  <summary><b>Nota de projeto</b> Conversas, a mesa do atendente
+    <span class="lc-nota-projeto__serie"><a href="21-suporte.html" aria-current="page">Conversas</a> <a href="21b-suporte-modo-fila.html">Modo fila</a> <a href="21c-suporte-chamados.html">Chamados</a> <a href="21d-suporte-chamado.html">Chamado</a> <a href="21e-suporte-respostas-rapidas.html">Respostas rápidas</a> <a href="21f-suporte-filas-sla.html">Filas e SLA</a> <a href="21g-suporte-painel.html">Painel do supervisor</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2>
+      <p>O atendente vive aqui 8 horas por dia. É o WhatsApp Web, sem tirar nem pôr no gesto: conversas à esquerda, ordenadas pelo prazo de resposta; a conversa no meio; a ficha do chamado abre ao clicar no cabeçalho, como "Dados do contato". Toda conversa já nasce chamado: número, estado, prazo e responsável ficam na faixa sob o cabeçalho.</p>
+      <p>A conversa ao lado mostra todos os tipos de mensagem que chegam pelo WhatsApp e o que a equipe produz (nota interna, evento do sistema, OS ligada).</p></section>
+    <section><h2>Fluxo</h2><ol>
+      <li>Escolha a fila em cima da lista (Minhas, Sem dono, Esperando o cliente). Setas sobem e descem; Enter abre a conversa.</li>
+      <li>Digite "/" no campo para ver as respostas rápidas; setas escolhem, Enter insere, Esc fecha.</li>
+      <li>"Nota interna", à esquerda do campo, muda o campo para amarelo: só a equipe vê. Use @ para chamar alguém.</li>
+      <li>Enter envia e mantém o chamado Aberto. A seta do Enviar oferece: enviar e aguardar a cliente, enviar e resolver, ou resolver e abrir o próximo da fila. A escolha fica lembrada.</li>
+      <li>Transferir (ícone de setas no cabeçalho) abre a escolha de pessoa ou fila com a carga de cada um. Encaminhar, no "⋯", manda mensagens escolhidas por e-mail ao fornecedor.</li>
+      <li>Mensagem que falhou fica com o aviso vermelho e "Tentar de novo" na própria bolha.</li>
+    </ol></section>
+    <section><h2>Por que assim</h2>
+      <p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o WhatsApp Web (duas colunas, tiques, "Dados do contato" ao clicar no nome, "/" para respostas rápidas), o Zendesk e o Intercom (estado na faixa, nota interna amarela, transferir com carga da pessoa) e o Help Scout e o Front (Enviar com a ação seguinte) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div>
+  <div class="lc-estados-tela" data-estados-para="tela-sup">Ver estado:
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela">
+      <button type="button" aria-pressed="true" data-estado="dados">Conversa aberta</button>
+      <button type="button" aria-pressed="false" data-estado="janela">Janela de 24 h fechada</button>
+      <button type="button" aria-pressed="false" data-estado="desconectado">WhatsApp desconectado</button>
+      <button type="button" aria-pressed="false" data-estado="carregando">Carregando</button>
+      <button type="button" aria-pressed="false" data-estado="vazio">Fila zerada</button>
+      <button type="button" aria-pressed="false" data-estado="sem-permissao">Sem permissão</button>
+    </div>
+    <span>Ficha fechada: clique no nome da Marina. Tema escuro: <code>?tema=escuro</code>.</span>
+  </div>
+</details>
+</div>
+
+<div class="lc-atend" id="tela-sup" data-estado="dados" data-ficha="aberta">
+  <!-- ================= LISTA ================= -->
+  <section class="lc-atend__lista" aria-labelledby="sp-lista-tit">
+    <div class="lc-atend__lista-cab"><h2 id="sp-lista-tit">Conversas</h2>
+      <a class="lc-btn lc-btn--p" href="21b-suporte-modo-fila.html"><i data-i="fila"></i>Modo fila</a>
+      <span class="lc-ancora-menu"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Nova conversa" data-abre="menu-nova" aria-haspopup="menu" aria-expanded="false" data-dica="Nova conversa"><i data-i="mais"></i></button>
+        <div class="lc-menu" role="menu" id="menu-nova" hidden><button class="lc-menu__item" role="menuitem"><i data-i="whatsapp"></i>Mensagem no WhatsApp<small>Fora da janela, só com modelo aprovado</small></button><button class="lc-menu__item" role="menuitem"><i data-i="email"></i>E-mail</button><button class="lc-menu__item" role="menuitem"><i data-i="ligacao"></i>Registrar ligação</button></div></span>
+    </div>
+    <div class="lc-atend__busca"><label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Nome, unidade, telefone ou chamado" aria-label="Pesquisar conversas"></label></div>
+    <div class="lc-atend__filas" role="group" aria-label="Fila">
+      <button type="button" aria-pressed="true">Minhas <span class="lc-contagem">7</span></button>
+      <button type="button" aria-pressed="false">Sem dono <span class="lc-contagem">3</span></button>
+      <button type="button" aria-pressed="false">Esperando o cliente <span class="lc-contagem">4</span></button>
+      <button type="button" aria-pressed="false">Em espera <span class="lc-contagem">2</span></button>
+      <button type="button" aria-pressed="false">Todas <span class="lc-contagem">46</span></button>
+    </div>
+    <div class="lc-atend__ordem"><span>7 conversas</span>
+      <span class="lc-ancora-menu"><button class="lc-btn lc-btn--link lc-btn--p" type="button" data-abre="menu-ordem" aria-haspopup="menu" aria-expanded="false" style="font-size:12px">Prazo de resposta <i data-i="chevron-baixo"></i></button>
+        <div class="lc-menu" role="menu" id="menu-ordem" hidden><button class="lc-menu__item" role="menuitemradio" aria-checked="true">Prazo de resposta</button><button class="lc-menu__item" role="menuitemradio" aria-checked="false">Mais recentes</button><button class="lc-menu__item" role="menuitemradio" aria-checked="false">Mais antigas</button><button class="lc-menu__item" role="menuitemradio" aria-checked="false">Prioridade</button></div></span></div>
+
+    <ul class="lc-atend__itens" data-so-estado="dados janela desconectado sem-permissao" aria-label="Conversas da fila Minhas">
+      <li><button type="button" class="lc-conv-item" aria-current="false" aria-label="Portaria, Vila Serena, 1 não lida, chamado 4.814, prazo vencido há 6 minutos">
+        <span class="lc-ladrilho lc-ladrilho--40" aria-hidden="true"><i data-i="portaria"></i></span>
+        <span class="lc-conv-item__nome">Portaria, Vila Serena</span><span class="lc-conv-item__hora lc-conv-item__hora--nova">09:30</span>
+        <span class="lc-conv-item__previa">O portão da garagem travou de novo</span><span class="lc-conv-item__nl"><span class="lc-contador">1</span></span>
+        <span class="lc-conv-item__pe"><span class="lc-protocolo"><span>Chamado</span> 4.814</span><span class="lc-estado lc-estado--perigo">Prazo vencido há 6 min</span></span></button></li>
+      <li><button type="button" class="lc-conv-item" aria-current="false" aria-label="Paulo Reis, 2 não lidas, mensagem de voz, chamado 4.815, responder em 4 minutos">
+        <span class="lc-av lc-av--40 lc-av--c5" aria-hidden="true">PR</span>
+        <span class="lc-conv-item__nome">Paulo Reis</span><span class="lc-conv-item__hora lc-conv-item__hora--nova">09:41</span>
+        <span class="lc-conv-item__previa"><i data-i="microfone"></i>Mensagem de voz (0:31)</span><span class="lc-conv-item__nl"><span class="lc-contador">2</span></span>
+        <span class="lc-conv-item__pe"><span class="lc-protocolo"><span>Chamado</span> 4.815</span><span class="lc-estado lc-estado--aviso">Responder em 4 min</span></span></button></li>
+      <li><button type="button" class="lc-conv-item" aria-current="true" aria-label="Marina Costa, chamado 4.812, responder até 10:42. Aberta">
+        <span class="lc-av lc-av--40 lc-av--c4" aria-hidden="true">MC</span>
+        <span class="lc-conv-item__nome">Marina Costa</span><span class="lc-conv-item__hora">09:47</span>
+        <span class="lc-conv-item__previa">Obrigada! Fico no aguardo.</span><span></span>
+        <span class="lc-conv-item__pe"><span class="lc-protocolo"><span>Chamado</span> 4.812</span><span>Responder até 10:42</span><span class="lc-etiqueta lc-etiqueta--6">Síndica</span></span></button></li>
+      <li><button type="button" class="lc-conv-item" aria-current="false" aria-label="Renata Duarte, 3 não lidas, chamado 4.811, responder até 11:12">
+        <span class="lc-av lc-av--40 lc-av--c2" aria-hidden="true">RD</span>
+        <span class="lc-conv-item__nome">Renata Duarte</span><span class="lc-conv-item__hora lc-conv-item__hora--nova">09:12</span>
+        <span class="lc-conv-item__previa">Consigo reservar o salão para o dia 18/10?</span><span class="lc-conv-item__nl"><span class="lc-contador">3</span></span>
+        <span class="lc-conv-item__pe"><span class="lc-protocolo"><span>Chamado</span> 4.811</span><span>Responder até 11:12</span></span></button></li>
+      <li><button type="button" class="lc-conv-item" aria-current="false" aria-label="Sérgio Matos, chamado 4.809, esperando o cliente">
+        <span class="lc-av lc-av--40 lc-av--c7" aria-hidden="true">SM</span>
+        <span class="lc-conv-item__nome">Sérgio Matos</span><span class="lc-conv-item__hora">08:55</span>
+        <span class="lc-conv-item__previa"><span class="lc-tique lc-tique--lida" aria-label="Lida"><i data-i="lida"></i></span>Você: segue a 2ª via do boleto de setembro</span><span></span>
+        <span class="lc-conv-item__pe"><span class="lc-protocolo"><span>Chamado</span> 4.809</span><span class="lc-estado lc-estado--neutro">Esperando o cliente</span></span></button></li>
+      <li><button type="button" class="lc-conv-item" aria-current="false" aria-label="Luciana Ferraz, e-mail, chamado 4.806">
+        <span class="lc-av lc-av--40 lc-av--c8" aria-hidden="true">LF</span>
+        <span class="lc-conv-item__nome">Luciana Ferraz</span><span class="lc-conv-item__hora">08:31</span>
+        <span class="lc-conv-item__previa"><i data-i="email"></i>Ata da assembleia de 14/10, minuta</span><span></span>
+        <span class="lc-conv-item__pe"><span class="lc-protocolo"><span>Chamado</span> 4.806</span><span>E-mail</span></span></button></li>
+      <li><button type="button" class="lc-conv-item" aria-current="false" aria-label="Jorge Almeida, janela de 24 horas fechada, chamado 4.798">
+        <span class="lc-av lc-av--40 lc-av--c6" aria-hidden="true">JA</span>
+        <span class="lc-conv-item__nome">Jorge Almeida</span><span class="lc-conv-item__hora">Ontem</span>
+        <span class="lc-conv-item__previa">Vou falar com o conselho e te retorno</span><span></span>
+        <span class="lc-conv-item__pe"><span class="lc-protocolo"><span>Chamado</span> 4.798</span><span class="lc-estado lc-estado--info">Janela de 24 h fechada</span></span></button></li>
+    </ul>
+    <div data-so-estado="carregando" hidden aria-busy="true" aria-label="Carregando conversas" style="padding:8px 14px">
+      <div class="lc-linha" style="padding:8px 0"><span class="lc-esqueleto lc-esqueleto--av" style="width:40px;height:40px"></span><div class="lc-cresce"><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha"></span></div></div>
+      <div class="lc-linha" style="padding:8px 0"><span class="lc-esqueleto lc-esqueleto--av" style="width:40px;height:40px"></span><div class="lc-cresce"><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha"></span></div></div>
+      <div class="lc-linha" style="padding:8px 0"><span class="lc-esqueleto lc-esqueleto--av" style="width:40px;height:40px"></span><div class="lc-cresce"><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha"></span></div></div>
+    </div>
+    <div class="lc-vazio" data-so-estado="vazio" hidden style="padding:28px 20px">
+      <span class="lc-ladrilho lc-ladrilho--40"><i data-i="feito"></i></span>
+      <p class="lc-vazio__titulo">Nenhuma conversa sua esperando</p>
+      <p class="lc-vazio__texto">As 7 de hoje foram respondidas. Há 3 conversas sem dono na fila Condomínios, zona leste.</p>
+      <div class="lc-grupo-btn"><button class="lc-btn lc-btn--p" type="button">Ver Sem dono</button></div>
+    </div>
+  </section>
+
+  <!-- ================= CONVERSA ================= -->
+  <section class="lc-atend__conversa" aria-label="Conversa com Marina Costa">
+    <div class="lc-faixa-sistema lc-faixa-sistema--perigo" data-so-estado="desconectado" hidden role="alert"><i data-i="erro"></i><span><b>WhatsApp desconectado desde 09:52.</b> O que você enviar fica na fila e sai quando o número voltar. E-mail e portal seguem normais.</span><span class="lc-faixa-sistema__fim"><a class="lc-btn lc-btn--p" href="#">Ver o canal</a></span></div>
+    <div class="lc-conv-cab" data-so-estado="dados janela desconectado">
+      <button class="lc-btn lc-btn--icone lc-btn--discreto lc-so-movel" type="button" data-voltar-lista aria-label="Voltar para a lista"><i data-i="seta-esquerda"></i></button>
+      <button class="lc-conv-cab__quem" type="button" data-ficha-alterna aria-expanded="true" aria-controls="sp-ficha">
+        <span class="lc-av lc-av--40 lc-av--c4" aria-hidden="true">MC</span>
+        <span style="min-width:0"><b>Marina Costa</b><small>Síndica, Parque das Águas, bloco B, 1102. WhatsApp (11) 98765-4321</small></span></button>
+      <div class="sp-acoes-cab">
+        <button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Pesquisar na conversa" data-dica="Pesquisar na conversa"><i data-i="pesquisar"></i></button>
+        <button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Transferir conversa" data-dica="Transferir" data-modal="m-transferir"><i data-i="transferir"></i></button>
+        <span class="lc-ancora-menu"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Mais opções da conversa" aria-haspopup="menu" aria-expanded="false" data-abre="menu-conv"><i data-i="mais-opcoes"></i></button>
+          <div class="lc-menu" role="menu" id="menu-conv" hidden>
+            <button class="lc-menu__item" role="menuitem" data-modal="m-encaminhar"><i data-i="encaminhar"></i>Encaminhar por e-mail</button>
+            <a class="lc-menu__item" role="menuitem" href="21d-suporte-chamado.html#mesclar"><i data-i="mesclar"></i>Mesclar com outro chamado</a>
+            <button class="lc-menu__item" role="menuitem"><i data-i="ordem-de-servico"></i>Abrir ordem de serviço</button>
+            <a class="lc-menu__item" role="menuitem" href="21d-suporte-chamado.html"><i data-i="abrir-fora"></i>Abrir o chamado em página</a>
+            <hr class="lc-menu__sep">
+            <button class="lc-menu__item" role="menuitem"><i data-i="baixar"></i>Exportar conversa (PDF)</button>
+            <button class="lc-menu__item lc-menu__item--perigo" role="menuitem"><i data-i="bloquear"></i>Bloquear número</button>
+          </div></span>
+        <button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" data-ficha-alterna aria-expanded="true" aria-controls="sp-ficha" aria-label="Dados do chamado" data-dica="Dados do chamado"><i data-i="painel"></i></button>
+      </div>
+    </div>
+    <div class="lc-conv-faixa" data-so-estado="dados janela desconectado">
+      <span class="lc-protocolo"><span>Chamado</span> 4.812 <button type="button" aria-label="Copiar número do chamado" data-toast="Número 4.812 copiado"><i data-i="copiar" class="lc-ic--14"></i></button></span>
+      <span>Responder até <b>10:42</b></span>
+      <span class="lc-pessoa"><span class="lc-av lc-av--20 lc-av--c3" aria-hidden="true">LA</span>Letícia Araújo</span>
+      <div class="lc-seg lc-seg--p" role="group" aria-label="Estado do chamado"><button type="button" aria-pressed="false">Novo</button><button type="button" aria-pressed="true">Aberto</button><button type="button" aria-pressed="false">Pendente</button><button type="button" aria-pressed="false">Resolvido</button></div>
+    </div>
+
+    <div class="lc-conversa" id="conv-mc" data-so-estado="dados janela desconectado" aria-label="Mensagens" tabindex="0">
+      <span class="lc-dia">Hoje</span>
+      <div class="lc-bolha lc-bolha--primeira">Bom dia, Letícia. Tem água descendo pela parede da garagem do bloco B, do lado da vaga 32. Já molhou o carro do morador do 304.<span class="lc-bolha__meta">08:12</span></div>
+      <div class="lc-bolha"><span class="lc-foto--desenho" role="img" aria-label="Foto: parede da garagem com mancha de umidade escorrendo do teto até o piso, ao lado da vaga 32">
+        <svg viewBox="0 0 280 175" aria-hidden="true"><rect width="280" height="175" style="fill:var(--sup-3)"/><rect y="128" width="280" height="47" style="fill:var(--filete-forte)"/><path d="M0 128h280" style="stroke:var(--texto-3);stroke-width:2"/><path d="M118 0c6 30-14 52-4 80s-8 38 6 48h34c10-14-4-30 4-54s-10-46 2-74z" style="fill:var(--texto-3);opacity:.55"/><path d="M128 0c2 40 10 70 6 128" style="stroke:var(--texto-2);stroke-width:1.5;fill:none;opacity:.6"/><text x="196" y="160" style="fill:var(--texto-2);font:600 22px var(--fonte-ui)">32</text><path d="M180 128v47M240 128v47" style="stroke:var(--sup-1);stroke-width:4"/></svg></span>
+        <span class="lc-foto-legenda">Parede ao lado da vaga 32</span><span class="lc-bolha__meta">08:12</span></div>
+      <div class="lc-bolha"><div class="lc-audio"><button class="lc-audio__tocar" type="button" aria-label="Ouvir mensagem de voz de 42 segundos"><i data-i="tocar"></i></button><span class="lc-audio__onda" aria-hidden="true"><i style="height:16px" class="lc-tocado"></i><i style="height:20px" class="lc-tocado"></i><i style="height:9px" class="lc-tocado"></i><i style="height:18px" class="lc-tocado"></i><i style="height:10px" class="lc-tocado"></i><i style="height:12px" class="lc-tocado"></i><i style="height:9px" class="lc-tocado"></i><i style="height:9px" class="lc-tocado"></i><i style="height:6px" class="lc-tocado"></i><i style="height:18px"></i><i style="height:14px"></i><i style="height:20px"></i><i style="height:6px"></i><i style="height:16px"></i><i style="height:14px"></i><i style="height:14px"></i><i style="height:24px"></i><i style="height:20px"></i><i style="height:12px"></i><i style="height:9px"></i><i style="height:20px"></i><i style="height:16px"></i><i style="height:6px"></i><i style="height:20px"></i><i style="height:20px"></i><i style="height:16px"></i><i style="height:12px"></i><i style="height:20px"></i></span><span class="lc-audio__tempo">0:42</span></div>
+        <span class="lc-audio__transcricao">Transcrição: "O zelador disse que a água vem do teto, parece que é do ralo da área do 1102. Eu autorizo abrir o forro se precisar."</span><span class="lc-bolha__meta">08:13</span></div>
+      <p class="lc-msg-sistema"><i data-i="chamado"></i>Chamado 4.812 aberto pelo WhatsApp às 08:14. Letícia Araújo assumiu às 08:20.</p>
+      <div class="lc-bolha lc-bolha--enviada lc-bolha--primeira">Bom dia, Marina. Recebi as fotos e o áudio. Vou mandar o encanador ainda hoje para ver de onde vem a água. Pode pedir para o morador do 304 tirar o carro da vaga?<span class="lc-bolha__meta">08:24<span class="lc-tique lc-tique--lida" aria-label="Lida"><i data-i="lida"></i></span></span></div>
+      <div class="lc-bolha lc-bolha--nota lc-bolha--primeira"><span class="lc-bolha__nota-rotulo"><i data-i="nota-interna"></i>Nota interna. Só a equipe vê.</span><span class="lc-mencao">@Rogério Alves</span> dá para mandar alguém hoje até meio-dia? A síndica autorizou abrir o forro da garagem.<span class="lc-bolha__meta">08:26, Letícia</span></div>
+      <div class="lc-ligado"><i data-i="ordem-de-servico"></i><div class="lc-cresce"><b>OS 482, encanador</b><br><span class="lc-legenda">Visita hoje às 11h. Responsável: Rogério Alves.</span></div><span class="lc-estado lc-estado--andamento">Agendada</span></div>
+      <div class="lc-bolha lc-bolha--primeira"><span class="lc-bolha__citacao"><b>Você</b>Pode pedir para o morador do 304 tirar o carro da vaga?</span>Já pedi. Ele tira às 10h, antes de sair para o trabalho.<span class="lc-bolha__meta">08:41</span></div>
+      <div class="lc-bolha"><span class="lc-msg-doc"><span class="lc-msg-doc__ic" aria-hidden="true">PDF</span><span><b>Orçamento impermeabilização garagem.pdf</b><small>3 páginas, 412 KB</small></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Baixar Orçamento impermeabilização garagem.pdf"><i data-i="baixar"></i></button></span>Esse é o orçamento que o conselho pegou no ano passado, para vocês verem.<span class="lc-bolha__meta">08:43</span></div>
+      <div class="lc-bolha"><span class="lc-msg-local"><span class="lc-msg-local__mapa" role="img" aria-label="Mapa com o ponto na Rua das Palmeiras, 1.450"><svg viewBox="0 0 280 158" aria-hidden="true"><path d="M0 52h280M0 118h280M70 0v158M196 0v158" style="stroke:var(--sup-1);stroke-width:10"/><path d="M0 86h280" style="stroke:var(--sup-1);stroke-width:4"/><path d="M140 40c-12 0-20 9-20 20 0 15 20 34 20 34s20-19 20-34c0-11-8-20-20-20z" style="fill:var(--perigo-ponto)"/><circle cx="140" cy="60" r="6" style="fill:var(--sup-1)"/></svg></span><b>Entrada da garagem, bloco B</b><small>Rua das Palmeiras, 1.450, Jardim Aquarius</small></span>Para o encanador achar a entrada de serviço.<span class="lc-bolha__meta">08:44</span></div>
+      <div class="lc-bolha lc-bolha--apagada"><i data-i="proibido"></i>Esta mensagem foi apagada<span class="lc-bolha__meta">08:45</span></div>
+      <div class="lc-bolha"><span class="lc-bolha__encaminhada"><i data-i="encaminhar"></i>Encaminhada</span>Dona Marina, a água aumentou agora, já está empoçando na vaga 31 também. Sandra, 304<span class="lc-bolha__meta">09:20</span></div>
+      <div class="lc-bolha lc-bolha--enviada lc-bolha--primeira" aria-invalid="true">Obrigada, Marina. O Rogério confirmou: o encanador chega às 11h e vai se identificar na portaria.<span class="lc-bolha__meta">09:34<span class="lc-tique lc-tique--falhou" aria-label="Não enviada"><i data-i="erro"></i></span></span>
+        <span class="lc-bolha__falha"><i data-i="erro" class="lc-ic--14"></i>Não enviada: o WhatsApp não respondeu. <button class="lc-btn lc-btn--link lc-btn--p" type="button" onclick="var b=this.closest('.lc-bolha');b.removeAttribute('aria-invalid');this.parentNode.remove();var t=b.querySelector('.lc-tique');t.className='lc-tique lc-tique--lida';t.setAttribute('aria-label','Lida');t.innerHTML=lcIcone('lida');lcAnunciar('Mensagem reenviada')">Tentar de novo</button></span></div>
+      <div class="lc-bolha lc-bolha--primeira">Obrigada! Fico no aguardo.<span class="lc-bolha__meta">09:47</span></div>
+      <div class="lc-bolha-digitando" aria-label="Marina está digitando"><i></i><i></i><i></i></div>
+    </div>
+
+    <div data-so-estado="carregando" hidden class="lc-conversa" aria-busy="true" style="flex:1">
+      <span class="lc-esqueleto" style="width:46%;height:44px;border-radius:var(--raio-3)"></span>
+      <span class="lc-esqueleto" style="width:34%;height:120px;border-radius:var(--raio-3);margin-top:8px"></span>
+      <span class="lc-esqueleto" style="width:40%;height:44px;border-radius:var(--raio-3);margin-top:8px;align-self:flex-end"></span>
+    </div>
+    <div data-so-estado="vazio" hidden class="sp-vazio-conv"><div class="lc-vazio lc-vazio--centro"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="conversas"></i></span><p class="lc-vazio__titulo">Escolha uma conversa</p><p class="lc-vazio__texto">Ou abra o modo fila para receber uma por vez, na ordem do prazo.</p><div class="lc-grupo-btn"><a class="lc-btn" href="21b-suporte-modo-fila.html"><i data-i="fila"></i>Abrir modo fila</a></div></div></div>
+    <div data-so-estado="sem-permissao" hidden class="sp-vazio-conv"><div class="lc-vazio lc-vazio--centro"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="bloquear"></i></span><p class="lc-vazio__titulo">Esta conversa é da fila Financeiro</p><p class="lc-vazio__texto">Você vê que ela existe porque o chamado cita um condomínio da sua carteira, mas só quem está na fila Financeiro pode ler e responder. Quem cuida dela agora: Ana Paula Souza.</p><div class="lc-grupo-btn"><button class="lc-btn" type="button" data-toast="Pedido de acesso enviado para Ana Paula Souza" data-toast-neutro>Pedir acesso</button><button class="lc-btn lc-btn--discreto" type="button">Chamar Ana Paula</button></div></div></div>
+
+    <!-- compositor normal -->
+    <div class="lc-compositor" data-compositor="conv-mc" data-so-estado="dados desconectado">
+      <div class="lc-rr" hidden>
+        <div class="lc-opcoes" role="listbox" id="rr-lista" aria-label="Respostas rápidas">
+          <div class="lc-opcoes__grupo" data-rr-conta>Respostas rápidas</div>
+          <div class="lc-opcao" role="option" id="rr1" data-atalho="visita" data-texto="Marina, o técnico chega hoje às 11h. Ele vai se identificar na portaria com o crachá da Alpha."><b>/visita</b><span>Confirmação de visita técnica</span><small>"Marina, o técnico chega hoje às 11h. Ele vai se identificar na portaria…"</small></div>
+          <div class="lc-opcao" role="option" id="rr2" data-atalho="vistoria" data-texto="Vamos agendar a vistoria da área comum. Qual o melhor dia nesta semana para o zelador acompanhar?"><b>/vistoria</b><span>Agendamento de vistoria de área comum</span><small>"Vamos agendar a vistoria da área comum. Qual o melhor dia…"</small></div>
+          <div class="lc-opcao" role="option" id="rr3" data-atalho="vizinho" data-texto="Quando a infiltração vem de outra unidade, o reparo é do proprietário de cima. Vamos notificar o 1102 e acompanhar daqui."><b>/vizinho</b><span>Infiltração vinda de unidade vizinha</span><small>"Quando a infiltração vem de outra unidade, o reparo é…"</small></div>
+          <div class="lc-opcao" role="option" id="rr4" data-atalho="boleto" data-texto="Segue a 2ª via do boleto. O Pix copia e cola vale até a data de vencimento."><b>/boleto</b><span>2ª via de boleto</span><small>"Segue a 2ª via do boleto. O Pix copia e cola vale até…"</small></div>
+          <div class="lc-opcao" role="option" id="rr5" data-atalho="salao" data-texto="A reserva do salão é feita pelo portal, em Reservas. A taxa vem no boleto do mês seguinte."><b>/salao</b><span>Reserva do salão de festas</span><small>"A reserva do salão é feita pelo portal, em Reservas…"</small></div>
+          <div class="lc-opcoes__rodape">Setas escolhem, Enter insere, Esc fecha</div>
+        </div>
+      </div>
+      <div class="lc-compositor__modo" role="group" aria-label="Tipo de mensagem"><button type="button" aria-pressed="true" data-modo="resposta"><i data-i="responder"></i>Responder</button><button type="button" aria-pressed="false" data-modo="nota"><i data-i="nota-interna"></i>Nota interna</button></div>
+      <div class="lc-compositor__linha">
+        <span class="lc-ancora-menu lc-ancora-menu--esq lc-ancora-menu--cima"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Anexar" aria-haspopup="menu" aria-expanded="false" data-abre="menu-anexo"><i data-i="anexo"></i></button>
+          <div class="lc-menu" role="menu" id="menu-anexo" hidden><button class="lc-menu__item" role="menuitem"><i data-i="imagem"></i>Foto ou vídeo</button><button class="lc-menu__item" role="menuitem"><i data-i="documento"></i>Documento</button><button class="lc-menu__item" role="menuitem"><i data-i="boleto"></i>Boleto da unidade</button><button class="lc-menu__item" role="menuitem"><i data-i="localizacao"></i>Localização</button><button class="lc-menu__item" role="menuitem"><i data-i="modelo-aprovado"></i>Modelo aprovado</button></div></span>
+        <textarea class="lc-compositor__caixa" rows="1" aria-label="Mensagem para Marina Costa" placeholder="Escreva uma mensagem. Digite / para respostas rápidas." aria-autocomplete="list" aria-controls="rr-lista" aria-expanded="false">O Rogério confirmou: o encanador chega às 11h. /vi</textarea>
+        <button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Gravar áudio"><i data-i="microfone"></i></button>
+        <span class="sp-comp-dir lc-dividido">
+          <button class="lc-btn lc-btn--principal" type="button" data-enviar>Enviar</button><button class="lc-btn lc-btn--principal" type="button" aria-label="Escolher o que acontece depois de enviar" aria-haspopup="menu" aria-expanded="false" data-abre="menu-enviar"><i data-i="chevron-baixo"></i></button>
+          <div class="lc-menu lc-enviar-menu" role="menu" id="menu-enviar" hidden>
+            <div class="lc-menu__titulo">Depois de enviar</div>
+            <button class="lc-menu__item" role="menuitemradio" aria-checked="true" data-enviar><span>Enviar<small>O chamado continua Aberto</small></span><span class="lc-tecla">Enter</span></button>
+            <button class="lc-menu__item" role="menuitemradio" aria-checked="false" data-enviar="Enviado. Chamado 4.812 está Pendente; o prazo pausou."><span>Enviar e aguardar a cliente<small>Estado vai para Pendente; o prazo pausa</small></span></button>
+            <button class="lc-menu__item" role="menuitemradio" aria-checked="false" data-enviar="Enviado e resolvido. Marina recebe a pesquisa de satisfação."><span>Enviar e resolver<small>Marina recebe a pesquisa de satisfação</small></span><span class="lc-tecla">Ctrl+Enter</span></button>
+            <button class="lc-menu__item" role="menuitemradio" aria-checked="false" data-enviar="Resolvido. Abrindo Portaria, Vila Serena."><span>Enviar, resolver e abrir a próxima<small>Próxima: Portaria, Vila Serena (prazo vencido)</small></span></button>
+          </div></span>
+      </div>
+      <p class="lc-compositor__dica"><span><span class="lc-tecla">/</span> respostas rápidas</span><span><span class="lc-tecla">@</span> mencionar na nota</span><span><span class="lc-tecla">Shift+Enter</span> nova linha</span><span>Janela de 24 h aberta até amanhã, 09:47</span></p>
+    </div>
+
+    <!-- compositor com janela fechada -->
+    <div class="lc-compositor" data-so-estado="janela" hidden>
+      <div class="lc-janela"><i data-i="relogio"></i><div><b>A janela de 24 h com a Marina fechou ontem às 09:47.</b> Pelas regras do WhatsApp, só dá para escrever primeiro com um modelo aprovado pela Meta. Quando ela responder, o campo livre volta. Nota interna continua liberada.</div></div>
+      <div class="lc-modelo-escolha">
+        <div class="lc-pilha lc-pilha--p">
+          <div class="lc-campo"><label class="lc-rotulo" for="sp-modelo">Modelo aprovado</label>
+            <select class="lc-selecao" id="sp-modelo"><option>retomar_atendimento (Utilidade)</option><option>visita_tecnica_confirmada (Utilidade)</option><option>boleto_disponivel (Utilidade)</option><option>pesquisa_satisfacao (Marketing)</option></select></div>
+          <div class="lc-campo"><label class="lc-rotulo" for="sp-var1">Variável {{1}}: nome</label><input class="lc-entrada" id="sp-var1" value="Marina"></div>
+          <div class="lc-campo"><label class="lc-rotulo" for="sp-var2">Variável {{2}}: assunto</label><input class="lc-entrada" id="sp-var2" value="o vazamento na garagem do bloco B"></div>
+          <p class="lc-legenda">Custo da conversa iniciada pela empresa: R$ 0,08 na categoria Utilidade.</p>
+        </div>
+        <div><span class="lc-rotulo" style="display:block;margin-bottom:6px">Como a Marina vai ver</span>
+          <div class="lc-modelo-wa-previa"><div class="lc-bolha lc-bolha--enviada lc-msg-modelo" style="max-width:100%"><span class="lc-msg-modelo__rot"><i data-i="modelo-aprovado"></i>Modelo aprovado</span>Olá, <span class="lc-var">Marina</span>. Aqui é da Administradora Alpha, sobre <span class="lc-var">o vazamento na garagem do bloco B</span>. Podemos continuar o atendimento por aqui?<span class="lc-msg-modelo__botoes"><span>Sim, pode continuar</span><span>Prefiro que me liguem</span></span></div></div>
+          <div class="lc-grupo-btn" style="justify-content:flex-end;margin-top:10px"><button class="lc-btn" type="button">Escrever nota interna</button><button class="lc-btn lc-btn--principal" type="button" data-toast="Modelo enviado. O campo livre volta quando a Marina responder.">Enviar modelo</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FICHA ================= -->
+  <aside class="lc-atend__ficha" id="sp-ficha" aria-labelledby="sp-ficha-tit">
+    <div class="lc-ficha__cab"><h2 id="sp-ficha-tit">Dados do chamado</h2><a class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" href="21d-suporte-chamado.html" aria-label="Abrir chamado em página" data-dica="Abrir em página"><i data-i="abrir-fora"></i></a><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" data-ficha-alterna aria-expanded="true" aria-label="Fechar dados do chamado"><i data-i="fechar"></i></button></div>
+    <div class="lc-ficha__bloco">
+      <div class="sp-ficha-contato"><span class="lc-av lc-av--48 lc-av--c4" aria-hidden="true">MC</span><span><b>Marina Costa</b><small>Síndica até 03/2027</small><small>Parque das Águas, bloco B, 1102</small></span>
+        <div class="lc-grupo-btn"><button class="lc-btn lc-btn--p" type="button"><i data-i="ligacao"></i>Ligar</button><a class="lc-btn lc-btn--p" href="22b-cliente.html"><i data-i="condominio"></i>Ficha do cliente</a></div></div>
+    </div>
+    <div class="lc-ficha__bloco">
+      <h3>Chamado <span class="lc-protocolo" style="margin-left:4px">4.812</span></h3>
+      <dl class="lc-props">
+        <dt>Assunto</dt><dd>Vazamento na garagem, bloco B</dd>
+        <dt>Responsável</dt><dd><span class="lc-pessoa"><span class="lc-av lc-av--20 lc-av--c3" aria-hidden="true">LA</span>Letícia Araújo</span></dd>
+        <dt><label for="sp-prio">Prioridade</label></dt><dd><select class="lc-selecao" id="sp-prio" style="height:30px"><option>Alta</option><option>Normal</option><option>Baixa</option><option>Urgente</option></select></dd>
+        <dt>Fila</dt><dd>Condomínios, zona leste</dd>
+        <dt>Tipo</dt><dd>Manutenção, vazamento</dd>
+        <dt>Prazo</dt><dd>1ª resposta cumprida em 10 min. Solução até 01/10 às 18h</dd>
+        <dt>Canal</dt><dd>WhatsApp, aberto às 08:14</dd>
+      </dl>
+    </div>
+    <div class="lc-ficha__bloco"><h3>Etiquetas<button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Editar etiquetas"><i data-i="editar"></i></button></h3>
+      <div class="sp-etqs"><span class="lc-etiqueta lc-etiqueta--6">Síndica</span><span class="lc-etiqueta lc-etiqueta--2">Área comum</span><span class="lc-etiqueta lc-etiqueta--4">Pode virar obra</span></div></div>
+    <div class="lc-ficha__bloco"><h3>Ligados a este chamado<button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Ligar outro registro"><i data-i="vincular"></i></button></h3>
+      <ul class="sp-ligado"><li><span>OS 482, encanador<small>Hoje, 11h. Rogério Alves</small></span><span class="lc-estado lc-estado--andamento">Agendada</span></li><li><span>Chamado 4.690, infiltração bloco B<small>Junho de 2026</small></span><span class="lc-estado lc-estado--neutro">Fechado</span></li></ul></div>
+    <div class="lc-ficha__bloco"><h3>Unidade 1102</h3>
+      <div class="lc-abas lc-abas--p" role="tablist" aria-label="Unidade"><button role="tab" aria-selected="true" aria-controls="sp-bol">Boletos</button><button role="tab" aria-selected="false" aria-controls="sp-ant">Chamados anteriores <span class="lc-contagem">5</span></button></div>
+      <ul class="sp-ligado" id="sp-bol" role="tabpanel" style="margin-top:6px"><li><span>Outubro<small>Vence 10/10</small></span><span class="lc-num">R$ 1.284,37</span></li><li><span>Setembro<small>Pago em 08/09</small></span><span class="lc-estado lc-estado--sucesso">Pago</span></li><li><span>Agosto<small>Pago em 09/08</small></span><span class="lc-estado lc-estado--sucesso">Pago</span></li></ul>
+      <ul class="sp-ligado" id="sp-ant" role="tabpanel" hidden style="margin-top:6px"><li><span>4.690 Infiltração bloco B<small>Junho, resolvido em 2 dias</small></span></li><li><span>4.311 Reserva do salão<small>Março</small></span></li></ul></div>
+    <div class="lc-ficha__bloco"><h3>Mídia e documentos <span class="lc-contagem">6</span></h3>
+      <div class="sp-midia"><span><i data-i="imagem"></i></span><span><i data-i="imagem"></i></span><span><i data-i="documento"></i></span></div>
+      <button class="lc-btn lc-btn--link lc-btn--p" type="button" style="margin-top:6px">Ver os 6</button></div>
+  </aside>
+</div>
+
+<!-- Transferir -->
+<div class="lc-sobreposicao" id="m-transferir" hidden>
+  <div class="lc-modal" role="dialog" aria-modal="true" aria-labelledby="mt-tit">
+    <div class="lc-modal__cab"><div style="flex:1"><h2 id="mt-tit">Transferir o chamado 4.812</h2><p>Quem receber vê a conversa inteira e a sua nota. A Marina não é avisada.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" data-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+    <div class="lc-modal__corpo">
+      <div class="lc-seg lc-seg--bloco" role="group" aria-label="Transferir para" style="margin-bottom:12px"><button type="button" aria-pressed="true">Pessoa</button><button type="button" aria-pressed="false">Fila</button></div>
+      <label class="lc-busca" style="margin-bottom:6px"><i data-i="pesquisar"></i><input type="search" placeholder="Nome ou área" aria-label="Buscar pessoa"></label>
+      <ul class="sp-transf" role="radiogroup" aria-label="Pessoa">
+        <li><label class="lc-radio"><input type="radio" name="tr" checked><span class="lc-radio__bola"></span><span class="lc-sr">Beatriz Nogueira</span></label><span class="lc-av lc-av--32 lc-av--c4" aria-hidden="true">BN<span class="lc-presenca lc-presenca--ocupado"></span></span><span><b>Beatriz Nogueira</b><small>Em atendimento. Atende o Parque das Águas desde 2024</small></span><span class="lc-capacidade" aria-label="3 de 6 conversas"><i class="lc-cheio"></i><i class="lc-cheio"></i><i class="lc-cheio"></i><i></i><i></i><i></i></span></li>
+        <li><label class="lc-radio"><input type="radio" name="tr"><span class="lc-radio__bola"></span><span class="lc-sr">Thiago Costa</span></label><span class="lc-av lc-av--32 lc-av--c6" aria-hidden="true">TC<span class="lc-presenca lc-presenca--ocupado"></span></span><span><b>Thiago Costa</b><small>Lotado. Recebe só depois de fechar uma</small></span><span class="lc-capacidade lc-capacidade--lotado" aria-label="6 de 6 conversas, lotado"><i class="lc-cheio"></i><i class="lc-cheio"></i><i class="lc-cheio"></i><i class="lc-cheio"></i><i class="lc-cheio"></i><i class="lc-cheio"></i></span></li>
+        <li><label class="lc-radio"><input type="radio" name="tr"><span class="lc-radio__bola"></span><span class="lc-sr">Juliana Prado</span></label><span class="lc-av lc-av--32 lc-av--c6" aria-hidden="true">JP<span class="lc-presenca lc-presenca--on"></span></span><span><b>Juliana Prado</b><small>Disponível. Primeira semana, em acompanhamento</small></span><span class="lc-capacidade" aria-label="1 de 4 conversas"><i class="lc-cheio"></i><i></i><i></i><i></i></span></li>
+        <li><label class="lc-radio"><input type="radio" name="tr" disabled><span class="lc-radio__bola"></span><span class="lc-sr">Felipe Moura</span></label><span class="lc-av lc-av--32 lc-av--c7" aria-hidden="true">FM<span class="lc-presenca lc-presenca--ausente"></span></span><span class="lc-cor-3"><b>Felipe Moura</b><small>De férias até 10/10</small></span><span></span></li>
+      </ul>
+      <div class="lc-campo" style="margin-top:12px"><label class="lc-rotulo" for="mt-nota">Nota para quem recebe <span class="lc-opcional">(opcional)</span></label><textarea class="lc-area-texto" id="mt-nota" rows="2">Encanador às 11h (OS 482). Falta confirmar com a Marina depois da visita.</textarea></div>
+    </div>
+    <div class="lc-modal__pe"><label class="lc-marcar lc-modal__aux"><input type="checkbox"><span class="lc-marcar__caixa"></span><span>Continuar seguindo</span></label><button class="lc-btn" type="button" data-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-fechar data-toast="Chamado 4.812 transferido para Beatriz Nogueira" data-toast-desfazer>Transferir</button></div>
+  </div>
+</div>
+
+<!-- Encaminhar -->
+<div class="lc-sobreposicao" id="m-encaminhar" hidden>
+  <div class="lc-modal lc-modal--largo" role="dialog" aria-modal="true" aria-labelledby="me-tit">
+    <div class="lc-modal__cab"><div style="flex:1"><h2 id="me-tit">Encaminhar por e-mail</h2><p>Sai do e-mail da fila, com o número do chamado no assunto. A resposta volta para esta conversa como nota interna.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" data-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+    <div class="lc-modal__corpo"><div class="lc-form-grade">
+      <div class="lc-campo"><label class="lc-rotulo" for="me-para">Para</label><input class="lc-entrada" id="me-para" value="Hidrotec Encanamentos &lt;os@hidrotec.com.br&gt;"></div>
+      <div class="lc-campo"><label class="lc-rotulo" for="me-ass">Assunto</label><input class="lc-entrada" id="me-ass" value="[Chamado 4.812] Vazamento na garagem, Parque das Águas"></div>
+      <div class="lc-inteiro"><span class="lc-rotulo" style="display:block;margin-bottom:6px">Mensagens que vão junto</span>
+        <div class="sp-sel-msg">
+          <label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>08:12 Marina: "Tem água descendo pela parede da garagem do bloco B…"</span></label>
+          <label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>08:12 Foto: parede ao lado da vaga 32</span></label>
+          <label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>08:44 Localização: entrada da garagem, bloco B</span></label>
+          <label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span><span>08:26 Nota interna <small>Notas internas nunca vão marcadas</small></span></label>
+        </div></div>
+      <div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="me-txt">Texto</label><textarea class="lc-area-texto" id="me-txt" rows="3">Bom dia. Seguem as fotos e a localização do vazamento. Visita confirmada hoje às 11h com o zelador.</textarea></div>
+    </div></div>
+    <div class="lc-modal__pe"><span class="lc-modal__aux">3 mensagens e 1 foto</span><button class="lc-btn" type="button" data-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-fechar data-toast="Encaminhado para Hidrotec Encanamentos">Encaminhar</button></div>
+  </div>
+</div>
+
+<div class="lc-pagina lc-pagina--larga" style="padding-top:var(--esp-7)">
+<section class="sp-tipos" aria-labelledby="sp-tipos-tit"><h2 id="sp-tipos-tit" class="lc-t-secao" style="margin:0 0 4px">Tipos de mensagem</h2><p class="lc-pequeno lc-cor-2" style="margin:0 0 12px">Cada tipo, isolado, no tamanho real da conversa. Todos aparecem em ordem na conversa da Marina acima (role a área de mensagens).</p><div class="sp-tipos__grade">
+<figure class="sp-tipo"><figcaption>Texto recebido</figcaption><div class="lc-conversa"><div class="lc-bolha lc-bolha--primeira">Bom dia, Letícia. Tem água descendo pela parede da garagem do bloco B.<span class="lc-bolha__meta">08:12</span></div></div></figure>
+<figure class="sp-tipo"><figcaption>Enviada: enviando, entregue e lida</figcaption><div class="lc-conversa"><div class="lc-bolha lc-bolha--enviada lc-bolha--primeira">Vou mandar o encanador hoje.<span class="lc-bolha__meta">08:24<span class="lc-tique" aria-label="Enviando"><i data-i="enviando"></i></span></span></div><div class="lc-bolha lc-bolha--enviada">Pode tirar o carro da vaga?<span class="lc-bolha__meta">08:24<span class="lc-tique" aria-label="Entregue"><i data-i="lida"></i></span></span></div><div class="lc-bolha lc-bolha--enviada">Obrigada!<span class="lc-bolha__meta">08:25<span class="lc-tique lc-tique--lida" aria-label="Lida"><i data-i="lida"></i></span></span></div></div></figure>
+<figure class="sp-tipo"><figcaption>Falha de envio, com tentar de novo</figcaption><div class="lc-conversa"><div class="lc-bolha lc-bolha--enviada lc-bolha--primeira" aria-invalid="true">O encanador chega às 11h.<span class="lc-bolha__meta">09:34<span class="lc-tique lc-tique--falhou" aria-label="Não enviada"><i data-i="erro"></i></span></span><span class="lc-bolha__falha"><i data-i="erro" class="lc-ic--14"></i>Não enviada. <button class="lc-btn lc-btn--link lc-btn--p" type="button">Tentar de novo</button></span></div></div></figure>
+<figure class="sp-tipo"><figcaption>Foto com legenda</figcaption><div class="lc-conversa"><div class="lc-bolha lc-bolha--primeira"><span class="lc-foto--desenho" role="img" aria-label="Foto: portão da garagem travado no meio do curso"><svg viewBox="0 0 280 175" aria-hidden="true"><rect width="280" height="175" style="fill:var(--sup-3)"/><rect x="40" y="30" width="200" height="120" style="fill:var(--filete-forte)"/><path d="M40 52h200M40 74h200M40 96h200" style="stroke:var(--sup-1);stroke-width:3"/></svg></span><span class="lc-foto-legenda">Travou no meio de novo</span><span class="lc-bolha__meta">09:30</span></div></div></figure>
+<figure class="sp-tipo"><figcaption>Áudio com transcrição</figcaption><div class="lc-conversa"><div class="lc-bolha lc-bolha--primeira"><div class="lc-audio"><button class="lc-audio__tocar" type="button" aria-label="Ouvir mensagem de voz de 31 segundos"><i data-i="tocar"></i></button><span class="lc-audio__onda" aria-hidden="true"><i style="height:8px"></i><i style="height:14px"></i><i style="height:20px"></i><i style="height:10px"></i><i style="height:16px"></i><i style="height:22px"></i><i style="height:12px"></i><i style="height:8px"></i><i style="height:18px"></i><i style="height:24px"></i><i style="height:14px"></i><i style="height:10px"></i><i style="height:20px"></i><i style="height:16px"></i><i style="height:8px"></i><i style="height:12px"></i><i style="height:22px"></i><i style="height:18px"></i><i style="height:10px"></i><i style="height:14px"></i></span><span class="lc-audio__tempo">0:31</span></div><span class="lc-audio__transcricao">Transcrição: "O boleto veio com a multa da reforma, mas a reforma já foi liberada."</span><span class="lc-bolha__meta">09:41</span></div></div></figure>
+<figure class="sp-tipo"><figcaption>Documento</figcaption><div class="lc-conversa"><div class="lc-bolha lc-bolha--primeira"><span class="lc-msg-doc"><span class="lc-msg-doc__ic" aria-hidden="true">PDF</span><span><b>Ata AGO 14-03-2026.pdf</b><small>8 páginas, 1,2 MB</small></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Baixar Ata AGO 14-03-2026.pdf"><i data-i="baixar"></i></button></span><span class="lc-bolha__meta">10:02</span></div></div></figure>
+<figure class="sp-tipo"><figcaption>Localização</figcaption><div class="lc-conversa"><div class="lc-bolha lc-bolha--primeira"><span class="lc-msg-local"><span class="lc-msg-local__mapa" role="img" aria-label="Mapa com o ponto na Rua Itapura, 820"><svg viewBox="0 0 280 158" aria-hidden="true"><path d="M0 60h280M90 0v158M210 0v158" style="stroke:var(--sup-1);stroke-width:10"/><path d="M150 44c-12 0-20 9-20 20 0 15 20 34 20 34s20-19 20-34c0-11-8-20-20-20z" style="fill:var(--perigo-ponto)"/><circle cx="150" cy="64" r="6" style="fill:var(--sup-1)"/></svg></span><b>Portaria, Vila Serena</b><small>Rua Itapura, 820, Tatuapé</small></span><span class="lc-bolha__meta">09:31</span></div></div></figure>
+<figure class="sp-tipo"><figcaption>Resposta citada</figcaption><div class="lc-conversa"><div class="lc-bolha lc-bolha--primeira"><span class="lc-bolha__citacao"><b>Você</b>Pode pedir para o morador do 304 tirar o carro?</span>Já pedi. Ele tira às 10h.<span class="lc-bolha__meta">08:41</span></div></div></figure>
+<figure class="sp-tipo"><figcaption>Encaminhada e apagada</figcaption><div class="lc-conversa"><div class="lc-bolha lc-bolha--primeira"><span class="lc-bolha__encaminhada"><i data-i="encaminhar"></i>Encaminhada</span>A água aumentou, já está na vaga 31. Sandra, 304<span class="lc-bolha__meta">09:20</span></div><div class="lc-bolha lc-bolha--apagada"><i data-i="proibido"></i>Esta mensagem foi apagada<span class="lc-bolha__meta">08:45</span></div></div></figure>
+<figure class="sp-tipo"><figcaption>Nota interna, com menção</figcaption><div class="lc-conversa"><div class="lc-bolha lc-bolha--nota lc-bolha--primeira"><span class="lc-bolha__nota-rotulo"><i data-i="nota-interna"></i>Nota interna. Só a equipe vê.</span><span class="lc-mencao">@Rogério Alves</span> dá para mandar alguém até meio-dia?<span class="lc-bolha__meta">08:26, Letícia</span></div></div></figure>
+<figure class="sp-tipo"><figcaption>Evento do sistema e registro ligado</figcaption><div class="lc-conversa"><p class="lc-msg-sistema"><i data-i="transferir"></i>Thiago Costa transferiu para Letícia Araújo às 08:20.</p><div class="lc-ligado"><i data-i="ordem-de-servico"></i><div class="lc-cresce"><b>OS 482, encanador</b><br><span class="lc-legenda">Hoje às 11h</span></div><span class="lc-estado lc-estado--andamento">Agendada</span></div></div></figure>
+<figure class="sp-tipo"><figcaption>Fora da janela de 24 h: modelo aprovado</figcaption><div class="lc-conversa"><div class="lc-bolha lc-bolha--enviada lc-bolha--primeira lc-msg-modelo"><span class="lc-msg-modelo__rot"><i data-i="modelo-aprovado"></i>Modelo aprovado</span>Olá, <span class="lc-var">Jorge</span>. Aqui é da Administradora Alpha, sobre <span class="lc-var">o orçamento da pintura</span>. Podemos continuar por aqui?<span class="lc-msg-modelo__botoes"><span>Sim, pode continuar</span><span>Prefiro que me liguem</span></span><span class="lc-bolha__meta">10:05<span class="lc-tique" aria-label="Entregue"><i data-i="lida"></i></span></span></div></div></figure>
+</div></section>
+<section class="lc-nota-a11y" aria-labelledby="a11y-tit">
+  <h2 id="a11y-tit">Acessibilidade desta tela</h2>
+  <dl>
+    <dt>Ordem de foco</dt><dd>Pular para o conteúdo; trilho; barra do módulo; Modo fila, Nova conversa; busca; filas; ordenação; lista de conversas (setas sobem e descem, Enter abre); cabeçalho da conversa (abre a ficha); Pesquisar, Transferir, Mais opções, Dados do chamado; estado do chamado; mensagens (a área rola com setas); Responder ou Nota interna; Anexar; campo; Gravar áudio; Enviar e a seta do Enviar; ficha. Esc fecha a ficha e devolve o foco ao cabeçalho.</dd>
+    <dt>O que é anunciado</dt><dd>Cada conversa como "Paulo Reis, 2 não lidas, mensagem de voz, chamado 4.815, responder em 4 minutos"; tique como "Lida", "Enviando" ou "Não enviada"; a nota como "Nota interna, só a equipe vê"; a lista de respostas rápidas como caixa de opções com a contagem ("3 respostas começam com /vi"); ao enviar, "Mensagem enviada"; "Marina está digitando".</dd>
+    <dt>Nome do que é só ícone</dt><dd>Nova conversa, Pesquisar na conversa, Transferir conversa, Mais opções da conversa, Dados do chamado, Fechar dados do chamado, Abrir chamado em página, Copiar número do chamado, Anexar, Gravar áudio, Escolher o que acontece depois de enviar, Ouvir mensagem de voz de 42 segundos, Baixar (nome do arquivo), Voltar para a lista (celular). A foto e o mapa têm descrição.</dd>
+  </dl>
+</section>
+</div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+<script>
+/* Só desta tela: mostra o "/vi" já digitado com as respostas rápidas abertas, como na documentação */
+document.addEventListener("DOMContentLoaded",function(){
+  var at=document.getElementById("tela-sup");
+  if(window.matchMedia("(max-width:1279px)").matches){ at.setAttribute("data-ficha","fechada"); at.querySelectorAll("[data-ficha-alterna][aria-expanded]").forEach(function(b){b.setAttribute("aria-expanded","false");}); }
+  var c=document.getElementById("conv-mc"); if(c) c.scrollTop=c.scrollHeight;
+  var t=document.querySelector('#tela-sup textarea.lc-compositor__caixa'); if(t){ t.dispatchEvent(new Event("input")); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reservas, agenda</title>
+<script src="../sistema/marca.js"></script>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-q2.css">
+<script src="../sistema/icones.js"></script>
+<script src="links.js"></script>
+<script src="../sistema/moldura.js" defer></script>
+<script src="../sistema/extra-q2.js" defer></script>
+<style>
+.ag{display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px;align-items:start}
+.ag-lado{display:flex;flex-direction:column;gap:12px}
+.ag .cm-grade-semana{grid-template-columns:150px repeat(7,minmax(96px,1fr))}
+.ag-celula{cursor:pointer;display:flex;flex-direction:column;gap:3px;min-height:64px!important}
+.ag-celula:hover{background:var(--cm-camada-2)}
+.ag-celula:focus-visible{outline:2px solid var(--cm-foco);outline-offset:-2px}
+.ag-livre{font-size:11.5px;color:var(--cm-texto-3)}
+.ag-celula.is-bloqueado{background:repeating-linear-gradient(135deg,transparent 0 6px,var(--cm-camada-2) 6px 8px);cursor:not-allowed}
+.ag-area{font-weight:600;color:var(--cm-texto-1);display:flex;align-items:center;gap:6px}
+.ag-rolar{overflow-x:auto}
+@media (max-width:1099px){.ag{grid-template-columns:1fr}.ag-lado{display:grid;grid-template-columns:1fr 1fr}}
+@media (max-width:599px){.ag-lado{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Operações","tela":"Reservas","papel":"Operações","atalhos":[["J","próxima semana"],["K","anterior"],["T","hoje"],["D S M","dia, semana, mês"],["N","nova reserva"],["Enter","reservar no livre"],["?","todos"]],"usuario":{"nome":"Diego Martins","iniciais":"DM","cargo":"Coordenador de operações","presenca":"disponivel","tom":4}}'></div>
+<main id="conteudo" class="cm-pagina">
+  <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Reservas</h1>
+    <div class="cm-cabecalho-pagina__acoes">
+      <button class="cm-botao cm-botao--p" type="button" aria-label="Semana anterior" data-dica="Semana anterior  K" data-q2-tecla="k" data-q2-toast="Semana de 21/09 a 27/09.|info"><i data-i="chevron-esquerda"></i></button>
+      <button class="cm-botao cm-botao--p" type="button" data-q2-tecla="t" data-q2-toast="Voltou para a semana de hoje.|info">Hoje</button>
+      <button class="cm-botao cm-botao--p" type="button" aria-label="Próxima semana" data-dica="Próxima semana  J" data-q2-tecla="j" data-q2-toast="Semana de 05/10 a 11/10.|info"><i data-i="chevron-direita"></i></button>
+      <span class="cm-t-subsecao" style="margin:0 8px">28/09 a 04/10/2026</span>
+      <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Período" data-q2-alterna><button type="button" aria-pressed="false" data-q2-tecla="d">Dia</button><button type="button" aria-pressed="true" data-q2-tecla="s">Semana</button><button type="button" aria-pressed="false" data-q2-tecla="m">Mês</button></div>
+      <button class="cm-botao cm-botao--principal" type="button" data-q2-modal="painel-reserva" data-q2-tecla="n"><i data-i="adicionar"></i>Nova reserva</button>
+    </div></div>
+  </header>
+  <div class="ag">
+    <div class="ag-lado">
+      <section class="cm-cartao"><div class="cm-cartao__corpo">
+        <table class="cm-calendario" aria-label="Outubro de 2026"><caption class="cm-t-subsecao" style="text-align:left;padding-bottom:6px">Outubro de 2026</caption>
+          <thead><tr><th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th></tr></thead>
+          <tbody>
+            <tr><td class="is-fora"><button type="button">27</button></td><td class="is-fora"><button type="button">28</button></td><td class="is-fora"><button type="button">29</button></td><td class="is-fora"><button type="button">30</button></td><td class="is-hoje is-evento"><button type="button" aria-pressed="true">1</button></td><td class="is-evento"><button type="button">2</button></td><td class="is-evento"><button type="button">3</button></td></tr>
+            <tr><td class="is-evento"><button type="button">4</button></td><td><button type="button">5</button></td><td><button type="button">6</button></td><td><button type="button">7</button></td><td><button type="button">8</button></td><td><button type="button">9</button></td><td class="is-evento"><button type="button">10</button></td></tr>
+            <tr><td class="is-evento"><button type="button">11</button></td><td><button type="button">12</button></td><td><button type="button">13</button></td><td><button type="button">14</button></td><td><button type="button">15</button></td><td><button type="button">16</button></td><td><button type="button">17</button></td></tr>
+          </tbody></table></div></section>
+      <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Condomínio e áreas</h2></header><div class="cm-cartao__corpo cm-pilha">
+        <div class="cm-selecao"><select aria-label="Condomínio"><option>Cond. Parque das Águas</option><option>Cond. Vila Serena</option></select><i data-i="chevron-baixo"></i></div>
+        <label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Salão de festas</span></label>
+        <label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Churrasqueira 1</span></label>
+        <label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Churrasqueira 2</span></label>
+        <label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Quadra</span></label>
+      </div></section>
+    </div>
+    <div class="ag-rolar">
+      <div class="cm-grade-semana" role="grid" aria-label="Reservas da semana por área" id="ag-grade"></div>
+      <p class="cm-t-legenda" style="margin-top:8px">Clique num dia livre para reservar já com a área e a data preenchidas. Hachurado: área fechada para manutenção.</p>
+    </div>
+  </div>
+</main>
+<div id="painel-reserva" hidden>
+  <aside class="cm-painel" role="dialog" aria-modal="true" aria-labelledby="pr-t">
+    <header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="pr-t">Nova reserva</h2><button class="cm-botao cm-botao--icone cm-botao--discreto cm-empurra" type="button" aria-label="Fechar" data-q2-fechar><i data-i="fechar"></i></button></header>
+    <div class="cm-painel__corpo cm-pilha" style="padding:16px">
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="pr-a">Área</label><div class="cm-selecao"><select id="pr-a"><option>Salão de festas</option><option>Churrasqueira 1</option><option>Churrasqueira 2</option><option>Quadra</option></select><i data-i="chevron-baixo"></i></div></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="pr-d">Dia</label><div class="cm-entrada"><i data-i="calendario"></i><input id="pr-d" value="03/10/2026"></div></div>
+      <div class="cm-periodo"><div class="cm-entrada"><input aria-label="Início" value="18:00"></div><span class="cm-periodo__ate">até</span><div class="cm-entrada"><input aria-label="Fim" value="23:00"></div></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="pr-u">Unidade</label><div class="cm-entrada"><input id="pr-u" value="Bl B Ap 1204, Marina Costa"></div></div>
+      <div class="cm-alerta cm-alerta--info"><i data-i="informacao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Taxa de R$ 180,00 no boleto de novembro</span><span class="cm-alerta__desc">Regimento, art. 32: até 60 convidados, som até 22h.</span></span></div>
+    </div>
+    <footer class="cm-painel__pe"><button class="cm-botao" type="button" data-q2-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" id="pr-ok">Reservar</button></footer>
+  </aside>
+</div>
+<script>
+(function(){
+  var DIAS=['Seg 28','Ter 29','Qua 30','Qui 01','Sex 02','Sáb 03','Dom 04'];
+  var AREAS=[['Salão de festas','salao-de-festas'],['Churrasqueira 1','churrasqueira'],['Churrasqueira 2','churrasqueira'],['Quadra','academia']];
+  var R={'0-5':['Aniversário, Bl A 302','18:00 a 23:00'],'0-6':['Batizado, Bl C 1101','12:00 a 17:00'],'1-5':['Bl B 504','12:00 a 18:00'],'1-6':['Bl A 1001','11:00 a 17:00'],'2-6':['Bl C 207','12:00 a 18:00'],'3-1':['Escolinha de futsal','18:00 a 20:00'],'3-3':['Escolinha de futsal','18:00 a 20:00'],'0-2':['Assembleia ordinária','19:30 a 22:00']};
+  var B={'2-0':1,'2-1':1,'2-2':1};
+  var g=document.getElementById('ag-grade'),h='<div class="cm-grade-semana__cab" role="columnheader">Área</div>';
+  DIAS.forEach(function(d,i){h+='<div class="cm-grade-semana__cab'+(i===3?' is-hoje':'')+'" role="columnheader">'+d+'</div>'});
+  AREAS.forEach(function(a,ai){h+='<div class="ag-area" role="rowheader">'+cmIcone(a[1])+a[0]+'</div>';DIAS.forEach(function(d,di){var k=ai+'-'+di,r=R[k];
+    if(B[k]) h+='<div class="ag-celula is-bloqueado" role="gridcell" aria-label="'+a[0]+', '+d+': fechada para manutenção"><span class="ag-livre">Fechada, OS 449</span></div>';
+    else h+='<div class="ag-celula" role="gridcell" tabindex="0" data-a="'+ai+'" data-d="'+di+'" aria-label="'+a[0]+', '+d+(r?': '+r[0]+', '+r[1]:': livre')+'">'+(r?'<span class="cm-grade-semana__evento">'+r[0]+'<br><span class="cm-t-legenda">'+r[1]+'</span></span>':'<span class="ag-livre">Livre</span>')+'</div>'})});
+  g.innerHTML=h;
+  g.addEventListener('click',function(e){var c=e.target.closest('.ag-celula:not(.is-bloqueado)');if(!c) return;if(c.querySelector('.cm-grade-semana__evento')){cmQ2.toast('Abrindo a reserva. Para trocar o dia, arraste ou use Mover.','info');return}
+    document.getElementById('pr-a').selectedIndex=+c.dataset.a;document.getElementById('pr-d').value=DIAS[+c.dataset.d].split(' ')[1]+(+c.dataset.d<3?'/09':'/10')+'/2026';cmQ2.abrirModal('painel-reserva',c)});
+  g.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.classList.contains('ag-celula')){e.preventDefault();e.target.click()}});
+  document.getElementById('pr-ok').onclick=function(){cmQ2.fecharModal(this);cmQ2.toast('Reserva feita. A unidade recebe a confirmação pelo WhatsApp.','sucesso','Desfazer')};
+})();
+</script>
+</body>
+</html>

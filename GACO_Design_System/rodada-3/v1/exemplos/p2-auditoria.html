@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log de auditoria, Configuração</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+<style>.p2-aud tbody tr{cursor:pointer}.p2-aud time{font-variant-numeric:var(--num);white-space:nowrap}.p2-aud del{color:var(--texto-2);text-decoration-color:var(--perigo-ponto)}.p2-aud ins{text-decoration:none;font-weight:500;background:var(--sucesso-fundo);padding:0 2px}</style>
+</head>
+<body data-moldura='{"modulo":"configuracao","secao":"Segurança","item":"Log de auditoria","papel":"admin","trilha":["Segurança","Log de auditoria"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga lc-modelo-lista p2-aud">
+  <div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Log de auditoria</h1><p class="lc-cab-pagina__desc">Tudo o que foi criado, alterado, excluído, restaurado, exportado ou visto pelo suporte da plataforma, em todos os módulos. Guardado por 5 anos; ninguém edita.</p></div>
+    <div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button" id="exp"><i data-i="baixar"></i>Exportar o filtro (.csv)</button></div></div>
+  <div class="lc-filtros"><label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Registro, campo ou valor" aria-label="Pesquisar na auditoria"></label>
+    <button class="lc-filtro lc-filtro--ativo" type="button"><i data-i="calendario"></i>Período: <b>últimos 7 dias</b></button><button class="lc-filtro" type="button">Pessoa<i data-i="chevron-baixo"></i></button><button class="lc-filtro" type="button">Módulo<i data-i="chevron-baixo"></i></button>
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Ação" id="acao"><button type="button" aria-pressed="true">Todas</button><button type="button" aria-pressed="false">Alterou</button><button type="button" aria-pressed="false">Excluiu</button><button type="button" aria-pressed="false">Exportou</button><button type="button" aria-pressed="false">Suporte</button></div></div>
+  <div class="lc-tabela-cont lc-tabela-cont--alta"><table class="lc-tabela lc-tabela--pautada"><caption class="lc-sr">Registros de auditoria</caption><thead><tr><th scope="col" style="width:170px" aria-sort="descending"><button class="lc-ordenar" type="button">Data e hora</button></th><th scope="col">Quem</th><th scope="col">Ação</th><th scope="col">Onde</th><th scope="col">O que mudou</th><th scope="col">Origem</th></tr></thead><tbody id="tb"></tbody></table></div>
+  <nav class="lc-paginacao" aria-label="Paginação"><span class="lc-paginacao__info"><b>1–50</b> de <b>1.284</b></span><label class="lc-paginacao__por">Por página <select class="lc-selecao" aria-label="Itens por página"><option>25</option><option selected>50</option><option>100</option></select></label>
+    <span class="lc-paginacao__pags"><button type="button" disabled aria-label="Página anterior"><i data-i="chevron-esquerda"></i></button><button type="button" aria-current="page">1</button><button type="button">2</button><button type="button">3</button><span>…</span><button type="button">26</button><button type="button" aria-label="Próxima página"><i data-i="chevron-direita"></i></button></span></nav>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2,$=P.$,$$=P.$$,esc=P.esc;
+var A=[["01/10/2026 10:41:07","RL","Alterou","Contrato 2026-0412, Cond. Parque das Águas","p2-registro.html?id=2026-0412","Índice","IPCA","IGP-M","Web, 189.44.12.7"],
+ ["01/10/2026 09:40:22","LA","Excluiu","Contrato 2026-0411, Edifício Saint Germain","p2-lixeira.html","","","Movido para a lixeira","Web, 177.92.3.140"],
+ ["01/10/2026 09:12:55","LA","Alterou","Contato Paulo Henrique Dias","#","Telefone","(11) 97701-2210","(11) 97701-2290","Web, 177.92.3.140"],
+ ["01/10/2026 08:02:41","CM","Exportou","Renovações, reajuste em outubro","p2-lista.html","Filtro","","63 linhas, 8 colunas, .xlsx","Web, 200.150.8.21"],
+ ["30/09/2026 17:12:03","JS","Excluiu","Chamado 4.799, interfone do bloco A","p2-lixeira.html","","","Movido para a lixeira","Web, 191.8.77.2"],
+ ["30/09/2026 16:44:09","SP","Suporte","Administradora Alpha","#","Sessão 88","","Entrou em só leitura; motivo: chamado 1.422","Plataforma, Lucas Ferreira"],
+ ["30/09/2026 16:51:30","SP","Alterou","Contrato 2026-0412, Cond. Parque das Águas","p2-registro.html?id=2026-0412","Vencimento do boleto","Dia 15","Dia 10","Plataforma, sessão 88"],
+ ["30/09/2026 11:05:12","RL","Alterou","Renovação 2026-0412","p2-registro.html?id=2026-0412","Etapa","Cálculo do reajuste","Aprovação do síndico","Web, 189.44.12.7"],
+ ["29/09/2026 15:20:44","BT","Restaurou","Fornecedor Hidrotec Bombas e Reservatórios","p2-previa.html","","Lixeira","Ativo","Web, 177.92.3.18"]];
+$("#tb").innerHTML=A.map(function(a,i){ var p=P.PESSOAS[a[1]], plat=a[1]==="SP";
+  return '<tr data-i="'+i+'"><td><time>'+a[0]+'</time></td><td><span class="lc-pessoa"><span class="lc-av lc-av--24 '+p.cor+'">'+p.ini+'</span><span>'+esc(plat?"Suporte da plataforma":p.nome)+(plat?'<span class="lc-auditoria__plataforma"><i data-i="sessao"></i>Plataforma</span>':'')+'</span></span></td><td>'+a[2]+'</td><td><a href="'+a[4]+'">'+esc(a[3])+'</a></td>'+
+    '<td>'+(a[5]?'<span class="lc-cor-2">'+esc(a[5])+':</span> ':'')+(a[6]?'<del>'+esc(a[6])+'</del> para ':'')+'<ins>'+esc(a[7])+'</ins></td><td class="lc-cor-2">'+esc(a[8])+'</td></tr>'; }).join("");
+lcIcones($("#tb"));
+$("#tb").addEventListener("click",function(e){ if(e.target.closest("a")) return; var tr=e.target.closest("tr"); if(!tr) return; var a=A[+tr.getAttribute("data-i")];
+  P.painel({titulo:"Registro de auditoria",ic:"auditoria",rotulo:"registro de auditoria",corpo:'<dl class="lc-props"><dt>Quando</dt><dd><time>'+a[0]+'</time>, horário de Brasília</dd><dt>Quem</dt><dd>'+esc(P.PESSOAS[a[1]].nome)+'</dd><dt>Ação</dt><dd>'+a[2]+'</dd><dt>Onde</dt><dd><a href="'+a[4]+'">'+esc(a[3])+'</a></dd>'+(a[5]?'<dt>Campo</dt><dd>'+esc(a[5])+'</dd><dt>Antes</dt><dd><del>'+esc(a[6]||"vazio")+'</del></dd>':'')+'<dt>Depois</dt><dd><ins>'+esc(a[7])+'</ins></dd><dt>Origem</dt><dd>'+esc(a[8])+'</dd><dt>Identificador</dt><dd><code>aud_7f3a'+tr.getAttribute("data-i")+'c91e</code></dd></dl>',pe:'<a class="lc-btn lc-btn--p" href="'+a[4]+'">Abrir o registro</a>'}); });
+$("#exp").addEventListener("click",function(){ P.toast("Auditoria exportada: 1.284 linhas dos últimos 7 dias. A exportação também ficou registrada.",{tipo:"sucesso"}); });
+$$("#acao button").forEach(function(b,i,a){ b.addEventListener("click",function(){ a.forEach(function(x){x.setAttribute("aria-pressed",x===b);}); var t=b.textContent; $$("#tb tr").forEach(function(tr){ tr.hidden=t!=="Todas" && A[+tr.getAttribute("data-i")][2]!==t; }); }); });
+})();
+</script>
+</body>
+</html>

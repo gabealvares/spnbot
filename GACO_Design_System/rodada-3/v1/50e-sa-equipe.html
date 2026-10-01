@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plataforma, superadmins</title>
+<meta name="description" content="Superadmin: equipe da plataforma com papéis, 2º fator obrigatório, convite, chaves de segurança e remoção com confirmação digitada.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<script>(function(){var r=document.documentElement,f=function(){["--marca","--marca-txt","--marca-forte","--marca-suave"].forEach(function(v){r.style.removeProperty(v);});};f();document.addEventListener("lc:tema",f);document.addEventListener("lc:marca",f);})();</script>
+<style>.sa-eq{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:24px;align-items:start}@media (max-width:1023px){.sa-eq{grid-template-columns:minmax(0,1fr)}}</style>
+</head>
+<body data-moldura='{"contexto":"superadmin","modulo":"superadmins","secao":"Superadmins","usuario":{"nome":"Ivone Prates","iniciais":"IP","cor":"lc-av--c6","cargo":"Dona da plataforma"},"cliente":{"nome":"GACO Plataforma","sigla":"G"}}'>
+<main id="conteudo" class="lc-pagina">
+<section class="lc-ficha-tela" aria-label="Sobre superadmins">
+  <div class="lc-ficha-tela__nome"><b>Superadmins e 2º fator</b><span>Quem tem acesso à plataforma, com qual papel, e se está protegido.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Garantir que só as pessoas certas entram em dados de 38 administradoras, todas com 2º fator, e tirar o acesso de quem saiu no mesmo dia.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Lista com papel, 2º fator e último acesso.</li><li>"Convidar" pede e-mail e papel; o convidado só entra depois de ativar o 2º fator.</li><li>"⋯" da linha: trocar papel, resetar 2º fator, encerrar sessões, remover.</li><li>Remover pede para digitar o nome (exclusão nível 3) e mostra o que a pessoa perde.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o "Members" do GitHub e o do Google Workspace mostram o 2º fator na linha; o 1Password e a AWS IAM exigem 2º fator antes do primeiro acesso; e o GitHub pede o nome digitado para ações sem volta.</p></div>
+</section>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Superadmins</h1><p class="lc-cab-pagina__desc">7 pessoas. 6 com 2º fator. Sessões expiram em 12 horas.</p></div><div class="lc-cab-pagina__acoes"><button class="lc-btn lc-btn--principal" type="button" data-abrir="#conv"><i data-i="adicionar-pessoa"></i>Convidar superadmin</button></div></div>
+<div class="sa-eq">
+  <div class="lc-tabela-cont"><table class="lc-tabela"><caption class="lc-sr">Superadmins</caption>
+    <thead><tr><th scope="col">Pessoa</th><th scope="col">Papel</th><th scope="col">2º fator</th><th scope="col">Último acesso</th><th><span class="lc-sr">Ações</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c6">IP</span><span><span class="lc-pessoa__nome">Ivone Prates</span><span class="lc-pessoa__sub">ivone@gaco.com.br</span></span></span></td><td>Dona da plataforma</td><td><span class="lc-estado lc-estado--sucesso">Chave física</span></td><td>Agora</td><td class="lc-tabela__acoes"></td></tr>
+      <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c5">BT</span><span><span class="lc-pessoa__nome">Bruno Tavares</span><span class="lc-pessoa__sub">bruno@gaco.com.br</span></span></span></td><td>Suporte da plataforma</td><td><span class="lc-estado lc-estado--sucesso">App autenticador</span></td><td>Há 12 min</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Mais opções de Bruno Tavares" data-alternar="#m-bt"><i data-i="mais-opcoes"></i></button></td></tr>
+      <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c3">HD</span><span><span class="lc-pessoa__nome">Helena Duarte</span><span class="lc-pessoa__sub">helena@gaco.com.br</span></span></span></td><td>Implantação</td><td><span class="lc-estado lc-estado--sucesso">App autenticador</span></td><td>Há 1 h</td><td class="lc-tabela__acoes"></td></tr>
+      <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c7">LS</span><span><span class="lc-pessoa__nome">Lucas Siqueira</span><span class="lc-pessoa__sub">lucas@gaco.com.br</span></span></span></td><td>Suporte da plataforma</td><td><span class="lc-estado lc-estado--sucesso">App autenticador</span></td><td>Há 3 min</td><td class="lc-tabela__acoes"></td></tr>
+      <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c2">RP</span><span><span class="lc-pessoa__nome">Rafael Prado</span><span class="lc-pessoa__sub">rafael@gaco.com.br</span></span></span></td><td>Financeiro da plataforma</td><td><span class="lc-estado lc-estado--aviso">Sem 2º fator, acesso restrito</span></td><td>29/09, 18:20</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--p" type="button" data-toast="Lembrete enviado a Rafael.">Lembrar</button></td></tr>
+      <tr><td><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c8">MV</span><span><span class="lc-pessoa__nome">Mateus Vieira</span><span class="lc-pessoa__sub">Convite enviado em 30/09</span></span></span></td><td>Desenvolvimento</td><td><span class="lc-estado lc-estado--neutro">Convite pendente</span></td><td>Nunca</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--p lc-btn--discreto" type="button">Reenviar</button></td></tr>
+    </tbody></table>
+    <div class="lc-menu" id="m-bt" hidden role="menu" style="position:relative;margin:4px 8px 8px auto;width:260px"><button class="lc-menu__item" role="menuitem" type="button"><i data-i="papel-de-acesso"></i>Trocar papel</button><button class="lc-menu__item" role="menuitem" type="button"><i data-i="dois-fatores"></i>Resetar 2º fator</button><button class="lc-menu__item" role="menuitem" type="button"><i data-i="sair"></i>Encerrar sessões</button><div class="lc-menu__sep"></div><button class="lc-menu__item lc-menu__item--perigo" role="menuitem" type="button" data-abrir="#rem"><i data-i="remover-pessoa"></i>Remover da plataforma</button></div></div>
+  <aside class="lc-pilha">
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Papéis da plataforma</h2></div><ul class="lc-lista">
+      <li><span class="lc-cresce"><b>Dona da plataforma</b><span class="lc-lista__sub">Tudo, inclusive superadmins e planos</span></span><span class="lc-contagem">1</span></li>
+      <li><span class="lc-cresce"><b>Suporte da plataforma</b><span class="lc-lista__sub">Entra em clientes só leitura; alterar pede aprovação</span></span><span class="lc-contagem">2</span></li>
+      <li><span class="lc-cresce"><b>Implantação</b><span class="lc-lista__sub">Importa e configura clientes novos</span></span><span class="lc-contagem">1</span></li>
+      <li><span class="lc-cresce"><b>Financeiro da plataforma</b><span class="lc-lista__sub">Planos, faturas, régua</span></span><span class="lc-contagem">1</span></li></ul></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Regras de segurança</h2></div><div class="lc-caixa__corpo lc-pilha--p" style="display:flex;flex-direction:column;gap:10px">
+      <label class="lc-interruptor"><input type="checkbox" role="switch" checked disabled><span class="lc-interruptor__trilho"></span>2º fator obrigatório (não pode desligar)</label>
+      <label class="lc-interruptor"><input type="checkbox" role="switch" checked><span class="lc-interruptor__trilho"></span>Só chave física para a dona da plataforma</label>
+      <label class="lc-interruptor"><input type="checkbox" role="switch" checked><span class="lc-interruptor__trilho"></span>Bloquear acesso fora do Brasil</label></div></section>
+  </aside>
+</div>
+<div class="lc-quadros" style="margin-top:20px">
+  <div class="lc-sobreposicao lc-sobreposicao--demo" id="rem" style="min-height:0;padding:24px 12px"><div class="lc-modal lc-modal--perigo" role="alertdialog" aria-labelledby="rem-t" aria-describedby="rem-d"><div class="lc-modal__cab"><div style="flex:1"><h2 id="rem-t">Remover Bruno Tavares da plataforma?</h2><p id="rem-d">Ele perde o acesso agora, as 2 sessões abertas são encerradas e a sessão de suporte na Sol Nascente termina. O histórico dele fica na auditoria.</p></div></div>
+    <div class="lc-modal__corpo"><label class="lc-rotulo" for="rem-c">Para confirmar, digite <b>Bruno Tavares</b></label><input id="rem-c" class="lc-entrada" value="Bruno Tav"><p class="lc-confirma-digitando">Faltam 3 letras.</p></div>
+    <div class="lc-modal__pe"><button class="lc-btn" type="button">Cancelar</button><button class="lc-btn lc-btn--perigo" type="button" disabled>Remover da plataforma</button></div></div></div>
+  <div class="lc-sobreposicao lc-sobreposicao--demo" id="conv" style="min-height:0;padding:24px 12px"><div class="lc-modal" role="dialog" aria-labelledby="cv-t"><div class="lc-modal__cab"><div style="flex:1"><h2 id="cv-t">Convidar superadmin</h2><p>A pessoa só entra depois de ativar o 2º fator.</p></div></div>
+    <div class="lc-modal__corpo lc-pilha"><div class="lc-campo"><label class="lc-rotulo" for="cv-e">E-mail da GACO</label><div class="lc-entrada-grupo"><input id="cv-e" class="lc-entrada" value="juliana.lima"><span class="lc-entrada-grupo__fixo">@gaco.com.br</span></div></div><div class="lc-campo"><label class="lc-rotulo" for="cv-p">Papel</label><select id="cv-p" class="lc-selecao"><option>Suporte da plataforma</option><option>Implantação</option><option>Financeiro da plataforma</option></select></div></div>
+    <div class="lc-modal__pe"><button class="lc-btn" type="button">Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-toast="Convite enviado. Vale por 48 horas.">Enviar convite</button></div></div></div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Convidar, linhas (⋯ de cada uma), papéis, regras. No modal de remover, o foco começa em "Cancelar".</p></div><div><h3>O que é anunciado</h3><p>Remover é <code>alertdialog</code> com a descrição do que se perde. "Faltam 3 letras" atualiza em região viva; o botão só habilita com o nome exato.</p></div><div><h3>Nome do que é só ícone</h3><p>"⋯": "Mais opções de Bruno Tavares".</p></div></div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

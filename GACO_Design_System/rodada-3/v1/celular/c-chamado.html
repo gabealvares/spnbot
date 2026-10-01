@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chamado no celular</title>
+<meta name="description" content="Suporte no celular: registro do chamado com estado segmentado, campos-chave roláveis, abas, tarefas e barra de ação no pé.">
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p5.css">
+<script src="../sistema/marca.js"></script>
+<style>
+  .c-acao{position:sticky;bottom:var(--barra-inferior-alt);display:flex;gap:8px;padding:8px 16px;background:var(--sup-1);border-top:var(--borda-1);z-index:4}
+  .c-acao .lc-btn{flex:1;height:44px}
+  .c-corpo{padding:12px 16px 16px;display:flex;flex-direction:column;gap:14px}
+</style>
+</head>
+<body data-moldura='{"modulo":"suporte","secao":"Chamados","item":"Todos os chamados","papel":"atendente","trilha":["Chamados","Chamado 4.812"],"usuario":{"nome":"Rafael Lima","iniciais":"RL","cor":"lc-av--c7","cargo":"Atendente"},"acaoTrilha":"<span class=\"lc-paginador\"><b>3</b> de 14</span>"}'>
+<main id="conteudo">
+  <div class="lc-cab-registro">
+    <div class="lc-cab-registro__titulo" style="margin-top:4px"><span class="lc-protocolo"><span>Chamado</span> 4.812</span><span class="lc-prioridade lc-prioridade--urgente" data-n="3" aria-label="Prioridade urgente"><i></i><i></i><i></i></span></div>
+    <div class="lc-cab-registro__titulo" style="margin-top:6px"><h1>Vazamento no teto do banheiro, B-1204</h1></div>
+    <div class="lc-cab-registro__meta"><span>Ana Souza, moradora</span><span>Parque das Águas</span><span>Portal, 08:14</span></div>
+    <div class="lc-seg lc-seg--bloco" role="group" aria-label="Estado do chamado" data-seg style="margin-bottom:10px"><button type="button" aria-pressed="false">Aberto</button><button type="button" aria-pressed="true">Em atendimento</button><button type="button" aria-pressed="false">Resolvido</button></div>
+    <dl class="lc-campos-chave"><div><dt>Responder até</dt><dd class="lc-valor-neg">10:42, em 18 min</dd></div><div><dt>Responsável</dt><dd>Rafael Lima</dd></div><div><dt>Fila</dt><dd>Manutenção</dd></div><div><dt>OS</dt><dd>482</dd></div></dl>
+  </div>
+  <div class="lc-abas" role="tablist" aria-label="Seções do chamado" data-abas style="background:var(--sup-1)"><button role="tab" aria-selected="false" aria-controls="t1" tabindex="-1">Conversa <span class="lc-contagem">6</span></button><button role="tab" aria-selected="true" aria-controls="t2">Detalhes</button><button role="tab" aria-selected="false" aria-controls="t3" tabindex="-1">Tarefas <span class="lc-contagem">2</span></button></div>
+  <div id="t1" role="tabpanel" hidden class="c-corpo"><a class="lc-btn" href="c-conversa.html">Abrir conversa</a></div>
+  <div id="t2" role="tabpanel" class="c-corpo">
+    <dl class="lc-props lc-props--empilhado"><dt>Descrição</dt><dd>Está pingando do teto do banheiro social desde ontem à noite. Acho que vem do 1304.</dd><dt>Tipo</dt><dd>Vazamento ou infiltração</dd><dt>Fornecedor</dt><dd>Hidráulica Souza, técnico Wellington, chega até 11h</dd><dt>Etiquetas</dt><dd><span class="lc-etiqueta lc-etiqueta--3">Prumada</span> <span class="lc-etiqueta lc-etiqueta--5">Bloco B</span></dd></dl>
+    <ul class="lc-anexos"><li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="imagem"></i></span><span class="lc-anexo__nome">Mancha no teto.jpg</span><span class="lc-anexo__info">Enviada pela moradora</span></li></ul>
+    <section><h2 class="lc-t-subsecao" style="margin-bottom:6px">Histórico</h2><ul class="lc-atividade">
+      <li class="lc-atividade__ev"><span class="lc-atividade__no"><i data-i="ordem-de-servico"></i></span><div class="lc-atividade__cartao"><div class="lc-atividade__cab"><b>OS 482 criada</b><span class="lc-atividade__hora">08:35</span></div></div></li>
+      <li class="lc-atividade__ev"><span class="lc-atividade__no"><i data-i="atribuir"></i></span><div class="lc-atividade__cartao"><div class="lc-atividade__cab"><b>Rafael assumiu</b><span class="lc-atividade__hora">08:20</span></div></div></li></ul></section>
+  </div>
+  <div id="t3" role="tabpanel" hidden class="c-corpo"></div>
+  <div class="c-acao"><button class="lc-btn" type="button"><i data-i="nota-interna"></i>Nota</button><a class="lc-btn lc-btn--principal" href="c-conversa.html"><i data-i="responder"></i>Responder</a></div>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p5-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p5.js"></script>
+</body>
+</html>

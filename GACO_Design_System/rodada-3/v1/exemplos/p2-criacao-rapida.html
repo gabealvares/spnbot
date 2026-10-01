@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ordens de serviço, Operações</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+<style>.p2-nova td{animation:lc-chegou 2s var(--curva-sair)}</style>
+</head>
+<body data-moldura='{"modulo":"operacoes","secao":"Ordens de serviço","item":"Todas as OS","papel":"operacoes"}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga lc-modelo-lista">
+  <div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Ordens de serviço</h1><p class="lc-cab-pagina__desc">Abertas e agendadas nos condomínios da carteira. Nova OS abre um formulário curto por cima da lista.</p></div>
+    <div class="lc-cab-pagina__acoes"><button class="lc-btn lc-btn--principal" type="button" id="nova"><i data-i="mais"></i>Nova OS<span class="lc-tecla" style="margin-left:4px;background:transparent;color:inherit;border-color:currentColor">N</span></button></div></div>
+  <div class="lc-filtros"><label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Número, condomínio ou fornecedor" aria-label="Pesquisar OS"></label><button class="lc-filtro lc-filtro--ativo" type="button">Situação: <b>abertas e agendadas</b></button><button class="lc-filtro" type="button">Tipo<i data-i="chevron-baixo"></i></button></div>
+  <div class="lc-tabela-cont lc-tabela-cont--alta"><table class="lc-tabela"><caption class="lc-sr">Ordens de serviço</caption><thead><tr><th scope="col">OS</th><th scope="col">Condomínio</th><th scope="col">Serviço</th><th scope="col">Fornecedor</th><th scope="col">Agendada para</th><th scope="col">Situação</th></tr></thead><tbody id="tb">
+    <tr><td><a href="#" class="lc-tabela__primaria">482</a></td><td>Cond. Parque das Águas</td><td>Portão da garagem não fecha</td><td>Portão Forte Automação</td><td>02/10, 9h</td><td><span class="lc-estado lc-estado--andamento">Agendada</span></td></tr>
+    <tr><td><a href="#" class="lc-tabela__primaria">481</a></td><td>Cond. Vila Serena</td><td>Troca do motor do portão social</td><td>Portão Forte Automação</td><td>03/10, 14h</td><td><span class="lc-estado lc-estado--andamento">Agendada</span></td></tr>
+    <tr><td><a href="#" class="lc-tabela__primaria">480</a></td><td>Edifício Atlântico</td><td>Vazamento no barrilete, bloco A</td><td>Hidrotec Bombas e Reservatórios</td><td>Sem data</td><td><span class="lc-estado lc-estado--aviso">Aguardando orçamento</span></td></tr>
+    <tr><td><a href="#" class="lc-tabela__primaria">479</a></td><td>Residencial Morada do Sol</td><td>Bomba de recalque com ruído</td><td>Hidrotec Bombas e Reservatórios</td><td>01/10, 8h</td><td><span class="lc-estado lc-estado--andamento">Em execução</span></td></tr>
+    <tr><td><a href="#" class="lc-tabela__primaria">477</a></td><td>Cond. Lago Azul</td><td>Lâmpadas queimadas na garagem G2</td><td>Eletro Predial Santos</td><td>30/09, 10h</td><td><span class="lc-estado lc-estado--perigo">Atrasada</span></td></tr></tbody></table></div>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2,$=P.$,$$=P.$$,esc=P.esc, num=483, rasc={};
+var FORN=["Elevadores Atlas, filial Campinas","Hidrotec Bombas e Reservatórios","Portão Forte Automação","Eletro Predial Santos","Limpa Mais Serviços"];
+function formOS(){ return '<div class="lc-form-grade">'+
+  '<div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="os-cond">Condomínio <span class="lc-obrig" aria-hidden="true">*</span></label><select id="os-cond" class="lc-selecao"><option value="">Escolha</option><option'+(rasc.cond==="Cond. Parque das Águas"?' selected':'')+'>Cond. Parque das Águas</option><option>Residencial Jardim Botânico</option><option>Edifício Atlântico</option><option>Cond. Vila Serena</option></select></div>'+
+  '<div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="os-o">O que aconteceu <span class="lc-obrig" aria-hidden="true">*</span></label><input id="os-o" class="lc-entrada" value="'+esc(rasc.o||"")+'" placeholder="Ex.: elevador social parado no 7º andar"></div>'+
+  '<div class="lc-campo"><label class="lc-rotulo" for="os-t">Tipo</label><select id="os-t" class="lc-selecao"><option>Corretiva</option><option>Preventiva</option><option>Emergência</option></select></div>'+
+  '<div class="lc-campo"><label class="lc-rotulo" for="os-d">Agendar para</label><input id="os-d" class="lc-entrada" type="datetime-local"></div>'+
+  '<div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="os-f">Fornecedor</label><select id="os-f" class="lc-selecao"><option value="">Escolha depois</option>'+FORN.map(function(f){return '<option'+(rasc.f===f?' selected':'')+'>'+esc(f)+'</option>';}).join("")+'</select>'+
+  '<button type="button" class="lc-btn lc-btn--link lc-btn--p" id="os-novo-f" style="align-self:flex-start"><i data-i="mais"></i>Criar fornecedor que não está na lista</button></div></div>'; }
+function guardar(el){ ["cond","o","f"].forEach(function(k){ var c=el.querySelector("#os-"+k); if(c) rasc[k]=c.value; }); }
+function abrirOS(){
+  P.modal({titulo:"Nova ordem de serviço",desc:"Só o necessário para abrir. Orçamento, fotos e checklist você completa na OS.",corpo:formOS(),
+    pe:'<button type="button" class="lc-btn lc-btn--link lc-modal__aux" id="os-completo">Abrir formulário completo</button><button type="button" class="lc-btn" data-m-fechar>Cancelar</button><span class="lc-dividido" data-menu-ancora><button type="button" class="lc-btn lc-btn--principal" id="os-criar">Criar OS</button><button type="button" class="lc-btn lc-btn--principal" id="os-mais" aria-label="Outras formas de criar" aria-haspopup="menu" aria-expanded="false"><i data-i="chevron-baixo"></i></button></span>',
+    aoFechar:function(){ var el=document.querySelector(".lc-modal"); guardar(el); if((rasc.o||"").trim() && !confirm2) { pergunta(); return false; } rasc={}; confirm2=false; },
+    aoAbrir:function(el,api){
+      el.querySelector("#os-novo-f").addEventListener("click",function(){ guardar(el); abrirFornecedor(); });
+      el.querySelector("#os-completo").addEventListener("click",function(){ guardar(el); P.toast("Aqui abriria a página Nova OS com condomínio e descrição já preenchidos.",{ic:"info"}); });
+      el.querySelector("#os-criar").addEventListener("click",function(){ criar(el,api,"lista"); });
+      el.querySelector("#os-mais").addEventListener("click",function(e){ P.menu(e.currentTarget,[{t:"Criar OS",sub:"Fecha e mostra a OS na lista.",acao:function(){criar(el,api,"lista");}},{t:"Criar e abrir a OS",sub:"Vai para a página da OS.",acao:function(){criar(el,api,"abrir");}},{t:"Criar e abrir outra",sub:"Para lançar várias em sequência.",acao:function(){criar(el,api,"outra");}}],{acima:true,classe:"lc-menu--salvar",rotulo:"Formas de criar"}); });
+      el.addEventListener("keydown",function(e){ if(e.key==="Enter" && (e.ctrlKey||e.metaKey)){ e.preventDefault(); criar(el,api,"lista"); } });
+    }});
+}
+var confirm2=false;
+function pergunta(){ /* sair sujo dentro do modal: troca o conteúdo, não empilha */
+  var m=document.querySelector(".lc-modal"); var corpo=m.querySelector(".lc-modal__corpo"), pe=m.querySelector(".lc-modal__pe"), h=m.querySelector("h2"), d=m.querySelector(".lc-modal__cab p");
+  var guardado={c:corpo.innerHTML,p:pe.innerHTML,h:h.textContent,d:d.textContent};
+  h.textContent="Descartar a OS que você começou?"; d.textContent="“"+rasc.o+"” ainda não foi criada.";
+  corpo.innerHTML='<p class="lc-pequeno">Se descartar, o que você digitou se perde. Nada foi criado ainda.</p>';
+  pe.innerHTML='<button type="button" class="lc-btn" id="pq-cont">Continuar editando</button><button type="button" class="lc-btn lc-btn--perigo-contorno" id="pq-desc">Descartar</button>';
+  m.querySelector("#pq-cont").focus();
+  m.querySelector("#pq-cont").addEventListener("click",function(){ P.camadaAberta().remover(true); abrirOS(); });
+  m.querySelector("#pq-desc").addEventListener("click",function(){ confirm2=true; rasc={}; P.camadaAberta().fechar(); });
+}
+function abrirFornecedor(){ /* nada de modal sobre modal: o modal troca de conteúdo e oferece Voltar */
+  P.modal({titulo:"Novo fornecedor",desc:"Depois de criar, você volta para a OS com ele escolhido.",
+    corpo:'<button type="button" class="lc-btn lc-btn--link lc-btn--p" id="nf-voltar" style="margin-bottom:12px"><i data-i="chevron-esquerda"></i>Voltar para a nova OS</button><div class="lc-form-grade"><div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="nf-n">Nome <span class="lc-obrig" aria-hidden="true">*</span></label><input id="nf-n" class="lc-entrada" placeholder="Ex.: Elevadores Atlas, filial Santos"></div><div class="lc-campo"><label class="lc-rotulo" for="nf-c">CNPJ</label><input id="nf-c" class="lc-entrada" inputmode="numeric"></div><div class="lc-campo"><label class="lc-rotulo" for="nf-t">WhatsApp</label><div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">+55</span><input id="nf-t" class="lc-entrada" type="tel"></div></div><div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="nf-s">Serviço</label><select id="nf-s" class="lc-selecao"><option>Manutenção de elevadores</option><option>Portões e cancelas</option><option>Bombas e caixas d’água</option><option>Elétrica predial</option></select></div></div>',
+    pe:'<button type="button" class="lc-btn" id="nf-cancelar">Cancelar e voltar</button><button type="button" class="lc-btn lc-btn--principal" id="nf-ok">Criar e usar na OS</button>',
+    aoFechar:function(){ setTimeout(abrirOS,0); return true; },
+    aoAbrir:function(el,api){ el.querySelector("#nf-n").setAttribute("data-foco","");
+      function volta(){ api.remover(true); abrirOS(); }
+      el.querySelector("#nf-voltar").addEventListener("click",volta); el.querySelector("#nf-cancelar").addEventListener("click",volta);
+      el.querySelector("#nf-ok").addEventListener("click",function(){ var n=el.querySelector("#nf-n"); if(!n.value.trim()){ n.setAttribute("aria-invalid","true"); n.focus(); return; } FORN.push(n.value); rasc.f=n.value; api.remover(true); abrirOS(); P.anunciar("Fornecedor "+n.value+" criado e escolhido na OS."); }); }});
+}
+function criar(el,api,modo){
+  var c=el.querySelector("#os-cond"), o=el.querySelector("#os-o"), ok=true;
+  [c,o].forEach(function(x){ var er=x.parentNode.querySelector(".lc-erro"); if(er) er.remove(); x.removeAttribute("aria-invalid");
+    if(!x.value.trim()){ ok=false; x.setAttribute("aria-invalid","true"); var p=document.createElement("p"); p.className="lc-erro"; p.id=x.id+"-e"; p.innerHTML=lcIcone("erro")+(x===c?"Escolha o condomínio.":"Descreva o problema em uma frase."); x.parentNode.appendChild(p); x.setAttribute("aria-describedby",p.id); } });
+  if(!ok){ el.querySelector("[aria-invalid=true]").focus(); return; }
+  var n=num++, f=el.querySelector("#os-f").value;
+  $("#tb").insertAdjacentHTML("afterbegin",'<tr class="p2-nova" aria-selected="true"><td><a href="#" class="lc-tabela__primaria">'+n+'</a></td><td>'+esc(c.value)+'</td><td>'+esc(o.value)+'</td><td>'+esc(f||"A definir")+'</td><td>Sem data</td><td><span class="lc-estado lc-estado--neutro">Aberta</span></td></tr>');
+  confirm2=true; rasc={}; api.fechar(); confirm2=false;
+  if(modo==="outra"){ P.toast("OS <b>"+n+"</b> criada. Esta é uma nova.",{tipo:"sucesso"}); abrirOS(); return; }
+  if(modo==="abrir"){ P.toast("Aqui abriria a página da OS "+n+".",{ic:"info"}); return; }
+  P.toast("OS <b>"+n+"</b> criada para "+esc(c.value)+".",{tipo:"sucesso",acao:"Abrir"});
+}
+$("#nova").addEventListener("click",abrirOS);
+P.atalho("n",function(e){ e.preventDefault(); abrirOS(); });
+if(new URLSearchParams(location.search).get("aberto")==="1") setTimeout(function(){ rasc={cond:"Cond. Parque das Águas",o:"Elevador social parado no 7º andar"}; abrirOS(); },300);
+if(new URLSearchParams(location.search).get("aberto")==="fornecedor") setTimeout(function(){ rasc={cond:"Cond. Parque das Águas",o:"Elevador social parado no 7º andar"}; abrirFornecedor(); },300);
+})();
+</script>
+</body>
+</html>

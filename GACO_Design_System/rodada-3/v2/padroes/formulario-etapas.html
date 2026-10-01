@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova implantação</title>
+<script src="../sistema/marca.js"></script>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-q2.css">
+<script src="../sistema/icones.js"></script>
+<script src="links.js"></script>
+<script src="../sistema/moldura.js" defer></script>
+<script src="../sistema/extra-q2.js" defer></script>
+<style>
+.fe{max-width:960px}
+.fe-pe{position:sticky;bottom:0;display:flex;gap:8px;align-items:center;padding:10px 0;background:var(--cm-fundo);border-top:1px solid var(--cm-filete);margin-top:16px}
+.fe-revisao dt{color:var(--cm-texto-2)}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"CS","tela":"Implantações","papel":"CS","registro":"Nova implantação","usuario":{"nome":"Rafael Lima","iniciais":"RL","cargo":"CS sênior","presenca":"disponivel","tom":3}}'></div>
+<main id="conteudo" class="cm-pagina">
+  <div class="fe">
+    <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Nova implantação: Adm. Horizonte</h1><span class="cm-gravacao is-ok" id="fe-grav" role="status"><i data-i="sucesso"></i>Etapa 1 gravada às 14:32. Pode sair e voltar.</span></div></header>
+    <ol class="cm-etapas" aria-label="Etapas da implantação" id="fe-etapas">
+      <li class="is-feita"><button type="button" data-e="0"><span class="cm-etapas__nome">Contrato</span><span class="cm-etapas__sub">Plano Completo, início 01/11</span></button></li>
+      <li class="is-atual"><button type="button" data-e="1" aria-current="step"><span class="cm-etapas__nome">Condomínios</span><span class="cm-etapas__sub">38 condomínios, 4.210 unidades</span></button></li>
+      <li><button type="button" data-e="2" disabled><span class="cm-etapas__nome">Pessoas e acessos</span><span class="cm-etapas__sub">Quem entra no GACO</span></button></li>
+      <li><button type="button" data-e="3" disabled><span class="cm-etapas__nome">Revisão</span><span class="cm-etapas__sub">Conferir e concluir</span></button></li>
+    </ol>
+    <section data-passo="0" hidden class="cm-form-secao"><div><h2 class="cm-form-secao__titulo">Contrato</h2></div><div class="cm-form-secao__campos"><div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="e0a">Plano</label><div class="cm-selecao"><select id="e0a"><option>Completo</option><option>Essencial</option></select><i data-i="chevron-baixo"></i></div></div><div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="e0b">Início</label><div class="cm-entrada"><input id="e0b" value="01/11/2026"></div></div></div></section>
+    <section data-passo="1" class="cm-form-secao">
+      <div><h2 class="cm-form-secao__titulo">Condomínios</h2><p class="cm-form-secao__desc">Importe a planilha da administradora ou escolha um a um.</p></div>
+      <div class="cm-form-secao__campos">
+        <label class="cm-upload cm-col-6"><i data-i="enviar-arquivo"></i><span><b>Arraste a planilha de condomínios</b> ou clique para escolher</span><span class="cm-t-legenda">XLSX ou CSV, com CNPJ, nome e unidades</span><input type="file" hidden></label>
+        <div class="cm-alerta cm-alerta--sucesso cm-col-6"><i data-i="sucesso"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">condominios-horizonte.xlsx lida: 38 condomínios</span><span class="cm-alerta__desc">2 sem CNPJ ficaram de fora e vão para a revisão.</span></span></div>
+        <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="e1a">Responsável pela implantação</label><div class="cm-selecao"><select id="e1a"><option>Rafael Lima</option><option>Carla Mendes</option></select><i data-i="chevron-baixo"></i></div></div>
+      </div>
+    </section>
+    <section data-passo="2" hidden class="cm-form-secao"><div><h2 class="cm-form-secao__titulo">Pessoas e acessos</h2></div><div class="cm-form-secao__campos"><div class="cm-campo cm-col-4"><label class="cm-campo__rotulo" for="e2a">E-mail do administrador do cliente <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="e2a" type="email" placeholder="nome@horizonte.com.br"></div></div></div></section>
+    <section data-passo="3" hidden class="cm-form-secao"><div><h2 class="cm-form-secao__titulo">Revisão</h2></div><div><dl class="cm-ficha fe-revisao"><div class="cm-ficha__linha is-leitura"><dt>Contrato</dt><dd>Completo, início 01/11/2026</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Condomínios</dt><dd>38, com 2 para completar depois</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Administrador</dt><dd id="fe-adm">—</dd><span></span></div></dl></div></section>
+    <div class="fe-pe">
+      <button class="cm-botao" type="button" id="fe-voltar"><i data-i="chevron-esquerda"></i>Voltar</button>
+      <span class="cm-cresce cm-t-legenda" id="fe-pos">Etapa 2 de 4</span>
+      <button class="cm-botao cm-botao--discreto" type="button" data-q2-toast="Implantação guardada como Em preenchimento. Está em Implantações › Minhas.|info">Terminar depois</button>
+      <button class="cm-botao cm-botao--principal" type="button" id="fe-seguir">Continuar</button>
+    </div>
+  </div>
+</main>
+<script>
+(function(){
+  var at=1,li=document.querySelectorAll('#fe-etapas li'),passos=document.querySelectorAll('[data-passo]'),g=document.getElementById('fe-grav');
+  function hora(){var d=new Date();return (d.getHours()<10?'0':'')+d.getHours()+':'+(d.getMinutes()<10?'0':'')+d.getMinutes()}
+  function ir(n){at=n;passos.forEach(function(p){p.hidden=+p.dataset.passo!==n});
+    li.forEach(function(l,i){l.classList.toggle('is-atual',i===n);var b=l.querySelector('button');if(i===n) b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');if(l.classList.contains('is-feita')||i<=n) b.disabled=false});
+    document.getElementById('fe-pos').textContent='Etapa '+(n+1)+' de 4';document.getElementById('fe-seguir').textContent=n===3?'Concluir implantação':'Continuar';document.getElementById('fe-voltar').disabled=n===0;
+    var h=passos[n].querySelector('h2');h.tabIndex=-1;h.focus()}
+  document.getElementById('fe-seguir').onclick=function(){
+    if(at===2){var e=document.getElementById('e2a');if(!/^[^@\s]+@[^@\s]+\.[a-z.]+$/.test(e.value)){e.setAttribute('aria-invalid','true');e.closest('.cm-entrada').classList.add('is-erro');li[2].classList.add('is-erro');li[2].querySelector('.cm-etapas__sub').textContent='Falta o e-mail do administrador';e.focus();cmQ2.toast('Falta o e-mail do administrador do cliente.','perigo');return}
+      e.removeAttribute('aria-invalid');e.closest('.cm-entrada').classList.remove('is-erro');li[2].classList.remove('is-erro');li[2].querySelector('.cm-etapas__sub').textContent=e.value;document.getElementById('fe-adm').textContent=e.value}
+    if(at===3){cmQ2.toast('Implantação criada. Os 38 condomínios entram em Implantação; o administrador recebe o convite.','sucesso','Abrir');return}
+    g.className='cm-gravacao is-salvando';g.innerHTML=cmIcone('atualizar')+'Gravando a etapa '+(at+1);
+    var a=at;setTimeout(function(){li[a].classList.add('is-feita');g.className='cm-gravacao is-ok';g.innerHTML=cmIcone('sucesso')+'Etapa '+(a+1)+' gravada às '+hora()+'. Pode sair e voltar.';ir(a+1)},500)};
+  document.getElementById('fe-voltar').onclick=function(){if(at>0) ir(at-1)};
+  document.getElementById('fe-etapas').addEventListener('click',function(e){var b=e.target.closest('button[data-e]');if(b&&!b.disabled) ir(+b.dataset.e)});
+  document.getElementById('fe-voltar').disabled=false;
+})();
+</script>
+</body>
+</html>

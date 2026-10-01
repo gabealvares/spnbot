@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pessoas</title>
+<meta name="description" content="Diretório de pessoas da empresa com presença, área, o que cada um faz agora e busca.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .ps-letras{display:flex;gap:2px;flex-wrap:wrap;font-size:12.5px}
+  .ps-letras a{min-width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;color:var(--texto-2);text-decoration:none;border-radius:var(--raio-1)}
+  .ps-letras a:hover{background:var(--sup-2);color:var(--texto-1)}
+  .ps-letras span{min-width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;color:var(--texto-desab)}
+  .ps-resumo{font-size:13px;color:var(--texto-2)}
+  @media (max-width:639px){.lc-filtros .lc-busca{width:100%}}
+</style>
+</head>
+<body data-moldura='{"modulo":"inicio","secao":"Pessoas","papel":"gerente-cs","usuario":{"nome":"Letícia Araújo","cargo":"Coordenadora de Relacionamento","iniciais":"LA","cor":"lc-av--c3"},"contadores":{"suporte":7,"cs":3,"academy":1}}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+
+<details class="lc-nota-projeto" open>
+  <summary><b>Nota de projeto</b> Diretório de pessoas
+    <span class="lc-nota-projeto__serie"><a href="20-home.html">Início</a> <a href="20b-home-gestor.html">Gestor</a> <a href="20c-home-primeiro-acesso.html">Primeiro acesso</a> <a href="20d-perfil.html">Perfil</a> <a href="20e-pessoas.html" aria-current="page">Pessoas</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2>
+      <p>Achar a pessoa certa e saber se dá para falar com ela agora. A grade de rostos é o conteúdo (as pessoas se reconhecem pelo rosto); cada ficha traz cargo, área e o que ela está fazendo. A visão em lista serve para quem procura por cargo ou área e quer comparar.</p></section>
+    <section><h2>Fluxo</h2><ol>
+      <li>A busca no topo filtra enquanto se digita, por nome, cargo, área ou "pode me procurar para".</li>
+      <li>Os filtros Área e Presença viram fichas removíveis logo abaixo; "Limpar" desfaz todos.</li>
+      <li>As abas são visões salvas (Todas, Minha equipe, Disponíveis agora, Aniversariantes). A escolhida é lembrada na próxima visita.</li>
+      <li>Clicar na ficha abre o perfil; a trilha "Pessoas" volta para cá com a busca e a rolagem como estavam.</li>
+    </ol></section>
+    <section><h2>Por que assim</h2>
+      <p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o Slack (diretório de pessoas com status), o Microsoft Teams e o Google Workspace (busca por cargo e área) e o BambooHR e o Gupy (diretório com organograma ao lado) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div>
+  <div class="lc-estados-tela" data-estados-para="tela-pessoas">Ver estado:
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela">
+      <button type="button" aria-pressed="true" data-estado="grade">Grade</button>
+      <button type="button" aria-pressed="false" data-estado="lista">Lista</button>
+      <button type="button" aria-pressed="false" data-estado="carregando">Carregando</button>
+      <button type="button" aria-pressed="false" data-estado="nada">Busca sem resultado</button>
+      <button type="button" aria-pressed="false" data-estado="erro">Erro</button>
+    </div>
+  </div>
+</details>
+
+<div class="lc-cab-pagina">
+  <div class="lc-cab-pagina__txt"><h1>Pessoas</h1><p class="lc-cab-pagina__desc">48 pessoas na Administradora Alpha. 31 disponíveis agora.</p></div>
+  <div class="lc-cab-pagina__acoes"><a class="lc-btn" href="#"><i data-i="organograma"></i>Organograma</a><button class="lc-btn" type="button" data-toast="Lista exportada em planilha" data-toast-neutro><i data-i="baixar"></i>Exportar</button></div>
+</div>
+
+<div id="tela-pessoas" data-estado="grade">
+<div class="lc-visoes lc-abas" role="tablist" aria-label="Visões">
+  <button role="tab" aria-selected="true">Todas <span class="lc-contagem">48</span></button>
+  <button role="tab" aria-selected="false">Minha equipe <span class="lc-contagem">8</span></button>
+  <button role="tab" aria-selected="false">Disponíveis agora <span class="lc-contagem">31</span></button>
+  <button role="tab" aria-selected="false">Aniversariantes de outubro <span class="lc-contagem">4</span></button>
+</div>
+<div class="lc-filtros">
+  <label class="lc-busca"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar por nome, cargo, área ou assunto" placeholder="Nome, cargo, área ou assunto" id="ps-busca"></label>
+  <span class="lc-ancora-menu lc-ancora-menu--esq"><button class="lc-filtro lc-filtro--ativo" type="button" data-abre="menu-area" aria-expanded="false" aria-haspopup="menu"><i data-i="filtrar"></i>Área: <b>todas menos Diretoria</b><i data-i="chevron-baixo"></i></button>
+    <div class="lc-menu" role="menu" id="menu-area" hidden data-manter>
+      <button class="lc-menu__item" role="menuitemcheckbox" aria-checked="true">Atendimento</button><button class="lc-menu__item" role="menuitemcheckbox" aria-checked="true">Relacionamento</button><button class="lc-menu__item" role="menuitemcheckbox" aria-checked="true">Financeiro</button><button class="lc-menu__item" role="menuitemcheckbox" aria-checked="true">Operações</button><button class="lc-menu__item" role="menuitemcheckbox" aria-checked="true">Portaria remota</button><button class="lc-menu__item" role="menuitemcheckbox" aria-checked="false">Diretoria</button></div></span>
+  <button class="lc-filtro" type="button"><i data-i="localizacao"></i>Local<i data-i="chevron-baixo"></i></button>
+  <button class="lc-filtro" type="button"><span class="lc-status-pessoal__ponto" aria-hidden="true"></span>Presença<i data-i="chevron-baixo"></i></button>
+  <div class="lc-filtros__fim">
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Mostrar como" data-estados-para="tela-pessoas"><button type="button" aria-pressed="true" data-estado="grade" aria-label="Grade" data-dica="Grade"><i data-i="visao-grade"></i></button><button type="button" aria-pressed="false" data-estado="lista" aria-label="Lista" data-dica="Lista"><i data-i="visao-lista"></i></button></div>
+  </div>
+</div>
+<div class="lc-chips"><span class="lc-chip-filtro"><span>Área:</span> sem Diretoria<button type="button" aria-label="Remover filtro Área"><i data-i="fechar"></i></button></span><button class="lc-btn lc-btn--link lc-btn--p" type="button">Limpar</button></div>
+<div class="lc-linha lc-linha--entre" style="margin-bottom:8px;flex-wrap:wrap;gap:8px"><span class="ps-resumo" aria-live="polite">Mostrando 16 de 46 pessoas, por nome</span>
+  <nav class="ps-letras" aria-label="Ir para a letra"><a href="#letra-A">A</a><a href="#letra-B">B</a><a href="#letra-C">C</a><a href="#letra-D">D</a><span>E</span><a href="#letra-F">F</a><a href="#letra-G">G</a><span>H</span><span>I</span><a href="#letra-J">J</a><span>K</span><a href="#letra-L">L</a><a href="#letra-M">M</a><span>N</span><span>O</span><a href="#letra-P">P</a><span>Q</span><a href="#letra-R">R</a><a href="#letra-S">S</a><a href="#letra-T">T</a><span>U</span><a href="#letra-V">V</a></nav></div>
+
+<div class="lc-diretorio" data-so-estado="grade">
+<a id="letra-A" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c4" aria-hidden="true">AP<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-ficha-pessoa__nome">Ana Paula Souza</span><span class="lc-ficha-pessoa__cargo">Analista de cobrança<br>Financeiro</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto" aria-hidden="true"></span>Disponível</span></a>
+<a id="letra-B" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c4" aria-hidden="true">BN<span class="lc-presenca lc-presenca--ocupado"></span></span><span><span class="lc-ficha-pessoa__nome">Beatriz Nogueira</span><span class="lc-ficha-pessoa__cargo">Analista de Relacionamento<br>Relacionamento</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto lc-status-pessoal__ponto--ocupado" aria-hidden="true"></span>Em atendimento, 3 conversas</span></a>
+<a id="letra-C" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c5" aria-hidden="true">CL<span class="lc-presenca lc-presenca--reuniao"></span></span><span><span class="lc-ficha-pessoa__nome">Carlos Lima</span><span class="lc-ficha-pessoa__cargo">Analista de Relacionamento<br>Relacionamento</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto lc-status-pessoal__ponto--reuniao" aria-hidden="true"></span>Em reunião até 11h</span></a>
+<a id="letra-D" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c2" aria-hidden="true">DR<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-ficha-pessoa__nome">Diego Ramos</span><span class="lc-ficha-pessoa__cargo">Analista financeiro<br>Financeiro</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto" aria-hidden="true"></span>Disponível, faz aniversário hoje</span></a>
+<a id="letra-F" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c7" aria-hidden="true">FM<span class="lc-presenca lc-presenca--ausente"></span></span><span><span class="lc-ficha-pessoa__nome">Felipe Moura</span><span class="lc-ficha-pessoa__cargo">Supervisor de portaria remota<br>Portaria remota</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto lc-status-pessoal__ponto--ausente" aria-hidden="true"></span>De férias até 10/10</span></a>
+<a id="letra-G" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c8" aria-hidden="true">GS<span class="lc-presenca lc-presenca--reuniao"></span></span><span><span class="lc-ficha-pessoa__nome">Gustavo Siqueira</span><span class="lc-ficha-pessoa__cargo">Vendedor<br>Comercial</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto lc-status-pessoal__ponto--reuniao" aria-hidden="true"></span>Em visita, Cond. Bosque Real</span></a>
+<a id="letra-J" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c6" aria-hidden="true">JP<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-ficha-pessoa__nome">Juliana Prado</span><span class="lc-ficha-pessoa__cargo">Assistente de atendimento<br>Atendimento</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto" aria-hidden="true"></span>Disponível, primeira semana</span></a>
+<a id="letra-L" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c3" aria-hidden="true">LA<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-ficha-pessoa__nome">Letícia Araújo</span><span class="lc-ficha-pessoa__cargo">Coordenadora de Relacionamento<br>Relacionamento</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto" aria-hidden="true"></span>Disponível até 18h</span></a>
+<a id="letra-M" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c4" aria-hidden="true">MS<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-ficha-pessoa__nome">Mariana Sá</span><span class="lc-ficha-pessoa__cargo">Analista de RH<br>Pessoas e RH</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto" aria-hidden="true"></span>Disponível</span></a>
+<a class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c2" aria-hidden="true">MT<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-ficha-pessoa__nome">Márcio Tanaka</span><span class="lc-ficha-pessoa__cargo">Técnico de manutenção<br>Operações</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto" aria-hidden="true"></span>Em campo, Vila Serena</span></a>
+<a id="letra-P" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c5" aria-hidden="true">PV<span class="lc-presenca lc-presenca--ocupado"></span></span><span><span class="lc-ficha-pessoa__nome">Patrícia Viana</span><span class="lc-ficha-pessoa__cargo">Analista de marketing<br>Marketing</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto lc-status-pessoal__ponto--ocupado" aria-hidden="true"></span>Não perturbe até 12h</span></a>
+<a id="letra-R" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c8" aria-hidden="true">RA<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-ficha-pessoa__nome">Rogério Alves</span><span class="lc-ficha-pessoa__cargo">Supervisor de Manutenção<br>Operações</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto" aria-hidden="true"></span>Em vistoria, Ed. Aurora</span></a>
+<a class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c7" aria-hidden="true">RT<span class="lc-presenca lc-presenca--reuniao"></span></span><span><span class="lc-ficha-pessoa__nome">Ricardo Tavares</span><span class="lc-ficha-pessoa__cargo">Diretor de Operações<br>Diretoria</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto lc-status-pessoal__ponto--reuniao" aria-hidden="true"></span>Em reunião até 12h</span></a>
+<a id="letra-S" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c3" aria-hidden="true">SF<span class="lc-presenca lc-presenca--off"></span></span><span><span class="lc-ficha-pessoa__nome">Sônia Freitas</span><span class="lc-ficha-pessoa__cargo">Operadora de portaria remota<br>Portaria remota</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto lc-status-pessoal__ponto--ausente" aria-hidden="true"></span>Folga hoje</span></a>
+<a id="letra-T" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c6" aria-hidden="true">TC<span class="lc-presenca lc-presenca--ocupado"></span></span><span><span class="lc-ficha-pessoa__nome">Thiago Costa</span><span class="lc-ficha-pessoa__cargo">Atendente de suporte<br>Atendimento</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto lc-status-pessoal__ponto--ocupado" aria-hidden="true"></span>Em atendimento, 5 conversas</span></a>
+<a id="letra-V" class="lc-ficha-pessoa" href="20d-perfil.html"><span class="lc-av lc-av--48 lc-av--c5" aria-hidden="true">VM<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-ficha-pessoa__nome">Vanessa Monteiro</span><span class="lc-ficha-pessoa__cargo">Contadora<br>Financeiro</span></span><span class="lc-ficha-pessoa__faz"><span class="lc-status-pessoal__ponto" aria-hidden="true"></span>Disponível</span></a>
+</div>
+
+<div data-so-estado="lista" hidden>
+<div class="lc-tabela-cont"><table class="lc-tabela">
+<caption class="lc-sr">Pessoas da empresa</caption>
+<thead><tr><th scope="col" aria-sort="ascending"><button class="lc-ordenar">Nome</button></th><th scope="col"><button class="lc-ordenar">Cargo</button></th><th scope="col"><button class="lc-ordenar">Área</button></th><th scope="col">Agora</th><th><span class="lc-sr">Ações</span></th></tr></thead>
+<tbody>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c4" aria-hidden="true">AP<span class="lc-presenca lc-presenca--on"></span></span><span class="lc-pessoa__nome">Ana Paula Souza</span></a></td><td>Analista de cobrança</td><td>Financeiro</td><td>Disponível</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Ana Paula Souza"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c4" aria-hidden="true">BN<span class="lc-presenca lc-presenca--ocupado"></span></span><span class="lc-pessoa__nome">Beatriz Nogueira</span></a></td><td>Analista de Relacionamento</td><td>Relacionamento</td><td>Em atendimento, 3 conversas</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Beatriz Nogueira"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c5" aria-hidden="true">CL<span class="lc-presenca lc-presenca--reuniao"></span></span><span class="lc-pessoa__nome">Carlos Lima</span></a></td><td>Analista de Relacionamento</td><td>Relacionamento</td><td>Em reunião até 11h</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Carlos Lima"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c2" aria-hidden="true">DR<span class="lc-presenca lc-presenca--on"></span></span><span class="lc-pessoa__nome">Diego Ramos</span></a></td><td>Analista financeiro</td><td>Financeiro</td><td>Disponível, faz aniversário hoje</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Diego Ramos"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c7" aria-hidden="true">FM<span class="lc-presenca lc-presenca--ausente"></span></span><span class="lc-pessoa__nome">Felipe Moura</span></a></td><td>Supervisor de portaria remota</td><td>Portaria remota</td><td>De férias até 10/10</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Felipe Moura"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c8" aria-hidden="true">GS<span class="lc-presenca lc-presenca--reuniao"></span></span><span class="lc-pessoa__nome">Gustavo Siqueira</span></a></td><td>Vendedor</td><td>Comercial</td><td>Em visita, Cond. Bosque Real</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Gustavo Siqueira"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c6" aria-hidden="true">JP<span class="lc-presenca lc-presenca--on"></span></span><span class="lc-pessoa__nome">Juliana Prado</span></a></td><td>Assistente de atendimento</td><td>Atendimento</td><td>Disponível, primeira semana</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Juliana Prado"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c3" aria-hidden="true">LA<span class="lc-presenca lc-presenca--on"></span></span><span class="lc-pessoa__nome">Letícia Araújo</span></a></td><td>Coordenadora de Relacionamento</td><td>Relacionamento</td><td>Disponível até 18h</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Letícia Araújo"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c4" aria-hidden="true">MS<span class="lc-presenca lc-presenca--on"></span></span><span class="lc-pessoa__nome">Mariana Sá</span></a></td><td>Analista de RH</td><td>Pessoas e RH</td><td>Disponível</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Mariana Sá"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c2" aria-hidden="true">MT<span class="lc-presenca lc-presenca--on"></span></span><span class="lc-pessoa__nome">Márcio Tanaka</span></a></td><td>Técnico de manutenção</td><td>Operações</td><td>Em campo, Vila Serena</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Márcio Tanaka"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c5" aria-hidden="true">PV<span class="lc-presenca lc-presenca--ocupado"></span></span><span class="lc-pessoa__nome">Patrícia Viana</span></a></td><td>Analista de marketing</td><td>Marketing</td><td>Não perturbe até 12h</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Patrícia Viana"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c8" aria-hidden="true">RA<span class="lc-presenca lc-presenca--on"></span></span><span class="lc-pessoa__nome">Rogério Alves</span></a></td><td>Supervisor de Manutenção</td><td>Operações</td><td>Em vistoria, Ed. Aurora</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Rogério Alves"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c7" aria-hidden="true">RT<span class="lc-presenca lc-presenca--reuniao"></span></span><span class="lc-pessoa__nome">Ricardo Tavares</span></a></td><td>Diretor de Operações</td><td>Diretoria</td><td>Em reunião até 12h</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Ricardo Tavares"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c3" aria-hidden="true">SF<span class="lc-presenca lc-presenca--off"></span></span><span class="lc-pessoa__nome">Sônia Freitas</span></a></td><td>Operadora de portaria remota</td><td>Portaria remota</td><td>Folga hoje</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Sônia Freitas"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c6" aria-hidden="true">TC<span class="lc-presenca lc-presenca--ocupado"></span></span><span class="lc-pessoa__nome">Thiago Costa</span></a></td><td>Atendente de suporte</td><td>Atendimento</td><td>Em atendimento, 5 conversas</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Thiago Costa"><i data-i="conversa"></i></button></td></tr>
+<tr><td><a class="lc-pessoa" href="20d-perfil.html" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--32 lc-av--c5" aria-hidden="true">VM<span class="lc-presenca lc-presenca--on"></span></span><span class="lc-pessoa__nome">Vanessa Monteiro</span></a></td><td>Contadora</td><td>Financeiro</td><td>Disponível</td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Vanessa Monteiro"><i data-i="conversa"></i></button></td></tr>
+</tbody></table></div>
+<div class="lc-paginacao"><span class="lc-paginacao__info">Mostrando <b>1 a 16</b> de 46</span><div class="lc-paginacao__pags"><button type="button" aria-disabled="true" aria-label="Página anterior"><i data-i="chevron-esquerda"></i></button><button type="button" aria-current="page">1</button><button type="button">2</button><button type="button">3</button><button type="button" aria-label="Próxima página"><i data-i="chevron-direita"></i></button></div></div>
+</div>
+
+<div data-so-estado="carregando" hidden class="lc-diretorio" aria-busy="true" aria-label="Carregando pessoas">
+  <div class="lc-ficha-pessoa"><span class="lc-esqueleto lc-esqueleto--av" style="width:48px;height:48px"></span><span><span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span></span></div>
+  <div class="lc-ficha-pessoa"><span class="lc-esqueleto lc-esqueleto--av" style="width:48px;height:48px"></span><span><span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span></span></div>
+  <div class="lc-ficha-pessoa"><span class="lc-esqueleto lc-esqueleto--av" style="width:48px;height:48px"></span><span><span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span></span></div>
+  <div class="lc-ficha-pessoa"><span class="lc-esqueleto lc-esqueleto--av" style="width:48px;height:48px"></span><span><span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span></span></div>
+</div>
+<div data-so-estado="nada" hidden class="lc-vazio lc-vazio--centro">
+  <span class="lc-ladrilho lc-ladrilho--48"><i data-i="pesquisar"></i></span>
+  <p class="lc-vazio__titulo">Ninguém com "contabilidade predial"</p>
+  <p class="lc-vazio__texto">A busca olha nome, cargo, área e o "pode me procurar para" de cada perfil. O filtro de Área também está ligado: pode ser que a pessoa esteja na Diretoria.</p>
+  <div class="lc-grupo-btn"><button class="lc-btn" type="button">Limpar os filtros</button><button class="lc-btn lc-btn--discreto" type="button">Perguntar no mural</button></div>
+</div>
+<div data-so-estado="erro" hidden class="lc-alerta lc-alerta--perigo" role="alert"><i data-i="erro"></i><div class="lc-alerta__corpo"><b class="lc-alerta__titulo">O diretório não carregou</b>O servidor de pessoas não respondeu às 10:14. A busca e os filtros que você escolheu continuam guardados.<div class="lc-alerta__acoes"><button class="lc-btn lc-btn--p" type="button"><i data-i="atualizar"></i>Tentar de novo</button></div></div></div>
+</div>
+
+<section class="lc-nota-a11y" aria-labelledby="a11y-tit">
+  <h2 id="a11y-tit">Acessibilidade desta tela</h2>
+  <dl>
+    <dt>Ordem de foco</dt><dd>Pular para o conteúdo; trilho; barra do módulo; Organograma, Exportar; visões (setas trocam); busca; filtros; Grade ou Lista; fichas removíveis e Limpar; letras; cada ficha de pessoa (um link só por ficha).</dd>
+    <dt>O que é anunciado</dt><dd>Cada ficha como "Beatriz Nogueira, Analista de Relacionamento, Relacionamento, em atendimento, 3 conversas"; o resumo "Mostrando 16 de 46 pessoas" é região viva e muda com a busca; filtro ativo com o valor ("Área: todas menos Diretoria").</dd>
+    <dt>Nome do que é só ícone</dt><dd>Grade, Lista, Remover filtro Área, Conversar com (nome), Página anterior, Próxima página. O ponto de presença sempre vem com a palavra ao lado.</dd>
+  </dl>
+</section>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+</body>
+</html>

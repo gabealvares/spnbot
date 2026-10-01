@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plataforma, homologação</title>
+<meta name="description" content="Superadmin: ambiente de homologação com faixa ardósia fixa, versão candidata, clientes que testam, roteiro de testes e publicação programada.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<script>(function(){var r=document.documentElement,f=function(){["--marca","--marca-txt","--marca-forte","--marca-suave"].forEach(function(v){r.style.removeProperty(v);});};f();document.addEventListener("lc:tema",f);document.addEventListener("lc:marca",f);})();</script>
+<style>.sa-hm{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}@media (max-width:1023px){.sa-hm{grid-template-columns:minmax(0,1fr)}}</style>
+</head>
+<body data-moldura='{"contexto":"superadmin","modulo":"versoes","secao":"Homologação","faixa":{"tipo":"homologacao","versao":"2026.10.2"},"usuario":{"nome":"Mateus Vieira","iniciais":"MV","cor":"lc-av--c8","cargo":"Desenvolvimento"},"cliente":{"nome":"GACO Plataforma","sigla":"G"}}'>
+<main id="conteudo" class="lc-pagina">
+<section class="lc-ficha-tela" aria-label="Sobre homologação">
+  <div class="lc-ficha-tela__nome"><b>Ambiente de homologação</b><span>Faixa ardósia fixa no topo em qualquer tela deste ambiente. Dados de teste.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Testar uma versão com clientes reais escolhidos, sem ninguém confundir teste com produção, e publicar só quando o roteiro passou.</p></div>
+  <div><h2>Fluxo</h2><ol><li>A faixa diz "Homologação", a versão e "Ir para produção"; não fecha.</li><li>Versão candidata com o que muda (notas) e clientes convidados para testar.</li><li>Roteiro de testes com caixas; cada falha vira bug ligado.</li><li>"Programar publicação" só habilita com o roteiro completo.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o Salesforce Sandbox e o Shopify (loja de desenvolvimento) marcam o ambiente com faixa permanente; o LaunchDarkly libera recurso por cliente; e o TestRail organiza roteiro com passou e falhou.</p></div>
+</section>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Versão 2026.10.2</h1><p class="lc-cab-pagina__desc">Em homologação desde 29/09. Publicação prevista para 07/10, 23h.</p></div><div class="lc-cab-pagina__acoes"><span data-dica="Faltam 2 testes do roteiro"><button class="lc-btn lc-btn--principal" type="button" disabled>Programar publicação</button></span></div></div>
+<div class="sa-hm">
+  <div class="lc-pilha">
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>O que muda</h2></div><div class="lc-caixa__corpo"><ul class="lc-regras" style="list-style:disc"><li>Portal: 2ª via recalcula multa e juros pela data escolhida.</li><li>Suporte: "Enviar e abrir a próxima" lembrado por atendente.</li><li>Financeiro: alerta de boleto duplicado na mesma competência.</li><li>Correção: rateio arredondava centavos para cima (chamado 1.188).</li></ul></div></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Roteiro de testes</h2><span class="lc-aux">8 de 10</span></div><div class="lc-caixa__corpo lc-pilha--p" style="display:flex;flex-direction:column;gap:8px">
+      <label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>2ª via com data futura<small>Passou, Sol Nascente, 30/09</small></span></label>
+      <label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>Boleto duplicado gera alerta<small>Passou, Alpha, 30/09</small></span></label>
+      <label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span><span>Rateio de 120 unidades fecha no centavo<small><span class="lc-estado lc-estado--perigo">Falhou</span> Bug 2.341, diferença de R$ 0,02</small></span></label>
+      <label class="lc-marcar"><input type="checkbox"><span class="lc-marcar__caixa"></span><span>Enviar e abrir a próxima no celular<small>Ainda não testado</small></span></label></div></section>
+  </div>
+  <aside class="lc-pilha">
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Clientes que testam</h2></div><ul class="lc-lista">
+      <li><span class="lc-cresce"><b>Administradora Alpha</b><span class="lc-lista__sub">3 pessoas testaram</span></span><span class="lc-estado lc-estado--sucesso">Aprovou</span></li>
+      <li><span class="lc-cresce"><b>Órbita Condomínios</b><span class="lc-lista__sub">1 pessoa testou</span></span><span class="lc-estado lc-estado--sucesso">Aprovou</span></li>
+      <li><span class="lc-cresce"><b>Vértice Administração</b><span class="lc-lista__sub">Achou o bug 2.341</span></span><span class="lc-estado lc-estado--perigo">Pediu correção</span></li>
+      <li><span class="lc-cresce"><b>Sol Nascente Gestão</b><span class="lc-lista__sub">Convite aberto em 30/09</span></span><span class="lc-estado lc-estado--neutro">Não testou</span></li>
+      <li><span class="lc-cresce"><b>Prisma Condomínios</b><span class="lc-lista__sub">Em implantação</span></span><span class="lc-estado lc-estado--neutro">Não testou</span></li></ul></section>
+    <div class="lc-alerta lc-alerta--info"><i data-i="info"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Dados de teste</span>Cópia da produção de 28/09, com CPF, e-mail e telefone trocados. Nenhum boleto ou WhatsApp sai daqui.</div></div>
+  </aside>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Faixa (Ir para produção), trilho, barra, Programar publicação (desabilitado com dica), roteiro, clientes.</p></div><div><h3>O que é anunciado</h3><p>Faixa é região "Ambiente de homologação": "Homologação. Dados de teste. Nada aqui chega aos clientes. Versão 2026.10.2".</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

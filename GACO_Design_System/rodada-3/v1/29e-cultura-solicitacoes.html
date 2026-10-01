@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solicitações, Cultura</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.so-grade{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:24px;align-items:start}
+.so-lista li{cursor:pointer}
+.so-lista li[aria-selected="true"]{background:var(--selecao);box-shadow:inset var(--borda-marcador) 0 0 var(--atual)}
+@media (max-width:1023px){.so-grade{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body data-moldura='{"modulo":"cultura","secao":"RH","item":"Minhas solicitações","papel":"atendente","usuario":{"nome":"Bianca Torres","cargo":"Líder de suporte","iniciais":"BT","cor":"lc-av--c2"},"trilha":["RH","Solicitações"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Solicitações e aprovação pelo gestor. Papel: líder com equipe.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Um lugar para tudo que precisa de "sim" do líder: férias, reembolso, troca de turno, home office. O líder decide com o impacto à vista (quem cobre a equipe) e a pessoa acompanha o próprio pedido.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Aba "Para eu aprovar" abre por padrão; o mesmo item aparece no "Para você" da Início com o botão.</li>
+      <li>Escolher na lista abre o pedido à direita; ↑ ↓ andam entre pedidos.</li>
+      <li>Aprovar, Pedir ajuste (com recado) ou Recusar (com motivo obrigatório).</li>
+      <li>Depois do líder, o pedido segue o fluxo configurado (RH confere férias; Financeiro paga reembolso). Os passos aparecem no pedido.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o Sólides, o Factorial e o Gupy Pulses usam a caixa de aprovações com prévia e as três saídas (aprovar, ajustar, recusar); o Slack mostra o pedido com o contexto da equipe; a mesma fila serve qualquer tipo de pedido, como o ServiceNow faz.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Estado</span><div class="lc-seg lc-seg--p" role="group" aria-label="Estado" data-p4-estados><button type="button" data-v="dados" aria-pressed="true">Com pedidos</button><button type="button" data-v="vazio">Nada pendente</button></div>
+    <span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="cultura"></div>
+</details>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Solicitações</h1><p class="lc-cab-pagina__desc">Pedidos da sua equipe e os seus.</p></div>
+  <div class="lc-cab-pagina__acoes"><span style="position:relative;display:inline-flex"><button class="lc-btn lc-btn--principal" type="button" aria-haspopup="menu" aria-expanded="false" data-abrir="menu-nova"><i data-i="mais"></i>Nova solicitação</button>
+    <ul class="lc-menu" id="menu-nova" role="menu" hidden style="right:0;top:calc(100% + 4px)">
+      <li><a class="lc-menu__item" role="menuitem" href="29d-cultura-ferias.html"><i data-i="ferias"></i>Férias</a></li>
+      <li><button class="lc-menu__item" role="menuitem" type="button"><i data-i="dinheiro"></i>Reembolso</button></li>
+      <li><button class="lc-menu__item" role="menuitem" type="button"><i data-i="viagem"></i>Viagem</button></li>
+      <li><button class="lc-menu__item" role="menuitem" type="button"><i data-i="computador"></i>Home office</button></li>
+      <li><button class="lc-menu__item" role="menuitem" type="button"><i data-i="atestado"></i>Enviar atestado</button></li></ul></span></div></div>
+<div class="lc-abas" role="tablist" aria-label="Solicitações"><button role="tab" aria-selected="true">Para eu aprovar <span class="lc-contagem">3</span></button><button role="tab" aria-selected="false">Minhas <span class="lc-contagem">4</span></button><button role="tab" aria-selected="false">Da equipe, já decididas</button></div>
+
+<div data-estado="vazio" hidden><div class="lc-caixa" style="margin-top:16px"><div class="lc-vazio lc-vazio--centro"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="pessoa-aprovada"></i></span><h2 class="lc-vazio__titulo">Nenhum pedido esperando você</h2><p class="lc-vazio__texto">Os 3 pedidos da semana foram decididos. Quando alguém da equipe pedir, aparece aqui e no seu "Para você".</p></div></div></div>
+
+<div class="so-grade" data-estado="dados" style="margin-top:16px">
+  <section class="lc-caixa" aria-label="Pedidos para aprovar">
+    <ul class="lc-lista so-lista" role="listbox" aria-label="Pedidos" tabindex="0">
+      <li role="option" aria-selected="true"><span class="lc-av lc-av--32 lc-av--c6">AB</span><span class="lc-cresce"><b>Férias de Ana Beatriz Souza</b><span class="lc-lista__sub">09/11 a 23/11, 15 dias. Protocolo 312, hoje 10:48</span></span><span class="lc-estado lc-estado--andamento">Aguardando você</span></li>
+      <li role="option" aria-selected="false"><span class="lc-av lc-av--32 lc-av--c3">JR</span><span class="lc-cresce"><b>Reembolso de Júlia Rocha</b><span class="lc-lista__sub">Uber até o Parque das Águas, R$ 46,80. Ontem</span></span><span class="lc-estado lc-estado--andamento">Aguardando você</span></li>
+      <li role="option" aria-selected="false"><span class="lc-av lc-av--32 lc-av--c5">LS</span><span class="lc-cresce"><b>Troca de plantão de Lucas Santos</b><span class="lc-lista__sub">Sábado 10/10 com Eduardo Campos. Há 2 dias</span></span><span class="lc-estado lc-estado--aviso">Vence amanhã</span></li>
+    </ul>
+  </section>
+  <section class="lc-caixa" aria-labelledby="so-d-t">
+    <div class="lc-caixa__cab"><h2 id="so-d-t">Férias de Ana Beatriz Souza</h2><span class="lc-carimbo lc-carimbo--protocolado">Protocolado<small>nº 312</small></span></div>
+    <div class="lc-caixa__corpo lc-pilha lc-pilha--p">
+      <dl class="lc-props"><dt>Período</dt><dd>09/11 a 23/11/2026, 15 dias</dd><dt>Saldo depois</dt><dd>5 dias</dd><dt>13º adiantado</dt><dd>Sim</dd><dt>Recado</dt><dd>"Deixo as respostas rápidas de acordo atualizadas antes de sair."</dd></dl>
+      <div class="lc-alerta lc-alerta--sucesso"><i data-i="equipe"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">A equipe fica coberta</span>De 09 a 23/11, 7 de 9 atendentes no turno da manhã (mínimo configurado: 6). Você também estará de férias de 03 a 17/11: Paula Mendes cobre a liderança.</div></div>
+      <p class="lc-t-subsecao" style="margin-top:4px">Caminho do pedido</p>
+      <ol class="lc-regras"><li><i data-i="feito" class="lc-ok"></i><span>Pedido por Ana Beatriz, hoje 10:48</span></li><li><i data-i="em-andamento" style="color:var(--andamento-texto)"></i><span><b>Líder: você</b></span></li><li><i data-i="a-fazer" style="color:var(--texto-3)"></i><span>RH confere e agenda o pagamento (Fernanda Lopes)</span></li></ol>
+    </div>
+    <div class="lc-caixa__pe" style="justify-content:flex-end;flex-wrap:wrap">
+      <button class="lc-btn lc-btn--perigo-contorno" type="button">Recusar</button>
+      <button class="lc-btn" type="button">Pedir ajuste</button>
+      <button class="lc-btn lc-btn--principal" type="button" data-toast="Férias aprovadas. Ana Beatriz e o RH foram avisados." data-toast-desfazer>Aprovar</button></div>
+  </section>
+</div>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Nova solicitação (menu), abas, lista de pedidos (um ponto de foco, ↑ ↓ escolhem), detalhe, Recusar, Pedir ajuste, Aprovar.</dd>
+    <dt>O que é anunciado</dt><dd>A lista é listbox com opção selecionada; ao mudar, o título do detalhe muda e é lido. "Vence amanhã" é palavra. O caminho do pedido é lista ordenada com ícone e texto.</dd>
+    <dt>Nome do que é só ícone</dt><dd>Não há botão só ícone.</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+<script>
+(function(){ var l=document.querySelector(".so-lista"), it=[].slice.call(l.children);
+  function sel(i){ it.forEach(function(x,k){x.setAttribute("aria-selected",k===i);}); }
+  l.addEventListener("click",function(e){ var li=e.target.closest("li"); if(li) sel(it.indexOf(li)); });
+  l.addEventListener("keydown",function(e){ var i=it.findIndex(function(x){return x.getAttribute("aria-selected")==="true";}); if(e.key==="ArrowDown"){e.preventDefault();sel(Math.min(it.length-1,i+1));} if(e.key==="ArrowUp"){e.preventDefault();sel(Math.max(0,i-1));} });
+})();
+</script>
+</body>
+</html>

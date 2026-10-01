@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-contexto="portal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal: Perfil e unidades</title>
+<script>window.CM_LINKS={"Início": "40-portal.html", "Chamados": "40b-portal-chamados.html", "Boletos": "40c-portal-boletos.html", "Reservas": "40d-portal-reservas.html", "Assembleias": "40e-portal-assembleias.html", "Comunicados": "40f-portal-comunicados.html", "Documentos": "40f-portal-comunicados.html#documentos", "Minha unidade": "40h-portal-perfil.html", "Moradores e veículos": "40h-portal-perfil.html#moradores", "Meu perfil": "40h-portal-perfil.html", "Encomendas": "40i-portal-portaria.html#encomendas", "Visitantes": "40i-portal-portaria.html"}</script>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q5.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q5.js" defer></script>
+<style>
+
+.portal{max-width:1200px;margin:0 auto;padding:8px 24px 72px}
+.portal-grade{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.portal-estreito{max-width:var(--cm-largura-portal)}
+.portal-cabeca{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;padding:20px 0 14px}
+.portal-cabeca h1{font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em;margin:0}
+.portal-cabeca p{color:var(--cm-texto-2);margin-top:2px}
+.portal-cabeca .cm-empurra{display:flex;gap:8px;flex-wrap:wrap}
+.cm-tabela--simples td:not(.cm-num){white-space:normal}
+.sec-t{font-size:17px;line-height:24px;font-weight:700;margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+.sec-t .cm-link{margin-left:auto;font-size:14px}
+@media (max-width:899px){ .portal-grade{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:599px){ .portal{padding:4px 16px 56px} .portal-cabeca h1{font-size:20px;line-height:26px} .portal-cabeca .cm-empurra{width:100%} }
+
+.perfil-grade{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.form-portal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
+.form-portal .cheio{grid-column:1/-1}
+.unid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:899px){ .perfil-grade,.unid{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:599px){ .form-portal{grid-template-columns:minmax(0,1fr)} }
+
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"contexto": "portal", "tela": "Meu perfil", "unidade": "Bl B Ap 1204", "sino": 3}'></div>
+<main id="conteudo">
+<div class="portal portal-cabeca-sem">
+<details class="cm-anotacao" open>
+<summary><i data-i="informacao"></i>Sobre esta tela: Perfil, unidades e moradores</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>O que esta tela resolve</h3><p>Manter em dia quem mora, quem trabalha e que carro entra, sem formulário de papel na portaria. Quem tem mais de uma unidade troca por aqui ou pelo seletor do topo.</p></div>
+<div><h3>Fluxo</h3><ol><li>Editar um campo do perfil faz aparecer a barra de salvar embaixo, com Descartar e Salvar.</li><li>Campos que só a administração muda ficam só leitura, com a explicação abaixo.</li><li>Unidades em cartões; "Trocar para esta" muda o contexto do portal inteiro.</li><li>"Adicionar pessoa" abre um painel lateral; Cancelar, X ou Esc fecha.</li></ol></div>
+<div><h3>Resolvemos fazer assim porque</h3><p>o Nubank e o gov.br mostram dado sensível mascarado e só leitura, o Airbnb e o Booking trocam de conta por cartão, e o TownSq e o uCondo cadastram moradores, prestadores, veículos e pets na própria unidade. Enviamos para aprovação.</p></div>
+</div></details>
+<section class="cm-tela" id="perfil" aria-labelledby="perfil-t">
+<h2 class="cm-tela__titulo" id="perfil-t">Meu perfil <small>Tela 1 de 3, edite um campo para ver a barra de salvar</small></h2>
+<div class="portal-cabeca"><div><h1>Meu perfil</h1><p>O que a administração e a portaria sabem de você.</p></div></div>
+<div class="perfil-grade"><section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Dados pessoais</h2></header><div class="cm-cartao__corpo">
+<form class="form-portal" data-vigiar="barra-perfil" onsubmit="return false">
+<div class="cm-campo cheio"><label class="cm-campo__rotulo" for="nome">Nome</label><div class="cm-entrada"><input id="nome" value="Marina Costa" autocomplete="name"></div></div>
+<div class="cm-campo"><label class="cm-campo__rotulo" for="cel">Celular com WhatsApp</label><div class="cm-entrada"><span class="cm-entrada__prefixo">+55</span><input id="cel" type="tel" value="(11) 98412-3307"></div></div>
+<div class="cm-campo"><label class="cm-campo__rotulo" for="email">E-mail</label><div class="cm-entrada"><input id="email" type="email" value="marina.costa@gmail.com"></div></div>
+<div class="cm-campo"><label class="cm-campo__rotulo" for="cpf">CPF</label><div class="cm-entrada is-leitura"><input id="cpf" value="***.418.276-**" readonly></div><p class="cm-campo__ajuda">Para trocar, fale com a administração.</p></div>
+<div class="cm-campo"><label class="cm-campo__rotulo" for="nasc">Nascimento</label><div class="cm-entrada"><i data-i="calendario"></i><input id="nasc" value="14/05/1979"></div></div>
+<fieldset class="cm-grupo-opcoes cheio"><legend>Avisos que você quer receber pelo WhatsApp</legend>
+<label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Boleto disponível e vencimento</span></label>
+<label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Encomenda e visitante na portaria</span></label>
+<label class="cm-marcar"><input type="checkbox"><span class="cm-marcar__caixa"></span><span>Comunicados sem ciência<span class="cm-marcar__desc">Os que pedem ciência sempre chegam</span></span></label></fieldset>
+</form></div></section>
+<section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Acesso e segurança</h2></header><div class="cm-cartao__corpo"><dl class="cm-ficha">
+<div class="cm-ficha__linha"><dt>Senha</dt><dd>trocada em 12/06/2026</dd><button class="cm-ficha__lapis" type="button" aria-label="Trocar senha"><i data-i="editar"></i></button></div>
+<div class="cm-ficha__linha"><dt>Segundo fator</dt><dd><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Ligado, código por SMS</span></dd><button class="cm-ficha__lapis" type="button" aria-label="Mudar segundo fator"><i data-i="editar"></i></button></div>
+<div class="cm-ficha__linha"><dt>Aparelhos</dt><dd>iPhone 13 e Chrome no Windows</dd><button class="cm-ficha__lapis" type="button" aria-label="Ver aparelhos conectados"><i data-i="editar"></i></button></div>
+<div class="cm-ficha__linha"><dt>Tema</dt><dd><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Tema"><button type="button" data-cm-tema="light">Claro</button><button type="button" data-cm-tema="dark">Escuro</button></div></dd><span></span></div>
+</dl></div></section></div>
+<div class="cm-barra-salvar" id="barra-perfil" role="region" aria-label="Alterações não salvas" hidden><div class="cm-barra-salvar__msg"><b>1 alteração não salva</b><span></span></div><button class="cm-botao cm-botao--discreto" type="button" data-descartar>Descartar</button><button class="cm-botao cm-botao--principal" type="button" data-salvar="Perfil salvo. A portaria já vê o novo celular.">Salvar</button></div>
+</section>
+<section class="cm-tela" id="unidades" aria-labelledby="unidades-t">
+<h2 class="cm-tela__titulo" id="unidades-t">Minhas unidades <small>Tela 2 de 3</small></h2>
+<div class="unid">
+<article class="cm-cartao"><header class="cm-cartao__cabeca"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="unidade"></i></span><h2 class="cm-cartao__titulo">Parque das Águas, Bl B Ap 1204</h2><span class="cm-estado cm-estado--info"><i data-i="marcar"></i>Você está aqui</span></header><div class="cm-cartao__corpo"><p class="cm-texto-2">Proprietária e moradora. Síndica até 31/12/2027. Fração ideal 0,3184%. Vaga 37 no subsolo 1.</p></div></article>
+<article class="cm-cartao"><header class="cm-cartao__cabeca"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="unidade"></i></span><h2 class="cm-cartao__titulo">Ed. Vila Serena, Ap 51</h2><button class="cm-botao cm-botao--p" type="button" data-toast="Agora você vê o Ed. Vila Serena, Ap 51.">Trocar para esta</button></header><div class="cm-cartao__corpo"><p class="cm-texto-2">Proprietária. Alugado para Fábio Rezende desde 02/2025: ele recebe os avisos da portaria; você recebe boletos e assembleias.</p></div></article></div>
+</section>
+<section class="cm-tela" id="moradores" aria-labelledby="mo-t"><h2 class="cm-tela__titulo" id="mo-t">Moradores e veículos <small>Tela 3 de 3</small></h2><div class="cm-lista-linhas">
+<div class="cm-linha-lista__grupo">Moradores</div>
+<div class="cm-linha-lista"><span class="cm-avatar cm-avatar--m cm-avatar--3">PC</span><span><span class="cm-linha-lista__titulo">Paulo Costa</span><span class="cm-linha-lista__sub">Cônjuge, acesso ao portal e à garagem</span></span><span></span><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Editar Paulo Costa"><i data-i="editar"></i></button></div>
+<div class="cm-linha-lista"><span class="cm-avatar cm-avatar--m cm-avatar--4">LC</span><span><span class="cm-linha-lista__titulo">Lia Costa</span><span class="cm-linha-lista__sub">Filha, 12 anos. Sai sozinha: sim</span></span><span></span><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Editar Lia Costa"><i data-i="editar"></i></button></div>
+<div class="cm-linha-lista__grupo">Funcionários e prestadores</div>
+<div class="cm-linha-lista"><span class="cm-avatar cm-avatar--m cm-avatar--2">RS</span><span><span class="cm-linha-lista__titulo">Rosa Silva</span><span class="cm-linha-lista__sub">Empregada doméstica, terça a sexta, 8h às 17h</span></span><span></span><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Editar Rosa Silva"><i data-i="editar"></i></button></div>
+<div class="cm-linha-lista__grupo">Veículos e animais</div>
+<div class="cm-linha-lista"><span class="cm-ladrilho"><i data-i="carro"></i></span><span><span class="cm-linha-lista__titulo">Honda HR-V prata, FQX-2B47</span><span class="cm-linha-lista__sub">Vaga 37, subsolo 1. TAG da cancela ativa.</span></span><span></span><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Editar Honda HR-V"><i data-i="editar"></i></button></div>
+<div class="cm-linha-lista"><span class="cm-ladrilho"><i data-i="animal"></i></span><span><span class="cm-linha-lista__titulo">Thor, golden retriever</span><span class="cm-linha-lista__sub">Vacina antirrábica até 03/2027</span></span><span></span><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Editar Thor"><i data-i="editar"></i></button></div>
+</div><div class="cm-linha" style="margin-top:10px"><button class="cm-botao" type="button" data-abrir="novo-morador"><i data-i="adicionar-pessoa"></i>Adicionar pessoa</button><button class="cm-botao" type="button" data-toast="Formulário de veículo aberto." data-toast-tipo="info"><i data-i="carro"></i>Adicionar veículo</button></div>
+<aside class="cm-painel" id="novo-morador" data-janela hidden role="dialog" aria-labelledby="nm-t"><header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="nm-t">Adicionar pessoa</h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></header>
+<div class="cm-painel__corpo" style="padding:16px"><div class="cm-pilha cm-pilha--6"><div class="cm-campo"><label class="cm-campo__rotulo" for="nm-n">Nome</label><div class="cm-entrada"><input id="nm-n"></div></div>
+<fieldset class="cm-grupo-opcoes"><legend>Quem é</legend><label class="cm-radio"><input type="radio" name="tp" checked><span class="cm-radio__bola"></span><span>Morador</span></label><label class="cm-radio"><input type="radio" name="tp"><span class="cm-radio__bola"></span><span>Funcionário da unidade</span></label><label class="cm-radio"><input type="radio" name="tp"><span class="cm-radio__bola"></span><span>Prestador com dias fixos</span></label></fieldset>
+<label class="cm-interruptor cm-interruptor--toque"><input type="checkbox" role="switch"><span class="cm-interruptor__trilho"></span><span>Pode usar o portal</span></label></div></div>
+<footer class="cm-painel__pe"><button class="cm-botao" type="button" data-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-fechar data-toast="Pessoa adicionada. A portaria já vê o cadastro.">Adicionar</button></footer></aside></section>
+<details class="cm-anotacao cm-anotacao--a11y">
+<summary><i data-i="teclado"></i>Acessibilidade desta tela</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>Ordem de foco</h3><ol><li>Campos do perfil, avisos</li><li>Acesso e segurança, lápis de cada linha</li><li>Barra de salvar (aparece por último na ordem)</li><li>Unidades</li><li>Moradores, Adicionar pessoa</li></ol></div>
+<div><h3>O que é anunciado</h3><ul><li>Barra de salvar é região "Alterações não salvas", com a contagem</li><li>Campo só leitura anunciado como somente leitura</li></ul></div>
+<div><h3>Nome do que é só ícone</h3><ul><li>Lápis: "Trocar senha", "Editar Paulo Costa"…</li><li>X do painel: "Fechar"</li></ul></div>
+</div></details>
+</div>
+</main>
+
+</body>
+</html>

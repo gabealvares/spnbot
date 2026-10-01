@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEM-198 Assembleia virtual, Produto</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>.pr-id{font:500 12.5px/1 var(--fonte-cod);color:var(--texto-2)}.dm-texto{font-size:14.5px;line-height:23px;max-width:72ch}.dm-texto p+p,.dm-texto ul{margin-top:8px}.dm-texto h3{font:var(--t-subsecao);margin:18px 0 4px}</style>
+</head>
+<body data-moldura='{"modulo":"produto","secao":"Demandas","papel":"dev","usuario":{"nome":"Thiago Nakamura","cargo":"Gerente de produto","iniciais":"TN","cor":"lc-av--c6"},"trilha":["Demandas","DEM-198"],"acaoTrilha":"<span class=\"lc-paginador\"><button class=\"lc-btn lc-btn--icone lc-btn--discreto\" type=\"button\" aria-label=\"Demanda anterior\"><svg class=\"lc-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m15 18-6-6 6-6\"/></svg></button><b>2</b> de 7<button class=\"lc-btn lc-btn--icone lc-btn--discreto\" type=\"button\" aria-label=\"Próxima demanda\"><svg class=\"lc-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></button></span>"}'>
+<main id="conteudo">
+<div class="lc-envolto">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Demanda em detalhe, com os clientes que pediram.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Uma demanda carrega o problema escrito, a evidência (quem pediu, por qual canal, com quanto de receita) e o trabalho de desenvolvimento ligado. Quem decide não precisa caçar chamados.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Texto do problema editável no lugar (lápis da seção); barra de salvar aparece ao mudar.</li>
+      <li>Propriedades à direita (estado, prioridade, horizonte, responsável) mudam com um clique.</li>
+      <li>Aba "Pedidos" lista cada cliente com o trecho do chamado; "Ligar pedido" puxa um chamado do Suporte.</li>
+      <li>"Avisar quem pediu" manda mensagem aos 31 clientes quando a demanda é publicada.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o Productboard liga "insights" (trechos de conversa) à funcionalidade, o Linear põe propriedades numa coluna à direita do texto e o Canny avisa automaticamente quem votou. Mantivemos o texto como documento, com seções fixas (problema, proposta, fora do escopo).</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="produto"></div>
+</details>
+</div>
+
+<div class="lc-cab-registro">
+  <div class="lc-cab-registro__titulo">
+    <span class="lc-ladrilho lc-ladrilho--48"><i data-i="demanda"></i></span>
+    <div><h1>Assembleia virtual com votação por fração ideal</h1>
+      <div class="lc-cab-registro__meta" style="margin:4px 0 0"><span class="lc-protocolo"><span>Demanda</span> DEM-198</span><span class="lc-estado-forma"><i data-i="a-fazer"></i>Planejada</span><span>Criada por Paula Mendes em 12/05/2026</span></div></div>
+    <div class="lc-cab-registro__acoes"><button class="lc-btn" type="button"><i data-i="vincular"></i>Ligar pedido</button><button class="lc-btn lc-btn--principal" type="button">Mandar para o desenvolvimento</button></div>
+  </div>
+  <dl class="lc-campos-chave" style="margin-top:12px">
+    <div><dt>Pedidos</dt><dd>31 clientes</dd></div><div><dt>Receita por trás</dt><dd>R$ 104,8 mil/mês</dd></div><div><dt>Em risco de cancelar</dt><dd class="lc-valor-neg">2 clientes</dd></div><div><dt>Horizonte</dt><dd>Próximo (nov–dez)</dd></div><div><dt>Estimativa</dt><dd>3 sprints</dd></div>
+  </dl>
+</div>
+
+<div class="lc-envolto">
+<div class="lc-reg">
+  <div class="lc-reg__principal">
+    <div class="lc-abas" role="tablist" aria-label="Seções da demanda">
+      <button role="tab" aria-selected="true" aria-controls="t1">Descrição</button><button role="tab" aria-selected="false" aria-controls="t2">Pedidos <span class="lc-contagem">31</span></button><button role="tab" aria-selected="false" aria-controls="t3">Trabalho <span class="lc-contagem">5</span></button></div>
+    <section id="t1" class="lc-caixa" data-p4-form data-p4-nome="DEM-198">
+      <div class="lc-secao-reg" style="border-bottom:0">
+        <div class="lc-secao-reg__cab"><h3>Problema e proposta</h3><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Editar problema e proposta"><i data-i="editar"></i></button></div>
+        <div class="dm-texto" contenteditable="true" aria-label="Texto da demanda" data-rotulo="texto da demanda">
+          <h3>Problema</h3>
+          <p>Desde a Lei 14.309/2022 a assembleia pode ser virtual, mas hoje os síndicos fazem pelo Zoom e contam os votos em planilha. Votação por fração ideal (exigida em 41 das 63 convenções da carteira) é feita à mão e gera contestação.</p>
+          <h3>Proposta</h3>
+          <ul><li>Edital, pauta e procurações no portal; presença confirmada pelo morador.</li><li>Votação por item, com peso por fração ideal ou por unidade, conforme a convenção.</li><li>Ata gerada como documento, com o resultado de cada item e a lista de presença.</li></ul>
+          <h3>Fora do escopo</h3>
+          <p>Transmissão de vídeo própria (continua pelo link do Zoom ou Meet).</p>
+        </div>
+      </div>
+      <div class="lc-barra-salvar" role="region" aria-label="Alterações não salvas"><p class="lc-barra-salvar__msg"><i data-i="aviso"></i><span></span></p><div class="lc-barra-salvar__acoes"><button class="lc-btn lc-btn--discreto" type="button" data-descartar>Descartar</button><button class="lc-btn lc-btn--principal" type="button" data-salvar="Demanda salva.">Salvar</button></div></div>
+    </section>
+    <section id="t2" hidden><div class="lc-tabela-cont"><table class="lc-tabela"><thead><tr><th>Cliente</th><th>Trecho do pedido</th><th>Canal</th><th class="lc-num">Mensalidade</th></tr></thead><tbody>
+      <tr><td><a class="lc-tabela__primaria" href="#">Cond. Parque das Águas</a><span class="lc-tabela__sub">Marina Costa, síndica</span></td><td>"Na última AGE levamos 3 horas contando voto por fração."</td><td>Chamado 4.502</td><td class="lc-num">R$ 4.620,00</td></tr>
+      <tr><td><a class="lc-tabela__primaria" href="#">Edifício Solar das Palmeiras</a><span class="lc-tabela__sub">Cláudia Nunes</span></td><td>"Se não tiver até a AGO de março, vamos olhar outra administradora."</td><td>Reunião de CS</td><td class="lc-num">R$ 2.140,00</td></tr></tbody></table></div></section>
+    <section id="t3" hidden><ul class="lc-lista lc-caixa"><li><span class="lc-estado-forma"><i data-i="a-fazer"></i></span><span class="lc-cresce">GACO-1201 Modelo de dados de assembleia e pauta</span><span class="pr-id">Sprint 43</span></li></ul></section>
+  </div>
+  <aside class="lc-reg__lado" aria-label="Propriedades">
+    <section class="lc-caixa"><div class="lc-caixa__corpo" style="padding-top:16px"><dl class="lc-props">
+      <dt>Estado</dt><dd><span class="lc-estado-forma"><i data-i="a-fazer"></i>Planejada</span></dd>
+      <dt>Prioridade</dt><dd><span class="lc-prioridade" data-n="3"><i></i><i></i><i></i></span> Alta</dd>
+      <dt>Módulo</dt><dd>Portal do cliente</dd>
+      <dt>Responsável</dt><dd><span class="lc-pessoa"><span class="lc-av lc-av--20 lc-av--c6">TN</span>Thiago Nakamura</span></dd>
+      <dt>Design</dt><dd><span class="lc-pessoa"><span class="lc-av lc-av--20 lc-av--c2">CF</span>Camila Freitas</span></dd>
+      <dt>Versão alvo</dt><dd>2026.12</dd></dl></div></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Discussão</h2></div><div class="lc-caixa__corpo lc-pilha lc-pilha--p">
+      <div class="lc-comentario" style="padding:0;border:0"><span class="lc-av lc-av--24 lc-av--c4">PM</span><div class="lc-comentario__bolha"><b>Paula Mendes</b>: Solar das Palmeiras renova em 30/10. Dá para mostrar o protótipo na reunião de 20/10?<div class="lc-legenda">ontem, 17:40</div></div></div>
+      <div class="lc-comentario" style="padding:0;border:0"><span class="lc-av lc-av--24 lc-av--c2">CF</span><div class="lc-comentario__bolha"><b>Camila Freitas</b>: protótipo da votação fica pronto dia 15.<div class="lc-legenda">hoje, 09:02</div></div></div>
+    </div></section>
+  </aside>
+</div>
+</div>
+<div class="lc-envolto lc-envolto--pe">
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Ligar pedido, Mandar para o desenvolvimento, abas, Editar (lápis), texto editável, barra de salvar quando aparece, propriedades, discussão.</dd>
+    <dt>O que é anunciado</dt><dd>O texto editável tem nome "Texto da demanda". Ao editar, a barra "Alterações não salvas" aparece como região e diz "1 alteração não salva em DEM-198: texto da demanda".</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Editar problema e proposta", "Demanda anterior", "Próxima demanda".</dd></dl>
+</details>
+</div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

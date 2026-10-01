@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Celular, sistema e portal</title>
+<meta name="description" content="O sistema interno e o portal no celular (390 px): Início, gaveta, notificações, busca, conversas, conversa com teclado aberto, chamado, aprovar com folha inferior, registro do CS e o portal com barra inferior.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/doc.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .cel-pagina{max-width:1376px;margin:0 auto;padding:24px 32px 64px}
+  @media (max-width:639px){.cel-pagina{padding:16px 16px 48px}}
+</style>
+</head>
+<body>
+<a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="lc-doc-cab">
+  <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
+  <nav aria-label="Documentação"><a href="40-portal.html">Portal</a><a href="41-publicas.html">Públicas, acesso</a><a href="41b-publicas.html">Públicas, site</a><a href="50-superadmin.html">Superadmin</a><a href="60-celular.html" aria-current="page">Celular</a><a href="61-documentos-gerados.html">Documentos</a></nav>
+  <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
+</header>
+<main id="conteudo" class="cel-pagina">
+<p class="lc-legenda" style="margin-bottom:8px">Cada aparelho é a tela real em 390 × 844, com a moldura da fundação (barra do módulo, barra inferior, gaveta). Toque e navegue dentro deles. Abrir sozinho: o endereço está no nome de cada aparelho.</p>
+
+<section class="lc-ficha-tela" aria-label="Navegação no celular">
+  <div class="lc-ficha-tela__nome"><b>Sistema interno no celular: Início, gaveta, avisos e busca</b><span>Abaixo de 640 px o trilho vira gaveta e aparece a barra inferior com 5 destinos.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Quem está fora da mesa (gerente em visita, coordenador na obra) decide o que é dele em poucos toques: Para você primeiro, a equipe, o mural.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Barra inferior: Início, Para você (com contador), Pesquisar, Avisos, Menu.</li><li>Menu abre a gaveta à esquerda com Recentes e módulos do papel, cada um com suas seções.</li><li>Avisos abre o sino em tela cheia; Pesquisar abre a busca ⌘K em tela cheia.</li><li>Voltar: gesto do sistema ou X; o foco volta ao botão que abriu.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o app do Microsoft Teams e o do Slack usam barra inferior com 4 ou 5 destinos e menu para o resto; o Gmail no celular abre a gaveta com as pastas; e o Material 3 e as diretrizes da Apple pedem alvos de 44 px e rótulo visível em cada aba.</p></div>
+</section>
+<div class="lc-aparelhos">
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Início<span>celular/c-home.html</span></div><div class="lc-aparelho__tela"><iframe title="Início no celular" data-src="celular/c-home.html"></iframe></div></div>
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Gaveta aberta<span>c-home.html?abrir=gaveta</span></div><div class="lc-aparelho__tela"><iframe title="Gaveta aberta" data-src="celular/c-home.html?abrir=gaveta"></iframe></div></div>
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Notificações<span>c-home.html?abrir=sino</span></div><div class="lc-aparelho__tela"><iframe title="Notificações no celular" data-src="celular/c-home.html?abrir=sino"></iframe></div></div>
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Busca ⌘K<span>c-home.html?abrir=cmdk</span></div><div class="lc-aparelho__tela"><iframe title="Busca no celular" data-src="celular/c-home.html?abrir=cmdk"></iframe></div></div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Pular, barra do módulo (menu, nome, sino, conta), conteúdo, barra inferior. Gaveta: foco no primeiro item, preso até fechar.</p></div><div><h3>O que é anunciado</h3><p>Gaveta é <code>dialog</code> modal "Menu". Contador da aba: "Para você, 5".</p></div><div><h3>Nome do que é só ícone</h3><p>Hambúrguer: "Abrir menu". X da gaveta: "Fechar menu". Todas as abas inferiores têm rótulo visível.</p></div></div>
+
+<section class="lc-ficha-tela" aria-label="Suporte no celular">
+  <div class="lc-ficha-tela__nome"><b>Suporte no celular: conversas, conversa com teclado e chamado</b><span>O motor do Suporte é o WhatsApp; no celular o desenho é o do próprio WhatsApp.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Responder um síndico de qualquer lugar sem perder o prazo, separar o que é resposta do que é nota interna, e mudar o estado do chamado com o polegar.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Conversas ordenadas pelo prazo de resposta, filas em pílulas no topo.</li><li>Na conversa, o compositor sobe com o teclado; a barra inferior some para dar espaço.</li><li>"Responder" e "Nota" no compositor; a nota fica âmbar e diz "só a equipe vê".</li><li>Chamado: estado em segmentado, campos-chave rolam na horizontal, ações fixas no pé.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o WhatsApp Business (lista, bolhas, tiques, áudio), o app do Zendesk (nota interna amarela) e o Intercom (compositor com modo) são o que o atendente já usa; o atributo <code>interactive-widget=resizes-content</code> faz o navegador encolher a tela com o teclado.</p></div>
+</section>
+<div class="lc-aparelhos">
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Conversas<span>celular/c-conversas.html</span></div><div class="lc-aparelho__tela"><iframe title="Conversas" data-src="celular/c-conversas.html"></iframe></div></div>
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Conversa com teclado aberto<span>celular/c-conversa.html</span></div><div class="lc-aparelho__tela"><iframe title="Conversa com teclado" data-src="celular/c-conversa.html"></iframe></div></div>
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Chamado<span>celular/c-chamado.html</span></div><div class="lc-aparelho__tela"><iframe title="Chamado" data-src="celular/c-chamado.html"></iframe></div></div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Voltar, contato, dados, mensagens (log), modo, anexar, caixa, Enviar.</p></div><div><h3>O que é anunciado</h3><p>Prazo em texto: "Venceu há 2 min". Nota interna anunciada com o rótulo "Nota interna, só a equipe vê" antes do texto.</p></div><div><h3>Nome do que é só ícone</h3><p>Seta: "Voltar para Conversas". i: "Dados do chamado". Avião: "Enviar". Clipe: "Anexar".</p></div></div>
+
+<section class="lc-ficha-tela" aria-label="Decidir e registrar no celular">
+  <div class="lc-ficha-tela__nome"><b>Aprovar férias e reembolso, registro do CS: folha inferior</b><span>Decisão e registro curtos abrem em folha inferior, não em tela nova.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Aprovar um reembolso entre duas reuniões e registrar a visita ao condomínio ainda na calçada, com o próximo passo obrigatório.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Tocar no item abre a folha com valor, composição e comprovantes.</li><li>"Aprovar" e "Recusar" no pé, ao alcance do polegar; recusar pede comentário.</li><li>Registro do CS: tipo em 4 botões, texto, saúde, próximo passo com data; "Registrar" fecha a folha e mostra o toast.</li><li>Arrastar a alça para baixo ou o X fecha sem salvar (pergunta se houver texto).</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o Google Maps e o Apple Mapas consagraram a folha inferior com alça; o app do Expensify e o do SAP Concur aprovam despesa com o comprovante na mesma folha; e o HubSpot no celular registra ligação com próximo passo.</p></div>
+</section>
+<div class="lc-aparelhos">
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Aprovar reembolso<span>celular/c-aprovar.html</span></div><div class="lc-aparelho__tela"><iframe title="Aprovar reembolso" data-src="celular/c-aprovar.html"></iframe></div></div>
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Registro do CS<span>celular/c-cs.html</span></div><div class="lc-aparelho__tela"><iframe title="Registro do CS" data-src="celular/c-cs.html"></iframe></div></div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Folha: título, Fechar, conteúdo, Recusar, Aprovar. O fundo fica inerte enquanto a folha está aberta.</p></div><div><h3>O que é anunciado</h3><p>Folha é <code>dialog</code> modal com o título. Aprovar: "Reembolso aprovado. Próximo: férias de Juliana." com Desfazer.</p></div><div><h3>Nome do que é só ícone</h3><p>X: "Fechar". A alça é decorativa; fechar também funciona pelo X e por Esc.</p></div></div>
+
+<section class="lc-ficha-tela" aria-label="Portal no celular">
+  <div class="lc-ficha-tela__nome"><b>Portal no celular com barra inferior</b><span>As mesmas páginas 40 a 40j, sem a documentação (<code>?limpo=1</code>).</span></div>
+  <div><h2>O que esta tela resolve</h2><p>O morador usa o portal como app de banco: abas no pé, topo na cor da administradora, boleto e chamado em um toque.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Abas no pé: Início, Boletos, Reservas, Chamados, Mais.</li><li>"Mais" abre a gaveta com o que varia por papel (morador, síndico, conselheiro).</li><li>A aba ativa usa a cor do cliente (única exceção, como no topo).</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>os apps do Nubank, do Itaú e do Inter usam 4 ou 5 abas no pé com "Mais"; o TownSq e o Condomob seguem o mesmo desenho, que o morador já conhece.</p></div>
+</section>
+<div class="lc-aparelhos">
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Início do morador<span>40-portal.html?limpo=1</span></div><div class="lc-aparelho__tela"><iframe title="Portal, início" data-src="40-portal.html?limpo=1"></iframe></div></div>
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Boleto com Pix<span>40c-portal-boletos.html?limpo=1#boleto</span></div><div class="lc-aparelho__tela"><iframe title="Portal, boleto" data-src="40c-portal-boletos.html?limpo=1#boleto"></iframe></div></div>
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Novo chamado com foto<span>40b-portal-chamados.html?limpo=1#novo</span></div><div class="lc-aparelho__tela"><iframe title="Portal, novo chamado" data-src="40b-portal-chamados.html?limpo=1#novo"></iframe></div></div>
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Reservas<span>40d-portal-reservas.html?limpo=1</span></div><div class="lc-aparelho__tela"><iframe title="Portal, reservas" data-src="40d-portal-reservas.html?limpo=1"></iframe></div></div>
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Mais, síndico<span>40i-portal-sindico.html?limpo=1&amp;abrir=gaveta</span></div><div class="lc-aparelho__tela"><iframe title="Portal, gaveta do síndico" data-src="40i-portal-sindico.html?limpo=1&abrir=gaveta"></iframe></div></div>
+  <div class="lc-aparelho"><div class="lc-aparelho__nome">Votação online<span>40e-portal-assembleias.html?limpo=1#votar</span></div><div class="lc-aparelho__tela"><iframe title="Portal, votação" data-src="40e-portal-assembleias.html?limpo=1#votar"></iframe></div></div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Topo (nome da administradora, sino, conta), conteúdo, abas do pé.</p></div><div><h3>O que é anunciado</h3><p>Aba atual: "Boletos, página atual". "Mais" é botão que abre o menu.</p></div><div><h3>Nome do que é só ícone</h3><p>Sino: "Notificações". Avatar: "Sua conta".</p></div></div>
+</main>
+<script>
+(function(){
+  function carregar(){ var t=document.documentElement.getAttribute("data-tema")||"claro";
+    document.querySelectorAll("iframe[data-src]").forEach(function(f){ var s=f.getAttribute("data-src"), h=""; var i=s.indexOf("#"); if(i>-1){h=s.slice(i);s=s.slice(0,i);} f.src=s+(s.indexOf("?")>-1?"&":"?")+"tema="+t+h; }); }
+  carregar(); document.addEventListener("lc:tema",carregar);
+})();
+</script>
+<script src="sistema/icones.js"></script>
+<script src="sistema/doc.js"></script>
+</body>
+</html>

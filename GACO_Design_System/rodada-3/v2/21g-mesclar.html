@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesclar chamados</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-mes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
+.q3-mes .is-absorvido{opacity:.62}
+.q3-pe{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:16px;padding:12px 14px;background:var(--cm-camada-1);border:1px solid var(--cm-filete)}
+@media (max-width:899px){.q3-mes{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Mesclar e transferir <small>Dois chamados sobre o mesmo vazamento (48213 da síndica e 48216 do morador da vaga 38). A tela mostra o que fica, o que vai junto e o que se perde, antes de confirmar.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>Mesclar é irreversível em parte (o solicitante do chamado absorvido passa a receber as respostas do principal). Por isso a tela compara lado a lado, deixa escolher o principal, diz o que acontece com cada campo e só então pede confirmação.</p><p>Transferir e encaminhar ficam no mesmo lugar porque são as outras duas saídas quando o chamado "não é seu": passar para pessoa ou fila (transferir) ou mandar uma cópia por e-mail para alguém de fora, como o fornecedor (encaminhar).</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Escolha o principal com o rádio no topo de cada coluna; a coluna absorvida fica apagada e diz "vira histórico".</li><li>Marque o que vai junto: mensagens (sempre), anexos, tarefas, seguidores. "Avisar o Henrique" manda a mensagem padrão pelo canal dele.</li><li>"Mesclar" abre a confirmação com o resumo; confirmado, o toast diz "48216 mesclado em 48213" e o histórico dos dois registra.</li><li>Aba Encaminhar: escreve para o e-mail do fornecedor, com o que anexar; a resposta dele volta como nota interna.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Zendesk e o Freshdesk mesclam mostrando os dois chamados e pedindo o principal, com aviso ao solicitante; o Jira mostra o que será vinculado antes de confirmar; e o Help Scout separa "encaminhar" (cópia para fora) de "atribuir" (passar para dentro).</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Mesclar</button><button type="button" data-q3-estado="encaminhar" aria-pressed="false">Encaminhar ao fornecedor</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Suporte","tela":"Chamados","registro":"Mesclar 48213 e 48216","papel":"Atendimento"}'></div>
+
+<main id="conteudo" class="cm-pagina cm-container--registro">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Mesclar, transferir ou encaminhar</h1></div></header>
+ <div class="cm-abas" role="tablist" aria-label="Ação"><button role="tab" aria-selected="true" type="button" data-q3-estado="padrao">Mesclar</button><button role="tab" aria-selected="false" type="button" data-q3-modal="modal-tr">Transferir</button><button role="tab" aria-selected="false" type="button" data-q3-estado="encaminhar">Encaminhar</button></div>
+ <div data-se="padrao">
+  <div class="q3-mes">
+   <section class="cm-cartao"><header class="cm-cartao__cabeca"><label class="cm-radio"><input type="radio" name="pr" checked><span class="cm-radio__bola"></span><span><b>Chamado 48213</b>, fica como principal</span></label></header>
+    <div class="cm-cartao__corpo"><dl class="cm-ficha">
+     <div class="cm-ficha__linha is-leitura"><dt>Assunto</dt><dd>Vazamento no teto da garagem</dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Solicitante</dt><dd>Marina Costa, síndica</dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Aberto</dt><dd>hoje 09:12, WhatsApp</dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Estado</dt><dd><span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Em andamento</span></dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Vínculos</dt><dd>OS 482</dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Mensagens</dt><dd>14</dd><span></span></div>
+    </dl></div></section>
+   <section class="cm-cartao is-absorvido"><header class="cm-cartao__cabeca"><label class="cm-radio"><input type="radio" name="pr"><span class="cm-radio__bola"></span><span><b>Chamado 48216</b>, vira histórico do principal</span></label></header>
+    <div class="cm-cartao__corpo"><dl class="cm-ficha">
+     <div class="cm-ficha__linha is-leitura"><dt>Assunto</dt><dd>Água na garagem, vaga 38</dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Solicitante</dt><dd>Henrique Abreu, Bl B Ap 302</dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Aberto</dt><dd>hoje 09:40, portal</dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Estado</dt><dd><span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Aberto</span></dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Vínculos</dt><dd>nenhum</dd><span></span></div>
+     <div class="cm-ficha__linha is-leitura"><dt>Mensagens</dt><dd>2, com 1 foto</dd><span></span></div>
+    </dl></div></section>
+  </div>
+  <section class="cm-cartao" style="margin-top:16px"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">O que vai junto para o 48213</h2></header>
+   <div class="cm-cartao__corpo"><fieldset class="cm-grupo-opcoes"><legend class="cm-sr">Itens</legend>
+    <label class="cm-marcar"><input type="checkbox" checked disabled><span class="cm-marcar__caixa"></span><span>Mensagens e notas<span class="cm-marcar__desc">Sempre vão, em ordem de horário, marcadas "veio do 48216".</span></span></label>
+    <label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Anexos (1 foto)</span></label>
+    <label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Henrique Abreu entra como seguidor<span class="cm-marcar__desc">Passa a receber as respostas públicas do 48213 no portal.</span></span></label>
+    <label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Avisar o Henrique<span class="cm-marcar__desc">"Seu chamado foi unido ao 48213, sobre o mesmo vazamento. As respostas chegam por lá."</span></span></label>
+   </fieldset></div></section>
+  <div class="q3-pe"><span class="cm-t-legenda">O 48216 não pode ser reaberto depois; a busca continua achando pelo número.</span><div class="cm-grupo-botoes"><a class="cm-botao" href="21c-chamado.html">Cancelar</a><button class="cm-botao cm-botao--principal" type="button" data-q3-modal="modal-conf"><i data-i="juntar"></i>Mesclar</button></div></div>
+ </div>
+ <div data-se="encaminhar">
+  <section class="cm-cartao" style="margin-top:12px"><div class="cm-cartao__corpo cm-pilha">
+   <div class="cm-campo"><label class="cm-campo__rotulo" for="en-para">Para</label><div class="cm-entrada"><input id="en-para" value="chamados@hidrotec.com.br"></div><p class="cm-campo__ajuda">Fornecedor da OS 482. A resposta dele volta como nota interna neste chamado.</p></div>
+   <div class="cm-campo"><label class="cm-campo__rotulo" for="en-msg">Mensagem</label><textarea class="cm-area" id="en-msg" rows="4">Sérgio, segue o histórico do vazamento do Parque das Águas (subsolo 1, vagas 37 e 38). A síndica relata que a água vem da junta perto do pilar. Fotos e áudio transcrito em anexo.</textarea></div>
+   <div class="cm-anexos"><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="imagem"></i></span><span><span class="cm-anexo__nome">vaga-37.jpg</span><span class="cm-anexo__meta">foto da Marina, 09:13</span></span><span></span></div><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="arquivo-texto"></i></span><span><span class="cm-anexo__nome">historico-chamado-48213.pdf</span><span class="cm-anexo__meta">gerado agora, sem notas internas</span></span><span></span></div></div>
+   <label class="cm-marcar"><input type="checkbox"><span class="cm-marcar__caixa"></span><span>Incluir notas internas<span class="cm-marcar__desc">Desligado: o fornecedor não vê o que a equipe conversou.</span></span></label>
+   <div class="cm-linha" style="justify-content:flex-end"><button class="cm-botao cm-botao--principal" type="button" data-q3-toast="Encaminhado para a Hidrotec"><i data-i="encaminhar"></i>Encaminhar</button></div>
+  </div></section>
+ </div>
+
+ <div class="cm-sobreposicao" id="modal-conf" hidden><div class="cm-modal cm-modal--p cm-modal--perigo" role="dialog" aria-modal="true" aria-labelledby="t-cf"><div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="t-cf">Mesclar o 48216 no 48213?<span class="cm-modal__sub">O 48216 fecha e vira histórico. Henrique Abreu será avisado.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+  <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q3-fechar>Voltar</button><button class="cm-botao cm-botao--principal" type="button" data-q3-fechar data-q3-toast="48216 mesclado em 48213. Henrique foi avisado.">Mesclar</button></div></div></div>
+ <div class="cm-sobreposicao" id="modal-tr" hidden><div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="t-tr"><div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="t-tr">Transferir o 48213</h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+  <div class="cm-modal__corpo cm-pilha"><div class="cm-campo"><label class="cm-campo__rotulo" for="tp">Para</label><div class="cm-selecao"><select id="tp"><option>Diego Ramos (6 conversas)</option><option>Fila Manutenção urgente</option></select><i data-i="chevron-baixo"></i></div></div><div class="cm-campo"><label class="cm-campo__rotulo" for="tn">Nota para quem recebe</label><textarea class="cm-area" id="tn">Falta interditar a 38.</textarea></div></div>
+  <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q3-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-q3-fechar data-q3-toast="Transferido para Diego Ramos" data-q3-toast-acao="Desfazer">Transferir</button></div></div></div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Abas Mesclar, Transferir, Encaminhar; rádio do principal em cada coluna; campos de cada lado (só leitura); caixas do que vai junto; Cancelar e Mesclar; no modal, Voltar recebe o foco primeiro.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>O rádio é lido com a consequência ("Chamado 48216, vira histórico do principal"). A confirmação é um diálogo com a pergunta e o efeito como descrição.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Fechar" nos modais.</p></section>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>

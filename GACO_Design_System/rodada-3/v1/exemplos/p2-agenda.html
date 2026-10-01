@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agenda de reservas, Operações</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+<style>
+.p2-ag{display:grid;grid-template-columns:minmax(0,1fr) var(--larg-lateral);gap:var(--esp-5);align-items:start}
+.p2-ag .lc-cal__dia{cursor:pointer;position:relative}
+.p2-ag .lc-cal__dia:hover{background:var(--sup-2)}
+.p2-ag .lc-cal__dia:focus-visible{outline:2px solid var(--foco);outline-offset:-2px}
+.p2-ag .lc-evento{cursor:pointer}
+.p2-lado{position:sticky;top:var(--esp-5)}
+@media (max-width:1023px){.p2-ag{grid-template-columns:1fr}.p2-lado{position:static}}
+@media (max-width:639px){.p2-ag .lc-cal__dia{min-height:56px}.p2-ag .lc-evento{font-size:0;height:6px;padding:0}}
+</style>
+</head>
+<body data-moldura='{"modulo":"operacoes","secao":"Reservas","item":"Agenda de reservas","papel":"operacoes"}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+  <div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Agenda de reservas</h1><p class="lc-cab-pagina__desc">Cond. Parque das Águas. Clique num dia livre para reservar; clique numa reserva para ver e cancelar.</p></div>
+    <div class="lc-cab-pagina__acoes"><button class="lc-btn lc-btn--principal" type="button" id="nova"><i data-i="mais"></i>Nova reserva</button></div></div>
+  <div class="lc-filtros">
+    <button class="lc-btn" type="button" id="hoje">Hoje</button>
+    <span class="lc-grupo-btn" style="gap:2px"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Mês anterior"><i data-i="chevron-esquerda"></i></button><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Próximo mês"><i data-i="chevron-direita"></i></button></span>
+    <h2 class="lc-t-secao" style="margin:0 8px">Outubro de 2026</h2>
+    <button class="lc-filtro lc-filtro--ativo" type="button">Área: <b>todas</b></button>
+    <div class="lc-filtros__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Visão"><button type="button" aria-pressed="true">Mês</button><button type="button" aria-pressed="false">Semana</button><button type="button" aria-pressed="false">Lista</button></div></div>
+  </div>
+  <div class="p2-ag">
+    <div class="lc-cal" id="cal"></div>
+    <aside class="p2-lado lc-caixa" aria-labelledby="prox"><div class="lc-caixa__cab"><h2 id="prox">Próximas reservas</h2><span class="lc-aux">7 dias</span></div><div class="lc-caixa__corpo"><ul class="lc-agenda" id="lista"></ul></div>
+      <div class="lc-caixa__pe"><span class="lc-legenda">Regras: salão até 23h; taxa de R$ 180,00 no boleto do mês.</span></div></aside>
+  </div>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2,$=P.$,$$=P.$$,esc=P.esc;
+var R=[[2,"Salão de festas","19h–23h","Bloco B, 1204","andamento"],[3,"Churrasqueira","12h–17h","Bloco A, 302","sucesso"],[3,"Quadra","9h–11h","Bloco A, 1101","info"],[4,"Salão de festas","13h–18h","Bloco A, 704","andamento"],[10,"Salão de festas","19h–23h","Bloco B, 501","andamento"],[11,"Churrasqueira","12h–17h","Bloco B, 902","sucesso"],[17,"Salão de festas","19h–23h","Bloco A, 1503","andamento"],[20,"Salão de festas","19h30","Assembleia geral ordinária","aviso"],[24,"Churrasqueira","12h–17h","Bloco A, 208","sucesso"],[31,"Salão de festas","20h–23h","Bloco B, 1204","andamento"]];
+function cal(){
+  var h='<div class="lc-cal__grade" role="grid" aria-label="Outubro de 2026">'+["dom","seg","ter","qua","qui","sex","sáb"].map(function(d){return '<div class="lc-cal__dsem" role="columnheader">'+d+'</div>';}).join("");
+  /* outubro de 2026 começa numa quinta: 4 dias de setembro antes */
+  for(var i=0;i<35;i++){ var d=i-3, fora=d<1||d>31, n=fora?(d<1?30+d:d-31):d, fds=i%7===0||i%7===6, ev=fora?[]:R.filter(function(r){return r[0]===d;});
+    h+='<div class="lc-cal__dia'+(fora?' lc-cal__dia--fora':'')+(fds&&!fora?' lc-cal__dia--fds':'')+(d===1?' lc-cal__dia--hoje':'')+'" role="gridcell" tabindex="'+(d===1?0:-1)+'" data-d="'+(fora?'':d)+'" aria-label="'+(fora?'':d+' de outubro'+(ev.length?', '+ev.length+(ev.length===1?' reserva':' reservas'):', livre'))+'"><span class="lc-cal__num">'+n+'</span>'+
+      ev.map(function(r){ return '<a class="lc-evento lc-evento--'+r[4]+'" href="#" data-ev="'+R.indexOf(r)+'">'+r[2].split("–")[0]+' '+esc(r[1])+'</a>'; }).join("")+'</div>'; }
+  $("#cal").innerHTML=h+'</div>';
+  $("#lista").innerHTML=R.filter(function(r){return r[0]<=8;}).map(function(r){ return '<li><span class="lc-agenda__hora">'+r[0]+'/10</span><span><b>'+esc(r[1])+'</b><span class="lc-agenda__sub">'+r[2]+', '+esc(r[3])+'</span></span><span></span></li>'; }).join("");
+}
+function nova(d){
+  P.modal({titulo:"Nova reserva",desc:"Cond. Parque das Águas. Conferimos conflito de horário antes de criar.",
+    corpo:'<div class="lc-form-grade"><div class="lc-campo"><label class="lc-rotulo" for="nr-a">Área</label><select id="nr-a" class="lc-selecao"><option>Salão de festas</option><option>Churrasqueira</option><option>Quadra</option></select></div><div class="lc-campo"><label class="lc-rotulo" for="nr-d">Data</label><input id="nr-d" class="lc-entrada" type="date" value="2026-10-'+("0"+(d||5)).slice(-2)+'"></div>'+
+      '<div class="lc-campo"><label class="lc-rotulo" for="nr-i">Das</label><input id="nr-i" class="lc-entrada" type="time" value="19:00"></div><div class="lc-campo"><label class="lc-rotulo" for="nr-f">Até</label><input id="nr-f" class="lc-entrada" type="time" value="23:00"></div>'+
+      '<div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="nr-u">Unidade <span class="lc-obrig" aria-hidden="true">*</span></label><input id="nr-u" class="lc-entrada" placeholder="Ex.: Bloco B, 1204"></div><div class="lc-inteiro" id="nr-conf" role="status"></div></div>',
+    pe:'<button class="lc-btn" type="button" data-m-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-ok>Reservar</button>',
+    aoAbrir:function(el,api){
+      function conf(){ var dia=+el.querySelector("#nr-d").value.slice(8), a=el.querySelector("#nr-a").value, x=R.filter(function(r){return r[0]===dia&&r[1]===a;})[0];
+        el.querySelector("#nr-conf").innerHTML=x?'<div class="lc-alerta lc-alerta--aviso"><i data-i="aviso"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">'+esc(a)+' já reservado nesse dia</span>'+x[2]+' para '+esc(x[3])+'. Escolha outro horário ou outra data.</div></div>':''; lcIcones(el); return !x; }
+      ["#nr-d","#nr-a"].forEach(function(s){ el.querySelector(s).addEventListener("change",conf); }); conf();
+      el.querySelector("[data-ok]").addEventListener("click",function(){ var u=el.querySelector("#nr-u"); if(!u.value.trim()){ u.setAttribute("aria-invalid","true"); u.focus(); return; } if(!conf()) return;
+        var dia=+el.querySelector("#nr-d").value.slice(8), rr=[dia,el.querySelector("#nr-a").value,el.querySelector("#nr-i").value.replace(":00","h")+"–"+el.querySelector("#nr-f").value.replace(":00","h"),u.value,"andamento"]; R.push(rr); api.fechar(); cal();
+        P.toast("Reserva do <b>"+esc(rr[1])+"</b> em "+dia+"/10 criada. Taxa de R$ 180,00 no boleto de novembro.",{tipo:"sucesso",acao:"Desfazer",aoAcao:function(){ R.splice(R.indexOf(rr),1); cal(); }}); }); }});
+}
+function verEv(i,a){ var r=R[i]; var cel=a.closest(".lc-cal__dia");
+  var p=document.createElement("div"); p.className="lc-popover"; p.setAttribute("role","dialog"); p.setAttribute("aria-label",r[1]); p.style.top="100%"; p.style.left="0";
+  p.innerHTML='<div class="lc-popover__cab"><h3>'+esc(r[1])+', '+r[0]+'/10</h3><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" data-x aria-label="Fechar"><i data-i="fechar"></i></button></div><div class="lc-popover__corpo"><dl class="lc-props"><dt>Horário</dt><dd>'+r[2]+'</dd><dt>Para</dt><dd>'+esc(r[3])+'</dd><dt>Taxa</dt><dd>R$ 180,00, no boleto</dd></dl></div><div class="lc-popover__pe"><button class="lc-btn lc-btn--p lc-btn--perigo-contorno" type="button" data-c>Cancelar reserva</button><a class="lc-btn lc-btn--p" href="#">Abrir</a></div>';
+  cel.appendChild(p); lcIcones(p); p.querySelector("[data-x]").focus();
+  function fim(){ p.remove(); a.focus(); document.removeEventListener("keydown",k,true); } function k(e){ if(e.key==="Escape"){ e.stopPropagation(); fim(); } }
+  document.addEventListener("keydown",k,true); p.querySelector("[data-x]").addEventListener("click",fim);
+  p.querySelector("[data-c]").addEventListener("click",function(){ fim(); R.splice(i,1); cal(); P.toast("Reserva de "+esc(r[3])+" cancelada. O morador recebe aviso no portal.",{ic:"cancelado",acao:"Desfazer",aoAcao:function(){ R.splice(i,0,r); cal(); }}); });
+}
+$("#cal").addEventListener("click",function(e){ var a=e.target.closest("[data-ev]"); if(a){ e.preventDefault(); e.stopPropagation(); return verEv(+a.getAttribute("data-ev"),a); } if(e.target.closest(".lc-popover")) return; var c=e.target.closest("[data-d]"); if(c&&c.getAttribute("data-d")) nova(+c.getAttribute("data-d")); });
+$("#cal").addEventListener("keydown",function(e){ var c=e.target.closest(".lc-cal__dia"); if(!c) return; var cs=$$(".lc-cal__dia"), i=cs.indexOf(c), m={ArrowRight:1,ArrowLeft:-1,ArrowDown:7,ArrowUp:-7}[e.key];
+  if(m){ e.preventDefault(); var n=cs[i+m]; if(n){ c.tabIndex=-1; n.tabIndex=0; n.focus(); } } if(e.key==="Enter"&&e.target===c&&c.getAttribute("data-d")){ e.preventDefault(); nova(+c.getAttribute("data-d")); } });
+$("#nova").addEventListener("click",function(){ nova(5); });
+cal();
+})();
+</script>
+</body>
+</html>

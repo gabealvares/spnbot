@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perfil da pessoa</title>
+<meta name="description" content="Perfil de uma colaboradora: quem é, o que faz, carteira, reconhecimentos, cursos e como falar com ela.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .pf-grade{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:var(--esp-8);align-items:start;margin-top:var(--esp-2)}
+  .pf-lado{display:flex;flex-direction:column;gap:var(--esp-6)}
+  .pf-lado h2{font:var(--t-subsecao);margin:0 0 8px}
+  .pf-lado section+section{border-top:var(--borda-1);padding-top:var(--esp-5)}
+  .pf-painel{padding-top:var(--esp-5)}
+  .pf-sobre{font-size:14.5px;line-height:23px;max-width:68ch}
+  .pf-etqs{display:flex;gap:6px;flex-wrap:wrap}
+  .pf-reconh{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;padding:14px 0;border-top:var(--borda-1)}
+  .pf-reconh:first-child{border-top:0}
+  .pf-reconh p{margin:4px 0 0;font-size:13.5px;max-width:70ch}
+  .pf-reconh small{font:var(--t-legenda);color:var(--texto-2)}
+  .pf-campo-ed{display:flex;flex-direction:column;gap:12px}
+  .pf-grade>*{min-width:0}
+  @media (max-width:1099px){.pf-grade{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body data-moldura='{"modulo":"inicio","secao":"Pessoas","papel":"gerente-cs","trilha":["Pessoas","Beatriz Nogueira"],"usuario":{"nome":"Letícia Araújo","cargo":"Coordenadora de Relacionamento","iniciais":"LA","cor":"lc-av--c3"},"contadores":{"suporte":7,"cs":3,"academy":1}}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+
+<details class="lc-nota-projeto" open>
+  <summary><b>Nota de projeto</b> Perfil da pessoa
+    <span class="lc-nota-projeto__serie"><a href="20-home.html">Início</a> <a href="20b-home-gestor.html">Gestor</a> <a href="20c-home-primeiro-acesso.html">Primeiro acesso</a> <a href="20d-perfil.html" aria-current="page">Perfil</a> <a href="20e-pessoas.html">Pessoas</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2>
+      <p>Responde três perguntas de quem chega aqui pelo nome no mural ou no diretório: quem é essa pessoa, no que ela pode me ajudar e como eu falo com ela agora. Por isso o cabeçalho traz cargo, área, presença e o botão de conversar; as abas trazem o trabalho (carteira, reconhecimentos, cursos).</p>
+      <p>Sem capa ilustrada e sem número de "conexões": o perfil é de trabalho.</p></section>
+    <section><h2>Fluxo</h2><ol>
+      <li>Conversar abre o chat interno; Agendar 1:1 abre a agenda dela já filtrada nos horários livres.</li>
+      <li>"Reconhecer" (botão principal) abre o mesmo modal do mural com o nome dela preenchido.</li>
+      <li>No próprio perfil, cada seção tem um lápis. Ao mudar um campo, a barra de salvar aparece no rodapé com "Descartar" e "Salvar"; Esc cancela a seção.</li>
+      <li>"Voltar" fica na trilha (Pessoas); a busca do diretório é lembrada.</li>
+    </ol></section>
+    <section><h2>Por que assim</h2>
+      <p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o LinkedIn (cabeçalho com cargo e ações, abas de conteúdo), o Slack (status e horário local junto do nome) e o Workday e o BambooHR (gestor, equipe e organograma ao lado, edição do próprio perfil por seção) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div>
+  <div class="lc-estados-tela" data-estados-para="tela-perfil">Ver estado:
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela">
+      <button type="button" aria-pressed="true" data-estado="outra">Perfil de outra pessoa</button>
+      <button type="button" aria-pressed="false" data-estado="meu">Meu perfil, editável</button>
+      <button type="button" aria-pressed="false" data-estado="carregando">Carregando</button>
+      <button type="button" aria-pressed="false" data-estado="desligada">Pessoa desligada</button>
+    </div>
+  </div>
+</details>
+
+<div id="tela-perfil" data-estado="outra">
+
+<div data-so-estado="carregando" hidden aria-busy="true" aria-label="Carregando perfil">
+  <div class="lc-perfil-cab"><span class="lc-esqueleto lc-esqueleto--av" style="width:96px;height:96px"></span><div><span class="lc-esqueleto lc-esqueleto--titulo"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--curta"></span></div></div>
+  <span class="lc-esqueleto lc-esqueleto--bloco"></span>
+</div>
+
+<div data-so-estado="desligada" hidden class="lc-alerta lc-alerta--info" style="margin-top:16px"><i data-i="info"></i><div class="lc-alerta__corpo"><b class="lc-alerta__titulo">Beatriz Nogueira não faz mais parte da empresa</b>Saiu em 30/09/2026. O perfil fica em modo leitura para consulta do histórico. A carteira de 41 condomínios passou para Carlos Lima.</div></div>
+
+<div data-so-estado="outra meu desligada">
+<header class="lc-perfil-cab">
+  <span class="lc-av lc-av--96 lc-av--c4" aria-hidden="true">BN<span class="lc-presenca lc-presenca--ocupado"></span></span>
+  <div>
+    <h1>Beatriz Nogueira</h1>
+    <div class="lc-perfil-cab__cargo">Analista de Relacionamento, pleno. Relacionamento com Condomínios</div>
+    <div class="lc-perfil-cab__meta">
+      <span><span class="lc-status-pessoal__ponto lc-status-pessoal__ponto--ocupado" aria-hidden="true"></span>Em atendimento, 3 conversas, até 18h</span>
+      <span><i data-i="localizacao"></i>Sede, São Paulo, 3º andar</span>
+      <span><i data-i="relogio"></i>10:14 no horário dela</span>
+      <span><i data-i="calendario"></i>Na Administradora Alpha desde fev/2022</span>
+    </div>
+  </div>
+  <div class="lc-perfil-cab__acoes" data-so-estado="outra">
+    <button class="lc-btn" type="button" data-toast="Conversa com Beatriz aberta no chat interno" data-toast-neutro><i data-i="conversa"></i>Conversar</button>
+    <button class="lc-btn" type="button" data-toast="Agenda da Beatriz aberta nos horários livres" data-toast-neutro><i data-i="um-a-um"></i>Agendar 1:1</button>
+    <button class="lc-btn lc-btn--principal" type="button" data-modal="m-reconhecer"><i data-i="reconhecimento"></i>Reconhecer</button>
+    <span class="lc-ancora-menu"><button class="lc-btn lc-btn--icone" type="button" aria-label="Mais opções do perfil" aria-haspopup="menu" aria-expanded="false" data-abre="menu-pf"><i data-i="mais-opcoes"></i></button>
+      <div class="lc-menu" role="menu" id="menu-pf" hidden>
+        <button class="lc-menu__item" role="menuitem" data-toast="E-mail copiado"><i data-i="copiar"></i>Copiar e-mail</button>
+        <button class="lc-menu__item" role="menuitem"><i data-i="organograma"></i>Ver no organograma</button>
+        <button class="lc-menu__item" role="menuitem"><i data-i="pdi"></i>Abrir PDI<small>Só você, como gestora, e o RH</small></button>
+        <hr class="lc-menu__sep">
+        <button class="lc-menu__item" role="menuitem"><i data-i="editar-pessoa"></i>Editar cadastro no RH</button>
+      </div></span>
+  </div>
+  <div class="lc-perfil-cab__acoes" data-so-estado="meu" hidden>
+    <button class="lc-btn" type="button" data-abre="pop-st-meu" aria-expanded="false"><span class="lc-status-pessoal__ponto lc-status-pessoal__ponto--ocupado" aria-hidden="true"></span>Trocar status</button>
+    <button class="lc-btn" type="button"><i data-i="camera"></i>Trocar foto</button>
+  </div>
+</header>
+
+<div class="pf-grade">
+  <div>
+    <div class="lc-abas" role="tablist" aria-label="Seções do perfil">
+      <button role="tab" aria-selected="true" aria-controls="pf-sobre">Sobre</button>
+      <button role="tab" aria-selected="false" aria-controls="pf-carteira">Carteira <span class="lc-contagem">41</span></button>
+      <button role="tab" aria-selected="false" aria-controls="pf-reconh">Reconhecimentos <span class="lc-contagem">7</span></button>
+      <button role="tab" aria-selected="false" aria-controls="pf-cursos">Cursos e certificados <span class="lc-contagem">5</span></button>
+      <button role="tab" aria-selected="false" aria-controls="pf-mural">Publicações <span class="lc-contagem">12</span></button>
+    </div>
+
+    <div id="pf-sobre" role="tabpanel" class="pf-painel" data-salvar="barra-pf" data-salvar-onde="no seu perfil">
+      <section class="lc-secao-reg" id="sec-sobre" style="padding-left:0;padding-right:0">
+        <div class="lc-secao-reg__cab"><h3>Sobre mim</h3>
+          <button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" data-editar="sec-sobre" data-so-estado="meu" hidden aria-label="Editar Sobre mim"><i data-i="editar"></i></button></div>
+        <p class="pf-sobre" data-leitura>Cuido de 41 condomínios da zona leste, a maior parte residencial com mais de 200 unidades. Antes da Alpha fui gerente predial por seis anos, então conheço bem obra, portaria e a rotina do zelador. Gosto de resolver no mesmo dia e de avisar antes que o morador pergunte.</p>
+        <div data-edicao hidden class="pf-campo-ed">
+          <div class="lc-campo"><label class="lc-rotulo" for="pf-txt">Sobre mim</label><textarea class="lc-area-texto" id="pf-txt" rows="4" maxlength="500">Cuido de 41 condomínios da zona leste, a maior parte residencial com mais de 200 unidades. Antes da Alpha fui gerente predial por seis anos, então conheço bem obra, portaria e a rotina do zelador. Gosto de resolver no mesmo dia e de avisar antes que o morador pergunte.</textarea><p class="lc-ajuda">Até 500 caracteres. Aparece para toda a empresa.</p></div>
+          <div class="lc-grupo-btn"><button class="lc-btn lc-btn--p lc-btn--discreto" type="button" data-cancelar="sec-sobre">Cancelar</button></div>
+        </div>
+      </section>
+      <section class="lc-secao-reg" id="sec-ajuda" style="padding-left:0;padding-right:0">
+        <div class="lc-secao-reg__cab"><h3>Pode me procurar para</h3><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" data-so-estado="meu" hidden aria-label="Editar Pode me procurar para"><i data-i="editar"></i></button></div>
+        <div class="pf-etqs"><span class="lc-etiqueta lc-etiqueta--2">Obras e reformas</span><span class="lc-etiqueta lc-etiqueta--4">Assembleia virtual</span><span class="lc-etiqueta lc-etiqueta--6">Portaria remota</span><span class="lc-etiqueta lc-etiqueta--3">Seguro do condomínio</span><span class="lc-etiqueta lc-etiqueta--8">Espanhol</span></div>
+      </section>
+      <section class="lc-secao-reg" id="sec-contato" style="padding-left:0;padding-right:0">
+        <div class="lc-secao-reg__cab"><h3>Contato e horário</h3><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" data-editar="sec-contato" data-so-estado="meu" hidden aria-label="Editar Contato e horário"><i data-i="editar"></i></button></div>
+        <dl class="lc-props" data-leitura>
+          <dt>E-mail</dt><dd>beatriz.nogueira@alpha.adm.br</dd>
+          <dt>Ramal</dt><dd>2047</dd>
+          <dt>Celular da empresa</dt><dd>(11) 97412-0855, só em horário de trabalho</dd>
+          <dt>Horário</dt><dd>Segunda a sexta, das 9h às 18h. Plantão de sábado a cada três semanas</dd>
+        </dl>
+        <div data-edicao hidden class="lc-form-grade">
+          <div class="lc-campo"><label class="lc-rotulo" for="pf-ramal">Ramal</label><input class="lc-entrada" id="pf-ramal" value="2047" inputmode="numeric"></div>
+          <div class="lc-campo"><label class="lc-rotulo" for="pf-cel">Celular da empresa</label><div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">+55</span><input class="lc-entrada" id="pf-cel" type="tel" value="(11) 97412-0855"></div></div>
+          <div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="pf-hor">Horário</label><input class="lc-entrada" id="pf-hor" value="Segunda a sexta, das 9h às 18h. Plantão de sábado a cada três semanas"></div>
+          <div class="lc-inteiro"><button class="lc-btn lc-btn--p lc-btn--discreto" type="button" data-cancelar="sec-contato">Cancelar</button></div>
+        </div>
+      </section>
+    </div>
+
+    <div id="pf-carteira" role="tabpanel" class="pf-painel" hidden>
+      <div class="lc-tabela-cont"><table class="lc-tabela">
+        <caption class="lc-sr">Condomínios da carteira de Beatriz</caption>
+        <thead><tr><th scope="col">Condomínio</th><th scope="col">Unidades</th><th scope="col">Saúde</th><th scope="col">Renovação</th></tr></thead>
+        <tbody>
+          <tr><td><a href="22b-cliente.html" class="lc-tabela__primaria">Vila Serena</a><span class="lc-tabela__sub">Tatuapé, síndico Jorge Almeida</span></td><td class="lc-num">186</td><td><span class="lc-estado lc-estado--sucesso">78, Boa</span></td><td>03/2027</td></tr>
+          <tr><td><a href="22b-cliente.html" class="lc-tabela__primaria">Residencial Jardim Botânico</a><span class="lc-tabela__sub">Penha, síndica Cláudia Reis</span></td><td class="lc-num">312</td><td><span class="lc-estado lc-estado--aviso">58, Atenção</span></td><td>12/2026</td></tr>
+          <tr><td><a href="22b-cliente.html" class="lc-tabela__primaria">Ed. Aurora</a><span class="lc-tabela__sub">Mooca, síndico Paulo Mendes</span></td><td class="lc-num">96</td><td><span class="lc-estado lc-estado--sucesso">81, Boa</span></td><td>06/2027</td></tr>
+        </tbody></table></div>
+      <a class="lc-btn lc-btn--link" href="22-cs.html" style="margin-top:8px">Ver os 41 na carteira do CS</a>
+    </div>
+
+    <div id="pf-reconh" role="tabpanel" class="pf-painel" hidden>
+      <div class="pf-reconh"><span class="lc-av lc-av--40 lc-av--c5" aria-hidden="true">CL</span><div><b>Carlos Lima</b> reconheceu Beatriz em <b>Resolver de ponta a ponta</b><p>Ficou até o técnico sair do Vila Serena na terça, com o portão da garagem travado e 40 carros esperando.</p><small>29/09/2026, 14 reações</small></div></div>
+      <div class="pf-reconh"><span class="lc-av lc-av--40 lc-av--c3" aria-hidden="true">LA</span><div><b>Letícia Araújo</b> reconheceu Beatriz em <b>Falar a verdade, com cuidado</b><p>Explicou para o conselho do Jardim Botânico por que a obra da fachada atrasou, com o cronograma novo na mão.</p><small>02/09/2026, 22 reações</small></div></div>
+      <div class="pf-reconh"><span class="lc-av lc-av--40 lc-av--c6" aria-hidden="true">JP</span><div><b>Juliana Prado</b> reconheceu Beatriz em <b>Cuidar do condomínio como se fosse nosso</b><p>Me mostrou o sistema inteiro no meu primeiro dia, com calma.</p><small>28/09/2026, 9 reações</small></div></div>
+    </div>
+
+    <div id="pf-cursos" role="tabpanel" class="pf-painel" hidden>
+      <div class="lc-tabela-cont"><table class="lc-tabela">
+        <caption class="lc-sr">Cursos concluídos</caption>
+        <thead><tr><th scope="col">Curso</th><th scope="col" class="lc-num">Carga</th><th scope="col" class="lc-num">Nota</th><th scope="col">Certificado</th></tr></thead>
+        <tbody>
+          <tr><td>Assembleias, editais e atas</td><td class="lc-num">20 h</td><td class="lc-num">9,4</td><td><span class="lc-carimbo lc-carimbo--emitido">Emitido<small>14/08/2026</small></span></td></tr>
+          <tr><td>LGPD no atendimento</td><td class="lc-num">4 h</td><td class="lc-num">10,0</td><td><span class="lc-carimbo lc-carimbo--emitido">Emitido<small>03/03/2026</small></span></td></tr>
+          <tr><td>Legislação condominial</td><td class="lc-num">32 h</td><td class="lc-num">Cursando</td><td><span class="lc-estado lc-estado--andamento">Aula 6 de 12</span></td></tr>
+        </tbody></table></div>
+    </div>
+
+    <div id="pf-mural" role="tabpanel" class="pf-painel" hidden>
+      <article class="lc-post"><div class="lc-post__cab"><span class="lc-av lc-av--40 lc-av--c4" aria-hidden="true">BN</span><div class="lc-post__quem"><b>Beatriz Nogueira</b><span class="lc-post__meta">22/09 às 18:10, para Relacionamento com Condomínios</span></div></div>
+        <div class="lc-post__corpo"><p>Deixei no Academy o roteiro que uso para a primeira reunião com síndico novo: o que perguntar, o que mostrar no portal e o que prometer só depois de ver o contrato.</p></div>
+        <div class="lc-reacoes-resumo"><span class="lc-reacoes-resumo__pilha" aria-hidden="true"><span><i data-i="genial"></i></span></span>Letícia, Carlos e mais 9<span style="margin-left:auto">2 comentários</span></div></article>
+    </div>
+  </div>
+
+  <aside class="pf-lado" aria-label="Equipe e disponibilidade">
+    <section><h2>Gestora</h2>
+      <a class="lc-pessoa" href="#" style="color:inherit;text-decoration:none"><span class="lc-av lc-av--40 lc-av--c3" aria-hidden="true">LA<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-pessoa__nome">Letícia Araújo</span><span class="lc-pessoa__sub">Coordenadora de Relacionamento</span></span></a></section>
+    <section><h2>Equipe <span class="lc-contagem">8 pessoas</span></h2>
+      <div class="lc-av-grupo"><span class="lc-av lc-av--32 lc-av--c5" aria-hidden="true">CL</span><span class="lc-av lc-av--32 lc-av--c6" aria-hidden="true">JP</span><span class="lc-av lc-av--32 lc-av--c8" aria-hidden="true">RA</span><span class="lc-av lc-av--32 lc-av--c2" aria-hidden="true">MT</span><span class="lc-av-grupo__mais">Carlos, Juliana, Rogério e mais 4</span></div>
+      <a class="lc-btn lc-btn--link" href="20e-pessoas.html" style="margin-top:8px">Ver a equipe no diretório</a></section>
+    <section><h2>Livre hoje</h2>
+      <ul class="lc-agenda"><li><span class="lc-agenda__hora">15:00</span><span>Livre até 16:00<span class="lc-agenda__sub">Bom horário para 1:1</span></span><button class="lc-btn lc-btn--p" type="button" data-toast="Convite de 1:1 enviado para 15:00" >Marcar</button></li>
+        <li><span class="lc-agenda__hora">17:30</span><span>Livre até 18:00</span><span></span></li></ul></section>
+    <section data-so-estado="outra"><h2>Férias</h2><p class="lc-pequeno">Próximas: 05/01 a 19/01/2027, aprovadas.</p><p class="lc-legenda">Só você, como gestora, e o RH veem esta parte.</p></section>
+  </aside>
+</div>
+</div>
+</div>
+
+<div class="lc-barra-salvar" id="barra-pf" role="region" aria-label="Alterações não salvas" hidden>
+  <p class="lc-barra-salvar__msg"><i data-i="aviso"></i><span data-salvar-msg><b>1 alteração não salva</b></span></p>
+  <div class="lc-barra-salvar__acoes"><button class="lc-btn lc-btn--discreto" type="button" data-descartar>Descartar</button><button class="lc-btn lc-btn--principal" type="button" data-salvar-ok="Perfil atualizado. A empresa já vê a versão nova.">Salvar</button></div>
+</div>
+
+<div class="lc-sobreposicao" id="m-reconhecer" hidden>
+  <div class="lc-modal" role="dialog" aria-modal="true" aria-labelledby="mr-tit">
+    <div class="lc-modal__cab"><div style="flex:1"><h2 id="mr-tit">Reconhecer Beatriz Nogueira</h2><p>Vai para o mural de Relacionamento com Condomínios e para o perfil dela.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" data-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+    <div class="lc-modal__corpo"><div class="lc-form-grade lc-form-grade--1">
+      <div class="lc-campo"><label class="lc-rotulo" for="mr-valor">Valor da empresa</label><select class="lc-selecao" id="mr-valor"><option>Resolver de ponta a ponta</option><option>Falar a verdade, com cuidado</option><option>Cuidar do condomínio como se fosse nosso</option></select></div>
+      <div class="lc-campo"><label class="lc-rotulo" for="mr-txt">O que ela fez <span class="lc-obrig" aria-hidden="true">*</span></label><textarea class="lc-area-texto" id="mr-txt" rows="3" placeholder="Conte o caso: onde, quando, o que mudou para o cliente."></textarea></div>
+    </div></div>
+    <div class="lc-modal__pe"><button class="lc-btn" type="button" data-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-fechar data-toast="Reconhecimento publicado" data-toast-desfazer>Publicar</button></div>
+  </div>
+</div>
+
+<section class="lc-nota-a11y" aria-labelledby="a11y-tit">
+  <h2 id="a11y-tit">Acessibilidade desta tela</h2>
+  <dl>
+    <dt>Ordem de foco</dt><dd>Pular para o conteúdo; trilho; barra do módulo; trilha (Pessoas); Conversar, Agendar 1:1, Reconhecer, Mais opções; abas (setas trocam); conteúdo da aba; lado (gestora, equipe, horários livres); barra de salvar, quando aparece.</dd>
+    <dt>O que é anunciado</dt><dd>"Beatriz Nogueira, em atendimento, 3 conversas, até 18h"; abas com a contagem ("Reconhecimentos, 7"); ao editar, "Seção em edição"; com alteração, "Há alterações não salvas"; ao salvar, o toast com Desfazer.</dd>
+    <dt>Nome do que é só ícone</dt><dd>Mais opções do perfil; Editar Sobre mim; Editar Pode me procurar para; Editar Contato e horário; Fechar. A foto é decorativa: nome e presença estão em texto ao lado.</dd>
+  </dl>
+</section>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+</body>
+</html>

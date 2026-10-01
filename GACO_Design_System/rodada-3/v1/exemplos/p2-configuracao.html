@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dados da empresa, Configuração</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+<style>
+.p2-cfg .lc-secao-reg{border:var(--borda-1);background:var(--sup-1);margin-bottom:var(--esp-5);padding:var(--esp-5) var(--esp-6)}
+.p2-cfg .lc-props{grid-template-columns:minmax(140px,32%) 1fr}
+.p2-cfg h1{font:var(--t-pagina);margin:0 0 4px}
+</style>
+</head>
+<body data-moldura='{"modulo":"configuracao","secao":"Empresa","item":"Dados da empresa","papel":"admin","trilha":["Empresa","Dados da empresa"]}'>
+<main id="conteudo">
+<div class="lc-modelo-config">
+  <nav class="lc-modelo-config__menu" aria-label="Seções de Empresa"><div class="lc-menu" role="list">
+    <div class="lc-menu__titulo">Empresa</div>
+    <a class="lc-menu__item" href="#" aria-current="page">Dados da empresa</a><a class="lc-menu__item" href="#">Marca e aparência</a><a class="lc-menu__item" href="#">Reajuste e cobrança</a><a class="lc-menu__item" href="#">Áreas</a><a class="lc-menu__item" href="#">Produtos e planos</a>
+    <div class="lc-menu__sep"></div><div class="lc-menu__titulo">Segurança</div>
+    <a class="lc-menu__item" href="p2-auditoria.html">Log de auditoria</a><a class="lc-menu__item" href="p2-lixeira.html">Lixeira (30 dias)</a></div></nav>
+  <div class="p2-cfg" id="cfg">
+    <h1>Dados da empresa</h1><p class="lc-cab-pagina__desc" style="margin-bottom:var(--esp-6)">Aparecem nos contratos, boletos e no portal dos condôminos. Só quem administra o sistema altera.</p>
+    <section class="lc-secao-reg" data-secao="Identificação" aria-labelledby="c1"><div class="lc-secao-reg__cab"><h3 id="c1">Identificação</h3><button type="button" class="lc-btn lc-btn--discreto lc-btn--p lc-btn--icone" data-editar-secao aria-label="Editar Identificação" aria-expanded="false" data-dica="Editar seção"><i data-i="editar"></i></button></div>
+      <div data-leitura><dl class="lc-props"><dt>Razão social</dt><dd id="v-rs">Administradora Alpha de Condomínios Ltda.</dd><dt>Nome de exibição</dt><dd id="v-nome">Administradora Alpha</dd><dt>CNPJ</dt><dd>08.774.512/0001-30</dd><dt>CRECI jurídico</dt><dd id="v-creci">J-21.904</dd></dl></div>
+      <div data-edicao hidden><div class="lc-form-grade"><div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="e-rs">Razão social</label><input id="e-rs" class="lc-entrada" value="Administradora Alpha de Condomínios Ltda." data-campo="Razão social"></div><div class="lc-campo"><label class="lc-rotulo" for="e-nome">Nome de exibição</label><input id="e-nome" class="lc-entrada" value="Administradora Alpha" data-campo="Nome de exibição"><p class="lc-ajuda">É o nome que o síndico vê no portal.</p></div><div class="lc-campo"><label class="lc-rotulo" for="e-creci">CRECI jurídico</label><input id="e-creci" class="lc-entrada" value="J-21.904" data-campo="CRECI"></div></div></div></section>
+    <section class="lc-secao-reg" data-secao="Endereço e contato" aria-labelledby="c2"><div class="lc-secao-reg__cab"><h3 id="c2">Endereço e contato</h3><button type="button" class="lc-btn lc-btn--discreto lc-btn--p lc-btn--icone" data-editar-secao aria-label="Editar Endereço e contato" aria-expanded="false" data-dica="Editar seção"><i data-i="editar"></i></button></div>
+      <div data-leitura><dl class="lc-props"><dt>Endereço</dt><dd id="v-end">Av. Brigadeiro Faria Lima, 1811, conj. 902, Jardim Paulistano, São Paulo, 01452-001</dd><dt>Telefone</dt><dd id="v-tel">(11) 3031-4400</dd><dt>WhatsApp do atendimento</dt><dd>(11) 97700-4400</dd><dt>E-mail</dt><dd>atendimento@administradoraalpha.com.br</dd></dl></div>
+      <div data-edicao hidden><div class="lc-form-grade"><div class="lc-campo"><label class="lc-rotulo" for="e-cep">CEP</label><div class="lc-entrada-grupo"><input id="e-cep" class="lc-entrada" inputmode="numeric" value="01452-001" data-campo="CEP"><button class="lc-entrada-grupo__btn" type="button"><i data-i="pesquisar"></i>Consultar</button></div></div><div class="lc-campo"><label class="lc-rotulo" for="e-tel">Telefone</label><input id="e-tel" class="lc-entrada" type="tel" value="(11) 3031-4400" data-campo="Telefone"></div><div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="e-end">Endereço</label><input id="e-end" class="lc-entrada" value="Av. Brigadeiro Faria Lima, 1811, conj. 902" data-campo="Endereço"></div></div></div></section>
+    <section class="lc-secao-reg" aria-labelledby="c3"><div class="lc-secao-reg__cab"><h3 id="c3">Preferências</h3></div>
+      <p class="lc-pequeno lc-cor-2" style="margin-bottom:10px">Interruptores gravam na hora, com Desfazer no aviso.</p>
+      <div class="lc-pilha lc-pilha--p"><label class="lc-interruptor"><input type="checkbox" role="switch" checked data-pref="Assinatura do e-mail com o logo"><span class="lc-interruptor__trilho"></span><span>Assinatura do e-mail com o logo<small>Nos e-mails enviados pelo GACO em nome da administradora</small></span></label>
+        <label class="lc-interruptor"><input type="checkbox" role="switch" data-pref="Mostrar o CRECI no portal"><span class="lc-interruptor__trilho"></span><span>Mostrar o CRECI no rodapé do portal</span></label></div></section>
+  </div>
+</div>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2,$=P.$,$$=P.$$,esc=P.esc;
+var ed=new P.Edicao({raiz:$("#cfg"),onde:$("#conteudo"),objeto:"Dados da empresa",chave:"lc-salvar:cfg",
+  aoSalvar:function(m){ return new Promise(function(ok){ setTimeout(function(){ m.forEach(function(x){ var map={"e-rs":"v-rs","e-nome":"v-nome","e-creci":"v-creci","e-tel":"v-tel","e-end":"v-end"}; if(map[x.el.id]) $("#"+map[x.el.id]).textContent=x.depois; });
+    $$(".lc-secao-reg--editando").forEach(function(s){ P.fecharSecao(s,false); }); ok(); P.toast("Dados da empresa salvos. Valem para os próximos contratos e boletos.",{tipo:"sucesso",acao:"Desfazer"}); },500); }); }});
+P.guardarSaida(ed); P.secoes($("#cfg"),ed);
+$$("[data-pref]").forEach(function(c){ c.addEventListener("change",function(){ var on=c.checked; P.toast(esc(c.getAttribute("data-pref"))+(on?" ligado.":" desligado."),{ic:"sucesso",acao:"Desfazer",aoAcao:function(){ c.checked=!on; }}); }); });
+})();
+</script>
+</body>
+</html>

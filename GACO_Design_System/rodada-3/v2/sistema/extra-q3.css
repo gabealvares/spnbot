@@ -249,3 +249,7 @@
 .cm-pv-item.is-saindo{opacity:.4;transition:opacity var(--cm-mov-lento)}
 .cm-conta-texto{font-variant-numeric:tabular-nums}
 .cm-cartao__pe{flex-wrap:wrap}
+.cm-comandos .cm-opcao[aria-selected="true"]::after{display:none}
+.cm-comandos .cm-opcao.is-ativa{box-shadow:inset 3px 0 0 var(--cm-acao)}
+/* correção: base.css zera o padding de ol[class]; a auditoria precisa do recuo para os marcadores */
+ol.cm-auditoria{padding-left:16px}

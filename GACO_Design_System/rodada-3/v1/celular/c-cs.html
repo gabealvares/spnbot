@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registro do CS no celular</title>
+<meta name="description" content="CS no celular: ficha do condomínio cliente e registro rápido de atividade (ligação, visita, reunião) com próximo passo obrigatório, em folha inferior.">
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p5.css">
+<script src="../sistema/marca.js"></script>
+<style>
+  .c-corpo{padding:12px 16px 16px;display:flex;flex-direction:column;gap:14px}
+  .c-fundo{position:fixed;inset:0;background:var(--sobreposicao);z-index:45}
+  .lc-folha{z-index:50}
+  .c-pe{display:flex;gap:8px;padding:10px 16px 16px;border-top:var(--borda-1)}
+  .c-pe .lc-btn{flex:1;height:48px}
+  .c-tipos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+  .c-tipos .lc-escolha{flex-direction:column;justify-content:center;gap:4px;min-height:64px;padding:6px;font-size:12.5px;text-align:center}
+</style>
+</head>
+<body data-moldura='{"modulo":"cs","secao":"Clientes","item":"Clientes","papel":"gerente-cs","trilha":["Clientes","Cond. Parque das Águas"]}'>
+<main id="conteudo">
+  <div class="lc-cab-registro">
+    <div class="lc-cab-registro__titulo" style="margin-top:4px"><span class="lc-ladrilho lc-ladrilho--40"><i data-i="condominio"></i></span><h1>Cond. Parque das Águas</h1></div>
+    <div class="lc-cab-registro__meta"><span class="lc-estado lc-estado--aviso">62, Atenção</span><span>Esfriando há 12 dias</span></div>
+    <dl class="lc-campos-chave"><div><dt>Renovação</dt><dd>15/11/2026</dd></div><div><dt>Mensalidade</dt><dd>R$ 4.620,00</dd></div><div><dt>Síndica</dt><dd>Marina Costa</dd></div><div><dt>NPS</dt><dd>8</dd></div></dl>
+  </div>
+  <div class="c-corpo">
+    <ul class="lc-atividade"><li class="lc-atividade__ev"><span class="lc-atividade__no"><i data-i="ligacao"></i></span><div class="lc-atividade__cartao"><div class="lc-atividade__cab"><b>Ligação com Marina</b><span class="lc-atividade__hora">19/09</span></div><div class="lc-atividade__corpo">Reclamou do prazo do balancete. Prometi até dia 10.</div></div></li></ul>
+  </div>
+</main>
+<div class="c-fundo" aria-hidden="true"></div>
+<section class="lc-folha" role="dialog" aria-modal="true" aria-labelledby="f-t">
+  <div class="lc-folha__alca" aria-hidden="true"></div>
+  <div class="lc-folha__cab"><h2 id="f-t">Registrar atividade</h2><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Fechar"><i data-i="fechar"></i></button></div>
+  <div class="lc-folha__corpo lc-pilha" style="padding:0 16px 12px">
+    <fieldset class="c-tipos" style="border:0;margin:0;padding:0"><legend class="lc-sr">Tipo</legend>
+      <label class="lc-escolha"><input type="radio" name="t" checked><i data-i="ligacao"></i>Ligação</label>
+      <label class="lc-escolha"><input type="radio" name="t"><i data-i="localizacao"></i>Visita</label>
+      <label class="lc-escolha"><input type="radio" name="t"><i data-i="reuniao"></i>Reunião</label>
+      <label class="lc-escolha"><input type="radio" name="t"><i data-i="comentario"></i>Nota</label></fieldset>
+    <div class="lc-campo"><label class="lc-rotulo" for="r">O que aconteceu</label><textarea id="r" class="lc-area-texto" rows="3">Visitei com Marina. Gostou do novo prazo do balancete. Quer proposta de portaria remota antes da renovação.</textarea></div>
+    <div class="lc-campo"><label class="lc-rotulo" for="s">Como ficou a saúde</label><div class="lc-seg lc-seg--bloco" role="group" aria-labelledby="s" id="s" data-seg><button type="button" aria-pressed="false">Piorou</button><button type="button" aria-pressed="false">Igual</button><button type="button" aria-pressed="true">Melhorou</button></div></div>
+    <div class="lc-campo"><label class="lc-rotulo" for="p">Próximo passo <span class="lc-obrig" aria-hidden="true">*</span></label><input id="p" class="lc-entrada" value="Enviar proposta de portaria remota"><div class="lc-entrada-grupo" style="margin-top:6px"><span class="lc-entrada-grupo__fixo">Até</span><input class="lc-entrada" type="date" value="2026-10-08" aria-label="Data do próximo passo"></div></div>
+  </div>
+  <div class="c-pe"><button class="lc-btn" type="button">Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-toast="Atividade registrada. Próximo passo em 08/10.">Registrar</button></div>
+</section>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p5-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p5.js"></script>
+</body>
+</html>

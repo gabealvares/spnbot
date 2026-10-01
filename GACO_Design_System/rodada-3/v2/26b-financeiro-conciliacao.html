@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Financeiro: conciliação e rateio</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q4.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q4-icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q4.js" defer></script>
+<style>
+.con-app{display:grid;grid-template-columns:320px minmax(0,1fr);min-height:620px;border-top:1px solid var(--cm-filete)}
+.con-fila{border-right:1px solid var(--cm-filete);background:var(--cm-camada-1);display:flex;flex-direction:column;min-width:0}
+.con-fila__cabeca{padding:10px 12px;border-bottom:1px solid var(--cm-filete)}
+.con-fila__corpo{overflow:auto;max-height:560px}
+.con-centro{padding:16px 20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.con-topo{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:6px 0 12px}
+.con-topo .cm-progresso{width:320px}
+.rat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:start;padding-top:8px}
+.rat .cm-form-secao{grid-template-columns:1fr;gap:10px;padding:14px 0}
+@media (max-width:1099px){ .con-app,.rat{grid-template-columns:minmax(0,1fr)} .con-fila{border-right:0;border-bottom:1px solid var(--cm-filete)} .con-fila__corpo{max-height:240px} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Financeiro","tela":"Conciliação","papel":"Financeiro","sino":4,"atalhos":[["Enter","confirmar"],["S","pular"],["B","buscar outro"],["N","criar lançamento"],["D","dividir"],["J","próximo"],["K","anterior"],["Ctrl Z","desfazer"]],"usuario":{"nome":"Renata Vasconcelos","iniciais":"RV","cargo":"Analista financeira","presenca":"disponivel","tom":3},"links":{"Contas a receber":"26-financeiro.html","Contas a pagar":"26-financeiro.html#t-pagar","Conciliação":"26b-financeiro-conciliacao.html","Extrato":"26d-financeiro-caixa.html","DRE":"26c-financeiro-prestacao.html#t-dre"}}'></div>
+
+<main id="conteudo" class="cm-doc">
+<header class="cm-doc-capa">
+  <div>
+    <h1>Financeiro: conciliação e rateio</h1>
+    <p>Duas telas de trabalho pesado: bater o extrato do banco com o que o GACO esperava, em fila e pelo teclado, e dividir uma despesa extra entre as 312 unidades antes de gerar as cobranças.</p>
+    <p class="cm-doc-paginas" style="margin-top:8px">Páginas do Financeiro: <a href="26-financeiro.html">Receber e pagar</a> <a href="26b-financeiro-conciliacao.html" aria-current="page">Conciliação e rateio</a> <a href="26c-financeiro-prestacao.html">Prestação de contas e DRE</a> <a href="26d-financeiro-caixa.html">Extrato, fluxo de caixa, notas e inadimplência</a></p>
+  </div>
+  <div data-cm-seletor></div>
+  <nav class="cm-doc-indice" aria-label="Telas desta página">
+    <a href="#t-conciliacao"><b>26.4</b>Conciliação em modo fila</a>
+    <a href="#t-rateio"><b>26.5</b>Rateio de despesa extra</a>
+  </nav>
+</header>
+
+<!-- ============================ 26.4 CONCILIAÇÃO ============================ -->
+<section class="cm-doc-tela" id="t-conciliacao" aria-labelledby="t-con-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">26.4</span><h2 class="cm-doc-tela__titulo" id="t-con-h">Conciliação bancária em modo fila</h2><span class="cm-doc-tela__sub">um lançamento por vez, Enter confirma, lote para os óbvios</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>No fim do mês a analista concilia 64 lançamentos do extrato de cada condomínio. O GACO já sugere o par (Pix da Marina Costa com o boleto do 1204); ela só confere e aperta Enter. Os casos difíceis (um Pix que paga dois boletos, uma tarifa sem lançamento) têm atalho próprio. No fim, o saldo do GACO bate com o do banco.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>Importa o OFX ou recebe o extrato pela integração; a fila abre no primeiro pendente.</li>
+      <li>À esquerda a fila; no centro o par sugerido com o que é igual e o que difere.</li>
+      <li><b>Enter</b> confirma e passa ao próximo; <b>S</b> pula; <b>B</b> busca outro lançamento; <b>N</b> cria (tarifa, rendimento); <b>D</b> divide um crédito entre cobranças.</li>
+      <li><b>Confirmar 12 de confiança alta</b> faz o lote, com a lista para revisar antes.</li>
+      <li>Cada confirmação tem Desfazer (Ctrl Z). A fila zerada mostra o saldo batido e libera o fechamento do mês.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Xero e o QuickBooks consagraram a conciliação "extrato à esquerda, lançamento à direita, OK no meio"; o Conta Azul e o Nibo trouxeram isso para o banco brasileiro com Pix e boleto; e o modo fila do próprio GACO (A3) já é o jeito de trabalhar volume com teclado. Os atalhos ficam no rodapé, como no Suporte.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__barra"><span>Estado:</span>
+      <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela">
+        <button type="button" aria-pressed="true" data-estado="dados">Na fila</button><button type="button" aria-pressed="false" data-estado="vazio">Fila zerada</button><button type="button" aria-pressed="false" data-estado="erro">Saldo não bate</button>
+      </div></div>
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina">
+        <div class="cm-cabecalho-pagina__linha">
+          <h1 class="cm-cabecalho-pagina__titulo">Conciliação</h1>
+          <div class="cm-cabecalho-pagina__acoes">
+            <button class="cm-gatilho" type="button" style="width:auto" aria-label="Conta bancária"><i data-i="banco"></i><span class="cm-gatilho__valor">Banco do Brasil, ag. 3214-0, c/c 45.120-7</span><i data-i="chevron-baixo"></i></button>
+            <button class="cm-botao" type="button"><i data-i="importar"></i>Importar OFX</button>
+            <button class="cm-botao cm-botao--principal" type="button" data-abrir="modal-lote"><i data-i="selecionar-varios"></i>Confirmar 12 de confiança alta</button>
+          </div>
+        </div>
+        <p class="cm-cabecalho-pagina__desc">Cond. Parque das Águas, extrato de setembro de 2026. Saldo no banco em 30/09: R$ 175.418,64.</p>
+      </header>
+
+      <div data-estado-painel="dados">
+      <div class="con-topo">
+        <div class="cm-progresso cm-progresso--sucesso"><span class="cm-progresso__barra"><i id="con-barra" style="--p:59%"></i></span><span class="cm-progresso__valor" id="con-prog">38 de 64 conciliados</span></div>
+        <span class="cm-t-legenda" id="con-falta">Faltam 26: 12 com confiança alta, 9 com sugestão fraca, 5 sem sugestão.</span>
+      </div>
+      <div class="con-app">
+        <aside class="con-fila" aria-label="Fila do extrato">
+          <div class="con-fila__cabeca"><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Mostrar"><button type="button" aria-pressed="true">Pendentes 26</button><button type="button" aria-pressed="false">Conciliados 38</button><button type="button" aria-pressed="false">Todos</button></div></div>
+          <ul class="cm-fila-lista con-fila__corpo" id="con-lista" role="listbox" aria-label="Lançamentos do extrato pendentes"></ul>
+        </aside>
+        <div class="con-centro" id="con-centro" aria-live="polite"></div>
+      </div>
+      </div>
+
+      <div data-estado-painel="vazio" hidden>
+        <div class="cm-vazio"><i data-i="sucesso"></i><p class="cm-vazio__titulo">Setembro conciliado</p><p class="cm-vazio__texto">Os 64 lançamentos do extrato têm par no GACO. O saldo do GACO em 30/09, R$ 175.418,64, é igual ao do Banco do Brasil. Você pode fechar o mês e gerar a prestação de contas.</p><div class="cm-vazio__acoes"><a class="cm-botao cm-botao--principal" href="26c-financeiro-prestacao.html">Fechar setembro e gerar a prestação de contas</a><button class="cm-botao" type="button">Ver conciliados</button></div></div>
+      </div>
+      <div data-estado-painel="erro" hidden>
+        <div class="cm-alerta cm-alerta--perigo" style="margin:8px 0 12px"><i data-i="perigo"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">O saldo não bate: diferença de R$ 650,00</span><span class="cm-alerta__desc">Banco em 30/09: R$ 175.418,64. GACO em 30/09: R$ 174.768,64. Todos os lançamentos do extrato têm par, então a diferença está em um lançamento do GACO sem par no banco.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p cm-botao--principal" type="button">Ver lançamentos sem par</button></span></div>
+        <div class="cm-tabela-caixa"><table class="cm-tabela"><caption class="cm-sr">Lançamentos do GACO sem par no extrato</caption><thead><tr><th>Data</th><th>Lançamento do GACO</th><th class="cm-num">Valor</th><th>Provável causa</th><th class="cm-tabela__acoes"><span class="cm-sr">Ações</span></th></tr></thead><tbody>
+          <tr><td>28/09</td><td class="cm-tabela__principal"><a href="#">Hidrotec Instalações, aditivo do reparo</a><span class="cm-tabela__sub">lançado por Renata Vasconcelos</span></td><td class="cm-num">-R$ 650,00</td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Lançado como pago, ainda não saiu do banco</span></td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--p" type="button" style="opacity:1">Voltar para a pagar</button></td></tr>
+        </tbody></table></div>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Conta bancária, Importar OFX, Confirmar em lote</li><li>Mostrar pendentes ou conciliados</li><li>Fila (setas para cima e para baixo)</li><li>Par sugerido: Confirmar, Pular, Buscar outro, Criar, Dividir</li><li>Outras sugestões (setas)</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Fila como lista de opções: "Crédito de R$ 1.284,90, 30/09, Pix de Marina C Costa, 1 de 26".</li><li>Centro é região viva educada: ao confirmar, "Conciliado. Próximo: tarifa de cobrança, R$ 87,40".</li><li>Confiança: "confiança 98%, valor, data e nome iguais".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Seta do meio: "corresponde a"</li><li>Tique da fila: "conciliado"</li></ul></div>
+  </div>
+</section>
+
+<div class="cm-sobreposicao" id="modal-lote" data-janela hidden>
+  <div class="cm-modal cm-modal--g" role="dialog" aria-modal="true" aria-labelledby="mlote-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mlote-t">Confirmar 12 pares de confiança alta?<span class="cm-modal__sub">Valor, data e pagador iguais. Desmarque o que quiser conferir um por um.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo">
+      <div class="cm-tabela-caixa cm-tabela-caixa--alta" style="--tabela-altura:320px"><table class="cm-tabela"><caption class="cm-sr">Pares a confirmar em lote</caption><thead><tr><th class="cm-tabela__marcar"><span class="cm-sr">Incluir</span></th><th>Extrato</th><th>Lançamento do GACO</th><th class="cm-num">Valor</th></tr></thead><tbody id="lote-corpo"></tbody>
+      <tfoot><tr><td></td><td colspan="2" id="lote-n">12 pares</td><td class="cm-num"><span class="cm-total-duplo" id="lote-soma"></span></td></tr></tfoot></table></div>
+    </div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-fechar data-toast="12 pares conciliados. Faltam 14." data-toast-acao="Desfazer">Confirmar os marcados</button></div>
+  </div>
+</div>
+
+<!-- ============================ 26.5 RATEIO ============================ -->
+<section class="cm-doc-tela" id="t-rateio" aria-labelledby="t-rat-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">26.5</span><h2 class="cm-doc-tela__titulo" id="t-rat-h">Rateio de despesa extra entre unidades</h2><span class="cm-doc-tela__sub">critério, parcelas e prévia ao vivo antes de gerar</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>A assembleia aprovou trocar a bomba de recalque do Bloco C por R$ 18.600,00 em 3 vezes. A analista escolhe o critério (fração ideal, igual para todos, só um bloco), vê na hora quanto cada unidade paga, confere que a soma fecha no centavo e só então gera as cobranças, que entram nos boletos de novembro a janeiro.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>Entra por Contas a receber, Mais ações, "Lançar rateio extra", ou pela ata da assembleia.</li>
+      <li>Preenche a despesa à esquerda; a prévia à direita recalcula a cada mudança.</li>
+      <li>Ao mudar qualquer campo aparece a <b>barra de salvar</b> com "Salvar ▾": salvar rascunho, ou gerar as cobranças.</li>
+      <li>Gerar pede confirmação com o total e as competências; depois o rateio fica só leitura e ligado à ata.</li>
+      <li>"Voltar" leva a Contas a receber, na visão em que estava.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Superlógica e o Condomínio21 calculam rateio por fração ideal com prévia por unidade; a planilha que as analistas usam hoje mostra a soma conferindo no rodapé, e isso dá segurança; e a Lei do Inquilinato (art. 22) manda a despesa extraordinária para o proprietário, então a tela pergunta isso em vez de deixar para depois.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" data-form data-barra="barra-rateio">
+      <header class="cm-cabecalho-pagina">
+        <div class="cm-cabecalho-pagina__linha">
+          <h1 class="cm-cabecalho-pagina__titulo">Novo rateio extra</h1>
+          <span class="cm-estado cm-estado--neutro"><i data-i="rascunho"></i>Rascunho</span>
+        </div>
+        <p class="cm-cabecalho-pagina__desc">Cond. Parque das Águas, 312 unidades. Vinculado à ata da AGE de 22/09/2026, item 3.</p>
+      </header>
+      <div class="rat">
+        <div>
+          <section class="cm-form-secao">
+            <div><h2 class="cm-form-secao__titulo">Despesa</h2></div>
+            <div class="cm-form-secao__campos">
+              <div class="cm-campo cm-col-4"><label class="cm-campo__rotulo" for="rat-desc">Descrição no boleto</label><div class="cm-entrada"><input id="rat-desc" value="Troca da bomba de recalque do Bloco C"></div><p class="cm-campo__ajuda">Aparece assim na composição do boleto e no portal.</p></div>
+              <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="rat-valor">Valor total</label><div class="cm-entrada cm-entrada--moeda"><span class="cm-entrada__prefixo">R$</span><input id="rat-valor" inputmode="decimal" value="18.600,00"></div></div>
+              <div class="cm-campo cm-col-3"><label class="cm-campo__rotulo" for="rat-cc">Categoria</label><div class="cm-selecao"><select id="rat-cc"><option selected>Obras e benfeitorias</option><option>Fundo de obras</option><option>Despesa jurídica</option></select><i data-i="chevron-baixo"></i></div></div>
+              <div class="cm-campo cm-col-3"><span class="cm-campo__rotulo">Documento</span><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="ata"></i></span><span><span class="cm-anexo__nome">ata-age-22-09-2026.pdf</span><span class="cm-anexo__meta">item 3, aprovado por 41 de 58 presentes</span></span><span></span></div></div>
+            </div>
+          </section>
+          <section class="cm-form-secao">
+            <div><h2 class="cm-form-secao__titulo">Critério</h2></div>
+            <div class="cm-form-secao__campos">
+              <fieldset class="cm-grupo-opcoes cm-col-6" id="rat-criterio"><legend>Como dividir</legend>
+                <label class="cm-radio"><input type="radio" name="crit" value="fracao" checked><span class="cm-radio__bola"></span><span>Pela fração ideal<span class="cm-marcar__desc">o que a convenção manda, art. 12. Apartamento de 3 dormitórios: 0,3205%</span></span></label>
+                <label class="cm-radio"><input type="radio" name="crit" value="igual"><span class="cm-radio__bola"></span><span>Igual para todas as unidades<span class="cm-marcar__desc">312 partes iguais</span></span></label>
+                <label class="cm-radio"><input type="radio" name="crit" value="blococ"><span class="cm-radio__bola"></span><span>Só as unidades do Bloco C<span class="cm-marcar__desc">78 unidades, pela fração ideal dentro do bloco</span></span></label>
+              </fieldset>
+              <div class="cm-campo cm-col-2"><label class="cm-campo__rotulo" for="rat-parc">Parcelas</label><div class="cm-entrada cm-entrada--numero"><input id="rat-parc" value="3" inputmode="numeric"><span class="cm-entrada__passo"><button type="button" aria-label="Aumentar parcelas" data-passo="1"><i data-i="chevron-cima"></i></button><button type="button" aria-label="Diminuir parcelas" data-passo="-1"><i data-i="chevron-baixo"></i></button></span></div></div>
+              <div class="cm-campo cm-col-4"><label class="cm-campo__rotulo" for="rat-inicio">Primeira parcela no boleto de</label><div class="cm-selecao"><select id="rat-inicio"><option>Outubro de 2026 (já gerado, gera boleto avulso)</option><option selected>Novembro de 2026</option><option>Dezembro de 2026</option></select><i data-i="chevron-baixo"></i></div></div>
+              <label class="cm-interruptor cm-col-6"><input type="checkbox" role="switch" checked id="rat-prop"><span class="cm-interruptor__trilho"></span><span>Cobrar do proprietário<span class="cm-marcar__desc">Despesa extraordinária, Lei do Inquilinato art. 22. Em 37 unidades alugadas o boleto vai para o proprietário, não para o inquilino.</span></span></label>
+            </div>
+          </section>
+          <div class="cm-alerta cm-alerta--info"><i data-i="informacao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">4 unidades em acordo recebem o rateio à parte</span><span class="cm-alerta__desc">Bl A Ap 202, Bl C Ap 704, Bl D Ap 311 e Bl D Ap 1402. O acordo não muda; a parcela do rateio vem num boleto separado.</span></span></div>
+        </div>
+
+        <div class="cm-cartao" aria-labelledby="rat-prev-t">
+          <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="rat-prev-t">Prévia por unidade</h2><span class="cm-t-legenda" id="rat-quando">recalculada agora</span></header>
+          <div class="cm-cartao__corpo">
+            <div class="cm-rateio-regua" id="rat-regua" aria-hidden="true"></div>
+            <dl class="cm-rateio-resumo" id="rat-resumo"></dl>
+            <div class="cm-tabela-caixa cm-tabela-caixa--alta" style="--tabela-altura:380px"><table class="cm-tabela" id="rat-tab"><caption class="cm-sr">Valor do rateio por unidade</caption><thead><tr><th>Unidade</th><th class="cm-num">Fração</th><th class="cm-num">Total da unidade</th><th class="cm-num">Por parcela</th></tr></thead><tbody></tbody><tfoot><tr><td>Soma</td><td class="cm-num" id="rat-tf"></td><td class="cm-num"><span class="cm-total-duplo" id="rat-tt"></span></td><td class="cm-num" id="rat-tp"></td></tr></tfoot></table></div>
+            <p class="cm-t-legenda" style="margin-top:6px" id="rat-arred"></p>
+          </div>
+        </div>
+      </div>
+      <div class="cm-barra-salvar" id="barra-rateio" role="region" aria-label="Alterações não salvas" hidden>
+        <div class="cm-barra-salvar__msg"><b data-contagem>1 alteração não salva</b><span data-campos></span></div>
+        <button class="cm-botao cm-botao--discreto" type="button" data-descartar>Descartar</button>
+        <span class="cm-ancora cm-ancora--direita cm-ancora--cima"><div class="cm-dividido">
+          <button class="cm-botao cm-botao--principal" type="button" data-salvar="Rascunho do rateio salvo.">Salvar <span class="cm-dividido__lembra">rascunho</span></button>
+          <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de salvar" data-menu="m-sal-rat"><i data-i="chevron-baixo"></i></button></div>
+          <div class="cm-menu cm-flutuante" role="menu" id="m-sal-rat" hidden style="width:300px">
+            <button class="cm-menu__item" role="menuitemradio" aria-checked="true" type="button" data-lembra="rascunho"><i data-i="salvar"></i><span>Salvar rascunho</span><span class="cm-menu__atalho">Ctrl S</span></button>
+            <button class="cm-menu__item" role="menuitem" type="button" data-abrir="modal-gerar"><i data-i="boleto"></i><span>Salvar e gerar as cobranças…<span class="cm-menu__desc">936 parcelas em 3 competências</span></span><span></span></button>
+            <button class="cm-menu__item" role="menuitemradio" aria-checked="false" type="button" data-lembra="e voltar"><i data-i="voltar"></i><span>Salvar e voltar a Contas a receber</span><span></span></button>
+          </div></span>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Descrição, valor, categoria</li><li>Critério (setas entre as opções), parcelas, primeira parcela</li><li>Cobrar do proprietário</li><li>Prévia (só leitura, a tabela rola)</li><li>Barra de salvar: Descartar, Salvar, menu</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Prévia em região viva: "Soma R$ 18.600,00, confere com o valor total".</li><li>Barra de salvar: "Alterações não salvas, 2 alterações: Parcelas, Como dividir".</li><li>Interruptor: "Cobrar do proprietário, ligado".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Setas de parcelas: "Aumentar parcelas", "Diminuir parcelas"</li><li>Seta do Salvar: "Outras formas de salvar"</li></ul></div>
+  </div>
+</section>
+
+<div class="cm-sobreposicao" id="modal-gerar" data-janela hidden>
+  <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="mger-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mger-t">Gerar 936 parcelas do rateio?<span class="cm-modal__sub">R$ 18.600,00 em 3 vezes, nos boletos de novembro, dezembro e janeiro.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo"><p>Depois de gerado, o rateio fica só leitura. Para mudar, é preciso cancelar as parcelas que ainda não venceram.</p><label class="cm-marcar" style="margin-top:12px"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Avisar os condôminos no portal e por WhatsApp<span class="cm-marcar__desc">"Rateio aprovado na AGE de 22/09: troca da bomba do Bloco C, 3 parcelas a partir de novembro"</span></span></label></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-fechar>Voltar</button><button class="cm-botao cm-botao--principal" type="button" data-fechar data-toast="Rateio gerado: 936 parcelas. Condôminos avisados.">Gerar parcelas</button></div>
+  </div>
+</div>
+</main>
+
+<script>
+(function(){
+function brl(v){var n=v<0;v=Math.abs(v);return (n?'-':'')+'R$ '+v.toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'.')}
+/* ---------- 26.4 fila ---------- */
+var F=[
+ {d:'30/09',h:'PIX RECEBIDO MARINA C COSTA',v:1284.90,c:98,g:'Cobrança Bl B Ap 1204, outubro',gv:1284.90,gd:'venc. 10/10',pag:'Marina Costa',id:'E00000000202609301412MC',dif:[]},
+ {d:'30/09',h:'TAR COBRANCA REGISTRADA 87 TIT',v:-87.40,c:0,g:'',gv:0,id:'TARIFA',dif:[]},
+ {d:'30/09',h:'PIX RECEBIDO JOANA BATISTA',v:2569.80,c:71,g:'Cobrança Bl B Ap 1304, outubro',gv:1284.90,gd:'venc. 10/10',pag:'Joana e Luís Batista',id:'E0000000020260930JB',dif:['valor']},
+ {d:'29/09',h:'LIQUIDACAO BOLETO 00218.4462-5',v:1064.30,c:99,g:'Cobrança Bl A Ap 103, outubro',gv:1064.30,gd:'venc. 10/10',pag:'Paulo e Cláudia Menezes',id:'00218.4462-5',dif:[]},
+ {d:'29/09',h:'TED ENVIADA ELEV ATLAS SCHINDLER',v:-2316.40,c:96,g:'Elevadores Atlas Schindler, setembro',gv:-2316.40,gd:'venc. 05/09',pag:'Atlas Schindler',id:'TED 881203',dif:['data']},
+ {d:'28/09',h:'LIQUIDACAO BOLETO 00218.4470-6',v:1284.90,c:99,g:'Cobrança Bl B Ap 1203, outubro',gv:1284.90,gd:'venc. 10/10',pag:'Igor Valente',id:'00218.4470-6',dif:[]},
+ {d:'28/09',h:'RENDIMENTO APLIC AUTOMATICA',v:1312.66,c:0,g:'',gv:0,id:'REND',dif:[]},
+ {d:'27/09',h:'PAGTO CONTA AGUA SABESP',v:-17902.10,c:93,g:'Sabesp, água e esgoto de agosto',gv:-17902.10,gd:'venc. 27/09',pag:'Sabesp',id:'DEB 0938',dif:[]}
+];
+var atual=0,feitos=38,total=64;
+var lista=document.getElementById('con-lista'),centro=document.getElementById('con-centro');
+function desenharLista(){lista.innerHTML=F.map(function(f,i){return '<li role="option" tabindex="'+(i===atual?0:-1)+'" aria-selected="'+(i===atual)+'" class="'+(i===atual?'is-atual':'')+(f.ok?' is-feito':'')+'" data-i="'+i+'">'+(f.ok?'<i data-i="sucesso" data-rotulo="conciliado"></i>':'<i data-i="'+(f.v<0?'seta-diagonal-baixo':'seta-diagonal-cima')+'"></i>')+'<span><span style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+f.h+'</span><span class="cm-t-legenda">'+f.d+(f.c?', confiança '+f.c+'%':', sem sugestão')+'</span></span><span class="cm-num">'+brl(f.v)+'</span></li>'}).join('')}
+function conf(c){return '<span class="cm-confianca"><span class="cm-confianca__barra"><i style="--v:'+c+'%"></i></span>'+c+'%</span>'}
+function desenharCentro(){var f=F[atual];
+  var temPar=!!f.g;
+  var igualValor=Math.abs(f.v-f.gv)<0.01;
+  centro.innerHTML=
+  '<div class="cm-linha cm-linha--quebra" style="justify-content:space-between"><h2 class="cm-t-secao">'+(atual+1)+' de '+F.length+' na fila</h2><span class="cm-navegar-registro"><button class="cm-botao cm-botao--discreto cm-botao--p cm-botao--icone" type="button" aria-label="Anterior (K)" data-mover="-1"><i data-i="chevron-cima"></i></button><button class="cm-botao cm-botao--discreto cm-botao--p cm-botao--icone" type="button" aria-label="Próximo (J)" data-mover="1"><i data-i="chevron-baixo"></i></button></span></div>'+
+  '<div class="cm-concilia">'+
+   '<div class="cm-concilia__lado"><h3><i data-i="banco"></i>No extrato do banco</h3><div class="cm-concilia__valor">'+brl(f.v)+'</div><dl><dt>Data</dt><dd>'+f.d+'/2026</dd><dt>Histórico</dt><dd>'+f.h+'</dd><dt>Identificador</dt><dd>'+f.id+'</dd></dl></div>'+
+   '<div class="cm-concilia__meio">'+(temPar?'<i data-i="vincular" data-rotulo="corresponde a"></i>'+conf(f.c):'<i data-i="ajuda" data-rotulo="sem par"></i>sem par')+'</div>'+
+   (temPar?'<div class="cm-concilia__lado"><h3><i data-i="'+(f.v<0?'recibo':'boleto')+'"></i>Sugestão do GACO</h3><div class="cm-concilia__valor">'+brl(f.gv)+'</div><dl><dt>Lançamento</dt><dd><a class="cm-link" href="26-financeiro.html#t-cobranca">'+f.g+'</a></dd><dt>Valor</dt><dd class="'+(igualValor?'is-igual':'is-diferente')+'">'+(igualValor?brl(f.gv):'esperado '+brl(f.gv)+', veio '+brl(f.v))+'</dd><dt>Data</dt><dd class="'+(f.dif.indexOf('data')<0?'is-igual':'is-diferente')+'">'+f.gd+'</dd><dt>Pagador</dt><dd class="is-igual">'+f.pag+'</dd></dl></div>'
+   :'<div class="cm-concilia__lado"><h3><i data-i="adicionar"></i>Sem lançamento no GACO</h3><p class="cm-texto-2" style="font-size:13px">'+(f.v<0?'Parece tarifa bancária. Crie o lançamento em "Tarifas bancárias", centro de custo Administrativo.':'Parece rendimento da aplicação automática. Crie o lançamento em "Receitas financeiras".')+'</p></div>')+
+   (f.dif.indexOf('valor')>=0?'<div class="cm-concilia__sugestoes"><div class="cm-alerta cm-alerta--aviso" style="border:0;border-bottom:1px solid var(--cm-filete)"><i data-i="atencao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Atenção: o crédito é o dobro do boleto</span><span class="cm-alerta__desc">Joana Batista pagou outubro e novembro juntos? Divida o crédito (D) entre as duas cobranças.</span></span></div></div>':'')+
+   '<div class="cm-concilia__sugestoes" role="group" aria-label="Outras sugestões">'+(temPar?
+     '<button class="cm-concilia__sugestao" type="button" aria-pressed="true"><i data-i="sucesso"></i><span>'+f.g+'</span><span class="cm-t-valor">'+brl(f.gv)+'</span>'+conf(f.c)+'</button>'+
+     '<button class="cm-concilia__sugestao" type="button" aria-pressed="false"><i data-i="boleto"></i><span>'+(f.v>0?'Acordo Bl A Ap 202, parcela 3 de 6':'Hidrotec Instalações, reparo')+'</span><span class="cm-t-valor">'+(f.v>0?'R$ 1.301,40':'-R$ 7.850,00')+'</span>'+conf(22)+'</button>'
+     :'')+'</div>'+
+   '<div class="cm-concilia__acoes">'+
+     (temPar?'<button class="cm-botao cm-botao--principal" type="button" data-acao-con="ok"><i data-i="sucesso"></i>Confirmar <kbd class="cm-tecla">Enter</kbd></button>':'<button class="cm-botao cm-botao--principal" type="button" data-acao-con="criar"><i data-i="adicionar"></i>Criar lançamento <kbd class="cm-tecla">N</kbd></button>')+
+     '<button class="cm-botao" type="button" data-acao-con="pular">Pular <kbd class="cm-tecla">S</kbd></button>'+
+     '<button class="cm-botao" type="button" data-acao-con="buscar"><i data-i="pesquisar"></i>Buscar outro <kbd class="cm-tecla">B</kbd></button>'+
+     (temPar?'<button class="cm-botao" type="button" data-acao-con="dividir"><i data-i="dividir"></i>Dividir <kbd class="cm-tecla">D</kbd></button>':'')+
+     '<span class="cm-empurra cm-t-legenda">Confirmado entra na prestação de contas de setembro</span></div>'+
+  '</div>';
+}
+function prog(){document.getElementById('con-prog').textContent=feitos+' de '+total+' conciliados';document.getElementById('con-barra').style.setProperty('--p',Math.round(feitos/total*100)+'%')}
+function proximo(){for(var k=1;k<=F.length;k++){var n=(atual+k)%F.length;if(!F[n].ok){atual=n;break}}desenharLista();desenharCentro()}
+function confirmar(){var f=F[atual];if(f.ok) return;f.ok=true;feitos++;prog();var t=f.h;proximo();window.qToast&&qToast('Conciliado: '+t+'. Próximo: '+F[atual].h.toLowerCase()+'.','sucesso','Desfazer')}
+function acao(a){if(a==='ok'||a==='criar') confirmar();else if(a==='pular'){proximo()}else if(a==='buscar'){qToast('Busca de lançamentos aberta: digite valor, unidade ou fornecedor.','info')}else if(a==='dividir'){qToast('Divisão: escolha as cobranças que somam '+brl(F[atual].v)+'.','info')}}
+centro.addEventListener('click',function(e){var b=e.target.closest('[data-acao-con]');if(b) acao(b.getAttribute('data-acao-con'));var m=e.target.closest('[data-mover]');if(m){atual=(atual+(+m.getAttribute('data-mover'))+F.length)%F.length;desenharLista();desenharCentro()}
+  var s=e.target.closest('.cm-concilia__sugestao');if(s){[].forEach.call(centro.querySelectorAll('.cm-concilia__sugestao'),function(x){x.setAttribute('aria-pressed',x===s)})}});
+lista.addEventListener('click',function(e){var li=e.target.closest('li[data-i]');if(!li) return;atual=+li.getAttribute('data-i');desenharLista();desenharCentro()});
+document.addEventListener('keydown',function(e){
+  if(document.getElementById('t-conciliacao').querySelector('[data-estado-painel="dados"]').hidden) return;
+  var tag=(e.target.tagName||'').toLowerCase();if(tag==='input'||tag==='textarea'||tag==='select'||e.target.isContentEditable) return;
+  if(document.querySelector('[data-janela]:not([hidden])')) return;
+  var r=document.getElementById('t-conciliacao').getBoundingClientRect();if(r.bottom<0||r.top>innerHeight) return;
+  var k=e.key.toLowerCase();
+  if(e.key==='Enter'&&!e.target.closest('button,a')){e.preventDefault();acao(F[atual].g?'ok':'criar')}
+  else if(k==='s'){acao('pular')}else if(k==='b'){acao('buscar')}else if(k==='n'){acao('criar')}else if(k==='d'){acao('dividir')}
+  else if(k==='j'){atual=(atual+1)%F.length;desenharLista();desenharCentro()}else if(k==='k'){atual=(atual-1+F.length)%F.length;desenharLista();desenharCentro()}
+});
+desenharLista();desenharCentro();prog();
+/* lote */
+var L=[['PIX MARINA C COSTA','Bl B Ap 1204, outubro',1284.90],['LIQ BOLETO 00218.4462-5','Bl A Ap 103, outubro',1064.30],['LIQ BOLETO 00218.4470-6','Bl B Ap 1203, outubro',1284.90],['PIX FABIO NAKAMURA','Bl A Ap 201, outubro',1284.90],['LIQ BOLETO 00218.4481-0','Bl C Ap 302, outubro',1284.90],['PIX DENISE COUTO','Bl B Ap 1301, outubro',1284.90],['DEB AUT SONIA ALBUQUERQUE','Bl A Ap 104, outubro',1064.30],['LIQ BOLETO 00218.4490-9','Bl D Ap 1102, outubro',1284.90],['PAGTO CONTA AGUA SABESP','Sabesp, agosto',-17902.10],['PAGTO ENEL SP','Enel, energia das áreas comuns',-6118.37],['PIX EDUARDO SIQUEIRA','Bl A Ap 1501, outubro',1596.40],['LIQ BOLETO 00218.4495-0','Bl D Ap 1504, outubro',1596.40]];
+var s=0;document.getElementById('lote-corpo').innerHTML=L.map(function(l){s+=l[2];return '<tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" checked aria-label="Incluir '+l[0]+'"><span class="cm-marcar__caixa"></span></label></td><td>'+l[0]+'</td><td>'+l[1]+'</td><td class="cm-num">'+brl(l[2])+'</td></tr>'}).join('');
+document.getElementById('lote-soma').textContent=brl(s);
+
+/* ---------- 26.5 rateio ---------- */
+var BL={A:{n:78,p:25.0},B:{n:78,p:25.0},C:{n:78,p:26.2},D:{n:78,p:23.8}};
+var AM=[['A','Bl A Ap 101',0.2814],['A','Bl A Ap 201',0.3205],['A','Bl A Ap 1501',0.4510],['B','Bl B Ap 1204',0.3205],['C','Bl C Ap 302',0.3205],['C','Bl C Ap 1502',0.4510],['D','Bl D Ap 1102',0.2814]];
+function num(v){return parseFloat(String(v).replace(/\./g,'').replace(',','.'))||0}
+function recalc(){
+  var V=num(document.getElementById('rat-valor').value),P=Math.max(1,parseInt(document.getElementById('rat-parc').value,10)||1);
+  var crit=document.querySelector('input[name="crit"]:checked').value;
+  var regua='',res='',linhas='',grupoAt='';
+  var cores={A:'var(--cm-grafico-2)',B:'var(--cm-grafico-3)',C:'var(--cm-grafico-4)',D:'var(--cm-grafico-5)'};
+  Object.keys(BL).forEach(function(b){var pct=crit==='igual'?25:crit==='blococ'?(b==='C'?100:0):BL[b].p;if(pct>0) regua+='<span style="--c:'+cores[b]+';width:'+pct+'%">Bloco '+b+' '+brl(V*pct/100)+'</span>'});
+  var n=crit==='blococ'?78:312;
+  AM.forEach(function(a){if(crit==='blococ'&&a[0]!=='C') return;
+    var fr=crit==='igual'?100/312:crit==='blococ'?a[2]/0.262:a[2];
+    var t=Math.floor(V*fr/100*100)/100;
+    if(a[0]!==grupoAt){grupoAt=a[0];linhas+='<tr class="cm-tabela__grupo"><td colspan="4"><button type="button" aria-expanded="true"><i data-i="chevron-baixo"></i>Bloco '+a[0]+'</button><span class="cm-tabela__grupo-soma">'+BL[a[0]].n+' unidades, '+brl(V*(crit==='igual'?25:crit==='blococ'?100:BL[a[0]].p)/100)+'</span></td></tr>'}
+    linhas+='<tr><td class="cm-tabela__principal">'+a[1]+'</td><td class="cm-num">'+(fr).toFixed(4).replace('.',',')+'%</td><td class="cm-num">'+brl(t)+'</td><td class="cm-num">'+brl(Math.floor(t/P*100)/100)+'</td></tr>'});
+  var arred=crit==='igual'?(V-Math.floor(V/312*100)/100*312):0.04;
+  res='<div><dt>Unidades</dt><dd>'+n+'</dd></div><div><dt>Parcelas</dt><dd>'+P+' de '+brl(V/P)+'</dd></div><div><dt>Competências</dt><dd>'+(['nov/26','nov/26 a dez/26','nov/26 a jan/27','nov/26 a fev/27','nov/26 a mar/27','nov/26 a abr/27'][Math.min(P,6)-1])+'</dd></div><div><dt>Soma</dt><dd>'+brl(V)+', confere</dd></div>';
+  document.getElementById('rat-regua').innerHTML=regua;document.getElementById('rat-resumo').innerHTML=res;
+  document.querySelector('#rat-tab tbody').innerHTML=linhas+'<tr><td colspan="4" class="cm-texto-2" style="font-size:12px">Mais '+(n-AM.length)+' unidades. A tabela completa vai para o anexo do boleto.</td></tr>';
+  document.getElementById('rat-tf').textContent=crit==='blococ'?'100% do bloco':'100,0000%';
+  document.getElementById('rat-tt').textContent=brl(V);document.getElementById('rat-tp').textContent=brl(V/P);
+  document.getElementById('rat-arred').textContent='Arredondamento: as unidades pagam o valor cortado no centavo; a diferença de '+brl(Math.abs(arred))+' vai para a primeira parcela da Bl A Ap 101, como manda a regra do condomínio.';
+}
+document.getElementById('t-rateio').addEventListener('input',recalc);document.getElementById('t-rateio').addEventListener('change',recalc);
+document.querySelectorAll('[data-passo]').forEach(function(b){b.addEventListener('click',function(){var i=document.getElementById('rat-parc');i.value=Math.max(1,Math.min(12,(parseInt(i.value,10)||1)+(+b.getAttribute('data-passo'))));i.dispatchEvent(new Event('input',{bubbles:true}))})});
+recalc();
+/* mostra a barra de salvar com uma alteração de demonstração */
+setTimeout(function(){var i=document.getElementById('rat-parc');i.value='3';var r=document.querySelector('input[name="crit"][value="fracao"]');var d=document.getElementById('rat-desc');d.value='Troca da bomba de recalque do Bloco C, AGE 22/09';d.dispatchEvent(new Event('input',{bubbles:true}))},200);
+})();
+</script>
+</body>
+</html>

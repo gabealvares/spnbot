@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Negócios, quadro</title>
+<script src="../sistema/marca.js"></script>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-q2.css">
+<script src="../sistema/icones.js"></script>
+<script src="links.js"></script>
+<script src="../sistema/moldura.js" defer></script>
+<script src="../sistema/extra-q2.js" defer></script>
+<style>
+.qd{display:flex;flex-direction:column;height:calc(100dvh - var(--cm-moldura-altura,93px) - var(--cm-trilha-altura,0px) - var(--cm-rodape-altura,0px))}
+.qd-topo{padding:0 var(--cm-grade-margem)}
+.qd .cm-kanban{flex:1;min-height:0;overflow-x:auto;padding:0 var(--cm-grade-margem) 12px}
+.qd .cm-kanban__coluna{flex:1 1 0;width:auto;min-width:236px}
+.qd .cm-kanban-cartao:focus-visible{outline:2px solid var(--cm-foco);outline-offset:1px}
+@media (max-width:899px){.qd{height:auto}.qd-topo{padding:0 12px}.qd .cm-kanban{padding:0 12px 12px}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Comercial","tela":"Negócios","papel":"Comercial","atalhos":[["J","próximo cartão"],["K","anterior"],["H","coluna à esquerda"],["L","coluna à direita"],["M","mover para…"],["Enter","abrir"],["?","todos"]],"usuario":{"nome":"Marcos Vieira","iniciais":"MV","cargo":"Vendedor","presenca":"disponivel","tom":1}}'></div>
+<main id="conteudo" class="qd">
+  <div class="qd-topo">
+    <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Negócios</h1>
+      <div class="cm-cabecalho-pagina__acoes"><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Visão"><button type="button" aria-pressed="false" onclick="location.href='listagem-densa.html'"><i data-i="lista"></i>Lista</button><button type="button" aria-pressed="true"><i data-i="quadro-kanban"></i>Quadro</button></div><button class="cm-botao cm-botao--principal" type="button" data-q2-toast="Novo negócio: painel de criação rápida aberto.|info"><i data-i="adicionar"></i>Novo negócio</button></div></div>
+      <div class="cm-filtros"><button class="cm-filtro is-ativo" type="button">Dono: <b>Marcos Vieira</b><i data-i="chevron-baixo"></i></button><button class="cm-filtro" type="button">Funil: <b>Administradoras</b><i data-i="chevron-baixo"></i></button><button class="cm-filtro" type="button"><i data-i="atencao"></i>Só parados</button><span class="cm-empurra cm-t-legenda">R$ 61.900,00 por mês em aberto, 14 negócios</span></div>
+    </header>
+  </div>
+  <div class="cm-kanban" id="qd-k"></div>
+</main>
+<div class="cm-sobreposicao" id="modal-mover" hidden>
+  <div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="mv-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mv-t">Mover para…<span class="cm-modal__sub" id="mv-sub"></span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-q2-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo"><div class="cm-pilha" id="mv-ops" role="radiogroup" aria-label="Etapa"></div></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" id="mv-ok">Mover</button></div>
+  </div>
+</div>
+<script>
+(function(){
+  var COL=['Qualificação','Demonstração','Proposta','Negociação','Fechamento'];
+  var N=[[0,'Adm. Litoral Paranaense','R$ 2.900,00 por mês',3,'MV'],[0,'Síndico profissional Carlos Bento','R$ 980,00 por mês',1,'MV'],[0,'Adm. Curitiba Norte','R$ 5.600,00 por mês',9,'MV'],
+    [1,'Adm. Horizonte','R$ 6.200,00 por mês',4,'MV'],[1,'Cond. Alphaville Graciosa','R$ 1.450,00 por mês',16,'MV'],
+    [2,'Adm. Vale Verde','R$ 7.800,00 por mês',2,'MV'],[2,'Cond. Vila Serena','R$ 4.380,00 por mês',12,'MV'],[2,'Adm. Prisma','R$ 3.100,00 por mês',5,'MV'],[2,'Grupo Ecoville','R$ 9.900,00 por mês',1,'MV'],
+    [3,'Adm. Sol Nascente','R$ 8.400,00 por mês',7,'MV'],[3,'Cond. Bosque Imperial','R$ 2.250,00 por mês',21,'MV'],
+    [4,'Adm. Batel Gestão','R$ 4.900,00 por mês',3,'MV'],[4,'Cond. Monte Verde','R$ 1.840,00 por mês',2,'MV'],[4,'Adm. Paraná Sul','R$ 2.200,00 por mês',6,'MV']];
+  var LIM=10,k=document.getElementById('qd-k'),foco=null,alvo=null;
+  function soma(c){var s=0;N.forEach(function(n){if(n[0]===c) s+=parseFloat(n[2].replace(/[^\d,]/g,'').replace('.','').replace(',','.'))});return s.toLocaleString('pt-BR',{minimumFractionDigits:2})}
+  function desenhar(){
+    k.innerHTML=COL.map(function(c,ci){var cs=N.filter(function(n){return n[0]===ci});
+      return '<section class="cm-kanban__coluna" aria-labelledby="kc'+ci+'" data-col="'+ci+'"><header class="cm-kanban__cabeca"><h2 class="cm-kanban__titulo" id="kc'+ci+'">'+c+'</h2><span class="cm-contador">'+cs.length+'</span></header><div class="cm-kanban__soma">R$ '+soma(ci)+' por mês</div><div class="cm-kanban__cartoes">'+
+      cs.map(function(n){var i=N.indexOf(n),par=n[3]>LIM;return '<a class="cm-kanban-cartao'+(par?' is-esfriando':'')+'" href="#" draggable="true" data-n="'+i+'" aria-describedby="kc'+ci+'"><span class="cm-kanban-cartao__titulo">'+n[1]+'</span><span class="cm-kanban-cartao__sub">'+n[2]+'</span><span class="cm-kanban-cartao__pe">'+(par?'<span class="cm-estado cm-estado--aviso">'+cmIcone('atencao')+'Parado há '+n[3]+' dias</span>':'<span class="cm-t-legenda">há '+n[3]+(n[3]===1?' dia':' dias')+' na etapa</span>')+'<span class="cm-avatar cm-avatar--p">'+n[4]+'</span></span></a>'}).join('')+
+      '</div><button class="cm-kanban__adicionar" type="button">'+cmIcone('adicionar')+'Adicionar</button></section>'}).join('');
+    if(foco!=null){var f=k.querySelector('[data-n="'+foco+'"]');if(f) f.focus()}
+  }
+  function mover(i,c){var de=N[i][0];if(de===c) return;N[i][0]=c;N[i][3]=0;foco=i;desenhar();
+    cmQ2.toast(N[i][1]+' foi para '+COL[c]+'.','sucesso','Desfazer',function(){N[i][0]=de;desenhar()})}
+  k.addEventListener('click',function(e){var a=e.target.closest('.cm-kanban-cartao');if(a){e.preventDefault();cmQ2.toast('Abrindo '+N[+a.dataset.n][1]+'. Anterior e próximo seguem a coluna.','info')}});
+  k.addEventListener('keydown',function(e){var a=e.target.closest('.cm-kanban-cartao');if(!a) return;var i=+a.dataset.n,c=N[i][0];
+    var irmaos=[].slice.call(a.parentNode.children),p=irmaos.indexOf(a);
+    if(e.key==='j'||e.key==='ArrowDown'){e.preventDefault();e.stopPropagation();(irmaos[p+1]||a).focus()}
+    else if(e.key==='k'||e.key==='ArrowUp'){e.preventDefault();e.stopPropagation();(irmaos[p-1]||a).focus()}
+    else if(e.key==='l'||e.key==='ArrowRight'||e.key==='h'||e.key==='ArrowLeft'){e.preventDefault();var d=(e.key==='l'||e.key==='ArrowRight')?1:-1;var col=k.querySelector('[data-col="'+(c+d)+'"] .cm-kanban-cartao');if(col) col.focus()}
+    else if(e.key==='m'||e.key==='M'){e.preventDefault();abrirMover(i,a)}
+    else if(e.shiftKey&&(e.key==='>'||e.key==='<')){e.preventDefault();mover(i,Math.max(0,Math.min(4,c+(e.key==='>'?1:-1))))}
+  },true);
+  function abrirMover(i,g){alvo=i;document.getElementById('mv-sub').textContent=N[i][1]+', hoje em '+COL[N[i][0]];
+    document.getElementById('mv-ops').innerHTML=COL.map(function(c,ci){return '<label class="cm-radio"><input type="radio" name="mv" value="'+ci+'"'+(ci===N[i][0]?' checked':'')+'><span class="cm-radio__bola"></span><span>'+c+'</span></label>'}).join('')+'<label class="cm-radio"><input type="radio" name="mv" value="ganho"><span class="cm-radio__bola"></span><span>Ganho<span class="cm-marcar__desc">Abre a passagem para o CS</span></span></label><label class="cm-radio"><input type="radio" name="mv" value="perdido"><span class="cm-radio__bola"></span><span>Perdido<span class="cm-marcar__desc">Pede o motivo</span></span></label>';
+    cmQ2.abrirModal('modal-mover',g)}
+  document.getElementById('mv-ok').onclick=function(){var v=document.querySelector('[name=mv]:checked').value;cmQ2.fecharModal(this);if(v==='ganho'||v==='perdido'){cmQ2.toast(v==='ganho'?'Ganho! Abrindo a passagem para o CS.':'Abrindo o motivo da perda.','info');return}mover(alvo,+v)};
+  var arr=null;
+  k.addEventListener('dragstart',function(e){var a=e.target.closest('.cm-kanban-cartao');if(!a) return;arr=+a.dataset.n;a.classList.add('is-arrastando')});
+  k.addEventListener('dragover',function(e){var z=e.target.closest('.cm-kanban__cartoes');if(z){e.preventDefault();k.querySelectorAll('.is-alvo').forEach(function(x){x.classList.remove('is-alvo')});z.classList.add('is-alvo')}});
+  k.addEventListener('drop',function(e){var col=e.target.closest('[data-col]');if(col&&arr!=null){e.preventDefault();mover(arr,+col.dataset.col)}arr=null});
+  k.addEventListener('dragend',function(){k.querySelectorAll('.is-alvo,.is-arrastando').forEach(function(x){x.classList.remove('is-alvo','is-arrastando')})});
+  desenhar();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inadimplência, Relatórios</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+<style>
+.p2-filtros-fixos{position:sticky;top:0;z-index:var(--z-fixo);background:var(--fundo);border-bottom:var(--borda-1);margin:0 calc(-1*var(--grade-margem));padding:0 var(--grade-margem)}
+.p2-graficos{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:var(--esp-5);margin:var(--esp-6) 0}
+@media (max-width:1023px){.p2-graficos{grid-template-columns:1fr}}
+.p2-barras{display:flex;align-items:flex-end;gap:6px;height:200px;padding:8px 0 0 36px;border-bottom:1px solid var(--filete-forte);position:relative}
+.p2-barras__b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;position:relative;cursor:default}
+.p2-barras__b i{display:block;width:min(28px,70%);background:var(--grafico-1);border-radius:var(--raio-1) var(--raio-1) 0 0}
+.p2-barras__b:hover i,.p2-barras__b:focus-visible i{background:var(--cor-carbono-800)}
+:root[data-tema="escuro"] .p2-barras__b:hover i{background:var(--cor-carbono-200)}
+.p2-barras__b span{position:absolute;bottom:-20px;font:var(--t-legenda);color:var(--texto-2)}
+.p2-barras__b--atual i{background:var(--grafico-1);box-shadow:inset 0 0 0 2px var(--sup-1),0 0 0 1px var(--grafico-1)}
+.p2-grade-h{position:absolute;left:0;right:0;border-top:1px dashed var(--filete);font:var(--t-legenda);color:var(--texto-3);pointer-events:none}
+.p2-grade-h span{position:absolute;left:0;top:-9px;background:var(--sup-1);padding-right:4px}
+.p2-dica-g{position:absolute;z-index:var(--z-dica);background:var(--sup-1);border:1px solid var(--filete-forte);box-shadow:var(--sombra-flutuante);border-radius:var(--raio-3);padding:6px 10px;font-size:12.5px;white-space:nowrap;pointer-events:none;transform:translate(-50%,-100%);margin-top:-8px}
+.p2-hbar{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr) 88px;gap:10px;align-items:center;font-size:13px;padding:5px 0}
+.p2-hbar b{display:block;height:12px;background:var(--grafico-1);border-radius:0 var(--raio-1) var(--raio-1) 0}
+.p2-hbar .lc-num{color:var(--texto-1)}
+</style>
+</head>
+<body data-moldura='{"modulo":"relatorios","secao":"Por módulo","item":"Inadimplência","papel":"financeiro"}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+  <div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Inadimplência</h1><p class="lc-cab-pagina__desc">Taxas condominiais vencidas e não pagas, nos 38 condomínios da carteira. Atualizado hoje às 07:00 com os retornos dos bancos.</p></div>
+    <div class="lc-cab-pagina__acoes" data-menu-ancora><button class="lc-btn" type="button" id="agendar"><i data-i="calendario"></i>Agendar envio</button><span><button class="lc-btn" type="button" id="exp" aria-haspopup="menu" aria-expanded="false"><i data-i="baixar"></i>Exportar<i data-i="chevron-baixo"></i></button></span><button class="lc-btn lc-btn--principal" type="button" id="salvar-visao"><i data-i="estrela"></i>Salvar esta visão</button></div></div>
+  <div class="p2-filtros-fixos"><div class="lc-filtros">
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Período"><button type="button" aria-pressed="false">Mês</button><button type="button" aria-pressed="false">Trimestre</button><button type="button" aria-pressed="true">12 meses</button><button type="button" aria-pressed="false">Personalizado</button></div>
+    <button class="lc-filtro lc-filtro--ativo" type="button"><i data-i="calendario"></i>Out/2025 a set/2026</button><button class="lc-filtro" type="button">Condomínio<i data-i="chevron-baixo"></i></button><button class="lc-filtro" type="button">Gerente da carteira<i data-i="chevron-baixo"></i></button>
+    <div class="lc-filtros__fim"><span class="lc-legenda">Comparando com os 12 meses anteriores</span></div></div></div>
+
+  <div class="lc-kpis" style="margin-top:var(--esp-5)">
+    <div class="lc-kpi"><span class="lc-kpi__rotulo">Inadimplência em setembro</span><span class="lc-kpi__valor">4,8%</span><span class="lc-kpi__var lc-kpi__var--pos"><i data-i="tendencia-baixa"></i>0,6 ponto abaixo de agosto</span></div>
+    <div class="lc-kpi"><span class="lc-kpi__rotulo">Valor em aberto</span><span class="lc-kpi__valor"><span class="lc-total">R$ 182.410,37</span></span><span class="lc-kpi__var">em 312 unidades de 6.480</span></div>
+    <div class="lc-kpi"><span class="lc-kpi__rotulo">Recuperado em setembro</span><span class="lc-kpi__valor">R$ 61.020,00</span><span class="lc-kpi__var lc-kpi__var--pos"><i data-i="tendencia-alta"></i>18% acima da média</span></div>
+    <div class="lc-kpi"><span class="lc-kpi__rotulo">Acordos ativos</span><span class="lc-kpi__valor">47</span><span class="lc-kpi__var lc-kpi__var--neg"><i data-i="aviso"></i>6 com parcela atrasada</span></div>
+  </div>
+
+  <div class="p2-graficos">
+    <section class="lc-caixa" aria-labelledby="g1"><div class="lc-caixa__cab"><h2 id="g1">Inadimplência por mês, em % da arrecadação</h2><button class="lc-btn lc-btn--p lc-btn--discreto" type="button" data-tabela="t1" aria-expanded="false"><i data-i="tabela"></i>Ver como tabela</button></div>
+      <div class="lc-caixa__corpo"><div class="p2-barras" id="barras" role="img" aria-label="Inadimplência mensal de outubro de 2025 a setembro de 2026: maior em janeiro, 7,2%; menor em setembro, 4,8%."></div><div style="height:26px"></div>
+        <table class="lc-tabela" id="t1" hidden><caption class="lc-sr">Inadimplência por mês</caption><thead><tr><th scope="col">Mês</th><th scope="col" class="lc-num">Inadimplência</th></tr></thead><tbody></tbody></table></div></section>
+    <section class="lc-caixa" aria-labelledby="g2"><div class="lc-caixa__cab"><h2 id="g2">Condomínios com mais valor em aberto</h2></div>
+      <div class="lc-caixa__corpo" id="hbars"></div></section>
+  </div>
+
+  <section aria-labelledby="det"><div class="lc-linha lc-linha--entre" style="margin-bottom:8px"><h2 class="lc-t-secao" id="det">Unidades com mais de 90 dias</h2><span class="lc-legenda">Clique na unidade para abrir a cobrança</span></div>
+    <div class="lc-tabela-cont"><table class="lc-tabela"><caption class="lc-sr">Unidades com mais de 90 dias de atraso</caption><thead><tr><th scope="col">Unidade</th><th scope="col">Condomínio</th><th scope="col" class="lc-num">Em aberto</th><th scope="col" class="lc-num">Meses</th><th scope="col">Situação</th></tr></thead><tbody>
+      <tr><td><a href="#" class="lc-tabela__primaria">Bloco B, 1204</a></td><td>Cond. Parque das Águas</td><td class="lc-num">R$ 3.852,11</td><td class="lc-num">4</td><td><span class="lc-estado lc-estado--aviso">Acordo proposto</span></td></tr>
+      <tr><td><a href="#" class="lc-tabela__primaria">Torre 2, 81</a></td><td>Edifício Atlântico</td><td class="lc-num">R$ 6.410,00</td><td class="lc-num">7</td><td><span class="lc-estado lc-estado--perigo">Notificação judicial</span></td></tr>
+      <tr><td><a href="#" class="lc-tabela__primaria">Casa 14</a></td><td>Cond. Bosque dos Ipês</td><td class="lc-num">R$ 2.998,40</td><td class="lc-num">3</td><td><span class="lc-estado lc-estado--neutro">Cobrança amigável</span></td></tr></tbody>
+      <tfoot><tr><td>Total</td><td></td><td class="lc-num"><span class="lc-total">R$ 13.260,51</span></td><td></td><td></td></tr></tfoot></table></div></section>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2,$=P.$,$$=P.$$,esc=P.esc;
+var M=[["out/25",5.9],["nov/25",6.3],["dez/25",6.8],["jan/26",7.2],["fev/26",6.9],["mar/26",6.1],["abr/26",5.8],["mai/26",5.6],["jun/26",5.7],["jul/26",5.5],["ago/26",5.4],["set/26",4.8]];
+var max=8, h="";
+[2,4,6,8].forEach(function(v){ h+='<div class="p2-grade-h" style="bottom:'+(v/max*100)+'%"><span>'+v+'%</span></div>'; });
+h+=M.map(function(m,i){ return '<div class="p2-barras__b'+(i===M.length-1?' p2-barras__b--atual':'')+'" tabindex="0" data-v="'+m[1]+'" data-m="'+m[0]+'" aria-label="'+m[0]+': '+P.num(m[1],1)+'%"><i style="height:'+(m[1]/max*100)+'%"></i><span>'+m[0].split("/")[0]+'</span></div>'; }).join("");
+$("#barras").innerHTML=h;
+var dica=document.createElement("div"); dica.className="p2-dica-g"; dica.hidden=true; $("#barras").appendChild(dica);
+$$(".p2-barras__b").forEach(function(b,i){ function mostra(){ var r=b.getBoundingClientRect(), base=$("#barras").getBoundingClientRect(), bar=b.querySelector("i").getBoundingClientRect(); dica.hidden=false; dica.innerHTML='<b>'+b.getAttribute("data-m")+'</b>: '+P.num(+b.getAttribute("data-v"),1)+'%'+(i?' <span class="lc-cor-2">('+(M[i][1]-M[i-1][1]>0?'+':'−')+P.num(Math.abs(M[i][1]-M[i-1][1]),1)+' ponto)</span>':''); dica.style.left=(r.left-base.left+r.width/2)+"px"; dica.style.top=(bar.top-base.top)+"px"; }
+  b.addEventListener("mouseenter",mostra); b.addEventListener("focus",mostra); b.addEventListener("mouseleave",function(){dica.hidden=true;}); b.addEventListener("blur",function(){dica.hidden=true;}); });
+$("#t1 tbody").innerHTML=M.map(function(m){ return '<tr><td>'+m[0]+'</td><td class="lc-num">'+P.num(m[1],1)+'%</td></tr>'; }).join("");
+$$("[data-tabela]").forEach(function(b){ b.addEventListener("click",function(){ var t=$("#"+b.getAttribute("data-tabela")), ab=t.hidden; t.hidden=!ab; $("#barras").hidden=ab; b.setAttribute("aria-expanded",ab); b.innerHTML=lcIcone(ab?"grafico-colunas":"tabela")+(ab?"Ver como gráfico":"Ver como tabela"); }); });
+var C=[["Edifício Atlântico",24310.5],["Cond. Parque das Águas",19870],["Residencial Villaggio Toscana",15402.8],["Cond. Bosque dos Ipês",12980.4],["Edifício Mirante do Vale",11204],["Residencial Morada do Sol",9876.3]];
+$("#hbars").innerHTML=C.map(function(c){ return '<div class="p2-hbar"><span class="lc-reticencias">'+esc(c[0])+'</span><span><b style="width:'+(c[1]/C[0][1]*100)+'%"></b></span><span class="lc-num">'+P.moeda(c[1]).replace(",00","")+'</span></div>'; }).join("")+'<p class="lc-legenda" style="margin-top:8px">Os outros 32 condomínios somam R$ 88.768,37.</p>';
+$("#exp").addEventListener("click",function(e){ P.menu(e.currentTarget,[{t:"PDF para imprimir",sub:"O painel como está na tela, com os filtros no cabeçalho",ic:"documento",acao:function(){ P.toast("PDF <b>inadimplencia-out25-set26.pdf</b> baixado.",{tipo:"sucesso"}); }},{t:"Planilha com os dados",sub:"Uma aba por gráfico e a lista de unidades",ic:"planilha",acao:function(){ P.toast("Planilha baixada: 3 abas, 312 unidades.",{tipo:"sucesso"}); }}],{rotulo:"Exportar"}); });
+$("#salvar-visao").addEventListener("click",function(){ P.modal({titulo:"Salvar esta visão",desc:"Guarda período, filtros e ordem. Aparece em Relatórios › Favoritos.",corpo:'<div class="lc-campo"><label class="lc-rotulo" for="sv-n">Nome</label><input id="sv-n" class="lc-entrada" value="Inadimplência, 12 meses, toda a carteira"></div><label class="lc-marcar" style="margin-top:12px"><input type="checkbox"><span class="lc-marcar__caixa"></span><span>Mostrar para toda a equipe do Financeiro</span></label>',
+  pe:'<button class="lc-btn" type="button" data-m-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-ok>Salvar visão</button>',aoAbrir:function(el,api){ el.querySelector("[data-ok]").addEventListener("click",function(){ api.fechar(); P.toast("Visão salva em Relatórios › Favoritos.",{tipo:"sucesso",acao:"Abrir"}); }); }}); });
+$("#agendar").addEventListener("click",function(){ P.modal({titulo:"Agendar envio do relatório",desc:"Vai em PDF, com os filtros desta tela.",corpo:'<div class="lc-form-grade"><div class="lc-campo"><label class="lc-rotulo" for="ag-f">Frequência</label><select id="ag-f" class="lc-selecao"><option>Todo dia 1º, às 8h</option><option>Toda segunda, às 8h</option></select></div><div class="lc-campo"><label class="lc-rotulo" for="ag-p">Para</label><input id="ag-p" class="lc-entrada" value="diretoria@administradoraalpha.com.br"></div></div>',
+  pe:'<button class="lc-btn" type="button" data-m-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-ok>Agendar</button>',aoAbrir:function(el,api){ el.querySelector("[data-ok]").addEventListener("click",function(){ api.fechar(); P.toast("Envio agendado: todo dia 1º, às 8h.",{tipo:"sucesso"}); }); }}); });
+$$('.lc-seg[aria-label="Período"] button').forEach(function(b,i,a){ b.addEventListener("click",function(){ a.forEach(function(x){x.setAttribute("aria-pressed",x===b);}); }); });
+})();
+</script>
+</body>
+</html>

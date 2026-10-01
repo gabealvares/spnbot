@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projetos</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q4.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q4-icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q4.js" defer></script>
+<style>
+.pj-ferramentas{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:8px 0}
+.pj-ferramentas .cm-entrada--busca{width:260px}
+.pj-reg{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;margin-top:12px;align-items:start}
+.pj-tarefas{display:grid;grid-template-columns:minmax(0,1fr) 400px;border:1px solid var(--cm-filete);margin-top:8px}
+.pj-tarefas>.cm-tabela-caixa{border:0;border-right:1px solid var(--cm-filete)}
+.pj-impl{display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px;margin-top:12px;align-items:start}
+.pj-passos{list-style:none;margin:0;padding:0;border-left:1px solid var(--cm-filete)}
+.pj-passos li a{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:center;padding:8px 10px;margin-left:-1px;border-left:2px solid transparent;text-decoration:none;color:var(--cm-texto-2);font-size:13px}
+.pj-passos li a:hover{background:var(--cm-camada-1);color:var(--cm-texto-1)}
+.pj-passos li a[aria-current="step"]{border-left-color:var(--cm-acao);color:var(--cm-texto-1);font-weight:650}
+.pj-passos li.is-feito .cm-icone{color:var(--cm-sucesso-texto)}
+.pj-n{width:20px;height:20px;border:1.5px solid var(--cm-borda-controle);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+@media (max-width:1099px){ .pj-reg,.pj-tarefas,.pj-impl{grid-template-columns:minmax(0,1fr)} .pj-tarefas>.cm-tabela-caixa{border-right:0;border-bottom:1px solid var(--cm-filete)} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Projetos","tela":"Todos os projetos","papel":"CS","sino":2,"usuario":{"nome":"Rodrigo Mello","iniciais":"RM","cargo":"Gerente de implantação","presenca":"disponivel","tom":5},"links":{"Todos os projetos":"27-projetos.html","Quadro de projetos":"27-projetos.html","Meus projetos":"27-projetos.html","Implantações":"27-projetos.html#t-implantacao"}}'></div>
+
+<main id="conteudo" class="cm-doc">
+<header class="cm-doc-capa">
+  <div>
+    <h1>Projetos</h1>
+    <p>Projetos da administradora: implantação de condomínio novo na carteira, obras acompanhadas, campanhas de assembleia e mudanças internas. Lista e quadro, o projeto com fases e cronograma, as tarefas, e o roteiro de implantação de cliente.</p>
+  </div>
+  <div data-cm-seletor></div>
+  <nav class="cm-doc-indice" aria-label="Telas desta página">
+    <a href="#t-lista"><b>27.1</b>Lista e quadro de projetos</a>
+    <a href="#t-projeto"><b>27.2</b>Projeto com fases e cronograma</a>
+    <a href="#t-tarefas"><b>27.3</b>Tarefas do projeto</a>
+    <a href="#t-implantacao"><b>27.4</b>Implantação de novo cliente</a>
+  </nav>
+</header>
+
+<!-- ============================ 27.1 LISTA E QUADRO ============================ -->
+<section class="cm-doc-tela" id="t-lista" aria-labelledby="t-lista-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">27.1</span><h2 class="cm-doc-tela__titulo" id="t-lista-h">Lista e quadro de projetos</h2><span class="cm-doc-tela__sub">a mesma carteira em duas formas, com a escolha guardada</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>O gerente de implantação acompanha 11 projetos ao mesmo tempo. Na lista ele vê prazo, saúde e progresso lado a lado e ordena por "termina antes"; no quadro ele vê onde cada projeto está e arrasta quando muda de fase. A saúde (no prazo, em risco, atrasado) vem com ícone e palavra.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li><b>Lista</b> ou <b>Quadro</b> no alto à direita; a escolha fica guardada por pessoa.</li>
+      <li>Visões salvas: Meus, Todos, Em risco, Por cliente.</li>
+      <li>No quadro, arraste o cartão ou use "Mover para…" no menu do cartão (teclado).</li>
+      <li>Clicar no nome abre o projeto (27.2); a trilha volta para a visão em que estava.</li>
+      <li><b>Novo projeto</b> pergunta o modelo (Implantação de condomínio, Obra, Assembleia em lote) e já cria fases e tarefas.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Asana, o monday e o ClickUp ensinaram que lista e quadro são a mesma coisa vista de dois jeitos, com um alternador no topo; o Jira põe a saúde do projeto como estado com palavra; e o Basecamp mostrou que um projeto novo nasce de modelo, não de página em branco.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__barra"><span>Estado:</span>
+      <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" aria-pressed="true" data-estado="dados">Com dados</button><button type="button" aria-pressed="false" data-estado="vazio">Vazio</button><button type="button" aria-pressed="false" data-estado="carregando">Carregando</button></div></div>
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha">
+        <h1 class="cm-cabecalho-pagina__titulo">Projetos</h1>
+        <div class="cm-cabecalho-pagina__acoes">
+          <div class="cm-segmentado" role="group" aria-label="Forma de ver"><button type="button" aria-pressed="true" data-mostra="#pj-lista"><i data-i="lista"></i>Lista</button><button type="button" aria-pressed="false" data-mostra="#pj-quadro"><i data-i="quadro"></i>Quadro</button><button type="button" aria-pressed="false" data-mostra="#pj-tempo"><i data-i="gantt"></i>Linha do tempo</button></div>
+          <button class="cm-botao cm-botao--principal" type="button" data-abrir="modal-novo-pj"><i data-i="adicionar"></i>Novo projeto</button>
+        </div></div></header>
+      <div class="cm-visoes" role="tablist" aria-label="Visões salvas"><button role="tab" aria-selected="false" tabindex="-1">Meus <span class="cm-contador">6</span></button><button role="tab" aria-selected="true">Todos <span class="cm-contador">11</span></button><button role="tab" aria-selected="false" tabindex="-1">Em risco ou atrasados <span class="cm-contador">3</span></button><button role="tab" aria-selected="false" tabindex="-1">Implantações</button><button role="tab" aria-selected="false" tabindex="-1">Concluídos em 2026</button></div>
+      <div data-estado-painel="dados">
+        <div class="pj-ferramentas"><div class="cm-entrada cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar projeto ou cliente" placeholder="Projeto ou cliente"></div><button class="cm-filtro" type="button">Responsável<i data-i="chevron-baixo"></i></button><button class="cm-filtro" type="button">Modelo<i data-i="chevron-baixo"></i></button><button class="cm-filtro is-ativo" type="button">Saúde: <b>todas</b><i data-i="chevron-baixo"></i></button></div>
+        <div id="pj-lista">
+          <div class="cm-tabela-caixa"><table class="cm-tabela"><caption class="cm-sr">Todos os projetos, ordenados pelo término</caption>
+            <thead><tr><th>Projeto</th><th>Cliente</th><th>Fase atual</th><th>Saúde</th><th style="width:170px">Progresso</th><th aria-sort="ascending"><button class="cm-ordenar" type="button">Término<i data-i="seta-cima"></i></button></th><th>Responsável</th><th class="cm-tabela__acoes"><span class="cm-sr">Ações</span></th></tr></thead>
+            <tbody id="pj-corpo"></tbody></table></div>
+        </div>
+        <div id="pj-quadro" hidden><div class="cm-kanban" id="pj-kanban"></div></div>
+        <div id="pj-tempo" hidden>
+          <div class="cm-gantt" style="--g-semanas:13"><div class="cm-gantt__grade" id="pj-tempo-grade"></div></div>
+        </div>
+      </div>
+      <div data-estado-painel="vazio" hidden><div class="cm-vazio"><i data-i="quadro-kanban"></i><p class="cm-vazio__titulo">Nenhum projeto ainda</p><p class="cm-vazio__texto">Comece pela implantação do próximo condomínio: o modelo já traz as 5 fases, 38 tarefas e os documentos que a convenção pede.</p><div class="cm-vazio__acoes"><button class="cm-botao cm-botao--principal" type="button">Criar implantação de condomínio</button><button class="cm-botao" type="button">Ver modelos</button></div></div></div>
+      <div data-estado-painel="carregando" hidden><p class="cm-carregando" style="padding:8px 0">Carregando projetos</p><div class="cm-pilha" style="gap:10px;margin-top:8px"><span class="cm-esqueleto" style="height:34px"></span><span class="cm-esqueleto" style="height:34px;width:92%"></span><span class="cm-esqueleto" style="height:34px;width:96%"></span><span class="cm-esqueleto" style="height:34px;width:88%"></span></div></div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Lista, Quadro, Linha do tempo</li><li>Novo projeto</li><li>Visões, busca, filtros</li><li>Tabela, ou colunas do quadro em ordem, cartão por cartão</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Alternador: "Forma de ver, Lista, pressionado".</li><li>Cartão: "Implantação do Cond. Vila Serena, em risco, 42%, termina em 11/12".</li><li>Ao soltar no quadro: "Movido para Em andamento", com Desfazer.</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>⋯ da linha e do cartão: "Ações do projeto, inclui Mover para"</li></ul></div>
+  </div>
+</section>
+
+<div class="cm-sobreposicao" id="modal-novo-pj" data-janela hidden>
+  <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="mnp-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mnp-t">Novo projeto<span class="cm-modal__sub">Escolha o modelo. Fases, tarefas e prazos vêm prontos e podem ser mudados.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo">
+      <fieldset class="cm-grupo-opcoes"><legend>Modelo</legend>
+        <label class="cm-radio"><input type="radio" name="mod" checked><span class="cm-radio__bola"></span><span>Implantação de condomínio<span class="cm-marcar__desc">5 fases, 38 tarefas, cerca de 60 dias</span></span></label>
+        <label class="cm-radio"><input type="radio" name="mod"><span class="cm-radio__bola"></span><span>Acompanhamento de obra<span class="cm-marcar__desc">medições, aprovações do conselho, vistoria final</span></span></label>
+        <label class="cm-radio"><input type="radio" name="mod"><span class="cm-radio__bola"></span><span>Assembleias em lote<span class="cm-marcar__desc">edital, convocação, ata e registro para vários condomínios</span></span></label>
+        <label class="cm-radio"><input type="radio" name="mod"><span class="cm-radio__bola"></span><span>Em branco</span></label>
+      </fieldset>
+      <div class="cm-campo" style="margin-top:12px"><label class="cm-campo__rotulo" for="np-nome">Nome</label><div class="cm-entrada"><input id="np-nome" value="Implantação do Ed. Mirante do Vale"></div></div>
+    </div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-fechar data-toast="Projeto criado com 5 fases e 38 tarefas.">Criar projeto</button></div>
+  </div>
+</div>
+
+<!-- ============================ 27.2 PROJETO E GANTT ============================ -->
+<section class="cm-doc-tela" id="t-projeto" aria-labelledby="t-proj-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">27.2</span><h2 class="cm-doc-tela__titulo" id="t-proj-h">Projeto com fases e cronograma</h2><span class="cm-doc-tela__sub">Gantt simples, marcos e o que está atrasando</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>O cronograma da implantação do Vila Serena: cinco fases com tarefas, dois marcos (primeiro boleto e primeira prestação de contas) e a linha de hoje. O gerente vê de cara que a fase de cadastro está atrasada e por quê (a planilha de unidades veio com erro), e quanto isso empurra o primeiro boleto.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>O cabeçalho traz os campos-chave e o <b>Path</b> das fases; clicar numa fase filtra o cronograma.</li>
+      <li>Abas: Visão geral, Cronograma, Tarefas, Arquivos, Atividade. O cronograma abre por padrão para quem é gerente.</li>
+      <li>Barras podem ser arrastadas para mudar datas; pelo teclado, Enter abre a tarefa e as datas são editadas nos campos.</li>
+      <li>Mudar uma data que empurra o marco mostra o aviso antes de salvar ("O primeiro boleto passa de 25/10 para 01/11").</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o MS Project e o Smartsheet consagraram o Gantt com nomes à esquerda e semanas no topo; o monday e o Asana simplificaram para barra, marco em losango e linha de hoje, que é o que um gerente de implantação precisa; e o Path do Salesforce, que o GACO usa no CS, dá a fase atual sem abrir o Gantt.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" style="padding-top:16px">
+      <header class="cm-cabecalho-registro">
+        <div class="cm-cabecalho-registro__topo">
+          <span class="cm-ladrilho"><i data-i="quadro-kanban"></i></span>
+          <div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Projeto, modelo Implantação de condomínio</span><h1 class="cm-cabecalho-registro__titulo">Implantação do Cond. Vila Serena</h1></div>
+          <div class="cm-grupo-botoes"><button class="cm-botao" type="button"><i data-i="compartilhar"></i>Compartilhar com a síndica</button><button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Nova tarefa</button><button class="cm-botao cm-botao--icone" type="button" aria-label="Mais ações do projeto"><i data-i="mais-opcoes"></i></button></div>
+        </div>
+        <dl class="cm-destaques">
+          <div><dt>Saúde</dt><dd><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Em risco: cadastro atrasado</span></dd></div>
+          <div><dt>Progresso</dt><dd>42%, 16 de 38 tarefas</dd></div>
+          <div><dt>Início</dt><dd>14/09/2026</dd></div>
+          <div><dt>Término previsto</dt><dd>11/12/2026</dd></div>
+          <div><dt>Responsável</dt><dd>Rodrigo Mello</dd></div>
+          <div><dt>Cliente</dt><dd><a class="cm-link" href="#">Cond. Vila Serena, 148 unidades</a></dd></div>
+        </dl>
+        <div class="cm-path" style="padding:12px 0"><ol>
+          <li class="is-feito"><button type="button"><i data-i="marcar"></i>Contrato e início</button></li>
+          <li class="is-atual"><button type="button" aria-current="step">Cadastro</button></li>
+          <li><button type="button">Financeiro</button></li>
+          <li><button type="button">Portal e comunicação</button></li>
+          <li><button type="button">Primeira prestação</button></li></ol></div>
+      </header>
+      <div class="cm-abas" role="tablist" aria-label="Seções do projeto" style="margin-top:12px">
+        <button role="tab" aria-selected="false" tabindex="-1">Visão geral</button><button role="tab" aria-selected="true">Cronograma</button><button role="tab" aria-selected="false" tabindex="-1">Tarefas <span class="cm-contador">38</span></button><button role="tab" aria-selected="false" tabindex="-1">Arquivos <span class="cm-contador">14</span></button><button role="tab" aria-selected="false" tabindex="-1">Atividade</button>
+      </div>
+      <div class="pj-ferramentas"><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Escala"><button type="button" aria-pressed="false">Dias</button><button type="button" aria-pressed="true">Semanas</button><button type="button" aria-pressed="false">Meses</button></div><button class="cm-botao cm-botao--p" type="button"><i data-i="calendario"></i>Ir para hoje</button><label class="cm-interruptor"><input type="checkbox" role="switch" checked><span class="cm-interruptor__trilho"></span><span>Mostrar dependências</span></label><span class="cm-empurra cm-t-legenda">Semana começa na segunda; feriados de Curitiba descontados</span></div>
+      <div class="cm-alerta cm-alerta--aviso" style="margin-bottom:10px"><i data-i="atencao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Atenção: a importação de unidades está 6 dias atrasada</span><span class="cm-alerta__desc">A planilha da síndica veio com 3 CPFs inválidos. Se não fechar até 06/10, o primeiro boleto passa de 25/10 para 01/11.</span></span><span class="cm-alerta__acoes"><a class="cm-botao cm-botao--p" href="#t-implantacao">Ver importação</a></span></div>
+      <div class="cm-gantt" style="--g-semanas:13">
+        <div class="cm-gantt__grade" id="gantt"></div>
+        <div class="cm-gantt__legenda"><span><span class="cm-gantt__barra" style="position:static;width:28px;display:inline-block;height:10px"></span>tarefa</span><span><span style="display:inline-block;width:28px;height:10px;background:var(--cm-sucesso-ponto);opacity:.5"></span>feito</span><span><span style="display:inline-block;width:28px;height:10px;box-shadow:inset 3px 0 0 var(--cm-perigo-ponto);border:1px solid var(--cm-perigo-texto)"></span>atrasada</span><span><span style="display:inline-block;width:10px;height:10px;transform:rotate(45deg);border:2px solid var(--cm-texto-1)"></span>marco</span><span><span style="display:inline-block;width:2px;height:12px;background:var(--cm-acao)"></span>hoje, 01/10</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Compartilhar, Nova tarefa, Mais ações</li><li>Fases do Path</li><li>Abas</li><li>Escala, Ir para hoje, dependências</li><li>Linhas do Gantt: cada tarefa é um botão</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Barra: "Importar unidades e moradores, 21/09 a 02/10, atrasada 6 dias, 60% feito, responsável Camila Duarte".</li><li>Marco: "Marco: primeiro boleto, 25/10, pendente".</li><li>Linha de hoje não é anunciada; a data de hoje está no texto da legenda.</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>⋯ "Mais ações do projeto"</li><li>Losango: "Marco"</li></ul></div>
+  </div>
+</section>
+
+<!-- ============================ 27.3 TAREFAS ============================ -->
+<section class="cm-doc-tela" id="t-tarefas" aria-labelledby="t-tar-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">27.3</span><h2 class="cm-doc-tela__titulo" id="t-tar-h">Tarefas do projeto</h2><span class="cm-doc-tela__sub">lista por fase, edição na célula e a tarefa aberta ao lado</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>A equipe de implantação marca o que fez, troca responsável e prazo direto na linha, e abre a tarefa ao lado para ver o checklist, os arquivos e a conversa. Ninguém precisa entrar e sair de página para atualizar 38 tarefas.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>Tarefas agrupadas por fase, recolhíveis. A caixa marca como feita (verde, risca o texto).</li>
+      <li>Responsável e prazo são células editáveis: Enter edita, Enter confirma e desce, Esc desfaz.</li>
+      <li>Qualquer edição faz aparecer a <b>barra de salvar</b> com a contagem e "Salvar ▾".</li>
+      <li>Clicar no nome abre a tarefa no painel da direita, sem perder a lista.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Asana e o Linear abrem a tarefa num painel ao lado da lista; o Airtable e o monday tornaram normal editar responsável e prazo na célula; e o padrão de salvar do GACO (A3) pede barra só com alteração, para a pessoa saber o que ainda não foi gravado.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__corpo" data-form data-barra="barra-tarefas">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Tarefas, Implantação do Cond. Vila Serena</h1><div class="cm-cabecalho-pagina__acoes"><button class="cm-botao" type="button"><i data-i="filtrar"></i>Só as minhas</button><button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Nova tarefa</button></div></div></header>
+      <div class="pj-tarefas">
+        <div class="cm-tabela-caixa"><table class="cm-tabela" id="tab-tarefas"><caption class="cm-sr">Tarefas por fase. Responsável e prazo são editáveis com Enter.</caption>
+          <thead><tr><th style="width:36px"><span class="cm-sr">Feita</span></th><th>Tarefa</th><th>Responsável</th><th>Prazo</th><th>Estado</th></tr></thead><tbody></tbody></table></div>
+        <aside aria-label="Tarefa aberta" style="background:var(--cm-camada-1);display:flex;flex-direction:column">
+          <div class="cm-painel__cabeca"><h2 class="cm-painel__titulo">Importar unidades e moradores</h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar tarefa"><i data-i="fechar"></i></button></div>
+          <div class="cm-secao"><dl class="cm-ficha"><div class="cm-ficha__linha"><dt>Fase</dt><dd>Cadastro</dd><span></span></div><div class="cm-ficha__linha"><dt>Responsável</dt><dd><span class="cm-avatar cm-avatar--p cm-avatar--3">CD</span>Camila Duarte</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar responsável"><i data-i="editar"></i></button></div><div class="cm-ficha__linha"><dt>Prazo</dt><dd>25/09 <span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>6 dias atrasada</span></dd><button class="cm-ficha__lapis" type="button" aria-label="Editar prazo"><i data-i="editar"></i></button></div><div class="cm-ficha__linha"><dt>Depende de</dt><dd><a class="cm-link" href="#">Receber planilha da síndica</a></dd><span></span></div></dl></div>
+          <div class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Checklist</h3><span class="cm-t-legenda">3 de 5</span></div>
+            <div class="cm-pilha" style="gap:6px">
+              <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Conferir as 148 unidades com a convenção</span></label>
+              <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Frações ideais somam 100%</span></label>
+              <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Importar proprietários</span></label>
+              <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox"><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Corrigir 3 CPFs inválidos</span></label>
+              <label class="cm-marcar cm-marcar--tarefa"><input type="checkbox"><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Importar inquilinos e veículos</span></label>
+            </div></div>
+          <div class="cm-secao"><div class="cm-secao__cabeca"><h3 class="cm-secao__titulo">Conversa</h3></div>
+            <ul class="cm-comentarios"><li><span class="cm-avatar cm-avatar--3">CD</span><div><b style="font-weight:650">Camila Duarte</b> <span class="cm-t-legenda">ontem 17:02</span><br>Mandei para a síndica do Vila Serena os 3 CPFs. Ela responde amanhã cedo.</div></li><li><span class="cm-avatar cm-avatar--5">RM</span><div><b style="font-weight:650">Rodrigo Mello</b> <span class="cm-t-legenda">hoje 08:15</span><br><span class="cm-mencao">@Camila Duarte</span> importa os outros 145 hoje para não segurar o financeiro.</div></li></ul></div>
+        </aside>
+      </div>
+      <div class="cm-barra-salvar" id="barra-tarefas" role="region" aria-label="Alterações não salvas" hidden>
+        <div class="cm-barra-salvar__msg"><b data-contagem></b><span data-campos></span></div>
+        <button class="cm-botao cm-botao--discreto" type="button" data-descartar>Descartar</button>
+        <span class="cm-ancora cm-ancora--direita cm-ancora--cima"><div class="cm-dividido"><button class="cm-botao cm-botao--principal" type="button" data-salvar="Tarefas salvas.">Salvar <span class="cm-dividido__lembra">e continuar</span></button><button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de salvar" data-menu="m-sal-tar"><i data-i="chevron-baixo"></i></button></div>
+        <div class="cm-menu cm-flutuante" role="menu" id="m-sal-tar" hidden style="width:260px"><button class="cm-menu__item" role="menuitemradio" aria-checked="true" type="button" data-lembra="e continuar"><i data-i="salvar"></i><span>Salvar e continuar</span><span class="cm-menu__atalho">Ctrl S</span></button><button class="cm-menu__item" role="menuitemradio" aria-checked="false" type="button" data-lembra="e avisar"><i data-i="notificacoes"></i><span>Salvar e avisar os responsáveis</span><span></span></button><button class="cm-menu__item" role="menuitemradio" aria-checked="false" type="button" data-lembra="e voltar"><i data-i="voltar"></i><span>Salvar e voltar ao projeto</span><span></span></button></div></span>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Só as minhas, Nova tarefa</li><li>Cabeçalho de cada fase (recolhe)</li><li>Linha: caixa de feita, nome (abre ao lado), célula de responsável, célula de prazo</li><li>Painel da tarefa</li><li>Barra de salvar, quando aparece</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Célula: "Prazo, 02/10, editável, Enter para editar".</li><li>Depois de editar: "alterado, não salvo".</li><li>Caixa: "Feita: Assinar contrato, marcado".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>X do painel: "Fechar tarefa"</li><li>Lápis: "Editar responsável", "Editar prazo"</li></ul></div>
+  </div>
+</section>
+
+<!-- ============================ 27.4 IMPLANTAÇÃO ============================ -->
+<section class="cm-doc-tela" id="t-implantacao" aria-labelledby="t-impl-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">27.4</span><h2 class="cm-doc-tela__titulo" id="t-impl-h">Implantação de novo cliente</h2><span class="cm-doc-tela__sub">roteiro guiado com documentos, importação e validação</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Pôr um condomínio novo para rodar no GACO tem uma ordem certa: documentos legais, unidades e pessoas, contas e saldos, fornecedores, portal. Esta tela guia a equipe por esses passos, mostra o que já está pronto e o que trava, e faz a importação da planilha de unidades com o erro apontado linha a linha.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>À esquerda, os 6 passos em ordem com o estado de cada um; dá para pular e voltar.</li>
+      <li>No passo Unidades e pessoas: envia a planilha, o GACO lê e mostra o que entra e o que não entra.</li>
+      <li>As linhas com erro são editadas na própria tabela; ao corrigir, a linha fica verde.</li>
+      <li><b>Importar 145 válidas</b> não espera as 3 com erro; elas ficam pendentes no passo.</li>
+      <li>O passo concluído libera o seguinte e conta no progresso do projeto (27.2).</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Stripe e o Shopify mostram o "configurar a conta" como lista de passos com estado; o Flatfile e o importador do HubSpot apontam o erro na célula e deixam corrigir ali; e as analistas de implantação contaram (A4) que hoje recebem planilha suja e só descobrem o erro no primeiro boleto.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__barra"><span>Estado:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado"><button type="button" aria-pressed="true" data-estado="erros">Planilha com erros</button><button type="button" aria-pressed="false" data-estado="enviando">Lendo a planilha</button></div></div>
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Implantação do Cond. Vila Serena</h1><div class="cm-progresso cm-progresso--sucesso" style="width:260px"><span class="cm-progresso__barra"><i style="--p:42%"></i></span><span class="cm-progresso__valor">2 de 6 passos</span></div></div><p class="cm-cabecalho-pagina__desc">148 unidades, Curitiba. Síndica: Sílvia Ramos. Primeiro boleto previsto para 25/10.</p></header>
+      <div class="pj-impl">
+        <nav aria-label="Passos da implantação"><ol class="pj-passos">
+          <li class="is-feito"><a href="#"><i data-i="sucesso" data-rotulo="feito"></i>Documentos legais<span class="cm-t-legenda">5 de 5</span></a></li>
+          <li class="is-feito"><a href="#"><i data-i="sucesso" data-rotulo="feito"></i>Dados do condomínio<span class="cm-t-legenda">pronto</span></a></li>
+          <li><a href="#" aria-current="step"><span class="pj-n">3</span>Unidades e pessoas<span class="cm-t-legenda">3 erros</span></a></li>
+          <li><a href="#"><span class="pj-n">4</span>Contas e saldos<span class="cm-t-legenda">bloqueado</span></a></li>
+          <li><a href="#"><span class="pj-n">5</span>Fornecedores e contratos<span class="cm-t-legenda">0 de 9</span></a></li>
+          <li><a href="#"><span class="pj-n">6</span>Portal e boas-vindas<span class="cm-t-legenda">0 de 3</span></a></li></ol></nav>
+        <div class="cm-pilha cm-pilha--6" data-estado-painel="erros">
+          <div class="cm-anexos"><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="planilha"></i></span><span><span class="cm-anexo__nome">unidades-vila-serena-v2.xlsx</span><span class="cm-anexo__meta">enviada por Camila Duarte em 30/09, 148 linhas lidas</span></span><button class="cm-botao cm-botao--p" type="button">Trocar arquivo</button></div></div>
+          <div class="cm-alerta cm-alerta--perigo"><i data-i="erro"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">3 linhas não entram como estão</span><span class="cm-alerta__desc">145 estão prontas. Corrija na tabela ou importe as válidas agora e deixe estas 3 pendentes.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-toast="145 unidades importadas. 3 ficaram pendentes neste passo." data-toast-acao="Desfazer">Importar 145 válidas</button></span></div>
+          <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Mostrar linhas"><button type="button" aria-pressed="true">Com erro 3</button><button type="button" aria-pressed="false">Prontas 145</button><button type="button" aria-pressed="false">Todas</button></div>
+          <div class="cm-tabela-caixa"><table class="cm-tabela" id="tab-import"><caption class="cm-sr">Linhas da planilha com erro, editáveis</caption>
+            <thead><tr><th>Linha</th><th>Unidade</th><th>Proprietário</th><th>CPF</th><th class="cm-num">Fração ideal</th><th>O que corrigir</th></tr></thead>
+            <tbody>
+              <tr><td>14</td><td>Bl 1 Ap 23</td><td>Osvaldo Kruger</td><td class="cm-celula-editavel is-erro" tabindex="0" aria-label="CPF de Osvaldo Kruger" aria-invalid="true">482.109.330-1</td><td class="cm-num">0,6211%</td><td><span class="cm-estado cm-estado--perigo"><i data-i="erro"></i>CPF com 10 dígitos, faltam 1</span></td></tr>
+              <tr><td>57</td><td>Bl 2 Ap 41</td><td>Helena e Rui Bastos</td><td class="cm-celula-editavel is-erro" tabindex="0" aria-label="CPF de Helena e Rui Bastos" aria-invalid="true">111.111.111-11</td><td class="cm-num">0,6211%</td><td><span class="cm-estado cm-estado--perigo"><i data-i="erro"></i>CPF inválido (dígitos repetidos)</span></td></tr>
+              <tr><td>102</td><td>Bl 3 Ap 12</td><td>Espólio de Nair Pacheco</td><td class="cm-celula-editavel is-erro" tabindex="0" aria-label="CPF ou CNPJ do espólio" aria-invalid="true"></td><td class="cm-num">0,7305%</td><td><span class="cm-estado cm-estado--perigo"><i data-i="erro"></i>Sem CPF; espólio usa o CPF de quem morreu</span></td></tr>
+            </tbody></table></div>
+          <p class="cm-t-legenda">Frações ideais da planilha somam 100,0000%. Enter edita a célula, Enter confirma; a linha corrigida passa para "Prontas".</p>
+        </div>
+        <div data-estado-painel="enviando" hidden class="cm-pilha cm-pilha--6">
+          <div class="cm-anexos"><div class="cm-anexo"><span class="cm-anexo__tipo"><i data-i="planilha"></i></span><span><span class="cm-anexo__nome">unidades-vila-serena-v2.xlsx</span><span class="cm-anexo__meta">lendo, 96 de 148 linhas</span><span class="cm-anexo__barra"><i style="width:65%"></i></span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Cancelar leitura"><i data-i="fechar"></i></button></div></div>
+          <p class="cm-carregando">Conferindo CPF, fração ideal e unidades repetidas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Passos (links, o atual com "passo atual")</li><li>Trocar arquivo</li><li>Importar 145 válidas</li><li>Filtro de linhas</li><li>Células com erro (Enter edita)</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Passo: "Unidades e pessoas, passo atual, 3 erros".</li><li>Célula: "CPF de Osvaldo Kruger, inválido, CPF com 10 dígitos, faltam 1".</li><li>Leitura do arquivo: progresso "65%".</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Tique do passo: "feito"</li><li>X do anexo: "Cancelar leitura"</li></ul></div>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+var P=[
+ ['Implantação do Cond. Vila Serena','Cond. Vila Serena','Cadastro','aviso','Em risco',42,'11/12','RM','Rodrigo Mello','Em andamento'],
+ ['Obra da fachada, acompanhamento','Cond. Parque das Águas','Medição 3 de 10','sucesso','No prazo',30,'30/06/27','DM','Diego Martins','Em andamento'],
+ ['Assembleias de previsão 2027','12 condomínios','Editais','sucesso','No prazo',25,'15/12','JR','Juliana Reis','Em andamento'],
+ ['Troca do CFTV','Ed. Solar do Bosque','Cotação','perigo','Atrasado 9 dias',15,'31/10','DM','Diego Martins','Planejamento'],
+ ['Migração dos boletos para o Banco Inter','Administradora Alpha','Homologação','sucesso','No prazo',70,'20/10','RV','Renata Vasconcelos','Em andamento'],
+ ['Implantação do Ed. Mirante do Vale','Ed. Mirante do Vale','Contrato e início','neutro','Não começou',0,'28/02/27','RM','Rodrigo Mello','Planejamento'],
+ ['Vistoria das áreas comuns','Res. Jardim Botânico','Relatório','sucesso','No prazo',85,'08/10','CD','Camila Duarte','Revisão'],
+ ['Recadastro de moradores','Cond. Parque das Águas','Campanha','aviso','Em risco',55,'15/10','CD','Camila Duarte','Em andamento'],
+ ['Treinamento dos porteiros','4 condomínios','Concluído','sucesso','Concluído',100,'26/09','BN','Beatriz Nogueira','Concluído']
+];
+var ic={sucesso:'sucesso',aviso:'atencao',perigo:'perigo',neutro:'pendente'};
+document.getElementById('pj-corpo').innerHTML=P.map(function(p){return '<tr><td class="cm-tabela__principal"><a href="#t-projeto">'+p[0]+'</a></td><td>'+p[1]+'</td><td>'+p[2]+'</td><td><span class="cm-estado cm-estado--'+p[3]+'"><i data-i="'+ic[p[3]]+'"></i>'+p[4]+'</span></td><td><div class="cm-progresso '+(p[5]===100?'cm-progresso--sucesso':'')+'"><span class="cm-progresso__barra"><i style="--p:'+p[5]+'%"></i></span><span class="cm-progresso__valor">'+p[5]+'%</span></div></td><td>'+p[6]+'</td><td><span class="cm-pessoa"><span class="cm-avatar cm-avatar--p">'+p[7]+'</span>'+p[8]+'</span></td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações do projeto '+p[0]+', inclui Mover para"><i data-i="mais-opcoes"></i></button></td></tr>'}).join('');
+var cols=['Planejamento','Em andamento','Revisão','Concluído'];
+document.getElementById('pj-kanban').innerHTML=cols.map(function(c){var cs=P.filter(function(p){return p[9]===c});return '<section class="cm-kanban__coluna" aria-label="'+c+'"><header class="cm-kanban__cabeca"><h3 class="cm-kanban__titulo">'+c+'</h3><span class="cm-contador">'+cs.length+'</span></header><div class="cm-kanban__cartoes">'+cs.map(function(p){return '<a class="cm-kanban-cartao'+(p[3]==='perigo'?' is-atrasado':p[3]==='aviso'?' is-esfriando':'')+'" href="#t-projeto" draggable="true"><span class="cm-kanban-cartao__titulo">'+p[0]+'</span><span class="cm-kanban-cartao__sub">'+p[1]+', termina '+p[6]+'</span><span class="cm-kanban-cartao__pe"><span class="cm-estado cm-estado--'+p[3]+'"><i data-i="'+ic[p[3]]+'"></i>'+p[4]+'</span><span class="cm-avatar cm-avatar--p">'+p[7]+'</span></span></a>'}).join('')+'</div><button class="cm-kanban__adicionar" type="button"><i data-i="adicionar"></i>Adicionar</button></section>'}).join('');
+/* Gantt do projeto */
+var sem=['14/09','21/09','28/09','05/10','12/10','19/10','26/10','02/11','09/11','16/11','23/11','30/11','07/12'];
+function cab(){return '<div class="cm-gantt__cab">Fase e tarefa</div>'+sem.map(function(s,i){return '<div class="cm-gantt__cab'+(i===2?' is-hoje':'')+'">'+s+'</div>'}).join('')}
+var G=[
+ ['f','Contrato e início','',0,2,100],
+ ['t','Assinar contrato e procuração','RM',0,1,100,'feito'],
+ ['t','Reunião de início com a síndica','RM',1,1,100,'feito'],
+ ['f','Cadastro','',1,4,45],
+ ['t','Receber planilha da síndica','CD',1,1,100,'feito'],
+ ['t','Importar unidades e moradores','CD',1,2,60,'atrasado'],
+ ['t','Cadastrar áreas comuns e reservas','CD',2,2,20],
+ ['f','Financeiro','',3,4,0],
+ ['t','Saldos e contas bancárias','RV',3,1,0],
+ ['t','Previsão orçamentária de outubro','RV',3,2,0],
+ ['m','Primeiro boleto','',6,0,0],
+ ['f','Portal e comunicação','',5,4,0],
+ ['t','Comunicado de boas-vindas','BN',5,1,0],
+ ['t','Treinar porteiros no app','BN',6,2,0],
+ ['f','Primeira prestação','',9,4,0],
+ ['m','Prestação de outubro ao conselho','',10.4,0,0]
+];
+var h=cab();
+G.forEach(function(g){
+  if(g[0]==='f') h+='<div class="cm-gantt__rotulo cm-gantt__rotulo--fase"><b>'+g[1]+'</b><span class="cm-texto-2">'+g[5]+'%</span></div><div class="cm-gantt__trilho"><span class="cm-gantt__barra is-fase" style="--i:'+g[3]+';--d:'+g[4]+'"></span></div>';
+  else if(g[0]==='m') h+='<div class="cm-gantt__rotulo"><i data-i="marco"></i><b>'+g[1]+'</b><span class="cm-texto-2">marco</span></div><div class="cm-gantt__trilho"><button type="button" class="cm-gantt__marco" style="--i:'+g[3]+'" aria-label="Marco: '+g[1]+', pendente"></button></div>';
+  else h+='<div class="cm-gantt__rotulo" style="padding-left:24px"><b style="font-weight:500">'+g[1]+'</b><span class="cm-avatar cm-avatar--p" style="margin-left:auto">'+g[2]+'</span></div><div class="cm-gantt__trilho"><button type="button" class="cm-gantt__barra'+(g[6]==='feito'?' is-feito':'')+(g[6]==='atrasado'?' is-atrasado':'')+'" style="--i:'+g[3]+';--d:'+g[4]+';--feito:'+g[5]+'%" aria-label="'+g[1]+', '+(g[6]==='atrasado'?'atrasada 6 dias, ':'')+g[5]+'% feito"><i></i><span>'+(g[6]==='atrasado'?'atrasada 6 dias':g[5]?g[5]+'%':'')+'</span></button></div>';
+});
+h+='<span class="cm-gantt__hoje" style="--h:2.4" aria-hidden="true"></span>';
+document.getElementById('gantt').innerHTML=h;
+/* linha do tempo da carteira */
+var T=[['Implantação do Cond. Vila Serena',0,13,'aviso'],['Assembleias de previsão 2027',2,11,''],['Troca do CFTV',0,7,'perigo'],['Migração dos boletos',0,6,''],['Vistoria das áreas comuns',1,3,''],['Recadastro de moradores',1,5,'aviso']];
+document.getElementById('pj-tempo-grade').innerHTML=cab().replace('Fase e tarefa','Projeto')+T.map(function(t){return '<div class="cm-gantt__rotulo"><b>'+t[0]+'</b></div><div class="cm-gantt__trilho"><span class="cm-gantt__barra'+(t[3]==='perigo'?' is-atrasado':'')+'" style="--i:'+t[1]+';--d:'+t[2]+';--feito:30%"><i></i><span>'+(t[3]==='perigo'?'atrasado':t[3]==='aviso'?'em risco':'')+'</span></span></div>'}).join('')+'<span class="cm-gantt__hoje" style="--h:2.4" aria-hidden="true"></span>';
+/* tarefas */
+var TA=[['Contrato e início',[['Assinar contrato e procuração','Rodrigo Mello','15/09','sucesso','Feita',1],['Reunião de início com a síndica','Rodrigo Mello','22/09','sucesso','Feita',1]]],
+ ['Cadastro',[['Receber planilha da síndica','Camila Duarte','23/09','sucesso','Feita',1],['Importar unidades e moradores','Camila Duarte','25/09','perigo','6 dias atrasada',0],['Cadastrar áreas comuns e reservas','Camila Duarte','09/10','info','Em andamento',0],['Cadastrar veículos e vagas','Camila Duarte','09/10','neutro','A fazer',0]]],
+ ['Financeiro',[['Saldos e contas bancárias','Renata Vasconcelos','06/10','neutro','A fazer',0],['Previsão orçamentária de outubro','Renata Vasconcelos','16/10','neutro','A fazer',0]]]];
+var th='';TA.forEach(function(f){th+='<tr class="cm-tabela__grupo"><td colspan="5"><button type="button" aria-expanded="true"><i data-i="chevron-baixo"></i>'+f[0]+'</button><span class="cm-tabela__grupo-soma">'+f[1].filter(function(x){return x[5]}).length+' de '+f[1].length+' feitas</span></td></tr>';
+  f[1].forEach(function(t,i){th+='<tr'+(t[0]==='Importar unidades e moradores'?' class="is-atual"':'')+'><td><label class="cm-marcar cm-marcar--tarefa"><input type="checkbox"'+(t[5]?' checked':'')+' aria-label="Feita: '+t[0]+'"><span class="cm-marcar__caixa"></span></label></td><td class="cm-tabela__principal"><a href="#">'+t[0]+'</a></td><td class="cm-celula-editavel" tabindex="0" aria-label="Responsável de '+t[0]+'">'+t[1]+'</td><td class="cm-celula-editavel" tabindex="0" aria-label="Prazo de '+t[0]+'">'+t[2]+'</td><td><span class="cm-estado cm-estado--ponto cm-estado--'+t[3]+'">'+t[4]+'</span></td></tr>'})});
+document.querySelector('#tab-tarefas tbody').innerHTML=th;
+/* demonstração: um prazo já alterado */
+setTimeout(function(){var c=document.querySelectorAll('#tab-tarefas .cm-celula-editavel')[11];if(!c) return;c.setAttribute('data-original',c.textContent);c.textContent='02/10';c.classList.add('is-editado');window.qAvaliarForm&&qAvaliarForm(c.closest('[data-form]'))},300);
+})();
+</script>
+</body>
+</html>

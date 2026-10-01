@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Organograma, Cultura</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+</head>
+<body data-moldura='{"modulo":"cultura","secao":"Pessoas","item":"Organograma","papel":"rh","usuario":{"nome":"Fernanda Lopes","cargo":"Analista de RH","iniciais":"FL","cor":"lc-av--c4"},"trilha":["Pessoas","Organograma"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Organograma navegável, a partir de qualquer pessoa.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p><p>Saber quem responde a quem, quantas pessoas cada líder tem, e achar o caminho de uma pessoa até a diretoria, sem um PDF desatualizado.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Abre centrado em você (ou na pessoa de onde veio).</li>
+      <li>"Mais 6" abre os liderados escondidos; clicar num nó abre o perfil (29b).</li>
+      <li>Busca no topo leva o organograma até a pessoa e destaca o caminho.</li>
+      <li>"Ver como lista" mostra a mesma árvore como lista recuada, melhor no celular e no leitor de tela.</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p><p>o organograma do Teams, do Factorial e da Pingboard é árvore de cima para baixo com foto, cargo e contagem de liderados, e o Workday oferece a versão em lista recuada. A linha é filete fino; nenhuma cor por área.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Estado</span><div class="lc-seg lc-seg--p" role="group" aria-label="Visão" data-p4-estados><button type="button" data-v="arvore" aria-pressed="true">Árvore</button><button type="button" data-v="lista">Lista recuada</button></div>
+    <span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="cultura"></div>
+</details>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Organograma</h1><p class="lc-cab-pagina__desc">Administradora Alpha, 86 pessoas em 7 áreas. Atualizado com a admissão de 29/09.</p></div>
+  <div class="lc-cab-pagina__acoes"><label class="lc-busca" style="width:280px"><i data-i="pesquisar"></i><input type="search" placeholder="Levar até a pessoa" aria-label="Encontrar pessoa no organograma"></label><button class="lc-btn" type="button"><i data-i="baixar"></i>Baixar PDF</button></div></div>
+
+<div data-estado="arvore" class="lc-organo-cont">
+<ul class="lc-organo" aria-label="Organograma">
+  <li><a class="lc-organo__no" href="#"><span class="lc-av lc-av--40 lc-av--c2">CP</span><span><b>Cláudio Prates</b><small>Diretor</small></span></a>
+    <ul>
+      <li><a class="lc-organo__no" href="#"><span class="lc-av lc-av--40 lc-av--c4">PM</span><span><b>Paula Mendes</b><small>Gerente de CS e Suporte, 24</small></span></a>
+        <ul>
+          <li><a class="lc-organo__no" href="29b-cultura-perfil.html" aria-current="true"><span class="lc-av lc-av--40 lc-av--c2">BT</span><span><b>Bianca Torres</b><small>Líder de suporte, 9</small></span></a><button class="lc-organo__mais" type="button" aria-expanded="false"><i data-i="chevron-baixo" class="lc-ic--14"></i>Mais 9</button></li>
+          <li><a class="lc-organo__no" href="#"><span class="lc-av lc-av--40 lc-av--c3">LA</span><span><b>Letícia Araújo</b><small>Gerente de implantação, 4</small></span></a><button class="lc-organo__mais" type="button" aria-expanded="false"><i data-i="chevron-baixo" class="lc-ic--14"></i>Mais 4</button></li>
+        </ul></li>
+      <li><a class="lc-organo__no" href="#"><span class="lc-av lc-av--40 lc-av--c7">DM</span><span><b>Daniel Moreira</b><small>Gestor financeiro, 12</small></span></a>
+        <ul><li><a class="lc-organo__no" href="#"><span class="lc-av lc-av--40 lc-av--c5">RO</span><span><b>Renata Oliveira</b><small>Analista financeira</small></span></a></li></ul></li>
+      <li><a class="lc-organo__no" href="#"><span class="lc-av lc-av--40 lc-av--c7">RL</span><span><b>Rafael Lima</b><small>Coordenador de operações, 18</small></span></a><button class="lc-organo__mais" type="button" aria-expanded="false"><i data-i="chevron-baixo" class="lc-ic--14"></i>Mais 18</button></li>
+      <li><a class="lc-organo__no" href="#"><span class="lc-av lc-av--40 lc-av--c6">TN</span><span><b>Thiago Nakamura</b><small>Gerente de produto, 11</small></span></a><button class="lc-organo__mais" type="button" aria-expanded="false"><i data-i="chevron-baixo" class="lc-ic--14"></i>Mais 11</button></li>
+    </ul></li>
+</ul>
+</div>
+
+<div data-estado="lista" hidden class="lc-caixa">
+  <ul class="lc-lista" aria-label="Organograma em lista">
+    <li><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c2">CP</span><span><span class="lc-pessoa__nome">Cláudio Prates</span><span class="lc-pessoa__sub">Diretor, 85 pessoas abaixo</span></span></span></li>
+    <li style="padding-left:52px"><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c4">PM</span><span><span class="lc-pessoa__nome">Paula Mendes</span><span class="lc-pessoa__sub">Gerente de CS e Suporte, 24</span></span></span></li>
+    <li style="padding-left:88px"><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c2">BT</span><span><span class="lc-pessoa__nome">Bianca Torres</span><span class="lc-pessoa__sub">Líder de suporte, 9</span></span></span></li>
+    <li style="padding-left:88px"><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c3">LA</span><span><span class="lc-pessoa__nome">Letícia Araújo</span><span class="lc-pessoa__sub">Gerente de implantação, 4</span></span></span></li>
+    <li style="padding-left:52px"><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c7">DM</span><span><span class="lc-pessoa__nome">Daniel Moreira</span><span class="lc-pessoa__sub">Gestor financeiro, 12</span></span></span></li>
+    <li style="padding-left:52px"><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c7">RL</span><span><span class="lc-pessoa__nome">Rafael Lima</span><span class="lc-pessoa__sub">Coordenador de operações, 18</span></span></span></li>
+    <li style="padding-left:52px"><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c6">TN</span><span><span class="lc-pessoa__nome">Thiago Nakamura</span><span class="lc-pessoa__sub">Gerente de produto, 11</span></span></span></li>
+  </ul>
+</div>
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl><dt>Ordem de foco</dt><dd>Busca, Baixar PDF, nós de cima para baixo e da esquerda para a direita, botões "Mais".</dd>
+    <dt>O que é anunciado</dt><dd>A árvore é lista aninhada (ul/li): o leitor de tela diz o nível e quantos itens. O nó destacado tem aria-current. "Mais 9" é botão com aria-expanded.</dd>
+    <dt>Nome do que é só ícone</dt><dd>Não há botão só ícone.</dd></dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

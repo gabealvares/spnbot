@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plataforma, planos e cobrança</title>
+<meta name="description" content="Superadmin: planos e módulos da plataforma em matriz editável e cobrança da plataforma com faturas, régua de cobrança e bloqueio parcial.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<script>(function(){var r=document.documentElement,f=function(){["--marca","--marca-txt","--marca-forte","--marca-suave"].forEach(function(v){r.style.removeProperty(v);});};f();document.addEventListener("lc:tema",f);document.addEventListener("lc:marca",f);})();</script>
+<style>
+  .sa-matriz td,.sa-matriz th{text-align:center}
+  .sa-matriz td:first-child,.sa-matriz th:first-child{text-align:left}
+  .sa-matriz .lc-ic{color:var(--sucesso-texto)}
+  .sa-cob{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+  @media (max-width:1023px){.sa-cob{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body data-moldura='{"contexto":"superadmin","modulo":"clientes","secao":"Planos e cobrança","item":"Planos","usuario":{"nome":"Ivone Prates","iniciais":"IP","cor":"lc-av--c6","cargo":"Financeiro da plataforma"},"cliente":{"nome":"GACO Plataforma","sigla":"G"},"trilha":["Planos e cobrança","Planos"]}'>
+<main id="conteudo" class="lc-pagina">
+<section class="lc-ficha-tela" aria-label="Sobre planos e módulos">
+  <div class="lc-ficha-tela__nome"><b>Planos e módulos</b><span>Matriz do que cada plano inclui, preço e limites. Mudança vale para contratos novos.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Ver e mudar, num só lugar, o que cada plano inclui e quanto custa, sabendo quantos clientes são afetados antes de salvar.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Matriz: módulos nas linhas, planos nas colunas; célula clicável liga ou desliga.</li><li>Preço e limites editáveis na própria célula.</li><li>A barra de salvar diz quantos clientes estão no plano e se a mudança vale só para novos.</li><li>"Salvar ▾": salvar, ou salvar e avisar os clientes por e-mail.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>a tabela de preços do Stripe Billing e a do Chargebee editam plano por linha; a página de preços do Notion e do Slack ensinou a ler planos em colunas; e editar na célula evita abrir um formulário por plano.</p></div>
+</section>
+<div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Planos</h1><p class="lc-cab-pagina__desc">4 planos ativos. Preços sem impostos; reajuste anual pelo IPCA.</p></div><div class="lc-cab-pagina__acoes"><button class="lc-btn lc-btn--principal" type="button"><i data-i="mais"></i>Novo plano</button></div></div>
+<div data-editavel>
+<div class="lc-tabela-cont"><table class="lc-tabela lc-tabela--pautada sa-matriz"><caption class="lc-sr">Módulos por plano</caption>
+  <thead><tr><th scope="col">Módulo</th><th scope="col">Essencial<span class="lc-tabela__sub">9 clientes</span></th><th scope="col">Gestão<span class="lc-tabela__sub">14 clientes</span></th><th scope="col">Completo<span class="lc-tabela__sub">12 clientes</span></th><th scope="col">Serviços<span class="lc-tabela__sub">3 clientes</span></th></tr></thead>
+  <tbody>
+    <tr class="lc-tabela__grupo"><td colspan="5"><b>Preço e limites</b></td></tr>
+    <tr><td>Mensalidade base</td><td><button class="lc-celula-edit">R$ 2.300,00</button></td><td><button class="lc-celula-edit">R$ 4.980,00</button></td><td><span class="lc-celula-edit lc-celula-edit--editando"><input class="lc-entrada lc-entrada--num" value="R$ 9.800,00" aria-label="Mensalidade do Completo"></span></td><td><button class="lc-celula-edit">R$ 6.700,00</button></td></tr>
+    <tr><td>Usuários internos</td><td>20</td><td>50</td><td>100</td><td>100</td></tr>
+    <tr><td>Mensagens de WhatsApp por mês</td><td>5.000</td><td>20.000</td><td>50.000</td><td>20.000</td></tr>
+    <tr class="lc-tabela__grupo"><td colspan="5"><b>Módulos</b></td></tr>
+    <tr><td>Suporte, Financeiro, Portal</td><td><i data-i="confirmar" aria-label="Incluído"></i></td><td><i data-i="confirmar" aria-label="Incluído"></i></td><td><i data-i="confirmar" aria-label="Incluído"></i></td><td><i data-i="confirmar" aria-label="Incluído"></i></td></tr>
+    <tr><td>CS e Comercial</td><td><span class="lc-cor-3">Não</span></td><td><i data-i="confirmar" aria-label="Incluído"></i></td><td><i data-i="confirmar" aria-label="Incluído"></i></td><td><i data-i="confirmar" aria-label="Incluído"></i></td></tr>
+    <tr><td>Operações e Projetos</td><td><span class="lc-cor-3">Não</span></td><td><i data-i="confirmar" aria-label="Incluído"></i></td><td><i data-i="confirmar" aria-label="Incluído"></i></td><td><i data-i="confirmar" aria-label="Incluído"></i></td></tr>
+    <tr><td>Academy</td><td><span class="lc-cor-3">+R$ 600,00</span></td><td><span class="lc-cor-3">+R$ 900,00</span></td><td><i data-i="confirmar" aria-label="Incluído"></i></td><td><span class="lc-cor-3">+R$ 900,00</span></td></tr>
+    <tr><td>Marketing</td><td><span class="lc-cor-3">Não</span></td><td><span class="lc-cor-3">+R$ 1.200,00</span></td><td><span class="lc-cor-3">+R$ 1.200,00</span></td><td><span class="lc-cor-3">Não</span></td></tr>
+    <tr><td>Produto e Desenvolvimento</td><td colspan="4"><span class="lc-cor-3">Só para a própria plataforma</span></td></tr>
+  </tbody></table></div>
+<div class="lc-barra-salvar" role="region" aria-label="Alterações não salvas" data-barra-salvar>
+  <p class="lc-barra-salvar__msg"><i data-i="aviso"></i><span><b data-conta-alt data-n="1">1 alteração não salva</b> no plano Completo: mensalidade. <span class="lc-antes">Antes: <s>R$ 9.400,00</s>.</span> Vale para contratos novos; os 12 clientes atuais mudam só na renovação.</span></p>
+  <div class="lc-barra-salvar__acoes"><button class="lc-btn lc-btn--discreto" type="button" data-fechar-alvo="[data-barra-salvar]">Descartar</button><span class="lc-dividido"><button class="lc-btn lc-btn--principal" type="button" data-fechar-alvo="[data-barra-salvar]" data-toast="Plano Completo salvo.">Salvar</button><button class="lc-btn lc-btn--principal" type="button" aria-label="Outras formas de salvar" aria-haspopup="menu" data-alternar="#sv"><i data-i="chevron-baixo"></i></button></span>
+    <div class="lc-menu" id="sv" hidden role="menu" style="position:absolute;right:0;bottom:calc(100% + 6px)"><button class="lc-menu__item" role="menuitem" type="button">Salvar e avisar os 12 clientes</button><button class="lc-menu__item" role="menuitem" type="button">Salvar e voltar para a lista</button></div></div></div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Novo plano, células editáveis em ordem de leitura (Enter edita, Esc cancela, Tab salva e vai à próxima), barra de salvar.</p></div><div><h3>O que é anunciado</h3><p>Célula: "Mensalidade do Completo, R$ 9.800,00, editando". Ícone de incluído tem nome "Incluído".</p></div><div><h3>Nome do que é só ícone</h3><p>Visto: "Incluído". Chevron: "Outras formas de salvar".</p></div></div>
+
+<section class="lc-ficha-tela" id="cobranca" aria-label="Sobre a cobrança da plataforma">
+  <div class="lc-ficha-tela__nome"><b>Cobrança da plataforma</b><span>Faturas dos clientes do GACO, régua de cobrança e bloqueio parcial.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Saber quem deve à plataforma, o que já foi feito (lembretes) e o que acontece se não pagar, com data, antes de qualquer bloqueio.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Faturas do mês com situação em palavra; vencidas no topo.</li><li>Clicar abre a régua da fatura à direita: lembretes enviados e próximos.</li><li>"Adiar bloqueio" pede motivo e nova data; "Emitir 2ª via" envia ao financeiro do cliente.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o "Dunning" do Stripe e do Chargebee mostra a régua de tentativas com datas; o Conta Azul exibe a situação da fatura por palavra; e bloqueio só parcial (novos convites e disparos) segue o contrato e não tira o síndico do ar.</p></div>
+</section>
+<div class="sa-cob">
+  <div class="lc-tabela-cont"><table class="lc-tabela"><caption class="lc-sr">Faturas de setembro</caption>
+    <thead><tr><th scope="col">Cliente</th><th scope="col">Fatura</th><th scope="col" class="lc-num">Valor</th><th scope="col">Vencimento</th><th scope="col">Situação</th></tr></thead>
+    <tbody>
+      <tr aria-selected="true"><td><span class="lc-tabela__primaria">Lar Gestão Predial</span></td><td><span class="lc-protocolo"><span>Fatura</span> GACO-2026-09-0031</span></td><td class="lc-num">R$ 4.980,00</td><td>25/09/2026</td><td><span class="lc-estado lc-estado--perigo">Vencida há 6 dias</span></td></tr>
+      <tr><td><span class="lc-tabela__primaria">Administradora Alpha</span></td><td><span class="lc-protocolo"><span>Fatura</span> GACO-2026-09-0001</span></td><td class="lc-num">R$ 12.400,00</td><td>10/09/2026</td><td><span class="lc-carimbo lc-carimbo--pago">Pago<small>Boleto, 09/09</small></span></td></tr>
+      <tr><td><span class="lc-tabela__primaria">Órbita Condomínios</span></td><td><span class="lc-protocolo"><span>Fatura</span> GACO-2026-09-0007</span></td><td class="lc-num">R$ 5.900,00</td><td>10/09/2026</td><td><span class="lc-carimbo lc-carimbo--pago">Pago<small>Pix, 10/09</small></span></td></tr>
+      <tr><td><span class="lc-tabela__primaria">Vértice Administração</span></td><td><span class="lc-protocolo"><span>Fatura</span> GACO-2026-09-0012</span></td><td class="lc-num">R$ 9.800,00</td><td>15/09/2026</td><td><span class="lc-carimbo lc-carimbo--pago">Pago<small>Boleto, 15/09</small></span></td></tr>
+    </tbody><tfoot><tr><td colspan="2">Recebido em setembro</td><td class="lc-num"><span class="lc-total">R$ 187.320,00</span></td><td colspan="2" class="lc-legenda">de R$ 192.300,00 faturados</td></tr></tfoot></table></div>
+  <aside class="lc-caixa"><div class="lc-caixa__cab"><h2>Régua da fatura 0031</h2></div><div class="lc-caixa__corpo">
+    <ol class="lc-acompanha">
+      <li data-feito><span class="lc-acompanha__no"><i data-i="confirmar"></i></span><b>Fatura enviada</b><time>15/09</time><small>Para financeiro@largestao.com.br</small></li>
+      <li data-feito><span class="lc-acompanha__no"><i data-i="confirmar"></i></span><b>Lembrete no vencimento</b><time>25/09</time></li>
+      <li data-feito><span class="lc-acompanha__no"><i data-i="confirmar"></i></span><b>2º lembrete e WhatsApp</b><time>29/09</time><small>Lido por Márcio Teles, diretor</small></li>
+      <li aria-current="step"><span class="lc-acompanha__no"></span><b>Ligação da gerente da conta</b><time>02/10</time></li>
+      <li><span class="lc-acompanha__no"></span><span>Bloqueio parcial: novos convites e disparos</span><time>10/10</time></li>
+    </ol>
+    <div class="lc-grupo-btn" style="margin-top:8px"><button class="lc-btn" type="button" data-toast="2ª via enviada.">Emitir 2ª via</button><button class="lc-btn lc-btn--discreto" type="button">Adiar bloqueio</button></div></div></aside>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Linhas da tabela, régua, Emitir 2ª via, Adiar bloqueio.</p></div><div><h3>O que é anunciado</h3><p>Situação em texto; régua com passo atual ("Ligação da gerente da conta, passo atual, 02/10").</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

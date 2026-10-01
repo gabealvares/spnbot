@@ -31,7 +31,7 @@ var seq=0;
 function sufixar(r,suf){
   var ids={};
   $$("[id]",r).forEach(function(el){ids[el.id]=el.id+suf;el.id=el.id+suf;});
-  ["for","aria-describedby","aria-controls","aria-labelledby","data-abre","data-alvo","aria-activedescendant","aria-owns","aria-errormessage"].forEach(function(a){
+  ["for","aria-describedby","aria-controls","aria-labelledby","data-abre","data-alvo","aria-activedescendant","aria-owns","aria-errormessage","data-conversa","data-busca-tabela","data-massa","data-filtros-de","data-filtros-barra","data-limpa-sel","data-limpa-filtros","data-tabela","data-carregar-mais","data-contagem-de","data-nome-alvo","data-barra","data-enviar-form","list"].forEach(function(a){
     $$("["+a+"]",r).forEach(function(el){el.setAttribute(a,el.getAttribute(a).split(/\s+/).map(function(x){return ids[x]||x;}).join(" "));});});
   $$('a[href^="#"]',r).forEach(function(a){var h=a.getAttribute("href").slice(1);if(ids[h])a.setAttribute("href","#"+ids[h]);});
   $$('input[type="radio"][name]',r).forEach(function(el){el.name=el.name+suf;});
@@ -84,8 +84,11 @@ function renderizar(tpl){
 function indiceFamilias(){
   var nav=$(".lc-doc-indice--familias ol");if(!nav)return;
   var fams={},ordem=[];
-  $$(".lc-doc-sec[id]").forEach(function(s){var f=s.getAttribute("data-familia")||"Página";if(!fams[f]){fams[f]=[];ordem.push(f);}var h=$("h2",s);fams[f].push('<li><a href="#'+s.id+'">'+esc(h?h.textContent:s.id)+'</a></li>');});
+  $$(".lc-doc-secao[id]").forEach(function(s){var f=s.getAttribute("data-familia")||"Página";if(!fams[f]){fams[f]=[];ordem.push(f);}var h=$("h2",s);fams[f].push('<li><a href="#'+s.id+'">'+esc(h?h.textContent:s.id)+'</a></li>');});
   nav.innerHTML=ordem.map(function(f){return '<li><span class="lc-doc-indice__familia">'+esc(f)+'</span><ol>'+fams[f].join("")+'</ol></li>';}).join("");
+  if("IntersectionObserver" in window){var links=$$("a",nav);
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)links.forEach(function(a){a.setAttribute("aria-current",a.getAttribute("href")==="#"+e.target.id?"true":"false");});});},{rootMargin:"-30% 0px -60% 0px"});
+    $$(".lc-doc-secao[id]").forEach(function(s){io.observe(s);});}
 }
 function iniciarCatalogo(){ $$("template[data-ex]").forEach(renderizar); indiceFamilias(); }
 

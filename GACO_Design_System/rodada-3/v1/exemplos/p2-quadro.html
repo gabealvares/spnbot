@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Funil, Comercial</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+<style>
+.p2-q-topo{flex:none}
+.p2-q-topo .lc-cab-pagina{padding:16px 0 4px}
+.lc-modelo-quadro .lc-kanban{padding-top:4px}
+.lc-cartao-k[aria-pressed="true"]{outline:2px solid var(--foco);outline-offset:1px;box-shadow:var(--sombra-flutuante)}
+.p2-dias{font-variant-numeric:var(--num)}
+.p2-dias--alerta{color:var(--aviso-texto);font-weight:600}
+.lc-zona-soltar{padding:8px 0 12px;background:var(--fundo)}
+.lc-zona-soltar>div[data-solta="true"]{outline:2px solid var(--foco)}
+</style>
+</head>
+<body data-moldura='{"modulo":"comercial","secao":"Funil","papel":"vendedor","fixa":true,"usuario":{"nome":"Marcos Pereira","iniciais":"MP","cor":"lc-av--c5","cargo":"Vendedor"}}'>
+<main id="conteudo" class="lc-modelo-quadro">
+  <div class="p2-q-topo">
+    <div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Funil</h1><p class="lc-cab-pagina__desc">Arraste o cartão, ou selecione com Espaço e mova com as setas. Ganho e Perdido aparecem embaixo enquanto você arrasta.</p></div>
+      <div class="lc-cab-pagina__acoes"><button class="lc-btn lc-btn--principal" type="button"><i data-i="mais"></i>Novo negócio</button></div></div>
+    <div class="lc-filtros"><label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Administradora ou contato" aria-label="Pesquisar negócios"></label><button class="lc-filtro lc-filtro--ativo" type="button">Dono: <b>Marcos Pereira</b></button><button class="lc-filtro" type="button" id="parados" aria-pressed="false"><i data-i="relogio"></i>Parados há mais de 10 dias</button>
+      <div class="lc-filtros__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Visão"><a href="p2-lista.html" aria-pressed="false"><i data-i="visao-lista"></i>Lista</a><button type="button" aria-pressed="true"><i data-i="visao-quadro"></i>Quadro</button></div></div></div>
+  </div>
+  <div class="lc-kanban" id="quadro" role="list" aria-label="Etapas do funil"></div>
+  <div class="lc-zona-soltar" id="zona" hidden><div class="lc-ganho" data-zona="ganho"><i data-i="sucesso"></i>Ganho</div><div class="lc-perdido" data-zona="perdido"><i data-i="cancelado"></i>Perdido</div></div>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2,$=P.$,$$=P.$$,esc=P.esc;
+var COLS=["Qualificação","Demonstração","Proposta","Negociação","Contrato"];
+var N=[["Administradora Vale Verde",38,"Rogério Matos",0,3,18400],["Adm. Litoral Sul",52,"Fernanda Lins",0,12,24100],["Prisma Gestão Condominial",21,"Otávio Reis",1,2,9800],["Administradora Horizonte",64,"Beatriz Couto",1,14,31200],
+  ["Órbita Condomínios",88,"Sílvia Paes",2,5,41500],["Condomínio Fácil",17,"André Luz",2,1,7300],["Gestão Ipê",29,"Clara Nogueira",3,9,13900],["Síndico Pro",12,"Mauro Teles",3,22,5600],["Adm. Bandeirantes",71,"Joana Prates",4,4,36800]];
+var sel=-1, filtroParado=false, arrastando=-1;
+function desenha(){
+  $("#quadro").innerHTML=COLS.map(function(c,ci){ var it=N.map(function(n,i){return [n,i];}).filter(function(x){ return x[0][3]===ci && (!filtroParado||x[0][4]>10); });
+    var soma=it.reduce(function(a,x){return a+x[0][5];},0);
+    return '<section class="lc-kanban__col" role="listitem" data-col="'+ci+'" aria-labelledby="col'+ci+'"><div class="lc-kanban__cab"><h3 id="col'+ci+'">'+c+' <span class="lc-contagem">'+it.length+'</span></h3><div class="lc-kanban__soma">'+P.moeda(soma)+' por mês</div></div>'+
+      '<div class="lc-kanban__lista" role="list">'+it.map(function(x){ var n=x[0],i=x[1], parado=n[4]>10;
+        return '<button type="button" role="listitem" class="lc-cartao-k'+(parado?' lc-cartao-k--esfriando':'')+'" draggable="true" data-i="'+i+'" aria-pressed="'+(sel===i)+'" aria-describedby="dica-k"><span class="lc-cartao-k__titulo">'+esc(n[0])+'</span><span class="lc-cartao-k__sub">'+n[1]+' condomínios, '+esc(n[2])+'</span><span class="lc-cartao-k__pe"><span class="lc-cresce">'+P.moeda(n[5])+'</span><span class="p2-dias'+(parado?' p2-dias--alerta':'')+'">'+(parado?'parado há ':'há ')+n[4]+(n[4]===1?' dia':' dias')+'</span></span></button>'; }).join("")+'</div>'+
+      '<button type="button" class="lc-kanban__add"><i data-i="mais"></i>Adicionar em '+c+'</button></section>'; }).join("")+'<p class="lc-sr" id="dica-k">Espaço seleciona para mover; setas esquerda e direita trocam a etapa; Enter abre; G marca como ganho; P como perdido.</p>';
+  lcIcones($("#quadro"));
+  $$(".lc-cartao-k").forEach(function(k){ var i=+k.getAttribute("data-i");
+    k.addEventListener("dragstart",function(e){ arrastando=i; e.dataTransfer.setData("text/plain",i); k.setAttribute("aria-grabbed","true"); $("#zona").hidden=false; });
+    k.addEventListener("dragend",function(){ arrastando=-1; $("#zona").hidden=true; $$("[data-solta]").forEach(function(c){c.removeAttribute("data-solta");}); });
+    k.addEventListener("keydown",function(e){
+      if(e.key===" "){ e.preventDefault(); sel = sel===i?-1:i; desenha(); foca(i); P.anunciar(sel===i?N[i][0]+" selecionado. Setas para mudar de etapa, Espaço para soltar.":"Solto em "+COLS[N[i][3]]+"."); }
+      if(sel===i && (e.key==="ArrowRight"||e.key==="ArrowLeft")){ e.preventDefault(); var d=N[i][3]+(e.key==="ArrowRight"?1:-1); if(d>=0&&d<COLS.length) mover(i,d,true); }
+      if(e.key==="g"||e.key==="G"){ e.preventDefault(); ganhar(i); } if(e.key==="p"||e.key==="P"){ e.preventDefault(); perder(i); }
+      if(e.key==="Enter"){ e.preventDefault(); P.toast("Aqui abriria o negócio "+esc(N[i][0])+", com 3 de "+N.length+" no funil.",{ic:"info"}); }
+    });
+    k.addEventListener("contextmenu",function(e){ e.preventDefault(); menuMover(k,i); });
+  });
+  $$(".lc-kanban__col").forEach(function(c){ var ci=+c.getAttribute("data-col");
+    c.addEventListener("dragover",function(e){ e.preventDefault(); c.setAttribute("data-solta","true"); });
+    c.addEventListener("dragleave",function(){ c.removeAttribute("data-solta"); });
+    c.addEventListener("drop",function(e){ e.preventDefault(); c.removeAttribute("data-solta"); var i=+e.dataTransfer.getData("text/plain"); if(N[i][3]!==ci) mover(i,ci); });
+  });
+}
+function foca(i){ var k=$('.lc-cartao-k[data-i="'+i+'"]'); if(k) k.focus(); }
+function mover(i,d,teclado){ var de=N[i][3];
+  if(d===4){ /* Contrato pede o valor fechado: popover no lugar, não modal */ return exigir(i,d,de); }
+  N[i][3]=d; N[i][4]=0; desenha(); if(teclado) foca(i);
+  P.toast("<b>"+esc(N[i][0])+"</b> em "+COLS[d]+".",{ic:"seta-direita",acao:"Desfazer",aoAcao:function(){ N[i][3]=de; desenha(); foca(i); }});
+  P.anunciar(N[i][0]+" movido para "+COLS[d]+".");
+}
+function exigir(i,d,de){ var col=$('[data-col="'+d+'"] .lc-kanban__cab'); col.style.position="relative";
+  var p=document.createElement("div"); p.className="lc-popover"; p.setAttribute("role","dialog"); p.setAttribute("aria-label","Mover para Contrato"); p.style.top="calc(100% + 4px)"; p.style.left="0";
+  p.innerHTML='<div class="lc-popover__cab"><h3>Mover '+esc(N[i][0])+' para Contrato</h3></div><div class="lc-popover__corpo lc-pilha lc-pilha--p"><p>Contrato pede o valor mensal fechado.</p><div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">R$</span><input class="lc-entrada lc-entrada--num" id="pq-v" aria-label="Valor mensal fechado" value="'+P.num(N[i][5],2)+'"></div></div><div class="lc-popover__pe"><button class="lc-btn lc-btn--p" type="button" data-x>Cancelar</button><button class="lc-btn lc-btn--p lc-btn--principal" type="button" data-ok>Mover para Contrato</button></div>';
+  col.appendChild(p); var v=p.querySelector("#pq-v"); v.focus(); v.select();
+  function fim(){ p.remove(); foca(i); }
+  p.querySelector("[data-x]").addEventListener("click",fim); p.addEventListener("keydown",function(e){ if(e.key==="Escape"){ e.stopPropagation(); fim(); } if(e.key==="Enter"){ e.preventDefault(); p.querySelector("[data-ok]").click(); } });
+  p.querySelector("[data-ok]").addEventListener("click",function(){ N[i][5]=P.lerMoeda(v.value)||N[i][5]; N[i][3]=d; N[i][4]=0; desenha(); foca(i); P.toast("<b>"+esc(N[i][0])+"</b> em Contrato, "+P.moeda(N[i][5])+" por mês.",{ic:"contrato",acao:"Desfazer",aoAcao:function(){ N[i][3]=de; desenha(); }}); });
+}
+function menuMover(k,i){ P.menu(k,COLS.map(function(c,ci){ return {t:c,marcado:N[i][3]===ci,acao:function(){ if(ci!==N[i][3]) mover(i,ci,true); }}; }).concat([{sep:1},{t:"Marcar como ganho",ic:"sucesso",tecla:"G",acao:function(){ganhar(i);}},{t:"Marcar como perdido",ic:"cancelado",tecla:"P",perigo:1,acao:function(){perder(i);}}]),{lado:"esquerda",rotulo:"Mover "+N[i][0]}); }
+function ganhar(i){ P.modal({titulo:"Ganho: "+esc(N[i][0]),desc:"Para o CS receber sem perguntar de novo. Vira cliente com implantação aberta.",
+  corpo:'<div class="lc-form-grade"><div class="lc-campo"><label class="lc-rotulo" for="g-ini">Início da implantação</label><input id="g-ini" class="lc-entrada" type="date" value="2026-10-15"></div><div class="lc-campo"><label class="lc-rotulo" for="g-cs">Gerente de CS</label><select id="g-cs" class="lc-selecao"><option>Letícia Araújo</option><option>Rafael Lima</option></select></div><div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="g-obs">O que o CS precisa saber</label><textarea id="g-obs" class="lc-area-texto" placeholder="Ex.: decisão é do conselho; quer migração dos boletos em novembro"></textarea></div></div>',
+  pe:'<button class="lc-btn" type="button" data-m-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-ok><i data-i="sucesso"></i>Marcar como ganho e passar ao CS</button>',
+  aoAbrir:function(el,api){ el.querySelector("[data-ok]").addEventListener("click",function(){ var n=N.splice(i,1)[0]; api.fechar(); desenha(); P.toast("<b>"+esc(n[0])+"</b> ganho. Passado a "+esc(el.querySelector("#g-cs").value)+".",{tipo:"sucesso",acao:"Desfazer",aoAcao:function(){ N.splice(i,0,n); desenha(); }}); }); }}); }
+function perder(i){ P.modal({titulo:"Perder "+esc(N[i][0])+"?",perigo:true,desc:"Sai do funil e entra no relatório de perdas. Dá para reabrir depois.",
+  corpo:'<div class="lc-campo"><label class="lc-rotulo" for="pd-m">Motivo <span class="lc-obrig" aria-hidden="true">*</span></label><select id="pd-m" class="lc-selecao"><option value="">Escolha</option><option>Preço acima do concorrente</option><option>Ficou com o sistema atual</option><option>Sem retorno há 30 dias</option><option>Não tem o porte para o GACO</option></select></div><div class="lc-campo" style="margin-top:12px"><label class="lc-rotulo" for="pd-c">Concorrente <span class="lc-opcional">opcional</span></label><input id="pd-c" class="lc-entrada"></div>',
+  pe:'<button class="lc-btn" type="button" data-m-fechar>Cancelar</button><button class="lc-btn lc-btn--perigo" type="button" data-ok>Marcar como perdido</button>',
+  aoAbrir:function(el,api){ el.querySelector("[data-ok]").addEventListener("click",function(){ var m=el.querySelector("#pd-m"); if(!m.value){ m.setAttribute("aria-invalid","true"); m.focus(); return; } var n=N.splice(i,1)[0]; api.fechar(); desenha(); P.toast("<b>"+esc(n[0])+"</b> perdido: "+esc(m.value.toLowerCase())+".",{ic:"cancelado",acao:"Desfazer",aoAcao:function(){ N.splice(i,0,n); desenha(); }}); }); }}); }
+$$("#zona [data-zona]").forEach(function(z){ z.addEventListener("dragover",function(e){ e.preventDefault(); z.setAttribute("data-solta","true"); }); z.addEventListener("dragleave",function(){ z.removeAttribute("data-solta"); });
+  z.addEventListener("drop",function(e){ e.preventDefault(); z.removeAttribute("data-solta"); $("#zona").hidden=true; var i=+e.dataTransfer.getData("text/plain"); if(z.getAttribute("data-zona")==="ganho") ganhar(i); else perder(i); }); });
+$("#parados").addEventListener("click",function(){ filtroParado=!filtroParado; this.setAttribute("aria-pressed",filtroParado); this.classList.toggle("lc-filtro--ativo",filtroParado); desenha(); });
+desenha();
+})();
+</script>
+</body>
+</html>

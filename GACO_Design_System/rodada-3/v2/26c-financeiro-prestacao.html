@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prestação de contas e DRE</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q4.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q4-icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q4.js" defer></script>
+<style>
+.pc{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start;margin-top:12px}
+.pc .cm-documento-folha{max-width:none}
+.pc-check{list-style:none;margin:0;padding:0;font-size:13px}
+.pc-check li{display:grid;grid-template-columns:18px 1fr;gap:8px;padding:6px 0;border-bottom:1px dotted var(--cm-filete)}
+.pc-check li:last-child{border-bottom:0}
+.dre-filtros{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:4px 0 12px}
+.dre-filtros .cm-selecao{width:auto}
+.dre-grafico{min-height:240px}
+@media (max-width:1099px){ .pc{grid-template-columns:minmax(0,1fr)} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Financeiro","tela":"DRE","papel":"Financeiro","sino":4,"usuario":{"nome":"Juliana Reis","iniciais":"JR","cargo":"Gestora financeira","presenca":"disponivel","tom":4},"links":{"Contas a receber":"26-financeiro.html","Conciliação":"26b-financeiro-conciliacao.html","DRE":"26c-financeiro-prestacao.html#t-dre","Extrato":"26d-financeiro-caixa.html"}}'></div>
+
+<main id="conteudo" class="cm-doc">
+<header class="cm-doc-capa">
+  <div>
+    <h1>Financeiro: prestação de contas e DRE</h1>
+    <p>O fechamento do mês do condomínio (a prestação de contas que o conselho aprova e o morador lê no portal) e o resultado da própria administradora, como relatório.</p>
+    <p class="cm-doc-paginas" style="margin-top:8px">Páginas do Financeiro: <a href="26-financeiro.html">Receber e pagar</a> <a href="26b-financeiro-conciliacao.html">Conciliação e rateio</a> <a href="26c-financeiro-prestacao.html" aria-current="page">Prestação de contas e DRE</a> <a href="26d-financeiro-caixa.html">Extrato, fluxo de caixa, notas e inadimplência</a></p>
+  </div>
+  <div data-cm-seletor></div>
+  <nav class="cm-doc-indice" aria-label="Telas desta página">
+    <a href="#t-prestacao"><b>26.6</b>Prestação de contas mensal</a>
+    <a href="#t-dre"><b>26.7</b>DRE como relatório</a>
+  </nav>
+</header>
+
+<!-- ============================ 26.6 PRESTAÇÃO DE CONTAS ============================ -->
+<section class="cm-doc-tela" id="t-prestacao" aria-labelledby="t-pc-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">26.6</span><h2 class="cm-doc-tela__titulo" id="t-pc-h">Prestação de contas mensal (balancete)</h2><span class="cm-doc-tela__sub">fechar, conferir, mandar ao conselho, publicar</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>Todo mês a administradora entrega ao condomínio o balancete: o que entrou, o que saiu, o saldo de cada conta e quem está devendo. A gestora monta o documento a partir do mês conciliado, confere as pendências, manda ao conselho fiscal, responde às perguntas na própria linha e publica no portal quando o conselho aprova.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>A barra de etapas no topo mostra onde o mês está: Conciliado, Em revisão, No conselho, Publicado. Cada etapa é clicável para ver o que ela pediu.</li>
+      <li>À direita, a lista "Antes de enviar" mostra o que falta (2 notas sem anexo). Clicar leva à linha.</li>
+      <li>O conselheiro comenta na linha ("Por que manutenção subiu?"); a resposta fica no fio, ao lado do documento.</li>
+      <li><b>Enviar ao conselho</b> trava o documento para edição; o conselho aprova pelo portal com assinatura.</li>
+      <li>Aprovado, <b>Publicar no portal</b> envia o PDF aos 312 condôminos com aviso e ciência.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>é o documento que o síndico e o conselho já conhecem do papel (o balancete do Superlógica e do Group), então ele aparece como folha; o Google Docs ensinou o comentário na linha com fio; e o Path do Salesforce, já usado no CS do GACO, mostra a etapa do mês com o que cada uma pede. O conselho aprova com assinatura, como no DocuSign, porque é obrigação prevista na convenção.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__barra"><span>Estado:</span>
+      <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado">
+        <button type="button" aria-pressed="true" data-estado="revisao">Em revisão</button><button type="button" aria-pressed="false" data-estado="publicado">Publicado, só leitura</button><button type="button" aria-pressed="false" data-estado="aberto">Mês ainda aberto</button>
+      </div></div>
+    <div class="cm-doc-palco__corpo" style="padding-top:16px">
+      <header class="cm-cabecalho-registro">
+        <div class="cm-cabecalho-registro__topo">
+          <span class="cm-ladrilho"><i data-i="balanca"></i></span>
+          <div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Prestação de contas</span><h1 class="cm-cabecalho-registro__titulo">Cond. Parque das Águas, setembro de 2026</h1></div>
+          <div class="cm-grupo-botoes" data-estado-painel="revisao">
+            <button class="cm-botao" type="button"><i data-i="ver"></i>Ver como o condômino</button>
+            <button class="cm-botao" type="button"><i data-i="pdf"></i>Baixar PDF</button>
+            <button class="cm-botao cm-botao--principal" type="button" data-abrir="modal-conselho"><i data-i="conselho"></i>Enviar ao conselho</button>
+          </div>
+          <div class="cm-grupo-botoes" data-estado-painel="publicado" hidden>
+            <span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Publicado em 08/10, 274 de 312 cientes</span>
+            <button class="cm-botao" type="button"><i data-i="pdf"></i>Baixar PDF assinado</button>
+          </div>
+        </div>
+        <div class="cm-path" style="margin-top:12px;padding-bottom:12px">
+          <ol>
+            <li class="is-feito"><button type="button"><i data-i="marcar"></i>Conciliado</button></li>
+            <li class="is-atual"><button type="button" aria-current="step">Em revisão</button></li>
+            <li><button type="button">No conselho</button></li>
+            <li><button type="button">Publicado</button></li>
+          </ol>
+        </div>
+        <div class="cm-path__orientacao" style="padding:0 0 12px"><span><b>O que a etapa pede:</b> nota fiscal em toda despesa, centro de custo em todo lançamento e a nota explicativa das variações acima de 20%.</span><span><b>Prazo da convenção:</b> entregar ao conselho até 10/10</span></div>
+      </header>
+      <div data-estado-painel="aberto" hidden><div class="cm-bloqueio" style="margin-top:12px"><i data-i="conciliacao"></i><div><h3>Outubro ainda não foi conciliado</h3><p>A prestação de contas nasce do mês conciliado. Faltam 41 lançamentos do extrato do Banco do Brasil e o extrato da poupança do fundo de reserva.</p><div class="cm-vazio__acoes" style="margin-top:10px"><a class="cm-botao cm-botao--principal" href="26b-financeiro-conciliacao.html">Ir para a conciliação</a></div></div></div></div>
+
+      <div class="pc">
+        <article class="cm-documento-folha" aria-label="Balancete de setembro de 2026">
+          <div class="cm-documento-folha__topo"><span class="cm-documento-folha__marca" data-marca-inicial>A</span><div><h2>Prestação de contas de setembro de 2026</h2><p class="cm-documento-folha__meta">Condomínio Parque das Águas, CNPJ 12.345.678/0001-90. Regime de caixa, de 01/09 a 30/09/2026. Elaborado por Administradora Alpha.</p></div></div>
+          <div class="cm-tabela-caixa" style="border:0">
+          <table class="cm-tabela cm-tabela--simples cm-demonstrativo" style="width:100%">
+            <caption class="cm-sr">Receitas, despesas e saldos de setembro de 2026</caption>
+            <thead><tr><th>Conta</th><th class="cm-num">Setembro</th><th class="cm-num">Agosto</th><th class="cm-num">Variação</th></tr></thead>
+            <tbody>
+              <tr><td class="cm-nivel-1">Saldo anterior, 31/08</td><td class="cm-num">398.412,55</td><td class="cm-num">351.087,40</td><td class="cm-num"></td></tr>
+              <tr class="cm-subtotal"><td class="cm-nivel-1">Receitas</td><td class="cm-num">392.784,13</td><td class="cm-num">389.902,70</td><td class="cm-num">0,7%</td></tr>
+              <tr><td class="cm-nivel-2">Taxa ordinária</td><td class="cm-num">296.940,00</td><td class="cm-num">297.920,00</td><td class="cm-num">-0,3%</td></tr>
+              <tr><td class="cm-nivel-2">Fundo de reserva</td><td class="cm-num">29.694,00</td><td class="cm-num">29.792,00</td><td class="cm-num">-0,3%</td></tr>
+              <tr><td class="cm-nivel-2">Rateio da obra da fachada, parcela 2 de 10</td><td class="cm-num">47.540,70</td><td class="cm-num">46.912,50</td><td class="cm-num">1,3%</td></tr>
+              <tr><td class="cm-nivel-2">Consumo de água individual</td><td class="cm-num">15.112,40</td><td class="cm-num">13.240,80</td><td class="cm-num">14,1%</td></tr>
+              <tr><td class="cm-nivel-2">Multas e juros por atraso</td><td class="cm-num">2.184,37</td><td class="cm-num">1.006,90</td><td class="cm-num">116,9%</td></tr>
+              <tr><td class="cm-nivel-2">Rendimentos de aplicação</td><td class="cm-num">1.312,66</td><td class="cm-num">1.030,50</td><td class="cm-num">27,4%</td></tr>
+              <tr class="cm-subtotal"><td class="cm-nivel-1">Despesas</td><td class="cm-num cm-negativo">-323.647,52</td><td class="cm-num">-342.577,55</td><td class="cm-num">-5,5%</td></tr>
+              <tr><td class="cm-nivel-2">Portaria 24 h, Vigilância Guardião</td><td class="cm-num">168.400,00</td><td class="cm-num">168.400,00</td><td class="cm-num">0,0%</td></tr>
+              <tr><td class="cm-nivel-2">Limpeza e zeladoria, Clean Max Serviços</td><td class="cm-num">58.230,00</td><td class="cm-num">57.614,10</td><td class="cm-num">1,1%</td></tr>
+              <tr><td class="cm-nivel-2">Água e esgoto, Sabesp</td><td class="cm-num">17.902,10</td><td class="cm-num">16.877,40</td><td class="cm-num">6,1%</td></tr>
+              <tr><td class="cm-nivel-2">Energia das áreas comuns, Enel</td><td class="cm-num">6.118,37</td><td class="cm-num">6.402,15</td><td class="cm-num">-4,4%</td></tr>
+              <tr><td class="cm-nivel-2">Gás, Comgás</td><td class="cm-num">2.044,90</td><td class="cm-num">1.988,20</td><td class="cm-num">2,9%</td></tr>
+              <tr style="background:var(--cm-editado)"><td class="cm-nivel-2">Manutenção e conservação <span class="cm-contador cm-contador--novo" aria-label="1 comentário do conselho">1</span></td><td class="cm-num">9.988,95</td><td class="cm-num">7.214,30</td><td class="cm-num"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>38,5%</span></td></tr>
+              <tr><td class="cm-nivel-3">Bombas de recalque, revisão trimestral</td><td class="cm-num">3.480,00</td><td class="cm-num"></td><td class="cm-num"></td></tr>
+              <tr><td class="cm-nivel-3">Elevadores Atlas Schindler, contrato</td><td class="cm-num">2.316,40</td><td class="cm-num"></td><td class="cm-num"></td></tr>
+              <tr><td class="cm-nivel-3">Jardinagem, Jardins Ipê</td><td class="cm-num">1.280,00</td><td class="cm-num"></td><td class="cm-num"></td></tr>
+              <tr><td class="cm-nivel-3">Material de manutenção</td><td class="cm-num">2.912,55</td><td class="cm-num"></td><td class="cm-num"></td></tr>
+              <tr><td class="cm-nivel-2">Obra da fachada, Construtora Paredão, parcela 3 de 10</td><td class="cm-num">46.800,00</td><td class="cm-num">68.400,00</td><td class="cm-num">-31,6%</td></tr>
+              <tr><td class="cm-nivel-2">Taxa de administração, Administradora Alpha</td><td class="cm-num">9.360,00</td><td class="cm-num">9.360,00</td><td class="cm-num">0,0%</td></tr>
+              <tr><td class="cm-nivel-2">Seguro predial, parcela 9 de 12</td><td class="cm-num">3.215,80</td><td class="cm-num">3.215,80</td><td class="cm-num">0,0%</td></tr>
+              <tr><td class="cm-nivel-2">Honorários jurídicos e tarifas bancárias</td><td class="cm-num">1.587,40</td><td class="cm-num">3.105,60</td><td class="cm-num">-48,9%</td></tr>
+              <tr class="cm-resultado"><td class="cm-nivel-1">Saldo em 30/09</td><td class="cm-num"><span class="cm-total-duplo">467.549,16</span></td><td class="cm-num">398.412,55</td><td class="cm-num"></td></tr>
+              <tr><td class="cm-nivel-2">Conta corrente, Banco do Brasil</td><td class="cm-num">175.418,64</td><td class="cm-num">142.310,20</td><td class="cm-num"></td></tr>
+              <tr><td class="cm-nivel-2">Poupança do fundo de reserva</td><td class="cm-num">231.574,15</td><td class="cm-num">201.880,15</td><td class="cm-num"></td></tr>
+              <tr><td class="cm-nivel-2">Conta da obra da fachada</td><td class="cm-num">60.556,37</td><td class="cm-num">54.222,20</td><td class="cm-num"></td></tr>
+            </tbody>
+          </table></div>
+          <h3 class="cm-t-subsecao" style="margin-top:18px">Inadimplência em 30/09</h3>
+          <p class="cm-t-corpo-p cm-texto-2" style="max-width:72ch;margin-top:4px">9 unidades devem R$ 11.638,80 (2,9% da arrecadação prevista). Quatro estão em acordo e pagando; duas estão em cobrança judicial (Bl C Ap 704 e Bl D Ap 1402). A lista por unidade vai só para o conselho, não para o portal, conforme a LGPD.</p>
+          <div class="cm-assinaturas">
+            <div><b>Marina Costa</b>síndica</div>
+            <div><b>Luiz Fernandes</b>conselho fiscal</div>
+            <div><b>Ana Beatriz Rocha</b>conselho fiscal</div>
+            <div><b>Juliana Reis</b>Administradora Alpha</div>
+          </div>
+        </article>
+        <aside class="cm-pilha cm-pilha--6">
+          <section class="cm-cartao" data-estado-painel="revisao">
+            <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Antes de enviar</h2><span class="cm-t-legenda">3 de 5 prontos</span></header>
+            <div class="cm-cartao__corpo"><ul class="pc-check">
+              <li><i data-i="sucesso" style="color:var(--cm-sucesso-texto)" data-rotulo="pronto"></i><span>Extrato conciliado, 64 de 64, saldo batido</span></li>
+              <li><i data-i="sucesso" style="color:var(--cm-sucesso-texto)" data-rotulo="pronto"></i><span>Todo lançamento com centro de custo</span></li>
+              <li><i data-i="atencao" style="color:var(--cm-aviso-texto)" data-rotulo="atenção"></i><span><a class="cm-link" href="#">2 despesas sem nota fiscal</a><span class="cm-campo__ajuda" style="display:block">Material de manutenção (R$ 812,40) e honorários (R$ 1.500,00)</span></span></li>
+              <li><i data-i="atencao" style="color:var(--cm-aviso-texto)" data-rotulo="atenção"></i><span><a class="cm-link" href="#">Nota explicativa da manutenção</a><span class="cm-campo__ajuda" style="display:block">variação de 38,5% pede explicação</span></span></li>
+              <li><i data-i="sucesso" style="color:var(--cm-sucesso-texto)" data-rotulo="pronto"></i><span>Inadimplência atualizada em 30/09</span></li>
+            </ul></div>
+          </section>
+          <section class="cm-cartao">
+            <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Comentários</h2><span class="cm-contador">2</span></header>
+            <div class="cm-cartao__corpo"><ul class="cm-comentarios">
+              <li><span class="cm-avatar cm-avatar--4">LF</span><div><b style="font-weight:650">Luiz Fernandes</b> <span class="cm-t-legenda">conselho, ontem 21:14</span><span class="cm-comentario__trecho">Manutenção e conservação, 9.988,95</span>Por que manutenção subiu 38%? Teve alguma coisa fora do contrato?</div></li>
+              <li><span class="cm-avatar cm-avatar--2">JR</span><div><b style="font-weight:650">Juliana Reis</b> <span class="cm-t-legenda">hoje 08:40</span><br>A revisão trimestral das bombas (R$ 3.480,00) cai em setembro. Sem ela, a variação é de -9,8%. Vou pôr na nota explicativa.</div></li>
+            </ul>
+            <div class="cm-chat-compositor" style="margin:10px 0 0"><textarea aria-label="Responder ao comentário" rows="2" placeholder="Responder, @ menciona"></textarea><div class="cm-chat-compositor__barra"><span class="cm-cresce">Enter envia</span><button class="cm-botao cm-botao--p" type="button" data-toast="Resposta enviada para Luiz Fernandes.">Responder</button></div></div>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Ver como o condômino, Baixar PDF, Enviar ao conselho</li><li>Etapas (cada uma diz o que pede)</li><li>Documento (tabela; linhas com comentário têm contador)</li><li>Antes de enviar (links levam à linha)</li><li>Comentários e resposta</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Etapa atual: "Em revisão, etapa 2 de 4".</li><li>Linha de manutenção: "Manutenção e conservação, 9.988,95, 1 comentário do conselho, atenção, variação 38,5%".</li><li>Item da lista: "pronto" ou "atenção" pelo ícone com nome.</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Tique da lista: "pronto"; triângulo: "atenção"</li><li>Contador da linha: "1 comentário do conselho"</li></ul></div>
+  </div>
+</section>
+
+<div class="cm-sobreposicao" id="modal-conselho" data-janela hidden>
+  <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="mcons-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mcons-t">Enviar setembro ao conselho fiscal?<span class="cm-modal__sub">Faltam 2 itens da lista. O conselho vê os avisos junto com o documento.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo">
+      <p>Vão receber pelo portal e por e-mail, com pedido de assinatura até 10/10:</p>
+      <div class="cm-pilha" style="margin-top:10px">
+        <div class="cm-pessoa"><span class="cm-avatar cm-avatar--1">MC</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Marina Costa</span><span class="cm-pessoa__sub">síndica</span></span></div>
+        <div class="cm-pessoa"><span class="cm-avatar cm-avatar--4">LF</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Luiz Fernandes</span><span class="cm-pessoa__sub">conselho fiscal</span></span></div>
+        <div class="cm-pessoa"><span class="cm-avatar cm-avatar--5">AR</span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Ana Beatriz Rocha</span><span class="cm-pessoa__sub">conselho fiscal</span></span></div>
+      </div>
+      <div class="cm-campo" style="margin-top:14px"><label class="cm-campo__rotulo" for="mcons-msg">Mensagem <span class="cm-campo__opcional">opcional</span></label><textarea class="cm-area" id="mcons-msg">As duas notas que faltam (material e honorários) chegam até sexta e entram como anexo.</textarea></div>
+    </div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-fechar data-toast="Enviado ao conselho. O documento ficou travado para edição.">Enviar ao conselho</button></div>
+  </div>
+</div>
+
+<!-- ============================ 26.7 DRE ============================ -->
+<section class="cm-doc-tela" id="t-dre" aria-labelledby="t-dre-h">
+  <div class="cm-doc-tela__cabeca"><span class="cm-doc-tela__cod">26.7</span><h2 class="cm-doc-tela__titulo" id="t-dre-h">DRE como relatório</h2><span class="cm-doc-tela__sub">resultado da administradora, com gráfico e a tabela equivalente</span></div>
+  <div class="cm-doc-explica">
+    <div><h3>O que esta tela resolve</h3><p>A diretoria da Administradora Alpha quer saber se a empresa está ganhando mais que no ano passado e onde o dinheiro vai. A DRE responde com a estrutura que o contador usa (receita bruta até lucro líquido), a análise vertical e a comparação com 2025, e deixa abrir qualquer linha até o lançamento.</p></div>
+    <div><h3>Fluxo</h3><ol>
+      <li>Filtros numa linha só, acima de tudo: período, comparar com, regime, empresa. Eles ficam na URL.</li>
+      <li>O gráfico mostra receita líquida e lucro líquido por mês, no mesmo eixo; passar o mouse ou focar uma coluna mostra os valores.</li>
+      <li>A tabela abaixo é a mesma informação, completa. Clicar numa linha abre os lançamentos dela num painel lateral.</li>
+      <li><b>Exportar ▾</b> (Excel, PDF) e <b>Agendar</b> (todo dia 5, para a diretoria) ficam no cabeçalho.</li></ol></div>
+    <div><h3>Resolvemos fazer assim porque</h3><p>o Conta Azul, o Omie e o Nibo mostram a DRE gerencial nesta ordem, com AV% e comparação de período; o Power BI e o Metabase puseram o filtro numa linha acima e a tabela ao lado do gráfico, para quem precisa do número exato; e a regra do sistema diz que KPI só existe em relatório: aqui ele aparece, uma vez, no cabeçalho do painel.</p></div>
+  </div>
+  <div class="cm-doc-palco">
+    <div class="cm-doc-palco__barra"><span>Estado:</span>
+      <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado">
+        <button type="button" aria-pressed="true" data-estado="dados">Com dados</button><button type="button" aria-pressed="false" data-estado="carregando">Carregando</button><button type="button" aria-pressed="false" data-estado="sem-permissao">Sem permissão</button>
+      </div></div>
+    <div class="cm-doc-palco__corpo">
+      <header class="cm-cabecalho-pagina">
+        <div class="cm-cabecalho-pagina__linha">
+          <h1 class="cm-cabecalho-pagina__titulo">DRE</h1>
+          <div class="cm-cabecalho-pagina__acoes">
+            <button class="cm-botao" type="button" data-abrir="painel-agendar"><i data-i="agendar"></i>Agendar</button>
+            <span class="cm-ancora cm-ancora--direita"><div class="cm-dividido"><button class="cm-botao" type="button" data-toast="DRE exportada em Excel." data-toast-tipo="info"><i data-i="exportar"></i>Exportar <span class="cm-dividido__lembra">Excel</span></button><button class="cm-botao" type="button" aria-label="Outros formatos" aria-haspopup="menu" aria-expanded="false" data-menu="m-dre-exp"><i data-i="chevron-baixo"></i></button></div>
+            <div class="cm-menu cm-flutuante" role="menu" id="m-dre-exp" hidden><button class="cm-menu__item" role="menuitemradio" aria-checked="true" type="button" data-lembra="Excel"><i data-i="planilha"></i><span>Excel (.xlsx)</span><span></span></button><button class="cm-menu__item" role="menuitemradio" aria-checked="false" type="button" data-lembra="PDF"><i data-i="pdf"></i><span>PDF para impressão</span><span></span></button><button class="cm-menu__item" role="menuitemradio" aria-checked="false" type="button" data-lembra="CSV"><i data-i="arquivo-texto"></i><span>CSV</span><span></span></button></div></span>
+          </div>
+        </div>
+      </header>
+      <div class="dre-filtros" role="group" aria-label="Filtros do relatório">
+        <div class="cm-selecao"><select aria-label="Período"><option>Jan a set de 2026</option><option>Setembro de 2026</option><option>3º trimestre de 2026</option><option>Últimos 12 meses</option></select><i data-i="chevron-baixo"></i></div>
+        <div class="cm-selecao"><select aria-label="Comparar com"><option>Comparar com jan a set de 2025</option><option>Comparar com o orçamento</option><option>Sem comparação</option></select><i data-i="chevron-baixo"></i></div>
+        <div class="cm-segmentado" role="group" aria-label="Regime"><button type="button" aria-pressed="true">Competência</button><button type="button" aria-pressed="false">Caixa</button></div>
+        <div class="cm-selecao"><select aria-label="Empresa"><option>Administradora Alpha Ltda</option><option>Alpha Serviços de Cobrança</option><option>As duas, consolidado</option></select><i data-i="chevron-baixo"></i></div>
+      </div>
+      <div data-estado-painel="dados">
+        <div class="cm-kpis" style="margin-bottom:12px">
+          <div class="cm-kpi"><span class="cm-kpi__rotulo">Receita líquida</span><span class="cm-kpi__valor">R$ 1,31 mi</span><span class="cm-kpi__variacao is-melhor"><i data-i="alta"></i>10,2% <span>contra 2025</span></span></div>
+          <div class="cm-kpi"><span class="cm-kpi__rotulo">Lucro líquido</span><span class="cm-kpi__valor">R$ 261 mil</span><span class="cm-kpi__variacao is-melhor"><i data-i="alta"></i>25,7% <span>contra 2025</span></span></div>
+          <div class="cm-kpi"><span class="cm-kpi__rotulo">Margem líquida</span><span class="cm-kpi__valor">20,0%</span><span class="cm-kpi__variacao is-melhor"><i data-i="alta"></i>2,5 pontos <span>contra 2025</span></span></div>
+        </div>
+        <figure class="cm-grafico" style="margin:0">
+          <figcaption class="cm-grafico__cabeca"><span class="cm-grafico__titulo">Receita líquida e lucro líquido por mês, 2026</span><span class="cm-grafico__sub">em milhares de reais, mesmo eixo</span></figcaption>
+          <div class="dre-grafico" id="dre-graf"></div>
+          <div class="cm-grafico__legenda"><span><i style="--c:var(--cm-grafico-2)"></i>Receita líquida</span><span><i class="is-linha" style="--c:var(--cm-grafico-1)"></i>Lucro líquido</span><button class="cm-botao cm-botao--link cm-empurra" type="button" data-recolher aria-expanded="false" aria-controls="dre-tab-mes">Ver os números do gráfico</button></div>
+          <div id="dre-tab-mes" hidden class="cm-tabela-caixa" style="margin-top:8px"></div>
+        </figure>
+        <div class="cm-tabela-caixa" style="margin-top:16px">
+          <table class="cm-tabela cm-demonstrativo" id="dre-tab">
+            <caption class="cm-sr">DRE da Administradora Alpha, janeiro a setembro de 2026, comparada a 2025</caption>
+            <thead><tr><th>Conta</th><th class="cm-num">Jan a set 2026</th><th class="cm-num">AV</th><th class="cm-num">Jan a set 2025</th><th class="cm-num">Variação</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div data-estado-painel="carregando" hidden><p class="cm-carregando" style="padding:8px 0 12px">Calculando a DRE de janeiro a setembro</p><span class="cm-esqueleto cm-esqueleto--bloco" style="height:240px"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:60%;margin-top:16px"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:52%"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:57%"></span></div>
+      <div data-estado-painel="sem-permissao" hidden><div class="cm-bloqueio"><i data-i="bloquear"></i><div><h3>A DRE é da diretoria e da gestão financeira</h3><p>Seu papel (Analista financeira) vê extrato, contas e conciliação, mas não o resultado da empresa. Quem libera é Juliana Reis em Configuração, Usuários e permissões.</p></div></div></div>
+    </div>
+  </div>
+  <div class="cm-doc-acess">
+    <div><h4>Ordem de foco</h4><ol><li>Agendar, Exportar ▾</li><li>Filtros: período, comparação, regime, empresa</li><li>Gráfico: cada mês é focável (setas do Tab)</li><li>Ver os números do gráfico</li><li>Tabela (linha abre lançamentos)</li></ol></div>
+    <div><h4>O que é anunciado</h4><ul><li>Coluna do gráfico: "Set: Receita líquida R$ 149,4 mil, Lucro líquido R$ 30,9 mil".</li><li>Variação: "aumento de 10,2%" pelo ícone com nome, a cor não fala sozinha.</li><li>Valores negativos são lidos com o sinal.</li></ul></div>
+    <div><h4>Só ícone, com nome</h4><ul><li>Seta de Exportar: "Outros formatos"</li><li>Setas de variação: "aumento", "queda"</li></ul></div>
+  </div>
+</section>
+
+<aside class="cm-painel" id="painel-agendar" data-janela role="dialog" aria-labelledby="pag-t" hidden>
+  <header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="pag-t">Agendar envio da DRE</h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></header>
+  <div class="cm-painel__corpo" style="padding:16px">
+    <div class="cm-pilha cm-pilha--6">
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="ag-freq">Frequência</label><div class="cm-selecao"><select id="ag-freq"><option>Todo mês, no dia 5</option><option>Toda segunda-feira</option><option>Todo trimestre</option></select><i data-i="chevron-baixo"></i></div></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="ag-hora">Horário</label><div class="cm-entrada"><i data-i="pendente"></i><input id="ag-hora" value="07:30"></div></div>
+      <div class="cm-campo"><span class="cm-campo__rotulo">Para quem</span><div class="cm-multi"><span class="cm-etiqueta">Ricardo Alves, diretor<button class="cm-etiqueta__remover" type="button" aria-label="Remover Ricardo Alves"><i data-i="fechar"></i></button></span><span class="cm-etiqueta">Juliana Reis<button class="cm-etiqueta__remover" type="button" aria-label="Remover Juliana Reis"><i data-i="fechar"></i></button></span><input aria-label="Adicionar pessoa"></div></div>
+      <fieldset class="cm-grupo-opcoes"><legend>Formato</legend><label class="cm-radio"><input type="radio" name="agf" checked><span class="cm-radio__bola"></span><span>PDF no e-mail</span></label><label class="cm-radio"><input type="radio" name="agf"><span class="cm-radio__bola"></span><span>Excel no e-mail</span></label><label class="cm-radio"><input type="radio" name="agf"><span class="cm-radio__bola"></span><span>Só o link para abrir no GACO</span></label></fieldset>
+      <p class="cm-t-legenda">O período acompanha a data: no dia 5 de novembro vai "jan a out de 2026". Próximo envio: 05/10, 07:30.</p>
+    </div>
+  </div>
+  <footer class="cm-painel__pe"><button class="cm-botao" type="button" data-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-fechar data-toast="Envio agendado: todo dia 5, às 07:30.">Agendar</button></footer>
+</aside>
+</main>
+
+<script>
+(function(){
+function n2(v){var neg=v<0;v=Math.abs(v);return (neg?'-':'')+v.toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'.')}
+var D=[
+ [1,'Receita bruta de serviços',1429040,1296800,'sub'],
+ [2,'Taxas de administração de condomínios',1248300,1137400],
+ [2,'Assessoria em assembleias',84200,78100],
+ [2,'Serviços de cobrança',96540,81300],
+ [1,'Deduções da receita',-123611.96,-112200,'sub'],
+ [2,'ISS, 5%',-71452,-64840],
+ [2,'PIS e Cofins, 3,65%',-52159.96,-47360],
+ [1,'Receita líquida',1305428.04,1184600,'res'],
+ [1,'Custo dos serviços',-667620,-628900,'sub'],
+ [2,'Pessoal da operação',-612400,-579800],
+ [2,'Sistemas e licenças (GACO, banco, assinatura)',-48900,-43300],
+ [2,'Correio e impressão de boletos',-6320,-5800],
+ [1,'Lucro bruto',637808.04,555700,'res'],
+ [1,'Despesas operacionais',-282570,-271200,'sub'],
+ [2,'Comerciais',-58400,-55100],
+ [2,'Administrativas',-214300,-206300],
+ [2,'Financeiras',-9870,-9800],
+ [1,'Resultado operacional',355238.04,284500,'res'],
+ [2,'Depreciação',-12600,-11900],
+ [2,'IRPJ e CSLL, lucro presumido',-81350,-64700],
+ [1,'Lucro líquido',261288.04,207900,'res']
+];
+var RL=1305428.04;
+document.querySelector('#dre-tab tbody').innerHTML=D.map(function(d){var v=(Math.abs(d[2])-Math.abs(d[3]))/Math.abs(d[3])*100;var melhor=d[2]>=0?v>=0:v<=0;
+  return '<tr class="'+(d[4]==='res'?'cm-subtotal':'')+'"><td class="cm-nivel-'+d[0]+'">'+(d[0]===2?'<a href="#" class="cm-link cm-link--discreto">'+d[1]+'</a>':d[1])+'</td><td class="cm-num'+(d[2]<0?' cm-negativo':'')+'">'+(d[1]==='Lucro líquido'?'<span class="cm-total-duplo">'+n2(d[2])+'</span>':n2(d[2]))+'</td><td class="cm-num cm-av">'+(d[2]/RL*100).toFixed(1).replace('.',',')+'%</td><td class="cm-num">'+n2(d[3])+'</td>'+
+  '<td class="cm-num"><span class="cm-kpi__variacao '+(melhor?'is-melhor':'is-pior')+'"><i data-i="'+(v>=0?'alta':'baixa')+'" data-rotulo="'+(v>=0?'aumento':'queda')+'"></i>'+Math.abs(v).toFixed(1).replace('.',',')+'%</span></td></tr>'}).join('');
+var meses=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set'],rec=[138.2,140.1,143.5,144.0,145.8,146.3,148.9,149.2,149.4],luc=[26.1,27.0,28.4,28.9,29.3,29.6,30.4,30.7,30.9];
+function mil(v,eixo){return eixo?String(Math.round(v)):'R$ '+v.toFixed(1).replace('.',',')+' mil'}
+function desenhar(){qGrafico(document.getElementById('dre-graf'),{categorias:meses,altura:240,rotulo:'Receita líquida e lucro líquido por mês',formato:mil,series:[{nome:'Receita líquida',valores:rec,tipo:'barra',cor:2},{nome:'Lucro líquido',valores:luc,tipo:'linha',cor:1}]})}
+
+window.addEventListener('load',desenhar);
+document.getElementById('dre-tab-mes').innerHTML='<table class="cm-tabela"><caption class="cm-sr">Números do gráfico</caption><thead><tr><th>Mês</th><th class="cm-num">Receita líquida</th><th class="cm-num">Lucro líquido</th><th class="cm-num">Margem</th></tr></thead><tbody>'+meses.map(function(m,i){return '<tr><td>'+m+'</td><td class="cm-num">'+mil(rec[i])+'</td><td class="cm-num">'+mil(luc[i])+'</td><td class="cm-num">'+(luc[i]/rec[i]*100).toFixed(1).replace('.',',')+'%</td></tr>'}).join('')+'</tbody></table>';
+})();
+</script>
+</body>
+</html>

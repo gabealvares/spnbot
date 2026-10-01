@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversas, Suporte</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+<style>
+.p2-cv-item{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:2px 10px;padding:10px 14px;border-bottom:var(--borda-1);cursor:pointer;font-size:13.5px;align-items:center}
+.p2-cv-item:hover{background:var(--sup-2)}
+.p2-cv-item[aria-current="true"]{background:var(--selecao);box-shadow:inset var(--borda-marcador) 0 0 var(--atual)}
+.p2-cv-item .lc-av{grid-row:1/3}
+.p2-cv-item small{color:var(--texto-2);font-size:12.5px;grid-column:2}
+.p2-cv-item .p2-sla{grid-column:3;font-size:12px;text-align:right;white-space:nowrap}
+.p2-cab-cv{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.p2-cab-cv h2{font:var(--t-subsecao);margin:0}
+.lc-modelo-fila__item>.lc-conversa{flex:1}
+.lc-compositor .lc-dividido .lc-btn{height:40px}
+</style>
+</head>
+<body data-moldura='{"modulo":"suporte","secao":"Conversas","item":"Minhas","papel":"atendente","fixa":true,"usuario":{"nome":"Juliana Souza","iniciais":"JS","cor":"lc-av--c2","cargo":"Atendente"}}'>
+<main id="conteudo" class="lc-modelo-fila lc-modelo-fila--tres" style="height:100%">
+  <section class="lc-modelo-fila__lista" aria-label="Conversas">
+    <div class="lc-modelo-fila__cab"><div class="lc-linha lc-linha--entre"><b>Minhas <span class="lc-contagem">7</span></b><button class="lc-btn lc-btn--p lc-btn--discreto" type="button"><i data-i="ordenar"></i>Prazo primeiro</button></div></div>
+    <div class="lc-modelo-fila__rola" id="lista" role="list"></div>
+  </section>
+  <section class="lc-modelo-fila__item" aria-label="Conversa aberta">
+    <div class="lc-modelo-fila__cab p2-cab-cv"><span class="lc-av lc-av--32 lc-av--c4" id="cv-av">MC</span><div class="lc-cresce"><h2 id="cv-nome">Marina Costa</h2><span class="lc-legenda" id="cv-sub">Síndica, Cond. Parque das Águas, pelo WhatsApp</span></div>
+      <span class="lc-protocolo"><span>Chamado</span> <b id="cv-prot">4.812</b></span>
+      <div class="lc-seg lc-seg--p" role="group" aria-label="Estado do chamado" id="estado"><button type="button" aria-pressed="false">Novo</button><button type="button" aria-pressed="true">Aberto</button><button type="button" aria-pressed="false">Pendente</button><button type="button" aria-pressed="false">Resolvido</button></div></div>
+    <div class="lc-conversa" id="conversa" aria-live="polite"></div>
+    <div class="lc-compositor" id="comp">
+      <div class="lc-compositor__modo" role="group" aria-label="Tipo de mensagem"><button type="button" data-modo="resposta" aria-pressed="true"><i data-i="responder"></i>Responder</button><button type="button" data-modo="nota" aria-pressed="false"><i data-i="nota-interna"></i>Nota interna</button></div>
+      <div class="lc-compositor__linha" data-menu-ancora>
+        <button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Anexar"><i data-i="anexo"></i></button>
+        <label class="lc-sr" for="msg">Mensagem</label><textarea class="lc-compositor__caixa" id="msg" rows="1" placeholder="Escreva. / abre respostas rápidas."></textarea>
+        <span class="lc-dividido"><button class="lc-btn lc-btn--principal" type="button" id="enviar"><i data-i="enviar"></i>Enviar</button><button class="lc-btn lc-btn--principal" type="button" id="enviar-mais" aria-label="Enviar e mudar o estado" aria-haspopup="menu" aria-expanded="false"><i data-i="chevron-baixo"></i></button></span>
+      </div>
+      <div class="lc-compositor__dica"><span><span class="lc-tecla">Enter</span> envia</span><span><span class="lc-tecla">Shift</span>+<span class="lc-tecla">Enter</span> nova linha</span><span id="rasc-cv">Rascunho guardado por conversa</span></div>
+    </div>
+  </section>
+  <aside class="lc-modelo-fila__lado" aria-label="Ficha do chamado">
+    <div class="lc-modelo-fila__rola" style="padding:14px 18px">
+      <h2 class="lc-t-subsecao" style="margin-bottom:8px">Chamado</h2>
+      <dl class="lc-props"><dt>Responder até</dt><dd><span class="lc-estado lc-estado--aviso">10:42, faltam 18 min</span></dd><dt>Tipo</dt><dd><button type="button" class="lc-celula-edit" data-edita="lista" data-rotulo="Tipo" data-opcoes='["Vazamento","Portão","Boleto","Reserva","Barulho"]'>Vazamento</button></dd><dt>Prioridade</dt><dd><button type="button" class="lc-celula-edit" data-edita="lista" data-rotulo="Prioridade" data-opcoes='["Baixa","Média","Alta","Urgente"]'>Alta</button></dd><dt>Responsável</dt><dd><button type="button" class="lc-celula-edit" data-edita="pessoa" data-rotulo="Responsável" data-opcoes='["Juliana Souza","Bruno Tavares","Sem dono"]'>Juliana Souza</button></dd></dl>
+      <h2 class="lc-t-subsecao" style="margin:18px 0 8px">Ligados a este chamado</h2>
+      <ul class="lc-lista"><li style="padding:6px 0;min-height:0"><i data-i="ordem-de-servico"></i><span><a href="p2-criacao-rapida.html">OS 482</a><span class="lc-lista__sub">Hidrotec, agendada 02/10, 9h</span></span></li><li style="padding:6px 0;min-height:0"><i data-i="contrato"></i><span><a href="p2-registro.html?id=2026-0412">Contrato 2026-0412</a><span class="lc-lista__sub">Renovação em aprovação</span></span></li></ul>
+    </div>
+  </aside>
+</main>
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2,$=P.$,$$=P.$$,esc=P.esc;
+var C=[{n:"Marina Costa",av:"MC",c:"lc-av--c4",sub:"Síndica, Cond. Parque das Águas",p:"4.812",ult:"A água voltou no bloco B?",sla:"18 min",slaT:"aviso",msgs:[["r","Bom dia! Desde ontem à noite está pingando água no teto da garagem do bloco B, perto da vaga 34.","08:51"],["r","Mandei foto no grupo do conselho, posso mandar aqui também","08:52"],["e","Bom dia, Marina. Já abri a OS 482 com a Hidrotec; o técnico vai amanhã às 9h.","09:10"],["s","OS 482 criada e ligada a este chamado"],["r","A água voltou no bloco B?","10:21"]]},
+ {n:"Paulo Henrique Dias",av:"PD",c:"lc-av--c6",sub:"Subsíndico, Cond. Parque das Águas",p:"4.790",ult:"Pode reservar o salão dia 17?",sla:"42 min",slaT:"neutro",msgs:[["r","Pode reservar o salão dia 17 para a festa do meu filho? Das 19h às 23h.","09:40"]]},
+ {n:"Helena Prado",av:"HP",c:"lc-av--c2",sub:"Moradora, Edifício Atlântico",p:"4.821",ult:"Segunda via do boleto de outubro",sla:"1 h 10",slaT:"neutro",msgs:[["r","Boa tarde, preciso da segunda via do boleto de outubro, apartamento 81.","10:02"]]},
+ {n:"Jorge Almeida",av:"JA",c:"lc-av--c7",sub:"Síndico, Residencial Morada do Sol",p:"4.818",ult:"O portão está fazendo barulho",sla:"2 h",slaT:"neutro",msgs:[["r","O portão da garagem está fazendo um barulho alto ao fechar.","08:15"]]}];
+var at=0, modo="resposta", rasc={};
+var escolha=P.guarda.get("lc-enviar:suporte","enviar");
+var ROT={enviar:"Enviar",pendente:"Enviar e aguardar",resolver:"Enviar e resolver"};
+function lista(){ $("#lista").innerHTML=C.map(function(c,i){ return '<div class="p2-cv-item" role="listitem" tabindex="0" data-i="'+i+'" aria-current="'+(i===at)+'"><span class="lc-av lc-av--40 '+c.c+'">'+c.av+'</span><b class="lc-reticencias">'+esc(c.n)+'</b><span class="p2-sla lc-estado lc-estado--'+c.slaT+'" style="justify-self:end">'+c.sla+'</span><small class="lc-reticencias">'+esc(c.ult)+'</small></div>'; }).join(""); }
+function abrir(i){ rasc[at]=$("#msg").value; at=i; var c=C[i]; $("#cv-nome").textContent=c.n; $("#cv-sub").textContent=c.sub+", pelo WhatsApp"; $("#cv-av").textContent=c.av; $("#cv-av").className="lc-av lc-av--32 "+c.c; $("#cv-prot").textContent=c.p;
+  $("#conversa").innerHTML='<span class="lc-dia">Hoje</span>'+c.msgs.map(function(m,j){ if(m[0]==="s") return '<div class="lc-msg-sistema"><i data-i="vincular"></i>'+esc(m[1])+'</div>'; if(m[0]==="n") return '<div class="lc-bolha lc-bolha--nota lc-bolha--primeira"><span class="lc-bolha__nota-rotulo"><i data-i="nota-interna"></i>Nota interna, só a equipe vê</span>'+esc(m[1])+'<span class="lc-bolha__meta">'+m[2]+'</span></div>';
+    var prim=j===0||c.msgs[j-1][0]!==m[0]; return '<div class="lc-bolha'+(m[0]==="e"?' lc-bolha--enviada':'')+(prim?' lc-bolha--primeira':'')+'">'+esc(m[1])+'<span class="lc-bolha__meta">'+m[2]+(m[0]==="e"?'<span class="lc-tique lc-tique--lida" aria-label="lida"><i data-i="lida"></i></span>':'')+'</span></div>'; }).join("");
+  lcIcones($("#conversa")); $("#conversa").scrollTop=1e5; $("#msg").value=rasc[i]||""; lista(); estado("Aberto"); }
+function estado(e){ $$("#estado button").forEach(function(b){ b.setAttribute("aria-pressed",b.textContent===e); }); }
+function rot(){ $("#enviar").innerHTML=lcIcone("enviar")+ROT[escolha]; }
+function enviar(como){ var t=$("#msg").value.trim(); if(!t){ $("#msg").focus(); return; } var c=C[at];
+  c.msgs.push([modo==="nota"?"n":"e",t,P.hora()]); $("#msg").value=""; rasc[at]=""; abrir(at);
+  if(modo==="nota"){ P.anunciar("Nota interna publicada."); return; }
+  if(como==="pendente"){ estado("Pendente"); P.toast("Enviado. Chamado "+c.p+" pendente; o prazo pausa até "+esc(c.n.split(" ")[0])+" responder.",{ic:"aguardando",acao:"Desfazer"}); return; }
+  if(como==="resolver"){ var i=at, n=(at+1)%C.length; estado("Resolvido"); P.toast("Enviado e resolvido: chamado "+c.p+". Abrimos a próxima conversa.",{tipo:"sucesso",acao:"Desfazer",aoAcao:function(){ abrir(i); }});
+    setTimeout(function(){ C.splice(i,1); at=Math.min(i,C.length-1); abrir(at); $("#msg").focus(); },700); return; }
+  P.anunciar("Mensagem enviada a "+c.n+".");
+}
+$("#enviar").addEventListener("click",function(){ enviar(escolha); });
+$("#enviar-mais").addEventListener("click",function(e){ P.menu(e.currentTarget,[
+  {t:"Enviar",sub:"O estado não muda.",marcado:escolha==="enviar",acao:function(){ escolha="enviar"; P.guarda.set("lc-enviar:suporte",escolha); rot(); enviar("enviar"); }},
+  {t:"Enviar e aguardar o cliente",sub:"Estado vai para Pendente; o prazo pausa.",marcado:escolha==="pendente",acao:function(){ escolha="pendente"; P.guarda.set("lc-enviar:suporte",escolha); rot(); enviar("pendente"); }},
+  {t:"Enviar e resolver",sub:"Fecha o chamado e abre a próxima conversa.",marcado:escolha==="resolver",acao:function(){ escolha="resolver"; P.guarda.set("lc-enviar:suporte",escolha); rot(); enviar("resolver"); }},
+  {pe:'<span class="lc-legenda">O botão lembra a última escolha.</span>'}],{acima:true,classe:"lc-menu--salvar",rotulo:"Formas de enviar"}); });
+$("#msg").addEventListener("keydown",function(e){ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); enviar(escolha); } });
+$("#msg").addEventListener("input",function(){ rasc[at]=$("#msg").value; });
+$$("#comp [data-modo]").forEach(function(b){ b.addEventListener("click",function(){ modo=b.getAttribute("data-modo"); $$("#comp [data-modo]").forEach(function(x){x.setAttribute("aria-pressed",x===b);}); $("#comp").classList.toggle("lc-compositor--nota",modo==="nota"); $("#msg").placeholder=modo==="nota"?"Nota para a equipe. Use @ para chamar alguém.":"Escreva. / abre respostas rápidas."; $("#msg").focus(); }); });
+$$("#estado button").forEach(function(b){ b.addEventListener("click",function(){ var antes=$('#estado [aria-pressed="true"]').textContent; estado(b.textContent); P.toast("Chamado "+C[at].p+" em <b>"+b.textContent+"</b>.",{ic:"seta-direita",acao:"Desfazer",aoAcao:function(){ estado(antes); }}); }); });
+$("#lista").addEventListener("click",function(e){ var x=e.target.closest("[data-i]"); if(x) abrir(+x.getAttribute("data-i")); });
+$("#lista").addEventListener("keydown",function(e){ var x=e.target.closest("[data-i]"); if(x&&e.key==="Enter") abrir(+x.getAttribute("data-i")); });
+P.atalho("j",function(){ if(at<C.length-1) abrir(at+1); }); P.atalho("k",function(){ if(at>0) abrir(at-1); }); P.atalho("r",function(e){ e.preventDefault(); $("#msg").focus(); });
+P.campos($(".lc-modelo-fila__lado"));
+rot(); abrir(0);
+})();
+</script>
+</body>
+</html>

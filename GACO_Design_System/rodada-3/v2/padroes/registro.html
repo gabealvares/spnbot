@@ -233,7 +233,7 @@
   <div class="cm-modal cm-modal--p cm-modal--perigo" role="alertdialog" aria-modal="true" aria-labelledby="me-t" aria-describedby="me-d">
     <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="me-t">Excluir Cond. Parque das Águas?<span class="cm-modal__sub" id="me-d">Ele tem 3 contatos, 2 chamados abertos e 1 contrato vigente. Tudo vai junto para a lixeira por 30 dias.</span></h2></div>
     <div class="cm-modal__corpo"><div class="cm-alerta cm-alerta--aviso"><i data-i="atencao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Atenção: os chamados abertos param de contar SLA.</span><span class="cm-alerta__desc">Se a intenção é encerrar o contrato, use Encerrar no caminho do cliente.</span></span></div></div>
-    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-fechar autofocus>Cancelar</button><button class="cm-botao cm-botao--perigo-cheio" type="button" data-q2-fechar data-q2-toast="Cond. Parque das Águas foi para a lixeira. Restaurável até 31/10.|sucesso|Desfazer">Excluir cliente</button></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-fechar data-q2-foco>Cancelar</button><button class="cm-botao cm-botao--perigo-cheio" type="button" data-q2-fechar data-q2-toast="Cond. Parque das Águas foi para a lixeira. Restaurável até 31/10.|sucesso|Desfazer">Excluir cliente</button></div>
   </div>
 </div>
 
@@ -242,7 +242,7 @@
   <aside class="cm-painel" role="dialog" aria-modal="true" aria-labelledby="pc-t">
     <header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="pc-t">Novo contato</h2><span class="cm-t-legenda">em Cond. Parque das Águas</span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-empurra" type="button" aria-label="Fechar" data-q2-fechar><i data-i="fechar"></i></button></header>
     <div class="cm-painel__corpo cm-pilha" style="padding:16px">
-      <div class="cm-campo"><label class="cm-campo__rotulo" for="pc-n">Nome <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="pc-n" autofocus></div></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="pc-n">Nome <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="pc-n" data-q2-foco></div></div>
       <div class="cm-campo"><label class="cm-campo__rotulo" for="pc-p">Papel</label><div class="cm-selecao"><select id="pc-p"><option>Conselheiro</option><option>Subsíndico</option><option>Zelador</option><option>Morador</option></select><i data-i="chevron-baixo"></i></div></div>
       <div class="cm-campo"><label class="cm-campo__rotulo" for="pc-t2">WhatsApp</label><div class="cm-entrada"><span class="cm-entrada__prefixo">+55</span><input id="pc-t2" type="tel" placeholder="(41) 98765-4321"></div></div>
       <p class="cm-t-legenda">Faltou campo? <a class="cm-link" href="#">Abrir o formulário completo</a>, levando o que já foi digitado.</p>

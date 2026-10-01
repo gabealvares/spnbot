@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reunião: revisão trimestral</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-re{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start;margin-top:12px}
+.q3-re>*{min-width:0}
+.q3-item-ata{padding:14px 16px;border-bottom:1px solid var(--cm-filete)}
+.q3-item-ata h3{font-size:14px;font-weight:700;display:flex;gap:8px;align-items:center}
+.q3-dec{display:flex;gap:8px;align-items:flex-start;margin-top:8px;padding:6px 10px;border-left:3px solid var(--cm-sucesso-ponto);background:var(--cm-camada-2);font-size:13px}
+.q3-tar{display:flex;gap:8px;align-items:center;margin-top:6px;padding:6px 10px;border-left:3px solid var(--cm-filete-forte);background:var(--cm-camada-2);font-size:13px}
+@media (max-width:1099px){.q3-re{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Reunião com ata <small>CS, Reuniões. Revisão trimestral com a síndica e o conselho do Cond. Parque das Águas (07/10, 19h). Pauta antes, ata durante, decisões e tarefas que viram registro depois.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>A reunião de CS com o condomínio decide coisas (treinamento, módulo novo, prazo de correção) que se perdem em e-mail. Aqui a pauta é preparada antes com os dados do cliente, a ata é escrita durante, e cada decisão e tarefa vira item rastreável no registro do cliente. Ao finalizar, a ata vai para os participantes, que dão ciência.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Antes: pauta com itens arrastáveis; "Puxar dados" insere chamados, NPS e saúde do período.</li><li>Durante: "Começar" troca a tela para o modo ata; cada item da pauta tem campo de anotação, botões "Decisão" e "Tarefa".</li><li>Tarefa pede dono e prazo e aparece em Minhas ações do dono.</li><li>"Finalizar e enviar a ata" gera o PDF, manda por e-mail e WhatsApp e pede ciência de quem participou; quem não confirmar recebe lembrete em 2 dias.</li><li>A ata salva sozinha a cada alteração ("Salvo às 19:42"); não há barra de salvar aqui porque é documento corrido.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Fellow e o Hubspot Meetings ligam pauta, notas e tarefas à reunião e ao cliente; o Notion e o Google Docs salvam sozinhos com o horário visível; e o Microsoft Loop transforma item de ata em tarefa com dono. A ciência da ata é a mesma do comunicado interno.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Durante, escrevendo a ata</button><button type="button" data-q3-estado="antes" aria-pressed="false">Antes, pauta</button><button type="button" data-q3-estado="depois" aria-pressed="false">Ata enviada, ciência</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"CS","tela":"Reuniões","registro":"Revisão trimestral, Parque das Águas","papel":"CS","usuario":{"nome":"Rafael Menezes","iniciais":"RM","cargo":"Gerente de relacionamento, CS","presenca":"ocupado","tom":5}}'></div>
+
+<main id="conteudo" class="cm-pagina cm-container--registro">
+ <header class="cm-cabecalho-registro" style="margin-top:14px">
+  <div class="cm-cabecalho-registro__topo"><span class="cm-ladrilho"><i data-i="ata"></i></span>
+   <div class="cm-cresce"><span class="cm-cabecalho-registro__tipo">Reunião de CS</span><h1 class="cm-cabecalho-registro__titulo">Revisão trimestral: Cond. Parque das Águas</h1></div>
+   <span class="cm-t-legenda" data-se="padrao">Salvo às 19:42</span>
+   <div class="cm-grupo-botoes"><button class="cm-botao cm-botao--principal" type="button" data-se="antes" data-q3-estado="padrao"><i data-i="play"></i>Começar a reunião</button><button class="cm-botao cm-botao--principal" type="button" data-se="padrao" data-q3-modal="modal-fim"><i data-i="enviar"></i>Finalizar e enviar a ata</button><button class="cm-botao" type="button" data-se="depois"><i data-i="pdf"></i>Baixar PDF</button></div></div>
+  <dl class="cm-destaques"><div><dt>Quando</dt><dd>07/10, 19:00 a 20:00</dd></div><div><dt>Onde</dt><dd>Salão de festas e Teams</dd></div><div><dt>Cliente</dt><dd><a class="cm-link" href="22b-cliente.html">Cond. Parque das Águas</a></dd></div><div><dt>Estado</dt><dd><span data-se="antes" class="cm-estado cm-estado--neutro"><i data-i="calendario"></i>Agendada</span><span data-se="padrao" class="cm-estado cm-estado--info"><i data-i="pendente"></i>Em andamento</span><span data-se="depois" class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Ata enviada</span></dd></div></dl>
+ </header>
+ <div class="q3-re">
+  <section class="cm-cartao" aria-labelledby="t-pauta">
+   <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-pauta"><span data-se="antes">Pauta</span><span data-se="padrao depois">Ata</span></h2><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-se="antes"><i data-i="importar"></i>Puxar dados do cliente</button><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-se="antes"><i data-i="adicionar"></i>Item</button></header>
+   <div class="q3-item-ata"><h3><span data-se="antes"><i data-i="arrastar"></i></span>1. Chamados do trimestre e o vazamento da garagem</h3>
+    <p class="cm-t-legenda" data-se="antes">Dados puxados: 41 chamados, 92% no prazo; chamado 48213 em andamento com a Hidrotec.</p>
+    <div data-se="padrao depois"><div class="cm-editor" style="margin-top:8px"><div class="cm-editor__area" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Anotações do item 1">Marina relatou que a água voltou na vaga 38 depois do reparo. Hidrotec volta na quinta com o laudo. <span class="cm-mencao">@Diego Ramos</span> acompanha.</div></div>
+     <div class="q3-dec"><i data-i="sucesso"></i><span><b>Decisão:</b> o condomínio aprova a impermeabilização da junta, até R$ 8.400,00, sem nova assembleia.</span></div>
+     <div class="q3-tar"><i data-i="lista-de-tarefas"></i><span class="cm-cresce"><b>Tarefa:</b> enviar o laudo da Hidrotec ao conselho</span><span class="cm-avatar cm-avatar--p cm-avatar--1">DR</span><span class="cm-t-legenda">até 10/10</span></div>
+     <div class="cm-grupo-botoes" style="margin-top:8px" data-se="padrao"><button class="cm-botao cm-botao--p" type="button"><i data-i="sucesso"></i>Decisão</button><button class="cm-botao cm-botao--p" type="button"><i data-i="lista-de-tarefas"></i>Tarefa</button></div></div>
+   </div>
+   <div class="q3-item-ata"><h3><span data-se="antes"><i data-i="arrastar"></i></span>2. Boleto de setembro atrasado para 40 moradores</h3>
+    <p class="cm-t-legenda" data-se="antes">NPS 6 da síndica cita o tema. Financeiro explicou: arquivo de remessa recusado pelo Itaú em 02/09.</p>
+    <div data-se="padrao depois"><div class="cm-editor" style="margin-top:8px"><div class="cm-editor__area" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Anotações do item 2">Rafael explicou a causa e a correção. Paulo pediu aviso no portal quando houver atraso de remessa.</div></div>
+     <div class="q3-tar"><i data-i="lista-de-tarefas"></i><span class="cm-cresce"><b>Tarefa:</b> aviso automático no portal quando a remessa for recusada</span><span class="cm-avatar cm-avatar--p cm-avatar--5">RM</span><span class="cm-t-legenda">até 31/10</span></div></div>
+   </div>
+   <div class="q3-item-ata"><h3><span data-se="antes"><i data-i="arrastar"></i></span>3. Proposta do módulo Portaria</h3>
+    <p class="cm-t-legenda" data-se="antes">R$ 1.900,00 por mês, controle de chaves, encomendas e visitantes.</p>
+    <div data-se="padrao depois"><div class="cm-editor" style="margin-top:8px"><div class="cm-editor__area" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Anotações do item 3" data-vazio="Anotações deste item"></div></div></div>
+   </div>
+   <div class="cm-cartao__corpo" data-se="depois"><div class="cm-ciencia is-confirmada"><span class="cm-ciencia__texto">3 de 4 participantes deram ciência. Falta Jorge Tanaka (lembrete em 09/10).</span></div></div>
+  </section>
+  <aside class="cm-pilha">
+   <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Participantes</h2></header>
+    <ul class="cm-equipe">
+     <li><span class="cm-avatar cm-avatar--m cm-avatar--3">MC</span><span><span class="cm-equipe__nome">Marina Costa</span><span class="cm-equipe__status">Síndica</span></span><span class="cm-equipe__carga"><span data-se="depois" class="cm-estado cm-estado--sucesso"><i data-i="ciencia"></i>Ciente</span><span data-se="antes padrao">confirmou</span></span></li>
+     <li><span class="cm-avatar cm-avatar--m cm-avatar--5">PS</span><span><span class="cm-equipe__nome">Paulo Saraiva</span><span class="cm-equipe__status">Conselho fiscal</span></span><span class="cm-equipe__carga"><span data-se="depois" class="cm-estado cm-estado--sucesso"><i data-i="ciencia"></i>Ciente</span><span data-se="antes padrao">confirmou</span></span></li>
+     <li><span class="cm-avatar cm-avatar--m cm-avatar--1">JT</span><span><span class="cm-equipe__nome">Jorge Tanaka</span><span class="cm-equipe__status">Conselho, por Teams</span></span><span class="cm-equipe__carga"><span data-se="depois" class="cm-estado cm-estado--neutro"><i data-i="pendente"></i>Falta ciência</span><span data-se="antes padrao">talvez</span></span></li>
+     <li><span class="cm-avatar cm-avatar--m cm-avatar--5">RM</span><span><span class="cm-equipe__nome">Rafael Menezes</span><span class="cm-equipe__status">Alpha, CS</span></span><span class="cm-equipe__carga">organizador</span></li>
+    </ul></section>
+   <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Do cliente, para ter à mão</h2></header><div class="cm-cartao__corpo"><dl class="cm-ficha">
+    <div class="cm-ficha__linha is-leitura"><dt>Saúde</dt><dd><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>62, atenção</span></dd><span></span></div>
+    <div class="cm-ficha__linha is-leitura"><dt>Renovação</dt><dd>14/01/2027</dd><span></span></div>
+    <div class="cm-ficha__linha is-leitura"><dt>Chamados</dt><dd>3 abertos</dd><span></span></div>
+    <div class="cm-ficha__linha is-leitura"><dt>Última ata</dt><dd>08/07, 4 tarefas, 4 feitas</dd><span></span></div>
+   </dl></div></section>
+  </aside>
+ </div>
+ <div class="cm-sobreposicao" id="modal-fim" hidden><div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="t-fim"><div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="t-fim">Finalizar e enviar a ata?<span class="cm-modal__sub">1 decisão e 2 tarefas viram registro no cliente. A ata vai para 3 participantes, que dão ciência.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+  <div class="cm-modal__corpo"><label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Enviar também pelo WhatsApp</span></label></div>
+  <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q3-fechar>Continuar editando</button><button class="cm-botao cm-botao--principal" type="button" data-q3-fechar data-q3-estado="depois" data-q3-toast="Ata enviada. Tarefas criadas para Diego e Rafael.">Enviar a ata</button></div></div></div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Trilha; título, estado, Começar ou Finalizar; itens da pauta em ordem (no modo ata: editor de cada item, Decisão, Tarefa); participantes; dados do cliente.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>"Salvo às 19:42" é região educada que muda a cada salvamento. Decisão e tarefa são lidas com o rótulo. A ciência de cada participante em palavra.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Fechar" no modal; o ícone de arrastar na pauta é decorativo (a ordem muda também por "Mover para cima" no menu do item).</p></section>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>

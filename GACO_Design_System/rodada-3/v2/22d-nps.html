@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NPS</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-nps{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin:8px 0 18px}
+.q3-dist{display:flex;align-items:flex-end;gap:6px;height:120px;padding:0 4px;border-bottom:1px solid var(--cm-filete-forte)}
+.q3-dist div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;font-size:11.5px;color:var(--cm-texto-2)}
+.q3-dist i{display:block;width:100%;background:var(--cm-grafico-3)}
+.q3-dist .is-pro i{background:var(--cm-grafico-1)}
+.q3-dist-eixo{display:flex;gap:6px;padding:4px 4px 0;font-size:12px;color:var(--cm-texto-2)}
+.q3-dist-eixo span{flex:1;text-align:center}
+@media (max-width:899px){.q3-nps{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">NPS e respostas <small>CS, Voz do cliente, NPS. Ciclo de setembro (síndicos e conselheiros): distribuição das notas, temas que mais aparecem e a fila de detratores para fechar o ciclo.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>NPS só vale se alguém responde quem deu nota baixa. A tela é um relatório no topo (o único lugar com números grandes) e uma fila de trabalho embaixo: cada detrator tem dono, prazo de retorno e o botão "Registrar retorno".</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Filtro de ciclo e de público no topo; o número e a distribuição mudam juntos.</li><li>Temas (classificados pelo texto) filtram a lista ao clicar.</li><li>Na fila: "Ligar" registra a ligação, "Registrar retorno" pede o que foi combinado e fecha o ciclo; a linha sai da fila com "Desfazer".</li><li>"Configuração do NPS" define público, frequência e o texto da pesquisa.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Qualtrics, o Delighted e o Medallia chamam de "fechar o ciclo" e põem a lista de detratores com dono e prazo ao lado do número; o Gainsight liga a nota à saúde do cliente. Gráfico simples de barras com rótulo direto, sem legenda, como no guia de visualização da fundação.</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Ciclo de setembro</button><button type="button" data-q3-estado="vazio" aria-pressed="false">Ciclo sem respostas ainda</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"CS","tela":"NPS","papel":"CS","usuario":{"nome":"Rafael Menezes","iniciais":"RM","cargo":"Gerente de relacionamento, CS","presenca":"disponivel","tom":5}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">NPS</h1><div class="cm-cabecalho-pagina__acoes"><div class="cm-selecao"><select aria-label="Ciclo"><option>Setembro de 2026</option><option>Junho de 2026</option></select><i data-i="chevron-baixo"></i></div><div class="cm-selecao"><select aria-label="Público"><option>Síndicos e conselheiros</option><option>Moradores</option></select><i data-i="chevron-baixo"></i></div><a class="cm-botao cm-botao--discreto" href="#"><i data-i="engrenagem"></i>Configuração do NPS</a></div></div></header>
+ <div data-se="padrao">
+ <div class="cm-kpis" role="list" aria-label="Resultado do ciclo">
+  <div class="cm-kpi" role="listitem"><span class="cm-kpi__rotulo">NPS de setembro</span><span class="cm-kpi__valor">+38</span><span class="cm-kpi__variacao is-pior"><i data-i="baixa"></i>6 pontos <span>contra junho</span></span></div>
+  <div class="cm-kpi" role="listitem"><span class="cm-kpi__rotulo">Respostas</span><span class="cm-kpi__valor">214</span><span class="cm-kpi__variacao">de 402 enviadas, 53%</span></div>
+  <div class="cm-kpi" role="listitem"><span class="cm-kpi__rotulo">Detratores sem retorno</span><span class="cm-kpi__valor">11</span><span class="cm-kpi__variacao">de 31</span></div>
+ </div>
+ <div class="q3-nps">
+  <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Notas, de 0 a 10</h2><span class="cm-t-legenda">promotores em latão</span></header><div class="cm-cartao__corpo">
+   <div class="q3-dist" role="img" aria-label="Distribuição: 0 a 6, 31 respostas; 7 e 8, 50; 9, 61; 10, 72">
+    <div><span>2</span><i style="height:3%"></i></div><div><span>1</span><i style="height:2%"></i></div><div><span>2</span><i style="height:3%"></i></div><div><span>3</span><i style="height:4%"></i></div><div><span>5</span><i style="height:7%"></i></div><div><span>8</span><i style="height:11%"></i></div><div><span>10</span><i style="height:14%"></i></div><div><span>21</span><i style="height:29%"></i></div><div><span>29</span><i style="height:40%"></i></div><div class="is-pro"><span>61</span><i style="height:85%"></i></div><div class="is-pro"><span>72</span><i style="height:100%"></i></div>
+   </div>
+   <div class="q3-dist-eixo" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>
+  </div></section>
+  <section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Temas nos comentários</h2><span class="cm-t-legenda">clique para filtrar</span></header><div class="cm-cartao__corpo">
+   <ul class="cm-barras">
+    <li class="is-destaque"><span>Boleto atrasado ou errado</span><span class="cm-barras__trilho"><i style="--v:100%"></i></span><span class="cm-barras__num">23</span></li>
+    <li><span>Demora no retorno</span><span class="cm-barras__trilho"><i style="--v:74%"></i></span><span class="cm-barras__num">17</span></li>
+    <li><span>Portal difícil</span><span class="cm-barras__trilho"><i style="--v:39%"></i></span><span class="cm-barras__num">9</span></li>
+    <li><span>Elogio ao atendimento</span><span class="cm-barras__trilho"><i style="--v:96%"></i></span><span class="cm-barras__num">22</span></li>
+    <li><span>Manutenção e fornecedores</span><span class="cm-barras__trilho"><i style="--v:30%"></i></span><span class="cm-barras__num">7</span></li>
+   </ul></div></section>
+ </div>
+ <h2 class="cm-t-secao" style="margin-bottom:8px">Detratores para fechar o ciclo</h2>
+ <div class="cm-pv">
+  <article class="cm-pv-item is-vencido"><span class="cm-avatar cm-avatar--m cm-avatar--1">OB</span><div><div class="cm-pv-item__titulo">Osvaldo Brandão deu 4, síndico do Res. Vila Serena</div><div class="cm-pv-item__contexto">"O portão travou três vezes em setembro e ninguém me ligou de volta."</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Retorno vencido há 2 dias</span><span class="cm-t-legenda">Dono: Rafael Menezes. Renova em 23 dias.</span></div></div><div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button"><i data-i="telefone"></i>Ligar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q3-concluir="Retorno registrado. Ciclo fechado com o Osvaldo.">Registrar retorno</button></div></article>
+  <article class="cm-pv-item is-urgente"><span class="cm-avatar cm-avatar--m cm-avatar--3">MC</span><div><div class="cm-pv-item__titulo">Marina Costa deu 6, síndica do Cond. Parque das Águas</div><div class="cm-pv-item__contexto">"O atendimento é bom, mas o boleto de setembro chegou atrasado para 40 moradores."</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Retornar até amanhã</span><span class="cm-t-legenda">Tema: boleto. Financeiro já sabe.</span></div></div><div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button"><i data-i="telefone"></i>Ligar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q3-concluir="Retorno registrado">Registrar retorno</button></div></article>
+  <article class="cm-pv-item"><span class="cm-avatar cm-avatar--m cm-avatar--5">PS</span><div><div class="cm-pv-item__titulo">Paulo Saraiva deu 5, conselho do Parque das Águas</div><div class="cm-pv-item__contexto">"Prestação de contas chega em PDF difícil de ler no celular."</div><div class="cm-pv-item__prazo"><span class="cm-t-legenda">Retornar até 06/10. Tema: portal.</span></div></div><div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button">Atribuir</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q3-concluir="Retorno registrado">Registrar retorno</button></div></article>
+  <div class="cm-pv__pe"><i data-i="sucesso"></i>20 de 31 detratores com retorno registrado</div>
+ </div>
+ </div>
+ <div data-se="vazio"><div class="cm-vazio"><i data-i="saude"></i><p class="cm-vazio__titulo">O ciclo de outubro começa em 15/10</p><p class="cm-vazio__texto">A pesquisa vai para 410 síndicos e conselheiros por WhatsApp e e-mail. As respostas aparecem aqui assim que chegarem.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button">Ver a pesquisa</button><button class="cm-botao cm-botao--discreto" type="button">Abrir setembro</button></div></div></div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título, ciclo, público, configuração; números do ciclo; gráfico (imagem com descrição completa); temas; fila de detratores (cada item: nome, comentário, prazo, Ligar, Registrar retorno).</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>O gráfico é uma imagem com a distribuição em texto. Cada detrator é um artigo; o prazo vencido tem ícone e palavra. Ao registrar, o toast confirma e oferece desfazer.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>Nenhum botão só com ícone.</p></section>
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>

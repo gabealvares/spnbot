@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modo fila</title>
+<meta name="description" content="Atendimento um por vez: o sistema entrega a próxima conversa por prazo, e o atendente resolve e segue sem escolher.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .fl-atend.lc-atend{grid-template-columns:minmax(0,1fr) 0}
+  .fl-atend.lc-atend[data-ficha="aberta"]{grid-template-columns:minmax(0,1fr) 360px}
+  .fl-atend .lc-atend__conversa{visibility:visible!important}
+  @media (max-width:1279px){.fl-atend.lc-atend[data-ficha="aberta"]{grid-template-columns:minmax(0,1fr) 0}}
+  .fl-alvo{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:var(--aviso-fundo);border:1px solid var(--aviso-borda);border-left:var(--borda-marcador) solid var(--aviso-texto);font-size:13px}
+  .fl-alvo .lc-ic{color:var(--aviso-texto);flex:none}
+  .fl-hist{list-style:none;margin:0;padding:0;font-size:13px}
+  .fl-hist li{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-top:var(--borda-1)}
+  .fl-hist li:first-child{border-top:0}
+  .fl-hist small{display:block;font:var(--t-legenda);color:var(--texto-2)}
+  .fl-fim{max-width:640px;margin:48px auto;text-align:left}
+  .fl-fim dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:12px 0 18px;font-size:14px}
+  .fl-fim dt{color:var(--texto-2)}
+  .fl-fim dd{margin:0;font-weight:600}
+  .fl-teclas{display:flex;gap:14px;flex-wrap:wrap;font:var(--t-legenda);color:var(--texto-2)}
+</style>
+</head>
+<body data-moldura='{"modulo":"suporte","secao":"Conversas","item":"Minhas","papel":"atendente","trilha":["Conversas","Modo fila"],"usuario":{"nome":"Thiago Costa","cargo":"Atendente de suporte","iniciais":"TC","cor":"lc-av--c6"},"contadores":{"suporte":12,"academy":1}}'>
+<main id="conteudo">
+<div class="lc-pagina lc-pagina--larga" style="padding-bottom:var(--esp-5)">
+<details class="lc-nota-projeto" open style="margin-bottom:0">
+  <summary><b>Nota de projeto</b> Modo fila, um atendimento por vez
+    <span class="lc-nota-projeto__serie"><a href="21-suporte.html">Conversas</a> <a href="21b-suporte-modo-fila.html" aria-current="page">Modo fila</a> <a href="21c-suporte-chamados.html">Chamados</a> <a href="21d-suporte-chamado.html">Chamado</a> <a href="21e-suporte-respostas-rapidas.html">Respostas rápidas</a> <a href="21f-suporte-filas-sla.html">Filas e SLA</a> <a href="21g-suporte-painel.html">Painel do supervisor</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2>
+      <p>Em dia de pico, escolher a próxima conversa custa tempo e gera injustiça (as fáceis somem primeiro). No modo fila o sistema entrega uma conversa por vez, na ordem do prazo, e esconde a lista. O atendente responde, resolve e a próxima abre sozinha.</p>
+      <p>A barra escura no topo diz que o modo está ligado e mostra o que vem a seguir, para não haver surpresa.</p></section>
+    <section><h2>Fluxo</h2><ol>
+      <li>Entrar: "Modo fila" na lista de conversas. A primeira conversa já abre com a ficha.</li>
+      <li>O Enviar já vem em "Enviar, resolver e abrir a próxima" (Ctrl+Enter). "Enviar e aguardar" deixa a conversa Pendente e também abre a próxima.</li>
+      <li>Pular pede um motivo (ex.: "precisa do financeiro"); a conversa volta para a fila com o motivo anotado.</li>
+      <li>Pausar segura a fila para almoço ou reunião; o supervisor vê a pausa no painel.</li>
+      <li>Sair do modo fila (canto direito da barra) devolve à lista, na mesma conversa.</li>
+    </ol></section>
+    <section><h2>Por que assim</h2>
+      <p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o Zendesk (Guided mode e "Play"), o Freshdesk (Omniroute, atribuição automática por carga) e o Intercom (atribuição em rodízio com "pular com motivo") utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div>
+  <div class="lc-estados-tela" data-estados-para="tela-fila">Ver estado:
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela">
+      <button type="button" aria-pressed="true" data-estado="dados">Atendendo</button>
+      <button type="button" aria-pressed="false" data-estado="pausa">Em pausa</button>
+      <button type="button" aria-pressed="false" data-estado="fim">Fila zerada</button>
+    </div>
+  </div>
+</details>
+</div>
+
+<div id="tela-fila" data-estado="dados">
+<div class="lc-fila-barra" role="region" aria-label="Modo fila">
+  <i data-i="fila"></i><span><b>Modo fila ligado.</b> Condomínios, zona leste. Esta é a 4ª de hoje.</span>
+  <span class="lc-fila-proximos" data-so-estado="dados">Depois: Paulo Reis (4 min), Renata Duarte (1h14) e mais 9</span>
+  <span class="lc-fila-proximos" data-so-estado="pausa" hidden>Em pausa desde 12:02, almoço. 12 esperando.</span>
+  <span class="lc-fila-barra__fim">
+    <button class="lc-btn lc-btn--p" type="button" data-modal="m-pular" data-so-estado="dados">Pular</button>
+    <button class="lc-btn lc-btn--p" type="button" data-so-estado="dados" data-modal="m-pausa"><i data-i="pausar"></i>Pausar</button>
+    <button class="lc-btn lc-btn--p" type="button" data-so-estado="pausa" hidden data-toast="Fila retomada. Abrindo Paulo Reis."><i data-i="tocar"></i>Voltar à fila</button>
+    <a class="lc-btn lc-btn--p" href="21-suporte.html">Sair do modo fila</a></span>
+</div>
+
+<div class="lc-atend fl-atend" data-ficha="aberta" data-movel="conversa" data-so-estado="dados">
+  <section class="lc-atend__conversa" aria-label="Conversa com a Portaria do Vila Serena">
+    <div class="lc-conv-cab">
+      <button class="lc-conv-cab__quem" type="button" data-ficha-alterna aria-expanded="true" aria-controls="fl-ficha">
+        <span class="lc-ladrilho lc-ladrilho--40" aria-hidden="true"><i data-i="portaria"></i></span>
+        <span style="min-width:0"><b>Portaria, Vila Serena</b><small>Edson (porteiro da manhã). WhatsApp da portaria (11) 3344-2190</small></span></button>
+      <button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Transferir conversa" data-dica="Transferir"><i data-i="transferir"></i></button>
+      <button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" data-ficha-alterna aria-expanded="true" aria-controls="fl-ficha" aria-label="Dados do chamado"><i data-i="painel"></i></button>
+    </div>
+    <div class="lc-conv-faixa"><span class="lc-protocolo"><span>Chamado</span> 4.814</span><span class="lc-estado lc-estado--perigo">Prazo vencido há 6 min</span><span class="lc-pessoa"><span class="lc-av lc-av--20 lc-av--c6" aria-hidden="true">TC</span>Thiago Costa</span>
+      <div class="lc-seg lc-seg--p" role="group" aria-label="Estado do chamado"><button type="button" aria-pressed="false">Novo</button><button type="button" aria-pressed="true">Aberto</button><button type="button" aria-pressed="false">Pendente</button><button type="button" aria-pressed="false">Resolvido</button></div></div>
+    <div class="lc-conversa" id="conv-vs">
+      <span class="lc-dia">Hoje</span>
+      <div class="lc-bolha lc-bolha--primeira">Bom dia. O portão da garagem travou de novo, abriu até a metade e parou. Tem fila de carro na rua.<span class="lc-bolha__meta">09:30</span></div>
+      <div class="lc-bolha"><span class="lc-foto--desenho" role="img" aria-label="Foto: portão basculante parado na metade, com carros esperando na rampa"><svg viewBox="0 0 280 175" aria-hidden="true"><rect width="280" height="175" style="fill:var(--sup-3)"/><rect x="40" y="20" width="200" height="70" style="fill:var(--filete-forte)"/><path d="M40 38h200M40 56h200M40 74h200" style="stroke:var(--sup-1);stroke-width:3"/><rect x="60" y="120" width="70" height="34" rx="6" style="fill:var(--texto-3)"/><rect x="150" y="128" width="70" height="30" rx="6" style="fill:var(--texto-3);opacity:.7"/></svg></span><span class="lc-foto-legenda">Abri na mão para os carros saírem</span><span class="lc-bolha__meta">09:31</span></div>
+      <p class="lc-msg-sistema"><i data-i="fila"></i>Entregue para Thiago Costa às 09:58 pelo modo fila: primeira por prazo.</p>
+      <div class="lc-bolha lc-bolha--nota lc-bolha--primeira"><span class="lc-bolha__nota-rotulo"><i data-i="nota-interna"></i>Nota interna. Só a equipe vê.</span>Mesmo defeito da OS 476 (22/09) e da OS 461 (09/09). A PortMax trocou o fim de curso nas duas.<span class="lc-bolha__meta">09:59, Thiago</span></div>
+    </div>
+    <div class="lc-compositor" data-compositor="conv-vs">
+      <div class="lc-compositor__modo" role="group" aria-label="Tipo de mensagem"><button type="button" aria-pressed="true" data-modo="resposta"><i data-i="responder"></i>Responder</button><button type="button" aria-pressed="false" data-modo="nota"><i data-i="nota-interna"></i>Nota interna</button></div>
+      <div class="lc-compositor__linha">
+        <button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Anexar"><i data-i="anexo"></i></button>
+        <textarea class="lc-compositor__caixa" rows="2" aria-label="Mensagem para a Portaria do Vila Serena">Edson, abri a OS para a PortMax com prioridade urgente. O técnico chega até 11h. Enquanto isso, deixe o portão aberto na mão e com o porteiro na rampa.</textarea>
+        <span class="lc-dividido" style="position:relative">
+          <button class="lc-btn lc-btn--principal" type="button" data-enviar="Enviado e resolvido. Abrindo Paulo Reis (2 de 12).">Enviar, resolver e próxima</button><button class="lc-btn lc-btn--principal" type="button" aria-label="Escolher o que acontece depois de enviar" aria-haspopup="menu" aria-expanded="false" data-abre="fl-menu-enviar"><i data-i="chevron-baixo"></i></button>
+          <div class="lc-menu lc-enviar-menu" role="menu" id="fl-menu-enviar" hidden>
+            <div class="lc-menu__titulo">No modo fila, depois de enviar</div>
+            <button class="lc-menu__item" role="menuitemradio" aria-checked="true" data-enviar="Enviado e resolvido. Abrindo Paulo Reis."><span>Enviar, resolver e abrir a próxima<small>Lembrado da última vez</small></span><span class="lc-tecla">Ctrl+Enter</span></button>
+            <button class="lc-menu__item" role="menuitemradio" aria-checked="false" data-enviar="Enviado. Chamado Pendente; abrindo Paulo Reis."><span>Enviar, aguardar e abrir a próxima<small>A conversa volta para você quando a portaria responder</small></span></button>
+            <button class="lc-menu__item" role="menuitemradio" aria-checked="false" data-enviar><span>Só enviar<small>Fica nesta conversa</small></span><span class="lc-tecla">Enter</span></button>
+          </div></span>
+      </div>
+      <p class="fl-teclas" style="margin-top:6px"><span><span class="lc-tecla">Ctrl+Enter</span> enviar, resolver e próxima</span><span><span class="lc-tecla">Alt+P</span> pular</span><span><span class="lc-tecla">/</span> respostas rápidas</span></p>
+    </div>
+  </section>
+  <aside class="lc-atend__ficha" id="fl-ficha" aria-labelledby="fl-ficha-tit">
+    <div class="lc-ficha__cab"><h2 id="fl-ficha-tit">Dados do chamado</h2><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" data-ficha-alterna aria-expanded="true" aria-label="Fechar dados do chamado"><i data-i="fechar"></i></button></div>
+    <div class="lc-ficha__bloco"><div class="fl-alvo"><i data-i="aviso"></i><div><b>Terceira vez em 30 dias.</b> O mesmo portão parou em 09/09 e 22/09. Vale abrir um problema recorrente e cobrar a PortMax pelo contrato.<div style="margin-top:6px"><button class="lc-btn lc-btn--p" type="button" data-toast="Problema recorrente aberto e ligado aos chamados 4.702, 4.761 e 4.814">Abrir problema recorrente</button></div></div></div></div>
+    <div class="lc-ficha__bloco"><h3>Chamado 4.814</h3>
+      <dl class="lc-props"><dt>Assunto</dt><dd>Portão da garagem travado</dd><dt>Condomínio</dt><dd><a href="22b-cliente.html">Vila Serena</a>, 186 unidades</dd><dt>Prioridade</dt><dd><span class="lc-prioridade lc-prioridade--urgente" aria-hidden="true">!</span> Urgente</dd><dt>Prazo</dt><dd>1ª resposta venceu às 09:52</dd><dt>Fila</dt><dd>Condomínios, zona leste</dd></dl></div>
+    <div class="lc-ficha__bloco"><h3>Fornecedor do portão</h3>
+      <dl class="lc-props"><dt>Empresa</dt><dd><a href="25f-operacoes-fornecedores.html">PortMax Automação</a></dd><dt>Contrato</dt><dd>Manutenção mensal, vigente até 02/2027</dd><dt>Atendimento</dt><dd>Até 4 h úteis em chamado urgente</dd><dt>Telefone</dt><dd>(11) 3090-4411</dd></dl>
+      <div class="lc-grupo-btn" style="margin-top:10px"><button class="lc-btn lc-btn--p" type="button" data-toast="OS 483 aberta para PortMax, urgente"><i data-i="ordem-de-servico"></i>Abrir OS</button></div></div>
+    <div class="lc-ficha__bloco"><h3>Antes deste</h3>
+      <ul class="fl-hist"><li><span>OS 476, portão da garagem<small>22/09, fim de curso trocado</small></span><span class="lc-estado lc-estado--sucesso">Concluída</span></li><li><span>OS 461, portão da garagem<small>09/09, fim de curso trocado</small></span><span class="lc-estado lc-estado--sucesso">Concluída</span></li></ul></div>
+  </aside>
+</div>
+
+<div data-so-estado="pausa" hidden class="lc-pagina"><div class="lc-vazio lc-vazio--centro"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="pausado"></i></span><p class="lc-vazio__titulo">Fila em pausa: almoço</p><p class="lc-vazio__texto">Desde 12:02. Nenhuma conversa nova chega para você enquanto a pausa durar; as suas pendentes continuam guardadas. A supervisora vê a pausa no painel.</p><div class="lc-grupo-btn"><button class="lc-btn lc-btn--principal" type="button">Voltar à fila</button></div></div></div>
+
+<div data-so-estado="fim" hidden class="lc-pagina"><div class="fl-fim">
+  <span class="lc-ladrilho lc-ladrilho--48"><i data-i="feito"></i></span>
+  <h2 class="lc-t-secao" style="margin:12px 0 4px">A fila de Condomínios, zona leste, zerou</h2>
+  <p class="lc-pequeno lc-cor-2">Você atendeu 14 conversas desde 08:00. Assim que chegar uma nova, ela abre aqui sozinha.</p>
+  <dl><dt>Resolvidas</dt><dd>11</dd><dt>Aguardando o cliente</dt><dd>3</dd><dt>Puladas</dt><dd>1, "precisa do financeiro"</dd><dt>Tempo médio de 1ª resposta</dt><dd>4 min</dd></dl>
+  <div class="lc-grupo-btn"><a class="lc-btn" href="21-suporte.html">Voltar para a lista</a><button class="lc-btn lc-btn--discreto" type="button">Ajudar na fila Financeiro (5)</button></div>
+</div></div>
+</div>
+
+<div class="lc-sobreposicao" id="m-pular" hidden>
+  <div class="lc-modal" role="dialog" aria-modal="true" aria-labelledby="mpu-tit">
+    <div class="lc-modal__cab"><div style="flex:1"><h2 id="mpu-tit">Pular esta conversa</h2><p>Ela volta para a fila com o motivo e vai para a próxima pessoa disponível.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" data-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+    <div class="lc-modal__corpo"><fieldset class="lc-grupo-opcoes"><legend class="lc-rotulo">Motivo</legend>
+      <label class="lc-radio"><input type="radio" name="mpu" checked><span class="lc-radio__bola"></span>Precisa de outra área (financeiro, jurídico)</label>
+      <label class="lc-radio"><input type="radio" name="mpu"><span class="lc-radio__bola"></span>Já falei com esta pessoa e prefiro que outro atenda</label>
+      <label class="lc-radio"><input type="radio" name="mpu"><span class="lc-radio__bola"></span>Não sei resolver ainda</label>
+      <label class="lc-radio"><input type="radio" name="mpu"><span class="lc-radio__bola"></span>Outro</label></fieldset></div>
+    <div class="lc-modal__pe"><button class="lc-btn" type="button" data-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-fechar data-toast="Pulada. Abrindo Paulo Reis." data-toast-desfazer>Pular e abrir a próxima</button></div>
+  </div>
+</div>
+<div class="lc-sobreposicao" id="m-pausa" hidden>
+  <div class="lc-modal" role="dialog" aria-modal="true" aria-labelledby="mpa-tit">
+    <div class="lc-modal__cab"><div style="flex:1"><h2 id="mpa-tit">Pausar a fila</h2><p>Termine esta conversa antes, ou ela volta para a fila.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" data-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+    <div class="lc-modal__corpo"><div class="lc-campo"><label class="lc-rotulo" for="mpa-m">Motivo</label><select class="lc-selecao" id="mpa-m"><option>Almoço (1 h)</option><option>Reunião</option><option>Treinamento</option><option>Outro</option></select></div></div>
+    <div class="lc-modal__pe"><button class="lc-btn" type="button" data-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-fechar data-toast="Fila em pausa" data-toast-neutro>Pausar</button></div>
+  </div>
+</div>
+
+<div class="lc-pagina lc-pagina--larga">
+<section class="lc-nota-a11y" aria-labelledby="a11y-tit" style="margin-top:0">
+  <h2 id="a11y-tit">Acessibilidade desta tela</h2>
+  <dl>
+    <dt>Ordem de foco</dt><dd>Pular para o conteúdo; trilho; barra do módulo; trilha; barra do modo fila (Pular, Pausar, Sair); cabeçalho da conversa; Transferir; estado; mensagens; Responder ou Nota interna; campo; Enviar e a seta; ficha (alerta de recorrência primeiro).</dd>
+    <dt>O que é anunciado</dt><dd>Ao abrir cada conversa: "Conversa 4 de hoje, Portaria do Vila Serena, chamado 4.814, prazo vencido há 6 minutos". A barra do modo fila é uma região com nome. Ao resolver, "Enviado e resolvido. Abrindo Paulo Reis".</dd>
+    <dt>Nome do que é só ícone</dt><dd>Transferir conversa, Dados do chamado, Fechar dados do chamado, Anexar, Escolher o que acontece depois de enviar. Prioridade urgente vem com a palavra.</dd>
+  </dl>
+</section>
+</div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  if(window.matchMedia("(max-width:1279px)").matches){ var a=document.querySelector(".fl-atend"); a.setAttribute("data-ficha","fechada"); a.querySelectorAll("[data-ficha-alterna][aria-expanded]").forEach(function(b){b.setAttribute("aria-expanded","false");}); }
+  document.addEventListener("keydown",function(e){ if(e.altKey && (e.key==="p"||e.key==="P")){ e.preventDefault(); document.querySelector('[data-modal="m-pular"]').click(); } });
+});
+</script>
+</body>
+</html>

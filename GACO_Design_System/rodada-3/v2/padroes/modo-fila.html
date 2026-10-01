@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conciliação</title>
+<script src="../sistema/marca.js"></script>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-q2.css">
+<script src="../sistema/icones.js"></script>
+<script src="links.js"></script>
+<script src="../sistema/moldura.js" defer></script>
+<script src="../sistema/extra-q2.js" defer></script>
+<style>
+.mf-item{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:9px 14px;border-bottom:1px solid var(--cm-filete);cursor:pointer;font-size:13px}
+.mf-item:hover{background:var(--cm-camada-2)}
+.mf-item.is-atual{background:var(--cm-selecao);box-shadow:inset 3px 0 0 var(--cm-selecao-filete)}
+.mf-item small{grid-column:1/-1;color:var(--cm-texto-2);font-size:12px;display:flex;gap:8px;align-items:center}
+.mf-valor{font-variant-numeric:tabular-nums;font-weight:600;text-align:right}
+.mf-centro{flex:1;min-width:0;overflow:auto;padding:16px 24px;background:var(--cm-fundo)}
+.mf-par{display:grid;grid-template-columns:1fr 40px 1fr;gap:0;align-items:stretch;margin:12px 0}
+.mf-par>.cm-cartao{min-width:0}
+.mf-par>span{display:flex;align-items:center;justify-content:center;color:var(--cm-texto-3)}
+.mf-acoes{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:12px 0;border-top:1px solid var(--cm-filete)}
+.mf-progresso{display:flex;gap:12px;align-items:center;padding:8px 14px;border-bottom:1px solid var(--cm-filete);font-size:12.5px}
+@media (max-width:899px){.mf-par{grid-template-columns:1fr}.mf-par>span{transform:rotate(90deg);height:32px}.mf-centro{padding:12px}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"Financeiro","tela":"Conciliação","papel":"Financeiro","atalhos":[["Enter","confirmar o par"],["J","próxima linha"],["K","anterior"],["B","buscar outro"],["C","criar lançamento"],["Ctrl Z","desfazer"],["?","todos"]],"usuario":{"nome":"Patrícia Gomes","iniciais":"PG","cargo":"Analista financeira","presenca":"disponivel","tom":5}}'></div>
+<main id="conteudo" class="cm-app">
+  <section class="cm-coluna cm-coluna--fila" aria-labelledby="mf-t">
+    <header class="cm-coluna__cabeca"><h1 class="cm-coluna__titulo" id="mf-t">Para revisar</h1>
+      <div class="cm-selecao"><select aria-label="Conta bancária"><option>Itaú, ag. 0412 c/c 33.871-2</option><option>Bradesco</option><option>Caixa</option></select><i data-i="chevron-baixo"></i></div></header>
+    <div class="mf-progresso"><div class="cm-progresso cm-progresso--sucesso cm-cresce"><span class="cm-progresso__barra"><i id="mf-barra" style="--p:70%"></i></span><span class="cm-progresso__valor" id="mf-prog">42 de 60 conciliados</span></div></div>
+    <div class="cm-coluna__corpo" id="mf-fila" data-q2-lista data-q2-sem-link></div>
+  </section>
+  <section class="mf-centro" aria-labelledby="mf-h" aria-live="polite">
+    <h2 class="cm-t-pagina" id="mf-h">Linha do extrato</h2>
+    <p class="cm-t-legenda" id="mf-sub"></p>
+    <div class="mf-par">
+      <section class="cm-cartao"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo">No banco</h3><i data-i="banco"></i></header><div class="cm-cartao__corpo"><dl class="cm-ficha" id="mf-banco"></dl></div></section>
+      <span aria-hidden="true"><i data-i="comparar" class="cm-icone--20"></i></span>
+      <section class="cm-cartao"><header class="cm-cartao__cabeca"><h3 class="cm-cartao__titulo" id="mf-sug-t">Sugestão do GACO</h3><span class="cm-estado cm-estado--sucesso" id="mf-conf"><i data-i="sucesso"></i>Mesmo valor e data</span></header><div class="cm-cartao__corpo"><dl class="cm-ficha" id="mf-sug"></dl></div></section>
+    </div>
+    <div class="mf-acoes">
+      <button class="cm-botao cm-botao--principal cm-botao--g" type="button" id="mf-ok"><i data-i="marcar"></i>Confirmar par <kbd class="cm-tecla">Enter</kbd></button>
+      <button class="cm-botao" type="button" data-q2-tecla="b" data-q2-toast="Busca de lançamentos aberta com valor R$ 1.850,00 e 3 dias em volta.|info"><i data-i="pesquisar"></i>Buscar outro</button>
+      <button class="cm-botao" type="button" data-q2-tecla="c" data-q2-toast="Criando lançamento com categoria Taxa de administração já preenchida.|info"><i data-i="adicionar"></i>Criar lançamento</button>
+      <span class="cm-empurra cm-t-legenda">Depois de confirmar, a próxima linha abre sozinha.</span>
+    </div>
+    <div class="cm-vazio" id="mf-vazio" hidden><i data-i="sucesso"></i><p class="cm-vazio__titulo">Itaú conciliado até hoje</p><p class="cm-vazio__texto">Faltam 20 linhas no Bradesco e 7 na Caixa.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button">Ir para o Bradesco</button></div></div>
+  </section>
+</main>
+<script>
+(function(){
+  var L=[
+   ['28/09','PIX recebido COND PARQUE DAS AGUAS','1.850,00','Boleto 0412, Cond. Parque das Águas','Taxa de administração de setembro','venc. 28/09',true],
+   ['28/09','TED CONDOMINIO VILA SERENA','4.380,00','Boleto 0398, Cond. Vila Serena','Taxa de administração de setembro','venc. 28/09',true],
+   ['29/09','LIQUIDACAO BOLETO 23793.38128','2.140,50','Boleto 0415, Ed. Solar do Batel','Taxa de administração com multa de 2%','venc. 25/09',true],
+   ['29/09','TARIFA PACOTE SERVICOS','89,90','Despesa: tarifas bancárias','Lançamento recorrente do Itaú','todo dia 29',true],
+   ['30/09','PIX ENVIADO HIDROTEC INSTALACOES','1.850,00','Conta a pagar 2207, Hidrotec','OS 476, troca da bomba da piscina','venc. 30/09',false],
+   ['30/09','DEP DINHEIRO AG 0412','350,00','Sem sugestão','Nenhum título com esse valor perto da data','',false]];
+  var fila=document.getElementById('mf-fila'),feitos=42;
+  fila.innerHTML=L.map(function(r,i){return '<div class="mf-item'+(i===0?' is-atual':'')+'" data-q2-item data-i="'+i+'" role="button" aria-label="'+r[1]+', R$ '+r[2]+', '+r[0]+'"><span>'+r[1]+'</span><span class="mf-valor">'+(r[1].indexOf('ENVIADO')>0||r[1].indexOf('TARIFA')===0?'− ':'')+'R$ '+r[2]+'</span><small>'+r[0]+(r[6]?' <span class="cm-estado cm-estado--ponto cm-estado--sucesso">Com sugestão</span>':(r[3]==='Sem sugestão'?' <span class="cm-estado cm-estado--ponto cm-estado--neutro">Sem sugestão</span>':' <span class="cm-estado cm-estado--ponto cm-estado--aviso">Valor igual, data diferente</span>'))+'</small></div>'}).join('');
+  var atual=0;
+  function mostrar(i){var r=L[i];if(!r) return;atual=i;
+    document.getElementById('mf-sub').textContent=r[0]+', Itaú c/c 33.871-2. Linha '+(feitos+1)+' de 60.';
+    document.getElementById('mf-banco').innerHTML='<div class="cm-ficha__linha is-leitura"><dt>Data</dt><dd>'+r[0]+'/2026</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Histórico</dt><dd>'+r[1]+'</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Valor</dt><dd class="cm-t-valor"><b>R$ '+r[2]+'</b></dd><span></span></div>';
+    document.getElementById('mf-sug').innerHTML='<div class="cm-ficha__linha is-leitura"><dt>Lançamento</dt><dd>'+r[3]+'</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Descrição</dt><dd>'+r[4]+'</dd><span></span></div><div class="cm-ficha__linha is-leitura"><dt>Valor</dt><dd class="cm-t-valor"><b>'+(r[3]==='Sem sugestão'?'—':'R$ '+r[2])+'</b> '+r[5]+'</dd><span></span></div>';
+    var c=document.getElementById('mf-conf');c.className='cm-estado '+(r[6]?'cm-estado--sucesso':r[3]==='Sem sugestão'?'cm-estado--neutro':'cm-estado--aviso');c.innerHTML=cmIcone(r[6]?'sucesso':r[3]==='Sem sugestão'?'rascunho':'atencao')+(r[6]?'Mesmo valor e data':r[3]==='Sem sugestão'?'Sem sugestão':'Atenção: data 2 dias depois');
+    document.getElementById('mf-ok').disabled=r[3]==='Sem sugestão';}
+  fila.addEventListener('q2:atual',function(e){mostrar(+e.detail.item.getAttribute('data-i'))});
+  fila.addEventListener('q2:abrir',function(){confirmar()});
+  var desfazer=[];
+  function confirmar(){var it=fila.querySelector('[data-i="'+atual+'"]');if(!it||document.getElementById('mf-ok').disabled) return;
+    it.hidden=true;feitos++;desfazer.push(it);atualiza();
+    cmQ2.toast('Par confirmado: R$ '+L[atual][2]+' com '+L[atual][3]+'.','sucesso','Desfazer',voltar);
+    var prox=[].slice.call(fila.querySelectorAll('[data-q2-item]')).filter(function(x){return !x.hidden});
+    if(!prox.length){document.querySelector('.mf-par').hidden=true;document.querySelector('.mf-acoes').hidden=true;document.getElementById('mf-vazio').hidden=false;return}
+    cmQ2.lista.ir(0,true);}
+  function voltar(){var it=desfazer.pop();if(!it) return;it.hidden=false;feitos--;atualiza();document.querySelector('.mf-par').hidden=false;document.querySelector('.mf-acoes').hidden=false;document.getElementById('mf-vazio').hidden=true;cmQ2.lista.ir(+it.getAttribute('data-i'),true)}
+  function atualiza(){document.getElementById('mf-prog').textContent=feitos+' de 60 conciliados';document.getElementById('mf-barra').style.setProperty('--p',Math.round(feitos/60*100)+'%')}
+  document.getElementById('mf-ok').addEventListener('click',confirmar);
+  document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'&&!cmQ2.digitando(e)){e.preventDefault();voltar()}
+    if(e.key==='Enter'&&!cmQ2.digitando(e)&&!e.target.closest('button,a,[data-q2-item]')&&!document.querySelector('.cm-sobreposicao:not([hidden])')){e.preventDefault();confirmar()}});
+  mostrar(0);
+})();
+</script>
+</body>
+</html>

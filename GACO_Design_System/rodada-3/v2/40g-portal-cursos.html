@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-contexto="portal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal: Cursos</title>
+<script>window.CM_LINKS={"Início": "40-portal.html", "Chamados": "40b-portal-chamados.html", "Boletos": "40c-portal-boletos.html", "Reservas": "40d-portal-reservas.html", "Assembleias": "40e-portal-assembleias.html", "Comunicados": "40f-portal-comunicados.html", "Documentos": "40f-portal-comunicados.html#documentos", "Minha unidade": "40h-portal-perfil.html", "Moradores e veículos": "40h-portal-perfil.html#moradores", "Meu perfil": "40h-portal-perfil.html", "Encomendas": "40i-portal-portaria.html#encomendas", "Visitantes": "40i-portal-portaria.html"}</script>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q5.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q5.js" defer></script>
+<style>
+
+.portal{max-width:1200px;margin:0 auto;padding:8px 24px 72px}
+.portal-grade{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.portal-estreito{max-width:var(--cm-largura-portal)}
+.portal-cabeca{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;padding:20px 0 14px}
+.portal-cabeca h1{font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em;margin:0}
+.portal-cabeca p{color:var(--cm-texto-2);margin-top:2px}
+.portal-cabeca .cm-empurra{display:flex;gap:8px;flex-wrap:wrap}
+.cm-tabela--simples td:not(.cm-num){white-space:normal}
+.sec-t{font-size:17px;line-height:24px;font-weight:700;margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+.sec-t .cm-link{margin-left:auto;font-size:14px}
+@media (max-width:899px){ .portal-grade{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:599px){ .portal{padding:4px 16px 56px} .portal-cabeca h1{font-size:20px;line-height:26px} .portal-cabeca .cm-empurra{width:100%} }
+
+.curso-grade{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+.sala{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px;align-items:start}
+.sala nav a{display:block;padding:10px 12px;border-left:3px solid transparent;text-decoration:none;color:var(--cm-texto-2)}
+.sala nav a[aria-current="page"]{border-left-color:var(--cm-acao);color:var(--cm-texto-1);font-weight:650;background:var(--cm-camada-1)}
+.semana{border:1px solid var(--cm-filete);background:var(--cm-camada-1);margin-bottom:10px}
+.semana h3{font-size:15px;font-weight:700;padding:10px 14px;border-bottom:1px solid var(--cm-filete);display:flex;gap:8px;align-items:center}
+.semana ul{padding:4px 14px 8px}
+.semana li{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--cm-filete)}
+.semana li:last-child{border-bottom:0}
+.tabela-rolar{overflow-x:auto}
+@media (max-width:899px){ .curso-grade,.sala{grid-template-columns:minmax(0,1fr)} .sala nav{display:flex;overflow-x:auto} .sala nav a{border-left:0;border-bottom:3px solid transparent;white-space:nowrap} .sala nav a[aria-current="page"]{border-bottom-color:var(--cm-acao)} }
+
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"contexto": "portal", "tela": "Cursos", "unidade": "Bl B Ap 1204", "sino": 3}'></div>
+<main id="conteudo">
+<div class="portal">
+<details class="cm-anotacao" open>
+<summary><i data-i="informacao"></i>Sobre esta tela: Cursos no portal (modelo de faculdade)</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>O que esta tela resolve</h3><p>A administradora forma seus síndicos e conselheiros como uma faculdade: curso, período, disciplinas com professor, carga horária, frequência com mínimo, N1 e N2, entrega e certificado. O mesmo modelo do Academy interno, na marca do cliente.</p></div>
+<div><h3>Fluxo</h3><ol><li>A entrega que vence primeiro fica no alto, com "Continuar entrega".</li><li>A tabela leva à sala da disciplina (Módulos, Avisos, Atividades, Notas, Fórum).</li><li>Na sala, a semana tem as tarefas com caixa; a entrega aceita arquivo e comentário.</li><li>O nome do curso no topo da sala volta ao portal do aluno.</li></ol></div>
+<div><h3>Resolvemos fazer assim porque</h3><p>o portal do aluno das faculdades (Unopar, Estácio) mostra disciplinas com frequência e notas, o Canvas e o Moodle organizam a sala por semanas com caixa de conclusão, e a crítica C1 pediu entrada visível para a sala. Sem ranking e sem medalha. Enviamos para aprovação.</p></div>
+</div></details>
+<section class="cm-tela" id="portal" aria-labelledby="portal-t">
+<h2 class="cm-tela__titulo" id="portal-t">Portal do aluno <small>Tela 1 de 2</small></h2>
+<div class="portal-cabeca"><div><p class="cm-saudacao">Escola de Síndicos da <span data-marca-nome>Administradora Alpha</span></p><h1>Formação em gestão condominial</h1><p>Período letivo 2026.2, módulo 2 de 3. Matrícula 2026-0418, turma de quarta à noite.</p></div><div class="cm-empurra"><a class="cm-botao" href="61-documentos-gerados.html#certificado"><i data-i="certificado"></i>Certificados</a><button class="cm-botao" type="button" data-toast="Histórico escolar gerado em PDF."><i data-i="pdf"></i>Histórico</button></div></div>
+<div class="curso-grade"><div class="cm-pilha cm-pilha--6">
+<div class="cm-alerta cm-alerta--aviso"><i data-i="atencao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Atenção: entrega até sábado, 03/10, às 23h59</span><span class="cm-alerta__desc">Gestão financeira do condomínio: "Monte a previsão orçamentária de 2027 do seu prédio".</span></span><span class="cm-alerta__acoes"><a class="cm-botao cm-botao--p cm-botao--principal" href="#sala">Continuar entrega</a></span></div>
+<div class="cm-tabela-caixa tabela-rolar"><table class="cm-tabela"><thead><tr><th>Disciplina</th><th>Professora ou professor</th><th class="cm-num">CH</th><th>Frequência</th><th class="cm-num">N1</th><th class="cm-num">N2</th><th>Situação</th></tr></thead><tbody>
+<tr><td class="cm-tabela__principal"><a href="#sala">Legislação condominial</a><span class="cm-tabela__sub">Código Civil, arts. 1.331 a 1.358</span></td><td>Dra. Lúcia Fontana</td><td class="cm-num">16 h</td><td><div class="cm-frequencia"><span class="cm-frequencia__barra"><i style="--f:100%"></i><span class="cm-frequencia__minimo" style="--min:75%"></span></span><b>100%</b></div></td><td class="cm-num">8,5</td><td class="cm-num">9,0</td><td><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Aprovada</span></td></tr>
+<tr><td class="cm-tabela__principal"><a href="#sala">Gestão financeira do condomínio</a><span class="cm-tabela__sub">Previsão, rateio, inadimplência</span></td><td>Prof. Eduardo Saraiva</td><td class="cm-num">20 h</td><td><div class="cm-frequencia"><span class="cm-frequencia__barra"><i style="--f:83%"></i><span class="cm-frequencia__minimo" style="--min:75%"></span></span><b>83%</b></div></td><td class="cm-num">7,0</td><td class="cm-num">–</td><td><span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Cursando</span></td></tr>
+<tr><td class="cm-tabela__principal"><a href="#sala">Manutenção predial e NBR 5674</a><span class="cm-tabela__sub">Plano de manutenção e laudos</span></td><td>Eng. Carla Menezes</td><td class="cm-num">12 h</td><td><div class="cm-frequencia is-risco"><span class="cm-frequencia__barra"><i style="--f:67%"></i><span class="cm-frequencia__minimo" style="--min:75%"></span></span><b>67%</b></div></td><td class="cm-num">6,5</td><td class="cm-num">–</td><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Risco por falta</span></td></tr>
+<tr><td class="cm-tabela__principal"><a href="#sala">Convivência e mediação de conflitos</a><span class="cm-tabela__sub">Módulo 3, começa em 04/11</span></td><td>Prof. André Lopes</td><td class="cm-num">8 h</td><td class="cm-texto-3">–</td><td class="cm-num">–</td><td class="cm-num">–</td><td><span class="cm-estado cm-estado--neutro"><i data-i="rascunho"></i>A cursar</span></td></tr>
+</tbody></table></div>
+<p class="cm-t-legenda">Mínimo de 75% de frequência e média 6,0 por disciplina. Carga horária total: 56 horas, 36 cumpridas.</p></div>
+<aside class="cm-pilha cm-pilha--6"><section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Próximas aulas</h2></header><div class="cm-cartao__corpo"><ul class="cm-agenda">
+<li class="cm-agenda__dia">Quarta, 07/10</li><li><span class="cm-agenda__hora">19:30<small>2 h</small></span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">Gestão financeira, aula 9</span><span class="cm-agenda__sub">Online, sala da turma</span></span><button class="cm-botao cm-botao--p" type="button" disabled>Entrar</button></li>
+<li class="cm-agenda__dia">Quarta, 14/10</li><li><span class="cm-agenda__hora">19:30<small>2 h</small></span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">Manutenção predial, aula 5</span><span class="cm-agenda__sub">Presencial, sede da Alpha, Rua Vergueiro, 2.045</span></span><span></span></li></ul></div></section>
+<section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Aviso da coordenação</h2></header><div class="cm-cartao__corpo"><p class="cm-texto-2">A aula de reposição de Manutenção predial é no sábado, 10/10, às 9h, na sede. Quem está em risco por falta pode recuperar a frequência nela.</p></div></section></aside></div>
+</section>
+<section class="cm-tela" id="sala" aria-labelledby="sala-t">
+<h2 class="cm-tela__titulo" id="sala-t">Sala da disciplina <small>Tela 2 de 2</small></h2>
+<div class="portal-cabeca"><div><p class="cm-saudacao"><a class="cm-link" href="#portal">Formação em gestão condominial</a></p><h1>Gestão financeira do condomínio</h1><p>Prof. Eduardo Saraiva, 20 horas, quartas às 19h30</p></div></div>
+<div class="sala"><nav aria-label="Disciplina"><a href="#" aria-current="page">Módulos</a><a href="#">Avisos</a><a href="#">Atividades</a><a href="#">Notas</a><a href="#">Fórum</a><a href="#">Materiais</a><a href="#">Plano de ensino</a></nav>
+<div><section class="semana"><h3><i data-i="calendario"></i>Semana 5: previsão orçamentária</h3><ul>
+<li><label class="cm-marcar cm-marcar--tarefa"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Videoaula: como montar a previsão (38 min)</span></label></li>
+<li><label class="cm-marcar cm-marcar--tarefa"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Leitura: modelo de previsão do Parque das Águas, 2026</span></label></li>
+<li><label class="cm-marcar cm-marcar--tarefa"><input type="checkbox"><span class="cm-marcar__caixa"></span><span class="cm-marcar__texto">Entrega: previsão de 2027 do seu prédio</span></label><span class="cm-empurra cm-estado cm-estado--aviso"><i data-i="atencao"></i>Até 03/10</span></li></ul></section>
+<section class="cm-cartao"><header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Sua entrega</h2><span class="cm-t-legenda">Vale 4,0 da N2</span></header><div class="cm-cartao__corpo cm-pilha">
+<label class="cm-upload"><i data-i="enviar-arquivo"></i><span><b>Arraste a planilha</b> ou toque para escolher</span><span class="cm-t-legenda">XLSX ou PDF até 20 MB</span><input type="file" hidden></label>
+<div class="cm-campo"><label class="cm-campo__rotulo" for="com">Comentário para o professor <span class="cm-campo__opcional">opcional</span></label><textarea class="cm-area" id="com" rows="2"></textarea></div></div>
+<div class="cm-cartao__pe"><span class="cm-cresce">Rascunho salvo às 08:40</span><button class="cm-botao cm-botao--principal" type="button" data-toast="Entrega enviada. O professor corrige até 10/10.">Enviar entrega</button></div></section></div></div>
+</section>
+<details class="cm-anotacao cm-anotacao--a11y">
+<summary><i data-i="teclado"></i>Acessibilidade desta tela</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>Ordem de foco</h3><ol><li>Certificados, Histórico</li><li>Alerta de entrega e Continuar entrega</li><li>Tabela: nome da disciplina é link</li><li>Menu da disciplina, tarefas, upload, Enviar entrega</li></ol></div>
+<div><h3>O que é anunciado</h3><ul><li>"Risco por falta" com ícone e palavra; a barra de frequência tem o mínimo anunciado como "mínimo 75%"</li><li>Entrar desabilitado até 15 minutos antes da aula</li></ul></div>
+<div><h3>Nome do que é só ícone</h3><ul><li>Nenhum botão só de ícone</li></ul></div>
+</div></details>
+</div>
+</main>
+
+</body>
+</html>

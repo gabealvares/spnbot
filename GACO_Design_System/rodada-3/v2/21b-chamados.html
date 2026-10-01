@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chamados</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-tab td .cm-estado{font-size:12.5px}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Lista de chamados <small>Suporte, Atendimento, Chamados. Tabela densa com visões salvas, filtros que viram chips, seleção em massa e prévia sem sair da lista.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2><p>A fila de Conversas é para responder; a lista de Chamados é para organizar: achar, filtrar, atribuir em lote, mesclar duplicados e acompanhar prazo. O número do chamado é texto tabular na coluna "Nº", sem plaqueta (a plaqueta fica no cabeçalho do chamado).</p><p>A lista lembra visão, filtros, ordenação e a linha onde você estava ao voltar de um chamado.</p></section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2><ol><li>Visões salvas no topo (Precisam de mim hoje, Sem dono, SLA vencendo, Todos abertos); "Salvar visão" guarda os filtros atuais com nome.</li><li>Filtros abrem listas com busca; cada um aplicado vira chip; "Limpar filtros" tira todos.</li><li>Marcar linhas faz aparecer a barra de massa: Atribuir, Mudar estado, Mesclar (2 ou mais), Etiquetar, Excluir; Cancelar desmarca.</li><li>Clique na linha abre o chamado com "14 de 63" na trilha; J e K passam para o próximo sem voltar.</li><li>Excluir manda para a lixeira por 30 dias com "Desfazer" no toast.</li></ol></section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2><p>o Zendesk e o Freshdesk organizam chamados em visões salvas com contagem, o Jira transforma filtro em chip removível e o Linear e o Gmail mostram a barra de ações quando há seleção. A exclusão em três níveis segue o padrão do Google Drive (lixeira de 30 dias).</p></section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Estado da tela"><button type="button" data-q3-estado="padrao" aria-pressed="true">Com dados</button><button type="button" data-q3-estado="selecao" aria-pressed="false">Seleção em massa</button><button type="button" data-q3-estado="vazio" aria-pressed="false">Visão vazia</button><button type="button" data-q3-estado="carregando" aria-pressed="false">Carregando</button><button type="button" data-q3-estado="erro" aria-pressed="false">Erro ao carregar</button></div></div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"grupo":"Suporte","tela":"Chamados","papel":"Atendimento"}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <header class="cm-cabecalho-pagina"><div class="cm-cabecalho-pagina__linha"><h1 class="cm-cabecalho-pagina__titulo">Chamados</h1>
+  <div class="cm-cabecalho-pagina__acoes"><button class="cm-botao" type="button"><i data-i="exportar"></i>Exportar</button><button class="cm-botao cm-botao--principal" type="button"><i data-i="adicionar"></i>Abrir chamado</button></div></div></header>
+ <div class="cm-visoes" role="tablist" aria-label="Visões salvas">
+  <button role="tab" aria-selected="true" type="button">Precisam de mim hoje <span class="cm-contador cm-contador--novo">7</span></button>
+  <button role="tab" aria-selected="false" type="button" tabindex="-1">Sem dono <span class="cm-contador">4</span></button>
+  <button role="tab" aria-selected="false" type="button" tabindex="-1">SLA vencendo <span class="cm-contador">6</span></button>
+  <button role="tab" aria-selected="false" type="button" tabindex="-1">Todos abertos <span class="cm-contador">63</span></button>
+  <button role="tab" aria-selected="false" type="button" tabindex="-1">Resolvidos na semana</button>
+  <button type="button" class="cm-botao cm-botao--p cm-botao--discreto" style="margin-left:auto;align-self:center"><i data-i="salvar"></i>Salvar visão</button>
+ </div>
+ <div class="cm-filtros">
+  <div class="cm-entrada cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" aria-label="Buscar chamados" placeholder="Número, assunto, condomínio"><kbd class="cm-tecla">/</kbd></div>
+  <button class="cm-filtro is-ativo" type="button" aria-haspopup="dialog">Responsável: <b>eu</b><i data-i="chevron-baixo"></i></button>
+  <button class="cm-filtro is-ativo" type="button" aria-haspopup="dialog">Estado: <b>Aberto, Em andamento</b><i data-i="chevron-baixo"></i></button>
+  <button class="cm-filtro" type="button">Condomínio<i data-i="chevron-baixo"></i></button>
+  <button class="cm-filtro" type="button">Tipo<i data-i="chevron-baixo"></i></button>
+  <button class="cm-filtro" type="button"><i data-i="filtrar"></i>Mais filtros</button>
+ </div>
+ <div class="cm-chips"><span class="cm-chip"><span>Responsável</span> eu<button type="button" aria-label="Tirar filtro Responsável"><i data-i="fechar"></i></button></span><span class="cm-chip"><span>Estado</span> Aberto, Em andamento<button type="button" aria-label="Tirar filtro Estado"><i data-i="fechar"></i></button></span><button class="cm-botao cm-botao--link cm-botao--p" type="button">Limpar filtros</button></div>
+
+ <div class="cm-barra-massa" role="region" aria-label="Ações em massa" id="massa" data-se="selecao" style="margin-bottom:8px">
+  <b data-q3-massa-n>2 selecionados</b><button class="cm-botao cm-botao--p" type="button"><i data-i="atribuir"></i>Atribuir</button><button class="cm-botao cm-botao--p" type="button">Mudar estado</button><a class="cm-botao cm-botao--p" href="21g-mesclar.html"><i data-i="juntar"></i>Mesclar</a><button class="cm-botao cm-botao--p" type="button"><i data-i="etiquetar"></i>Etiquetar</button><button class="cm-botao cm-botao--p cm-botao--perigo" type="button" data-q3-toast="2 chamados foram para a lixeira por 30 dias" data-q3-toast-acao="Desfazer"><i data-i="excluir"></i>Excluir</button>
+  <span class="cm-empurra"><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-massa-cancelar>Cancelar</button></span></div>
+
+ <div data-se="padrao selecao">
+ <div class="cm-tabela-caixa"><table class="cm-tabela q3-tab" data-q3-massa="massa">
+  <thead><tr>
+   <th class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar todos"><span class="cm-marcar__caixa"></span></label></th>
+   <th class="cm-num">Nº</th><th>Assunto</th><th>Solicitante</th><th>Estado</th><th>Prioridade</th>
+   <th aria-sort="ascending"><button class="cm-ordenar" type="button">Prazo<i data-i="seta-cima"></i></button></th><th>Canal</th><th>Responsável</th><th class="cm-tabela__acoes"><span class="cm-sr">Ações</span></th></tr></thead>
+  <tbody>
+   <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar chamado 48177"><span class="cm-marcar__caixa"></span></label></td><td class="cm-num">48177</td><td class="cm-tabela__principal"><a href="21c-chamado.html">Reserva do salão de festas para 18/10</a><span class="cm-tabela__sub">Cond. Parque das Águas, Bl A Ap 804</span></td><td>Patrícia Nunes</td><td><span class="cm-estado cm-estado--ponto cm-estado--info">Aberto</span></td><td>Normal</td><td><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Vencido há 4 min</span></td><td>WhatsApp</td><td>Beatriz N.</td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações do chamado 48177"><i data-i="mais-opcoes"></i></button></td></tr>
+   <tr class="is-atual"><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar chamado 48213" data-sel><span class="cm-marcar__caixa"></span></label></td><td class="cm-num">48213</td><td class="cm-tabela__principal"><a href="21c-chamado.html">Vazamento no teto da garagem</a><span class="cm-tabela__sub">Cond. Parque das Águas, subsolo 1</span></td><td>Marina Costa</td><td><span class="cm-estado cm-estado--ponto cm-estado--info">Em andamento</span></td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Alta</span></td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Responder em 6 min</span></td><td>WhatsApp</td><td>Beatriz N.</td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações do chamado 48213"><i data-i="mais-opcoes"></i></button></td></tr>
+   <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar chamado 48216" data-sel><span class="cm-marcar__caixa"></span></label></td><td class="cm-num">48216</td><td class="cm-tabela__principal"><a href="21c-chamado.html">Água na garagem, vaga 38</a><span class="cm-tabela__sub">Cond. Parque das Águas, subsolo 1</span></td><td>Henrique Abreu</td><td><span class="cm-estado cm-estado--ponto cm-estado--info">Aberto</span></td><td>Normal</td><td>Responder em 22 min</td><td>Portal</td><td>Sem dono</td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações do chamado 48216"><i data-i="mais-opcoes"></i></button></td></tr>
+   <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar chamado 48201"><span class="cm-marcar__caixa"></span></label></td><td class="cm-num">48201</td><td class="cm-tabela__principal"><a href="21c-chamado.html">Portão da garagem travado aberto</a><span class="cm-tabela__sub">Res. Vila Serena, portaria</span></td><td>Luiz Fernando</td><td><span class="cm-estado cm-estado--ponto cm-estado--info">Aberto</span></td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Alta</span></td><td><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Responder em 9 min</span></td><td>WhatsApp</td><td>Beatriz N.</td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações do chamado 48201"><i data-i="mais-opcoes"></i></button></td></tr>
+   <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar chamado 48198"><span class="cm-marcar__caixa"></span></label></td><td class="cm-num">48198</td><td class="cm-tabela__principal"><a href="21c-chamado.html">Barulho de furadeira após as 18h</a><span class="cm-tabela__sub">Jardim das Acácias, Ap 302</span></td><td>Álvaro Pinheiro</td><td><span class="cm-estado cm-estado--ponto cm-estado--info">Aberto</span></td><td>Normal</td><td>Responder em 14 min</td><td>WhatsApp</td><td>Beatriz N.</td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações do chamado 48198"><i data-i="mais-opcoes"></i></button></td></tr>
+   <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar chamado 48190"><span class="cm-marcar__caixa"></span></label></td><td class="cm-num">48190</td><td class="cm-tabela__principal"><a href="21c-chamado.html">2ª via dos boletos de setembro, 12 unidades</a><span class="cm-tabela__sub">Financeiro, Administradora Alpha</span></td><td>Sílvia Prates</td><td><span class="cm-estado cm-estado--ponto cm-estado--neutro">Aguardando terceiro</span></td><td>Normal</td><td>SLA pausado</td><td>E-mail</td><td>Beatriz N.</td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações do chamado 48190"><i data-i="mais-opcoes"></i></button></td></tr>
+   <tr><td class="cm-tabela__marcar"><label class="cm-marcar"><input type="checkbox" aria-label="Selecionar chamado 48175"><span class="cm-marcar__caixa"></span></label></td><td class="cm-num">48175</td><td class="cm-tabela__principal"><a href="21c-chamado.html">Prestação de contas de agosto</a><span class="cm-tabela__sub">Conselho do Ed. Solar do Bosque</span></td><td>Conselho fiscal</td><td><span class="cm-estado cm-estado--ponto cm-estado--info">Aberto</span></td><td>Normal</td><td>Responder em 1 h 10</td><td>E-mail</td><td>Beatriz N.</td><td class="cm-tabela__acoes"><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Ações do chamado 48175"><i data-i="mais-opcoes"></i></button></td></tr>
+  </tbody></table></div>
+ <nav class="cm-paginacao" aria-label="Paginação"><span class="cm-paginacao__total"><b>1–7</b> de 7 nesta visão</span><div class="cm-selecao"><select aria-label="Linhas por página"><option>50 por página</option><option>100 por página</option></select><i data-i="chevron-baixo"></i></div></nav>
+ </div>
+ <div data-se="vazio"><div class="cm-vazio"><i data-i="sucesso"></i><p class="cm-vazio__titulo">Nada precisa de você hoje</p><p class="cm-vazio__texto">Os 7 chamados desta visão foram resolvidos ou passados. A visão "Sem dono" tem 4 esperando alguém assumir.</p><div class="cm-vazio__acoes"><button class="cm-botao" type="button">Ver Sem dono</button></div></div></div>
+ <div data-se="carregando" aria-busy="true" aria-label="Carregando chamados"><div class="cm-tabela-caixa" style="padding:12px"><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:90%"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:95%"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:80%"></span></div></div>
+ <div data-se="erro"><div class="cm-alerta cm-alerta--perigo"><i data-i="perigo"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">A lista não carregou</span><span class="cm-alerta__desc">O servidor demorou mais de 20 s para responder (código 504). Seus filtros foram guardados.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button" data-q3-estado="padrao">Tentar de novo</button></span></div></div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Título, Exportar, Abrir chamado; visões (setas entre elas); busca, filtros, chips; tabela: caixa de todos, cabeçalhos ordenáveis, cada linha (caixa, link do assunto, Ações); barra de massa quando aparece (entra logo antes da tabela); paginação.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Cabeçalho ordenado com aria-sort ("Prazo, crescente"). Seleção anuncia "2 selecionados" e a barra é uma região com nome. Prazo em frase com ícone. Erro diz o código e o que foi guardado.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Ações do chamado 48213" (em cada linha), "Tirar filtro Responsável", "Selecionar chamado 48213".</p></section>
+  </div>
+ </div>
+</footer>
+<script>document.addEventListener('q3:estado',function(e){var s=e.detail==='selecao';document.querySelectorAll('[data-sel]').forEach(function(c){c.checked=s;c.dispatchEvent(new Event('change',{bubbles:true}))})});</script>
+</body>
+</html>

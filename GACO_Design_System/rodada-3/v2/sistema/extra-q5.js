@@ -108,6 +108,9 @@ function barras(el){var r=rnd(el.getAttribute('data-semente')||'gaco'),x=4,s='';
 $$('.cm-qr[data-semente]').forEach(qr);$$('.cm-barras[data-semente]').forEach(barras);
 window.q5Qr=qr;
 
+/* conversa e webchat começam na última mensagem */
+$$('.cm-webchat .cm-conversa,[data-rolar-fim]').forEach(function(c){c.scrollTop=c.scrollHeight});
+
 /* no celular, a anotação de projeto começa fechada para a tela aparecer primeiro */
 if(window.matchMedia&&window.matchMedia('(max-width:599px)').matches) $$('.cm-anotacao[open]').forEach(function(d){d.open=false});
 

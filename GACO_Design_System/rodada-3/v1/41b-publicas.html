@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Páginas públicas, site</title>
+<meta name="description" content="Páginas públicas da V1 no site do cliente: formulário de captura, webchat com janela e lançador, proposta pública para aceite, erro 404, erro 500 e manutenção programada.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/doc.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .pub-pagina{max-width:1376px;margin:0 auto;padding:24px 32px 64px}
+  @media (max-width:639px){.pub-pagina{padding:16px 16px 48px}}
+  .cap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;align-items:start;padding:40px}
+  .cap h2{font:600 30px/36px var(--fonte-ui);letter-spacing:-0.012em;margin:0 0 12px;max-width:20ch}
+  .cap p{font-size:15.5px;line-height:24px;color:var(--texto-2);max-width:46ch}
+  @media (max-width:899px){.cap{grid-template-columns:minmax(0,1fr);padding:20px;gap:20px}.cap h2{font-size:23px;line-height:29px}}
+  .prop-cab{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;padding:24px 0 16px;border-bottom:3px double var(--texto-1)}
+  .prop-cab h2{font:600 26px/32px var(--fonte-ui);letter-spacing:-0.01em;margin:0}
+</style>
+</head>
+<body>
+<a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="lc-doc-cab">
+  <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
+  <nav aria-label="Documentação"><a href="40-portal.html">Portal</a><a href="41-publicas.html">Públicas, acesso</a><a href="41b-publicas.html" aria-current="page">Públicas, site</a><a href="50-superadmin.html">Superadmin</a><a href="60-celular.html">Celular</a><a href="61-documentos-gerados.html">Documentos</a></nav>
+  <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
+</header>
+<main id="conteudo" class="pub-pagina">
+
+<!-- CAPTURA -->
+<section class="lc-ficha-tela" aria-label="Sobre o formulário de captura">
+  <div class="lc-ficha-tela__nome"><b>Formulário de captura</b><span>Embutido na landing page da administradora (Marketing). O lead cai no Comercial com origem e campanha.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Um síndico que procura administradora pede proposta em 4 campos, e o vendedor recebe com o tamanho do condomínio, sem ligar para perguntar.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Campos mínimos: nome, WhatsApp, condomínio e unidades.</li><li>"Receber proposta" é o principal; erro aparece no campo.</li><li>Depois: agradecimento no lugar do formulário, com prazo e nome de quem vai atender.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o RD Station e o HubSpot Forms mostram que cada campo a mais derruba a conversão; e o "quem vai falar com você" do iFood Empresas e da Loft dá confiança ao pedido.</p></div>
+</section>
+<div class="lc-quadro-tela"><div class="lc-pub" style="min-height:0">
+  <div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span><span class="lc-pub__topo-fim"><a class="lc-btn lc-btn--discreto lc-btn--p" href="41-publicas.html">Área do cliente</a></span></div>
+  <div class="cap">
+    <div><h2>Administração de condomínios em São Paulo, com prestação de contas todo mês.</h2><p>Atendemos 214 condomínios em São Paulo e região. Peça uma proposta: um consultor visita o prédio e entrega o orçamento em até 5 dias úteis.</p></div>
+    <form class="lc-caixa" onsubmit="return false"><div class="lc-caixa__corpo lc-pilha" style="padding-top:20px">
+      <div class="lc-campo"><label class="lc-rotulo" for="cn">Seu nome</label><input id="cn" class="lc-entrada" value="Roberto Matos"></div>
+      <div class="lc-campo"><label class="lc-rotulo" for="cw">WhatsApp</label><div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">+55</span><input id="cw" class="lc-entrada" type="tel" value="(11) 9 8" aria-invalid="true" aria-describedby="cw-e"></div><p class="lc-erro" id="cw-e"><i data-i="erro"></i>Informe o celular com DDD, 11 números.</p></div>
+      <div class="lc-campo"><label class="lc-rotulo" for="cc">Condomínio</label><input id="cc" class="lc-entrada" value="Edifício Mirante do Ibirapuera"></div>
+      <div class="lc-campo"><label class="lc-rotulo" for="cu">Número de unidades</label><select id="cu" class="lc-selecao"><option>Até 30</option><option selected>31 a 80</option><option>81 a 200</option><option>Mais de 200</option></select></div>
+      <label class="lc-marcar"><input type="checkbox" checked><span class="lc-marcar__caixa"></span><span>Sou síndico ou conselheiro deste condomínio</span></label>
+      <button class="lc-btn lc-btn--principal lc-btn--g lc-btn--bloco" type="submit">Receber proposta</button>
+      <p class="lc-legenda">Usamos seus dados só para esta proposta. <a href="#">Política de privacidade</a>.</p>
+    </div></form>
+  </div></div></div>
+<div class="lc-quadros" style="margin-top:12px"><div class="lc-quadro-tela"><div class="lc-vazio" role="status"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="confirmar"></i></span><p class="lc-vazio__titulo">Pedido recebido, Roberto</p><p class="lc-vazio__texto">Fernanda Lopes, consultora da Administradora Alpha, chama você no WhatsApp até amanhã às 12h para marcar a visita ao Mirante do Ibirapuera.</p></div></div></div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Área do cliente, nome, WhatsApp, condomínio, unidades, sou síndico, Receber proposta, política.</p></div><div><h3>O que é anunciado</h3><p>Erro no campo, ligado por <code>aria-describedby</code>; ao enviar com erro, foco no primeiro campo errado. Sucesso em <code>role="status"</code>.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+
+<!-- WEBCHAT -->
+<section class="lc-ficha-tela" aria-label="Sobre o webchat">
+  <div class="lc-ficha-tela__nome"><b>Webchat no site do cliente: janela e lançador</b><span>Script colado no site da administradora. Conversa cai em Suporte, canal "Chat do site".</span></div>
+  <div><h2>O que esta tela resolve</h2><p>O visitante pergunta sem sair do site; se for morador, entra e o chat já sabe a unidade. Fora do horário, deixa recado que vira chamado.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Lançador no canto com texto ("Fale com a gente"), não só o balão.</li><li>Abre a janela com respostas rápidas (2ª via, falar com atendente, sou síndico).</li><li>2ª via pede CPF e entrega Pix no chat; o resto vai para a fila humana com a previsão de espera.</li><li>Fechar minimiza (o lançador vira X); a conversa fica salva no navegador por 24 h.</li><li>No celular, a janela ocupa a tela inteira.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o Intercom e o Zendesk Messenger usam o lançador no canto inferior direito e respostas rápidas em pílula; o WhatsApp Business ensinou bolha, tique e horário; e a cor do cliente só pinta o topo e o lançador, nunca a bolha (regra do crítico).</p></div>
+</section>
+<div class="lc-quadros">
+  <div class="lc-site" aria-label="Exemplo de site com o chat aberto">
+    <div class="lc-site__falso" aria-hidden="true"><b style="color:var(--texto-2)">alpha.com.br</b><i style="--_w:70%"></i><i style="--_w:52%"></i><i style="--_w:64%"></i><i style="--_w:40%"></i></div>
+    <div class="lc-webchat" role="dialog" aria-label="Chat com a Administradora Alpha">
+      <div class="lc-webchat__cab"><span class="lc-topo-portal__logo" data-marca-sigla>A</span><div><b data-marca-nome>Administradora Alpha</b><span>Respondemos em cerca de 3 minutos</span></div><button class="lc-ib" type="button" aria-label="Minimizar chat"><i data-i="chevron-baixo"></i></button></div>
+      <div class="lc-conversa" role="log" aria-label="Mensagens">
+        <div class="lc-bolha lc-bolha--recebida lc-bolha--primeira"><span class="lc-bolha__autor">Assistente da Alpha</span>Olá. Posso ajudar com boleto, reserva ou chamado. Se preferir, chamo alguém da equipe.<span class="lc-bolha__meta">10:02</span></div>
+        <div class="lc-bolha lc-bolha--enviada lc-bolha--primeira">Preciso da 2ª via do boleto<span class="lc-bolha__meta">10:02<span class="lc-tique lc-tique--lida"><i data-i="lida" aria-label="Lida"></i></span></span></div>
+        <div class="lc-bolha lc-bolha--recebida lc-bolha--primeira">Para achar o boleto, me diga o CPF do titular da unidade.<span class="lc-bolha__meta">10:02</span></div>
+      </div>
+      <div class="lc-webchat__rapidas"><button type="button">Falar com atendente</button><button type="button">Sou síndico</button></div>
+      <div class="lc-compositor"><div class="lc-compositor__linha"><label class="lc-sr" for="wc">Mensagem</label><textarea id="wc" class="lc-compositor__caixa" rows="1" placeholder="Escreva aqui"></textarea><button class="lc-btn lc-btn--icone lc-btn--secundario" type="button" aria-label="Enviar mensagem"><i data-i="enviar"></i></button></div></div>
+      <div class="lc-webchat__pe">Tecnologia GACO</div>
+    </div>
+    <button class="lc-lancador lc-lancador--fechar" type="button" aria-label="Fechar chat" aria-expanded="true"><i data-i="fechar"></i></button>
+  </div>
+  <div class="lc-site" aria-label="Exemplo de site com o lançador fechado" style="min-height:300px">
+    <div class="lc-site__falso" aria-hidden="true"><b style="color:var(--texto-2)">alpha.com.br/condominios</b><i style="--_w:70%"></i><i style="--_w:52%"></i><i style="--_w:64%"></i></div>
+    <button class="lc-lancador" type="button" aria-expanded="false"><i data-i="conversa"></i>Fale com a gente<span class="lc-contador lc-contador--p" aria-label="1 mensagem nova">1</span></button>
+    <div class="lc-alerta lc-alerta--info" style="position:absolute;left:16px;right:16px;bottom:88px"><i data-i="relogio"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Fora do horário</span>Voltamos amanhã às 8h. Deixe sua mensagem: ela vira um chamado e respondemos no seu e-mail.</div></div>
+  </div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Lançador; aberto: Minimizar, mensagens (log), respostas rápidas, caixa, Enviar. Esc minimiza e devolve o foco ao lançador.</p></div><div><h3>O que é anunciado</h3><p>Janela é <code>role="dialog"</code> não modal. Mensagem nova lida pelo log. Lançador com contador: "Fale com a gente, 1 mensagem nova".</p></div><div><h3>Nome do que é só ícone</h3><p>Seta: "Minimizar chat". X do lançador: "Fechar chat". Avião: "Enviar mensagem".</p></div></div>
+
+<!-- PROPOSTA -->
+<section class="lc-ficha-tela" aria-label="Sobre a proposta pública">
+  <div class="lc-ficha-tela__nome"><b>Proposta pública para aceite</b><span>Link enviado pelo Comercial. O síndico lê, escolhe o plano e aceita; o negócio vira "Ganho" no funil.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>O síndico entende o que contrata, compara os planos lado a lado e aceita com registro (nome, CPF, data, IP), sem imprimir.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Cabeçalho com validade da proposta e quem enviou.</li><li>Escopo e planos; escolher um plano atualiza o total.</li><li>Barra de aceite fixa no pé: "Aceitar proposta" pede nome e CPF e confirma com código no e-mail.</li><li>"Tenho dúvidas" abre o WhatsApp do vendedor.</li><li>Aceita: carimbo "Aprovado" e o contrato segue para assinatura.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o PandaDoc e o Proposify põem o aceite fixo no pé com o total; o Pipedrive Proposals deixa o cliente escolher a opção; e o carimbo é o signo de documento que a V1 reserva para estado documental.</p></div>
+</section>
+<div class="lc-quadro-tela"><div class="lc-pub" style="min-height:0">
+  <div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span><span class="lc-pub__topo-fim lc-legenda">Proposta PR-2026-0193</span></div>
+  <div class="lc-proposta" style="padding:0 20px">
+    <div class="prop-cab"><div class="lc-cresce"><h2>Proposta de administração para o Edifício Mirante do Ibirapuera</h2><p class="lc-pequeno lc-cor-2">64 unidades, Rua Tutóia, 1.157, São Paulo. Enviada por Fernanda Lopes em 28/09/2026.</p></div><span class="lc-estado lc-estado--aviso">Válida até 12/10/2026</span></div>
+    <h3 class="lc-t-secao" style="margin:20px 0 8px">O que fazemos pelo condomínio</h3>
+    <ul class="lc-regras" style="list-style:disc"><li>Emissão de boletos, cobrança e acordos de inadimplência</li><li>Folha de pagamento da portaria e da limpeza</li><li>Prestação de contas mensal com balancete no portal até o dia 10</li><li>Assembleias com edital, votação online e ata registrada</li><li>Portal e aplicativo para moradores, com chamados e reservas</li></ul>
+    <h3 class="lc-t-secao" style="margin:20px 0 8px">Escolha o plano</h3>
+    <fieldset class="lc-escolhas" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))"><legend class="lc-sr">Plano</legend>
+      <label class="lc-escolha"><input type="radio" name="pl"><span>Essencial<small>R$ 2.240,00 por mês. Sem gerente dedicado.</small></span></label>
+      <label class="lc-escolha"><input type="radio" name="pl" checked><span>Completo<small>R$ 2.880,00 por mês. Gerente dedicado e 1 visita por mês.</small></span></label>
+      <label class="lc-escolha"><input type="radio" name="pl"><span>Completo com portaria<small>R$ 3.460,00 por mês. Inclui gestão da portaria remota.</small></span></label></fieldset>
+    <table class="lc-composicao" style="margin:16px 0 24px;max-width:480px"><tbody><tr><td>Plano Completo, 12 meses</td><td>R$ 2.880,00 por mês</td></tr><tr><td>Implantação<small>Isenta para contrato assinado até 12/10</small></td><td><s>R$ 1.900,00</s> R$ 0,00</td></tr></tbody><tfoot><tr><td>Total no primeiro ano</td><td><span class="lc-total">R$ 34.560,00</span></td></tr></tfoot></table>
+  </div>
+  <div class="lc-proposta__aceite"><span class="lc-cresce lc-pequeno"><b>Plano Completo, R$ 2.880,00 por mês.</b> Reajuste anual pelo IPCA.</span><a class="lc-btn" href="#"><i data-i="whatsapp"></i>Tenho dúvidas</a><button class="lc-btn lc-btn--principal" type="button" data-toast="Enviamos o código de confirmação para roberto.matos@gmail.com.">Aceitar proposta</button></div>
+</div></div>
+<div class="lc-quadros" style="margin-top:12px"><div class="lc-quadro-tela" style="padding:16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><span class="lc-carimbo lc-carimbo--aprovado lc-carimbo--g">Aprovado<small>Roberto Matos, CPF •••.318.447-••, 02/10/26 15:41</small></span><p class="lc-pequeno lc-cor-2" style="flex:1;min-width:220px">Proposta aceita. O contrato chega para assinatura digital em até 1 dia útil.</p></div>
+  <div class="lc-quadro-tela"><div class="lc-vazio"><p class="lc-vazio__titulo">Esta proposta venceu em 12/10/2026</p><p class="lc-vazio__texto">Os valores podem ter mudado. Peça uma proposta atualizada a Fernanda Lopes.</p><div class="lc-grupo-btn"><a class="lc-btn" href="#">Pedir proposta atualizada</a></div></div></div></div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Escopo (texto), planos (setas), composição, Tenho dúvidas, Aceitar proposta. A barra de aceite fica por último na ordem, mesmo fixa.</p></div><div><h3>O que é anunciado</h3><p>Trocar o plano atualiza a barra (região viva): "Plano Completo, R$ 2.880,00 por mês". Validade lida como texto.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+
+<!-- ERROS -->
+<section class="lc-ficha-tela" aria-label="Sobre as páginas de erro">
+  <div class="lc-ficha-tela__nome"><b>Erro 404, erro 500 e manutenção</b><span>Mesma casca pública, marca do cliente, nenhuma mensagem técnica.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Quem cai num link quebrado ou num problema nosso sabe o que aconteceu, que não perdeu nada, e para onde ir.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Código pequeno e discreto (para o suporte), frase humana grande.</li><li>404: "Ir para o início" e "Pesquisar".</li><li>500: "Tentar de novo" e o código do incidente para citar no suporte.</li><li>Manutenção: janela com hora de volta e link da página de status.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o GitHub e o Stripe mostram o identificador do erro para o suporte sem expor detalhe técnico; a página de status do Atlassian Statuspage informa a janela de manutenção com hora local.</p></div>
+</section>
+<div class="lc-quadros">
+  <div class="lc-quadro-tela"><div class="lc-pub" style="min-height:0"><div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span></div><div class="lc-erro-pag"><span class="lc-erro-pag__cod">Erro 404</span><h1>Esta página não existe mais</h1><p>O link pode ter sido digitado errado ou o documento foi movido. Comunicados e boletos antigos ficam em Documentos.</p><div class="lc-grupo-btn" style="margin-top:20px"><a class="lc-btn lc-btn--principal" href="40-portal.html">Ir para o início</a><a class="lc-btn" href="#">Pesquisar</a></div></div></div></div>
+  <div class="lc-quadro-tela"><div class="lc-pub" style="min-height:0"><div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span></div><div class="lc-erro-pag"><span class="lc-erro-pag__cod">Erro 500, INC-7F3K91</span><h1>Algo falhou do nosso lado</h1><p>Nada do que você fez foi perdido. Já avisamos a equipe técnica. Tente de novo em alguns minutos; se continuar, cite o código acima ao suporte.</p><div class="lc-grupo-btn" style="margin-top:20px"><button class="lc-btn lc-btn--principal" type="button">Tentar de novo</button><a class="lc-btn" href="#">Ver situação do serviço</a></div></div></div></div>
+  <div class="lc-quadro-tela"><div class="lc-pub" style="min-height:0"><div class="lc-pub__topo"><span class="lc-pub__logo" data-marca-sigla>A</span><span class="lc-pub__nome" data-marca-nome>Administradora Alpha</span></div><div class="lc-erro-pag"><span class="lc-erro-pag__cod">Manutenção programada</span><h1>Voltamos às 6h de domingo, 05/10</h1><p>Estamos atualizando o sistema desde as 2h. Boletos já emitidos continuam valendo e o Pix funciona normalmente pelo app do seu banco.</p><div class="lc-progresso lc-progresso--indeterminado" style="margin-top:20px"></div><div class="lc-grupo-btn" style="margin-top:16px"><a class="lc-btn" href="#">Acompanhar em status.gaco.com.br</a></div></div></div></div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Ação principal, ação secundária. O título recebe foco ao carregar (anuncia o erro).</p></div><div><h3>O que é anunciado</h3><p>Título da aba do navegador: "Página não encontrada, Administradora Alpha". O código é lido antes do título.</p></div><div><h3>Nome do que é só ícone</h3><p>Nenhum.</p></div></div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/doc.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

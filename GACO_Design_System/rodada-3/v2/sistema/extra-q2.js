@@ -82,7 +82,7 @@ function focaveis(el){return $$('a[href],button:not([disabled]),input:not([disab
 Q.abrirModal=function(id,gatilho){
   var el=typeof id==='string'?D.getElementById(id):id;if(!el) return;
   fecharMenu();el.hidden=false;pilha.push({el:el,g:gatilho||D.activeElement});
-  var f=el.querySelector('[autofocus]')||focaveis(el)[0];if(f) setTimeout(function(){f.focus()},10);
+  var f=el.querySelector('[data-q2-foco],[autofocus]')||focaveis(el)[0];if(f) setTimeout(function(){f.focus()},10);
   el.dispatchEvent(new CustomEvent('q2:aberto',{bubbles:true}));
 };
 Q.fecharModal=function(el){
@@ -353,7 +353,7 @@ D.addEventListener('keydown',function(e){
 /* ---------- sair com alteração não salva ---------- */
 var sairHtml='<div class="cm-sobreposicao" id="q2-sair" hidden data-q2-fixo><div class="cm-modal cm-modal--p" role="alertdialog" aria-modal="true" aria-labelledby="q2-sair-t" aria-describedby="q2-sair-d">'+
  '<div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="q2-sair-t">Sair sem salvar?<span class="cm-modal__sub" id="q2-sair-d"></span></h2></div>'+
- '<div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-sair="ficar" autofocus>Continuar editando</button><button class="cm-botao cm-botao--perigo" type="button" data-q2-sair="descartar">Descartar e sair</button><button class="cm-botao cm-botao--principal" type="button" data-q2-sair="salvar">Salvar e sair</button></div></div></div>';
+ '<div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-sair="ficar" data-q2-foco>Continuar editando</button><button class="cm-botao cm-botao--perigo" type="button" data-q2-sair="descartar">Descartar e sair</button><button class="cm-botao cm-botao--principal" type="button" data-q2-sair="salvar">Salvar e sair</button></div></div></div>';
 var destinoSair=null;
 Q.pedirSaida=function(destino,rotulo){
   var f=Q.algumSujo();if(!f){if(destino) destino();return}
@@ -368,11 +368,27 @@ D.addEventListener('click',function(e){
     else if(a==='salvar'){d.f.raiz.addEventListener('q2:salvo',function h(ev){ev.preventDefault();d.f.raiz.removeEventListener('q2:salvo',h);toast('Salvo. Saindo.','sucesso');if(d.ir) d.ir()});d.f.salvar('continuar')}
     return}
   var a2=e.target.closest('a[href]');
-  if(a2&&Q.algumSujo()&&!e.target.closest('[data-q2-form]')&&!e.target.closest('.cm-sobreposicao')&&!a2.hasAttribute('data-q2-livre')&&!(e.ctrlKey||e.metaKey||e.button===1)){
+  if(a2&&!(a2.getAttribute('href').length>1&&a2.getAttribute('href').charAt(0)==='#')&&a2.target!=='_blank'&&Q.algumSujo()&&!e.target.closest('[data-q2-form]')&&!e.target.closest('.cm-sobreposicao')&&!a2.hasAttribute('data-q2-livre')&&!(e.ctrlKey||e.metaKey||e.button===1)){
     e.preventDefault();e.stopPropagation();var txt=a2.textContent.trim();Q.pedirSaida(function(){toast('Abrindo '+txt+'.','info')},txt);
   }
 },true);
 window.addEventListener('beforeunload',function(e){if(Q.algumSujo()){e.preventDefault();e.returnValue=''}});
+
+
+/* ---------- régua de cliques: <div class="cm-regua" data-regua="17,5,0" aria-label="..."> (cliques, trocas de contexto, teclas) ---------- */
+function reguas(){
+  $$('[data-regua]').forEach(function(r){var v=r.getAttribute('data-regua').split(',').map(Number),h='';
+    for(var i=0;i<(v[0]||0);i++) h+='<i></i>';for(var k=0;k<(v[2]||0);k++) h+='<i class="is-tecla"></i>';for(var j=0;j<(v[1]||0);j++) h+='<i class="is-troca"></i>';
+    r.innerHTML=h;r.setAttribute('role','img');if(!r.getAttribute('aria-label')) r.setAttribute('aria-label',(v[0]||0)+' cliques, '+(v[2]||0)+' teclas, '+(v[1]||0)+' trocas de contexto')});
+}
+Q.reguas=reguas;
+/* ---------- estado inicial pela URL (para os palcos): ?abrir=id&clicar=seletor ---------- */
+function estadoUrl(){
+  var p;try{p=new URLSearchParams(location.search)}catch(e){return}
+  var c=p.get('clicar');if(c) c.split('|').forEach(function(sel,i){setTimeout(function(){var el=D.querySelector(sel);if(el) el.click()},150+i*120)});
+  var a=p.get('abrir');if(a) setTimeout(function(){var g=D.querySelector('[data-q2-abre="'+a+'"]');if(g) abrirMenu(g);else Q.abrirModal(a)},200+(c?c.split('|').length*120:0));
+  var t=p.get('tecla');if(t) setTimeout(function(){t.split('|').forEach(function(k){D.dispatchEvent(new KeyboardEvent('keydown',{key:k,bubbles:true}))})},300);
+}
 
 /* ---------- índice da prancha ---------- */
 function indice(){
@@ -383,10 +399,10 @@ function indice(){
 }
 
 function iniciar(){
-  prepararPalcos();
+  prepararPalcos();reguas();
   $$('[data-q2-form]').forEach(Form);
   $$('[data-q2-lista]').forEach(prepLista);
-  indice();
+  indice();estadoUrl();
 }
 if(D.readyState==='loading') D.addEventListener('DOMContentLoaded',iniciar); else iniciar();
 })();

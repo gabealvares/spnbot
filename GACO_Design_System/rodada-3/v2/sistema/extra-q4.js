@@ -180,3 +180,39 @@ document.addEventListener('drop',function(e){var z=e.target.closest&&e.target.cl
   var t=para.querySelector('.cm-kanban__titulo');toast('Movido para '+(t?t.textContent:'a coluna')+'.','sucesso','Desfazer')});
 
 })();
+
+/* ---------- gráfico simples (barras e linha, um eixo só) ----------
+   qGrafico(elemento, {categorias:[…], series:[{nome, valores:[…], tipo:'barra'|'linha', cor:1|2}], formato:fn, altura:240, rotulos:'ultimo'})
+   Uma escala só (nunca dois eixos). Legenda quando há 2 séries; rótulo direto só no último ponto.
+   Passar o mouse ou o foco numa coluna mostra a dica com todas as séries daquela categoria. */
+window.qGrafico=function(el,o){
+  var W=Math.max(320,el.clientWidth||720),H=o.altura||240,m={t:16,r:56,b:28,l:56};
+  var fmt=o.formato||function(v){return String(v)};
+  var todos=[];o.series.forEach(function(s){todos=todos.concat(s.valores)});
+  var max=Math.max.apply(0,todos),min=Math.min(0,Math.min.apply(0,todos));
+  var passo=Math.pow(10,Math.floor(Math.log10((max-min)||1)));var topo=Math.ceil(max/passo)*passo;if(topo/passo<4) passo/=2;topo=Math.ceil(max/passo)*passo;
+  var fundo=min<0?Math.floor(min/passo)*passo:0;
+  var iw=W-m.l-m.r,ih=H-m.t-m.b,n=o.categorias.length,bw=iw/n;
+  function y(v){return m.t+ih-(v-fundo)/(topo-fundo)*ih}
+  var s='';
+  for(var g=fundo;g<=topo+1e-9;g+=passo){s+='<line class="g-grade" x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+y(g)+'" y2="'+y(g)+'"/><text x="'+(m.l-8)+'" y="'+(y(g)+4)+'" text-anchor="end">'+fmt(g,true)+'</text>'}
+  s+='<line class="g-eixo" x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+y(0)+'" y2="'+y(0)+'"/>';
+  var barras=o.series.filter(function(x){return x.tipo!=='linha'}),nb=barras.length,gap=2,larg=Math.min(36,(bw*0.62-gap*(nb-1))/Math.max(1,nb));
+  barras.forEach(function(se,si){se.valores.forEach(function(v,i){var x=m.l+i*bw+(bw-(larg*nb+gap*(nb-1)))/2+si*(larg+gap);var y0=y(Math.max(0,v)),hh=Math.abs(y(v)-y(0));
+    s+='<rect class="g-s'+(se.cor||2)+'" x="'+x+'" y="'+y0+'" width="'+larg+'" height="'+Math.max(1,hh)+'"/>'})});
+  o.series.filter(function(x){return x.tipo==='linha'}).forEach(function(se){var d='';se.valores.forEach(function(v,i){d+=(i?'L':'M')+(m.l+i*bw+bw/2)+' '+y(v)});s+='<path class="g-l'+(se.cor||1)+'" d="'+d+'"/>';
+    se.valores.forEach(function(v,i){s+='<rect x="'+(m.l+i*bw+bw/2-4)+'" y="'+(y(v)-4)+'" width="8" height="8" style="fill:var(--cm-camada-1);stroke:var(--cm-grafico-'+(se.cor||1)+');stroke-width:2"/>'})});
+  o.categorias.forEach(function(c,i){s+='<text x="'+(m.l+i*bw+bw/2)+'" y="'+(H-8)+'" text-anchor="middle">'+c+'</text>'});
+  /* rótulo direto: último valor de cada série */
+  o.series.forEach(function(se){var i=se.valores.length-1,v=se.valores[i];s+='<text class="g-valor" x="'+(m.l+i*bw+bw/2+(se.tipo==='linha'?10:0))+'" y="'+(se.tipo==='linha'?y(v)+4:y(v)-6)+'" text-anchor="'+(se.tipo==='linha'?'start':'middle')+'">'+fmt(v)+'</text>'});
+  /* alvos de foco e mouse por categoria */
+  o.categorias.forEach(function(c,i){s+='<rect class="g-alvo" data-i="'+i+'" x="'+(m.l+i*bw)+'" y="'+m.t+'" width="'+bw+'" height="'+ih+'" fill="transparent" tabindex="0" role="img" aria-label="'+c+': '+o.series.map(function(se){return se.nome+' '+fmt(se.valores[i])}).join(', ')+'"/>'});
+  el.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" role="group" aria-label="'+(o.rotulo||'Gráfico')+'">'+s+'</svg>';
+  var dica=document.createElement('div');dica.className='cm-dica';dica.hidden=true;el.style.position='relative';el.appendChild(dica);
+  function mostrar(alvo){var i=+alvo.getAttribute('data-i');dica.innerHTML='<b>'+o.categorias[i]+'</b><br>'+o.series.map(function(se){return se.nome+': '+fmt(se.valores[i])}).join('<br>');dica.hidden=false;
+    var r=alvo.getBoundingClientRect(),b=el.getBoundingClientRect();dica.style.left=Math.min(b.width-200,Math.max(0,r.left-b.left+r.width/2-80))+'px';dica.style.top='0px';
+    el.querySelectorAll('.g-alvo').forEach(function(a){a.style.fill=a===alvo?'rgba(127,127,127,.10)':'transparent'})}
+  el.addEventListener('mouseover',function(e){var a=e.target.closest('.g-alvo');if(a) mostrar(a)});
+  el.addEventListener('focusin',function(e){var a=e.target.closest('.g-alvo');if(a) mostrar(a)});
+  el.addEventListener('mouseleave',function(){dica.hidden=true;el.querySelectorAll('.g-alvo').forEach(function(a){a.style.fill='transparent'})});
+};
