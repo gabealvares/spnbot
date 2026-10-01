@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navegação V1 Livro-Caixa</title>
+<meta name="description" content="Especificação do menu da V1: trilho de módulos, barra do módulo, submenu, busca, sino, conta, gaveta, barra inferior, portal e superadmin.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/doc.css">
+<script src="sistema/marca.js"></script>
+</head>
+<body>
+<a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="lc-doc-cab">
+  <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
+  <nav aria-label="Documentação"><a href="00-fundamentos.html">Fundamentos</a><a href="01-iconografia.html">Iconografia</a><a href="02-navegacao.html" aria-current="page">Navegação</a><a href="exemplo-moldura.html">Exemplo de tela</a></nav>
+  <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
+</header>
+<div class="lc-doc">
+<nav class="lc-doc-indice" aria-label="Nesta página"><ol></ol></nav>
+<main id="conteudo" class="lc-doc-conteudo">
+<header>
+  <h1>Navegação</h1>
+  <p class="lc-doc-lede">Trilho de módulos à esquerda, barra do módulo no topo, trilha abaixo quando houver. O trilho troca de módulo em um clique e mostra o que espera por você; a barra mostra só as seções do módulo aberto. Tudo é gerado por <code>sistema/moldura.js</code> a partir de um atributo, para que as 282 telas tenham a mesma casca.</p>
+</header>
+
+<section class="lc-doc-sec" id="anatomia">
+  <h2>Anatomia</h2>
+  <div class="lc-doc-quadro"><div class="lc-doc-quadro__cab"><b>Computador, 1280 px</b><span>CS, seção Clientes, papel gerente de CS</span></div>
+    <div class="lc-doc-rolagem"><iframe class="lc-doc-iframe" style="width:1280px;height:560px" title="Moldura no computador" data-cfg='{"modulo":"cs","secao":"Clientes","item":"Clientes","papel":"gerente-cs","trilha":["Clientes"]}'></iframe></div></div>
+  <ol class="lc-doc-regras">
+    <li><b>Trilho, 72 px</b>: ladrilho da marca do cliente (volta ao Início), Favoritos e recentes, os módulos do papel com ícone, rótulo curto e contador, Ajustes (só para quem administra) e Recolher. Não abre no hover, não recolhe a zero no computador, rola na vertical se passar de 9 módulos. Nunca há "Mais".</li>
+    <li><b>Barra do módulo, 52 px</b>: nome do módulo, seções (link direto ou submenu de até 2 níveis: título de grupo e telas), busca ⌘K, ajuda, sino com contador e conta.</li>
+    <li><b>Trilha, 36 px</b>: só quando a tela está abaixo da seção (registro, edição). O último item é a tela atual, sem link.</li>
+  </ol>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o Microsoft Teams e o Outlook (barra de apps à esquerda), o Odoo e o Salesforce (barra do app atual no topo) separam "trocar de módulo" de "andar dentro do módulo", e HubSpot (2024), Jira (2025) e Zoho CRM (2025) saíram do menu no topo quando os módulos deixaram de caber. O Modelo D de 24/09 continua como controle na comparação. Enviamos para aprovação.</p>
+</section>
+
+<section class="lc-doc-sec" id="estados">
+  <h2>Estados do trilho e da barra</h2>
+  <div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo" style="display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start">
+    <div style="width:72px;background:var(--sup-1);border:var(--borda-1)" id="estados-trilho"></div>
+    <dl class="lc-props" style="max-width:420px;grid-template-columns:110px 1fr">
+      <dt>Normal</dt><dd>Ícone e rótulo em texto 2</dd>
+      <dt>Hover</dt><dd>Superfície 2 e texto 1</dd>
+      <dt>Atual</dt><dd>Marcador de 3 px à esquerda, carbono, traço 1,9, rótulo em negrito</dd>
+      <dt>Com pendência</dt><dd>Contador quadrado em carbono; vira vermelho só quando algo venceu</dd>
+      <dt>Foco</dt><dd>Anel de 2 px por dentro do item</dd>
+      <dt>Recolhido</dt><dd>56 px, sem rótulo; o nome vai na dica</dd>
+    </dl>
+    <div style="background:var(--sup-1);border:var(--borda-1);height:52px;display:flex;align-items:stretch;padding:0 12px" id="estados-barra"></div>
+  </div></div>
+</section>
+
+<section class="lc-doc-sec" id="submenu">
+  <h2>Submenu</h2>
+  <p>Abre no clique, nunca no hover. Seção com até 8 telas abre em lista; com grupos e mais de 8 telas, abre em duas colunas com o título de cada grupo. A tela atual tem marcador e negrito; o contador do item é neutro.</p>
+  <div class="lc-doc-quadro"><div class="lc-doc-rolagem"><iframe class="lc-doc-iframe" style="width:1280px;height:420px" title="Submenu aberto" data-cfg='{"modulo":"suporte","secao":"Conversas","item":"Minhas","papel":"atendente","aberto":"Conversas","semFoco":true}'></iframe></div></div>
+  <div class="lc-doc-quadro"><div class="lc-doc-rolagem"><iframe class="lc-doc-iframe" style="width:1280px;height:420px" title="Submenu com grupos" data-cfg='{"modulo":"cultura","secao":"Carreira e desenvolvimento","item":"PDI","papel":"rh","aberto":"Carreira e desenvolvimento","semFoco":true}'></iframe></div></div>
+</section>
+
+<section class="lc-doc-sec" id="busca">
+  <h2>Busca e comandos (⌘K)</h2>
+  <p>Ctrl+K ou ⌘K em qualquer tela, ou o campo da barra. Pesquisa telas, clientes, pessoas, chamados e ações num lugar só, com escopo. Sem texto, mostra recentes e ações. O termo encontrado vem em negrito.</p>
+  <div class="lc-doc-quadro"><div class="lc-doc-rolagem"><iframe class="lc-doc-iframe" style="width:1280px;height:640px" title="Busca com resultados" data-cfg='{"modulo":"cs","secao":"Clientes","papel":"gerente-cs","aberto":"cmdk","consulta":"par"}'></iframe></div></div>
+</section>
+
+<section class="lc-doc-sec" id="sino-conta">
+  <h2>Sino e conta</h2>
+  <p>O sino tem três abas: <b>Para mim</b> (o que pede ação), <b>Menções</b> e <b>Todas</b>. Ponto carbono marca o que não foi lido. A conta junta perfil, a empresa atual com "Trocar", tema, densidade, ajuda, atalhos e sair. A troca de empresa abre um modal com busca (só para quem tem mais de uma).</p>
+  <div class="lc-doc-telas">
+    <div class="lc-doc-tela"><b>Sino</b><div class="lc-doc-rolagem" style="max-width:100%"><iframe style="width:1280px;height:560px" title="Sino aberto" data-cfg='{"modulo":"cs","secao":"Minha carteira","papel":"gerente-cs","aberto":"sino"}'></iframe></div></div>
+    <div class="lc-doc-tela"><b>Conta</b><div class="lc-doc-rolagem" style="max-width:100%"><iframe style="width:1280px;height:620px" title="Conta aberta" data-cfg='{"modulo":"cs","secao":"Minha carteira","papel":"gerente-cs","aberto":"conta"}'></iframe></div></div>
+    <div class="lc-doc-tela"><b>Trocar de empresa</b><div class="lc-doc-rolagem" style="max-width:100%"><iframe style="width:1280px;height:520px" title="Trocar de empresa" data-cfg='{"modulo":"inicio","secao":"Mural","papel":"diretor","aberto":"trocar-cliente"}'></iframe></div></div>
+    <div class="lc-doc-tela"><b>Favoritos e recentes</b><div class="lc-doc-rolagem" style="max-width:100%"><iframe style="width:1280px;height:460px" title="Favoritos" data-cfg='{"modulo":"financeiro","secao":"Extrato","papel":"financeiro","aberto":"favoritos"}'></iframe></div></div>
+  </div>
+</section>
+
+<section class="lc-doc-sec" id="tamanhos">
+  <h2>Tablet e celular</h2>
+  <p>Abaixo de 1024 o trilho fica só com ícone (56 px). Abaixo de 640 ele some: o hambúrguer abre a gaveta (módulos em acordeão, busca e recentes no topo) e a barra inferior fixa traz Início, o módulo atual, Pesquisar, Avisos e Menu, com alvos de 44 px.</p>
+  <div class="lc-doc-telas">
+    <div class="lc-doc-tela"><b>Tablet, 834 px</b><iframe style="width:834px;height:560px;max-width:100%" title="Tablet" data-cfg='{"modulo":"suporte","secao":"Conversas","papel":"atendente","trilha":["Conversas","Minhas"]}'></iframe></div>
+    <div class="lc-doc-tela"><b>Celular, 390 px</b><iframe style="width:390px;height:720px" title="Celular" data-cfg='{"modulo":"cs","secao":"Clientes","papel":"gerente-cs","trilha":["Clientes"]}'></iframe></div>
+    <div class="lc-doc-tela"><b>Gaveta</b><iframe style="width:390px;height:720px" title="Gaveta do celular" data-cfg='{"modulo":"cs","secao":"Clientes","papel":"gerente-cs","aberto":"gaveta"}'></iframe></div>
+  </div>
+</section>
+
+<section class="lc-doc-sec" id="portal">
+  <h2>Portal do cliente</h2>
+  <p>O portal é da administradora: topo na cor do cliente, nada do GACO. No celular, abas no pé como app de banco: Início, Boletos, Reservas, Chamados e Mais. O "Mais" muda por papel.</p>
+  <div class="lc-doc-telas">
+    <div class="lc-doc-tela"><b>Morador, celular</b><iframe style="width:390px;height:720px" title="Portal no celular" data-cfg='{"contexto":"portal","secao":"Boletos","papel":"morador"}'></iframe></div>
+    <div class="lc-doc-tela"><b>Síndico, menu Mais</b><iframe style="width:390px;height:720px" title="Portal, gaveta" data-cfg='{"contexto":"portal","secao":"Início","papel":"sindico","aberto":"gaveta"}'></iframe></div>
+  </div>
+  <div class="lc-doc-quadro"><div class="lc-doc-quadro__cab"><b>Portal no computador</b></div><div class="lc-doc-rolagem"><iframe class="lc-doc-iframe" style="width:1280px;height:400px" title="Portal no computador" data-cfg='{"contexto":"portal","secao":"Boletos","papel":"sindico"}'></iframe></div></div>
+  <div class="lc-tabela-cont"><table class="lc-tabela" id="portal-mapa"><thead><tr><th scope="col">Papel</th><th scope="col">Abas no pé</th><th scope="col">Em "Mais"</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<section class="lc-doc-sec" id="superadmin">
+  <h2>Superadmin e homologação</h2>
+  <p>A plataforma é um lugar, com trilho próprio. Dentro de um cliente, a faixa de contexto fica fixa no topo, em âmbar que o white label não controla, com o nome do cliente em texto, o modo (só leitura por padrão), o tempo restante, o motivo e "Sair do cliente". Ela não fecha e nada a cobre. Em homologação, a faixa é ardósia e diz que os dados são de teste.</p>
+  <div class="lc-doc-quadro"><div class="lc-doc-quadro__cab"><b>Trilho da plataforma</b></div><div class="lc-doc-rolagem"><iframe class="lc-doc-iframe" style="width:1280px;height:420px" title="Superadmin" data-cfg='{"contexto":"superadmin","modulo":"sessoes","secao":"Sessões de suporte","usuario":{"nome":"Bruno Tavares","iniciais":"BT","cor":"lc-av--c5","cargo":"Suporte da plataforma"}}'></iframe></div></div>
+  <div class="lc-doc-quadro"><div class="lc-doc-quadro__cab"><b>Dentro do cliente</b></div><div class="lc-doc-rolagem"><iframe class="lc-doc-iframe" style="width:1280px;height:420px" title="Superadmin dentro do cliente" data-cfg='{"modulo":"financeiro","secao":"Contas a receber","item":"Boletos","papel":"admin","trilha":["Contas a receber","Boletos"],"faixa":{"tipo":"superadmin","cliente":"Órbita Condomínios","motivo":"chamado 1.204, boleto duplicado","prazo":"48 min restantes","leitura":true},"cliente":{"nome":"Órbita Condomínios","sigla":"Ó"}}'></iframe></div></div>
+  <div class="lc-doc-quadro"><div class="lc-doc-quadro__cab"><b>Homologação</b></div><div class="lc-doc-rolagem"><iframe class="lc-doc-iframe" style="width:1280px;height:300px" title="Homologação" data-cfg='{"modulo":"inicio","secao":"Mural","papel":"dev","faixa":{"tipo":"homologacao","versao":"2026.10.2"}}'></iframe></div></div>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o Salesforce ("Logged in as" com saída na faixa), o Zendesk (assumir identidade com faixa para voltar) e o GitHub Enterprise (faixa de acesso administrativo) deixam claro, o tempo todo, em nome de quem a pessoa está agindo. Enviamos para aprovação.</p>
+</section>
+
+<section class="lc-doc-sec" id="mapa">
+  <h2>Mapa de módulos e seções</h2>
+  <p>Lido do próprio <code>moldura.js</code>, então não desatualiza. Seção com submenu mostra as telas; títulos de grupo em negrito.</p>
+  <div class="lc-doc-mapa" id="mapa-mod"></div>
+  <h3>Papéis e módulos no trilho</h3>
+  <div class="lc-tabela-cont"><table class="lc-tabela lc-tabela--coluna-fixa" id="papeis"></table></div>
+</section>
+
+<section class="lc-doc-sec" id="teclado">
+  <h2>Teclado e leitor de tela</h2>
+  <div class="lc-tabela-cont"><table class="lc-tabela"><thead><tr><th scope="col">Onde</th><th scope="col">Tecla</th><th scope="col">Faz</th></tr></thead><tbody>
+    <tr><td>Qualquer tela</td><td><span class="lc-tecla">Tab</span> no início</td><td>Primeiro foco é "Pular para o conteúdo"</td></tr>
+    <tr><td>Qualquer tela</td><td><span class="lc-tecla">Ctrl</span>/<span class="lc-tecla">⌘</span> + <span class="lc-tecla">K</span></td><td>Abre e fecha a busca</td></tr>
+    <tr><td>Trilho</td><td><span class="lc-tecla">↑</span> <span class="lc-tecla">↓</span></td><td>Anda entre os módulos; <span class="lc-tecla">Enter</span> abre</td></tr>
+    <tr><td>Barra do módulo</td><td><span class="lc-tecla">←</span> <span class="lc-tecla">→</span> <span class="lc-tecla">Home</span> <span class="lc-tecla">End</span></td><td>Anda entre as seções</td></tr>
+    <tr><td>Barra do módulo</td><td><span class="lc-tecla">↓</span> <span class="lc-tecla">Enter</span> <span class="lc-tecla">Espaço</span></td><td>Abre o submenu e foca a primeira tela</td></tr>
+    <tr><td>Submenu</td><td><span class="lc-tecla">↑</span> <span class="lc-tecla">↓</span>, <span class="lc-tecla">←</span> <span class="lc-tecla">→</span></td><td>Anda nas telas; setas laterais passam para a seção vizinha já aberta</td></tr>
+    <tr><td>Camadas</td><td><span class="lc-tecla">Esc</span></td><td>Fecha e devolve o foco para quem abriu</td></tr>
+    <tr><td>Busca</td><td><span class="lc-tecla">↑</span> <span class="lc-tecla">↓</span> <span class="lc-tecla">Enter</span></td><td>Escolhe o resultado (combobox com aria-activedescendant)</td></tr>
+  </tbody></table></div>
+  <ul class="lc-doc-regras">
+    <li>Trilho é <code>nav</code> "Módulos"; o módulo atual tem <code>aria-current="true"</code>; o contador tem nome ("7 pendentes").</li>
+    <li>Seção com submenu é botão com <code>aria-haspopup="menu"</code>, <code>aria-expanded</code> e <code>aria-controls</code>; a tela atual tem <code>aria-current="page"</code>.</li>
+    <li>Gaveta, busca e troca de empresa são diálogos modais; o foco fica preso e volta ao fechar.</li>
+  </ul>
+</section>
+</main>
+</div>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/doc.js"></script>
+<script>
+(function(){
+var L=window.LCMoldura, ic=window.lcIcone;
+var tema=document.documentElement.getAttribute("data-tema")||"claro";
+function carregar(){ document.querySelectorAll("iframe[data-cfg]").forEach(function(f){ f.src="exemplo-moldura.html?tema="+(document.documentElement.getAttribute("data-tema")||"claro")+"#cfg="+encodeURIComponent(f.getAttribute("data-cfg")); }); }
+carregar(); document.addEventListener("lc:tema",carregar);
+/* estados */
+var et=[["Normal","relacionamento","",0,""],["Atual","fone-atendimento",' aria-current="true"',7,""],["Pendência","capelo","",1,""],["Foco","pessoas","",0,"outline:2px solid var(--foco);outline-offset:-3px"],["Hover","grafico-colunas","",0,"background:var(--sup-2);color:var(--texto-1)"]];
+document.getElementById("estados-trilho").innerHTML=et.map(function(e){ return '<a class="lc-trilho__item" href="#"'+e[2]+' style="'+e[4]+'">'+ic(e[1])+'<span class="lc-trilho__rot">'+e[0]+'</span>'+(e[3]?'<span class="lc-contador">'+e[3]+'</span>':'')+'</a>'; }).join("");
+document.getElementById("estados-barra").innerHTML='<span class="lc-secao">Normal</span><span class="lc-secao" aria-current="true">Atual</span><span class="lc-secao" aria-expanded="true">Aberta'+ic("chevron-baixo")+'</span><span class="lc-secao" style="outline:2px solid var(--foco);outline-offset:-3px">Foco</span>';
+/* mapa */
+var h=""; L.ORDEM.concat(["configuracao"]).forEach(function(id){ var m=L.MODULOS[id];
+  h+='<section><h4>'+ic(m.icone)+m.nome+'</h4><ul>'+m.secoes.map(function(s){
+    var sub = s.grupos ? s.grupos.map(function(g){return '<li><b>'+g.titulo+'</b>: '+g.itens.map(function(i){return typeof i==="string"?i:i.t;}).join(", ")+'</li>';}).join("") :
+      s.itens ? '<li>'+s.itens.map(function(i){return typeof i==="string"?i:i.t;}).join(", ")+'</li>' : "";
+    return '<li>'+s.nome+(sub?'<ul>'+sub+'</ul>':'')+'</li>'; }).join("")+'</ul></section>'; });
+h+='<section><h4>'+ic("plataforma")+'Plataforma (superadmin)</h4><ul>'+L.SUPERADMIN.modulos.map(function(m){return '<li><b>'+m.nome+'</b><ul><li>'+m.secoes.map(function(s){return s.nome+(s.itens?' ('+s.itens.join(", ")+')':'');}).join(", ")+'</li></ul></li>';}).join("")+'</ul></section>';
+document.getElementById("mapa-mod").innerHTML=h;
+var mods=L.ORDEM, t='<thead><tr><th scope="col">Papel</th>'+mods.map(function(m){return '<th scope="col" class="lc-ctr">'+L.MODULOS[m].curto+'</th>';}).join("")+'<th scope="col" class="lc-ctr">Ajustes</th></tr></thead><tbody>';
+Object.keys(L.PAPEIS).forEach(function(p){ var P=L.PAPEIS[p]; t+='<tr><th scope="row" style="position:static;font-weight:500;color:var(--texto-1)">'+P.nome+'</th>'+mods.map(function(m){return '<td class="lc-ctr">'+(P.modulos.indexOf(m)>-1?ic("confirmar","lc-ic--16","sim"):'<span class="lc-cor-3">–</span>')+'</td>';}).join("")+'<td class="lc-ctr">'+(P.ajustes?ic("confirmar","lc-ic--16","sim"):'<span class="lc-cor-3">–</span>')+'</td></tr>'; });
+document.getElementById("papeis").innerHTML=t+'</tbody>';
+document.querySelector("#portal-mapa tbody").innerHTML=Object.keys(L.PORTAL.mais).map(function(p){ return '<tr><td><b>'+({morador:"Morador",sindico:"Síndico",conselheiro:"Conselheiro"})[p]+'</b></td><td>'+L.PORTAL.abas.map(function(a){return a.t;}).join(", ")+'</td><td>'+L.PORTAL.mais[p].join(", ")+'</td></tr>'; }).join("");
+})();
+</script>
+</body>
+</html>

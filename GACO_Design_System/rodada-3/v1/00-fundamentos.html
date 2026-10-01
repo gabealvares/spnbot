@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fundamentos V1 Livro-Caixa</title>
+<meta name="description" content="Fundação do design system GACO V1 Livro-Caixa: cor, tipografia, espaço, grade, forma, camadas, movimento, densidade, temas, white label e redação.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/doc.css">
+<script src="sistema/marca.js"></script>
+</head>
+<body>
+<a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="lc-doc-cab">
+  <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
+  <nav aria-label="Documentação"><a href="00-fundamentos.html" aria-current="page">Fundamentos</a><a href="01-iconografia.html">Iconografia</a><a href="02-navegacao.html">Navegação</a><a href="exemplo-moldura.html">Exemplo de tela</a></nav>
+  <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
+</header>
+
+<div class="lc-doc">
+<nav class="lc-doc-indice" aria-label="Nesta página"><ol></ol></nav>
+<main id="conteudo" class="lc-doc-conteudo">
+<header>
+  <h1>Fundamentos da V1, Livro-Caixa</h1>
+  <p class="lc-doc-lede">A administradora vive de documento: balancete, rateio, ata, circular, boleto, protocolo. A V1 trata a interface como um livro-caixa bem escriturado. Papel claro e frio, tinta azul-preta, filetes de pauta, números alinhados à direita. O valor consolidado ganha a dupla sublinha dos balancetes; o estado de documento ganha carimbo. Todo o resto fica quieto para o trabalho aparecer.</p>
+  <p class="lc-doc-p" style="margin-top:12px">Esta página é a fonte da verdade para quem monta telas. Os valores vêm de <code>sistema/tokens.css</code>; as amostras são desenhadas com os próprios tokens, e os contrastes são medidos na hora, no tema que estiver ativo.</p>
+</header>
+
+<!-- ============================== PRINCÍPIOS ============================== -->
+<section class="lc-doc-sec" id="principios">
+  <h2>Princípios da V1</h2>
+  <ol class="lc-doc-regras">
+    <li><b>Escrituração, não decoração.</b> Filete separa, coluna alinha, número fica à direita. Se um enfeite não informa nada, ele sai.</li>
+    <li><b>Duas assinaturas, usadas com parcimônia.</b> Dupla sublinha só em valor consolidado. Carimbo só em estado documental (pago, protocolado, ciente, emitido, aprovado em assembleia, cancelado). Fora disso, nenhuma das duas aparece.</li>
+    <li><b>Casca do GACO, gesto do mercado.</b> A moldura é a mesma em todos os módulos. Dentro dela, cada módulo usa o arranjo que a pessoa já conhece: conversa do WhatsApp, registro do HubSpot, funil do Pipedrive, boletim de faculdade.</li>
+    <li><b>Cor diz estado, e só com palavra.</b> Verde pago, âmbar atenção, vermelho vencido, carbono em andamento, ardósia informação, cinza encerrado. Sempre com ponto e palavra.</li>
+    <li><b>A marca do cliente aparece, mas não manda.</b> Ela vai no logo, no botão principal e no topo do portal. Nunca em estado, contador, etiqueta, bolha de conversa, foco ou gráfico.</li>
+    <li><b>Denso para quem trabalha, calmo para quem visita.</b> A equipe interna escolhe a densidade. O portal nasce confortável, com alvos de 44 px.</li>
+    <li><b>Salvar é previsível.</b> A barra de salvar só aparece quando há alteração e diz o que mudou. Excluir tem desfazer; o definitivo pede confirmação do tamanho do estrago.</li>
+    <li><b>Humano onde é sobre pessoas.</b> A Início é um mural com rostos, presença e reconhecimento. Indicador em fileira só existe em relatório.</li>
+  </ol>
+</section>
+
+<!-- ============================== COR ============================== -->
+<section class="lc-doc-sec" id="cor">
+  <h2>Cor</h2>
+  <p>Seis famílias com dez passos cada (50 a 900). Os componentes nunca usam o primitivo direto: usam o papel (<code>--fundo</code>, <code>--texto-2</code>, <code>--perigo-texto</code>). Assim o tema escuro troca os papéis sem tocar nos componentes. A barra preta embaixo da amostra marca o passo que algum papel usa no tema claro.</p>
+  <div class="lc-doc-quadro"><div class="lc-doc-quadro__cab"><b>Primitivos</b><span>contraste medido contra o papel (#F2F4F1) e contra a folha (#FFFFFF)</span></div>
+    <div class="lc-doc-quadro__corpo" id="escalas"></div></div>
+
+  <h3>Por que o fundo é este papel, e não creme</h3>
+  <p>O fundo é <code>#F2F4F1</code>: um cinza claro com o verde à frente do vermelho e do azul quase igual ao vermelho. Lê como papel de escrituração (a folha pautada verde-clara dos livros e blocos contábeis), não como creme. O creme, quente, com o vermelho à frente, é o fundo que geradores de interface repetem e foi o principal sinal de "feito por IA" que o crítico apontou na rodada 2 (<code>#F5F5F0</code>). Os passos claros do neutro foram desenhados com G ≥ R e B ≈ R, e a guarda vale para os próximos tons.</p>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o Stripe Dashboard, o GitHub (Primer) e o Atlassian Design System usam fundos neutros frios para telas de trabalho de muitas horas, e nenhum deles usa creme. O verde quase imperceptível vem do papel contábil, que é o assunto da V1. Enviamos para aprovação.</p>
+
+  <h3>Papéis</h3>
+  <p>O papel é o nome que o componente usa. Abaixo, cada papel com o valor nos dois temas e o contraste medido contra o fundo do próprio tema.</p>
+  <div class="lc-tabela-cont"><table class="lc-tabela lc-doc-papeis" id="papeis"><thead><tr><th scope="col">Papel</th><th scope="col">Claro</th><th scope="col">Escuro</th><th scope="col">Uso</th><th scope="col" class="lc-num">Contraste claro</th><th scope="col" class="lc-num">Contraste escuro</th></tr></thead><tbody></tbody></table></div>
+
+  <h3>Estados: fundo, borda, texto e ponto</h3>
+  <p>Seis estados, um sentido cada, iguais em todos os módulos. A cor nunca anda sozinha: o estado tem ponto e palavra; o alerta tem ícone e título.</p>
+  <div class="lc-doc-quadro"><div class="lc-doc-dois">
+    <div class="lc-tema-claro" id="estados-claro"></div>
+    <div class="lc-tema-escuro" id="estados-escuro"></div>
+  </div></div>
+  <div class="lc-tabela-cont"><table class="lc-tabela"><thead><tr><th scope="col">Estado</th><th scope="col">Quer dizer</th><th scope="col">Exemplos</th></tr></thead><tbody>
+    <tr><td><span class="lc-estado lc-estado--sucesso">Sucesso</span></td><td>Concluído, pago, ganho, aprovado, presente</td><td>Boleto pago, chamado resolvido, disciplina aprovada, negócio ganho</td></tr>
+    <tr><td><span class="lc-estado lc-estado--aviso">Aviso</span></td><td>Atenção, esfriando, aguardando alguém</td><td>Negócio esfriando há 9 dias, saúde 51 a 75, aguardando o cliente, vence hoje</td></tr>
+    <tr><td><span class="lc-estado lc-estado--perigo">Perigo</span></td><td>Vencido, atrasado, perdido, falhou, reprovado</td><td>Boleto vencido, prazo de resposta estourado, mensagem não enviada, risco por falta</td></tr>
+    <tr><td><span class="lc-estado lc-estado--andamento">Em andamento</span></td><td>Em curso, aberto, lido</td><td>Chamado aberto, em atendimento, sprint ativa, dois tiques de lida</td></tr>
+    <tr><td><span class="lc-estado lc-estado--info">Informação</span></td><td>Agendado, em espera, aviso neutro</td><td>Assembleia agendada, chamado em espera com terceiro, campanha agendada</td></tr>
+    <tr><td><span class="lc-estado lc-estado--neutro">Neutro</span></td><td>Rascunho, encerrado, arquivado, sem prioridade</td><td>Campanha em rascunho, chamado fechado, contrato arquivado</td></tr>
+  </tbody></table></div>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o Zendesk, o Conta Azul e o Linear usam uma semântica de estado única em todo o produto, e o GitHub precisou trocar o vermelho de "fechado" para roxo em 2021 justamente porque o mesmo vermelho tinha dois sentidos. Separamos <b>em andamento</b> (carbono, a mesma tinta da interação) de <b>informação</b> (ardósia, menos saturada) para que um aviso neutro não pareça clicável. Enviamos para aprovação.</p>
+
+  <h3>Peças especiais</h3>
+  <div class="lc-doc-amostras">
+    <figure><span class="lc-bolha lc-bolha--nota" style="max-width:220px"><span class="lc-bolha__nota-rotulo"><i data-i="bloquear"></i>Nota interna, só a equipe vê</span>Ligar para a portaria antes de responder.</span><figcaption><b>Nota interna</b>, o único amarelo de fundo do sistema</figcaption></figure>
+    <figure><div style="background:var(--conversa-fundo);padding:12px;display:flex;flex-direction:column;gap:4px;width:220px"><span class="lc-bolha lc-bolha--primeira" style="max-width:100%">A água voltou no bloco B?</span><span class="lc-bolha lc-bolha--enviada lc-bolha--primeira" style="max-width:100%">Voltou às 9h40.<span class="lc-bolha__meta">09:41<span class="lc-tique lc-tique--lida"><i data-i="lida"></i></span></span></span></div><figcaption><b>Bolhas</b>: enviada em carbono a 7%, nunca na cor do cliente</figcaption></figure>
+    <figure><div style="position:relative;width:220px;height:100px;background:var(--sup-1);border:var(--borda-2)"><div style="position:absolute;inset:0;background:var(--sobreposicao)"></div></div><figcaption><b>Sobreposição</b> atrás de modal, painel e folha</figcaption></figure>
+    <figure><span class="lc-carimbo lc-carimbo--pago">Pago em 08/09/26<small>Boleto de setembro, unidade 1204</small></span><figcaption><b>Carimbo</b>: estado documental</figcaption></figure>
+    <figure><span style="font-size:15px">Total do contrato <span class="lc-total">R$ 4.820,00</span></span><figcaption><b>Dupla sublinha</b>: valor consolidado</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============================== TIPOGRAFIA ============================== -->
+<section class="lc-doc-sec" id="tipografia">
+  <h2>Tipografia</h2>
+  <p>Duas famílias e uma terceira só para código. <b>Schibsted Grotesk</b> (400 a 700) é a voz da interface inteira: controles, tabelas, menus, mensagens, nomes de pessoas. <b>Source Serif 4</b> aparece em três lugares e mais nenhum: título de página, título de registro e documento gerado (ata, circular, recibo, certificado). <b>IBM Plex Mono</b> só em código e identificador técnico, nunca em rótulo pequeno.</p>
+  <ul class="lc-doc-regras">
+    <li>Serifa nunca em botão, campo, aba, menu, rótulo, estado, valor de tabela, nome de pessoa no feed ou valor no portal.</li>
+    <li>Algarismos tabulares em todo lugar (<code>font-variant-numeric: tabular-nums</code>). A fonte local foi ajustada para que só os algarismos fiquem com largura fixa: vírgula e ponto continuam proporcionais, e <span class="lc-total">R$ 1.284,37</span> não abre buracos.</li>
+    <li>Sem caixa alta espaçada em rótulo, sem itálico ou cor para destacar uma palavra do título.</li>
+    <li>Linha de leitura máxima de 68 caracteres em texto corrido.</li>
+  </ul>
+  <div class="lc-doc-quadro"><div class="lc-doc-quadro__cab"><b>Escala</b><span>tamanho, altura de linha, peso e espaçamento; no celular os quatro primeiros diminuem</span></div><div class="lc-doc-quadro__corpo" id="escala-tipo" style="padding-top:4px"></div></div>
+  <h3>A serifa no lugar certo</h3>
+  <div class="lc-doc-quadro"><div class="lc-doc-dois">
+    <div><p class="lc-legenda" style="margin-bottom:8px">Título de registro (serifa) com o resto em grotesca</p>
+      <div class="lc-linha" style="gap:12px"><span class="lc-ladrilho lc-ladrilho--40"><i data-i="condominio"></i></span><h4 class="lc-t-registro" style="margin:0">Cond. Parque das Águas</h4><button class="lc-btn lc-btn--discreto lc-btn--icone lc-estrela" aria-pressed="true" aria-label="Favorito"><i data-i="estrela"></i></button></div>
+      <p class="lc-pequeno lc-cor-2" style="margin-top:6px">120 unidades, São Paulo. Síndica Marina Costa. Cliente desde 2019.</p></div>
+    <div><p class="lc-legenda" style="margin-bottom:8px">Documento gerado (serifa no corpo)</p>
+      <p class="lc-documento" style="margin:0"><b>Ata da Assembleia Geral Ordinária</b><br>Aos vinte e dois dias de setembro de 2026, reuniram-se os condôminos do Condomínio Parque das Águas para deliberar sobre a previsão orçamentária e o rateio da obra da fachada.</p></div>
+  </div></div>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque Salesforce, HubSpot e Linear usam uma só família sem serifa em toda a interface de trabalho, e porque ata, recibo e circular são, no papel, o lugar histórico da serifa. A rodada 2 usou serifa também no nome da pessoa e no valor do portal, e o crítico leu isso como "jornal" e "fatura de papel"; aqui ela fica restrita a título e documento. Enviamos para aprovação.</p>
+</section>
+
+<!-- ============================== ESPAÇO ============================== -->
+<section class="lc-doc-sec" id="espaco">
+  <h2>Espaço</h2>
+  <p>Base de 4 px. Dentro do componente, 2 a 8. Entre peças, 12 a 24. Entre regiões da tela, 32 a 64. Margem de página de 32 no largo, 28 no desktop, 24 no notebook e no tablet, 16 no celular.</p>
+  <div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo" id="escala-espaco"></div></div>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o IBM Carbon, o Atlassian Design System e o Material 3 usam escala de 4 e 8, que bate com a grade de 24 dos ícones e com as alturas de controle (24, 28, 32, 36, 40, 44). Enviamos para aprovação.</p>
+</section>
+
+<!-- ============================== GRADE ============================== -->
+<section class="lc-doc-sec" id="grade">
+  <h2>Grade e contêineres</h2>
+  <div class="lc-tabela-cont"><table class="lc-tabela"><thead><tr><th scope="col">Faixa</th><th scope="col">Largura</th><th scope="col" class="lc-num">Colunas</th><th scope="col" class="lc-num">Calha</th><th scope="col" class="lc-num">Margem</th><th scope="col">Moldura</th></tr></thead><tbody>
+    <tr><td>Celular</td><td>até 639</td><td class="lc-num">4</td><td class="lc-num">16</td><td class="lc-num">16</td><td>Gaveta e barra inferior</td></tr>
+    <tr><td>Tablet</td><td>640 a 899</td><td class="lc-num">8</td><td class="lc-num">16</td><td class="lc-num">24</td><td>Trilho só ícone (56)</td></tr>
+    <tr><td>Notebook</td><td>900 a 1279</td><td class="lc-num">12</td><td class="lc-num">16</td><td class="lc-num">24</td><td>Trilho só ícone até 1023, completo a partir de 1024</td></tr>
+    <tr><td>Desktop</td><td>1280 a 1439</td><td class="lc-num">12</td><td class="lc-num">24</td><td class="lc-num">28</td><td>Trilho de 72 com rótulo</td></tr>
+    <tr><td>Largo</td><td>1440 ou mais</td><td class="lc-num">12</td><td class="lc-num">24</td><td class="lc-num">32</td><td>Trilho de 72 com rótulo</td></tr>
+  </tbody></table></div>
+  <div class="lc-doc-quadro"><div class="lc-doc-quadro__cab"><b>Grade ativa nesta largura</b><span id="grade-leitura"></span></div><div class="lc-doc-quadro__corpo"><div class="lc-doc-grade-demo" id="grade-demo"></div></div></div>
+  <h3>Contêineres e medidas fixas</h3>
+  <div class="lc-tabela-cont"><table class="lc-tabela"><thead><tr><th scope="col">Token</th><th scope="col" class="lc-num">Medida</th><th scope="col">Onde</th></tr></thead><tbody>
+    <tr><td><code>--cont-leitura</code></td><td class="lc-num">680</td><td>Comunicado, artigo da central de ajuda, texto de política</td></tr>
+    <tr><td><code>--cont-form</code></td><td class="lc-num">760</td><td>Página de edição e formulário longo com etapas</td></tr>
+    <tr><td><code>--cont-publico</code></td><td class="lc-num">600</td><td>Página pública, verificação de certificado, e-mail</td></tr>
+    <tr><td><code>--cont-pagina</code></td><td class="lc-num">1280</td><td>Lista, painel, relatório</td></tr>
+    <tr><td><code>--cont-largo</code></td><td class="lc-num">1520</td><td>Telas de três colunas (conversa, registro) e documentação</td></tr>
+    <tr><td><code>--larg-modal</code> e <code>--larg-modal-largo</code></td><td class="lc-num">560 e 760</td><td>Confirmação e formulário curto; detalhe e editor</td></tr>
+    <tr><td><code>--larg-painel</code></td><td class="lc-num">480</td><td>Painel lateral: histórico, auditoria, prévia só leitura</td></tr>
+    <tr><td><code>--larg-busca</code></td><td class="lc-num">640</td><td>⌘K</td></tr>
+    <tr><td><code>--larg-menu</code>, <code>--larg-gaveta</code></td><td class="lc-num">240, 300</td><td>Menu "⋯", gaveta do celular</td></tr>
+    <tr><td><code>--larg-coluna-kanban</code>, <code>--larg-lateral</code></td><td class="lc-num">280, 320</td><td>Coluna do quadro; lateral de propriedades e ficha da conversa</td></tr>
+    <tr><td><code>--trilho-larg</code>, <code>--barra-modulo-alt</code>, <code>--trilha-alt</code></td><td class="lc-num">72, 52, 36</td><td>Moldura</td></tr>
+  </tbody></table></div>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o Material 3 (4, 8 e 12 colunas por classe de janela), o Bootstrap e o IBM Carbon resolvem a grade por faixa de largura, e porque os cortes 640, 900, 1280 e 1440 já são os do código do GACO (<code>lib/breakpoints.ts</code>). Enviamos para aprovação.</p>
+</section>
+
+<!-- ============================== RAIO ============================== -->
+<section class="lc-doc-sec" id="raio">
+  <h2>Raio</h2>
+  <p>O sistema é quadrado e só a pessoa é redonda (decisão do dono, 24/09). Nenhuma pílula: contador, etiqueta e interruptor também são retos.</p>
+  <div class="lc-doc-amostras" id="raios"></div>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o IBM Carbon trabalha com canto zero e o Atlassian com 3 px em controles, e porque o canto vivo é o canto do papel e da ficha. O avatar redondo segue Teams, Slack e LinkedIn, onde o círculo quer dizer "pessoa". Enviamos para aprovação.</p>
+</section>
+
+<!-- ============================== BORDA ============================== -->
+<section class="lc-doc-sec" id="borda">
+  <h2>Borda</h2>
+  <div class="lc-doc-amostras">
+    <figure><div class="lc-doc-bloco" style="border:var(--borda-1)"></div><figcaption><b>Filete</b> <code>--filete</code>, divisória entre linhas e blocos</figcaption></figure>
+    <figure><div class="lc-doc-bloco" style="border:var(--borda-2)"></div><figcaption><b>Filete forte</b>, contorno de superfície e menu</figcaption></figure>
+    <figure><div class="lc-doc-bloco" style="border:var(--borda-controle-def)"></div><figcaption><b>Borda de controle</b>, campo e caixa de marcar, 3:1 pela WCAG 1.4.11</figcaption></figure>
+    <figure><div class="lc-doc-bloco" style="border:3px double var(--texto-1)"></div><figcaption><b>Dupla</b>, só carimbo e dupla sublinha</figcaption></figure>
+    <figure><div class="lc-doc-bloco" style="box-shadow:inset 3px 0 0 var(--atual)"></div><figcaption><b>Marcador de 3 px</b>, item atual, alerta, barra de salvar</figcaption></figure>
+    <figure><div class="lc-doc-bloco" style="outline:2px solid var(--foco);outline-offset:2px"></div><figcaption><b>Foco</b>, 2 px de carbono com 2 px de folga</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============================== ELEVAÇÃO ============================== -->
+<section class="lc-doc-sec" id="elevacao">
+  <h2>Elevação</h2>
+  <p>Uma sombra só, e só para o que flutua de verdade sobre a página: menu suspenso, "⋯", popover, lista de opções, ⌘K, sino e o cartão sendo arrastado. Painel, caixa, cartão e tabela não têm sombra; a hierarquia vem do filete e do tom da superfície. Modal e painel lateral se separam pela sobreposição escura, não por sombra.</p>
+  <div class="lc-doc-quadro"><div class="lc-doc-quadro__corpo lc-doc-quadro__corpo--fundo" style="display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start;min-height:200px">
+    <div class="lc-caixa" style="width:220px;padding:16px"><b class="lc-t-subsecao">Caixa</b><p class="lc-pequeno lc-cor-2">Superfície 1 e filete. Sem sombra.</p></div>
+    <div class="lc-menu lc-menu--estatico" role="menu" aria-label="Exemplo de menu"><button class="lc-menu__item" role="menuitem">Editar</button><button class="lc-menu__item" role="menuitem">Duplicar</button><div class="lc-menu__sep"></div><button class="lc-menu__item lc-menu__item--perigo" role="menuitem"><i data-i="excluir"></i>Mover para a lixeira</button></div>
+    <p class="lc-pequeno lc-cor-2" style="max-width:300px"><code>--sombra-flutuante</code>: 0 1px 2px e 0 8px 24px, tinta a 10% e 14%. No escuro, preto a 40% e 50%.</p>
+  </div></div>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o IBM Carbon e o GitHub Primer reservam sombra para camadas que se sobrepõem, e o Material 3 passou a separar superfícies por tom e não por sombra. A rodada 2 já tinha essa regra; o crítico não a questionou. Enviamos para aprovação.</p>
+</section>
+
+<!-- ============================== CAMADAS ============================== -->
+<section class="lc-doc-sec" id="camadas">
+  <h2>Camadas</h2>
+  <div class="lc-tabela-cont"><table class="lc-tabela"><thead><tr><th scope="col">Token</th><th scope="col" class="lc-num">z-index</th><th scope="col">O que fica nesta camada</th></tr></thead><tbody>
+    <tr><td><code>--z-base</code></td><td class="lc-num">0</td><td>Conteúdo</td></tr>
+    <tr><td><code>--z-fixo</code></td><td class="lc-num">10</td><td>Cabeçalho fixo de tabela e de lista</td></tr>
+    <tr><td><code>--z-barra-salvar</code></td><td class="lc-num">20</td><td>Barra de salvar</td></tr>
+    <tr><td><code>--z-moldura</code></td><td class="lc-num">30</td><td>Trilho, barra do módulo, barra inferior do celular</td></tr>
+    <tr><td><code>--z-menu</code></td><td class="lc-num">40</td><td>Menu, submenu, popover, lista de opções</td></tr>
+    <tr><td><code>--z-painel</code></td><td class="lc-num">50</td><td>Painel lateral, gaveta, folha inferior</td></tr>
+    <tr><td><code>--z-modal</code></td><td class="lc-num">60</td><td>Modal e ⌘K</td></tr>
+    <tr><td><code>--z-toast</code></td><td class="lc-num">70</td><td>Toast</td></tr>
+    <tr><td><code>--z-dica</code></td><td class="lc-num">80</td><td>Dica</td></tr>
+    <tr><td><code>--z-faixa-contexto</code></td><td class="lc-num">90</td><td>Faixa do superadmin e da homologação: nada a cobre</td></tr>
+  </tbody></table></div>
+</section>
+
+<!-- ============================== MOVIMENTO ============================== -->
+<section class="lc-doc-sec" id="movimento">
+  <h2>Movimento</h2>
+  <p>Movimento só responde a um gesto da pessoa: abrir, fechar, confirmar, mover. Nada entra na tela sozinho. Com "reduzir movimento" ligado no sistema, as durações viram zero num lugar só (<code>tokens.css</code>).</p>
+  <div class="lc-tabela-cont"><table class="lc-tabela"><thead><tr><th scope="col">Token</th><th scope="col" class="lc-num">Valor</th><th scope="col">Uso</th><th scope="col">Ver</th></tr></thead><tbody id="mov"></tbody></table></div>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o IBM Carbon separa movimento "produtivo" (70 a 240 ms, para trabalho) do expressivo, e o Material 3 usa curva de entrada desacelerada e de saída acelerada. A V1 fica só no produtivo. Enviamos para aprovação.</p>
+</section>
+
+<!-- ============================== DENSIDADE ============================== -->
+<section class="lc-doc-sec" id="densidade">
+  <h2>Densidade</h2>
+  <p>A densidade é preferência da pessoa, guardada na conta e igual em todos os módulos. O portal nasce confortável e não mostra o controle. Em tela de toque, alvos e campos sobem para 44 px, qualquer que seja a escolha.</p>
+  <div class="lc-tabela-cont"><table class="lc-tabela"><thead><tr><th scope="col">Medida</th><th scope="col" class="lc-num">Compacta</th><th scope="col" class="lc-num">Padrão</th><th scope="col" class="lc-num">Confortável</th></tr></thead><tbody>
+    <tr><td>Linha de tabela e de lista <code>--linha-alt</code></td><td class="lc-num">36</td><td class="lc-num">44</td><td class="lc-num">52</td></tr>
+    <tr><td>Controle pequeno (segmentado, chip) <code>--controle-alt</code></td><td class="lc-num">24</td><td class="lc-num">28</td><td class="lc-num">32</td></tr>
+    <tr><td>Campo <code>--campo-alt</code></td><td class="lc-num">30</td><td class="lc-num">36</td><td class="lc-num">44</td></tr>
+    <tr><td>Botão <code>--btn-alt</code> (pequeno e grande)</td><td class="lc-num">28 (24, 36)</td><td class="lc-num">32 (28, 40)</td><td class="lc-num">40 (32, 48)</td></tr>
+    <tr><td>Item de menu <code>--menu-item-alt</code></td><td class="lc-num">30</td><td class="lc-num">34</td><td class="lc-num">40</td></tr>
+    <tr><td>Corpo de texto</td><td class="lc-num">13,5</td><td class="lc-num">14</td><td class="lc-num">15</td></tr>
+  </tbody></table></div>
+  <div class="lc-doc-quadro"><div class="lc-doc-quadro__cab"><b>As três lado a lado</b></div><div class="lc-doc-quadro__corpo" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px" id="dens"></div></div>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o Gmail (Padrão, Confortável, Compacta), o Salesforce (Confortável e Compacta) e o Atlassian deixam a densidade com a pessoa, e o GACO já guarda essa preferência no servidor. Enviamos para aprovação.</p>
+</section>
+
+<!-- ============================== BREAKPOINTS ============================== -->
+<section class="lc-doc-sec" id="breakpoints">
+  <h2>Breakpoints</h2>
+  <p>Quatro cortes, constantes de build (nunca <code>var()</code> dentro de <code>@media</code>): <b>640</b>, <b>900</b>, <b>1280</b> e <b>1440</b>. A moldura degrada pela largura da janela; o componente, pela largura do próprio contêiner.</p>
+  <ul class="lc-doc-regras">
+    <li><b>Abaixo de 1100</b>: a busca da barra do módulo vira lupa (o ⌘K continua).</li>
+    <li><b>Abaixo de 1024</b>: o trilho perde o rótulo e fica com 56 px; o nome aparece na dica.</li>
+    <li><b>Abaixo de 640</b>: o trilho some; o hambúrguer abre a gaveta e a barra inferior traz Início, módulo atual, Pesquisar, Avisos e Menu. Modal vira folha que sobe do pé. Tabela vira lista de cartões na tela que pedir.</li>
+    <li><b>Toque</b> (<code>pointer: coarse</code>): alvos de 44, ações da linha sempre visíveis, campos com 16 px para o iOS não dar zoom.</li>
+  </ul>
+</section>
+
+<!-- ============================== TEMAS ============================== -->
+<section class="lc-doc-sec" id="temas">
+  <h2>Temas</h2>
+  <p>Claro é o padrão. O escuro é "o livro à noite": grafite esverdeado, nunca preto azulado com um acento neon. A troca acontece só nos papéis; componentes e telas não sabem qual tema está ativo. "Sistema" segue o aparelho.</p>
+  <div class="lc-doc-quadro"><div class="lc-doc-dois">
+    <div class="lc-tema-claro" id="tema-claro"></div><div class="lc-tema-escuro" id="tema-escuro"></div>
+  </div></div>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o GitHub (escuro atenuado), o Slack e o Linear usam cinzas com matiz no tema escuro em vez de preto puro, o que reduz o brilho do texto e mantém a hierarquia por tom de superfície. Enviamos para aprovação.</p>
+</section>
+
+<!-- ============================== WHITE LABEL ============================== -->
+<section class="lc-doc-sec" id="white-label">
+  <h2>White label</h2>
+  <p>O cliente troca logo, nome e uma cor. A identidade do GACO (papel, tinta, filetes, tipografia, carimbo, dupla sublinha, estrutura e comportamento) não muda. A cor entra por quatro variáveis, calculadas por <code>sistema/marca.js</code>: <code>--marca</code>, <code>--marca-txt</code>, <code>--marca-forte</code> e <code>--marca-suave</code>.</p>
+  <div class="lc-doc-dois" style="border:var(--borda-1);background:var(--sup-1);margin:12px 0">
+    <div><h4 style="margin-top:0">Onde a marca entra</h4><ul class="lc-doc-regras"><li>Ladrilho do logo no topo do trilho e na gaveta</li><li>Botão principal (um por tela) e o "Salvar ▾"</li><li>Topo do portal e aba ativa da barra inferior do portal</li><li>Documento gerado: cabeçalho do PDF, e-mail, certificado</li></ul></div>
+    <div><h4 style="margin-top:0">Onde nunca entra</h4><ul class="lc-doc-regras"><li>Estado, alerta, faixa, carimbo</li><li>Contador e etiqueta</li><li>Bolha de conversa (a enviada é carbono)</li><li>Foco, seleção, item atual do menu, link</li><li>Gráfico</li></ul></div>
+  </div>
+  <h3>Derivação: contraste e distância das cores de estado</h3>
+  <ol class="lc-doc-regras">
+    <li><b>Distância das cores de estado.</b> Se a cor ficar a menos de ΔE2000 14 do verde, do âmbar, do vermelho ou da ardósia, o matiz gira para longe em passos de 6°, até 60°. É o teste que faltava na rodada 2 (vinho da Órbita perto do vermelho, laranja da Sol Nascente perto do âmbar).</li>
+    <li><b>Texto sobre a marca.</b> Branco se der 4,5:1; senão tinta, se der 4,5:1 (assim o laranja continua laranja, em vez de virar marrom); só então a cor escurece.</li>
+    <li><b>Tema escuro.</b> A marca precisa de 3:1 contra a superfície escura para o botão não sumir; se não tiver, clareia.</li>
+  </ol>
+  <div class="lc-doc-quadro"><div class="lc-doc-quadro__cab"><b>Teste com os três clientes de exemplo</b><span>a escolha fica guardada neste navegador e vale para as outras páginas</span></div><div class="lc-doc-quadro__corpo" data-lc-seletor-marca></div></div>
+  <div class="lc-tabela-cont"><table class="lc-tabela" id="wl"><thead><tr><th scope="col">Cliente</th><th scope="col">Tema</th><th scope="col">Enviada</th><th scope="col">Aplicada</th><th scope="col">Texto</th><th scope="col" class="lc-num">Contraste</th><th scope="col">Estado mais próximo</th><th scope="col">Ajuste</th></tr></thead><tbody></tbody></table></div>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o Salesforce (temas do Lightning, com ajuste automático de contraste), o Microsoft 365 (a cor da organização só na barra superior) e o Slack (o ícone do espaço de trabalho no topo da barra lateral) deixam o cliente se ver sem entregar a semântica do sistema. Enviamos para aprovação.</p>
+</section>
+
+<!-- ============================== VOZ E TOM ============================== -->
+<section class="lc-doc-sec" id="voz">
+  <h2>Voz, tom e redação</h2>
+  <p>O GACO fala como uma boa administradora: direto, cordial, sem jargão de sistema. Frase curta, verbo no começo do botão, letra maiúscula só no começo da frase. O mesmo nome do começo ao fim: o botão "Publicar" gera o aviso "Publicado".</p>
+  <ul class="lc-doc-regras">
+    <li><b>Erro em três partes</b>: o que houve, por quê, o que fazer. Quando a culpa é do sistema, dizemos que é nossa.</li>
+    <li><b>Vazio é convite</b>: diga o que vai aparecer ali e ofereça a primeira ação.</li>
+    <li><b>Formatos</b>: R$ 1.284,37; 30/09/2026 em tabela, 30 de setembro na frase; 10:42; "há 12 dias" até 30 dias, depois a data; 1.204 unidades; 5,48%.</li>
+    <li><b>Um termo por conceito</b>: chamado (não ticket), respostas rápidas (não macros), pessoa candidata, contas a receber.</li>
+    <li><b>Emoji</b>: nunca na interface; o que a pessoa escreve aparece como ela escreveu.</li>
+  </ul>
+  <div class="lc-tabela-cont"><table class="lc-tabela"><thead><tr><th scope="col">Situação</th><th scope="col">Escreva</th><th scope="col">Não escreva</th></tr></thead><tbody>
+    <tr><td>Botão de salvar</td><td>Salvar alterações</td><td>Enviar, OK, Confirmar</td></tr>
+    <tr><td>Barra de salvar</td><td>2 alterações não salvas em Contrato: valor mensal e data de reajuste</td><td>Existem alterações pendentes</td></tr>
+    <tr><td>Erro de campo</td><td>Informe o CPF com 11 números. Faltam 2.</td><td>Campo inválido</td></tr>
+    <tr><td>Erro do sistema</td><td>Não conseguimos salvar o rateio. A conexão caiu às 10:42. Suas alterações continuam aqui; tente de novo.</td><td>Erro 500. Ocorreu um erro inesperado.</td></tr>
+    <tr><td>Toast de exclusão</td><td>Chamado 4.812 movido para a lixeira. <u>Desfazer</u></td><td>Item excluído com sucesso!</td></tr>
+    <tr><td>Confirmação destrutiva</td><td>Excluir definitivamente 3 boletos? Eles saem do extrato e do rateio de outubro. Isso não pode ser desfeito.</td><td>Tem certeza?</td></tr>
+    <tr><td>Estado vazio</td><td>Nenhuma reserva para esta semana. As reservas do salão de festas e da churrasqueira aparecem aqui. <u>Nova reserva</u></td><td>Nada por aqui ainda :)</td></tr>
+    <tr><td>Auditoria</td><td>Rafael Lima alterou Valor mensal de R$ 4.380,00 para R$ 4.620,00</td><td>update contrato #2 campo valor</td></tr>
+    <tr><td>Superadmin</td><td>Você está em Órbita Condomínios como suporte da plataforma. Só leitura, 48 min restantes.</td><td>Modo impersonate ativo</td></tr>
+  </tbody></table></div>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o guia de conteúdo do Mailchimp, o GOV.UK e o Nubank mostram que interface em linguagem simples reduz erro e chamado de suporte, e porque o livro do GACO já pede erro em três partes e auditoria sem língua de banco. Enviamos para aprovação.</p>
+</section>
+</main>
+</div>
+
+<script src="sistema/icones.js"></script>
+<script src="sistema/doc.js"></script>
+<script>
+(function(){
+var M = window.LCMarca, C = M.contraste;
+var raiz = getComputedStyle(document.documentElement);
+var v = function(n,el){ return getComputedStyle(el||document.documentElement).getPropertyValue(n).trim(); };
+var f = function(n){ return n.toFixed(1).replace(".",","); };
+var PAPEL="#F2F4F1", FOLHA="#FFFFFF";
+/* ---------- escalas ---------- */
+var FAM = [["papel","Neutro-papel","fundo, filetes, texto"],["carbono","Azul-carbono","interação, seleção, andamento"],["verde","Verde-livro","sucesso, pago"],["ambar","Âmbar","aviso, atenção"],["estorno","Tinta de estorno","perigo, vencido"],["ardosia","Ardósia","informação"]];
+var USO = {papel:[100,200,300,500,600,700,900],carbono:[50,100,600,700,800],verde:[50,200,500,600],ambar:[50,200,400,600],estorno:[50,200,500,600],ardosia:[50,200,500,600]};
+var P=[50,100,200,300,400,500,600,700,800,900], h="";
+FAM.forEach(function(fm){
+  h += '<div class="lc-doc-escala"><div class="lc-doc-escala__nome">'+fm[1]+'<small>'+fm[2]+'</small></div>';
+  P.forEach(function(p){ var hex=v("--cor-"+fm[0]+"-"+p).toUpperCase();
+    h += '<div class="lc-doc-cor'+(USO[fm[0]].indexOf(p)>-1?' lc-doc-cor--uso':'')+'"><i style="background:'+hex+'"></i><b>'+p+'</b><span>'+hex+'</span><span>'+f(C(hex,PAPEL))+' / '+f(C(hex,FOLHA))+'</span></div>'; });
+  h += '</div>';
+});
+document.getElementById("escalas").innerHTML = h;
+/* ---------- papéis ---------- */
+var claro=document.createElement("div"); claro.className="lc-tema-claro"; claro.hidden=false; claro.style.display="none";
+var escuro=document.createElement("div"); escuro.className="lc-tema-escuro"; escuro.style.display="none";
+document.body.appendChild(claro); document.body.appendChild(escuro);
+var PAP = [["--fundo","Fundo da página"],["--sup-1","Superfície 1: folha, painel, tabela, campo"],["--sup-2","Superfície 2: pauta alternada, hover, cabeçalho de grupo"],["--sup-3","Superfície 3: trilho de progresso, esqueleto"],
+  ["--filete","Filete entre linhas"],["--filete-forte","Contorno de superfície"],["--borda-controle","Borda de campo (3:1)"],["--texto-1","Texto principal",1],["--texto-2","Texto secundário",1],["--texto-3","Texto terciário, mínimo de 4,5:1",1],
+  ["--texto-desab","Desabilitado (isento de contraste)",1],["--link","Link",1],["--foco","Anel de foco",1],["--selecao","Linha e item selecionados"],["--atual","Marcador do item atual",1],
+  ["--nota-fundo","Nota interna"],["--conversa-fundo","Fundo da conversa"],["--bolha-enviada","Bolha enviada"],["--contador-fundo","Contador",1]];
+var tb=""; PAP.forEach(function(p){ var a=v(p[0],claro).toUpperCase(), b=v(p[0],escuro).toUpperCase(), fa=v("--fundo",claro), fb=v("--fundo",escuro);
+  var ca = /^#/.test(a)? f(C(a,fa))+":1" : "", cb = /^#/.test(b)? f(C(b,fb))+":1" : "";
+  tb += '<tr><td><code>'+p[0]+'</code></td><td><span class="lc-doc-chip" style="background:'+a+'"></span> '+a+'</td><td><span class="lc-doc-chip" style="background:'+b+'"></span> '+b+'</td><td>'+p[1]+'</td><td class="lc-num">'+(p[2]?ca:'')+'</td><td class="lc-num">'+(p[2]?cb:'')+'</td></tr>'; });
+document.querySelector("#papeis tbody").innerHTML = tb;
+/* ---------- estados nos dois temas ---------- */
+function estados(el,nome){
+  var tipos=[["sucesso","Pago","Boleto de setembro pago em 08/09."],["aviso","Esfriando","Sem contato há 45 dias."],["perigo","Vencido","Boleto de agosto, vencido há 12 dias."],["info","Agendada","Assembleia em 20/10, 19h."],["andamento","Aberto","Chamado 4.812 em atendimento."],["neutro","Rascunho","Circular ainda não enviada."]];
+  var x='<p class="lc-legenda" style="margin-bottom:10px">Tema '+nome+'</p><div class="lc-pilha lc-pilha--p">';
+  tipos.forEach(function(t){ var cf=v("--"+t[0]+"-fundo",el), ct=v("--"+t[0]+"-texto",el);
+    x+='<div class="lc-linha" style="gap:12px"><span class="lc-estado lc-estado--'+t[0]+'" style="min-width:110px">'+t[1]+'</span><span class="lc-estado lc-estado--caixa lc-estado--'+t[0]+'">'+t[1]+'</span><span class="lc-legenda">'+t[2]+' Texto '+f(C(ct,v("--sup-1",el)))+':1 na folha, '+f(C(ct,cf))+':1 no fundo do estado.</span></div>'; });
+  el.innerHTML = x+'</div>'+
+    '<div class="lc-pilha lc-pilha--p" style="margin-top:14px"><div class="lc-alerta lc-alerta--aviso"><i data-i="aviso"></i><div class="lc-alerta__corpo"><b class="lc-alerta__titulo">3 boletos vencem hoje</b>Envie o lembrete pelo WhatsApp antes das 18h.</div></div>'+
+    '<div class="lc-alerta lc-alerta--perigo"><i data-i="erro"></i><div class="lc-alerta__corpo"><b class="lc-alerta__titulo">Não conseguimos gerar o rateio</b>Faltam as frações ideais de 4 unidades do bloco C.</div></div></div>';
+}
+estados(document.getElementById("estados-claro"),"claro"); estados(document.getElementById("estados-escuro"),"escuro");
+/* ---------- escala tipográfica ---------- */
+var T=[["display","Display","Ata da Assembleia Geral","Documento gerado: capa de ata, certificado",1],["pagina","Título de página","Contas a receber","Título da tela (h1)",1],["registro","Título de registro","Cond. Parque das Águas","Nome do registro aberto",1],
+  ["secao","Seção","Contrato de administração","Seção de formulário, título de painel"],["subsecao","Subseção","Dados do síndico","Cabeçalho de caixa e de grupo"],["corpo","Corpo","A síndica pediu a segunda via do boleto de outubro da unidade 1204.","Texto padrão"],
+  ["pequeno","Corpo pequeno","Atualizado por Rafael Lima há 12 minutos","Descrição, texto de apoio"],["rotulo","Rótulo","Valor mensal","Rótulo de campo, cabeçalho de tabela"],["legenda","Legenda","Vence em 10/10/2026","Metadado, ajuda de campo"],
+  ["dado","Dado tabular","R$ 1.284,37   R$ 12.906,00","Célula numérica"],["codigo","Código","00020126580014BR.GOV.BCB.PIX0136","Código Pix, chave de API, identificador técnico"]];
+var th=""; T.forEach(function(t){ var tam=v("--t-"+t[0]+"-tam"), alt=v("--t-"+t[0]+"-alt"), pe=v("--t-"+t[0]+"-peso"), tr=v("--t-"+t[0]+"-trk");
+  th += '<div class="lc-doc-tipo"><div style="font:var(--t-'+t[0]+');letter-spacing:var(--t-'+t[0]+'-trk);min-width:0;overflow-wrap:anywhere">'+t[2]+'</div><div class="lc-doc-tipo__meta"><b>'+t[1]+'</b>'+tam+' / '+alt+', peso '+pe+', espaçamento '+tr+'<br>'+(t[4]?'Source Serif 4. ':(t[0]==="codigo"?'IBM Plex Mono. ':'Schibsted Grotesk. '))+t[3]+'<br><code>var(--t-'+t[0]+')</code></div></div>'; });
+document.getElementById("escala-tipo").innerHTML = th;
+/* ---------- espaço ---------- */
+var E=""; for(var i=1;i<=12;i++){ var val=v("--esp-"+i); E+='<div class="lc-doc-barra"><code>--esp-'+i+'</code><span style="min-width:40px" class="lc-num">'+val+'</span><i style="width:'+val+'"></i></div>'; }
+document.getElementById("escala-espaco").innerHTML = E;
+/* ---------- grade ---------- */
+function grade(){ var n=+v("--grade-colunas"); document.getElementById("grade-demo").innerHTML=new Array(n+1).join("<i></i>");
+  document.getElementById("grade-leitura").textContent = n+" colunas, calha de "+v("--grade-calha")+", margem de "+v("--grade-margem")+" (janela de "+window.innerWidth+" px)"; }
+grade(); addEventListener("resize",grade);
+/* ---------- raio ---------- */
+var RA=[["--raio-0","0","Tabela, faixa, progresso, esqueleto, barra de etapas"],["--raio-1","2","Etiqueta, estado em caixa, caixa de marcar, contador, carimbo"],["--raio-2","3","Botão, campo, segmentado, chip de filtro"],["--raio-3","4","Caixa, menu, popover, toast, bolha"],["--raio-4","6","Modal, painel lateral, folha inferior"],["--raio-pessoa","50%","Só avatar de pessoa, presença e girador"]];
+document.getElementById("raios").innerHTML = RA.map(function(r){ return '<figure><div class="lc-doc-bloco" style="border-radius:var('+r[0]+');'+(r[0]==="--raio-pessoa"?'width:64px':'')+'"></div><figcaption><b><code>'+r[0]+'</code> '+r[1]+'</b><br>'+r[2]+'</figcaption></figure>'; }).join("");
+/* ---------- movimento ---------- */
+var MV=[["--mov-instante","Retorno de pressionar"],["--mov-curto","Hover, troca de cor"],["--mov-medio","Menu, aba, toast"],["--mov-longo","Modal, painel, gaveta"],["--curva-entrar","Chega e assenta: modal, aviso"],["--curva-sair","Sai sem demorar"],["--curva-mover","De um lugar a outro: gaveta, interruptor"]];
+document.getElementById("mov").innerHTML = MV.map(function(m,i){ var dur=/mov/.test(m[0]); return '<tr><td><code>'+m[0]+'</code></td><td class="lc-num">'+v(m[0])+'</td><td>'+m[1]+'</td><td><button class="lc-btn lc-btn--p" type="button" data-mv="'+m[0]+'">Ver</button> <span style="display:inline-block;width:12px;height:12px;background:var(--atual);vertical-align:middle;transition:transform '+(dur?'var('+m[0]+') var(--curva-mover)':'var(--mov-longo) var('+m[0]+')')+'" data-alvo></span></td></tr>'; }).join("");
+document.getElementById("mov").addEventListener("click",function(e){ var b=e.target.closest("[data-mv]"); if(!b) return; var a=b.parentNode.querySelector("[data-alvo]"); a.style.transform = a.style.transform? "" : "translateX(80px)"; });
+/* ---------- densidade ---------- */
+document.getElementById("dens").innerHTML = ["compacta","padrao","confortavel"].map(function(d){
+  return '<div data-densidade="'+d+'" style="font-size:var(--dens-corpo)"><p class="lc-legenda" style="margin-bottom:8px">'+({compacta:"Compacta",padrao:"Padrão",confortavel:"Confortável"})[d]+'</p>'+
+  '<div class="lc-linha" style="margin-bottom:10px"><input class="lc-entrada" value="Marina Costa" aria-label="Exemplo de campo" style="flex:1"><button class="lc-btn lc-btn--principal" type="button">Salvar</button></div>'+
+  '<div class="lc-tabela-cont"><table class="lc-tabela lc-tabela--pautada"><tbody><tr><td>Unidade 1204</td><td class="lc-num">R$ 1.284,37</td></tr><tr><td>Unidade 1205</td><td class="lc-num">R$ 1.284,37</td></tr><tr><td>Unidade 1206</td><td class="lc-num">R$ 986,10</td></tr></tbody></table></div></div>';
+}).join("");
+/* ---------- temas ---------- */
+function amostraTema(el,nome){
+  el.innerHTML = '<p class="lc-legenda" style="margin-bottom:10px">Tema '+nome+'</p>'+
+  '<div class="lc-caixa"><div class="lc-caixa__cab"><h3>Boleto de outubro</h3><span class="lc-estado lc-estado--aviso">Vence em 5 dias</span></div><div class="lc-caixa__corpo">'+
+  '<dl class="lc-props"><dt>Unidade</dt><dd>Bloco B, apto 1204</dd><dt>Valor</dt><dd><span class="lc-total">R$ 1.284,37</span></dd><dt>Linha digitável</dt><dd><code>23793.38128 60082.317205</code></dd></dl>'+
+  '<div class="lc-linha" style="margin-top:14px"><button class="lc-btn lc-btn--principal" type="button"><i data-i="pix-copia-e-cola"></i>Copiar código Pix</button><button class="lc-btn" type="button"><i data-i="baixar"></i>PDF</button><a href="#">2ª via</a></div></div></div>';
+}
+amostraTema(document.getElementById("tema-claro"),"claro"); amostraTema(document.getElementById("tema-escuro"),"escuro");
+/* ---------- white label ---------- */
+var wl=""; M.CLIENTES.forEach(function(c){ ["claro","escuro"].forEach(function(t){ var d=M.derivar(c.cor,t);
+  wl += '<tr><td><b>'+c.nome+'</b></td><td>'+t+'</td><td><span class="lc-doc-chip" style="background:'+d.enviada+'"></span> '+d.enviada+'</td><td><span class="lc-doc-chip" style="background:'+d.marca+'"></span> '+d.marca+'</td><td>'+(d.txt==="#FFFFFF"?"branco":"tinta")+'</td><td class="lc-num">'+f(d.contraste)+':1</td><td>'+d.estadoProximo+', ΔE '+f(d.deltaE)+'</td><td>'+(d.semAjuste?'Nenhum':d.ajustes.join(' '))+'</td></tr>'; }); });
+document.querySelector("#wl tbody").innerHTML = wl;
+})();
+</script>
+</body>
+</html>

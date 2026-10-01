@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exemplo de moldura</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<script src="sistema/marca.js"></script>
+</head>
+<body data-moldura='{"modulo":"cs","secao":"Clientes","item":"Clientes","papel":"gerente-cs","trilha":["Clientes"]}'>
+<script>
+/* Só neste exemplo: aceita a configuração pelo endereço (#cfg={...}) para a página 02 mostrar vários estados. */
+try{ var h=decodeURIComponent(location.hash.replace(/^#cfg=/,"")); if(h && h.charAt(0)==="{") document.body.setAttribute("data-moldura",h); }catch(e){}
+</script>
+<main id="conteudo" class="lc-pagina">
+  <div class="lc-cab-pagina">
+    <div class="lc-cab-pagina__txt"><h1 id="titulo">Clientes</h1><p class="lc-cab-pagina__desc" id="desc">63 condomínios na sua carteira. A lista lembra o filtro e a posição quando você volta.</p></div>
+    <div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="baixar"></i>Exportar</button><button class="lc-btn lc-btn--principal" type="button"><i data-i="mais"></i>Novo cliente</button></div>
+  </div>
+  <div class="lc-filtros">
+    <label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Pesquisar por nome, CNPJ ou síndico" aria-label="Pesquisar clientes"></label>
+    <button class="lc-filtro lc-filtro--ativo" type="button"><i data-i="filtrar"></i>Saúde: <b>Atenção</b></button>
+    <button class="lc-filtro" type="button">Renovação<i data-i="chevron-baixo"></i></button>
+    <button class="lc-filtro" type="button">Mais filtros (2)</button>
+    <div class="lc-filtros__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Visão"><button type="button" aria-pressed="true"><i data-i="visao-lista"></i>Lista</button><button type="button" aria-pressed="false"><i data-i="visao-quadro"></i>Quadro</button></div></div>
+  </div>
+  <div class="lc-tabela-cont">
+    <table class="lc-tabela">
+      <thead><tr><th scope="col" aria-sort="ascending"><button class="lc-ordenar" type="button">Cliente</button></th><th scope="col">Saúde</th><th scope="col">Síndico</th><th scope="col" class="lc-num"><button class="lc-ordenar" type="button">Mensalidade</button></th><th scope="col">Renovação</th></tr></thead>
+      <tbody>
+        <tr><td><a href="#" class="lc-tabela__primaria">Cond. Parque das Águas</a><span class="lc-tabela__sub">120 unidades, São Paulo</span></td><td><span class="lc-estado lc-estado--aviso">62, Atenção</span></td><td>Marina Costa</td><td class="lc-num">R$ 4.620,00</td><td>15/11/2026</td></tr>
+        <tr><td><a href="#" class="lc-tabela__primaria">Residencial Jardim Botânico</a><span class="lc-tabela__sub">86 unidades, Campinas</span></td><td><span class="lc-estado lc-estado--sucesso">81, Saudável</span></td><td>Antônio Ribeiro</td><td class="lc-num">R$ 3.180,00</td><td>02/03/2027</td></tr>
+        <tr><td><a href="#" class="lc-tabela__primaria">Edifício Solar das Palmeiras</a><span class="lc-tabela__sub">48 unidades, Santos</span></td><td><span class="lc-estado lc-estado--perigo">41, Em risco</span></td><td>Cláudia Nunes</td><td class="lc-num">R$ 2.140,00</td><td>30/10/2026</td></tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+<script>
+(function(){ try{ var c=JSON.parse(document.body.getAttribute("data-moldura"));
+  var t=c.item||c.secao; if(t){ document.getElementById("titulo").textContent=t; if(t!=="Clientes") document.getElementById("desc").textContent="Conteúdo de exemplo para mostrar a moldura."; }
+  if(c.contexto==="portal"){ document.querySelector(".lc-filtros").remove(); }
+}catch(e){} })();
+</script>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+</body>
+</html>

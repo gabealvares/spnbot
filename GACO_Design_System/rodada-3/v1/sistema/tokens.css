@@ -1,0 +1,311 @@
+/* =====================================================================
+   GACO V1 "Livro-Caixa" — tokens.css
+   Fonte da verdade da fundação. Três camadas:
+     1. primitivos (--cor-*, escalas de 10 passos 50–900)
+     2. papéis (--fundo, --texto-1, --sucesso-fundo …) — é o que os componentes usam
+     3. componente (--btn-alt, --linha-alt …) — derivados de densidade
+   Tema claro em :root, tema escuro em [data-tema="escuro"] e em
+   prefers-color-scheme quando a pessoa escolheu "sistema".
+   White label: só --marca, --marca-txt, --marca-forte (+ --marca-suave).
+   Regra: componente nunca usa primitivo direto; usa papel.
+   ===================================================================== */
+
+/* ---------- Fontes locais com recurso ao Google ---------- */
+@font-face{font-family:"Schibsted Grotesk";src:url("fontes/schibsted-grotesk.woff") format("woff");font-weight:400 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Schibsted Grotesk";src:url("fontes/schibsted-grotesk-italico.woff") format("woff");font-weight:400 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Source Serif 4";src:url("fontes/source-serif-4.woff") format("woff");font-weight:200 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Source Serif 4";src:url("fontes/source-serif-4-italico.woff") format("woff");font-weight:200 900;font-style:italic;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url("fontes/ibm-plex-mono.woff") format("woff");font-weight:400;font-style:normal;font-display:swap}
+
+:root{
+  /* =================== 1. PRIMITIVOS =================== */
+  /* Neutro-papel: claro esverdeado e frio no topo (papel de escrituração),
+     tinta azul-preta no fim. Nunca creme: G ≥ R e B ≈ R em todos os passos claros. */
+  --cor-branco:#FFFFFF;
+  --cor-papel-50:#F8F9F7;  --cor-papel-100:#F2F4F1; --cor-papel-200:#E3E7E2; --cor-papel-300:#CBD2CC;
+  --cor-papel-400:#A6AFA9; --cor-papel-500:#7E8883; --cor-papel-600:#5F6965; --cor-papel-700:#475050;
+  --cor-papel-800:#2E3536; --cor-papel-900:#1B2023;
+  /* Azul-carbono: o azul do papel-carbono e da caneta esferográfica. Interação, seleção, andamento. */
+  --cor-carbono-50:#EEF1F9; --cor-carbono-100:#DCE2F3; --cor-carbono-200:#B9C5E7; --cor-carbono-300:#8EA2D7;
+  --cor-carbono-400:#6680C6; --cor-carbono-500:#4563B2; --cor-carbono-600:#2F4D9F; --cor-carbono-700:#23408E;
+  --cor-carbono-800:#1B3172; --cor-carbono-900:#132350;
+  /* Verde-livro: pago, concluído, aprovado, presente. */
+  --cor-verde-50:#E9F3EC; --cor-verde-100:#D1E7D8; --cor-verde-200:#A6CFB4; --cor-verde-300:#72B08D;
+  --cor-verde-400:#47926B; --cor-verde-500:#2C7C55; --cor-verde-600:#1E6B45; --cor-verde-700:#175637;
+  --cor-verde-800:#11432A; --cor-verde-900:#0A2D1C;
+  /* Âmbar: atenção, esfriando, aguardando alguém. */
+  --cor-ambar-50:#FBF3E1; --cor-ambar-100:#F5E4BC; --cor-ambar-200:#EBC97F; --cor-ambar-300:#DCAA45;
+  --cor-ambar-400:#C48D1F; --cor-ambar-500:#A6740C; --cor-ambar-600:#8A5A00; --cor-ambar-700:#704800;
+  --cor-ambar-800:#543600; --cor-ambar-900:#382400;
+  /* Tinta de estorno: o vermelho do lançamento estornado. Vencido, erro, perdido, excluir. */
+  --cor-estorno-50:#FCEEEC; --cor-estorno-100:#F8D9D5; --cor-estorno-200:#EFB0A8; --cor-estorno-300:#E3837A;
+  --cor-estorno-400:#D4594D; --cor-estorno-500:#C33A2D; --cor-estorno-600:#B42318; --cor-estorno-700:#931C13;
+  --cor-estorno-800:#6F150E; --cor-estorno-900:#4A0E09;
+  /* Ardósia (tom informativo): azul acinzentado, menos saturado que o carbono.
+     Informação, agendado, em espera. Separado do carbono para que "clicável" e "informativo" não se confundam. */
+  --cor-ardosia-50:#EEF2F6; --cor-ardosia-100:#DAE3EC; --cor-ardosia-200:#B5C6D6; --cor-ardosia-300:#8BA4BB;
+  --cor-ardosia-400:#66859F; --cor-ardosia-500:#4C6C87; --cor-ardosia-600:#3B5873; --cor-ardosia-700:#2F475D;
+  --cor-ardosia-800:#233547; --cor-ardosia-900:#172431;
+  /* Nota interna: amarelo de bloco adesivo — o único amarelo de fundo do sistema. */
+  --cor-nota-claro:#FFF6D6; --cor-nota-borda:#E8D58A; --cor-nota-escuro:#38321C; --cor-nota-borda-escuro:#6B5E2E;
+  /* Avatares sem foto: 8 tons terrosos fixos (não são estado, não são marca). */
+  --cor-av-1:#4A5B6E; --cor-av-2:#6B5A48; --cor-av-3:#3F6656; --cor-av-4:#7A4F5A;
+  --cor-av-5:#55507A; --cor-av-6:#6E6A3E; --cor-av-7:#3E5F7A; --cor-av-8:#7A5E3A;
+  /* Etiquetas criadas pelo cliente: 8 tons (fundo/texto), nunca iguais aos de estado. */
+  --et-1-f:#E8EEF0; --et-1-t:#2F4E57;  --et-2-f:#F1EAE3; --et-2-t:#5E4632;
+  --et-3-f:#E6EEE9; --et-3-t:#2F5541;  --et-4-f:#F2E6EA; --et-4-t:#6B3446;
+  --et-5-f:#ECE9F3; --et-5-t:#4A4275;  --et-6-f:#EFEEE2; --et-6-t:#55522B;
+  --et-7-f:#E5ECF2; --et-7-t:#30506B;  --et-8-f:#F3EBE0; --et-8-t:#6A4B22;
+
+  /* =================== WHITE LABEL =================== */
+  /* O cliente troca só estes 4. marca.js calcula --marca-txt e --marca-forte
+     e desloca a cor se ela ficar perto de uma cor de estado (ΔE < 18).
+     Onde a marca ENTRA: ladrilho do logo no trilho, botão principal, topo do portal,
+     aba ativa do portal, link "Voltar ao site". Onde NUNCA entra: estado, contador,
+     etiqueta, bolha de conversa, foco, seleção, gráfico, carimbo, alerta. */
+  --marca:#23408E;          /* padrão GACO = carbono 700 quando o cliente não definiu */
+  --marca-txt:#FFFFFF;      /* texto sobre a marca: 4,5:1 garantido */
+  --marca-forte:#1B3172;    /* hover/pressionado do botão principal */
+  --marca-suave:#E8ECF6;    /* só no portal: fundo do cabeçalho secundário */
+
+  /* =================== TIPOGRAFIA =================== */
+  --fonte-ui:"Schibsted Grotesk","Helvetica Neue",Arial,system-ui,sans-serif;
+  --fonte-doc:"Source Serif 4",Georgia,"Times New Roman",serif;   /* SÓ título de página, título de registro, documento gerado */
+  --fonte-cod:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace; /* SÓ código e identificador técnico */
+  --num:tabular-nums lining-nums;
+
+  /* escala: tamanho / altura de linha / peso / tracking */
+  --t-display-tam:40px;  --t-display-alt:44px;  --t-display-peso:600; --t-display-trk:-0.012em;   /* serifa, documento gerado */
+  --t-pagina-tam:28px;   --t-pagina-alt:34px;   --t-pagina-peso:600;  --t-pagina-trk:-0.008em;   /* serifa */
+  --t-registro-tam:24px; --t-registro-alt:30px; --t-registro-peso:600;--t-registro-trk:-0.005em;  /* serifa */
+  --t-secao-tam:17px;    --t-secao-alt:24px;    --t-secao-peso:600;   --t-secao-trk:-0.002em;
+  --t-subsecao-tam:15px; --t-subsecao-alt:22px; --t-subsecao-peso:600;--t-subsecao-trk:0;
+  --t-corpo-tam:14px;    --t-corpo-alt:21px;    --t-corpo-peso:400;   --t-corpo-trk:0;
+  --t-pequeno-tam:13px;  --t-pequeno-alt:19px;  --t-pequeno-peso:400; --t-pequeno-trk:0;
+  --t-rotulo-tam:13px;   --t-rotulo-alt:18px;   --t-rotulo-peso:500;  --t-rotulo-trk:0.002em;
+  --t-legenda-tam:12px;  --t-legenda-alt:16px;  --t-legenda-peso:400; --t-legenda-trk:0.005em;
+  --t-dado-tam:13.5px;   --t-dado-alt:20px;     --t-dado-peso:400;    --t-dado-trk:0;           /* tabular */
+  --t-codigo-tam:12.5px; --t-codigo-alt:18px;   --t-codigo-peso:400;  --t-codigo-trk:0;
+
+  --t-display:var(--t-display-peso) var(--t-display-tam)/var(--t-display-alt) var(--fonte-doc);
+  --t-pagina:var(--t-pagina-peso) var(--t-pagina-tam)/var(--t-pagina-alt) var(--fonte-doc);
+  --t-registro:var(--t-registro-peso) var(--t-registro-tam)/var(--t-registro-alt) var(--fonte-doc);
+  --t-secao:var(--t-secao-peso) var(--t-secao-tam)/var(--t-secao-alt) var(--fonte-ui);
+  --t-subsecao:var(--t-subsecao-peso) var(--t-subsecao-tam)/var(--t-subsecao-alt) var(--fonte-ui);
+  --t-corpo:var(--t-corpo-peso) var(--t-corpo-tam)/var(--t-corpo-alt) var(--fonte-ui);
+  --t-pequeno:var(--t-pequeno-peso) var(--t-pequeno-tam)/var(--t-pequeno-alt) var(--fonte-ui);
+  --t-rotulo:var(--t-rotulo-peso) var(--t-rotulo-tam)/var(--t-rotulo-alt) var(--fonte-ui);
+  --t-legenda:var(--t-legenda-peso) var(--t-legenda-tam)/var(--t-legenda-alt) var(--fonte-ui);
+  --t-dado:var(--t-dado-peso) var(--t-dado-tam)/var(--t-dado-alt) var(--fonte-ui);
+  --t-codigo:var(--t-codigo-peso) var(--t-codigo-tam)/var(--t-codigo-alt) var(--fonte-cod);
+  --medida-leitura:68ch;   /* linha de leitura máxima */
+
+  /* =================== ESPAÇO (base 4) =================== */
+  --esp-0:0; --esp-1:2px; --esp-2:4px; --esp-3:8px; --esp-4:12px; --esp-5:16px; --esp-6:20px;
+  --esp-7:24px; --esp-8:32px; --esp-9:40px; --esp-10:48px; --esp-11:64px; --esp-12:80px;
+  /* uso: 2–8 dentro do componente · 12–24 entre peças · 32–64 entre regiões */
+
+  /* =================== GRADE E CONTÊINERES =================== */
+  --grade-colunas:12; --grade-calha:24px; --grade-margem:32px;  /* ≥1440 (redefinido por breakpoint abaixo) */
+  --cont-leitura:680px;    /* texto corrido, comunicado, artigo */
+  --cont-form:760px;       /* página de edição, formulário longo */
+  --cont-publico:600px;    /* página pública, e-mail */
+  --cont-pagina:1280px;    /* conteúdo de lista e painel */
+  --cont-largo:1520px;     /* documentação e telas de 3 colunas */
+  --larg-modal:560px; --larg-modal-largo:760px; --larg-painel:480px; --larg-busca:640px;
+  --larg-menu:240px; --larg-popover-min:240px; --larg-popover-max:420px; --larg-gaveta:300px;
+  --larg-coluna-kanban:280px; --larg-lateral:320px;
+
+  /* =================== MOLDURA =================== */
+  --trilho-larg:72px; --trilho-larg-tablet:56px; --barra-modulo-alt:52px; --trilha-alt:36px;
+  --barra-inferior-alt:60px; --faixa-contexto-alt:36px; --barra-salvar-alt:60px;
+
+  /* =================== RAIO =================== */
+  --raio-0:0;       /* tabela, faixa, progresso, esqueleto, barra de etapas */
+  --raio-1:2px;     /* etiqueta, estado em caixa, caixa de marcar, contador, carimbo */
+  --raio-2:3px;     /* botão, campo, segmentado, chip de filtro */
+  --raio-3:4px;     /* caixa, cartão, menu, popover, toast, bolha */
+  --raio-4:6px;     /* modal, painel lateral, folha inferior */
+  --raio-pessoa:50%;/* só avatar de pessoa, ponto de presença, girador */
+
+  /* =================== BORDA =================== */
+  --borda-1:1px solid var(--filete);
+  --borda-2:1px solid var(--filete-forte);
+  --borda-controle-def:1px solid var(--borda-controle);
+  --borda-dupla:3px double;    /* carimbo e dupla sublinha */
+  --borda-marcador:3px;        /* item atual, alerta inline, barra de salvar */
+
+  /* =================== SOMBRA — só o que flutua de verdade =================== */
+  --sombra-flutuante:0 1px 2px rgba(27,32,35,.10), 0 8px 24px rgba(27,32,35,.14);
+  --sombra-nenhuma:none;
+
+  /* =================== CAMADAS =================== */
+  --z-base:0; --z-fixo:10; --z-barra-salvar:20; --z-moldura:30; --z-menu:40; --z-painel:50;
+  --z-modal:60; --z-toast:70; --z-dica:80; --z-faixa-contexto:90;
+
+  /* =================== MOVIMENTO =================== */
+  --mov-instante:80ms; --mov-curto:120ms; --mov-medio:180ms; --mov-longo:240ms; --mov-toast:5000ms;
+  --curva-entrar:cubic-bezier(0,0,.2,1); --curva-sair:cubic-bezier(.4,0,1,1); --curva-mover:cubic-bezier(.4,0,.2,1);
+
+  /* =================== BREAKPOINTS (documentação: @media não lê var) ===================
+     celular < 640 · tablet 640–899 · notebook 900–1279 · desktop 1280–1439 · largo ≥ 1440 */
+  --bp-celular:640px; --bp-tablet:900px; --bp-notebook:1280px; --bp-desktop:1440px;
+
+  /* =================== DENSIDADE (padrão) =================== */
+  --linha-alt:44px; --controle-alt:28px; --campo-alt:36px; --btn-alt:32px; --btn-alt-p:28px; --btn-alt-g:40px;
+  --celula-px:12px; --campo-px:10px; --btn-px:12px; --menu-item-alt:34px; --dens-corpo:var(--t-corpo-tam);
+
+  color-scheme:light;
+}
+
+/* =================== 2. PAPÉIS — TEMA CLARO (também em .lc-tema-claro, para amostras lado a lado) =================== */
+:root,.lc-tema-claro{
+  --fundo:var(--cor-papel-100);          /* #F2F4F1 papel */
+  --sup-1:var(--cor-branco);             /* folha: painéis, tabelas, campos */
+  --sup-2:var(--cor-papel-50);           /* pauta alternada, hover de linha, cabeçalho de grupo */
+  --sup-3:var(--cor-papel-200);          /* poço: trilho de progresso, esqueleto, fundo de código */
+  --filete:var(--cor-papel-200);         /* divisória entre linhas e blocos (decorativa) */
+  --filete-forte:var(--cor-papel-300);   /* contorno de superfície */
+  --borda-controle:#858E89;              /* contorno de campo e caixa de marcar: 3,4:1 na folha (WCAG 1.4.11) */
+  --borda-controle-hover:var(--cor-papel-600);
+  --texto-1:var(--cor-papel-900);        /* 14,9:1 no papel */
+  --texto-2:var(--cor-papel-700);        /* 7,5:1 */
+  --texto-3:var(--cor-papel-600);        /* 5,1:1 — mínimo para texto */
+  --texto-desab:var(--cor-papel-500);    /* 3,3:1 — só desabilitado (isento) */
+  --texto-inverso:var(--cor-branco);
+  --link:var(--cor-carbono-700);         /* 8,6:1 */
+  --link-hover:var(--cor-carbono-800);
+  --foco:var(--cor-carbono-600);         /* anel 2px, 7,1:1 */
+  --foco-anel:0 0 0 2px var(--sup-1), 0 0 0 4px var(--foco);
+  --selecao:var(--cor-carbono-50);       /* linha selecionada, item de menu realçado */
+  --selecao-forte:var(--cor-carbono-100);
+  --selecao-texto:var(--cor-carbono-800);
+  --atual:var(--cor-carbono-700);        /* marcador do item atual (trilho, aba, menu) */
+  --texto-selecionado:var(--cor-carbono-100); /* ::selection */
+
+  /* Estados: fundo · borda · texto · ponto. Sempre com palavra além da cor. */
+  --sucesso-fundo:var(--cor-verde-50);   --sucesso-borda:var(--cor-verde-200); --sucesso-texto:var(--cor-verde-600); --sucesso-ponto:var(--cor-verde-500);
+  --aviso-fundo:var(--cor-ambar-50);     --aviso-borda:var(--cor-ambar-200);   --aviso-texto:var(--cor-ambar-600);   --aviso-ponto:var(--cor-ambar-400);
+  --perigo-fundo:var(--cor-estorno-50);  --perigo-borda:var(--cor-estorno-200);--perigo-texto:var(--cor-estorno-600);--perigo-ponto:var(--cor-estorno-500);
+  --info-fundo:var(--cor-ardosia-50);    --info-borda:var(--cor-ardosia-200);  --info-texto:var(--cor-ardosia-600);  --info-ponto:var(--cor-ardosia-500);
+  --andamento-fundo:var(--cor-carbono-50);--andamento-borda:var(--cor-carbono-200);--andamento-texto:var(--cor-carbono-700);--andamento-ponto:var(--cor-carbono-500);
+  --neutro-fundo:var(--cor-papel-50);    --neutro-borda:var(--cor-papel-300);  --neutro-texto:var(--cor-papel-700);  --neutro-ponto:var(--cor-papel-500);
+
+  /* Ações de perigo (botão Excluir) */
+  --perigo-acao:var(--cor-estorno-600); --perigo-acao-forte:var(--cor-estorno-700);
+
+  /* Contador (nunca na cor do cliente) */
+  --contador-fundo:var(--cor-carbono-700); --contador-texto:var(--cor-branco);
+  --contador-alerta-fundo:var(--cor-estorno-600);
+
+  /* Peças especiais */
+  --nota-fundo:var(--cor-nota-claro); --nota-borda:var(--cor-nota-borda); --nota-texto:var(--cor-ambar-700);
+  --conversa-fundo:#E9ECE7;                       /* fundo da área de mensagens: papel um tom abaixo */
+  --bolha-recebida:var(--cor-branco); --bolha-recebida-borda:var(--cor-papel-200);
+  --bolha-enviada:#E6EBF5;                         /* carbono 7% — nunca a cor do cliente */
+  --bolha-enviada-borda:#CAD3E8;
+  --sobreposicao:rgba(27,32,35,.44);               /* atrás de modal, painel e folha */
+  --carimbo-tinta:var(--cor-verde-600);
+  --dupla-sublinha:var(--texto-1);
+  --esqueleto:var(--cor-papel-200); --esqueleto-brilho:var(--cor-papel-50);
+  --presenca-on:#2E8B57; --presenca-reuniao:#C98A12; --presenca-ocupado:#B42318; --presenca-off:var(--cor-papel-500);
+  --grafico-1:var(--cor-carbono-600); --grafico-2:var(--cor-verde-500); --grafico-3:var(--cor-ambar-400);
+  --grafico-4:var(--cor-ardosia-400); --grafico-5:var(--cor-estorno-400); --grafico-6:var(--cor-papel-500);
+  --codigo-fundo:var(--cor-papel-50);
+
+  color-scheme:light;
+}
+
+/* ---------- Densidades: preferência da pessoa, igual em todos os módulos ---------- */
+[data-densidade="compacta"]{
+  --linha-alt:36px; --controle-alt:24px; --campo-alt:30px; --btn-alt:28px; --btn-alt-p:24px; --btn-alt-g:36px;
+  --celula-px:10px; --campo-px:8px; --btn-px:10px; --menu-item-alt:30px; --dens-corpo:13.5px;
+}
+[data-densidade="confortavel"]{
+  --linha-alt:52px; --controle-alt:32px; --campo-alt:44px; --btn-alt:40px; --btn-alt-p:32px; --btn-alt-g:48px;
+  --celula-px:14px; --campo-px:12px; --btn-px:16px; --menu-item-alt:40px; --dens-corpo:15px;
+}
+
+/* ---------- Grade por breakpoint ---------- */
+@media (max-width:1439px){ :root{--grade-calha:24px; --grade-margem:28px} }
+@media (max-width:1279px){ :root{--grade-calha:16px; --grade-margem:24px} }
+@media (max-width:899px){  :root{--grade-colunas:8; --grade-calha:16px; --grade-margem:24px} }
+@media (max-width:639px){
+  :root{--grade-colunas:4; --grade-calha:16px; --grade-margem:16px;
+    --t-display-tam:30px; --t-display-alt:36px; --t-pagina-tam:22px; --t-pagina-alt:28px;
+    --t-registro-tam:20px; --t-registro-alt:26px; --t-secao-tam:16px; --t-secao-alt:22px}
+}
+/* Toque: alvo mínimo 44 px, campos 16 px (sem zoom no iOS) */
+@media (pointer:coarse){
+  :root{--btn-alt:44px; --campo-alt:44px; --controle-alt:36px; --menu-item-alt:44px}
+}
+
+/* =================== TEMA ESCURO =================== */
+/* "O livro à noite": grafite esverdeado, nunca preto azulado com neon. */
+:root[data-tema="escuro"],.lc-tema-escuro{
+  --fundo:#151918; --sup-1:#1B201E; --sup-2:#212725; --sup-3:#283030;
+  --filete:#2C3331; --filete-forte:#39423F; --borda-controle:#6A746F; --borda-controle-hover:#8A948F;
+  --texto-1:#E4E8E5; --texto-2:#AAB3AE; --texto-3:#8F9994; --texto-desab:#646E69; --texto-inverso:#151918;
+  --link:#A9BCF0; --link-hover:#C7D3F5; --foco:#A9BCF0;
+  --selecao:#1F2A3F; --selecao-forte:#26345080; --selecao-texto:#C7D3F5; --atual:#A9BCF0; --texto-selecionado:#2A3A60;
+  --sucesso-fundo:#18291F; --sucesso-borda:#2B4E3A; --sucesso-texto:#7CC79E; --sucesso-ponto:#5FB386;
+  --aviso-fundo:#2B2416;   --aviso-borda:#5A4720;   --aviso-texto:#E6B35E;   --aviso-ponto:#D9A040;
+  --perigo-fundo:#2E1C1A;  --perigo-borda:#5E2F2A;  --perigo-texto:#F28B80;  --perigo-ponto:#E8685B;
+  --info-fundo:#1C2631;    --info-borda:#334A5F;    --info-texto:#A1BBD2;    --info-ponto:#86A3BE;
+  --andamento-fundo:#1D2540;--andamento-borda:#34457A;--andamento-texto:#A9BCF0;--andamento-ponto:#8DA5E6;
+  --neutro-fundo:#212725;  --neutro-borda:#39423F;  --neutro-texto:#AAB3AE;  --neutro-ponto:#7E8883;
+  --perigo-acao:#D9473A; --perigo-acao-forte:#E8685B;
+  --contador-fundo:#A9BCF0; --contador-texto:#151918; --contador-alerta-fundo:#F28B80;
+  --nota-fundo:var(--cor-nota-escuro); --nota-borda:var(--cor-nota-borda-escuro); --nota-texto:#E6C770;
+  --conversa-fundo:#121615; --bolha-recebida:#1F2523; --bolha-recebida-borda:#2C3331;
+  --bolha-enviada:#1F2940; --bolha-enviada-borda:#2F3D5E;
+  --sobreposicao:rgba(5,8,7,.62);
+  --carimbo-tinta:#7CC79E; --dupla-sublinha:var(--texto-1);
+  --esqueleto:#262D2B; --esqueleto-brilho:#2E3633;
+  --presenca-on:#4FB07A; --presenca-reuniao:#D9A040; --presenca-ocupado:#E8685B; --presenca-off:#7E8883;
+  --grafico-1:#8DA5E6; --grafico-2:#5FB386; --grafico-3:#D9A040; --grafico-4:#86A3BE; --grafico-5:#E8685B; --grafico-6:#7E8883;
+  --codigo-fundo:#212725;
+  --marca-suave:#1F2733;
+  --sombra-flutuante:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.5);
+  --et-1-f:#22302F; --et-1-t:#A7C5CC;  --et-2-f:#2E2620; --et-2-t:#D6B99C;
+  --et-3-f:#1F2C25; --et-3-t:#A9CDB8;  --et-4-f:#2F2228; --et-4-t:#DDAAB9;
+  --et-5-f:#262436; --et-5-t:#BDB5E6;  --et-6-f:#2A2A1E; --et-6-t:#CFCB95;
+  --et-7-f:#1F2934; --et-7-t:#A9C3DB;  --et-8-f:#2F281C; --et-8-t:#DDBF8E;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:dark){
+  :root[data-tema="sistema"]{
+    --fundo:#151918; --sup-1:#1B201E; --sup-2:#212725; --sup-3:#283030;
+    --filete:#2C3331; --filete-forte:#39423F; --borda-controle:#6A746F; --borda-controle-hover:#8A948F;
+    --texto-1:#E4E8E5; --texto-2:#AAB3AE; --texto-3:#8F9994; --texto-desab:#646E69; --texto-inverso:#151918;
+    --link:#A9BCF0; --link-hover:#C7D3F5; --foco:#A9BCF0;
+    --selecao:#1F2A3F; --selecao-forte:#26345080; --selecao-texto:#C7D3F5; --atual:#A9BCF0; --texto-selecionado:#2A3A60;
+    --sucesso-fundo:#18291F; --sucesso-borda:#2B4E3A; --sucesso-texto:#7CC79E; --sucesso-ponto:#5FB386;
+    --aviso-fundo:#2B2416; --aviso-borda:#5A4720; --aviso-texto:#E6B35E; --aviso-ponto:#D9A040;
+    --perigo-fundo:#2E1C1A; --perigo-borda:#5E2F2A; --perigo-texto:#F28B80; --perigo-ponto:#E8685B;
+    --info-fundo:#1C2631; --info-borda:#334A5F; --info-texto:#A1BBD2; --info-ponto:#86A3BE;
+    --andamento-fundo:#1D2540; --andamento-borda:#34457A; --andamento-texto:#A9BCF0; --andamento-ponto:#8DA5E6;
+    --neutro-fundo:#212725; --neutro-borda:#39423F; --neutro-texto:#AAB3AE; --neutro-ponto:#7E8883;
+    --perigo-acao:#D9473A; --perigo-acao-forte:#E8685B;
+    --contador-fundo:#A9BCF0; --contador-texto:#151918; --contador-alerta-fundo:#F28B80;
+    --nota-fundo:var(--cor-nota-escuro); --nota-borda:var(--cor-nota-borda-escuro); --nota-texto:#E6C770;
+    --conversa-fundo:#121615; --bolha-recebida:#1F2523; --bolha-recebida-borda:#2C3331;
+    --bolha-enviada:#1F2940; --bolha-enviada-borda:#2F3D5E; --sobreposicao:rgba(5,8,7,.62);
+    --carimbo-tinta:#7CC79E; --esqueleto:#262D2B; --esqueleto-brilho:#2E3633;
+    --presenca-on:#4FB07A; --presenca-reuniao:#D9A040; --presenca-ocupado:#E8685B; --presenca-off:#7E8883;
+    --grafico-1:#8DA5E6; --grafico-2:#5FB386; --grafico-3:#D9A040; --grafico-4:#86A3BE; --grafico-5:#E8685B; --grafico-6:#7E8883;
+    --codigo-fundo:#212725; --marca-suave:#1F2733;
+    --sombra-flutuante:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.5);
+    color-scheme:dark;
+  }
+}
+
+/* Reduzir movimento: zera as durações num lugar só */
+@media (prefers-reduced-motion:reduce){
+  :root{--mov-instante:0ms; --mov-curto:0ms; --mov-medio:0ms; --mov-longo:0ms}
+}
+
+/* Amostra de tema dentro da página (documentação): repinta o próprio bloco */
+.lc-tema-claro,.lc-tema-escuro{background:var(--fundo);color:var(--texto-1)}
+/* Marca padrão no escuro quando marca.js não estiver carregado */
+:root[data-tema="escuro"]:not([style*="--marca"]){--marca:#4A68B8;--marca-forte:#5D7BD0;--marca-txt:#FFFFFF}

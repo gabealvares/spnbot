@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iconografia V1 Livro-Caixa</title>
+<meta name="description" content="Todos os ícones da V1 Livro-Caixa por família, em 16, 20 e 24 px, nos dois temas, com mapa por módulo e receita.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/doc.css">
+<script src="sistema/marca.js"></script>
+</head>
+<body>
+<a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="lc-doc-cab">
+  <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
+  <nav aria-label="Documentação"><a href="00-fundamentos.html">Fundamentos</a><a href="01-iconografia.html" aria-current="page">Iconografia</a><a href="02-navegacao.html">Navegação</a><a href="exemplo-moldura.html">Exemplo de tela</a></nav>
+  <div class="lc-doc-cab__fim"><div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div></div>
+</header>
+<div class="lc-doc">
+<nav class="lc-doc-indice" aria-label="Nesta página"><ol></ol></nav>
+<main id="conteudo" class="lc-doc-conteudo">
+<header>
+  <h1>Iconografia</h1>
+  <p class="lc-doc-lede">Um conjunto, uma receita: traço de 1,5 px numa caixa de 24, ponta e junção quadradas, sem preenchimento, cor herdada do texto. O desenho parte dos signos que o mercado já ensinou (a base é o Lucide, licença ISC) e o acabamento quadrado é do GACO. O que o mercado não tem para condomínio (unidade, elevador, rateio, boleto, bloco, portão, fração ideal) foi desenhado na mesma grade.</p>
+  <p class="lc-doc-p" style="margin-top:12px" id="total"></p>
+</header>
+
+<section class="lc-doc-sec" id="regras">
+  <h2>Regras de uso</h2>
+  <ul class="lc-doc-regras">
+    <li><b>Um objeto, um signo.</b> Estrela é favorito em todo o sistema; alfinete é fixar; sino é notificação; balão é conversa; bilhete é chamado. Nenhum ícone tem dois sentidos.</li>
+    <li><b>Nome pelo objeto, em português</b>: <code>boleto</code>, <code>vaga</code>, <code>portaria</code>, não <code>icon-payment</code>. O nome do módulo vem por <code>LC_ICONE_MODULO</code> (o ícone do CS é <code>relacionamento</code>).</li>
+    <li><b>Tamanhos</b>: 16 em linha de texto, botão pequeno e tabela; 20 em botão, menu e campo; 22 no trilho; 24 em estado vazio e cabeçalho de seção. Abaixo de 16 só o 12 de fechar etiqueta.</li>
+    <li><b>Ícone sozinho tem nome</b>: botão só ícone leva <code>aria-label</code> e dica. Ícone ao lado de texto é decorativo (<code>aria-hidden</code>, que <code>lcIcone</code> já põe).</li>
+    <li><b>Cor</b>: herda o texto. Cor de estado só quando o ícone acompanha o estado (alerta, tique de lida, prazo vencido).</li>
+    <li><b>Estado ativo não enche o ícone</b>: no trilho, o ativo ganha marcador, traço 1,9 e rótulo em negrito. A exceção é a estrela de favorito marcada.</li>
+    <li><b>Sem emoji, sem logo de terceiro</b>: o canal WhatsApp aparece como texto "WhatsApp" ao lado de <code>conversa</code>; o Pix como <code>pix-copia-e-cola</code>.</li>
+  </ul>
+  <p class="lc-doc-decisao">Resolvemos fazer assim porque o Linear, o shadcn/ui e boa parte das SaaS recentes usam o desenho do Lucide, e o Teams e o Google mostram que a pessoa reconhece a metáfora (clipe, sino, check duplo), não o traço. O acabamento quadrado mantém a decisão de 25/09 sobre o kit do GACO. Enviamos para aprovação.</p>
+</section>
+
+<section class="lc-doc-sec" id="conjunto">
+  <h2>Conjunto completo</h2>
+  <p>Cada célula mostra o ícone em 24, 20 e 16 px e o nome que vai no código. Filtre pelo nome.</p>
+  <div class="lc-linha" style="margin:8px 0 16px"><label class="lc-busca" style="width:320px"><i data-i="pesquisar"></i><input type="search" id="filtro" placeholder="Filtrar ícones, por exemplo boleto" aria-label="Filtrar ícones"></label><span class="lc-legenda" id="contagem" aria-live="polite"></span></div>
+  <div id="familias"></div>
+</section>
+
+<section class="lc-doc-sec" id="temas">
+  <h2>Nos dois temas</h2>
+  <p>Todos os ícones a 20 px, sobre a folha clara e sobre a superfície escura. O traço de 1,5 continua legível no escuro porque a tinta clara (#E4E8E5) tem 13:1.</p>
+  <div class="lc-doc-quadro"><div class="lc-doc-dois">
+    <div class="lc-tema-claro"><p class="lc-legenda">Claro</p><div class="lc-doc-icones lc-doc-icones--mini" id="mini-claro"></div></div>
+    <div class="lc-tema-escuro"><p class="lc-legenda">Escuro</p><div class="lc-doc-icones lc-doc-icones--mini" id="mini-escuro"></div></div>
+  </div></div>
+</section>
+
+<section class="lc-doc-sec" id="modulos">
+  <h2>Mapa por módulo</h2>
+  <p>Um ícone por módulo, com o signo consagrado. Aparece no trilho, na gaveta, no ⌘K e na notificação.</p>
+  <div class="lc-tabela-cont"><table class="lc-tabela"><thead><tr><th scope="col">Módulo</th><th scope="col">Ícone</th><th scope="col">Nome</th><th scope="col">Signo e onde a pessoa já viu</th></tr></thead><tbody id="mapa-mod"></tbody></table></div>
+</section>
+
+<section class="lc-doc-sec" id="contextos">
+  <h2>Mapa por contexto</h2>
+  <div class="lc-tabela-cont"><table class="lc-tabela"><thead><tr><th scope="col">Contexto</th><th scope="col">Ícones que mais aparecem</th></tr></thead><tbody id="mapa-ctx"></tbody></table></div>
+</section>
+
+<section class="lc-doc-sec" id="receita">
+  <h2>Receita para um ícone novo</h2>
+  <div class="lc-doc-quadro"><div class="lc-doc-dois">
+    <div>
+      <svg viewBox="0 0 24 24" width="288" height="288" style="max-width:100%;height:auto;color:var(--texto-1)" aria-label="Grade de construção de ícone com o desenho do elevador" role="img">
+        <g fill="none" stroke="var(--filete)" stroke-width=".05">
+          <path d="M0 0h24v24H0z"/>
+          <path d="M1 0v24M2 0v24M3 0v24M4 0v24M5 0v24M6 0v24M7 0v24M8 0v24M9 0v24M10 0v24M11 0v24M12 0v24M13 0v24M14 0v24M15 0v24M16 0v24M17 0v24M18 0v24M19 0v24M20 0v24M21 0v24M22 0v24M23 0v24M0 1h24M0 2h24M0 3h24M0 4h24M0 5h24M0 6h24M0 7h24M0 8h24M0 9h24M0 10h24M0 11h24M0 12h24M0 13h24M0 14h24M0 15h24M0 16h24M0 17h24M0 18h24M0 19h24M0 20h24M0 21h24M0 22h24M0 23h24"/>
+        </g>
+        <path d="M2 2h20v20H2z" fill="none" stroke="var(--andamento-ponto)" stroke-width=".08" stroke-dasharray=".3 .3"/>
+        <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M4 2.5h16v19H4z"/><path d="M8.5 9.5 12 6l3.5 3.5"/><path d="M8.5 14.5 12 18l3.5-3.5"/></g>
+      </svg>
+      <p class="lc-legenda">Grade de 24, área útil tracejada de 2 a 22, desenho do <code>elevador</code>.</p>
+    </div>
+    <div>
+      <ol class="lc-doc-regras">
+        <li>Procure antes: o signo que o mercado usa (Lucide, depois Tabler). Se existir, use o desenho e dê o nome em português pelo objeto.</li>
+        <li>Desenhe em <code>viewBox="0 0 24 24"</code>, dentro da área de 2 a 22. De 2 a 4 formas. Pontas em coordenadas inteiras ou ,5 para o traço cair no pixel.</li>
+        <li>Só traço: <code>fill="none"</code>, <code>stroke="currentColor"</code>, 1,5; ponta <code>square</code>, junção <code>miter</code>. Retângulo sem raio; círculo só quando o objeto é redondo (moeda, relógio, pessoa).</li>
+        <li>Teste a 16 e a 20, nos dois temas, ao lado de três vizinhos da mesma família.</li>
+        <li>Acrescente em <code>CUSTOM</code> e na família certa do gerador, rode o gerador e confira que ele não acusou geometria repetida (um objeto, um signo).</li>
+        <li>Documente aqui. Ícone feito na receita entra aprovado; fora dela, volta para o dono.</li>
+      </ol>
+<pre style="background:var(--codigo-fundo);border:var(--borda-1);padding:12px;overflow:auto;font:var(--t-codigo)">// no HTML
+&lt;i data-i="boleto"&gt;&lt;/i&gt;
+&lt;button class="lc-btn lc-btn--icone" aria-label="Fixar"&gt;&lt;i data-i="fixar"&gt;&lt;/i&gt;&lt;/button&gt;
+// no JS
+el.innerHTML = lcIcone("rateio", "lc-ic--16");
+el.innerHTML = lcIcone("aviso", "", "Atenção"); // com nome</pre>
+    </div>
+  </div></div>
+</section>
+</main>
+</div>
+<script src="sistema/icones.js"></script>
+<script src="sistema/doc.js"></script>
+<script>
+(function(){
+var I=window.LC_ICONES, F=window.LC_ICONE_FAMILIAS, M=window.LC_ICONE_MODULO, ic=window.lcIcone;
+document.getElementById("total").textContent = Object.keys(I).length+" ícones em "+Object.keys(F).length+" famílias.";
+var h=""; Object.keys(F).forEach(function(fam){
+  h += '<h3 data-fam>'+fam+' <span class="lc-contagem">'+F[fam].length+'</span></h3><div class="lc-doc-icones">';
+  F[fam].forEach(function(n){ h += '<div class="lc-doc-icone" data-nome="'+n+'"><span class="lc-doc-icone__tam">'+ic(n,"lc-ic--24")+ic(n,"lc-ic--20")+ic(n,"lc-ic--16")+'</span><code>'+n+'</code></div>'; });
+  h += '</div>';
+});
+document.getElementById("familias").innerHTML=h;
+var todos = Object.keys(I).map(function(n){return '<span title="'+n+'">'+ic(n,"",n)+'</span>';}).join("");
+document.getElementById("mini-claro").innerHTML=todos; document.getElementById("mini-escuro").innerHTML=todos;
+var cont=document.getElementById("contagem");
+document.getElementById("filtro").addEventListener("input",function(e){
+  var q=e.target.value.trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,""), n=0;
+  document.querySelectorAll(".lc-doc-icone").forEach(function(c){ var ok=!q||c.getAttribute("data-nome").indexOf(q)>-1; c.hidden=!ok; if(ok) n++; });
+  document.querySelectorAll("[data-fam]").forEach(function(t){ var g=t.nextElementSibling; var vis=g.querySelectorAll(".lc-doc-icone:not([hidden])").length; t.hidden=!vis; g.hidden=!vis; });
+  cont.textContent = q? n+" ícones encontrados" : "";
+});
+var MOD=[["inicio","Início","Casa: Teams, Asana, Canvas"],["suporte","Suporte","Fone com microfone: central de atendimento, Zendesk"],["comercial","Comercial","Aperto de mãos: negócio fechado, Pipedrive"],["cs","CS","Mão e coração: relacionamento, HubSpot"],
+ ["projetos","Projetos","Quadro kanban: Trello, Asana"],["operacoes","Operações","Chave inglesa: manutenção, CMMS"],["financeiro","Financeiro","Carteira: Conta Azul, apps de banco"],["marketing","Marketing","Megafone: campanha, RD Station"],
+ ["produto","Produto","Caixa: pacote de produto"],["desenvolvimento","Desenvolvimento","Código: GitHub, Jira"],["academy","Academy","Capelo: faculdade, Canvas, Moodle"],["cultura","Cultura","Pessoas: LinkedIn, Feedz"],
+ ["relatorios","Relatórios","Gráfico de colunas: Excel, Power BI"],["configuracao","Configuração","Engrenagem: universal"],["plataforma","Plataforma (superadmin)","Servidor com engrenagem"],["portal","Portal do cliente","Prédio: o condomínio"]];
+document.getElementById("mapa-mod").innerHTML = MOD.map(function(m){ return '<tr><td><b>'+m[1]+'</b></td><td>'+ic(M[m[0]],"lc-ic--24")+'</td><td><code>'+M[m[0]]+'</code></td><td>'+m[2]+'</td></tr>'; }).join("");
+var CTX=[["Moldura",["casa","estrela","recentes","pesquisar","sino","ajuda","conta","menu","recolher-trilho","configuracoes","trocar-cliente"]],
+ ["Conversa do Suporte",["anexo","microfone","enviar","responder","encaminhar","resposta-rapida","nota-interna","fixar","arquivar","enviando","confirmar","lida","erro"]],
+ ["Registro (CS, Comercial)",["estrela","editar","mais-opcoes","seta-esquerda","seta-direita","reuniao","email","ligacao","auditoria","contrato","assinatura"]],
+ ["Financeiro",["boleto","boleto-vencido","pix-copia-e-cola","rateio","fundo-de-reserva","extrato","conciliacao","recibo","nota-fiscal","contas-a-receber","contas-a-pagar"]],
+ ["Portal do morador e síndico",["condominio","unidade","boleto","reserva","salao-de-festas","piscina","academia","chamado-pelo-portal","encomenda","visitante","assembleia","comunicado"]],
+ ["Operações",["ordem-de-servico","preventiva","corretiva","equipamento","elevador","portao","vazamento","eletrica","checklist","fornecedor"]],
+ ["Academy",["capelo","curso","disciplina","turma","aula","atividade","prova","boletim","frequencia","certificado","biblioteca","forum"]],
+ ["Mural e Cultura",["curtir","parabens","amei","genial","apoio","aniversario","reconhecimento","comunicado","ferias","pdi"]],
+ ["Superadmin",["plataforma","sessao","conjunto-de-predios","homologacao","auditoria","permissao","dois-fatores","backup"]],
+ ["Estados de demanda (Linear)",["backlog","a-fazer","em-andamento","feito","cancelado","pausado","urgente"]]];
+document.getElementById("mapa-ctx").innerHTML = CTX.map(function(c){ return '<tr><td><b>'+c[0]+'</b></td><td><span class="lc-linha" style="gap:14px">'+c[1].map(function(n){return '<span class="lc-linha" style="gap:4px" title="'+n+'">'+ic(n)+'<span class="lc-legenda">'+n+'</span></span>';}).join("")+'</span></td></tr>'; }).join("");
+})();
+</script>
+</body>
+</html>
