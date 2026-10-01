@@ -153,3 +153,22 @@ Opções do "Salvar ▾": Salvar e ir para o próximo (15 de 63, nome), Salvar e
 ## 8. Verificação antes de entregar
 
 Capturas com Playwright (`NODE_PATH=$(npm root -g)`) em 1440 e 390, claro e escuro; sem rolagem horizontal da página; foco visível; console sem erro. Use `?tema=escuro` na URL.
+
+## 9. Estado da V1 em 01/10 e extensões por frente
+
+O sumário navegável é `index.html` (158 páginas: fundação, padrões e fluxos, 17 telas de exemplo, sistema interno por módulo, portal, públicas, superadmin, celular e documentos).
+
+As frentes de produção não editaram a fundação; o que faltava ficou em arquivos `sistema/extra-*` que as próprias páginas carregam. Antes de escolher entre V1 e V2 não é preciso fundir; ao adotar a V1, fundir nesta ordem:
+
+| Arquivo | Vai para | Conteúdo |
+|---|---|---|
+| `extra-p1.css` parte A | componentes.css | rodapé de campo e contagem, variantes só-leitura e carregando, opções vazias, tabela que rola, célula com erro, carregar mais, cartões no celular, chips limpar, post fixado, etapas empilhadas no celular |
+| `extra-p1.css` parte B, `extra-p1-doc.js` | doc.css, doc.js | estados forçados (hover/foco/ativo) e amostras claro/escuro/densidade com HTML copiável |
+| `extra-p2.css`, `extra-p2.js`, `extra-p2-icones.js` | componentes.css, novo `fluxos.js`, icones.js | barra de salvar, Salvar ▾ com escolha lembrada, edição por campo/seção, sair com alteração, linha visitada, lista que lembra o lugar, layouts dos 14 modelos; ícones wifi-desligado, teclado, link-copiar, sessao-expirando |
+| `extra-p3.css`, `extra-p3.js`, `extra-p3-icones.js` | componentes.css, fluxos.js, icones.js | nota de projeto, Início, grade do atendimento e tipos de mensagem, registro em 3 colunas, NPS, metas, editor de e-mail, mestre-detalhe; quadro movido pelo teclado; ícone whatsapp |
+| `extra-p4.css`, `extra-p4.js` | componentes.css, fluxos.js | Gantt, organograma, gráfico SVG, fila de conciliação, folha de documento, certificado, player, mapa de questões, matriz de permissão, prévia de marca; total da tabela grudado só em `--alta` |
+| `extra-p5.css`, `extra-p5.js`, `extra-p5-icones.js` | componentes.css, fluxos.js, icones.js | portal (boleto, Pix, pauta, resultado, passe), páginas públicas, superadmin (uso, serviços, 90 dias), aparelho e teclado do celular, folha A4, ficha de compensação, e-mail; faixa do superadmin que quebra linha no celular |
+
+Já fundido na fundação: bordas compostas que respeitam o tema da amostra (tokens.css), seção Portaria em Operações, Conversas internas no Início, cabeçalho do portal sem "unidade · papel" e avatar conforme o papel (moldura.js).
+
+Pendências conhecidas: o ⌘K real não executa ação no Enter nem tem o grupo "Criar" (a demonstração completa está em 12-fluxos-de-navegacao); trilha e sino da moldura apontam para "#"; arrastar nos quadros é visual (o teclado funciona onde extra-p3.js está carregado); visões alternativas (quadro das OS, lista do funil e das renovações) têm o botão mas não a tela; superadmin remove a marca do cliente por script em cada página (melhor mover para a moldura); campos de data nativos aparecem em mm/dd nas capturas sem idioma pt-BR (num navegador em português saem dd/mm).
