@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conciliação bancária, Financeiro</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.cc-topo{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:end;margin-bottom:16px}
+.cc-teclas{display:flex;gap:6px 16px;flex-wrap:wrap;font:var(--t-legenda);color:var(--texto-2);margin:10px 0}
+.cc-teclas span{display:inline-flex;gap:6px;align-items:center}
+.cc-fila:focus-visible{outline:2px solid var(--foco);outline-offset:2px}
+.cc-alt{list-style:none;margin:6px 0 0;padding:0;font-size:13px}
+.cc-alt li{display:flex;gap:10px;align-items:center;padding:4px 0}
+@media (max-width:899px){.cc-topo{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-moldura='{"modulo":"financeiro","secao":"Conciliação","papel":"financeiro","usuario":{"nome":"Renata Oliveira","cargo":"Analista financeira","iniciais":"RO","cor":"lc-av--c5"},"trilha":["Conciliação","Banco Inter, setembro"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Conciliação bancária em modo fila, com confirmação em lote.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p>
+      <p>Fechar o mês do condomínio casando cada linha do extrato com um lançamento, sem planilha. O que o sistema tem certeza vai em lote; o resto passa um por um, no teclado, em menos de 3 segundos por linha.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Importa o extrato (OFX ou integração com o banco) e o sistema sugere o par de cada linha.</li>
+      <li>Alerta no topo: "18 com correspondência exata". Confirmar em lote, com desfazer.</li>
+      <li>A fila começa na primeira dúvida. Enter confirma a sugestão e desce; ↑ ↓ andam; 1, 2, 3 escolhem outra; N cria lançamento novo; P pula.</li>
+      <li>Linha confirmada fica riscada em cinza e a barra de progresso anda.</li>
+      <li>Com 146 de 146, "Fechar setembro" gera o saldo conciliado para a prestação de contas (26f).</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p>
+      <p>o Xero e o QuickBooks conciliam com "OK" por linha ao lado da sugestão, o Conta Azul e o Nibo separam o que bate exatamente e confirmam em lote, e o modo fila do Superhuman e do Gmail ("arquivar e ir para a próxima") prova que o teclado vence o mouse em tarefa repetida.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Estado</span>
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela" data-p4-estados>
+      <button type="button" data-v="dados" aria-pressed="true">Fila</button><button type="button" data-v="vazio">Mês fechado</button><button type="button" data-v="carregando">Lendo o extrato</button><button type="button" data-v="erro">Extrato com erro</button></div>
+    <span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div>
+  </div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="financeiro"></div>
+</details>
+
+<div class="lc-cab-pagina">
+  <div class="lc-cab-pagina__txt"><h1>Conciliação de setembro</h1>
+    <p class="lc-cab-pagina__desc">Cond. Parque das Águas, Banco Inter, agência 0001, conta 4812330-7. Extrato de 01/09 a 30/09, importado hoje às 07:12.</p></div>
+  <div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="enviar-arquivo"></i>Importar extrato</button><button class="lc-btn lc-btn--principal" type="button" disabled aria-describedby="cc-fechar-d">Fechar setembro</button></div>
+</div>
+<p id="cc-fechar-d" class="lc-sr">Disponível quando todas as linhas estiverem conciliadas.</p>
+
+<div data-estado="dados">
+  <div class="cc-topo">
+    <div class="lc-alerta lc-alerta--info" id="cc-lote"><i data-i="conciliacao"></i><div class="lc-alerta__corpo">
+      <span class="lc-alerta__titulo">18 linhas têm correspondência exata</span>Mesmo valor, mesma data e nosso número do boleto. São 17 pagamentos de taxa condominial e a tarifa bancária de setembro.
+      <div class="lc-alerta__acoes"><button class="lc-btn lc-btn--p" type="button" id="cc-lote-btn">Confirmar as 18</button><button class="lc-btn lc-btn--p lc-btn--discreto" type="button">Revisar antes</button></div></div></div>
+    <div><div class="lc-progresso-rot"><span>Conciliadas</span><b id="cc-cont">92 de 146</b></div><div class="lc-progresso lc-progresso--g" id="cc-barra" style="--_v:63%" role="progressbar" aria-valuemin="0" aria-valuemax="146" aria-valuenow="92" aria-label="Linhas conciliadas"></div>
+      <p class="lc-legenda" style="margin-top:6px">Diferença ainda não explicada: <b class="lc-valor-neg">− R$ 1.284,37</b></p></div>
+  </div>
+
+  <div class="lc-abas lc-abas--p" role="tablist" aria-label="Filtro da fila"><button role="tab" aria-selected="true">Pendentes <span class="lc-contagem">54</span></button><button role="tab" aria-selected="false">Conciliadas <span class="lc-contagem">92</span></button><button role="tab" aria-selected="false">Puladas <span class="lc-contagem">0</span></button></div>
+  <div class="cc-teclas" aria-label="Atalhos da fila"><span><span class="lc-tecla">Enter</span>confirma a sugestão</span><span><span class="lc-tecla">↑</span><span class="lc-tecla">↓</span>anda</span><span><span class="lc-tecla">1</span><span class="lc-tecla">2</span>escolhe outra</span><span><span class="lc-tecla">N</span>lançamento novo</span><span><span class="lc-tecla">P</span>pula</span></div>
+
+  <ol class="lc-fila cc-fila" id="cc-fila" tabindex="0" aria-label="Fila de conciliação. Enter confirma a linha atual." aria-activedescendant="f1">
+    <li class="lc-fila__item" id="f1" aria-current="true">
+      <span class="lc-fila__n">1</span>
+      <div class="lc-fila__lado"><b>PIX RECEBIDO JULIANA M PRADO</b><small>Extrato, 22/09</small><span class="lc-fila__valor lc-valor-pos">+ R$ 851,03</span></div>
+      <span class="lc-fila__liga"><i data-i="vincular"></i></span>
+      <div class="lc-fila__lado"><b>Taxa 08/2026, Bloco B, 702</b><small>Contas a receber, vencida em 10/08, atualizada</small><span class="lc-confianca" style="--_v:86%"><i></i>Parecido: valor igual, nome do pagador confere</span></div>
+      <div class="lc-fila__acoes"><button class="lc-btn lc-btn--p" type="button" data-pula>Pular</button><button class="lc-btn lc-btn--principal lc-btn--p" type="button" data-confirma>Confirmar</button></div>
+      <div class="lc-fila__alt"><span class="lc-legenda">Outras possibilidades</span><ul class="cc-alt">
+        <li><span class="lc-tecla">1</span>Taxa 09/2026, Bloco B, 702, R$ 820,40 (valor diferente em R$ 30,63)</li>
+        <li><span class="lc-tecla">2</span>Receita avulsa: multa por barulho, Bloco B, 702, R$ 851,03</li>
+        <li><span class="lc-tecla">N</span>Criar lançamento novo com este valor</li></ul></div>
+    </li>
+    <li class="lc-fila__item" id="f2">
+      <span class="lc-fila__n">2</span>
+      <div class="lc-fila__lado"><b>PAG BOLETO ELEVADORES ATLAS</b><small>Extrato, 05/09</small><span class="lc-fila__valor lc-valor-neg">− R$ 2.380,00</span></div>
+      <span class="lc-fila__liga"><i data-i="vincular"></i></span>
+      <div class="lc-fila__lado"><b>Elevadores Atlas, manutenção 09/2026</b><small>Contas a pagar, NF 47.590</small><span class="lc-confianca" style="--_v:94%"><i></i>Quase certo: valor e fornecedor</span></div>
+      <div class="lc-fila__acoes"><button class="lc-btn lc-btn--p" type="button" data-pula>Pular</button><button class="lc-btn lc-btn--p" type="button" data-confirma>Confirmar</button></div>
+    </li>
+    <li class="lc-fila__item" id="f3">
+      <span class="lc-fila__n">3</span>
+      <div class="lc-fila__lado"><b>TED ENVIADA 33.412.880/0001-07</b><small>Extrato, 12/09</small><span class="lc-fila__valor lc-valor-neg">− R$ 1.284,37</span></div>
+      <span class="lc-fila__liga"><i data-i="desvincular"></i></span>
+      <div class="lc-fila__lado"><b class="lc-cor-2">Nenhum lançamento parecido</b><small>CNPJ de Copa Limpa Produtos de Limpeza, sem conta a pagar aberta</small></div>
+      <div class="lc-fila__acoes"><button class="lc-btn lc-btn--p" type="button" data-pula>Pular</button><button class="lc-btn lc-btn--p" type="button">Criar lançamento</button></div>
+    </li>
+    <li class="lc-fila__item" id="f4">
+      <span class="lc-fila__n">4</span>
+      <div class="lc-fila__lado"><b>PIX RECEBIDO ROGERIO ANTUNES</b><small>Extrato, 09/09</small><span class="lc-fila__valor lc-valor-pos">+ R$ 820,40</span></div>
+      <span class="lc-fila__liga"><i data-i="vincular"></i></span>
+      <div class="lc-fila__lado"><b>Taxa 09/2026, Bloco A, 304</b><small>Contas a receber, Pix do boleto</small><span class="lc-confianca" style="--_v:99%"><i></i>Exato: identificador do Pix</span></div>
+      <div class="lc-fila__acoes"><button class="lc-btn lc-btn--p" type="button" data-pula>Pular</button><button class="lc-btn lc-btn--p" type="button" data-confirma>Confirmar</button></div>
+    </li>
+    <li class="lc-fila__item" id="f5">
+      <span class="lc-fila__n">5</span>
+      <div class="lc-fila__lado"><b>DEB AUT SABESP</b><small>Extrato, 06/09</small><span class="lc-fila__valor lc-valor-neg">− R$ 17.906,12</span></div>
+      <span class="lc-fila__liga"><i data-i="vincular"></i></span>
+      <div class="lc-fila__lado"><b>Sabesp, água e esgoto 08/2026</b><small>Contas a pagar, débito automático</small><span class="lc-confianca" style="--_v:94%"><i></i>Quase certo: valor e convênio</span></div>
+      <div class="lc-fila__acoes"><button class="lc-btn lc-btn--p" type="button" data-pula>Pular</button><button class="lc-btn lc-btn--p" type="button" data-confirma>Confirmar</button></div>
+    </li>
+  </ol>
+  <p class="lc-legenda" style="margin-top:8px">Mostrando 5 das 36 linhas que pedem revisão. A fila carrega as próximas ao chegar no fim.</p>
+</div>
+
+<div data-estado="vazio" hidden><div class="lc-caixa"><div class="lc-vazio lc-vazio--centro">
+  <span class="lc-ladrilho lc-ladrilho--48"><i data-i="conciliacao"></i></span>
+  <h2 class="lc-vazio__titulo">Setembro fechado</h2>
+  <p class="lc-vazio__texto">146 de 146 linhas conciliadas por Renata Oliveira em 01/10, 11:20. Saldo final conciliado: R$ 214.380,15, igual ao do banco.</p>
+  <div class="lc-grupo-btn"><button class="lc-btn" type="button">Reabrir setembro</button><a class="lc-btn lc-btn--principal" href="26f-financeiro-prestacao-de-contas.html">Gerar prestação de contas</a></div></div></div></div>
+
+<div data-estado="carregando" hidden><div class="lc-caixa"><div class="lc-caixa__corpo" style="padding-top:20px">
+  <div class="lc-progresso-rot" role="status"><span>Lendo o extrato do Banco Inter e procurando pares</span><b>linha 92 de 146</b></div><div class="lc-progresso lc-progresso--g" style="--_v:63%"></div>
+  <p class="lc-legenda" style="margin-top:8px">Pode sair desta tela. Avisamos no sino quando terminar.</p></div></div></div>
+
+<div data-estado="erro" hidden><div class="lc-alerta lc-alerta--perigo" role="alert"><i data-i="erro"></i><div class="lc-alerta__corpo">
+  <span class="lc-alerta__titulo">O extrato não fecha com o saldo do banco</span>O arquivo OFX diz saldo final R$ 214.380,15, mas a soma das linhas dá R$ 213.095,78. Falta uma linha de 12/09 (o banco costuma separar TED em dois arquivos). Nada foi conciliado.
+  <div class="lc-alerta__acoes"><button class="lc-btn lc-btn--p" type="button">Importar o arquivo que falta</button><button class="lc-btn lc-btn--p lc-btn--discreto" type="button">Buscar direto no banco</button></div></div></div></div>
+
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl>
+    <dt>Ordem de foco</dt><dd>Importar extrato, Confirmar as 18, Revisar antes, abas, a fila (um único ponto de foco; ↑ ↓ trocam a linha atual por aria-activedescendant), botões da linha atual.</dd>
+    <dt>O que é anunciado</dt><dd>Ao focar a fila: "Fila de conciliação. Enter confirma a linha atual." A cada movimento, o conteúdo da linha. Confirmar anuncia "Linha 1 conciliada, 93 de 146" (role=status). A barra de progresso tem valor numérico.</dd>
+    <dt>Nome do que é só ícone</dt><dd>O ícone de vínculo entre os lados é decorativo (o texto já diz "Parecido", "Nenhum lançamento parecido").</dd>
+  </dl>
+</details>
+</main>
+<div class="lc-sr" role="status" aria-live="polite" id="cc-voz"></div>
+
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+<script>
+(function(){
+  var fila=document.getElementById("cc-fila"), itens=[].slice.call(fila.children), i=0, feitos=92, voz=document.getElementById("cc-voz");
+  function pinta(){ itens.forEach(function(li,k){ if(k===i) li.setAttribute("aria-current","true"); else li.removeAttribute("aria-current"); }); fila.setAttribute("aria-activedescendant",itens[i].id); }
+  function conta(n){ feitos+=n; document.getElementById("cc-cont").textContent=feitos+" de 146"; var b=document.getElementById("cc-barra"); b.style.setProperty("--_v",(feitos/146*100).toFixed(1)+"%"); b.setAttribute("aria-valuenow",feitos); }
+  function proxima(){ var k=i; do{ k=(k+1)%itens.length; }while(itens[k].classList.contains("lc-fila__item--feito") && k!==i); i=k; pinta(); }
+  function confirma(){ var li=itens[i]; if(li.classList.contains("lc-fila__item--feito")||!li.querySelector("[data-confirma]")) { proxima(); return; }
+    li.classList.add("lc-fila__item--feito"); li.querySelector(".lc-fila__acoes").innerHTML='<span class="lc-estado lc-estado--sucesso">Conciliada</span>'; conta(1);
+    voz.textContent="Linha "+(i+1)+" conciliada, "+feitos+" de 146."; proxima(); }
+  fila.addEventListener("keydown",function(e){
+    if(e.key==="Enter"){ e.preventDefault(); confirma(); }
+    if(e.key==="ArrowDown"){ e.preventDefault(); i=Math.min(itens.length-1,i+1); pinta(); }
+    if(e.key==="ArrowUp"){ e.preventDefault(); i=Math.max(0,i-1); pinta(); }
+    if(e.key==="p"||e.key==="P"){ proxima(); }
+  });
+  fila.addEventListener("click",function(e){ var li=e.target.closest(".lc-fila__item"); if(!li) return; i=itens.indexOf(li); pinta();
+    if(e.target.closest("[data-confirma]")) confirma(); if(e.target.closest("[data-pula]")) proxima(); });
+  document.getElementById("cc-lote-btn").addEventListener("click",function(){ conta(18); document.getElementById("cc-lote").hidden=true; P4.toast("18 linhas conciliadas em lote.",true); fila.focus(); });
+})();
+</script>
+</body>
+</html>

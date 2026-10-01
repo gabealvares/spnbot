@@ -1,0 +1,198 @@
+/* =====================================================================
+   GACO V1 "Livro-Caixa" — extra-p1.css  (agente p1: catálogo vivo 03/04/05)
+   Parte A: peças que faltavam em componentes.css (fundir lá, na seção indicada).
+   Parte B: só documentação (fundir em doc.css): fichas, quadros por tema/densidade,
+            código copiável e estados forçados (hover/foco/ativo) para mostrar em repouso.
+   Só tokens; nada de cor solta.
+   ===================================================================== */
+
+/* ============================== A. COMPONENTES ============================== */
+
+/* [03 Campos] rodapé do campo: ajuda à esquerda, contagem de caracteres à direita */
+.lc-campo__pe{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.lc-campo__pe>.lc-ajuda,.lc-campo__pe>.lc-erro{flex:1;min-width:0}
+.lc-contagem-car{font:var(--t-legenda);color:var(--texto-3);font-variant-numeric:var(--num);white-space:nowrap}
+.lc-contagem-car[data-estouro="true"]{color:var(--perigo-texto);font-weight:600}
+/* campo carregando sem grupo (seleção que busca opções) */
+.lc-campo[aria-busy="true"] .lc-rotulo::after{content:"";width:12px;height:12px;border-radius:50%;border:2px solid var(--texto-2);border-right-color:transparent;animation:lc-gira .7s linear infinite;align-self:center}
+/* grupo em só leitura: mesma linguagem do .lc-entrada[readonly] */
+.lc-entrada-grupo[data-leitura="true"]{background:transparent;border-color:transparent;border-bottom:1px dashed var(--filete-forte);border-radius:0}
+.lc-entrada-grupo[data-leitura="true"] .lc-entrada-grupo__fixo{background:transparent;border:0;padding-left:0}
+.lc-combo[data-leitura="true"],.lc-multi[data-leitura="true"]{background:transparent;border-color:transparent;border-bottom:1px dashed var(--filete-forte);border-radius:0;padding-left:0;cursor:default}
+.lc-combo[aria-busy="true"]>.lc-ic:last-child{opacity:0}
+.lc-combo[aria-busy="true"]{position:relative}
+.lc-combo[aria-busy="true"]::after{content:"";position:absolute;right:10px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;border:2px solid var(--texto-2);border-right-color:transparent;animation:lc-gira .7s linear infinite}
+.lc-multi[aria-invalid="true"],.lc-editor[aria-invalid="true"],.lc-upload[aria-invalid="true"]{border-color:var(--perigo-texto);box-shadow:inset 3px 0 0 var(--perigo-texto)}
+.lc-multi[aria-disabled="true"]{background:var(--sup-2);border-color:var(--filete);color:var(--texto-desab);cursor:not-allowed}
+.lc-editor[data-leitura="true"]{border-color:transparent;background:transparent}
+.lc-editor[data-leitura="true"] .lc-editor__barra,.lc-editor[data-leitura="true"] .lc-editor__pe{display:none}
+.lc-editor[data-leitura="true"] .lc-editor__area{padding-left:0;min-height:0}
+
+/* [04 Combo] resultado vazio na lista de opções */
+.lc-opcoes__vazio{padding:10px 12px;font:var(--t-pequeno);color:var(--texto-2)}
+.lc-opcoes--flutua{position:absolute;left:0;top:calc(100% + 4px);width:100%;max-width:none}
+.lc-ancora{position:relative}
+
+/* [06 Upload] ações de nível de lista e resumo */
+.lc-anexos__resumo{font:var(--t-legenda);color:var(--texto-2);display:flex;gap:12px;align-items:center}
+
+/* [07 Editor] referência a registro (#Chamado 4.812): mesma família da menção, sem fundo de pessoa */
+.lc-mencao--ref{background:transparent;box-shadow:inset 0 -1px 0 var(--link);font-weight:600;border-radius:0}
+
+/* [13 Tabela] sombra de rolagem lateral: diz que há mais colunas */
+.lc-tabela-cont--rola{background:
+  linear-gradient(to right,var(--sup-1) 30%,transparent) left center/24px 100% no-repeat local,
+  linear-gradient(to left,var(--sup-1) 30%,transparent) right center/24px 100% no-repeat local,
+  linear-gradient(to right,rgba(0,0,0,.12),transparent) left center/10px 100% no-repeat scroll,
+  linear-gradient(to left,rgba(0,0,0,.12),transparent) right center/10px 100% no-repeat scroll,var(--sup-1)}
+.lc-tabela-cont--rola .lc-tabela td,.lc-tabela-cont--rola .lc-tabela th{background-clip:padding-box}
+/* célula editável com erro e salvando */
+.lc-celula-edit--erro .lc-entrada{border-color:var(--perigo-texto);box-shadow:inset 3px 0 0 var(--perigo-texto)}
+.lc-celula-edit__erro{display:block;font:500 12px/16px var(--fonte-ui);color:var(--perigo-texto);margin-top:2px;white-space:normal;text-align:left}
+/* linha de estado dentro da tabela (vazio, erro, carregando) */
+.lc-tabela__estado td{height:auto;padding:0;background:var(--sup-1)!important}
+.lc-tabela__estado .lc-vazio{max-width:560px}
+/* linha recém-chegada (carregar mais) */
+.lc-nova{animation:lc-salvo 1.2s var(--curva-sair)}
+
+/* [14 Paginação] carregar mais (feed, lista no celular) */
+.lc-carregar-mais{display:flex;flex-direction:column;align-items:center;gap:8px;padding:var(--esp-5) 0;font:var(--t-legenda);color:var(--texto-2);text-align:center}
+.lc-carregar-mais b{color:var(--texto-1);font-weight:600;font-variant-numeric:var(--num)}
+
+/* [13b NOVO] lista de cartões no celular: a mesma linha da tabela, empilhada */
+.lc-cartoes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.lc-cartao-linha{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:12px 14px;background:var(--sup-1);border:var(--borda-1);border-radius:var(--raio-2);position:relative;font-size:13.5px}
+.lc-cartao-linha[aria-selected="true"]{background:var(--selecao);box-shadow:inset var(--borda-marcador) 0 0 var(--atual)}
+.lc-cartao-linha__titulo{font-weight:600;color:var(--texto-1);text-decoration:none;min-width:0;overflow-wrap:anywhere}
+.lc-cartao-linha__titulo::after{content:"";position:absolute;inset:0}          /* a linha inteira é alvo de toque */
+.lc-cartao-linha__titulo:focus-visible{outline:0}
+.lc-cartao-linha:focus-within{outline:2px solid var(--foco);outline-offset:1px}
+.lc-cartao-linha__sub{grid-column:1;font:var(--t-legenda);color:var(--texto-2)}
+.lc-cartao-linha__valor{grid-row:1;grid-column:2;font-weight:600;text-align:right;font-variant-numeric:var(--num);white-space:nowrap}
+.lc-cartao-linha__pe{grid-column:1/-1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px;font:var(--t-legenda);color:var(--texto-2)}
+.lc-cartao-linha__pe>.lc-btn{position:relative;z-index:1;margin-left:auto}
+
+/* [15 Filtros] adicionar filtro e "Limpar" no fim dos chips */
+.lc-chips__limpar{font:500 12.5px/1 var(--fonte-ui);color:var(--link);text-decoration:underline;text-underline-offset:2px;padding:4px}
+
+/* [09 Etiqueta] etiqueta longa: corta com reticências e mostra inteira na dica */
+.lc-etiqueta--corta{max-width:180px}
+.lc-etiqueta--corta>span{overflow:hidden;text-overflow:ellipsis}
+
+/* ============================== B. SÓ DOCUMENTAÇÃO ============================== */
+.lc-doc-indice--familias ol ol{padding-left:0;margin:0 0 6px}
+.lc-doc-indice--familias a::before{content:none}
+.lc-doc-indice--familias a{padding-left:12px}
+.lc-doc-indice__familia{display:block;padding:12px 0 4px;font:600 12px/16px var(--fonte-ui);color:var(--texto-1)}
+.lc-doc-indice--familias>ol>li:first-child .lc-doc-indice__familia{padding-top:0}
+
+/* cabeçalho de página de catálogo: o que resolve, fluxo, por quê */
+.lc-doc-tres-blocos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:var(--borda-1);margin-top:20px}
+.lc-doc-tres-blocos>div{padding:14px 20px 4px 0;font-size:13.5px;line-height:21px;min-width:0}
+.lc-doc-tres-blocos>div+div{padding-left:20px;border-left:var(--borda-1)}
+.lc-doc-tres-blocos h2{font:var(--t-subsecao);margin:0 0 6px}
+.lc-doc-tres-blocos ol,.lc-doc-tres-blocos ul{margin:0;padding-left:18px}
+@media (max-width:899px){.lc-doc-tres-blocos{grid-template-columns:1fr}.lc-doc-tres-blocos>div+div{padding-left:0;border-left:0;border-top:var(--borda-1)}}
+
+/* ficha do componente */
+.lc-doc-ficha{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border:var(--borda-1);background:var(--sup-1);margin:14px 0 18px}
+.lc-doc-ficha>div{padding:12px 16px 14px;border-right:var(--borda-1);border-bottom:var(--borda-1);font-size:13px;line-height:20px;min-width:0;margin:0 -1px -1px 0}
+.lc-doc-ficha h3,.lc-doc-sec .lc-doc-ficha h3{font:600 13px/18px var(--fonte-ui);margin:0 0 6px;display:flex;gap:6px;align-items:center}
+.lc-doc-ficha h3 .lc-ic{width:16px;height:16px;color:var(--texto-2)}
+.lc-doc-ficha ul,.lc-doc-ficha ol{margin:0;padding-left:18px}
+.lc-doc-ficha li+li{margin-top:3px}
+.lc-doc-ficha--nao h3{color:var(--perigo-texto)}
+
+/* anatomia: marcador numerado que liga a peça ao texto (é sequência de leitura) */
+.lc-doc-n{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 4px;border-radius:var(--raio-1);
+  background:var(--texto-1);color:var(--texto-inverso);font:700 11px/1 var(--fonte-ui);font-variant-numeric:var(--num);vertical-align:1px;flex:none}
+.lc-doc-anatomia{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,300px);gap:24px;align-items:start}
+.lc-doc-anatomia ol{list-style:none;margin:0;padding:0;font-size:13px;line-height:19px}
+.lc-doc-anatomia li{display:flex;gap:8px;padding:5px 0;border-top:var(--borda-1)}
+.lc-doc-anatomia li:first-child{border-top:0}
+.lc-doc-anatomia__alvo{position:relative;display:inline-block}
+.lc-doc-anatomia__alvo>.lc-doc-n{position:absolute;top:-10px;left:-10px;z-index:2}
+@media (max-width:899px){.lc-doc-anatomia{grid-template-columns:1fr}}
+
+/* quadro com painéis por tema e por densidade */
+.lc-doc-paineis{display:grid;grid-template-columns:repeat(var(--_n,2),minmax(0,1fr))}
+.lc-doc-paineis>.lc-doc-painel{min-width:0;padding:20px;position:relative}
+.lc-doc-paineis>.lc-doc-painel+.lc-doc-painel{border-left:var(--borda-1)}
+.lc-doc-paineis--empilhado{grid-template-columns:1fr}
+.lc-doc-paineis--empilhado>.lc-doc-painel+.lc-doc-painel{border-left:0;border-top:var(--borda-1)}
+.lc-doc-painel__rot{display:flex;gap:6px;align-items:center;font:600 12px/16px var(--fonte-ui);color:var(--texto-2);margin:-6px 0 12px}
+.lc-doc-painel__rot .lc-ic{width:14px;height:14px}
+.lc-doc-painel--cheio{padding:0!important}
+.lc-doc-painel--cheio>.lc-doc-painel__rot{margin:0;padding:10px 14px}
+.lc-doc-painel--rola{overflow-x:auto}
+@media (max-width:1023px){.lc-doc-paineis{grid-template-columns:1fr}.lc-doc-paineis>.lc-doc-painel+.lc-doc-painel{border-left:0;border-top:var(--borda-1)}}
+@media (max-width:639px){.lc-doc-paineis>.lc-doc-painel{padding:16px}}
+
+/* código copiável */
+.lc-doc-codigo{border-top:var(--borda-1);background:var(--sup-2)}
+.lc-doc-codigo>summary{display:flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;cursor:pointer;font:500 12.5px/1 var(--fonte-ui);color:var(--texto-2);list-style:none}
+.lc-doc-codigo>summary::-webkit-details-marker{display:none}
+.lc-doc-codigo>summary::before{content:"";width:6px;height:6px;border:solid currentColor;border-width:0 1.5px 1.5px 0;transform:rotate(-45deg);margin-right:4px}
+.lc-doc-codigo[open]>summary::before{transform:rotate(45deg)}
+.lc-doc-codigo>summary:hover{color:var(--texto-1)}
+.lc-doc-codigo pre{margin:0;padding:14px 16px 18px;max-height:420px;overflow:auto;font:400 12.5px/19px var(--fonte-cod);color:var(--texto-1);white-space:pre;tab-size:2;border-top:var(--borda-1);background:var(--sup-1)}
+.lc-doc-codigo pre .t{color:var(--andamento-texto)}
+.lc-doc-codigo pre .a{color:var(--texto-2)}
+.lc-doc-codigo pre .v{color:var(--sucesso-texto)}
+
+/* grade de estados com legenda */
+.lc-doc-estados{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--_m,200px),1fr));gap:18px 20px}
+.lc-doc-estados>figure{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.lc-doc-estados>figure>figcaption{font:600 12px/16px var(--fonte-ui);color:var(--texto-2);display:flex;gap:6px;align-items:center}
+.lc-doc-estados>figure>figcaption code{font-weight:400;font-size:11.5px}
+.lc-doc-matriz{border-collapse:collapse;font-size:12.5px}
+.lc-doc-matriz th{font:600 12px/16px var(--fonte-ui);color:var(--texto-2);text-align:left;padding:6px 10px 6px 0;white-space:nowrap;vertical-align:middle}
+.lc-doc-matriz td{padding:6px 10px 6px 0;vertical-align:middle}
+.lc-doc-matriz thead th{border-bottom:var(--borda-1)}
+.lc-doc-nota{font:var(--t-legenda);color:var(--texto-2);margin-top:10px;max-width:80ch}
+.lc-doc-certo-errado{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.lc-doc-certo-errado>div{border-top:3px solid var(--sucesso-ponto);padding-top:10px;min-width:0}
+.lc-doc-certo-errado>div+div{border-top-color:var(--perigo-ponto)}
+.lc-doc-certo-errado b{display:flex;gap:6px;align-items:center;font-size:13px;margin-bottom:8px}
+@media (max-width:639px){.lc-doc-certo-errado{grid-template-columns:1fr}}
+.lc-doc-palco{position:relative;min-height:var(--_alt,auto)}
+.lc-doc-a11y{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:var(--borda-1);background:var(--sup-1);margin:12px 0 0;font-size:13px;line-height:20px}
+.lc-doc-a11y>div{padding:12px 16px;min-width:0}
+.lc-doc-a11y>div+div{border-left:var(--borda-1)}
+.lc-doc-a11y h3,.lc-doc-sec .lc-doc-a11y h3{font:600 13px/18px var(--fonte-ui);margin:0 0 6px}
+.lc-doc-a11y ol,.lc-doc-a11y ul{margin:0;padding-left:18px}
+@media (max-width:899px){.lc-doc-a11y{grid-template-columns:1fr}.lc-doc-a11y>div+div{border-left:0;border-top:var(--borda-1)}}
+
+/* estados forçados: reproduzem :hover, :focus-visible e :active para a peça ficar parada na página */
+.lc-btn.lc-f-hover{--_f:var(--sup-2);--_b:var(--borda-controle-hover)}
+.lc-btn.lc-f-ativo{--_f:var(--sup-3)}
+.lc-btn--principal.lc-f-hover,.lc-btn--principal.lc-f-ativo{--_f:var(--marca-forte);--_b:var(--marca-forte);--_t:var(--marca-txt)}
+.lc-btn--principal.lc-f-ativo{box-shadow:inset 0 2px 0 rgba(0,0,0,.18)}
+.lc-btn--discreto.lc-f-hover{--_f:var(--sup-2);--_b:transparent;--_t:var(--texto-1)}
+.lc-btn--discreto.lc-f-ativo{--_f:var(--sup-3);--_b:transparent}
+.lc-btn--perigo.lc-f-hover,.lc-btn--perigo.lc-f-ativo{--_f:var(--perigo-acao-forte);--_b:var(--perigo-acao-forte);--_t:#fff}
+.lc-btn--perigo-contorno.lc-f-hover,.lc-btn--perigo-contorno.lc-f-ativo{--_f:var(--perigo-fundo);--_b:var(--perigo-texto);--_t:var(--perigo-texto)}
+.lc-btn--link.lc-f-hover,.lc-btn--link.lc-f-ativo{--_f:transparent;--_b:transparent;--_t:var(--link-hover);text-decoration-thickness:2px}
+.lc-f-foco{outline:2px solid var(--foco)!important;outline-offset:2px}
+.lc-entrada.lc-f-hover,.lc-area-texto.lc-f-hover,.lc-selecao.lc-f-hover,.lc-entrada-grupo.lc-f-hover,.lc-combo.lc-f-hover,.lc-multi.lc-f-hover,.lc-busca.lc-f-hover,.lc-editor.lc-f-hover{border-color:var(--borda-controle-hover)}
+.lc-entrada.lc-f-foco,.lc-area-texto.lc-f-foco,.lc-selecao.lc-f-foco,.lc-entrada-grupo.lc-f-foco,.lc-combo.lc-f-foco,.lc-multi.lc-f-foco,.lc-busca.lc-f-foco,.lc-editor.lc-f-foco{outline-offset:-1px!important;border-color:var(--foco)}
+.lc-seg>.lc-f-hover,.lc-filtro.lc-f-hover,.lc-upload.lc-f-hover{background:var(--sup-2);color:var(--texto-1)}
+.lc-seg>.lc-f-foco,.lc-abas>.lc-f-foco{outline-offset:-3px!important}
+.lc-abas>.lc-f-hover{color:var(--texto-1)}
+.lc-menu__item.lc-f-hover,.lc-opcao.lc-f-hover{background:var(--selecao)}
+.lc-marcar.lc-f-hover .lc-marcar__caixa,.lc-radio.lc-f-hover .lc-radio__bola{border-color:var(--borda-controle-hover)}
+.lc-marcar.lc-f-foco,.lc-radio.lc-f-foco,.lc-interruptor.lc-f-foco{outline:0!important}
+.lc-marcar.lc-f-foco .lc-marcar__caixa,.lc-radio.lc-f-foco .lc-radio__bola,.lc-interruptor.lc-f-foco .lc-interruptor__trilho{outline:2px solid var(--foco);outline-offset:2px}
+.lc-cartao-k.lc-f-hover,.lc-caixa--clicavel.lc-f-hover{border-color:var(--borda-controle)}
+.lc-tabela tbody tr.lc-f-hover td{background:var(--sup-2)}
+.lc-tabela tr.lc-f-hover .lc-tabela__acoes>*{opacity:1}
+.lc-celula-edit.lc-f-hover{border-color:var(--filete-forte);background:var(--sup-1)}
+.lc-post__acoes>button.lc-f-hover{background:var(--sup-2);color:var(--texto-1)}
+.lc-paginacao__pags .lc-f-hover{background:var(--sup-2)}
+.lc-trilha a.lc-f-hover{color:var(--link);text-decoration:underline}
+.lc-etapa>button.lc-f-hover{color:var(--texto-1);border-bottom-color:var(--borda-controle)}
+.lc-chip-filtro button.lc-f-hover{background:var(--sup-3);color:var(--texto-1)}
+.lc-dica--estatica.lc-doc-dica-demo{position:relative;display:inline-block}
+
+/* toasts da documentação: sempre por cima de tudo */
+#lc-doc-toasts{z-index:calc(var(--z-toast) + 10)}

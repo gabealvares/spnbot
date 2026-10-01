@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light" data-contexto="portal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal: Início</title>
+<script>window.CM_LINKS={"Início": "40-portal.html", "Chamados": "40b-portal-chamados.html", "Boletos": "40c-portal-boletos.html", "Reservas": "40d-portal-reservas.html", "Assembleias": "40e-portal-assembleias.html", "Comunicados": "40f-portal-comunicados.html", "Documentos": "40f-portal-comunicados.html#documentos", "Minha unidade": "40h-portal-perfil.html", "Moradores e veículos": "40h-portal-perfil.html#moradores", "Meu perfil": "40h-portal-perfil.html", "Encomendas": "40i-portal-portaria.html#encomendas", "Visitantes": "40i-portal-portaria.html"}</script>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q5.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<script src="sistema/extra-q5.js" defer></script>
+<style>
+
+.portal{max-width:1200px;margin:0 auto;padding:8px 24px 72px}
+.portal-grade{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.portal-estreito{max-width:var(--cm-largura-portal)}
+.portal-cabeca{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;padding:20px 0 14px}
+.portal-cabeca h1{font-size:24px;line-height:30px;font-weight:700;letter-spacing:-.01em;margin:0}
+.portal-cabeca p{color:var(--cm-texto-2);margin-top:2px}
+.portal-cabeca .cm-empurra{display:flex;gap:8px;flex-wrap:wrap}
+.sec-t{font-size:17px;line-height:24px;font-weight:700;margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+.sec-t .cm-link{margin-left:auto;font-size:14px}
+@media (max-width:899px){ .portal-grade{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:599px){ .portal{padding:4px 16px 56px} .portal-cabeca h1{font-size:20px;line-height:26px} .portal-cabeca .cm-empurra{width:100%} }
+
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"contexto": "portal", "tela": "Início", "unidade": "Bl B Ap 1204", "sino": 3}'></div>
+<main id="conteudo">
+
+<div class="portal">
+<nav class="cm-indice-telas" aria-label="Telas do portal">
+<a class="cm-botao cm-botao--p" href="40-portal.html">Início</a><a class="cm-botao cm-botao--p" href="40b-portal-chamados.html">Chamados e novo chamado</a><a class="cm-botao cm-botao--p" href="40c-portal-boletos.html">Boletos e Pix</a><a class="cm-botao cm-botao--p" href="40d-portal-reservas.html">Reservas</a><a class="cm-botao cm-botao--p" href="40e-portal-assembleias.html">Assembleias</a><a class="cm-botao cm-botao--p" href="40f-portal-comunicados.html">Comunicados e documentos</a><a class="cm-botao cm-botao--p" href="40g-portal-cursos.html">Cursos</a><a class="cm-botao cm-botao--p" href="40h-portal-perfil.html">Perfil e unidades</a><a class="cm-botao cm-botao--p" href="40i-portal-portaria.html">Portaria</a><a class="cm-botao cm-botao--p" href="40j-portal-sindico.html">Síndica e conselho</a>
+</nav>
+<details class="cm-anotacao" open>
+<summary><i data-i="informacao"></i>Sobre esta tela: Início do portal (morador e síndica)</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>O que esta tela resolve</h3><p>O morador entra no portal para três coisas: pagar, avisar um problema e saber o que muda no prédio. A Início mostra só o que pede ação dele hoje, em ordem de prazo, com a ação no próprio item.</p><p>Quando a pessoa também é síndica, a mesma Início ganha um bloco acima, "pedem a sua decisão", com aprovar e recusar ali mesmo.</p></div>
+<div><h3>Fluxo</h3><ol><li>Abre na Início com a unidade no topo (troca de unidade fica no canto do topo).</li><li>"Abrir chamado com foto" é o botão grande: abre a câmera e segue o fluxo de 5 toques.</li><li>Cada item de "Sua unidade hoje" tem a ação à direita: Pagar com Pix, Li e estou ciente, Ver código.</li><li>Aprovar e recusar mostram aviso com "Desfazer" por 6 segundos; nada pede confirmação a mais.</li><li>Na barra inferior do celular: Início, Boletos, Chamados, Reservas e Mais.</li></ol></div>
+<div><h3>Resolvemos fazer assim porque</h3><p>o TownSq e o Superlógica põem boleto e chamado como atalho na primeira tela, o app do Itaú e o do Nubank mostram "o que vence" com a ação no item, e o iFood deixa o pedido em andamento visível na Início. Sem fileira de números e sem saudação como título (crítica C1). Enviamos para aprovação.</p></div>
+</div></details>
+<section class="cm-tela" id="inicio" aria-labelledby="inicio-t">
+<h2 class="cm-tela__titulo" id="inicio-t">Início <small>Tela 1 de 2, tema claro, marca do cliente no topo e no botão</small></h2>
+
+<div class="portal-cabeca">
+  <div><p class="cm-saudacao"><b>Marina Costa</b>, síndica e moradora</p><h1>Parque das Águas, Bl B Ap 1204</h1></div>
+  <div class="cm-empurra cm-segmentado cm-segmentado--p" role="group" aria-label="Simular papel (só no design system)">
+    <button type="button" aria-pressed="false" data-papel="morador">Ver como morador</button><button type="button" aria-pressed="true" data-papel="sindica">Ver como síndica</button>
+  </div>
+</div>
+<div class="portal-grade">
+  <div class="cm-pilha cm-pilha--6">
+    <div class="cm-pilha">
+      <a class="cm-acao-grande" href="40b-portal-chamados.html?cena=novo"><i data-i="camera"></i>Abrir chamado com foto</a>
+      <nav class="cm-atalhos-portal" aria-label="Atalhos">
+        <a href="40c-portal-boletos.html"><i data-i="codigo-de-barras"></i>2ª via do boleto</a>
+        <a href="40d-portal-reservas.html"><i data-i="reserva"></i>Reservar área</a>
+        <a href="40i-portal-portaria.html?cena=visitante"><i data-i="visitante"></i>Liberar visitante</a>
+        <a href="40i-portal-portaria.html#encomendas"><i data-i="encomenda"></i>Encomendas <span class="cm-contador cm-contador--p">1</span></a>
+      </nav>
+    </div>
+    <div data-so-papel="sindica">
+<h2 class="sec-t"><i data-i="sindico"></i>Condomínio: pedem a sua decisão <span class="cm-contador cm-contador--novo">3</span><a class="cm-link" href="40j-portal-sindico.html">Ver todas</a></h2>
+<section class="cm-pv" aria-label="Aprovações da síndica">
+  <div class="cm-pv-item is-urgente"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="ordem-de-servico"></i></span>
+    <div><div class="cm-pv-item__titulo"><a href="40j-portal-sindico.html">Orçamento da Hidrotec Instalações, R$ 3.480,00</a></div><div class="cm-pv-item__contexto">Vedação da junta de dilatação sobre as vagas 37 e 38 (chamado 48213). Outros 2 orçamentos anexados.</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Atenção: a obra está marcada para 06/10</span></div></div>
+    <div class="cm-pv-item__acoes"><a class="cm-botao" href="40j-portal-sindico.html?cena=orcamento">Comparar</a><button class="cm-botao cm-botao--principal" type="button" data-toast="Orçamento aprovado. A administração emite a OS e avisa a Hidrotec." data-toast-acao="Desfazer">Aprovar</button></div></div>
+  <div class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="extrato"></i></span>
+    <div><div class="cm-pv-item__titulo"><a href="40j-portal-sindico.html#contas">Prestação de contas de setembro pronta para revisar</a></div><div class="cm-pv-item__contexto">Balancete, 41 lançamentos e 38 comprovantes. O conselho fiscal dá o parecer até 15/10.</div></div>
+    <div class="cm-pv-item__acoes"><a class="cm-botao" href="40j-portal-sindico.html#contas">Revisar</a></div></div>
+  <div class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="reserva"></i></span>
+    <div><div class="cm-pv-item__titulo"><a href="40j-portal-sindico.html">Reserva fora da regra: churrasqueira 2, domingo, 18/10</a></div><div class="cm-pv-item__contexto">Bl C Ap 803 pediu até 23h; o regimento permite até 22h.</div></div>
+    <div class="cm-pv-item__acoes"><button class="cm-botao" type="button" data-toast="Pedido recusado. O morador recebe o motivo no portal e no WhatsApp.">Recusar</button><button class="cm-botao cm-botao--principal" type="button" data-toast="Exceção aprovada e registrada no histórico da reserva.">Aprovar exceção</button></div></div>
+</section></div>
+    <div><h2 class="sec-t"><i data-i="unidade"></i>Sua unidade hoje</h2>
+<section class="cm-pv" aria-label="O que importa hoje">
+  <div class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="boleto"></i></span>
+    <div><div class="cm-pv-item__titulo"><a href="40c-portal-boletos.html">Boleto de outubro, R$ 1.284,90</a></div><div class="cm-pv-item__contexto">Vence sábado, 10/10. Sem multa até terça, 13/10 (12/10 é feriado).</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Em aberto, vence em 9 dias</span></div></div>
+    <div class="cm-pv-item__acoes"><a class="cm-botao cm-botao--principal" href="40c-portal-boletos.html?cena=pix"><i data-i="pix"></i>Pagar com Pix</a></div></div>
+  <div class="cm-pv-item is-urgente"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="comunicado"></i></span>
+    <div><div class="cm-pv-item__titulo"><a href="40f-portal-comunicados.html">Garagem do subsolo 1 interditada na terça, 06/10</a></div><div class="cm-pv-item__contexto">Impermeabilização das juntas, das 8h às 17h. Os carros precisam sair até as 7h30.</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Atenção: pede sua ciência até 05/10</span></div></div>
+    <div class="cm-pv-item__acoes"><button class="cm-botao" type="button" data-toast="Ciência registrada às 09:14. A administração recebe o comprovante." id="ciencia-home">Li e estou ciente</button></div></div>
+  <div class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="encomenda"></i></span>
+    <div><div class="cm-pv-item__titulo"><a href="40i-portal-portaria.html#encomendas">Encomenda na portaria desde ontem, 18:40</a></div><div class="cm-pv-item__contexto">Caixa média dos Correios, recebida por Sérgio (porteiro). Retire com o código.</div></div>
+    <div class="cm-pv-item__acoes"><a class="cm-botao" href="40i-portal-portaria.html?cena=retirada">Ver código de retirada</a></div></div>
+  <div class="cm-pv-item"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="assembleia"></i></span>
+    <div><div class="cm-pv-item__titulo"><a href="40e-portal-assembleias.html">Assembleia extraordinária, quarta, 28/10, às 20h</a></div><div class="cm-pv-item__contexto">Salão de festas e online. Pauta: troca dos elevadores do Bloco B, rateio da impermeabilização, bicicletário.</div></div>
+    <div class="cm-pv-item__acoes"><a class="cm-botao" href="40e-portal-assembleias.html">Ver edital e pauta</a></div></div>
+  <div class="cm-pv__pe"><i data-i="sucesso"></i>Reserva do salão de festas para sábado, 17/10, confirmada</div>
+</section></div>
+    <section aria-labelledby="mural-t">
+      <h2 class="sec-t" id="mural-t"><i data-i="mural"></i>Mural do condomínio<a class="cm-link" href="40f-portal-comunicados.html">Todos os comunicados</a></h2>
+      <article class="cm-post">
+        <header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--empresa" data-marca-inicial>A</span><div><div class="cm-post__autor">Administração do Parque das Águas</div><div class="cm-post__sub">Comunicado para todos os blocos</div></div><span class="cm-post__quando">ontem, 16:20</span></header>
+        <h3 class="cm-post__titulo" style="margin-top:10px">Vistoria anual dos extintores em 08 e 09/10</h3>
+        <p class="cm-post__corpo">A Fogo Zero Extintores troca a carga dos 64 extintores das áreas comuns. Nos corredores, os aparelhos ficam fora por até 40 minutos, um andar por vez.</p>
+        <div class="cm-post__pe"><div class="cm-reacoes"><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="curtir"></i>Curtir <span class="cm-reacao__n">14</span></button><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="ciencia"></i>Entendi <span class="cm-reacao__n">31</span></button></div></div>
+      </article>
+    </section>
+  </div>
+  
+<aside class="cm-pilha cm-pilha--6" aria-label="Seu condomínio">
+  <section class="cm-cartao">
+    <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Seus chamados</h2><a class="cm-link" href="40b-portal-chamados.html">Todos</a></header>
+    <div class="cm-lista-linhas" style="border:0">
+      <a class="cm-linha-lista" href="40b-portal-chamados.html?cena=conversa"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="vazamento"></i></span><span><span class="cm-linha-lista__titulo">Vazamento no teto da garagem</span><span class="cm-linha-lista__sub">Chamado 48213, aberto hoje às 09:12</span><span class="cm-estado cm-estado--info" style="margin-top:4px"><i data-i="pendente"></i>Em atendimento com Beatriz</span></span><span></span><i data-i="chevron-direita"></i></a>
+      <a class="cm-linha-lista" href="40b-portal-chamados.html"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="portao"></i></span><span><span class="cm-linha-lista__titulo">Portão da garagem com ruído</span><span class="cm-linha-lista__sub">Chamado 48177, técnico na sexta, 02/10</span><span class="cm-estado cm-estado--info" style="margin-top:4px"><i data-i="agendar"></i>Visita agendada</span></span><span></span><i data-i="chevron-direita"></i></a>
+    </div>
+  </section>
+  <section class="cm-cartao">
+    <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Documentos novos</h2><a class="cm-link" href="40f-portal-comunicados.html#documentos">Todos</a></header>
+    <div class="cm-lista-linhas" style="border:0">
+      <a class="cm-linha-lista" href="61-documentos-gerados.html#balancete"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="pdf"></i></span><span><span class="cm-linha-lista__titulo">Balancete de agosto de 2026</span><span class="cm-linha-lista__sub">Publicado em 25/09, PDF, 6 páginas</span></span><span></span><i data-i="chevron-direita"></i></a>
+      <a class="cm-linha-lista" href="40e-portal-assembleias.html?cena=edital"><span class="cm-ladrilho cm-ladrilho--p"><i data-i="edital"></i></span><span><span class="cm-linha-lista__titulo">Edital da assembleia de 28/10</span><span class="cm-linha-lista__sub">Publicado em 28/09</span></span><span></span><i data-i="chevron-direita"></i></a>
+    </div>
+  </section>
+  <section class="cm-cartao">
+    <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo">Fale com</h2></header>
+    <div class="cm-cartao__corpo cm-pilha">
+      <a class="cm-botao cm-botao--bloco" href="#" data-toast="Abrindo o WhatsApp da Administradora Alpha." data-toast-tipo="info"><i data-i="whatsapp"></i>Administradora no WhatsApp</a>
+      <div class="cm-linha"><i data-i="portaria"></i><span class="cm-cresce">Portaria, 24 horas</span><a class="cm-link" href="tel:+551150820410">(11) 5082-0410</a></div>
+      <div class="cm-linha"><i data-i="sindico"></i><span class="cm-cresce">Síndica: Marina Costa</span><span class="cm-texto-2">Bl B 1204</span></div>
+      <div class="cm-linha"><i data-i="pessoa"></i><span class="cm-cresce">Gerente da conta: Renata Siqueira</span><span class="cm-texto-2">Alpha</span></div>
+    </div>
+  </section>
+</aside>
+</div>
+</section>
+<details class="cm-anotacao cm-anotacao--a11y">
+<summary><i data-i="teclado"></i>Acessibilidade desta tela</summary>
+<div class="cm-anotacao__corpo">
+<div><h3>Ordem de foco</h3><ol><li>Pular para o conteúdo</li><li>Topo: logo (Início), menu do portal, unidade, avisos, conta</li><li>Ver como (só no design system)</li><li>Abrir chamado com foto</li><li>Atalhos, da esquerda para a direita</li><li>Itens de "pedem a sua decisão", cada um com título e ações</li><li>Itens de "Sua unidade hoje"</li><li>Mural</li><li>Coluna lateral: chamados, documentos, contatos</li></ol></div>
+<div><h3>O que é anunciado</h3><ul><li>"Avisos, 3 novos" no sino</li><li>Estado lido por inteiro: "Em aberto, vence em 9 dias"</li><li>"Atenção: pede sua ciência até 05/10" (a palavra vai junto do triângulo)</li><li>Toast em região viva educada: "Ciência registrada às 09:14"</li></ul></div>
+<div><h3>Nome do que é só ícone</h3><ul><li>Sino: "Avisos, 3 novos"</li><li>Avatar: "Sua conta"</li><li>Unidade: "Trocar de unidade"</li><li>Logo: "Início"</li></ul></div>
+</div></details>
+<section class="cm-tela" id="estados" aria-labelledby="estados-t">
+<h2 class="cm-tela__titulo" id="estados-t">Estados da Início <small>Tela 2 de 2, carregando, vazio, erro, sem permissão, sem conexão</small></h2>
+
+<div class="cm-palcos">
+<div class="cm-palco "><div class="cm-palco__rotulo"><i data-i="carregando"></i>Carregando: esqueleto no lugar de cada bloco, nunca tela branca</div><div class="cm-palco__corpo"><div class="cm-pilha"><span class="cm-esqueleto cm-esqueleto--titulo"></span><span class="cm-esqueleto cm-esqueleto--bloco" style="height:56px"></span><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:70%"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:85%"></span><span class="cm-carregando">Carregando sua unidade</span></div></div></div>
+<div class="cm-palco "><div class="cm-palco__rotulo"><i data-i="inicio"></i>Primeiro acesso: unidade sem histórico</div><div class="cm-palco__corpo"><div class="cm-vazio"><i data-i="unidade"></i><p class="cm-vazio__titulo">Bem-vinda ao portal do Parque das Águas</p><p class="cm-vazio__texto">Seu primeiro boleto chega em 01/11. Enquanto isso, confira quem mora com você e cadastre seu veículo para a portaria liberar a garagem.</p><div class="cm-vazio__acoes"><a class="cm-botao cm-botao--principal" href="40h-portal-perfil.html#moradores">Cadastrar moradores</a><a class="cm-botao" href="40f-portal-comunicados.html#documentos">Ler o regimento</a></div></div></div></div>
+<div class="cm-palco "><div class="cm-palco__rotulo"><i data-i="perigo"></i>Erro parcial: um bloco falha, o resto da tela continua</div><div class="cm-palco__corpo"><div class="cm-alerta cm-alerta--perigo"><i data-i="perigo"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Não conseguimos carregar seus boletos agora</span><span class="cm-alerta__desc">O banco não respondeu. Seus chamados e comunicados abaixo estão em dia.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button" data-toast="Boletos carregados." >Tentar de novo</button></span></div></div></div>
+<div class="cm-palco "><div class="cm-palco__rotulo"><i data-i="bloquear"></i>Sem permissão: morador abre um link da síndica</div><div class="cm-palco__corpo"><div class="cm-vazio"><i data-i="bloquear"></i><p class="cm-vazio__titulo">Esta página é da síndica e do conselho</p><p class="cm-vazio__texto">A prestação de contas fica aberta a todos os moradores depois do parecer do conselho, em 15/10. Até lá, você vê o balancete de agosto.</p><div class="cm-vazio__acoes"><a class="cm-botao" href="40f-portal-comunicados.html#documentos">Ver documentos publicados</a></div></div></div></div>
+<div class="cm-palco "><div class="cm-palco__rotulo"><i data-i="sem-wifi"></i>Sem internet no celular</div><div class="cm-palco__corpo"><div class="cm-faixa cm-faixa--aviso" role="status"><i data-i="sem-wifi"></i><span class="cm-faixa__texto">Sem conexão. Mostrando o que foi carregado às 08:52. O chamado com foto fica guardado e sai sozinho quando a conexão voltar.</span></div></div></div>
+</div>
+</section>
+</div>
+</main>
+<script>
+document.addEventListener('click',function(e){var b=e.target.closest('[data-papel]');if(!b) return;
+  document.querySelectorAll('[data-papel]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+  var s=b.getAttribute('data-papel')==='sindica';document.querySelectorAll('[data-so-papel="sindica"]').forEach(function(x){x.hidden=!s});
+  document.querySelector('.cm-saudacao').innerHTML=s?'<b>Marina Costa</b>, síndica e moradora':'<b>Marina Costa</b>, moradora';});
+document.getElementById('ciencia-home').addEventListener('click',function(){this.outerHTML='<span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Ciente às 09:14</span>'});
+</script>
+</body>
+</html>

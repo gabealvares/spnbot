@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa de Máquinas: componentes</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q1.css">
+<link rel="stylesheet" href="sistema/extra-q1-doc.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-q1-doc.js" defer></script>
+<style>
+/* só disposição desta página */
+.ex-barra48{display:flex;align-items:stretch;height:48px;border:1px solid var(--cm-filete);background:var(--cm-camada-1)}
+.ex-w260{width:260px;max-width:100%}
+.ex-w320{width:320px;max-width:100%}
+.ex-w420{width:420px;max-width:100%}
+.ex-conversa{max-height:none;border:1px solid var(--cm-filete)}
+.ex-bolha-foto{display:block;width:100%;height:150px}
+.ex-palco-modal{position:absolute;inset:0}
+.ex-dica-alvo{position:relative;display:inline-block;margin-bottom:40px}
+.ex-dica-alvo .cm-dica{left:50%;top:calc(100% + 6px);transform:translateX(-50%);white-space:nowrap}
+.ex-kanban{max-height:none}
+.ex-semana{max-width:100%}
+.ex-lista-pessoas{display:flex;flex-direction:column;gap:10px}
+@media (max-width:599px){ .ex-w420,.ex-w320{width:100%} }
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"papel":"Diretoria","trilha":false,"sino":3,"usuario":{"nome":"Juliana Reis","iniciais":"JR","cargo":"Gestora do Suporte","presenca":"disponivel","tom":2}}'></div>
+<header class="doc-topo">
+  <nav aria-label="Páginas do sistema">
+    <a href="00-fundamentos.html">Fundamentos</a>
+    <a href="01-iconografia.html">Iconografia</a>
+    <a href="02-navegacao.html">Navegação</a>
+    <a href="03-componentes.html" aria-current="page">Componentes</a>
+    <a href="04-formularios.html">Formulários</a>
+    <a href="05-tabelas-e-listas.html">Tabelas e listas</a>
+  </nav>
+  <div data-cm-seletor></div>
+</header>
+
+<div class="doc">
+<nav class="doc-indice" aria-label="Componentes por família">
+  <div class="doc-indice__busca"><div class="cm-entrada cm-entrada--p cm-entrada--busca"><i data-i="pesquisar"></i><input type="search" placeholder="Filtrar componentes" aria-label="Filtrar componentes"></div></div>
+  <div class="doc-indice__familia">Ações</div>
+  <a href="#botao">Botão</a><a href="#dividido">Botão dividido</a><a href="#segmentado">Grupo segmentado</a>
+  <div class="doc-indice__familia">Estado e identidade</div>
+  <a href="#estado">Estado com ponto</a><a href="#etiqueta">Etiqueta</a><a href="#contador">Contador</a><a href="#avatar">Avatar e presença</a><a href="#ladrilho">Ícone de objeto</a><a href="#plaqueta">Plaqueta</a><a href="#testeira">Testeira de marca</a>
+  <div class="doc-indice__familia">Estrutura</div>
+  <a href="#cartao">Cartão, seção e ficha</a><a href="#cabecalho">Cabeçalho de registro</a><a href="#abas">Abas</a><a href="#trilha">Trilha</a><a href="#path">Path de etapas</a>
+  <div class="doc-indice__familia">O que flutua</div>
+  <a href="#menu">Menu</a><a href="#contexto">Menu de contexto</a><a href="#popover">Popover</a><a href="#dica">Dica</a><a href="#paleta">Paleta Ctrl K</a><a href="#modal">Modal</a><a href="#painel">Painel lateral</a><a href="#folha">Folha inferior</a>
+  <div class="doc-indice__familia">Retorno ao usuário</div>
+  <a href="#toast">Toast</a><a href="#alerta">Alerta</a><a href="#faixa">Faixas</a><a href="#barra-salvar">Barra de salvar</a><a href="#esqueleto">Esqueleto e carregando</a><a href="#vazio">Estado vazio</a>
+  <div class="doc-indice__familia">Histórico e conversa</div>
+  <a href="#linha-tempo">Linhas do tempo</a><a href="#conversa">Conversa</a><a href="#compositor">Compositor com /</a><a href="#rodape-atalhos">Rodapé de atalhos</a>
+  <div class="doc-indice__familia">Pessoas e Home</div>
+  <a href="#para-voce">Para você</a><a href="#post">Post do mural</a>
+  <div class="doc-indice__familia">Planejamento</div>
+  <a href="#agenda">Agenda e calendário</a><a href="#kanban">Kanban</a>
+  <div class="doc-indice__familia">Medidas</div>
+  <a href="#progresso">Progresso</a><a href="#frequencia">Frequência</a><a href="#kpi">KPI simples</a>
+  <div class="doc-indice__familia">Listas</div>
+  <a href="#paginacao">Paginação</a>
+  <div class="doc-indice__familia">Fechamento</div>
+  <a href="#limites">Casos-limite</a><a href="#composicoes">Mais exemplos</a><a href="#acessibilidade">Foco e leitores de tela</a>
+</nav>
+
+<main id="conteudo" class="doc-main">
+
+<section class="doc-abre" aria-labelledby="titulo-pagina">
+  <div>
+    <p class="cm-t-legenda">Catálogo vivo, V2 Casa de Máquinas. Fonte: sistema/componentes.css</p>
+    <h1 id="titulo-pagina">Componentes</h1>
+    <p>Cada peça do sistema aparece aqui como ela é: o mesmo HTML que vai para a tela, desenhado ao mesmo tempo no tema escuro e no claro, com todos os estados parados lado a lado e, quando a altura muda, nas três densidades. Abaixo de cada exemplo está o HTML para copiar. Os menus, o "Salvar ▾", as abas, os toasts, o modal, o painel e a folha funcionam de verdade.</p>
+    <p class="porque"><b>Resolvemos fazer assim porque</b> o Carbon (IBM), o Atlassian Design System e o GOV.UK Design System documentam cada componente com exemplo vivo, estados, "quando usar e quando não usar" e código copiável, e o Storybook popularizou a página que mostra o estado forçado (mouse por cima, foco) sem precisar interagir. Juntamos os dois temas na mesma linha porque a operação usa o escuro e o portal o claro, e quem revisa precisa ver os dois ao mesmo tempo. Enviamos para aprovação.</p>
+  </div>
+  <div>
+    <div class="doc-bloco"><h2>O que esta tela resolve</h2><p>Quem monta uma tela do GACO acha aqui a peça certa, vê como ela se comporta em cada estado e copia o HTML sem inventar classe nova. Quem decide (o dono) compara as peças nos dois temas sem abrir o sistema.</p></div>
+    <div class="doc-bloco"><h2>Fluxo</h2><ol>
+      <li>Ache a peça pelo índice à esquerda (filtre digitando) ou pelo Ctrl K da moldura.</li>
+      <li>Leia "Quando usar" e "Quando não usar" antes de escolher.</li>
+      <li>Abra "HTML de exemplo" e use "Copiar HTML". O código traz <code>&lt;i data-i&gt;</code>, que o icones.js troca pelo desenho.</li>
+      <li>Troque tema, densidade e cliente no seletor do topo: a página inteira acompanha; os palcos mostram os dois temas sempre.</li>
+      <li>Para voltar, o índice fica preso na lateral; no celular, use o topo da página.</li>
+    </ol></div>
+    <div class="doc-bloco"><h2>Como ler os estados</h2><p>Estados que dependem do mouse e do teclado aparecem parados com as classes de catálogo <code>.cm-sim-hover</code>, <code>.cm-sim-foco</code> e <code>.cm-sim-ativo</code>, geradas das próprias regras da fundação. Elas não existem em tela de produto. Quando um estado não se aplica, a célula diz por quê.</p></div>
+  </div>
+</section>
+
+<!-- ================================================================= AÇÕES -->
+<section class="doc-familia" aria-labelledby="f-acoes">
+<h2 id="f-acoes">Ações</h2>
+<p>O que a pessoa aperta. Latão é a ação principal da tela, e só uma por área. O resto é cinza, discreto ou link.</p>
+
+<section class="doc-comp" id="botao">
+  <h3>Botão <code>.cm-botao</code></h3>
+  <p class="lead">Dispara uma ação agora. O rótulo é um verbo com o objeto quando cabe ("Registrar contato", "Gerar 2ª via"). Ícone à esquerda só quando ajuda a achar a ação numa fileira.</p>
+
+  <template class="doc-ex-t" data-titulo="<b>Variantes.</b> Principal (latão no interno), padrão, discreto, perigo, perigo cheio (só dentro da confirmação), link e só ícone." data-densidades="escuro">
+<div class="doc-fileira">
+  <button class="cm-botao cm-botao--principal" type="button"><i data-i="salvar"></i>Salvar</button>
+  <button class="cm-botao" type="button">Cancelar</button>
+  <button class="cm-botao cm-botao--discreto" type="button"><i data-i="anexar"></i>Anexar</button>
+  <button class="cm-botao cm-botao--perigo" type="button"><i data-i="excluir"></i>Excluir…</button>
+  <button class="cm-botao cm-botao--perigo-cheio" type="button">Excluir</button>
+  <button class="cm-botao cm-botao--link" type="button">Ver histórico</button>
+  <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Mais ações" data-dica="Mais ações"><i data-i="mais-opcoes"></i></button>
+</div>
+  </template>
+
+  <template class="doc-ex-t" data-titulo="<b>Tamanhos.</b> Pequeno (barra de ferramentas, linha de tabela), padrão, grande (cabeçalho de página vazia), toque 44px (celular) e portal 52px em largura toda." data-codigo="sim">
+<div class="doc-pilha">
+  <div class="doc-fileira">
+    <button class="cm-botao cm-botao--principal cm-botao--p" type="button">Atribuir</button>
+    <button class="cm-botao cm-botao--principal" type="button">Atribuir</button>
+    <button class="cm-botao cm-botao--principal cm-botao--g" type="button">Atribuir</button>
+    <button class="cm-botao cm-botao--principal cm-botao--toque" type="button">Atribuir</button>
+  </div>
+  <div class="doc-fileira">
+    <button class="cm-botao cm-botao--p cm-botao--icone" type="button" aria-label="Editar"><i data-i="editar"></i></button>
+    <button class="cm-botao cm-botao--icone" type="button" aria-label="Editar"><i data-i="editar"></i></button>
+    <button class="cm-botao cm-botao--g cm-botao--icone" type="button" aria-label="Editar"><i data-i="editar"></i></button>
+    <button class="cm-botao" type="button" aria-pressed="true"><i data-i="fixar"></i>Fixado</button>
+    <button class="cm-botao" type="button">Chamados <span class="cm-contador">12</span></button>
+    <button class="cm-botao cm-botao--discreto" type="button">Atalhos <span class="cm-botao__atalho">Shift ?</span></button>
+  </div>
+  <div class="ex-w320" data-contexto="portal"><button class="cm-botao cm-botao--principal cm-botao--portal" type="button">Enviar chamado</button></div>
+</div>
+  </template>
+
+  <h4>Estados</h4>
+  <template class="doc-ex-t" data-matriz="botao1" data-layout="empilhado" data-codigo="nao" data-titulo="Principal, padrão, discreto e perigo em todos os estados."></template>
+  <template class="doc-ex-t" data-matriz="botao2" data-layout="empilhado" data-codigo="nao" data-titulo="Perigo cheio, link, só ícone e portal."></template>
+
+  <div class="doc-regras">
+    <div><h5>Anatomia</h5><ol class="doc-anatomia"><li>Caixa <code>.cm-botao</code>, altura pela densidade (<code>--cm-controle</code>)</li><li>Ícone opcional, 16px, à esquerda</li><li>Rótulo, 13px, peso 500 (650 no principal)</li><li>Contador ou atalho opcional à direita</li></ol></div>
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Ação que acontece no clique: salvar, enviar, atribuir, gerar boleto.</li><li>Principal: a ação que fecha a tarefa da área. Uma por cabeçalho, uma por modal, uma por barra de salvar.</li><li>Perigo: abre a confirmação de exclusão; o perigo cheio só existe dentro dela.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para navegar para outra tela: use link (<code>&lt;a&gt;</code>), que pode abrir em nova aba.</li><li>Dois principais lado a lado. O segundo vira padrão.</li><li>Botão com só cor para estado ("Pago" verde). Estado é <code>.cm-estado</code>.</li><li>"→" no fim do rótulo, rótulo em caixa alta, "Clique aqui", "OK".</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Verbo no infinitivo + objeto: "Gerar 2ª via", "Abrir chamado". Até 3 palavras.</li><li>A mesma ação tem o mesmo nome no fluxo inteiro: o botão "Arquivar" gera o toast "Arquivado".</li><li>Reticências quando a ação pede mais um passo: "Excluir…", "Mover para…".</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Elemento <code>&lt;button type="button"&gt;</code>; só ícone exige <code>aria-label</code> e a dica com o mesmo texto.</li><li>Carregando: <code>aria-busy="true"</code>; o rótulo some da vista mas fica para o leitor, e o clique é bloqueado.</li><li>Desabilitado explica o motivo numa dica ou texto ao lado ("Só a gestora pode reabrir"). Prefira <code>aria-disabled="true"</code> quando a pessoa precisa achar o botão pelo Tab.</li><li>Alternável (Fixar): <code>aria-pressed</code>. Alvo de 44px no celular (<code>--toque</code>).</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="dividido">
+  <h3>Botão dividido <code>.cm-dividido</code></h3>
+  <p class="lead">"Salvar ▾" e "Enviar ▾": a ação mais comum fica no botão, as variações ficam no menu, e o rótulo lembra a última escolha da pessoa ("Salvar e próximo"). Abra o menu e escolha: o rótulo muda.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Clique na seta, escolha uma opção e veja o rótulo lembrar. Esc fecha. Setas andam no menu.">
+<div class="doc-fileira doc-fileira--topo">
+  <div class="cm-dividido" data-doc-ancora>
+    <button class="cm-botao cm-botao--principal" type="button" data-toast="Chamado 48213 salvo. Abrindo o 14 de 63.|sucesso">Salvar <span class="cm-dividido__lembra">e próximo</span></button>
+    <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de salvar" data-doc-alterna><i data-i="chevron-baixo"></i></button>
+    <div class="cm-menu cm-menu--240 cm-flutuante" role="menu" aria-label="Formas de salvar" data-doc-alvo hidden>
+      <button class="cm-menu__item" role="menuitem" type="button" data-lembra="e continuar"><i data-i="salvar"></i><span>Salvar e continuar</span><span class="cm-menu__atalho">Ctrl S</span></button>
+      <button class="cm-menu__item" role="menuitem" type="button" data-lembra="e próximo"><i data-i="proximo"></i><span>Salvar e próximo</span><span class="cm-menu__atalho">Ctrl Enter</span></button>
+      <button class="cm-menu__item" role="menuitem" type="button" data-lembra="e voltar"><i data-i="voltar"></i><span>Salvar e voltar à lista</span><span></span></button>
+      <button class="cm-menu__item" role="menuitem" type="button" data-lembra="e novo"><i data-i="adicionar"></i><span>Salvar e novo</span><span></span></button>
+    </div>
+  </div>
+  <div class="cm-dividido" data-doc-ancora>
+    <button class="cm-botao cm-botao--principal" type="button" data-toast="Resposta enviada a Marina Costa. Conversa resolvida.|sucesso">Enviar <span class="cm-dividido__lembra">e resolver</span></button>
+    <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de enviar" data-doc-alterna><i data-i="chevron-baixo"></i></button>
+    <div class="cm-menu cm-menu--240 cm-flutuante doc-direita" role="menu" aria-label="Formas de enviar" data-doc-alvo hidden style="width:300px">
+      <button class="cm-menu__item" role="menuitem" type="button" data-lembra="e manter aberto"><i data-i="enviar"></i><span>Enviar e manter aberto</span><span class="cm-menu__atalho">Enter</span></button>
+      <button class="cm-menu__item" role="menuitem" type="button" data-lembra="e aguardar cliente"><i data-i="pendente"></i><span>Enviar e aguardar cliente</span><span></span></button>
+      <button class="cm-menu__item" role="menuitem" type="button" data-lembra="e resolver"><i data-i="sucesso"></i><span>Enviar e resolver</span><span class="cm-menu__atalho">Ctrl Enter</span></button>
+      <button class="cm-menu__item" role="menuitem" type="button" data-lembra="e abrir a próxima"><i data-i="proximo"></i><span>Enviar e abrir a próxima da fila</span><span class="cm-menu__atalho">Ctrl J</span></button>
+      <div class="cm-menu__pe"><label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Depois de resolver, abrir a próxima</span></label></div>
+    </div>
+  </div>
+  <div class="cm-dividido" data-doc-ancora>
+    <button class="cm-botao cm-botao--p" type="button" data-toast="Relatório exportado em PDF|sucesso">Exportar <span class="cm-dividido__lembra">PDF</span></button>
+    <button class="cm-botao cm-botao--p" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outros formatos" data-doc-alterna><i data-i="chevron-baixo"></i></button>
+    <div class="cm-menu cm-flutuante" role="menu" aria-label="Formatos" data-doc-alvo hidden>
+      <button class="cm-menu__item" role="menuitem" type="button" data-lembra="PDF" data-toast="Exportado em PDF"><i data-i="pdf"></i><span>PDF</span><span></span></button>
+      <button class="cm-menu__item" role="menuitem" type="button" data-lembra="planilha" data-toast="Exportado em planilha"><i data-i="planilha"></i><span>Planilha (.xlsx)</span><span></span></button>
+    </div>
+  </div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-titulo="<b>Menu do Enviar aberto</b>, parado para revisão." data-codigo="nao" data-palco="300">
+<div style="padding:40px 18px">
+  <div class="cm-dividido">
+    <button class="cm-botao cm-botao--principal" type="button">Enviar <span class="cm-dividido__lembra">e resolver</span></button>
+    <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="true" aria-label="Outras formas de enviar"><i data-i="chevron-baixo"></i></button>
+  </div>
+  <div class="cm-menu cm-flutuante" role="menu" aria-label="Formas de enviar" style="width:300px;margin-top:4px">
+    <button class="cm-menu__item" role="menuitem" type="button"><i data-i="enviar"></i><span>Enviar e manter aberto</span><span class="cm-menu__atalho">Enter</span></button>
+    <button class="cm-menu__item" role="menuitem" type="button"><i data-i="pendente"></i><span>Enviar e aguardar cliente</span><span></span></button>
+    <button class="cm-menu__item is-ativo" role="menuitemradio" aria-checked="true" type="button"><i data-i="sucesso"></i><span>Enviar e resolver</span><span class="cm-menu__atalho">Ctrl Enter</span></button>
+    <button class="cm-menu__item" role="menuitem" type="button"><i data-i="proximo"></i><span>Enviar e abrir a próxima da fila</span><span class="cm-menu__atalho">Ctrl J</span></button>
+    <div class="cm-menu__pe"><label class="cm-marcar"><input type="checkbox" checked><span class="cm-marcar__caixa"></span><span>Depois de resolver, abrir a próxima</span></label></div>
+  </div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="dividido" data-layout="empilhado" data-codigo="nao" data-titulo="Estados das duas metades. A seta é um botão próprio, com foco e rótulo próprios."></template>
+  <div class="doc-regras">
+    <div><h5>Anatomia</h5><ol class="doc-anatomia"><li>Ação lembrada: "Salvar" + <code>.cm-dividido__lembra</code> ("e próximo")</li><li>Seta: segundo botão, <code>aria-haspopup="menu"</code></li><li>Menu com atalho de cada forma</li><li>Pé opcional com a preferência ("abrir a próxima")</li></ol></div>
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Salvar um registro que veio de uma lista ("14 de 63"): salvar e próximo, e voltar, e novo.</li><li>Responder no atendimento: o que acontece com a conversa depois do envio.</li><li>Exportar com um formato preferido.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para juntar ações diferentes ("Salvar" e "Excluir"). O menu só tem variações da mesma ação.</li><li>Quando só existe uma forma. Botão simples.</li><li>No portal do síndico: lá cada ação é um botão grande e explícito.</li></ul></div>
+    <div><h5>Conteúdo e acessibilidade</h5><ul><li>A parte lembrada é curta ("e próximo"), em peso normal.</li><li>O rótulo acessível da seta diz o que tem dentro: "Outras formas de salvar".</li><li>Menu: setas para cima e para baixo, Enter escolhe, Esc fecha e devolve o foco à seta.</li><li>A escolha é por pessoa e por tela (lembrada no perfil).</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="segmentado">
+  <h3>Grupo segmentado <code>.cm-segmentado</code></h3>
+  <p class="lead">Escolhe uma entre duas a cinco opções que trocam a vista na hora: Lista ou Quadro, Dia, Semana ou Mês. A escolhida tem a chapa clara e o filete de latão embaixo.</p>
+  <template class="doc-ex-t" data-titulo="<b>Funciona.</b> Clique para trocar." data-densidades="escuro">
+<div class="doc-fileira">
+  <div class="cm-segmentado" role="group" aria-label="Visão dos chamados">
+    <button type="button" aria-pressed="true"><i data-i="lista"></i>Lista</button>
+    <button type="button" aria-pressed="false"><i data-i="quadro"></i>Quadro</button>
+    <button type="button" aria-pressed="false"><i data-i="calendario"></i>Agenda</button>
+  </div>
+  <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Período">
+    <button type="button" aria-pressed="false">Dia</button>
+    <button type="button" aria-pressed="true">Semana</button>
+    <button type="button" aria-pressed="false">Mês</button>
+  </div>
+  <div class="cm-segmentado cm-segmentado--icones" role="group" aria-label="Painel lateral">
+    <button type="button" aria-pressed="true" aria-label="Mostrar ficha" data-dica="Mostrar ficha"><i data-i="painel-direito"></i></button>
+    <button type="button" aria-pressed="false" aria-label="Esconder ficha" data-dica="Esconder ficha"><i data-i="maximizar"></i></button>
+  </div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="segmentado" data-layout="empilhado" data-codigo="nao" data-titulo="Estados de um segmento."></template>
+  <div class="doc-regras">
+    <div><h5>Anatomia</h5><ol class="doc-anatomia"><li>Moldura com filete <code>.cm-segmentado</code></li><li>Segmentos <code>button[aria-pressed]</code> com ícone opcional</li><li>Escolhido: chapa clara, peso 650 e filete de latão</li></ol></div>
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Troca de vista do mesmo conteúdo.</li><li>Filtro de período curto e exclusivo.</li><li>Estado do chamado no cabeçalho, quando há até quatro estados.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Mais de cinco opções: use seleção.</li><li>Para navegar entre telas: use abas.</li><li>Para ligar e desligar uma coisa só: use interruptor.</li></ul></div>
+    <div><h5>Conteúdo e acessibilidade</h5><ul><li>Rótulos de uma ou duas palavras, do mesmo tamanho de ideia.</li><li><code>role="group"</code> com <code>aria-label</code>; cada segmento com <code>aria-pressed</code>. Só ícone exige <code>aria-label</code>.</li><li>Cada segmento é um Tab; Espaço escolhe.</li></ul></div>
+  </div>
+</section>
+</section>
+
+<!-- ================================================================= ESTADO E IDENTIDADE -->
+<section class="doc-familia" aria-labelledby="f-estado">
+<h2 id="f-estado">Estado e identidade</h2>
+<p>Como um registro está, a que ele pertence e quem está por perto. A cor nunca vem sozinha: estado tem ícone e palavra, presença tem forma, etiqueta tem nome.</p>
+
+<section class="doc-comp" id="estado">
+  <h3>Estado com ponto <code>.cm-estado</code></h3>
+  <p class="lead">A situação de um registro: em dia, atenção, atrasado, informação, encerrado. Três formas: com ícone (padrão), com ponto de forma própria (lista longa) e em caixa (cabeçalho do registro, onde vira seletor).</p>
+  <template class="doc-ex-t" data-titulo="<b>Cinco tons, três formas.</b> No ponto, cada tom tem uma forma: círculo (sucesso, informação), losango (atenção), quadrado (perigo), vazado (neutro).">
+<div class="doc-pilha">
+  <div class="doc-fileira">
+    <span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>Pago em 05/10</span>
+    <span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Atenção: vence amanhã</span>
+    <span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Vencido há 4 dias</span>
+    <span class="cm-estado cm-estado--info"><i data-i="pendente"></i>Aberto</span>
+    <span class="cm-estado cm-estado--neutro"><i data-i="arquivar"></i>Encerrado</span>
+  </div>
+  <div class="doc-fileira">
+    <span class="cm-estado cm-estado--ponto cm-estado--sucesso">Em dia</span>
+    <span class="cm-estado cm-estado--ponto cm-estado--aviso">Aguardando cliente</span>
+    <span class="cm-estado cm-estado--ponto cm-estado--perigo">SLA estourado</span>
+    <span class="cm-estado cm-estado--ponto cm-estado--info">Em andamento</span>
+    <span class="cm-estado cm-estado--ponto cm-estado--neutro">Rascunho</span>
+  </div>
+  <div class="doc-fileira">
+    <button class="cm-estado cm-estado--caixa cm-estado--info" type="button" aria-haspopup="menu" aria-label="Estado: Aberto. Mudar estado"><i data-i="pendente"></i>Aberto<i data-i="chevron-baixo"></i></button>
+    <span class="cm-estado cm-estado--caixa cm-estado--sucesso"><i data-i="sucesso"></i>Resolvido</span>
+    <span class="cm-estado cm-estado--caixa cm-estado--perigo"><i data-i="perigo"></i>Inadimplente</span>
+  </div>
+  <div class="doc-fileira">
+    <span class="cm-estado cm-estado--sucesso cm-estado--forte"><i data-i="sucesso"></i>Forte: 82, boa</span>
+    <span class="cm-estado cm-estado--info cm-estado--leve"><i data-i="informacao"></i>Leve: atualizado há 3 min</span>
+  </div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="estado" data-layout="empilhado" data-codigo="nao" data-titulo="Estado em caixa como seletor (o único estado que se aperta)."></template>
+  <div class="doc-regras">
+    <div><h5>Anatomia</h5><ol class="doc-anatomia"><li>Ícone de estado 14px (ou ponto 8px com forma)</li><li>Palavra ou frase curta, 12,5px, peso 600</li><li>Caixa opcional com fundo e borda do tom</li></ol></div>
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Situação que muda com o tempo: pagamento, SLA, etapa, saúde.</li><li>Ponto em lista longa (fila de 40 conversas), sempre com a palavra.</li><li>Caixa no cabeçalho do registro, como seletor do estado.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Ponto laranja sozinho. Atenção sempre leva triângulo ou losango e a palavra "Atenção".</li><li>Para categorizar ("Manutenção", "Financeiro"): isso é etiqueta.</li><li>Em latão ou na cor do cliente. Nunca.</li></ul></div>
+    <div><h5>Conteúdo e acessibilidade</h5><ul><li>Diga o que fazer com o tempo: "Vence amanhã", "Responde em 6 min", "Esfriando há 12 dias".</li><li>A palavra é lida pelo leitor; o ícone é decorativo. Na caixa-seletor, o rótulo diz "Estado: Aberto. Mudar estado".</li><li>Contraste mínimo de 4,5:1 nos dois temas (verificado em 00-fundamentos).</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="etiqueta">
+  <h3>Etiqueta <code>.cm-etiqueta</code></h3>
+  <p class="lead">Categoria que a equipe cria: "Manutenção", "Aguardando boleto", "Assembleia". Oito tons próprios, todos longe das cores de estado e da marca. O tom é só um quadradinho; o texto fica neutro.</p>
+  <template class="doc-ex-t" data-titulo="<b>Oito tons</b>, sem tom (neutra), grande, com remover (funciona).">
+<div class="doc-pilha">
+  <div class="doc-fileira">
+    <span class="cm-etiqueta cm-etiqueta--1">Manutenção</span>
+    <span class="cm-etiqueta cm-etiqueta--2">Assembleia</span>
+    <span class="cm-etiqueta cm-etiqueta--3">Jardinagem</span>
+    <span class="cm-etiqueta cm-etiqueta--4">Aguardando boleto</span>
+    <span class="cm-etiqueta cm-etiqueta--5">Portaria</span>
+    <span class="cm-etiqueta cm-etiqueta--6">Obra</span>
+    <span class="cm-etiqueta cm-etiqueta--7">Seguro</span>
+    <span class="cm-etiqueta cm-etiqueta--8">Elevador</span>
+  </div>
+  <div class="doc-fileira">
+    <span class="cm-etiqueta">Sem tom</span>
+    <span class="cm-etiqueta cm-etiqueta--g cm-etiqueta--1">Grande, no filtro</span>
+    <span class="cm-etiqueta cm-etiqueta--4">Vazamento<button class="cm-etiqueta__remover" type="button" aria-label="Remover etiqueta Vazamento"><i data-i="fechar"></i></button></span>
+    <span class="cm-etiqueta cm-etiqueta--2">Síndico novo<button class="cm-etiqueta__remover" type="button" aria-label="Remover etiqueta Síndico novo"><i data-i="fechar"></i></button></span>
+  </div>
+</div>
+  </template>
+  <template class="doc-ex-t" data-matriz="etiqueta" data-layout="empilhado" data-codigo="nao" data-titulo="Estados do botão de remover dentro da etiqueta."></template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Agrupar e filtrar por assunto que a empresa define (Configuração › Etiquetas).</li><li>Etiquetas do WhatsApp Business nas conversas.</li><li>Até três por linha de lista; o resto vira "+2".</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Para estado ("Atrasado" em etiqueta vermelha). Use <code>.cm-estado</code>.</li><li>Para identificador ("OS 482"): isso é plaqueta ou texto.</li><li>Com a cor do cliente ou latão.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Substantivo curto, primeira letra maiúscula, sem ponto.</li><li>Até 24 caracteres; o resto é cortado com reticências e o nome inteiro vai na dica.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>O tom é decorativo: a palavra carrega o sentido.</li><li>O remover é um botão com <code>aria-label="Remover etiqueta Vazamento"</code>; ao remover, toast com "Desfazer".</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="contador">
+  <h3>Contador <code>.cm-contador</code></h3>
+  <p class="lead">Quantos itens há atrás de uma aba, um filtro ou um botão. Cinza quando é só quantidade; latão quando é "não lido, para você".</p>
+  <template class="doc-ex-t" data-titulo="Neutro, novo (para você), pequeno, sobre o ícone, números grandes.">
+<div class="doc-pilha">
+  <div class="doc-fileira">
+    <span class="cm-contador">7</span>
+    <span class="cm-contador cm-contador--novo">3</span>
+    <span class="cm-contador cm-contador--p">12</span>
+    <span class="cm-contador">99+</span>
+    <span class="cm-contador">1.284</span>
+  </div>
+  <div class="doc-fileira">
+    <div class="cm-abas cm-abas--sem-linha" role="tablist" aria-label="Filas"><button role="tab" type="button" aria-selected="true">Minha fila <span class="cm-contador cm-contador--novo">7</span></button><button role="tab" type="button" aria-selected="false">Equipe <span class="cm-contador">38</span></button><button role="tab" type="button" aria-selected="false">Aguardando <span class="cm-contador">0</span></button></div>
+    <button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Avisos, 3 novos" style="position:relative"><i data-i="notificacoes"></i><span class="cm-contador cm-contador--novo cm-contador--p cm-contador--sobre" aria-hidden="true">3</span></button>
+  </div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Neutro: tamanho de uma fila, de um filtro, de uma aba.</li><li>Novo (latão): o que espera a pessoa e ela ainda não viu. Sino, "Minha fila", menções.</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Vermelho para "urgente": a urgência vai no estado do item.</li><li>Zero no sino. Some. Numa aba de fila, o zero fica, para confirmar que está vazia.</li><li>Na cor do cliente.</li></ul></div>
+    <div><h5>Conteúdo</h5><ul><li>Acima de 99 vira "99+" no sino e no ícone; em aba e filtro, o número inteiro com ponto de milhar.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Sobre ícone: o número vai no <code>aria-label</code> do botão ("Avisos, 3 novos") e o contador fica <code>aria-hidden</code>.</li><li>Mudança de contagem em fila ao vivo é anunciada em região <code>polite</code>, no máximo a cada 30 s.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="avatar">
+  <h3>Avatar e presença <code>.cm-avatar</code> <code>.cm-presenca</code></h3>
+  <p class="lead">Quem é e se está disponível, no padrão do Microsoft Teams: cada presença tem cor, forma e palavra. Em lista de pessoas a palavra aparece; sobre o avatar, só a forma, e a palavra vai na dica e no rótulo acessível.</p>
+  <template class="doc-ex-t" data-titulo="<b>Seis presenças</b> sobre o avatar e por escrito, cinco tons de iniciais, foto, empresa (na cor do cliente, só no mural).">
+<div class="doc-pilha">
+  <div class="doc-fileira">
+    <span class="cm-avatar cm-avatar--g cm-avatar--2" role="img" aria-label="Beatriz Nogueira, disponível">BN<span class="cm-presenca cm-presenca--disponivel" data-presenca="disponivel" aria-hidden="true"></span></span>
+    <span class="cm-avatar cm-avatar--g cm-avatar--1" role="img" aria-label="Diego Martins, ocupado">DM<span class="cm-presenca cm-presenca--ocupado" data-presenca="ocupado" aria-hidden="true"></span></span>
+    <span class="cm-avatar cm-avatar--g cm-avatar--3" role="img" aria-label="Renata Sousa, em atendimento">RS<span class="cm-presenca cm-presenca--em-atendimento" data-presenca="em-atendimento" aria-hidden="true"></span></span>
+    <span class="cm-avatar cm-avatar--g cm-avatar--4" role="img" aria-label="Rodrigo Mello, não incomodar">RM<span class="cm-presenca cm-presenca--nao-incomodar" data-presenca="nao-incomodar" aria-hidden="true"></span></span>
+    <span class="cm-avatar cm-avatar--g cm-avatar--5" role="img" aria-label="Juliana Prado, ausente">JP<span class="cm-presenca cm-presenca--ausente" data-presenca="ausente" aria-hidden="true"></span></span>
+    <span class="cm-avatar cm-avatar--g" role="img" aria-label="Paulo Andrade, offline">PA<span class="cm-presenca cm-presenca--offline" data-presenca="offline" aria-hidden="true"></span></span>
+    <span class="cm-avatar cm-avatar--g cm-avatar--empresa" role="img" aria-label="Administradora Alpha">A</span>
+  </div>
+  <div class="doc-fileira">
+    <span class="cm-avatar cm-avatar--p cm-avatar--2">BN</span>
+    <span class="cm-avatar cm-avatar--2">BN</span>
+    <span class="cm-avatar cm-avatar--m cm-avatar--2">BN</span>
+    <span class="cm-avatar cm-avatar--g cm-avatar--2">BN</span>
+    <span class="cm-avatar cm-avatar--gg cm-avatar--2">BN<span class="cm-presenca cm-presenca--disponivel" data-presenca="disponivel" aria-hidden="true"></span></span>
+    <span class="cm-avatares" role="img" aria-label="Beatriz, Diego, Renata e mais 4 pessoas"><span class="cm-avatar cm-avatar--2">BN</span><span class="cm-avatar cm-avatar--1">DM</span><span class="cm-avatar cm-avatar--3">RS</span><span class="cm-avatar">+4</span></span>
+  </div>
+  <div class="ex-lista-pessoas">
+    <span class="cm-presenca-texto"><span class="cm-presenca cm-presenca--disponivel" data-presenca="disponivel"></span>Disponível</span>
+    <span class="cm-presenca-texto"><span class="cm-presenca cm-presenca--em-atendimento" data-presenca="em-atendimento"></span>Em atendimento, 3 conversas</span>
+    <span class="cm-presenca-texto"><span class="cm-presenca cm-presenca--ausente" data-presenca="ausente"></span>Volto logo, consulta médica até 11h</span>
+    <span class="cm-presenca-texto"><span class="cm-presenca cm-presenca--offline" data-presenca="offline"></span>Offline desde ontem, 18:04</span>
+  </div>
+  <div class="cm-pessoa"><span class="cm-avatar cm-avatar--m cm-avatar--4">MC<span class="cm-presenca cm-presenca--disponivel" data-presenca="disponivel" aria-hidden="true"></span></span><span class="cm-pessoa__texto"><span class="cm-pessoa__nome">Marina Costa</span><span class="cm-pessoa__sub">Síndica, Cond. Parque das Águas</span></span></div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div><h5>Anatomia</h5><ol class="doc-anatomia"><li>Círculo com iniciais (duas letras) ou foto</li><li>Selo de presença no canto, com glifo (tique, traço, relógio, X)</li><li>Nome e subtítulo em <code>.cm-pessoa</code></li></ol></div>
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Responsável de chamado, cartão de kanban, autor de post e de mensagem.</li><li>Presença só para gente da equipe; morador e síndico não têm presença.</li><li>Pilha <code>.cm-avatares</code> para participantes, no máximo 3 + "+n".</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Avatar com a cor do cliente, exceto a conta da empresa no mural.</li><li>Presença só pela cor (sem glifo).</li><li>Avatar como único jeito de saber o nome: em lista, o nome vai ao lado.</li></ul></div>
+    <div><h5>Acessibilidade</h5><ul><li>Sozinho: <code>role="img"</code> com "Nome, presença".</li><li>Ao lado do nome: o avatar é decorativo (<code>aria-hidden</code>) e a presença vai em texto.</li><li><code>cmPresenca('ausente')</code> gera o selo com o glifo certo.</li></ul></div>
+  </div>
+</section>
+
+<section class="doc-comp" id="ladrilho">
+  <h3>Ícone de objeto <code>.cm-ladrilho</code></h3>
+  <p class="lead">O ladrilho diz que tipo de coisa é o registro: condomínio, chamado, boleto, OS, pessoa. É sempre o mesmo ícone para o mesmo objeto, em qualquer tela.</p>
+  <template class="doc-ex-t" data-titulo="Tamanhos 22, 28, 40 e 48, e vazado. Objetos mais comuns.">
+<div class="doc-pilha">
+  <div class="doc-fileira">
+    <span class="cm-ladrilho cm-ladrilho--pp"><i data-i="condominio"></i></span>
+    <span class="cm-ladrilho cm-ladrilho--p"><i data-i="condominio"></i></span>
+    <span class="cm-ladrilho"><i data-i="condominio"></i></span>
+    <span class="cm-ladrilho cm-ladrilho--g"><i data-i="condominio"></i></span>
+    <span class="cm-ladrilho cm-ladrilho--vazado"><i data-i="condominio"></i></span>
+  </div>
+  <div class="doc-fileira">
+    <span class="cm-ladrilho cm-ladrilho--p" role="img" aria-label="Chamado"><i data-i="chamado"></i></span>
+    <span class="cm-ladrilho cm-ladrilho--p" role="img" aria-label="Boleto"><i data-i="boleto"></i></span>
+    <span class="cm-ladrilho cm-ladrilho--p" role="img" aria-label="Ordem de serviço"><i data-i="ordem-de-servico"></i></span>
+    <span class="cm-ladrilho cm-ladrilho--p" role="img" aria-label="Contrato"><i data-i="contrato"></i></span>
+    <span class="cm-ladrilho cm-ladrilho--p" role="img" aria-label="Assembleia"><i data-i="assembleia"></i></span>
+    <span class="cm-ladrilho cm-ladrilho--p" role="img" aria-label="Reserva"><i data-i="reserva"></i></span>
+    <span class="cm-ladrilho cm-ladrilho--p" role="img" aria-label="Unidade"><i data-i="unidade"></i></span>
+    <span class="cm-ladrilho cm-ladrilho--p" role="img" aria-label="Pessoa"><i data-i="pessoa"></i></span>
+    <span class="cm-ladrilho cm-ladrilho--p" role="img" aria-label="Disciplina"><i data-i="disciplina"></i></span>
+    <span class="cm-ladrilho cm-ladrilho--p" role="img" aria-label="Conversa no WhatsApp"><i data-i="whatsapp"></i></span>
+  </div>
+</div>
+  </template>
+  <div class="doc-regras">
+    <div class="sim"><h5><i data-i="sucesso"></i>Quando usar</h5><ul><li>Cabeçalho do registro (40), item da paleta Ctrl K (28), linha do "Para você" e da atividade (28), filtro de tipo (22).</li></ul></div>
+    <div class="nao"><h5><i data-i="proibido"></i>Quando não usar</h5><ul><li>Com cor de estado ou de marca no fundo. É sempre camada 3 e filete.</li><li>Como botão. Se clica, é botão com ícone.</li><li>Em toda linha de tabela densa: lá o tipo é a coluna.</li></ul></div>
+    <div class="doc-regras--larga"><h5>Acessibilidade</h5><ul><li>Ao lado do nome do registro, decorativo. Sozinho (paleta sem texto de tipo), <code>role="img"</code> com o nome do objeto.</li></ul></div>
+  </div>
+</section>

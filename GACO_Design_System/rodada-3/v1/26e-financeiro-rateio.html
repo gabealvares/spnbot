@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rateio de despesa extra, Financeiro</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.rt-grade{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.rt-criterio .lc-radio{padding:12px 14px;border:1px solid var(--filete-forte);border-radius:var(--raio-2);background:var(--sup-1);width:100%}
+.rt-criterio .lc-radio:has(input:checked){border-color:var(--atual);background:var(--selecao)}
+@media (max-width:1023px){.rt-grade{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body data-moldura='{"modulo":"financeiro","secao":"Contas a receber","item":"Rateios","papel":"financeiro","usuario":{"nome":"Renata Oliveira","cargo":"Analista financeira","iniciais":"RO","cor":"lc-av--c5"},"trilha":["Rateios","Novo rateio"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Rateio de despesa extra entre as unidades, com prévia por tipo de unidade.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p>
+      <p>Transformar uma despesa aprovada em assembleia (a bomba do reservatório) em cota extra de cada unidade, com o critério que a convenção manda, e conferir o centavo antes de lançar no boleto.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Parte de uma conta a pagar (26c) ou de "Novo rateio"; a despesa e a ata vêm preenchidas.</li>
+      <li>Escolhe o critério: fração ideal, igualitário ou só alguns blocos. A prévia ao lado recalcula na hora.</li>
+      <li>Escolhe parcelas e a primeira competência.</li>
+      <li>Ao editar qualquer campo, a barra de salvar aparece: "Salvar rascunho" ou "Lançar nas cobranças" pelo "Salvar ▾".</li>
+      <li>Depois de lançado, o rateio aparece em cada cobrança como linha própria (ver 26b, Composição do valor).</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p>
+      <p>a Superlógica e o Condomínio21 calculam a cota extra por fração ideal com a lista de unidades, e o uCondo mostra a sobra do arredondamento. Agrupamos por tipo de unidade (72 apartamentos iguais não precisam de 72 linhas) e deixamos a lista completa a um clique.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div></div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="financeiro"></div>
+</details>
+
+<form data-p4-form data-p4-nome="Rateio da motobomba" onsubmit="return false">
+<div class="lc-cab-pagina">
+  <div class="lc-cab-pagina__txt"><h1>Novo rateio de despesa extra</h1>
+    <p class="lc-cab-pagina__desc">Cond. Parque das Águas, 120 unidades. A soma das frações ideais é 100,0000%.</p></div>
+</div>
+<ol class="lc-passos" style="margin-bottom:20px"><li class="lc-feito">Despesa</li><li aria-current="step">Critério e parcelas</li><li>Lançar nas cobranças</li></ol>
+
+<div class="rt-grade">
+  <div>
+    <fieldset class="lc-secao-form"><legend>Despesa</legend>
+      <p class="lc-secao-form__desc">Aprovada na AGE de 15/09/2026, item 2 da pauta (ata registrada).</p>
+      <div class="lc-form-grade">
+        <div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="desc">Descrição na cobrança</label><input id="desc" class="lc-entrada" value="Cota extra: conjunto motobomba do reservatório"><p class="lc-ajuda">É o texto que o morador lê no boleto.</p></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="val">Valor a ratear</label><div class="lc-entrada-grupo"><span class="lc-entrada-grupo__fixo">R$</span><input id="val" class="lc-entrada lc-entrada--num" inputmode="decimal" value="12.640,00"></div><p class="lc-ajuda">Da conta a pagar da Hidro Lins Bombas, NF 3.207.</p></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="ata">Ata que aprovou</label><select id="ata" class="lc-selecao"><option>AGE 15/09/2026, item 2</option><option>AGO 14/03/2026</option></select></div>
+      </div>
+    </fieldset>
+    <fieldset class="lc-secao-form"><legend>Critério</legend>
+      <p class="lc-secao-form__desc">A convenção (art. 12) manda despesa extraordinária por fração ideal. Os outros critérios precisam estar na ata.</p>
+      <div class="lc-pilha lc-pilha--p rt-criterio" role="radiogroup" aria-label="Critério do rateio">
+        <label class="lc-radio"><input type="radio" name="crit" value="fracao" checked><span class="lc-radio__bola"></span><span>Fração ideal<small>Cada unidade paga a sua fração. Coberturas pagam mais.</small></span></label>
+        <label class="lc-radio"><input type="radio" name="crit" value="igual"><span class="lc-radio__bola"></span><span>Igualitário<small>Mesmo valor para as 120 unidades.</small></span></label>
+        <label class="lc-radio"><input type="radio" name="crit" value="blocos"><span class="lc-radio__bola"></span><span>Só alguns blocos<small>Quando a obra atende parte do condomínio.</small></span></label>
+      </div>
+    </fieldset>
+    <fieldset class="lc-secao-form"><legend>Parcelas</legend>
+      <div class="lc-form-grade lc-form-grade--3">
+        <div class="lc-campo"><label class="lc-rotulo" for="parc">Número de parcelas</label><select id="parc" class="lc-selecao"><option>1</option><option selected>2</option><option>3</option></select></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="ini">Primeira competência</label><select id="ini" class="lc-selecao"><option>Novembro/2026</option><option>Dezembro/2026</option></select></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="fundo">Pagar antes com</label><select id="fundo" class="lc-selecao"><option>Fundo de reserva, repor com a cota</option><option>Não adiantar</option></select></div>
+      </div>
+    </fieldset>
+  </div>
+
+  <aside class="lc-caixa" aria-labelledby="rt-p-t" style="position:sticky;top:64px">
+    <div class="lc-caixa__cab"><h2 id="rt-p-t">Prévia por tipo de unidade</h2></div>
+    <div class="lc-caixa__corpo lc-caixa__corpo--cheio">
+      <table class="lc-tabela" style="--_min-tab:0"><caption class="lc-sr">Valor por unidade em cada parcela</caption>
+        <thead><tr><th>Tipo</th><th class="lc-num">Por parcela</th><th class="lc-num">Total</th></tr></thead>
+        <tbody id="rt-corpo">
+          <tr><td>Apartamento 2 dorm.<span class="lc-tabela__sub"><span class="lc-fracao" style="--_v:58%"></span>72 un., 0,7000%</span></td><td class="lc-num" data-f="R$ 44,24" data-i="R$ 52,67">R$ 44,24</td><td class="lc-num" data-f="R$ 6.370,56" data-i="R$ 7.583,76">R$ 6.370,56</td></tr>
+          <tr><td>Apartamento 3 dorm.<span class="lc-tabela__sub"><span class="lc-fracao" style="--_v:83%"></span>40 un., 1,0000%</span></td><td class="lc-num" data-f="R$ 63,20" data-i="R$ 52,67">R$ 63,20</td><td class="lc-num" data-f="R$ 5.056,00" data-i="R$ 4.213,20">R$ 5.056,00</td></tr>
+          <tr><td>Cobertura<span class="lc-tabela__sub"><span class="lc-fracao" style="--_v:100%"></span>8 un., 1,2000%</span></td><td class="lc-num" data-f="R$ 75,84" data-i="R$ 52,67">R$ 75,84</td><td class="lc-num" data-f="R$ 1.213,44" data-i="R$ 842,64">R$ 1.213,44</td></tr>
+        </tbody>
+        <tfoot><tr><td>120 unidades</td><td></td><td class="lc-num"><span class="lc-total">R$ 12.640,00</span></td></tr></tfoot>
+      </table>
+      <p class="lc-legenda" id="rt-arred" style="padding:10px 16px 0">Sem sobra de arredondamento.</p>
+      <p style="padding:6px 16px 14px"><button class="lc-btn lc-btn--link" type="button">Ver as 120 unidades</button></p>
+    </div>
+  </aside>
+</div>
+
+<div class="lc-barra-salvar" role="region" aria-label="Alterações não salvas">
+  <p class="lc-barra-salvar__msg"><i data-i="aviso"></i><span><b>1 alteração não salva</b></span></p>
+  <div class="lc-barra-salvar__acoes"><button class="lc-btn lc-btn--discreto" type="button" data-descartar>Descartar</button>
+    <span class="lc-dividido" style="position:relative"><button class="lc-btn lc-btn--principal" type="button" data-salvar="Rascunho do rateio salvo.">Salvar rascunho</button><button class="lc-btn lc-btn--principal" type="button" aria-label="Outras formas de salvar" aria-haspopup="menu" aria-expanded="false" data-abrir="rt-menu"><i data-i="chevron-baixo"></i></button>
+      <ul class="lc-menu" id="rt-menu" role="menu" hidden style="right:0;bottom:calc(100% + 6px)">
+        <li><button class="lc-menu__item" role="menuitem" type="button" data-toast="Rateio lançado: 240 parcelas nas cobranças de novembro e dezembro.">Salvar e lançar nas cobranças<small>2 parcelas, novembro e dezembro</small></button></li>
+        <li><button class="lc-menu__item" role="menuitem" type="button">Salvar e enviar à síndica para conferir</button></li>
+        <li><button class="lc-menu__item" role="menuitem" type="button">Salvar e voltar para Rateios</button></li></ul></span></div>
+</div>
+</form>
+
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl>
+    <dt>Ordem de foco</dt><dd>Descrição, valor, ata, critério (setas trocam a opção do grupo), parcelas, competência, fundo, prévia (Ver as 120 unidades), barra de salvar (Descartar, Salvar rascunho, Outras formas de salvar).</dd>
+    <dt>O que é anunciado</dt><dd>A prévia é região com título; ao trocar o critério, a nota de arredondamento é aria-live ("Sobra de R$ 0,40 vai para Bloco A, 101"). A barra de salvar é região "Alterações não salvas" e diz quais campos mudaram.</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Outras formas de salvar" (seta do Salvar ▾).</dd>
+  </dl>
+</details>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+<script>
+(function(){
+  var arred=document.getElementById("rt-arred"); arred.setAttribute("aria-live","polite");
+  document.querySelectorAll('input[name=crit]').forEach(function(r){ r.addEventListener("change",function(){
+    var k=r.value==="igual"?"data-i":"data-f";
+    document.querySelectorAll("#rt-corpo [data-f]").forEach(function(td){ td.textContent=td.getAttribute(k); });
+    arred.textContent = r.value==="igual" ? "Sobra de R$ 0,40 no arredondamento: vai para a primeira unidade, Bloco A, 101." : "Sem sobra de arredondamento.";
+  }); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contas a pagar, Financeiro</title>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p4.css">
+<script src="sistema/marca.js"></script>
+<style>
+.cp-grade{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:24px;align-items:start}
+.cp-detalhe{position:sticky;top:64px}
+.cp-alcada{list-style:none;margin:0;padding:0}
+.cp-alcada li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px;padding:8px 0;border-top:var(--borda-1);font-size:13.5px}
+.cp-alcada li:first-child{border-top:0}
+.cp-alcada .lc-ic{width:20px;height:20px}
+.cp-ok{color:var(--sucesso-texto)}.cp-vez{color:var(--andamento-texto)}.cp-espera{color:var(--texto-3)}
+.cp-orc td{height:38px}
+@media (max-width:1279px){.cp-grade{grid-template-columns:minmax(0,1fr)}.cp-detalhe{position:static}}
+</style>
+</head>
+<body data-moldura='{"modulo":"financeiro","secao":"Contas a pagar","item":"Contas a pagar","papel":"financeiro","usuario":{"nome":"Daniel Moreira","cargo":"Gestor financeiro","iniciais":"DM","cor":"lc-av--c7"},"trilha":["Contas a pagar"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+
+<details class="lc-ficha-tela" open>
+  <summary>Ficha da tela <small>Contas a pagar com aprovação por alçada. Papel: gestor financeiro.</small></summary>
+  <div class="lc-ficha-tela__grade">
+    <section><p class="lc-ficha-tela__tit">O que esta tela resolve</p>
+      <p>Nenhuma conta do condomínio é paga sem passar pela alçada certa. O gestor vê o que espera por ele, confere nota, orçamentos e rateio, e aprova ou reprova com motivo, uma a uma ou em lote.</p></section>
+    <section><p class="lc-ficha-tela__tit">Fluxo</p><ol>
+      <li>Aba "Para eu aprovar" abre por padrão (contagem no trilho).</li>
+      <li>Clicar numa linha abre a prévia à direita: nota, alçada, orçamentos, rateio. Setas ↑ ↓ andam entre as contas.</li>
+      <li>"Aprovar" na prévia passa para a próxima pendente; "Reprovar" pede motivo (obrigatório) e avisa quem lançou.</li>
+      <li>Marcar várias: a barra de massa oferece "Aprovar 2" e "Agendar pagamento".</li>
+      <li>Acima de R$ 10.000 a conta segue para a síndica no portal; o estado mostra "Aguardando síndica".</li></ol></section>
+    <section><p class="lc-ficha-tela__tit">Resolvemos fazer assim porque</p>
+      <p>o Omie e o Conta Azul mostram a fila de aprovação como lista com prévia, o SAP Concur exibe a cadeia de aprovadores com quem já assinou, e a Superlógica exige três orçamentos acima de um valor definido em assembleia. A prévia ao lado evita abrir e fechar cada conta.</p></section>
+  </div>
+  <div class="lc-ficha-tela__estados"><span>Estado</span>
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela" data-p4-estados>
+      <button type="button" data-v="dados" aria-pressed="true">Com dados</button><button type="button" data-v="vazio">Nada para aprovar</button><button type="button" data-v="erro">Erro ao aprovar</button><button type="button" data-v="sem-permissao">Só leitura</button></div>
+    <span>Tema</span><div class="lc-seg lc-seg--p" role="group" aria-label="Tema" data-p4-tema><button type="button" data-v="claro">Claro</button><button type="button" data-v="escuro">Escuro</button></div>
+  </div>
+  <div class="lc-ficha-tela__telas" data-p4-telas="financeiro"></div>
+</details>
+
+<div class="lc-cab-pagina">
+  <div class="lc-cab-pagina__txt"><h1>Contas a pagar</h1>
+    <p class="lc-cab-pagina__desc">Cond. Parque das Águas, vencimentos até 10/10/2026. Contas acima de R$ 10.000 também passam pela síndica.</p></div>
+  <div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="nota-fiscal"></i>Ler nota fiscal</button><button class="lc-btn lc-btn--principal" type="button"><i data-i="mais"></i>Nova conta a pagar</button></div>
+</div>
+
+<div data-estado="sem-permissao" hidden class="lc-alerta lc-alerta--info" style="margin-bottom:12px"><i data-i="info"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Você vê, mas não aprova</span>Seu papel (analista financeira) lança e agenda contas. Aprovar é do gestor financeiro, Daniel Moreira, e da síndica acima de R$ 10.000.</div></div>
+
+<div class="lc-abas" role="tablist" aria-label="Visões">
+  <button role="tab" aria-selected="true">Para eu aprovar <span class="lc-contagem">2</span></button>
+  <button role="tab" aria-selected="false">Todas até 10/10 <span class="lc-contagem">6</span></button>
+  <button role="tab" aria-selected="false">Agendadas <span class="lc-contagem">9</span></button>
+  <button role="tab" aria-selected="false">Pagas em setembro <span class="lc-contagem">31</span></button>
+</div>
+
+<div data-estado="erro" hidden class="lc-alerta lc-alerta--perigo" role="alert" style="margin-top:12px"><i data-i="erro"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">A aprovação de Guarda Sul Segurança não foi gravada</span>O orçamento anexado foi trocado por Renata Oliveira enquanto você revisava (às 10:42). Confira o novo arquivo e aprove de novo. As outras aprovações foram gravadas.<div class="lc-alerta__acoes"><button class="lc-btn lc-btn--p" type="button">Ver o que mudou</button></div></div></div>
+
+<div data-estado="vazio" hidden>
+  <div class="lc-caixa" style="margin-top:16px"><div class="lc-vazio lc-vazio--centro">
+    <span class="lc-ladrilho lc-ladrilho--48"><i data-i="feito"></i></span>
+    <h2 class="lc-vazio__titulo">Nada esperando por você</h2>
+    <p class="lc-vazio__texto">As 6 contas que vencem até 10/10 estão aprovadas ou com a síndica. A próxima entra quando Renata lançar a nota da Enel de outubro.</p>
+    <div class="lc-grupo-btn"><button class="lc-btn" type="button">Ver todas até 10/10</button></div>
+  </div></div>
+</div>
+
+<div class="cp-grade" data-estado="dados erro sem-permissao" style="margin-top:12px">
+  <div>
+    <div class="lc-filtros" id="cp-filtros">
+      <label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Fornecedor, nota ou descrição" aria-label="Pesquisar contas a pagar"></label>
+      <button class="lc-filtro" type="button">Categoria<i data-i="chevron-baixo"></i></button>
+      <button class="lc-filtro" type="button">Centro de custo<i data-i="chevron-baixo"></i></button>
+    </div>
+    <div class="lc-massa" id="cp-massa" hidden role="region" aria-label="Ações em lote"><b data-conta>0</b>
+      <div class="lc-massa__acoes"><button class="lc-btn lc-btn--discreto lc-btn--p" type="button" data-toast="2 contas aprovadas." data-toast-desfazer><i data-i="confirmar"></i>Aprovar</button><button class="lc-btn lc-btn--discreto lc-btn--p" type="button"><i data-i="calendario"></i>Agendar pagamento</button></div>
+      <div class="lc-massa__fim"><button class="lc-btn lc-btn--discreto lc-btn--p" type="button" data-limpar>Limpar</button></div></div>
+    <div class="lc-tabela-cont">
+      <table class="lc-tabela lc-com-sel" data-p4-massa="cp-massa" data-p4-filtros="cp-filtros">
+        <caption class="lc-sr">Contas a pagar até 10/10/2026</caption>
+        <thead><tr><th class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar todas"><span class="lc-marcar__caixa"></span></label></th>
+          <th scope="col">Fornecedor</th><th scope="col">Vence</th><th scope="col" class="lc-num">Valor</th><th scope="col">Aprovação</th></tr></thead>
+        <tbody>
+          <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Elevadores Atlas"><span class="lc-marcar__caixa"></span></label></td>
+            <td><a href="#" class="lc-tabela__primaria">Elevadores Atlas Schindler</a><span class="lc-tabela__sub">Manutenção mensal 10/2026, NF 48.112</span></td><td>05/10</td><td class="lc-num">R$ 2.380,00</td><td><span class="lc-estado lc-estado--andamento">Aguardando você</span></td></tr>
+          <tr aria-selected="true"><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Hidro Lins Bombas"><span class="lc-marcar__caixa"></span></label></td>
+            <td><a href="#" class="lc-tabela__primaria">Hidro Lins Bombas</a><span class="lc-tabela__sub">Conjunto motobomba do reservatório, NF 3.207</span></td><td>08/10</td><td class="lc-num">R$ 12.640,00</td><td><span class="lc-estado lc-estado--andamento">Aguardando você</span><span class="lc-tabela__sub">depois, síndica</span></td></tr>
+          <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Guarda Sul"><span class="lc-marcar__caixa"></span></label></td>
+            <td><a href="#" class="lc-tabela__primaria">Guarda Sul Segurança</a><span class="lc-tabela__sub">Portaria 24 h, outubro, NF 11.840</span></td><td>10/10</td><td class="lc-num">R$ 31.200,00</td><td><span class="lc-estado lc-estado--aviso">Aguardando síndica</span><span class="lc-tabela__sub">você aprovou 29/09</span></td></tr>
+          <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Sabesp"><span class="lc-marcar__caixa"></span></label></td>
+            <td><a href="#" class="lc-tabela__primaria">Sabesp</a><span class="lc-tabela__sub">Água e esgoto 09/2026</span></td><td>06/10</td><td class="lc-num">R$ 18.412,77</td><td><span class="lc-estado lc-estado--sucesso">Aprovada</span><span class="lc-tabela__sub">concessionária, automática</span></td></tr>
+          <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Enel"><span class="lc-marcar__caixa"></span></label></td>
+            <td><a href="#" class="lc-tabela__primaria">Enel São Paulo</a><span class="lc-tabela__sub">Energia das áreas comuns 09/2026</span></td><td>07/10</td><td class="lc-num">R$ 6.904,30</td><td><span class="lc-estado lc-estado--sucesso">Aprovada</span></td></tr>
+          <tr><td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar Jardins do Vale"><span class="lc-marcar__caixa"></span></label></td>
+            <td><a href="#" class="lc-tabela__primaria">Jardins do Vale Paisagismo</a><span class="lc-tabela__sub">Poda e adubação, NF 902</span></td><td>10/10</td><td class="lc-num">R$ 1.450,00</td><td><span class="lc-estado lc-estado--perigo">Reprovada</span><span class="lc-tabela__sub">CNPJ da nota diferente</span></td></tr>
+        </tbody>
+        <tfoot><tr><td></td><td colspan="2">Total até 10/10, 6 contas</td><td class="lc-num"><span class="lc-total">R$ 72.987,07</span></td><td></td></tr></tfoot>
+      </table>
+    </div>
+    <p class="lc-legenda" style="margin-top:8px">Saldo na conta do condomínio hoje: R$ 214.380,15 (Banco Inter). Cobre todas as contas da semana.</p>
+  </div>
+
+  <aside class="cp-detalhe lc-caixa" aria-labelledby="cp-d-t">
+    <div class="lc-caixa__cab"><h2 id="cp-d-t">Hidro Lins Bombas</h2>
+      <span class="lc-paginador"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Conta anterior"><i data-i="chevron-cima"></i></button><b>2</b> de 2<button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Próxima conta"><i data-i="chevron-baixo"></i></button></span></div>
+    <div class="lc-caixa__corpo lc-pilha lc-pilha--p">
+      <dl class="lc-props"><dt>Valor</dt><dd><b>R$ 12.640,00</b></dd><dt>Vencimento</dt><dd>08/10/2026, boleto</dd><dt>Categoria</dt><dd>Manutenção hidráulica</dd><dt>Centro de custo</dt><dd>Obras e reparos (fundo de reserva)</dd><dt>Lançada por</dt><dd>Renata Oliveira, 30/09</dd></dl>
+      <ul class="lc-anexos">
+        <li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="nota-fiscal"></i></span><span class="lc-anexo__nome">NF 3.207 Hidro Lins.pdf</span><span class="lc-anexo__info">CNPJ confere com o cadastro</span><span class="lc-anexo__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Ver NF 3.207"><i data-i="ver"></i></button></span></li>
+      </ul>
+      <p class="lc-t-subsecao" style="margin-top:6px">Orçamentos (exigidos acima de R$ 5.000)</p>
+      <table class="lc-tabela cp-orc"><caption class="lc-sr">Orçamentos</caption><thead><tr><th>Empresa</th><th class="lc-num">Valor</th></tr></thead><tbody>
+        <tr><td>Hidro Lins Bombas <span class="lc-etiqueta lc-etiqueta--sistema">escolhido</span></td><td class="lc-num">R$ 12.640,00</td></tr>
+        <tr><td>Bombas Paulista</td><td class="lc-num">R$ 13.980,00</td></tr>
+        <tr><td>AquaServ Instalações</td><td class="lc-num">R$ 14.200,00</td></tr></tbody></table>
+      <p class="lc-t-subsecao" style="margin-top:6px">Alçada</p>
+      <ol class="cp-alcada">
+        <li><span class="cp-ok"><i data-i="feito"></i></span><span>Lançada e conferida<span class="lc-lista__sub">Renata Oliveira, 30/09 16:05</span></span></li>
+        <li><span class="cp-vez"><i data-i="em-andamento"></i></span><span><b>Gestor financeiro: você</b><span class="lc-lista__sub">até R$ 10.000 a conta para aqui</span></span></li>
+        <li><span class="cp-espera"><i data-i="a-fazer"></i></span><span>Síndica Marina Costa<span class="lc-lista__sub">recebe no portal depois da sua aprovação</span></span></li>
+      </ol>
+    </div>
+    <div class="lc-caixa__pe" style="justify-content:flex-end" data-estado="dados erro">
+      <button class="lc-btn lc-btn--perigo-contorno" type="button" data-abrir="m-reprovar">Reprovar</button>
+      <button class="lc-btn lc-btn--principal" type="button" data-toast="Aprovada. Enviada à síndica Marina Costa no portal." data-toast-desfazer><i data-i="confirmar"></i>Aprovar e enviar à síndica</button>
+    </div>
+  </aside>
+</div>
+
+<details class="lc-ficha-tela lc-ficha-tela--acess" open>
+  <summary>Acessibilidade desta tela</summary>
+  <dl>
+    <dt>Ordem de foco</dt><dd>Abas de visão, busca, filtros, tabela (marcar, fornecedor), prévia (anterior/próxima, ver nota, Reprovar, Aprovar). A prévia vem depois da tabela no DOM; no celular aparece abaixo.</dd>
+    <dt>O que é anunciado</dt><dd>Linha selecionada com aria-selected; a prévia tem título "Hidro Lins Bombas" e "2 de 2". Cada passo da alçada tem ícone e palavra ("Gestor financeiro: você"). Aprovar anuncia pelo toast com "Desfazer".</dd>
+    <dt>Nome do que é só ícone</dt><dd>"Conta anterior", "Próxima conta", "Ver NF 3.207".</dd>
+  </dl>
+</details>
+</main>
+
+<div class="lc-sobreposicao" id="m-reprovar" hidden>
+  <div class="lc-modal lc-modal--perigo" role="alertdialog" aria-modal="true" aria-labelledby="m-r-t" aria-describedby="m-r-d">
+    <div class="lc-modal__cab"><div style="flex:1"><h2 id="m-r-t">Reprovar a conta da Hidro Lins Bombas?</h2><p id="m-r-d">Renata Oliveira recebe o motivo e pode corrigir e reenviar.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Fechar" data-fechar><i data-i="fechar"></i></button></div>
+    <div class="lc-modal__corpo"><div class="lc-campo"><label class="lc-rotulo" for="mot">Motivo <span class="lc-obrig" aria-hidden="true">*</span></label><textarea id="mot" class="lc-area-texto" placeholder="Ex.: falta o orçamento assinado pela empresa">O orçamento da Bombas Paulista não tem assinatura nem CNPJ. Peça a versão assinada.</textarea></div></div>
+    <div class="lc-modal__pe"><button class="lc-btn" type="button" data-fechar>Cancelar</button><button class="lc-btn lc-btn--perigo" type="button" data-fechar data-toast="Conta reprovada. Renata Oliveira foi avisada.">Reprovar</button></div>
+  </div>
+</div>
+
+<script src="sistema/icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p4.js"></script>
+</body>
+</html>

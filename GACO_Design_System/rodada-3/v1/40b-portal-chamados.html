@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal, chamados</title>
+<meta name="description" content="Portal do morador: meus chamados, chamado em conversa sem nota interna, novo chamado com foto em três passos e confirmação.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .p-lista-ch{list-style:none;margin:0;padding:0}
+  .p-lista-ch li a{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:2px 12px;padding:14px 16px;border-top:var(--borda-1);color:var(--texto-1);text-decoration:none;align-items:start}
+  .p-lista-ch li:first-child a{border-top:0}
+  .p-lista-ch li a:hover{background:var(--sup-2)}
+  .p-lista-ch b{font-weight:600;font-size:14.5px}
+  .p-lista-ch small{grid-column:2/-1;font:var(--t-legenda);color:var(--texto-2)}
+  .p-chat{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:0;border:var(--borda-2);border-radius:var(--raio-3);overflow:hidden;background:var(--sup-1);min-height:640px}
+  .p-chat__msgs{display:flex;flex-direction:column;min-width:0;border-right:var(--borda-1)}
+  .p-chat__cab{display:flex;gap:12px;align-items:center;padding:12px 16px;border-bottom:var(--borda-1);flex-wrap:wrap}
+  .p-chat__cab h2{font:var(--t-secao);margin:0}
+  .p-chat .lc-conversa{flex:1;min-height:420px}
+  .p-chat__lado{padding:16px;display:flex;flex-direction:column;gap:18px;background:var(--sup-1)}
+  @media (max-width:899px){.p-chat{grid-template-columns:minmax(0,1fr)}.p-chat__msgs{border-right:0}.p-chat__lado{border-top:var(--borda-1)}.p-chat .lc-bolha{max-width:86%}}
+  .p-form{max-width:720px}
+  .p-dois{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+  @media (max-width:899px){.p-dois{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body data-moldura='{"contexto":"portal","secao":"Chamados","papel":"morador","cliente":{"nome":"Administradora Alpha","sigla":"A"},"unidade":"Bloco B, apto 1204"}'>
+<main id="conteudo" class="lc-pagina">
+
+<!-- ================= MEUS CHAMADOS ================= -->
+<section class="lc-ficha-tela" aria-label="Sobre a tela Meus chamados">
+  <div class="lc-ficha-tela__nome"><b>Meus chamados</b><span>Lista da unidade, abertos primeiro. Abas Abertos, Concluídos e Todos.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>O morador encontra o que relatou e vê, sem abrir, em que passo está e se alguém espera resposta dele.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Aba Chamados (pé no celular, topo no computador).</li><li>Abertos aparece primeiro; "Responda" sobe para o topo da lista.</li><li>Tocar na linha abre a conversa; voltar pela trilha "Chamados" ou pelo gesto de voltar, com a aba e a rolagem preservadas.</li><li>"Abrir chamado" é o botão principal, no cabeçalho (no celular ocupa a largura).</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o "Meus pedidos" do iFood e do Mercado Livre mostra o estado com palavra e a última novidade na própria linha; o Zendesk Help Center separa "abertas" de "resolvidas"; e o WhatsApp põe primeiro a conversa que espera você.</p></div>
+</section>
+<div class="lc-portal-cab">
+  <div class="lc-portal-cab__txt"><h1>Chamados</h1><p>Bloco B, apto 1204. A administradora responde em até 30 minutos no horário comercial, aqui e no seu WhatsApp.</p></div>
+  <div class="lc-grupo-btn"><a class="lc-btn lc-btn--principal" href="#novo"><i data-i="mais"></i>Abrir chamado</a></div>
+</div>
+<div data-abas>
+  <div class="lc-abas" role="tablist" aria-label="Filtrar chamados">
+    <button role="tab" aria-selected="true" aria-controls="ch-ab" id="t-ab">Abertos <span class="lc-contagem">2</span></button>
+    <button role="tab" aria-selected="false" aria-controls="ch-co" id="t-co" tabindex="-1">Concluídos <span class="lc-contagem">9</span></button>
+  </div>
+  <div class="lc-caixa" style="border-top:0;border-radius:0 0 var(--raio-3) var(--raio-3)" id="ch-ab" role="tabpanel" aria-labelledby="t-ab">
+    <ul class="p-lista-ch">
+      <li><a href="#conversa"><span class="lc-ladrilho lc-ladrilho--40"><i data-i="iluminacao"></i></span><b>Lâmpada queimada na garagem, vaga 37</b><span class="lc-estado lc-estado--aviso">Responda</span><small>Chamado 4.790, aberto 29/09. Portaria, há 2 h: "Podemos trocar amanhã cedo na sua ausência?"</small></a></li>
+      <li><a href="#conversa"><span class="lc-ladrilho lc-ladrilho--40"><i data-i="vazamento"></i></span><b>Vazamento no teto do banheiro</b><span class="lc-estado lc-estado--andamento">Técnico a caminho</span><small>Chamado 4.812, aberto hoje 08:14. Hidráulica Souza chega até 11h.</small></a></li>
+    </ul>
+  </div>
+  <div class="lc-caixa" style="border-top:0;border-radius:0 0 var(--raio-3) var(--raio-3)" id="ch-co" role="tabpanel" aria-labelledby="t-co" hidden>
+    <ul class="p-lista-ch">
+      <li><a href="#"><span class="lc-ladrilho lc-ladrilho--40"><i data-i="interfone"></i></span><b>Interfone sem som</b><span class="lc-estado lc-estado--sucesso">Resolvido</span><small>Chamado 4.611, 12/09 a 13/09. Você avaliou: muito bom.</small></a></li>
+      <li><a href="#"><span class="lc-ladrilho lc-ladrilho--40"><i data-i="volume"></i></span><b>Barulho após as 22h no apto 1104</b><span class="lc-estado lc-estado--sucesso">Resolvido</span><small>Chamado 4.488, 28/08. Notificação entregue ao morador.</small></a></li>
+    </ul>
+  </div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Abrir chamado, abas (setas trocam), linhas da lista na ordem.</p></div><div><h3>O que é anunciado</h3><p>Aba: "Abertos, 2, guia 1 de 2, selecionada". Linha: título, estado e a última novidade, num só link.</p></div><div><h3>Nome do que é só ícone</h3><p>Ladrilhos de tipo são decorativos; o tipo está no título.</p></div></div>
+
+<!-- ================= CONVERSA ================= -->
+<section class="lc-ficha-tela" id="conversa" aria-label="Sobre a tela Chamado em conversa">
+  <div class="lc-ficha-tela__nome"><b>Chamado em conversa</b><span>Visão do morador. Nunca mostra nota interna, nome de fila ou prazo interno.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>O morador conversa com a administradora como no WhatsApp, vê os passos do atendimento com hora e avalia quando termina.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Mensagens no centro; passos e dados à direita (abaixo no celular).</li><li>Escreve no compositor, anexa foto pelo clipe, envia com Enter ou o botão.</li><li>Mensagem que falhou fica marcada com "Tentar de novo".</li><li>Quando a administradora resolve, aparece "Isso resolveu?" com Sim e Não; Não reabre o chamado.</li><li>Voltar: trilha "Chamados" no topo da conversa.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o WhatsApp é o canal que o morador já usa (bolhas, tiques, áudio), o iFood mostra o andamento em passos com hora, e o Zendesk e o Intercom pedem a avaliação só quando o caso fecha, numa pergunta.</p></div>
+</section>
+<nav aria-label="Trilha" style="margin-bottom:10px"><ol class="lc-trilha"><li><a href="#">Chamados</a></li><li><span aria-current="page">Chamado 4.812</span></li></ol></nav>
+<div class="p-chat">
+  <div class="p-chat__msgs">
+    <div class="p-chat__cab"><span class="lc-ladrilho"><i data-i="vazamento"></i></span><div class="lc-cresce"><h2>Vazamento no teto do banheiro</h2><span class="lc-legenda">Chamado 4.812, aberto hoje às 08:14</span></div><span class="lc-estado lc-estado--andamento">Técnico a caminho</span></div>
+    <div class="lc-conversa" aria-label="Mensagens do chamado" role="log">
+      <span class="lc-dia">Hoje</span>
+      <div class="lc-bolha lc-bolha--enviada lc-bolha--primeira"><span class="lc-foto" role="img" aria-label="Foto enviada: mancha de umidade no teto do banheiro, perto do box"><span class="lc-foto-ph"><i data-i="camera"></i>Mancha no teto, perto do box</span></span>Está pingando do teto do banheiro social desde ontem à noite. Acho que vem do 1304.<span class="lc-bolha__meta">08:14<span class="lc-tique lc-tique--lida"><i data-i="lida" aria-label="Lida"></i></span></span></div>
+      <div class="lc-msg-sistema"><i data-i="confirmar"></i>Chamado recebido pela Administradora Alpha</div>
+      <div class="lc-bolha lc-bolha--recebida lc-bolha--primeira"><span class="lc-bolha__autor">Juliana Reis, Administradora Alpha</span>Bom dia, Ana. Pela foto é infiltração da prumada. Já falei com o morador do 1304 e chamei a Hidráulica Souza. O técnico chega entre 10h e 11h. Alguém estará em casa?<span class="lc-bolha__meta">08:31</span></div>
+      <div class="lc-bolha lc-bolha--enviada lc-bolha--primeira">Estarei, sim. Pode subir direto, já avisei a portaria.<span class="lc-bolha__meta">08:33<span class="lc-tique lc-tique--lida"><i data-i="lida" aria-label="Lida"></i></span></span></div>
+      <div class="lc-ligado" style="border-left-color:var(--andamento-ponto)"><i data-i="ordem-de-servico"></i><span class="lc-cresce"><b>Visita técnica marcada</b><br><span class="lc-legenda">Hidráulica Souza, hoje entre 10h e 11h. Técnico: Wellington.</span></span></div>
+      <div class="lc-bolha lc-bolha--enviada lc-bolha--primeira" aria-invalid="true">Ele precisa de acesso ao forro do 1304 também?<span class="lc-bolha__meta">09:02<span class="lc-tique lc-tique--falhou"><i data-i="erro" aria-label="Não enviada"></i></span></span><span class="lc-bolha__falha">Não enviada. <button class="lc-btn lc-btn--link lc-btn--p" type="button" data-toast="Mensagem enviada.">Tentar de novo</button></span></div>
+    </div>
+    <div class="lc-compositor">
+      <div class="lc-compositor__linha">
+        <button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Anexar foto ou arquivo"><i data-i="anexo"></i></button>
+        <label class="lc-sr" for="msg">Mensagem para a administradora</label>
+        <textarea id="msg" class="lc-compositor__caixa" rows="1" placeholder="Escreva sua mensagem"></textarea>
+        <button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Gravar áudio"><i data-i="microfone"></i></button>
+        <button class="lc-btn lc-btn--secundario" type="button" data-toast="Mensagem enviada."><i data-i="enviar"></i>Enviar</button>
+      </div>
+      <p class="lc-compositor__dica"><span>Enter envia, Shift + Enter quebra a linha</span><span>Também chega no seu WhatsApp (11) 9 8712-4410</span></p>
+    </div>
+  </div>
+  <aside class="p-chat__lado" aria-label="Andamento do chamado">
+    <div><h3 class="lc-t-subsecao" style="margin-bottom:10px">Andamento</h3>
+      <ol class="lc-acompanha">
+        <li data-feito><span class="lc-acompanha__no"><i data-i="confirmar"></i></span><b>Recebido</b><time>08:14</time></li>
+        <li data-feito><span class="lc-acompanha__no"><i data-i="confirmar"></i></span><b>Em análise</b><time>08:31</time><small>Juliana Reis assumiu</small></li>
+        <li aria-current="step"><span class="lc-acompanha__no"></span><b>Técnico a caminho</b><time>até 11:00</time><small>Hidráulica Souza</small></li>
+        <li><span class="lc-acompanha__no"></span><span>Resolvido</span><time></time></li>
+      </ol></div>
+    <dl class="lc-props lc-props--empilhado"><dt>Local</dt><dd>Banheiro social, Bloco B, apto 1204</dd><dt>Tipo</dt><dd>Vazamento ou infiltração</dd><dt>Quem atende</dt><dd><span class="lc-pessoa"><span class="lc-av lc-av--24 lc-av--c4">JR</span><span class="lc-pessoa__nome">Juliana Reis</span></span></dd></dl>
+    <div class="lc-caixa lc-caixa--poço"><div class="lc-caixa__corpo" style="padding-top:12px"><b class="lc-t-subsecao">Isso resolveu?</b><p class="lc-legenda" style="margin:2px 0 8px">Aparece quando a administradora marca como resolvido.</p><div class="lc-grupo-btn"><button class="lc-btn" type="button" data-toast="Obrigado. Chamado encerrado.">Sim, resolveu</button><button class="lc-btn lc-btn--discreto" type="button" data-toast="Chamado reaberto. A administradora foi avisada.">Não, reabrir</button></div></div></div>
+  </aside>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><ol><li>Trilha</li><li>Mensagens (região <code>role="log"</code>, rolável por teclado)</li><li>Tentar de novo</li><li>Anexar, caixa de texto, áudio, Enviar</li><li>Andamento, Isso resolveu?</li></ol></div><div><h3>O que é anunciado</h3><p>Mensagem nova da administradora é lida pelo <code>role="log"</code>. Tique: "Lida" ou "Não enviada". Passo atual: "Técnico a caminho, passo atual".</p></div><div><h3>Nome do que é só ícone</h3><p>Clipe: "Anexar foto ou arquivo". Microfone: "Gravar áudio". Tiques: "Lida", "Não enviada".</p></div></div>
+
+<!-- ================= NOVO CHAMADO ================= -->
+<section class="lc-ficha-tela" id="novo" aria-label="Sobre a tela Novo chamado">
+  <div class="lc-ficha-tela__nome"><b>Novo chamado com foto</b><span>Três passos curtos: o quê e onde, foto e frase, confirmação. Os passos são clicáveis para voltar.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Relatar um problema em menos de um minuto, de pé no corredor, com o celular numa mão. A foto vale mais que a descrição.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Escolhe o tipo em botões grandes e o local (a unidade vem marcada).</li><li>Tira ou escolhe até 5 fotos; pode remover cada uma no X. Escreve uma frase. Marca "Há risco agora" se tiver.</li><li>Revisa e envia. O botão principal fica sempre no pé ("Continuar", depois "Enviar chamado").</li><li>Confirmação com número, prazo e passos; "Acompanhar" leva à conversa.</li><li>"Cancelar" no topo pergunta antes de descartar se já tem foto.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o app da Prefeitura de São Paulo (SP156) e o Colab pedem foto e local antes do texto; o iFood confirma o pedido com prazo e passos; e o TownSq usa tipo em botões para o morador não precisar saber o nome técnico do problema.</p></div>
+</section>
+<div class="p-form" data-passos>
+  <div class="lc-linha lc-linha--entre" style="margin-bottom:12px"><h2 class="lc-t-secao">Abrir chamado</h2><button class="lc-btn lc-btn--discreto" type="button" data-toast="Rascunho descartado." data-toast-acao="Desfazer"><i data-i="fechar"></i>Cancelar</button></div>
+  <ol class="lc-passos" aria-label="Passos do chamado" style="margin-bottom:20px">
+    <li aria-current="step"><button type="button" data-passo-ir="1">O que e onde</button></li>
+    <li><button type="button" data-passo-ir="2">Foto e detalhe</button></li>
+    <li><button type="button" data-passo-ir="3">Enviar</button></li>
+  </ol>
+  <div data-passo="1">
+    <h3 class="lc-t-subsecao" style="margin-bottom:12px">O que aconteceu?</h3>
+    <fieldset class="lc-escolhas" style="margin-bottom:20px"><legend class="lc-sr">Tipo do problema</legend>
+      <label class="lc-escolha"><input type="radio" name="tipo" checked><i data-i="vazamento"></i>Vazamento ou infiltração</label>
+      <label class="lc-escolha"><input type="radio" name="tipo"><i data-i="eletrica"></i>Elétrica e iluminação</label>
+      <label class="lc-escolha"><input type="radio" name="tipo"><i data-i="elevador"></i>Elevador</label>
+      <label class="lc-escolha"><input type="radio" name="tipo"><i data-i="portao"></i>Portão e acesso</label>
+      <label class="lc-escolha"><input type="radio" name="tipo"><i data-i="limpeza"></i>Limpeza</label>
+      <label class="lc-escolha"><input type="radio" name="tipo"><i data-i="volume"></i>Barulho e convivência</label>
+      <label class="lc-escolha"><input type="radio" name="tipo"><i data-i="seguranca-patrimonial"></i>Segurança</label>
+      <label class="lc-escolha"><input type="radio" name="tipo"><i data-i="conversa"></i>Outro assunto</label>
+    </fieldset>
+    <fieldset class="lc-grupo-opcoes" style="margin-bottom:20px"><legend class="lc-rotulo">Onde?</legend>
+      <label class="lc-radio"><input type="radio" name="onde" checked><span class="lc-radio__bola"></span>Na minha unidade, Bloco B, apto 1204</label>
+      <label class="lc-radio"><input type="radio" name="onde"><span class="lc-radio__bola"></span>Na área comum</label>
+      <label class="lc-radio"><input type="radio" name="onde"><span class="lc-radio__bola"></span>Na garagem, vaga 37</label>
+    </fieldset>
+    <div class="lc-campo" style="max-width:420px"><label class="lc-rotulo" for="comodo">Cômodo ou ponto <span class="lc-opcional">(opcional)</span></label><input id="comodo" class="lc-entrada" value="Banheiro social"></div>
+    <div class="lc-linha" style="margin-top:24px"><button class="lc-btn lc-btn--principal lc-btn--g" type="button" data-passo-ir="2">Continuar</button></div>
+  </div>
+  <div data-passo="2" hidden>
+    <h3 class="lc-t-subsecao" style="margin-bottom:12px">Mostre e conte em uma frase</h3>
+    <div class="lc-campo"><span class="lc-rotulo" id="fotos-r">Fotos <span class="lc-opcional">(até 5)</span></span>
+      <ul class="lc-fotos" data-fotos aria-labelledby="fotos-r">
+        <li data-nome="Foto 1"><span class="lc-foto-ph"><i data-i="camera"></i>Teto, perto do box</span><button type="button" class="lc-fotos__tirar" aria-label="Remover foto 1"><i data-i="fechar"></i></button></li>
+        <li data-nome="Foto 2"><span class="lc-foto-ph"><i data-i="camera"></i>Pingando no piso</span><button type="button" class="lc-fotos__tirar" aria-label="Remover foto 2"><i data-i="fechar"></i></button></li>
+        <li style="border:0;background:none"><button type="button" class="lc-fotos__add"><i data-i="camera"></i>Tirar ou escolher</button></li>
+      </ul></div>
+    <div class="lc-campo" style="margin-top:16px"><label class="lc-rotulo" for="frase">O que está acontecendo? <span class="lc-obrig" aria-hidden="true">*</span></label><textarea id="frase" class="lc-area-texto" rows="3">Está pingando do teto do banheiro social desde ontem à noite. Acho que vem do 1304.</textarea><p class="lc-ajuda">Uma frase basta. A administradora pergunta se precisar.</p></div>
+    <label class="lc-interruptor" style="margin-top:12px"><input type="checkbox" role="switch"><span class="lc-interruptor__trilho"></span>Há risco agora (água em tomada, cheiro de gás, alguém preso)</label>
+    <div class="lc-linha" style="margin-top:24px"><button class="lc-btn lc-btn--g" type="button" data-passo-ir="1">Voltar</button><button class="lc-btn lc-btn--principal lc-btn--g" type="button" data-passo-ir="3">Continuar</button></div>
+  </div>
+  <div data-passo="3" hidden>
+    <h3 class="lc-t-subsecao" style="margin-bottom:12px">Confira e envie</h3>
+    <dl class="lc-props" style="margin-bottom:16px"><dt>Tipo</dt><dd>Vazamento ou infiltração</dd><dt>Onde</dt><dd>Bloco B, apto 1204, banheiro social</dd><dt>Fotos</dt><dd>2 fotos</dd><dt>Detalhe</dt><dd>Está pingando do teto do banheiro social desde ontem à noite. Acho que vem do 1304.</dd><dt>Resposta por</dt><dd>Portal e WhatsApp (11) 9 8712-4410</dd></dl>
+    <div class="lc-linha"><button class="lc-btn lc-btn--g" type="button" data-passo-ir="2">Voltar</button><button class="lc-btn lc-btn--principal lc-btn--g" type="button" data-passo-ir="4">Enviar chamado</button></div>
+  </div>
+  <div data-passo="4" hidden>
+    <div class="p-dois">
+      <div><span class="lc-carimbo lc-carimbo--protocolado lc-carimbo--g">Protocolado<small>Chamado 4.812, 01/10/26 08:14</small></span>
+        <h3 class="lc-t-secao" style="margin:16px 0 4px">Recebemos seu chamado</h3>
+        <p class="lc-pequeno lc-cor-2">A Administradora Alpha responde em até 30 minutos, aqui e no seu WhatsApp. Se houver risco, ligue para a portaria, ramal 9.</p>
+        <div class="lc-grupo-btn" style="margin-top:16px"><a class="lc-btn lc-btn--principal" href="#conversa">Acompanhar chamado</a><a class="lc-btn" href="40-portal.html">Voltar ao início</a></div></div>
+      <ol class="lc-acompanha" aria-label="Próximos passos"><li data-feito><span class="lc-acompanha__no"><i data-i="confirmar"></i></span><b>Recebido</b><time>08:14</time></li><li aria-current="step"><span class="lc-acompanha__no"></span><b>Em análise</b><time>até 08:44</time><small>Alguém da administradora assume</small></li><li><span class="lc-acompanha__no"></span><span>Atendimento</span><time></time></li><li><span class="lc-acompanha__no"></span><span>Resolvido</span><time></time></li></ol>
+    </div>
+  </div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Cancelar, passos (cada um é botão), tipo (setas trocam a opção), onde, cômodo, Continuar. Ao trocar de passo, o foco vai para o título do passo.</p></div><div><h3>O que é anunciado</h3><p>Passo atual com <code>aria-current="step"</code>. Remover foto: "Foto 1 removida", com Desfazer. Erro de frase vazia aparece ligado ao campo por <code>aria-describedby</code>.</p></div><div><h3>Nome do que é só ícone</h3><p>X da foto: "Remover foto 1". Ícones dos tipos são decorativos; o nome está escrito.</p></div></div>
+
+<div class="lc-variacao">Passo 2 com erro e sem foto</div>
+<div class="lc-quadros">
+  <div class="lc-quadro-tela" style="padding:16px">
+    <div class="lc-campo"><span class="lc-rotulo">Fotos <span class="lc-opcional">(até 5)</span></span><ul class="lc-fotos"><li style="border:0;background:none"><button type="button" class="lc-fotos__add"><i data-i="camera"></i>Tirar ou escolher</button></li></ul><p class="lc-ajuda">Sem foto também dá. Uma foto ajuda o técnico a trazer a peça certa.</p></div>
+    <div class="lc-campo" style="margin-top:12px"><label class="lc-rotulo" for="frase2">O que está acontecendo? <span class="lc-obrig" aria-hidden="true">*</span></label><textarea id="frase2" class="lc-area-texto" rows="2" aria-invalid="true" aria-describedby="frase2-e"></textarea><p class="lc-erro" id="frase2-e"><i data-i="erro"></i>Escreva uma frase sobre o problema para continuar.</p></div>
+  </div>
+  <div class="lc-quadro-tela" style="padding:16px">
+    <div class="lc-campo"><span class="lc-rotulo">Fotos</span><ul class="lc-anexos"><li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="imagem"></i></span><span class="lc-anexo__nome">IMG_4471.HEIC</span><span class="lc-anexo__info">Enviando, 2,1 de 3,4 MB</span><span class="lc-progresso" style="--_v:62%"></span></li><li class="lc-anexo" aria-invalid="true"><span class="lc-anexo__ic"><i data-i="filme"></i></span><span class="lc-anexo__nome">VID_0032.MOV</span><span class="lc-anexo__info">Vídeo com 84 MB. O limite é 50 MB; grave até 30 segundos.</span><span class="lc-anexo__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Remover VID_0032.MOV"><i data-i="fechar"></i></button></span></li></ul></div>
+  </div>
+</div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

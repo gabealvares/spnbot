@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal, comunicados e documentos</title>
+<meta name="description" content="Portal do morador: comunicados com ciência registrada e documentos do condomínio (convenção, regimento, atas, balancetes).">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .p-com{display:grid;grid-template-columns:minmax(0,680px) minmax(0,1fr);gap:28px;align-items:start}
+  @media (max-width:1023px){.p-com{grid-template-columns:minmax(0,1fr)}}
+  .p-docs{display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;align-items:start}
+  .p-docs nav ul{list-style:none;margin:0;padding:0}
+  .p-docs nav a{display:flex;justify-content:space-between;align-items:center;min-height:40px;padding:0 12px;color:var(--texto-1);text-decoration:none;border-left:var(--borda-marcador) solid transparent;font-size:14px}
+  .p-docs nav a:hover{background:var(--sup-2)}
+  .p-docs nav a[aria-current]{border-left-color:var(--atual);font-weight:600;background:var(--sup-1)}
+  @media (max-width:899px){.p-docs{grid-template-columns:minmax(0,1fr)}.p-docs nav ul{display:flex;overflow-x:auto;border-bottom:var(--borda-1)}.p-docs nav a{border-left:0;border-bottom:var(--borda-marcador) solid transparent;white-space:nowrap}.p-docs nav a[aria-current]{border-bottom-color:var(--atual);background:none}}
+</style>
+</head>
+<body data-moldura='{"contexto":"portal","secao":"Comunicados","papel":"morador","cliente":{"nome":"Administradora Alpha","sigla":"A"},"unidade":"Bloco B, apto 1204"}'>
+<main id="conteudo" class="lc-pagina">
+<section class="lc-ficha-tela" aria-label="Sobre a tela Comunicados">
+  <div class="lc-ficha-tela__nome"><b>Comunicados com ciência</b><span>Feed da administradora e da síndica para a unidade, o bloco ou todo o condomínio.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>O condômino lê o que importa e registra que leu. A ciência vira prova para a administradora (multa, obra, falta de água) e some da lista de pendências.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Abas: "Por ler" (padrão), "Todos" e "Fixados".</li><li>Cada comunicado diz para quem foi e quem assinou.</li><li>"Li e estou ciente" grava na hora e vira carimbo com nome, unidade e hora. Não há desfazer: é registro.</li><li>Anexos abrem em nova aba; voltar pela aba Comunicados.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o Workplace e o Microsoft Teams têm "confirmar leitura" em comunicado obrigatório; o livro de ocorrências da portaria tem assinatura de ciência, que é o signo que o síndico reconhece; e o Gmail ensinou "por ler" como fila.</p></div>
+</section>
+<div class="lc-portal-cab"><div class="lc-portal-cab__txt"><h1>Comunicados</h1><p>Cond. Parque das Águas, Bloco B, apto 1204</p></div></div>
+<div class="p-com">
+  <div data-abas>
+    <div class="lc-abas" role="tablist" aria-label="Comunicados"><button role="tab" aria-selected="true" aria-controls="c1" id="tc1">Por ler <span class="lc-contagem">1</span></button><button role="tab" aria-selected="false" aria-controls="c2" id="tc2" tabindex="-1">Todos <span class="lc-contagem">23</span></button><button role="tab" aria-selected="false" aria-controls="c3" id="tc3" tabindex="-1">Fixados</button></div>
+    <div id="c1" role="tabpanel" aria-labelledby="tc1" style="padding-top:14px">
+      <article class="lc-post"><div class="lc-post__cab"><span class="lc-ladrilho lc-ladrilho--marca" data-marca-sigla>A</span><div class="lc-post__quem"><b>Administradora Alpha</b>, para o bloco B<span class="lc-post__meta">29/09/2026, 16:10, assinado por Marina Costa, síndica</span></div><span class="lc-estado lc-estado--aviso">Pede ciência</span></div>
+        <div class="lc-post__corpo"><h2 class="lc-post__titulo">Limpeza e desinfecção da caixa d'água do bloco B</h2><p>Na quarta-feira, 08/10, a empresa Hidroclean fará a limpeza semestral da caixa d'água do bloco B. O abastecimento fica suspenso das 8h às 14h.</p><p>Deixe as torneiras fechadas e reserve água para o período. O laudo de potabilidade será publicado em Documentos até 15/10.</p>
+          <ul class="lc-anexos" style="margin-top:12px"><li class="lc-anexo"><span class="lc-anexo__ic"><i data-i="documento"></i></span><span class="lc-anexo__nome">Cronograma Hidroclean, outubro.pdf</span><span class="lc-anexo__info">PDF, 182 KB</span></li></ul></div>
+        <div class="lc-ciencia"><button class="lc-btn" type="button" data-ciente="Ana Souza, apto 1204"><i data-i="confirmar"></i>Li e estou ciente</button><span class="lc-ciencia__conta">31 de 48 unidades deram ciência</span></div></article>
+    </div>
+    <div id="c2" role="tabpanel" aria-labelledby="tc2" hidden style="padding-top:14px">
+      <article class="lc-post"><div class="lc-post__cab"><span class="lc-ladrilho lc-ladrilho--marca" data-marca-sigla>A</span><div class="lc-post__quem"><b>Administradora Alpha</b>, para todo o condomínio<span class="lc-post__meta">22/09/2026, 10:02</span></div></div><div class="lc-post__corpo"><h2 class="lc-post__titulo">Novo horário da academia a partir de 01/10</h2><p>A academia passa a funcionar das 5h30 às 23h todos os dias.</p></div><div class="lc-ciencia"><span class="lc-carimbo lc-carimbo--ciente">Ciente<small>Ana Souza, 22/09/26 19:44</small></span></div></article>
+      <article class="lc-post"><div class="lc-post__cab"><span class="lc-av lc-av--40 lc-av--c4">MC</span><div class="lc-post__quem"><b>Marina Costa</b>, síndica, para todo o condomínio<span class="lc-post__meta">10/09/2026, 18:30</span></div></div><div class="lc-post__corpo"><h2 class="lc-post__titulo">Obra da fachada: andaimes na face norte até 30/10</h2><p>Mantenha as janelas da face norte fechadas das 8h às 17h nos dias úteis.</p></div><div class="lc-ciencia"><span class="lc-carimbo lc-carimbo--ciente">Ciente<small>Ana Souza, 10/09/26 21:02</small></span></div></article>
+    </div>
+    <div id="c3" role="tabpanel" aria-labelledby="tc3" hidden style="padding-top:14px"><div class="lc-vazio"><p class="lc-vazio__titulo">Nenhum comunicado fixado</p><p class="lc-vazio__texto">A administradora fixa aqui regras que valem o ano todo.</p></div></div>
+  </div>
+  <aside class="lc-pilha"><div class="lc-variacao" style="margin:0">Tudo lido</div><div class="lc-quadro-tela"><div class="lc-vazio"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="email-aberto"></i></span><p class="lc-vazio__titulo">Você leu todos os comunicados</p><p class="lc-vazio__texto">Os novos chegam também por e-mail e WhatsApp. Ajuste em Perfil, Avisos.</p></div></div>
+    <div class="lc-variacao" style="margin:0">Falha ao registrar a ciência</div><div class="lc-quadro-tela" style="padding:14px"><div class="lc-alerta lc-alerta--perigo" role="alert"><i data-i="erro"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">A ciência não foi registrada</span>Sem conexão às 21:14. Toque de novo quando a internet voltar; nada foi gravado.<div class="lc-alerta__acoes"><button class="lc-btn lc-btn--p" type="button">Tentar de novo</button></div></div></div></div></aside>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Abas (setas), anexo, "Li e estou ciente", próximo comunicado.</p></div><div><h3>O que é anunciado</h3><p>Ao registrar: carimbo com <code>role="status"</code>, "Ciente, Ana Souza, apto 1204, 01/10/26 09:12". O foco vai para o carimbo.</p></div><div><h3>Nome do que é só ícone</h3><p>Ladrilho da administradora é decorativo; o nome está escrito ao lado.</p></div></div>
+
+<section class="lc-ficha-tela" id="documentos" aria-label="Sobre a tela Documentos">
+  <div class="lc-ficha-tela__nome"><b>Documentos do condomínio</b><span>Convenção, regimento, atas, balancetes, laudos e contratos. Só leitura para o morador.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Achar o documento oficial em 2 toques, na versão vigente, sem pedir por e-mail. O balancete do mês sai aqui assim que a síndica aprova.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Pastas à esquerda (no celular, abas roláveis).</li><li>Busca dentro do texto dos PDFs.</li><li>Linha mostra versão, data e estado ("Vigente", "Substituído").</li><li>Abrir mostra a prévia; "Baixar" salva o PDF.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o Google Drive e o Dropbox organizam por pasta com busca no conteúdo; o portal da Lello e o da Superlógica publicam balancete mensal com data; e marcar a versão vigente evita o morador seguir um regimento antigo.</p></div>
+</section>
+<div class="p-docs">
+  <nav aria-label="Pastas de documentos"><ul><li><a href="#" aria-current="page">Balancetes <span class="lc-contagem">12</span></a></li><li><a href="#">Atas <span class="lc-contagem">9</span></a></li><li><a href="#">Convenção e regimento <span class="lc-contagem">3</span></a></li><li><a href="#">Laudos e AVCB <span class="lc-contagem">6</span></a></li><li><a href="#">Contratos <span class="lc-contagem">8</span></a></li><li><a href="#">Seguro <span class="lc-contagem">2</span></a></li></ul></nav>
+  <div class="lc-pilha--p" style="display:flex;flex-direction:column;gap:12px">
+    <label class="lc-busca"><i data-i="pesquisar"></i><input type="search" placeholder="Pesquisar no texto dos documentos" aria-label="Pesquisar documentos"></label>
+    <div class="lc-tabela-cont"><table class="lc-tabela"><caption class="lc-sr">Balancetes</caption>
+      <thead><tr><th scope="col">Documento</th><th scope="col">Publicado</th><th scope="col">Situação</th><th scope="col"><span class="lc-sr">Ações</span></th></tr></thead>
+      <tbody>
+        <tr><td><a class="lc-tabela__primaria" href="61-documentos-gerados.html#balancete">Balancete de setembro de 2026</a><span class="lc-tabela__sub">PDF, 6 páginas. Receitas R$ 132.418,20, despesas R$ 127.903,55</span></td><td>30/09/2026</td><td><span class="lc-carimbo lc-carimbo--aprovado">Aprovado<small>Conselho, 29/09</small></span></td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Baixar Balancete de setembro de 2026" data-toast="Balancete baixado."><i data-i="baixar"></i></button></td></tr>
+        <tr><td><a class="lc-tabela__primaria" href="#">Balancete de agosto de 2026</a><span class="lc-tabela__sub">PDF, 6 páginas</span></td><td>31/08/2026</td><td><span class="lc-carimbo lc-carimbo--aprovado">Aprovado<small>Conselho, 28/08</small></span></td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Baixar Balancete de agosto de 2026"><i data-i="baixar"></i></button></td></tr>
+        <tr><td><a class="lc-tabela__primaria" href="#">Regimento interno, versão 2024</a><span class="lc-tabela__sub">Convenção e regimento</span></td><td>18/03/2024</td><td><span class="lc-estado lc-estado--sucesso">Vigente</span></td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Baixar Regimento interno"><i data-i="baixar"></i></button></td></tr>
+        <tr><td><a class="lc-tabela__primaria" href="#">Regimento interno, versão 2019</a></td><td>04/04/2019</td><td><span class="lc-estado lc-estado--neutro">Substituído</span></td><td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Baixar Regimento interno 2019"><i data-i="baixar"></i></button></td></tr>
+      </tbody></table></div>
+    <div class="lc-variacao" style="margin:8px 0 0">Busca sem resultado</div>
+    <div class="lc-vazio"><p class="lc-vazio__titulo">Nada encontrado para "piscina aquecida"</p><p class="lc-vazio__texto">Procuramos no texto de 40 documentos. Tente "piscina" ou peça o documento à administradora.</p><div class="lc-grupo-btn"><a class="lc-btn" href="40b-portal-chamados.html#novo">Pedir à administradora</a></div></div>
+  </div>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Pastas, busca, links dos documentos, Baixar de cada linha.</p></div><div><h3>O que é anunciado</h3><p>Pasta atual com <code>aria-current="page"</code>. Resultado da busca: "4 documentos" em região viva.</p></div><div><h3>Nome do que é só ícone</h3><p>Baixar: "Baixar" + nome do documento.</p></div></div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal, assembleias</title>
+<meta name="description" content="Portal do morador: assembleias com edital, pauta, presença, votação online com comprovante, resultado e ata registrada com carimbo.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .p-ass{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+  @media (max-width:1023px){.p-ass{grid-template-columns:minmax(0,1fr)}}
+  .p-voto{border:var(--borda-2);border-radius:var(--raio-3);background:var(--sup-1);padding:16px 18px}
+  .p-voto+.p-voto{margin-top:12px}
+  .p-voto h3{font:var(--t-subsecao);margin:0 0 2px}
+  .p-voto .lc-escolhas{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:12px}
+  @media (max-width:520px){.p-voto .lc-escolhas{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body data-moldura='{"contexto":"portal","secao":"Assembleias","papel":"morador","cliente":{"nome":"Administradora Alpha","sigla":"A"},"unidade":"Bloco B, apto 1204"}'>
+<main id="conteudo" class="lc-pagina">
+<section class="lc-ficha-tela" aria-label="Sobre a tela Assembleia">
+  <div class="lc-ficha-tela__nome"><b>Assembleia: edital, pauta e presença</b><span>AGO de 16/10/2026, híbrida (salão de festas e online).</span></div>
+  <div><h2>O que esta tela resolve</h2><p>O condômino entende o que vai ser decidido, com os documentos de cada item, confirma presença ou passa procuração, e sabe quando a votação online abre.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Aba Assembleias (no celular, em Mais).</li><li>Cabeçalho com data, local, link da sala e estado ("Votação abre em 14/10").</li><li>Pauta numerada (é sequência do edital), cada item com anexos.</li><li>"Confirmar presença" é o principal; "Nomear procurador" ao lado.</li><li>Quando a votação abre, o botão vira "Votar agora" e leva à cédula abaixo.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o edital em papel no elevador é o modelo mental de todo condômino (por isso o edital é um documento, com assinatura e data); o Assembleia Online da Superlógica e o eVote separam presença, procuração e voto; e o Google Meet entra com um link, sem instalar nada.</p></div>
+</section>
+<nav aria-label="Trilha" style="margin-bottom:6px"><ol class="lc-trilha"><li><a href="#">Assembleias</a></li><li><span aria-current="page">AGO de 16/10/2026</span></li></ol></nav>
+<div class="lc-portal-cab"><div class="lc-portal-cab__txt"><h1>Assembleia geral ordinária</h1><p>Quinta-feira, 16/10/2026, 19h30 em primeira chamada e 20h em segunda. Salão de festas e online.</p></div><div class="lc-grupo-btn"><button class="lc-btn" type="button">Nomear procurador</button><button class="lc-btn lc-btn--principal" type="button" data-toast="Presença confirmada. O link da sala chega no dia, às 18h.">Confirmar presença</button></div></div>
+<div class="p-ass">
+  <div class="lc-pilha">
+    <section class="lc-caixa" aria-labelledby="pauta-t"><div class="lc-caixa__cab"><h2 id="pauta-t">Pauta</h2><span class="lc-aux">Edital de 01/10/2026</span></div>
+      <div class="lc-caixa__corpo"><ol class="lc-pauta">
+        <li><span><b>Prestação de contas de 2025/2026</b><p>Balancetes de outubro de 2025 a setembro de 2026 e parecer do conselho fiscal.</p></span><a class="lc-btn lc-btn--p" href="#">Parecer, PDF</a></li>
+        <li><span><b>Previsão orçamentária de 2027</b><p>Orçamento de R$ 1.578.840,00 por ano, reajuste de 6,4% na taxa ordinária.</p></span><a class="lc-btn lc-btn--p" href="#">Orçamento, PDF</a></li>
+        <li><span><b>Eleição de síndico e conselho</b><p>Chapa única: Marina Costa (síndica), Antônio Ribeiro, Cláudia Nunes e Paulo Teixeira (conselho).</p></span><span></span></li>
+        <li><span><b>Instalação de carregadores de carro elétrico na garagem</b><p>3 orçamentos. Quórum de 2/3 das frações (obra útil, art. 1.341 do Código Civil).</p></span><a class="lc-btn lc-btn--p" href="#">Orçamentos</a></li>
+        <li><span><b>Assuntos gerais</b><p>Sem deliberação.</p></span><span></span></li>
+      </ol></div></section>
+
+    <section class="lc-ficha-tela" id="votar" aria-label="Sobre a tela Votação online" style="margin-top:16px">
+      <div class="lc-ficha-tela__nome"><b>Votação online</b><span>Cédula com um bloco por item. Revisar antes de registrar.</span></div>
+      <div><h2>O que esta tela resolve</h2><p>Votar de casa com a mesma validade do salão, sabendo que o voto foi contado.</p></div>
+      <div><h2>Fluxo</h2><ol><li>Escolhe A favor, Contra ou Abstenção em cada item.</li><li>"Revisar votos" mostra o resumo.</li><li>"Registrar votos" pede o código enviado por SMS.</li><li>Comprovante com carimbo "Protocolado" e código de verificação.</li></ol></div>
+      <div><h2>Resolvemos fazer assim porque</h2><p>a urna eletrônica do TSE mostra o resumo antes de confirmar; o app do gov.br confirma com código; e a Lei 14.309/2022 exige registro do voto virtual, por isso o comprovante tem número.</p></div>
+    </section>
+    <form class="lc-pilha--p" onsubmit="return false">
+      <div class="p-voto"><h3>1. Prestação de contas de 2025/2026</h3><p class="lc-legenda">Maioria simples dos presentes</p>
+        <fieldset class="lc-escolhas"><legend class="lc-sr">Seu voto no item 1</legend><label class="lc-escolha"><input type="radio" name="v1" checked><i data-i="confirmar"></i>Aprovo</label><label class="lc-escolha"><input type="radio" name="v1"><i data-i="fechar"></i>Não aprovo</label><label class="lc-escolha"><input type="radio" name="v1"><i data-i="menos"></i>Abstenção</label></fieldset></div>
+      <div class="p-voto"><h3>2. Previsão orçamentária de 2027</h3><p class="lc-legenda">Maioria simples dos presentes</p>
+        <fieldset class="lc-escolhas"><legend class="lc-sr">Seu voto no item 2</legend><label class="lc-escolha"><input type="radio" name="v2"><i data-i="confirmar"></i>Aprovo</label><label class="lc-escolha"><input type="radio" name="v2" checked><i data-i="fechar"></i>Não aprovo</label><label class="lc-escolha"><input type="radio" name="v2"><i data-i="menos"></i>Abstenção</label></fieldset></div>
+      <div class="p-voto"><h3>4. Carregadores de carro elétrico</h3><p class="lc-legenda">2/3 das frações ideais. Faltam votos para o quórum.</p>
+        <fieldset class="lc-escolhas"><legend class="lc-sr">Seu voto no item 4</legend><label class="lc-escolha"><input type="radio" name="v4"><i data-i="confirmar"></i>Aprovo</label><label class="lc-escolha"><input type="radio" name="v4"><i data-i="fechar"></i>Não aprovo</label><label class="lc-escolha"><input type="radio" name="v4"><i data-i="menos"></i>Abstenção</label></fieldset>
+        <p class="lc-erro" style="margin-top:8px"><i data-i="erro"></i>Escolha uma opção neste item ou marque Abstenção.</p></div>
+      <div class="lc-linha" style="margin-top:12px"><span class="lc-legenda lc-cresce">Votação aberta de 14/10, 8h, até 16/10, 21h. Você pode mudar o voto até o encerramento.</span><button class="lc-btn lc-btn--principal" type="button" data-abrir="#rev">Revisar votos</button></div>
+    </form>
+
+    <div class="lc-sobreposicao" id="rev" hidden data-fechavel><div class="lc-modal" role="dialog" aria-modal="true" aria-labelledby="rev-t">
+      <div class="lc-modal__cab"><div style="flex:1"><h2 id="rev-t">Revisar e registrar votos</h2><p>Bloco B, apto 1204, fração ideal 0,8333%</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" data-fechar-alvo="#rev" aria-label="Fechar"><i data-i="fechar"></i></button></div>
+      <div class="lc-modal__corpo"><dl class="lc-props"><dt>1. Contas</dt><dd>Aprovo</dd><dt>2. Orçamento 2027</dt><dd>Não aprovo</dd><dt>3. Eleição</dt><dd>Chapa única: Aprovo</dd><dt>4. Carregadores</dt><dd>Abstenção</dd></dl>
+        <div class="lc-campo" style="margin-top:16px"><span class="lc-rotulo" id="sms-r">Código enviado por SMS para (11) 9 ••••-4410</span><div class="lc-codigo6" role="group" aria-labelledby="sms-r"><input inputmode="numeric" maxlength="1" aria-label="Dígito 1" value="4"><input inputmode="numeric" maxlength="1" aria-label="Dígito 2" value="8"><input inputmode="numeric" maxlength="1" aria-label="Dígito 3" value="2"><span>-</span><input inputmode="numeric" maxlength="1" aria-label="Dígito 4"><input inputmode="numeric" maxlength="1" aria-label="Dígito 5"><input inputmode="numeric" maxlength="1" aria-label="Dígito 6"></div></div></div>
+      <div class="lc-modal__pe"><button class="lc-btn" type="button" data-fechar-alvo="#rev">Mudar votos</button><button class="lc-btn lc-btn--principal" type="button" data-fechar-alvo="#rev" data-toast="Votos registrados. Comprovante enviado por e-mail.">Registrar votos</button></div></div></div>
+
+    <div class="lc-variacao">Comprovante do voto</div>
+    <div class="lc-caixa"><div class="lc-caixa__corpo" style="padding-top:16px;display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap"><span class="lc-carimbo lc-carimbo--protocolado lc-carimbo--g">Protocolado<small>Voto 2026-AGO-0417, 14/10/26 20:03</small></span><p class="lc-pequeno lc-cor-2" style="flex:1;min-width:220px">Seus votos entram na apuração às 21h de 16/10. O voto é secreto na eleição e nominal nos demais itens, como manda a convenção. Confira em <span class="lc-codigo">parquedasaguas.alpha.com.br/verificar</span>.</p></div></div>
+
+    <section class="lc-ficha-tela" id="ata" aria-label="Sobre a tela Resultado e ata" style="margin-top:16px">
+      <div class="lc-ficha-tela__nome"><b>Resultado e ata</b><span>Depois do encerramento. Ata com carimbo de registro em cartório.</span></div>
+      <div><h2>O que esta tela resolve</h2><p>Saber o que foi decidido, com números, e ter a ata registrada para levar ao banco ou ao comprador do apartamento.</p></div>
+      <div><h2>Fluxo</h2><ol><li>A assembleia vira "Encerrada" e mostra o resultado de cada item.</li><li>A ata aparece como documento, com "Baixar PDF".</li><li>O carimbo muda de "Emitido" para "Aprovado em assembleia" e, depois, mostra o registro.</li></ol></div>
+      <div><h2>Resolvemos fazer assim porque</h2><p>o resultado do TSE mostra percentual e número absoluto lado a lado; e o síndico precisa da ata registrada (art. 1.350 do Código Civil), então o registro aparece como carimbo, que é o signo do cartório.</p></div>
+    </section>
+    <section class="lc-caixa" aria-labelledby="res-t"><div class="lc-caixa__cab"><h2 id="res-t">Resultado da AGE de 12/05/2026</h2><span class="lc-estado lc-estado--neutro">Encerrada</span></div>
+      <div class="lc-caixa__corpo"><p class="lc-pequeno" style="margin-bottom:12px"><b>Obra da fachada, 10 parcelas.</b> 92 unidades votaram (76,7% das frações).</p>
+        <div class="lc-resultado"><span>Aprovo</span><span class="lc-progresso lc-progresso--sucesso" style="--_v:71%"></span><span class="lc-num">65 (71%)</span><span>Não aprovo</span><span class="lc-progresso lc-progresso--neutro" style="--_v:22%"></span><span class="lc-num">20 (22%)</span><span>Abstenção</span><span class="lc-progresso lc-progresso--neutro" style="--_v:7%"></span><span class="lc-num">7 (7%)</span></div>
+        <div class="lc-linha" style="margin-top:14px"><span class="lc-carimbo lc-carimbo--aprovado">Aprovado em assembleia<small>12/05/26, 2/3 atingido</small></span></div></div></section>
+    <article class="lc-caixa"><div class="lc-caixa__corpo" style="padding-top:20px">
+      <div class="lc-documento" style="max-width:68ch"><p style="font-weight:600;font-size:18px;margin-bottom:8px">Ata da assembleia geral extraordinária do Condomínio Parque das Águas</p>
+        <p>Aos doze dias do mês de maio de dois mil e vinte e seis, às 20h, em segunda chamada, no salão de festas e por videoconferência, reuniram-se os condôminos, conforme lista de presença anexa, sob a presidência do Sr. Antônio Ribeiro e secretariados pela Sra. Juliana Reis, da Administradora Alpha…</p></div>
+      <div class="lc-linha" style="margin-top:16px;gap:12px"><span class="lc-carimbo lc-carimbo--emitido">Registrada<small>2º RTD de São Paulo, 20/05/26, nº 1.204.877</small></span><button class="lc-btn" type="button" data-toast="Ata baixada."><i data-i="baixar"></i>Baixar ata em PDF</button><a class="lc-btn lc-btn--discreto" href="61-documentos-gerados.html#ata">Ver ata inteira</a></div></div></article>
+  </div>
+  <aside class="lc-pilha" aria-label="Dados da assembleia">
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Situação</h2></div><div class="lc-caixa__corpo"><ol class="lc-acompanha"><li data-feito><span class="lc-acompanha__no"><i data-i="confirmar"></i></span><b>Edital publicado</b><time>01/10</time></li><li aria-current="step"><span class="lc-acompanha__no"></span><b>Presença</b><time>até 15/10</time><small>Você ainda não confirmou</small></li><li><span class="lc-acompanha__no"></span><span>Votação online</span><time>14 a 16/10</time></li><li><span class="lc-acompanha__no"></span><span>Ata</span><time>até 31/10</time></li></ol></div></section>
+    <section class="lc-caixa"><div class="lc-caixa__cab"><h2>Documentos</h2></div><ul class="lc-lista"><li><i data-i="edital"></i><span class="lc-cresce">Edital de convocação<span class="lc-lista__sub">PDF, 2 páginas, assinado por Marina Costa</span></span></li><li><i data-i="documento"></i><span class="lc-cresce">Modelo de procuração<span class="lc-lista__sub">PDF, assinatura com firma ou gov.br</span></span></li></ul></section>
+    <section class="lc-caixa lc-caixa--poço"><div class="lc-caixa__corpo" style="padding-top:14px"><b class="lc-t-subsecao">Assembleias anteriores</b><ul class="lc-lista" style="margin:6px -16px 0"><li><span class="lc-cresce">AGE de 12/05/2026<span class="lc-lista__sub">Obra da fachada</span></span><span class="lc-carimbo lc-carimbo--aprovado">Aprovado</span></li><li><span class="lc-cresce">AGO de 17/10/2025<span class="lc-lista__sub">Contas e orçamento 2026</span></span><span class="lc-estado lc-estado--neutro">Ata registrada</span></li></ul></div></section>
+  </aside>
+</div>
+<div class="lc-ficha-a11y"><div><h3>Ordem de foco</h3><p>Trilha, Nomear procurador, Confirmar presença, anexos da pauta, cédula (um grupo de rádio por item), Revisar votos, código SMS (avança sozinho), Registrar votos.</p></div><div><h3>O que é anunciado</h3><p>Cada item é um <code>fieldset</code> com legenda "Seu voto no item 1". Item sem escolha: erro ligado ao grupo. Comprovante: carimbo lido como texto com número e hora.</p></div><div><h3>Nome do que é só ícone</h3><p>X do modal: "Fechar". Dígitos do código: "Dígito 1" a "Dígito 6".</p></div></div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

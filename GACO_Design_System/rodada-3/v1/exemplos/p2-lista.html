@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Renovações, CS</title>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-p2.css">
+<script src="../sistema/marca.js"></script>
+<style>
+/* layout local: largura das colunas da tabela */
+.p2-t-num{width:110px}.p2-t-ind{width:84px}.p2-t-val{width:128px}.p2-t-data{width:112px}.p2-t-resp{width:170px}.p2-t-est{width:170px}
+.p2-linha{cursor:pointer}
+.p2-selecionar-todos{display:flex;gap:8px;align-items:center;justify-content:center;padding:8px 12px;background:var(--sup-2);border:var(--borda-1);border-bottom:0;font-size:13px}
+@media (max-width:639px){
+  .p2-tabela-celular thead{display:none}
+  .p2-tabela-celular,.p2-tabela-celular tbody,.p2-tabela-celular tr,.p2-tabela-celular td{display:block;width:auto}
+  .p2-tabela-celular tr{border-bottom:var(--borda-1);padding:10px 4px;position:relative}
+  .p2-tabela-celular td{height:auto;border:0;padding:2px 12px}
+  .p2-tabela-celular td[data-cel-oculta]{display:none}
+  .p2-tabela-celular td.lc-tabela__sel{position:absolute;right:4px;top:10px;width:auto}
+  .p2-tabela-celular td.lc-tabela__acoes{position:absolute;right:4px;bottom:8px}
+  .p2-tabela-celular td[data-rot]::before{content:attr(data-rot)": ";color:var(--texto-2)}
+}
+</style>
+</head>
+<body data-moldura='{"modulo":"cs","secao":"Contratos","item":"Renovações","papel":"gerente-cs"}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga lc-modelo-lista">
+  <div class="lc-cab-pagina">
+    <div class="lc-cab-pagina__txt"><h1>Renovações</h1><p class="lc-cab-pagina__desc">Contratos de administração com reajuste no período. A lista lembra o filtro, a página, a rolagem e a linha que você abriu.</p></div>
+    <div class="lc-cab-pagina__acoes"><a class="lc-btn" href="p2-importar.html"><i data-i="enviar-arquivo"></i>Importar planilha</a><a class="lc-btn lc-btn--principal" href="p2-criacao-pagina.html"><i data-i="mais"></i>Novo contrato</a></div>
+  </div>
+
+  <div class="lc-visoes lc-abas" role="tablist" aria-label="Visões salvas" id="visoes">
+    <button role="tab" type="button" aria-selected="true" data-visao="outubro">Reajuste em outubro <span class="lc-contagem">63</span></button>
+    <button role="tab" type="button" aria-selected="false" data-visao="sindico">Aguardando síndico <span class="lc-contagem">11</span></button>
+    <button role="tab" type="button" aria-selected="false" data-visao="atrasados">Atrasados <span class="lc-contagem">10</span></button>
+    <button role="tab" type="button" aria-selected="false" data-visao="minhas">Minhas <span class="lc-contagem">16</span></button>
+  </div>
+
+  <div id="barra-filtros">
+    <div class="lc-filtros" id="filtros">
+      <label class="lc-busca"><i data-i="pesquisar"></i><input type="search" id="busca" placeholder="Condomínio, síndico ou número" aria-label="Pesquisar renovações"></label>
+      <button class="lc-filtro lc-filtro--ativo" type="button" id="f-periodo" aria-haspopup="menu" aria-expanded="false"><i data-i="calendario"></i>Reajuste: <b>outubro de 2026</b></button>
+      <span><button class="lc-filtro" type="button" id="f-resp" aria-haspopup="menu" aria-expanded="false">Responsável<i data-i="chevron-baixo"></i></button></span>
+      <span><button class="lc-filtro" type="button" id="f-indice" aria-haspopup="menu" aria-expanded="false">Índice<i data-i="chevron-baixo"></i></button></span>
+      <button class="lc-filtro" type="button"><i data-i="adicionar-filtro"></i>Mais filtros</button>
+      <div class="lc-filtros__fim">
+        <span><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Escolher colunas" data-dica="Colunas"><i data-i="colunas"></i></button></span>
+        <button class="lc-btn" type="button" id="exportar"><i data-i="baixar"></i>Exportar</button>
+        <div class="lc-seg lc-seg--p" role="group" aria-label="Visão"><button type="button" aria-pressed="true"><i data-i="visao-lista"></i>Lista</button><a href="p2-quadro.html" aria-pressed="false"><i data-i="visao-quadro"></i>Quadro</a></div>
+      </div>
+    </div>
+    <div class="lc-chips" id="chips"></div>
+  </div>
+  <div class="lc-massa" id="massa" hidden role="region" aria-label="Ações para os selecionados">
+    <span id="massa-n"><b>0 selecionados</b></span>
+    <div class="lc-massa__acoes">
+      <span><button class="lc-btn lc-btn--discreto lc-btn--p" type="button" id="m-atribuir"><i data-i="atribuir"></i>Atribuir</button></span>
+      <button class="lc-btn lc-btn--discreto lc-btn--p" type="button" id="m-exportar"><i data-i="baixar"></i>Exportar</button>
+      <button class="lc-btn lc-btn--discreto lc-btn--p" type="button" id="m-arquivar"><i data-i="arquivar"></i>Arquivar</button>
+      <button class="lc-btn lc-btn--discreto lc-btn--p" type="button" id="m-excluir"><i data-i="lixeira"></i>Excluir</button>
+    </div>
+    <div class="lc-massa__fim"><button class="lc-btn lc-btn--discreto lc-btn--p" type="button" id="m-limpar">Limpar seleção</button></div>
+  </div>
+
+  <div id="corpo-lista"></div>
+</main>
+
+<script src="../sistema/icones.js"></script>
+<script src="../sistema/extra-p2-icones.js"></script>
+<script src="../sistema/moldura.js"></script>
+<script src="../sistema/extra-p2.js"></script>
+<script>
+(function(){
+"use strict";
+var P=LCP2, $=P.$, $$=P.$$, esc=P.esc, PES=P.PESSOAS;
+var chave="renovacoes";
+var st=P.estadoLista.ler(chave,{visao:"outubro",busca:"",pag:1,por:50,ordem:"reajuste",resp:"",rolagem:0,ultimo:""});
+var removidos=P.guarda.sget("renov-removidos",[]);
+var sel=new Set(), todosDoFiltro=false;
+var estadoTela=new URLSearchParams(location.search).get("estado");
+
+function filtrados(){
+  var q=(st.busca||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+  return P.CONTRATOS.filter(function(c){
+    if(removidos.indexOf(c.id)>-1) return false;
+    if(st.visao==="sindico" && c.estado[0]!=="Aguardando síndico") return false;
+    if(st.visao==="atrasados" && c.estado[0]!=="Atrasado") return false;
+    if(st.visao==="minhas" && c.resp!=="LA") return false;
+    if(st.resp && c.resp!==st.resp) return false;
+    if(q){ var s=(c.nome+" "+c.sindico+" "+c.id).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,""); if(s.indexOf(q)<0) return false; }
+    return true;
+  });
+}
+function linha(c){
+  var r=PES[c.resp], marc=sel.has(c.id)||todosDoFiltro;
+  return '<tr class="p2-linha" data-id="'+c.id+'"'+(marc?' aria-selected="true"':'')+'>'+
+    '<td class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" aria-label="Selecionar '+esc(c.nome)+'"'+(marc?' checked':'')+'><span class="lc-marcar__caixa"></span></label></td>'+
+    '<td><a class="lc-tabela__primaria" href="p2-registro.html?id='+c.id+'">'+esc(c.nome)+'</a><span class="lc-tabela__sub">'+esc(c.sindico)+', '+c.unidades+' unidades</span></td>'+
+    '<td data-rot="Número" data-cel-oculta>'+c.id+'</td><td data-cel-oculta>'+c.indice+'</td>'+
+    '<td class="lc-num" data-cel-oculta>'+P.moeda(c.valor)+'</td><td class="lc-num" data-rot="Novo valor">'+P.moeda(c.novo)+'</td>'+
+    '<td data-rot="Reajuste em">'+c.reajuste+'</td>'+
+    '<td data-cel-oculta><span class="lc-pessoa"><span class="lc-av lc-av--24 '+r.cor+'">'+r.ini+'</span><span class="lc-reticencias">'+esc(r.nome)+'</span></span></td>'+
+    '<td><span class="lc-estado lc-estado--'+c.estado[1]+'">'+c.estado[0]+'</span></td>'+
+    '<td class="lc-tabela__acoes"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" data-mais aria-label="Mais opções de '+esc(c.nome)+'" aria-haspopup="menu" aria-expanded="false"><i data-i="mais-opcoes"></i></button></td></tr>';
+}
+function desenhar(){
+  var corpo=$("#corpo-lista");
+  if(estadoTela){ return P.estadoTela(corpo,estadoTela); }
+  var lista=filtrados(), total=lista.length, pags=Math.max(1,Math.ceil(total/st.por));
+  if(st.pag>pags) st.pag=pags;
+  var ini=(st.pag-1)*st.por, pg=lista.slice(ini,ini+st.por);
+  $$("#visoes [role=tab]").forEach(function(t){ t.setAttribute("aria-selected",t.getAttribute("data-visao")===st.visao); });
+  $("#busca").value=st.busca||"";
+  /* filtro com botão na barra mostra o valor no próprio botão; a linha de baixo só traz o que veio de "Mais filtros" e "Limpar filtros" */
+  var fr=$("#f-resp"); fr.classList.toggle("lc-filtro--ativo",!!st.resp); fr.innerHTML=st.resp?'Responsável: <b>'+esc(PES[st.resp].nome)+'</b><i data-i="chevron-baixo"></i>':'Responsável<i data-i="chevron-baixo"></i>';
+  $("#chips").innerHTML=(st.resp||st.busca)?'<span class="lc-legenda">'+total+' de '+(P.CONTRATOS.length-removidos.length)+' renovações com os filtros atuais.</span><button type="button" class="lc-btn lc-btn--link lc-btn--p" data-tirar="tudo">Limpar filtros</button>':'';
+  $("#chips").hidden=!(st.resp||st.busca);
+  if(!total){
+    corpo.innerHTML='<div class="lc-caixa lc-estado-tela"><div class="lc-vazio"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="filtrar"></i></span><h2 class="lc-vazio__titulo">Nenhuma renovação com esses filtros</h2><p class="lc-vazio__texto">Há '+(P.CONTRATOS.length-removidos.length)+' renovações em outubro, mas nenhuma combina com '+(st.busca?'“'+esc(st.busca)+'”':'o filtro escolhido')+'. Tire um filtro ou pesquise só o começo do nome.</p><div class="lc-grupo-btn"><button class="lc-btn" type="button" data-tirar="tudo">Limpar filtros</button></div></div></div>';
+    return;
+  }
+  var cab='<thead><tr><th class="lc-tabela__sel"><label class="lc-marcar"><input type="checkbox" id="sel-todos" aria-label="Selecionar os '+pg.length+' desta página"><span class="lc-marcar__caixa"></span></label></th>'+
+    '<th scope="col" aria-sort="none"><button class="lc-ordenar" type="button" data-ordem="nome">Condomínio</button></th><th scope="col" class="p2-t-num">Número</th><th scope="col" class="p2-t-ind">Índice</th>'+
+    '<th scope="col" class="lc-num p2-t-val">Valor atual</th><th scope="col" class="lc-num p2-t-val">Novo valor</th>'+
+    '<th scope="col" class="p2-t-data" aria-sort="'+(st.ordem==="reajuste"?"ascending":"none")+'"><button class="lc-ordenar" type="button" data-ordem="reajuste">Reajuste em</button></th>'+
+    '<th scope="col" class="p2-t-resp">Responsável</th><th scope="col" class="p2-t-est">Estado</th><th scope="col"><span class="lc-sr">Ações</span></th></tr></thead>';
+  var aviso= (todosDoFiltro || (pg.length && pg.every(function(c){return sel.has(c.id);}) && total>pg.length)) ?
+    '<div class="p2-selecionar-todos" role="status">'+(todosDoFiltro?'As <b>'+total+'</b> renovações do filtro estão selecionadas. <button type="button" class="lc-btn lc-btn--link" id="desfaz-todos">Selecionar só as desta página</button>':'As <b>'+pg.length+'</b> desta página estão selecionadas. <button type="button" class="lc-btn lc-btn--link" id="todos-filtro">Selecionar as '+total+' que atendem ao filtro</button>')+'</div>':'';
+  corpo.innerHTML=aviso+'<div class="lc-tabela-cont lc-tabela-cont--alta" id="cont" tabindex="-1"><table class="lc-tabela lc-com-sel lc-tabela--coluna-fixa p2-tabela-celular" aria-rowcount="'+total+'"><caption class="lc-sr">Renovações, '+total+' contratos, página '+st.pag+' de '+pags+'</caption>'+cab+'<tbody>'+pg.map(linha).join("")+'</tbody></table></div>'+
+    '<nav class="lc-paginacao" aria-label="Paginação"><span class="lc-paginacao__info"><b>'+(ini+1)+'–'+(ini+pg.length)+'</b> de <b>'+total+'</b></span>'+
+    '<label class="lc-paginacao__por">Por página <select class="lc-selecao" id="por" aria-label="Itens por página">'+[25,50,100].map(function(n){return '<option'+(n===st.por?' selected':'')+'>'+n+'</option>';}).join("")+'</select></label>'+
+    '<span class="lc-paginacao__pags"><button type="button" data-pag="'+(st.pag-1)+'" aria-label="Página anterior"'+(st.pag===1?' disabled':'')+'><i data-i="chevron-esquerda"></i></button>'+
+    Array.from({length:pags},function(_,i){return '<button type="button" data-pag="'+(i+1)+'"'+(i+1===st.pag?' aria-current="page"':'')+' aria-label="Página '+(i+1)+'">'+(i+1)+'</button>';}).join("")+
+    '<button type="button" data-pag="'+(st.pag+1)+'" aria-label="Próxima página"'+(st.pag===pags?' disabled':'')+'><i data-i="chevron-direita"></i></button></span></nav>';
+  ligar(pg,lista);
+  massa();
+}
+function ligar(pg,lista){
+  var cont=$("#cont");
+  $("#sel-todos").checked = pg.length && pg.every(function(c){return sel.has(c.id);});
+  $("#sel-todos").addEventListener("change",function(e){ pg.forEach(function(c){ if(e.target.checked) sel.add(c.id); else sel.delete(c.id); }); if(!e.target.checked) todosDoFiltro=false; desenhar(); });
+  var tf=$("#todos-filtro"); if(tf) tf.addEventListener("click",function(){ todosDoFiltro=true; lista.forEach(function(c){sel.add(c.id);}); desenhar(); P.anunciar("As "+lista.length+" renovações do filtro estão selecionadas."); });
+  var dt=$("#desfaz-todos"); if(dt) dt.addEventListener("click",function(){ todosDoFiltro=false; sel=new Set(pg.map(function(c){return c.id;})); desenhar(); });
+  $$("tbody tr",cont).forEach(function(tr){
+    var id=tr.getAttribute("data-id"), cx=tr.querySelector("input[type=checkbox]"), a=tr.querySelector("a");
+    cx.addEventListener("change",function(){ if(cx.checked) sel.add(id); else { sel.delete(id); todosDoFiltro=false; } tr.setAttribute("aria-selected",cx.checked); massa(); $("#sel-todos").checked=pg.every(function(c){return sel.has(c.id);}); });
+    tr.addEventListener("click",function(e){ if(e.target.closest("a,button,label,input")) return; if(window.getSelection().toString()) return; if(e.ctrlKey||e.metaKey){ window.open(a.href,"_blank"); return; } a.click(); });
+    a.addEventListener("click",function(){ sair(id,lista); });
+    tr.querySelector("[data-mais]").addEventListener("click",function(e){ var c=P.contrato(id);
+      P.menu(e.currentTarget,[
+        {t:"Abrir em nova aba",ic:"abrir-fora",tecla:"Ctrl+clique",acao:function(){ window.open(a.href,"_blank"); }},
+        {t:"Copiar link",ic:"vincular",acao:function(){ try{navigator.clipboard.writeText(a.href);}catch(_){} P.toast("Link copiado. Quem abrir precisa ter acesso a contratos.",{ic:"vincular"}); }},
+        {t:"Duplicar",ic:"duplicar",acao:function(){ location.href="p2-criacao-pagina.html?duplicar="+id; }},
+        {sep:1},
+        {t:"Arquivar",ic:"arquivar",acao:function(){ remover([id],"arquivar"); }},
+        {t:"Excluir",ic:"lixeira",perigo:1,acao:function(){ remover([id],"excluir"); }}
+      ],{rotulo:"Ações de "+c.nome}); });
+  });
+  $$("[data-pag]").forEach(function(b){ b.addEventListener("click",function(){ st.pag=+b.getAttribute("data-pag"); st.rolagem=0; salvar(); desenhar(); $("#cont").scrollTop=0; $("#cont").focus(); P.anunciar("Página "+st.pag); }); });
+  $("#por").addEventListener("change",function(e){ st.por=+e.target.value; st.pag=1; P.guarda.set("lc-por:renovacoes",st.por); salvar(); desenhar(); });
+  cont.addEventListener("scroll",function(){ st.rolagem=cont.scrollTop; },{passive:true});
+}
+function sair(id,lista){
+  st.ultimo=id; st.rolagem=$("#cont").scrollTop; salvar();
+  P.conjunto.gravar(lista.map(function(c){return c.id;}),"Renovações: reajuste em outubro","p2-lista.html"+location.search);
+}
+function salvar(){ P.estadoLista.gravar(chave,st); }
+function massa(){
+  var n=todosDoFiltro?filtrados().length:sel.size;
+  $("#massa").hidden=!n; $("#barra-filtros").hidden=!!n;
+  $("#massa-n").innerHTML='<b>'+n+(n===1?' selecionada':' selecionadas')+'</b>';
+}
+function remover(ids,modo){
+  var nomes=ids.map(function(i){return P.contrato(i).nome;});
+  var txt = ids.length===1 ? '<b>'+esc(nomes[0])+'</b> '+(modo==="arquivar"?'arquivado. Sai das listas de trabalho e continua na busca.':'movido para a lixeira. Fica lá por 30 dias.') :
+            '<b>'+ids.length+' contratos</b> '+(modo==="arquivar"?'arquivados.':'movidos para a lixeira. Ficam lá por 30 dias.');
+  removidos=removidos.concat(ids); P.guarda.sset("renov-removidos",removidos); sel.clear(); todosDoFiltro=false; desenhar();
+  P.toast(txt,{ic:modo==="arquivar"?"arquivar":"lixeira",acao:"Desfazer",aoAcao:function(){ removidos=removidos.filter(function(x){return ids.indexOf(x)<0;}); P.guarda.sset("renov-removidos",removidos); desenhar(); P.anunciar("Desfeito. "+ids.length+(ids.length===1?" contrato voltou":" contratos voltaram")+" para a lista."); }});
+}
+/* exportar com filtro */
+function exportar(soSel){
+  var lista=filtrados(), n=soSel?(todosDoFiltro?lista.length:sel.size):lista.length;
+  P.modal({titulo:"Exportar "+n+(n===1?" renovação":" renovações"),desc:"Sai exatamente o que você está vendo: visão “Reajuste em outubro”"+(st.resp?", responsável "+PES[st.resp].nome:"")+(st.busca?", busca “"+esc(st.busca)+"”":"")+", ordenado por data de reajuste.",
+    corpo:'<div class="lc-pilha">'+
+      '<fieldset class="lc-grupo-opcoes"><legend class="lc-rotulo" style="margin-bottom:6px">O que exportar</legend>'+
+        '<label class="lc-radio"><input type="radio" name="ex-o"'+(soSel?'':' checked')+'><span class="lc-radio__bola"></span>As '+lista.length+' do filtro atual</label>'+
+        (sel.size?'<label class="lc-radio"><input type="radio" name="ex-o"'+(soSel?' checked':'')+'><span class="lc-radio__bola"></span>Só as '+sel.size+' selecionadas</label>':'')+
+        '<label class="lc-radio"><input type="radio" name="ex-o"><span class="lc-radio__bola"></span>Só esta página ('+Math.min(st.por,lista.length)+')</label></fieldset>'+
+      '<fieldset class="lc-grupo-opcoes"><legend class="lc-rotulo" style="margin-bottom:6px">Colunas</legend>'+
+        '<label class="lc-radio"><input type="radio" name="ex-c" checked><span class="lc-radio__bola"></span>As 8 colunas visíveis, na mesma ordem</label>'+
+        '<label class="lc-radio"><input type="radio" name="ex-c"><span class="lc-radio__bola"></span>Todos os 31 campos do contrato</label></fieldset>'+
+      '<div class="lc-campo"><label class="lc-rotulo" for="ex-f">Formato</label><select id="ex-f" class="lc-selecao"><option>Planilha do Excel (.xlsx)</option><option>Texto separado por ponto e vírgula (.csv)</option><option>PDF para imprimir</option></select></div>'+
+      '<p class="lc-ajuda">Até 5.000 linhas o arquivo baixa na hora. Acima disso, preparamos e avisamos no sino quando ficar pronto. Toda exportação fica registrada na auditoria.</p></div>',
+    pe:'<button type="button" class="lc-btn" data-m-fechar>Cancelar</button><button type="button" class="lc-btn lc-btn--principal" data-ex><i data-i="baixar"></i>Exportar '+n+'</button>',
+    aoAbrir:function(el,api){ el.querySelector("[data-ex]").addEventListener("click",function(){ var b=this; b.setAttribute("aria-busy","true"); setTimeout(function(){ api.fechar(); P.toast("Planilha <b>renovacoes-outubro-2026.xlsx</b> baixada, "+n+" linhas.",{tipo:"sucesso",acao:"Abrir pasta"}); },700); }); }});
+}
+
+/* estados de tela (para a documentação: ?estado=carregando|vazio|erro|sem-permissao|configuracao|offline) */
+P.estadoTela=function(corpo,e){
+  if(e==="carregando"){ $("#corpo-lista").setAttribute("aria-busy","true");
+    corpo.innerHTML='<p class="lc-sr" role="status">Carregando renovações</p><div class="lc-tabela-cont" aria-hidden="true">'+Array.from({length:9},function(_,i){return '<div class="lc-esqueleto-linha"><span class="lc-esqueleto" style="width:18px;height:18px"></span><span><span class="lc-esqueleto lc-esqueleto--linha" style="width:'+(50+i*5%40)+'%"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--curta"></span></span><span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--curta"></span></div>';}).join("")+'</div>'; return; }
+  var m={
+    vazio:["condominio","","Nenhuma renovação em outubro","As renovações aparecem aqui 60 dias antes da data de reajuste de cada contrato. Para começar, cadastre o primeiro contrato de administração ou importe a sua planilha.",'<a class="lc-btn lc-btn--principal" href="p2-criacao-pagina.html"><i data-i="mais"></i>Novo contrato</a><a class="lc-btn" href="p2-importar.html"><i data-i="enviar-arquivo"></i>Importar planilha</a>'],
+    erro:["erro","lc-estado-tela--erro","Não conseguimos carregar as renovações","O servidor de contratos não respondeu às "+P.hora()+". Seus filtros continuam guardados. Tente de novo; se repetir, o suporte já foi avisado.",'<button class="lc-btn lc-btn--principal" type="button" onclick="location.search=\'\'"><i data-i="atualizar"></i>Tentar de novo</button>','Código para o suporte: CS-504-7F3A'],
+    "sem-permissao":["bloquear","lc-estado-tela--bloqueio","Você não tem acesso a contratos","Seu papel (Atendente de suporte) vê os clientes, mas não os contratos e valores. Quem libera é a administradora do sistema, Carla Mendes.",'<button class="lc-btn lc-btn--principal" type="button"><i data-i="email"></i>Pedir acesso a Carla Mendes</button><a class="lc-btn" href="#">Voltar para Clientes</a>'],
+    configuracao:["ajustes","","Falta escolher o índice de reajuste","Para calcular as renovações, o GACO precisa saber qual índice a sua administradora usa por padrão (IGP-M, IPCA ou INPC). Leva um minuto.",'<a class="lc-btn lc-btn--principal" href="p2-configuracao.html"><i data-i="configuracoes"></i>Configurar o reajuste</a>','Só quem administra o sistema vê este botão.'],
+    offline:["wifi-desligado","lc-estado-tela--bloqueio","Sem conexão com a internet","Mostramos a última lista carregada, às 09:12. Quando a conexão voltar, atualizamos sozinhos.",'<button class="lc-btn" type="button"><i data-i="atualizar"></i>Tentar agora</button>']
+  }[e];
+  if(!m) return;
+  corpo.innerHTML='<div class="lc-caixa lc-estado-tela '+m[1]+'"><div class="lc-vazio"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="'+m[0]+'"></i></span><h2 class="lc-vazio__titulo">'+m[2]+'</h2><p class="lc-vazio__texto">'+m[3]+'</p><div class="lc-grupo-btn">'+m[4]+'</div>'+(m[5]?'<p class="lc-estado-tela__detalhe">'+m[5]+'</p>':'')+'</div></div>';
+  if(e==="vazio"){ $("#visoes").hidden=true; $("#barra-filtros").hidden=true; }
+  if(e==="sem-permissao"||e==="configuracao"){ $("#visoes").hidden=true; $("#barra-filtros").hidden=true; $(".lc-cab-pagina__acoes").hidden=true; }
+};
+
+/* eventos fixos */
+$$("#visoes [role=tab]").forEach(function(t){ t.addEventListener("click",function(){ st.visao=t.getAttribute("data-visao"); st.pag=1; st.rolagem=0; sel.clear(); todosDoFiltro=false; salvar(); desenhar(); }); });
+var bt; $("#busca").addEventListener("input",function(e){ clearTimeout(bt); bt=setTimeout(function(){ st.busca=e.target.value; st.pag=1; salvar(); desenhar(); },220); });
+document.addEventListener("click",function(e){ var t=e.target.closest("[data-tirar]"); if(!t) return; var k=t.getAttribute("data-tirar"); if(k==="tudo"){ st.busca=""; st.resp=""; } else st[k]=""; st.pag=1; salvar(); desenhar(); });
+$("#f-resp").addEventListener("click",function(e){ P.menu(e.currentTarget,[{t:"Todos",marcado:!st.resp,acao:function(){st.resp="";salvar();desenhar();}}].concat(["LA","RL","CM","BT"].map(function(k){ return {t:PES[k].nome,marcado:st.resp===k,acao:function(){st.resp=k;st.pag=1;salvar();desenhar();}}; })),{lado:"esquerda",rotulo:"Responsável"}); });
+$("#f-indice").addEventListener("click",function(e){ P.menu(e.currentTarget,[{t:"Todos",marcado:true},{t:"IGP-M",marcado:false},{t:"IPCA",marcado:false}],{lado:"esquerda",rotulo:"Índice"}); });
+$("#exportar").addEventListener("click",function(){ exportar(false); });
+$("#m-exportar").addEventListener("click",function(){ exportar(true); });
+$("#m-limpar").addEventListener("click",function(){ sel.clear(); todosDoFiltro=false; desenhar(); $("#busca").focus(); });
+$("#m-arquivar").addEventListener("click",function(){ remover(todosDoFiltro?filtrados().map(function(c){return c.id;}):Array.from(sel),"arquivar"); });
+$("#m-excluir").addEventListener("click",function(){ var ids=todosDoFiltro?filtrados().map(function(c){return c.id;}):Array.from(sel);
+  if(ids.length>=20){ P.modal({titulo:"Mover "+ids.length+" contratos para a lixeira?",desc:"É muita coisa de uma vez. Eles saem das listas, dos alertas e do cálculo de reajuste. Ficam 30 dias na lixeira e podem ser restaurados lá.",perigo:true,
+      pe:'<button type="button" class="lc-btn" data-m-fechar>Cancelar</button><button type="button" class="lc-btn lc-btn--perigo" data-ok><i data-i="lixeira"></i>Mover '+ids.length+' para a lixeira</button>',
+      aoAbrir:function(el,api){ el.querySelector("[data-ok]").addEventListener("click",function(){ api.fechar(); remover(ids,"excluir"); }); }}); }
+  else remover(ids,"excluir"); });
+$("#m-atribuir").addEventListener("click",function(e){ var n=todosDoFiltro?filtrados().length:sel.size; P.menu(e.currentTarget,["LA","RL","CM","BT"].map(function(k){ return {t:PES[k].nome,ic:"pessoa",acao:function(){ var antes=Array.from(sel); sel.clear(); todosDoFiltro=false; desenhar(); P.toast("<b>"+n+" renovações</b> atribuídas a "+PES[k].nome+".",{ic:"atribuir",acao:"Desfazer",aoAcao:function(){ P.anunciar("Atribuição desfeita."); }}); }}; }),{lado:"esquerda",rotulo:"Atribuir a"}); });
+
+/* primeira pintura + volta ao lugar */
+st.por=+P.guarda.get("lc-por:renovacoes",st.por)||50;
+desenhar();
+if(!estadoTela && st.ultimo){
+  var tr=document.querySelector('tr[data-id="'+st.ultimo+'"]');
+  if(tr){ tr.classList.add("lc-visitada","lc-visitada--chegou"); var cont=$("#cont");
+    cont.scrollTop = st.rolagem || Math.max(0,tr.offsetTop-cont.clientHeight/2);
+    setTimeout(function(){ tr.querySelector("a").focus({preventScroll:true}); },60);
+    var lista=filtrados(), pos=lista.map(function(c){return c.id;}).indexOf(st.ultimo)+1;
+    P.anunciar("De volta a Renovações. Página "+st.pag+". "+P.contrato(st.ultimo).nome+", linha "+pos+" de "+lista.length+", está destacada.");
+  }
+}
+P.atalho("/",function(e){ e.preventDefault(); $("#busca").focus(); });
+P.atalho("n",function(){ location.href="p2-criacao-pagina.html"; });
+})();
+</script>
+</body>
+</html>

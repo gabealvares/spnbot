@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Componentes V1 Livro-Caixa</title>
+<meta name="description" content="Catálogo vivo de todos os componentes da V1 Livro-Caixa, com estados, tamanhos, temas claro e escuro, densidades, regras de uso, acessibilidade e HTML copiável.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/doc.css">
+<link rel="stylesheet" href="sistema/extra-p1.css">
+<script src="sistema/marca.js"></script>
+<style>
+/* layout só desta página */
+.p1-linha-ex{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.p1-col{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.p1-conversa{height:560px;display:flex;flex-direction:column;border:var(--borda-1)}
+.p1-conversa .lc-conversa{flex:1}
+.p1-palco-painel{height:520px;position:relative;overflow:hidden;background:var(--fundo);border:var(--borda-1)}
+.p1-palco-painel .lc-painel--demo{margin-left:auto;height:100%}
+.p1-cal{max-width:340px}
+.p1-feed{max-width:600px}
+.p1-dois{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:639px){.p1-dois{grid-template-columns:1fr}.p1-conversa{height:640px}}
+</style>
+</head>
+<body>
+<a class="lc-pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="lc-doc-cab">
+  <a class="lc-doc-cab__marca" href="00-fundamentos.html"><span class="lc-doc-cab__selo">G</span>GACO V1, Livro-Caixa</a>
+  <nav aria-label="Documentação"><a href="00-fundamentos.html">Fundamentos</a><a href="01-iconografia.html">Iconografia</a><a href="02-navegacao.html">Navegação</a><a href="03-componentes.html" aria-current="page">Componentes</a><a href="04-formularios.html">Formulários</a><a href="05-tabelas-e-listas.html">Tabelas e listas</a><a href="exemplo-moldura.html">Exemplo de tela</a></nav>
+  <div class="lc-doc-cab__fim">
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Densidade da documentação" data-doc-dens><button type="button" data-v="compacta" aria-pressed="false">Compacta</button><button type="button" data-v="padrao" aria-pressed="true">Padrão</button><button type="button" data-v="confortavel" aria-pressed="false">Confortável</button></div>
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Tema da documentação" data-doc-tema><button type="button" data-v="claro"><i data-i="tema-claro"></i>Claro</button><button type="button" data-v="escuro"><i data-i="tema-escuro"></i>Escuro</button></div>
+  </div>
+</header>
+<div class="lc-doc">
+<nav class="lc-doc-indice lc-doc-indice--familias" aria-label="Componentes por família"><ol></ol></nav>
+<main id="conteudo" class="lc-doc-conteudo">
+<header>
+  <h1>Componentes</h1>
+  <p class="lc-doc-lede">Cada peça de <code>sistema/componentes.css</code> renderizada de verdade, com todos os estados, nos dois temas lado a lado e nas três densidades quando a densidade muda a peça. Abaixo de cada quadro, o HTML que gerou o exemplo, pronto para copiar. Os exemplos com botão funcionam: abrem menu, modal, painel e toast, trocam aba e mostram a barra de salvar.</p>
+  <div class="lc-doc-tres-blocos">
+    <div><h2>O que esta página resolve</h2><p>Quem monta tela no GACO precisa saber três coisas sem perguntar: qual peça usar, como ela se comporta em cada estado e qual HTML colar. Esta página responde as três e serve de prova de que cada classe da fundação existe e funciona.</p></div>
+    <div><h2>Fluxo</h2><ol><li>Escolha a família no índice à esquerda (no celular, role a página).</li><li>Leia "Quando usar" e "Quando não usar" antes de copiar.</li><li>Confira os estados no tema da sua tela; o quadro mostra claro e escuro juntos.</li><li>Abra "HTML de exemplo" e use "Copiar HTML". O aviso no rodapé confirma a cópia.</li></ol></div>
+    <div><h2>Resolvemos fazer assim porque</h2><p>o Polaris (Shopify), o Carbon (IBM) e o Atlassian Design System documentam cada componente com anatomia, uso, conteúdo e acessibilidade na mesma página do exemplo vivo, e o Storybook mostra estados lado a lado. Juntamos as duas coisas numa página só, sem ferramenta externa.</p></div>
+  </div>
+</header>
+
+<!-- ============================ AÇÕES ============================ -->
+<section class="lc-doc-sec" id="botao" data-familia="Ações">
+  <h2>Botão</h2>
+  <p>Ação que acontece agora, na mesma tela. Sete variantes, três tamanhos, seis estados. O principal é a única peça de interface que leva a cor do cliente, e aparece uma vez por tela.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="componente"></i>Anatomia</h3>
+      <div class="lc-linha" style="margin:6px 0 10px"><span class="lc-doc-anatomia__alvo"><span class="lc-doc-n">1</span><button type="button" class="lc-btn lc-btn--principal" tabindex="-1"><i data-i="boleto"></i>Gerar boletos</button></span></div>
+      <ol><li><span class="lc-doc-n">1</span> Contêiner: altura pela densidade (28, 32 ou 40), raio 2, contorno de 1 px. Ícone de 16 px à esquerda, opcional. Rótulo em Schibsted 13,5 px, peso 500 (600 no principal).</li></ol></div>
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li><b>Principal</b>: a ação que fecha a tarefa da tela. Uma só.</li><li><b>Secundário</b> (padrão): as outras ações do cabeçalho.</li><li><b>Discreto</b>: barras de ferramenta, linha de tabela, rodapé de cartão.</li><li><b>Perigo</b>: só na confirmação final de excluir, reprovar, cancelar contrato.</li><li><b>Link</b>: ação no meio do texto ("ver boleto").</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para ir a outra página: use link.</li><li>Dois principais na mesma tela, ou principal em toda linha de tabela.</li><li>Perigo no primeiro clique de "Excluir": o primeiro é secundário, a confirmação é perigo.</li><li>Só ícone fora de barra de ferramenta.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Verbo no infinitivo + objeto: "Gerar boletos", "Enviar circular", "Salvar contrato".</li><li>Até três palavras. Sem ponto, sem "→", sem caixa alta.</li><li>O toast repete o verbo: "Gerar boletos" vira "148 boletos gerados".</li><li>Nada de "OK", "Enviar" solto ou "Clique aqui".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>&lt;button type="button"&gt;</code>; nunca <code>div</code>.</li><li>Só ícone: <code>aria-label</code> e <code>data-dica</code> com o mesmo texto.</li><li>Carregando: <code>aria-busy="true"</code>; o leitor ainda lê o rótulo.</li><li>Desabilitado que precisa de motivo: <code>aria-disabled="true"</code> + dica com o porquê (o foco continua chegando).</li><li>Toque: 44 px automáticos em tela de toque.</li></ul></div>
+  </div>
+  <template data-ex="Variantes e estados" data-leg="hover, foco e ativo forçados por classe de documentação" data-temas="empilhado" data-rola data-gerar="matriz-botoes" data-nota="Só leitura e erro não se aplicam a botão: quem está em só leitura não vê o botão de editar, e erro aparece no campo ou na barra de salvar, nunca no botão."></template>
+  <template data-ex="Tamanhos e densidades" data-dens="tres" data-leg="pequeno, padrão e grande em cada densidade">
+    <div class="p1-col">
+      <button type="button" class="lc-btn lc-btn--principal lc-btn--p"><i data-i="adicionar-pessoa"></i>Novo contato</button>
+      <button type="button" class="lc-btn lc-btn--principal"><i data-i="adicionar-pessoa"></i>Novo contato</button>
+      <button type="button" class="lc-btn lc-btn--principal lc-btn--g"><i data-i="adicionar-pessoa"></i>Novo contato</button>
+      <div class="p1-linha-ex"><button type="button" class="lc-btn lc-btn--icone lc-btn--p" aria-label="Imprimir" data-dica="Imprimir"><i data-i="imprimir"></i></button><button type="button" class="lc-btn lc-btn--icone" aria-label="Imprimir" data-dica="Imprimir"><i data-i="imprimir"></i></button><button type="button" class="lc-btn lc-btn--icone lc-btn--g" aria-label="Imprimir" data-dica="Imprimir"><i data-i="imprimir"></i></button></div>
+      <button type="button" class="lc-btn lc-btn--secundario lc-btn--bloco"><i data-i="baixar"></i>Baixar extrato</button>
+    </div>
+  </template>
+  <template data-ex="Grupo de botões no cabeçalho" data-leg="ordem: discretos, secundários, principal por último">
+    <div class="lc-grupo-btn">
+      <button type="button" class="lc-btn lc-btn--icone lc-btn--discreto" aria-label="Mais opções" data-dica="Mais opções"><i data-i="mais-opcoes"></i></button>
+      <button type="button" class="lc-btn" data-toast="Extrato de setembro exportado em PDF."><i data-i="baixar"></i>Exportar</button>
+      <button type="button" class="lc-btn lc-btn--principal" data-toast="148 boletos de outubro gerados." data-desfazer><i data-i="boleto"></i>Gerar boletos</button>
+    </div>
+  </template>
+  <div class="lc-doc-certo-errado">
+    <div><b><i data-i="sucesso"></i>Assim</b><div class="lc-grupo-btn"><button type="button" class="lc-btn">Cancelar</button><button type="button" class="lc-btn lc-btn--principal">Enviar circular</button></div></div>
+    <div><b><i data-i="erro"></i>Não assim</b><div class="lc-grupo-btn"><button type="button" class="lc-btn lc-btn--principal">OK</button><button type="button" class="lc-btn lc-btn--principal">Enviar →</button></div></div>
+  </div>
+</section>
+
+<section class="lc-doc-sec" id="dividido" data-familia="Ações">
+  <h2>Botão dividido</h2>
+  <p>"Salvar ▾" e "Enviar ▾": a ação mais comum fica no corpo do botão; as variações que mudam o que acontece depois ficam na seta. Cada opção do menu diz o efeito.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="componente"></i>Anatomia</h3><ol class="lc-doc-regras" style="padding-left:0;list-style:none;margin:0"><li><span class="lc-doc-n">1</span> Ação padrão (verbo).</li><li><span class="lc-doc-n">2</span> Seta com <code>aria-haspopup="menu"</code>, filete entre as duas metades.</li><li><span class="lc-doc-n">3</span> Menu: verbo + efeito em <code>small</code> e atalho.</li></ol></div>
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Salvar na barra de salvar (e ir para o próximo, e voltar, e criar outro).</li><li>Enviar no atendimento (e deixar pendente, e resolver).</li><li>Quando a variação é frequente o bastante para não caber num "⋯".</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para juntar ações sem relação ("Salvar ▾ Excluir").</li><li>Quando só há uma opção.</li><li>Com ação destrutiva escondida no menu.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>O menu repete o verbo do botão: "Salvar e ir para o próximo".</li><li>O <code>small</code> diz o destino: "15 de 63, Residencial Jardim Botânico".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>A seta tem nome: "Outras formas de salvar".</li><li>Setas ↑ ↓ andam no menu, Esc fecha e devolve o foco à seta.</li><li>O sistema lembra a última escolha só se a pessoa marcar.</li></ul></div>
+  </div>
+  <template data-ex="Salvar ▾ e Enviar ▾ (clique na seta)" data-alt="260px">
+    <div class="p1-col">
+      <div class="lc-ancora" style="display:inline-block">
+        <span class="lc-dividido"><button type="button" class="lc-btn lc-btn--principal" data-toast="Contrato salvo." data-desfazer>Salvar</button><button type="button" class="lc-btn lc-btn--principal" aria-label="Outras formas de salvar" aria-haspopup="menu" aria-expanded="false" data-abre="m-salvar"><i data-i="chevron-baixo"></i></button></span>
+        <div class="lc-menu" id="m-salvar" role="menu" hidden style="top:calc(100% + 4px);left:0;min-width:300px">
+          <button type="button" class="lc-menu__item" role="menuitem" data-toast="Contrato salvo. Abrindo 15 de 63, Residencial Jardim Botânico."><i data-i="seta-direita"></i><span>Salvar e ir para o próximo<small>15 de 63, Residencial Jardim Botânico</small></span></button>
+          <button type="button" class="lc-menu__item" role="menuitem" data-toast="Contrato salvo. Voltando para a lista na mesma posição."><i data-i="voltar-a-plataforma"></i><span>Salvar e voltar para a lista<small>Clientes do CS, filtro "Renovam em 90 dias"</small></span></button>
+          <button type="button" class="lc-menu__item" role="menuitem" data-toast="Contrato salvo. Formulário limpo para o próximo."><i data-i="mais"></i><span>Salvar e criar outro</span></button>
+        </div>
+      </div>
+      <div class="lc-ancora" style="display:inline-block">
+        <span class="lc-dividido"><button type="button" class="lc-btn" data-toast="Mensagem enviada a Marina Costa pelo WhatsApp."><i data-i="enviar"></i>Enviar</button><button type="button" class="lc-btn" aria-label="Outras formas de enviar" aria-haspopup="menu" aria-expanded="false" data-abre="m-enviar"><i data-i="chevron-baixo"></i></button></span>
+        <div class="lc-menu" id="m-enviar" role="menu" hidden style="top:calc(100% + 4px);left:0;min-width:320px">
+          <button type="button" class="lc-menu__item" role="menuitem" data-toast="Enviada. Chamado 4.812 em Pendente; o prazo de resposta pausou."><span>Enviar e deixar pendente<small>Estado vai para Pendente; o prazo pausa</small></span><span class="lc-tecla">⌘⇧P</span></button>
+          <button type="button" class="lc-menu__item" role="menuitem" data-toast="Enviada. Chamado 4.812 resolvido; a pesquisa sai em 1 hora."><span>Enviar e resolver<small>Pesquisa de satisfação sai em 1 hora</small></span><span class="lc-tecla">⌘⇧R</span></button>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template data-ex="Estados do dividido">
+    <div class="lc-doc-estados" style="--_m:150px">
+      <figure><figcaption>Menu aberto</figcaption><div><span class="lc-dividido"><button type="button" class="lc-btn lc-btn--principal">Salvar</button><button type="button" class="lc-btn lc-btn--principal lc-f-ativo" aria-label="Outras formas de salvar" aria-expanded="true"><i data-i="chevron-baixo"></i></button></span></div></figure>
+      <figure><figcaption>Foco na seta</figcaption><div><span class="lc-dividido"><button type="button" class="lc-btn lc-btn--principal">Salvar</button><button type="button" class="lc-btn lc-btn--principal lc-f-foco" aria-label="Outras formas de salvar"><i data-i="chevron-baixo"></i></button></span></div></figure>
+      <figure><figcaption>Salvando</figcaption><div><span class="lc-dividido"><button type="button" class="lc-btn lc-btn--principal" aria-busy="true">Salvar</button><button type="button" class="lc-btn lc-btn--principal" disabled aria-label="Outras formas de salvar"><i data-i="chevron-baixo"></i></button></span></div></figure>
+      <figure><figcaption>Desabilitado</figcaption><div><span class="lc-dividido"><button type="button" class="lc-btn lc-btn--principal" disabled>Salvar</button><button type="button" class="lc-btn lc-btn--principal" disabled aria-label="Outras formas de salvar"><i data-i="chevron-baixo"></i></button></span></div></figure>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-sec" id="segmentado" data-familia="Ações">
+  <h2>Segmentado</h2>
+  <p>Escolha única entre 2 a 5 opções curtas que trocam o que a tela mostra ou o estado de um registro. Todas as opções ficam à vista.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Estado do chamado no desenho do Zendesk: Novo, Aberto, Pendente, Resolvido.</li><li>Troca de visão: Lista, Quadro, Calendário.</li><li>Período curto: Hoje, 7 dias, 30 dias.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Mais de 5 opções: use seleção.</li><li>Navegar entre páginas: use abas.</li><li>Escolha múltipla: use marcar.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Uma ou duas palavras por opção, mesmo formato gramatical.</li><li>Ícone só quando o signo é consagrado (lista, quadro).</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li><code>role="group"</code> com <code>aria-label</code>; cada botão com <code>aria-pressed</code>.</li><li>O selecionado tem fundo, peso 600 e filete inferior: nunca só a cor.</li></ul></div>
+  </div>
+  <template data-ex="Estados e tamanhos (clique para trocar)">
+    <div class="p1-col">
+      <div class="lc-seg" role="group" aria-label="Estado do chamado"><button type="button" aria-pressed="false">Novo</button><button type="button" aria-pressed="true">Aberto</button><button type="button" aria-pressed="false">Pendente</button><button type="button" aria-pressed="false">Resolvido</button></div>
+      <div class="lc-seg" role="group" aria-label="Visão"><button type="button" aria-pressed="true"><i data-i="visao-lista"></i>Lista</button><button type="button" aria-pressed="false"><i data-i="visao-quadro"></i>Quadro</button><button type="button" aria-pressed="false" class="lc-f-hover"><i data-i="visao-calendario"></i>Calendário</button></div>
+      <div class="lc-seg lc-seg--p" role="group" aria-label="Período"><button type="button" aria-pressed="false" class="lc-f-foco">Hoje</button><button type="button" aria-pressed="true">7 dias</button><button type="button" aria-pressed="false">30 dias</button><button type="button" aria-pressed="false" disabled>12 meses</button></div>
+      <div class="lc-seg lc-seg--bloco" role="group" aria-label="Quem paga" style="width:100%"><button type="button" aria-pressed="true">Proprietário</button><button type="button" aria-pressed="false">Inquilino</button></div>
+    </div>
+  </template>
+  <p class="lc-doc-nota">No segundo grupo, "Calendário" está em hover forçado; no terceiro, "Hoje" está em foco e "12 meses" desabilitado (o plano do cliente não guarda 12 meses).</p>
+</section>
+
+<!-- ============================ RÓTULOS E IDENTIDADE ============================ -->
+<section class="lc-doc-sec" id="estado" data-familia="Rótulos e identidade">
+  <h2>Estado, chip, prioridade e saúde</h2>
+  <p>Estado é o que o sistema sabe sobre o registro: pago, vencido, esfriando. Sempre ponto + palavra; a cor confirma, nunca informa sozinha. Seis tons fixos que o white label não toca.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="componente"></i>Anatomia</h3><ol style="list-style:none;padding:0"><li><span class="lc-doc-n">1</span> Ponto de 8 px (cheio, ou vazado para "ainda não começou").</li><li><span class="lc-doc-n">2</span> Palavra em 12,5 px, peso 500, na cor de texto do tom (4,5:1 ou mais).</li><li><span class="lc-doc-n">3</span> Caixa opcional (<code>--caixa</code>) quando o estado é o dado principal da linha: o chip.</li></ol></div>
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li><b>sucesso</b>: pago, resolvido, ativo. <b>aviso</b>: vence hoje, esfriando. <b>perigo</b>: vencido, falhou. <b>info</b>: agendado. <b>andamento</b>: em atendimento. <b>neutro</b>: rascunho, arquivado.</li><li>Forma progressiva (Linear) para demanda e bug.</li><li>Prioridade em barras (Linear); urgente é o quadrado com "!".</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para categoria criada pelo cliente: use etiqueta.</li><li>Para estado documental (pago com data e quem): use carimbo.</li><li>Na cor do cliente, nunca.</li><li>Mais de um estado por linha.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Particípio ou adjetivo: "Pago", "Vencido há 12 dias", "Esfriando".</li><li>Prazo vem junto quando muda a ação: "Vence hoje".</li><li>Primeira letra maiúscula, o resto minúsculo.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>O ponto é decorativo; a palavra é o conteúdo.</li><li>Prioridade em barras leva <code>aria-label="Prioridade alta"</code>.</li><li>Saúde lê "Saúde 62, atenção, caindo".</li></ul></div>
+  </div>
+  <template data-ex="Seis tons, quatro formas">
+    <table class="lc-doc-matriz"><thead><tr><th scope="col">Tom</th><th scope="col">Ponto</th><th scope="col">Vazado</th><th scope="col">Chip</th><th scope="col">Forte</th></tr></thead><tbody>
+      <tr><th scope="row">sucesso</th><td><span class="lc-estado lc-estado--sucesso">Pago</span></td><td><span class="lc-estado lc-estado--sucesso lc-estado--vazado">Agendado</span></td><td><span class="lc-estado lc-estado--sucesso lc-estado--caixa">Resolvido</span></td><td><span class="lc-estado lc-estado--sucesso lc-estado--forte">Ativo</span></td></tr>
+      <tr><th scope="row">aviso</th><td><span class="lc-estado lc-estado--aviso">Vence hoje</span></td><td><span class="lc-estado lc-estado--aviso lc-estado--vazado">Sem contato</span></td><td><span class="lc-estado lc-estado--aviso lc-estado--caixa">Esfriando</span></td><td><span class="lc-estado lc-estado--aviso lc-estado--forte">Atenção</span></td></tr>
+      <tr><th scope="row">perigo</th><td><span class="lc-estado lc-estado--perigo">Vencido</span></td><td><span class="lc-estado lc-estado--perigo lc-estado--vazado">Em risco</span></td><td><span class="lc-estado lc-estado--perigo lc-estado--caixa">Falhou</span></td><td><span class="lc-estado lc-estado--perigo lc-estado--forte">Inadimplente</span></td></tr>
+      <tr><th scope="row">info</th><td><span class="lc-estado lc-estado--info">Agendado</span></td><td><span class="lc-estado lc-estado--info lc-estado--vazado">Rascunho enviado</span></td><td><span class="lc-estado lc-estado--info lc-estado--caixa">Em homologação</span></td><td><span class="lc-estado lc-estado--info lc-estado--forte">Novo</span></td></tr>
+      <tr><th scope="row">andamento</th><td><span class="lc-estado lc-estado--andamento">Em atendimento</span></td><td><span class="lc-estado lc-estado--andamento lc-estado--vazado">Na fila</span></td><td><span class="lc-estado lc-estado--andamento lc-estado--caixa">Aberto</span></td><td><span class="lc-estado lc-estado--andamento lc-estado--forte">Em obra</span></td></tr>
+      <tr><th scope="row">neutro</th><td><span class="lc-estado lc-estado--neutro">Rascunho</span></td><td><span class="lc-estado lc-estado--neutro lc-estado--vazado">Não iniciado</span></td><td><span class="lc-estado lc-estado--neutro lc-estado--caixa">Arquivado</span></td><td><span class="lc-estado lc-estado--neutro lc-estado--forte">Pausado</span></td></tr>
+    </tbody></table>
+  </template>
+  <template data-ex="Forma progressiva, prioridade e saúde">
+    <div class="p1-col">
+      <div class="p1-linha-ex">
+        <span class="lc-estado-forma"><i data-i="backlog"></i>Backlog</span>
+        <span class="lc-estado-forma"><i data-i="a-fazer"></i>A fazer</span>
+        <span class="lc-estado-forma"><i data-i="em-andamento"></i>Em andamento</span>
+        <span class="lc-estado-forma"><i data-i="feito"></i>Feito</span>
+        <span class="lc-estado-forma"><i data-i="cancelado"></i>Cancelado</span>
+      </div>
+      <div class="p1-linha-ex">
+        <span class="lc-prioridade" data-n="0" role="img" aria-label="Sem prioridade"><i></i><i></i><i></i></span><span class="lc-legenda">Sem</span>
+        <span class="lc-prioridade" data-n="1" role="img" aria-label="Prioridade baixa"><i></i><i></i><i></i></span><span class="lc-legenda">Baixa</span>
+        <span class="lc-prioridade" data-n="2" role="img" aria-label="Prioridade média"><i></i><i></i><i></i></span><span class="lc-legenda">Média</span>
+        <span class="lc-prioridade" data-n="3" role="img" aria-label="Prioridade alta"><i></i><i></i><i></i></span><span class="lc-legenda">Alta</span>
+        <span class="lc-prioridade lc-prioridade--urgente" role="img" aria-label="Urgente">!</span><span class="lc-legenda">Urgente</span>
+      </div>
+      <div class="p1-linha-ex">
+        <span class="lc-saude" aria-label="Saúde 84, saudável, estável"><b>84</b><span class="lc-estado lc-estado--sucesso">Saudável</span><i data-i="tendencia-estavel" class="lc-ic--16"></i></span>
+        <span class="lc-saude" aria-label="Saúde 62, atenção, caindo"><b>62</b><span class="lc-estado lc-estado--aviso">Atenção</span><i data-i="tendencia-baixa" class="lc-ic--16"></i></span>
+        <span class="lc-saude" aria-label="Saúde 31, em risco, caindo"><b>31</b><span class="lc-estado lc-estado--perigo">Em risco</span><i data-i="tendencia-baixa" class="lc-ic--16"></i></span>
+      </div>
+    </div>
+  </template>
+  <template data-ex="Chip de filtro (estados)">
+    <div class="lc-doc-estados" style="--_m:170px">
+      <figure><figcaption>Normal</figcaption><div><span class="lc-chip-filtro"><span>Estado:</span>Vencido<button type="button" aria-label="Remover filtro Estado: Vencido"><i data-i="fechar"></i></button></span></div></figure>
+      <figure><figcaption>Hover no remover</figcaption><div><span class="lc-chip-filtro"><span>Bloco:</span>B<button type="button" class="lc-f-hover" aria-label="Remover filtro Bloco: B"><i data-i="fechar"></i></button></span></div></figure>
+      <figure><figcaption>Foco no remover</figcaption><div><span class="lc-chip-filtro"><span>Vence:</span>até 10/10<button type="button" class="lc-f-foco" aria-label="Remover filtro Vence até 10/10"><i data-i="fechar"></i></button></span></div></figure>
+      <figure><figcaption>Só leitura (visão salva)</figcaption><div><span class="lc-chip-filtro" style="padding-right:8px"><span>Responsável:</span>Eu</span></div></figure>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-sec" id="etiqueta" data-familia="Rótulos e identidade">
+  <h2>Etiqueta</h2>
+  <p>Categoria que o cliente cria e nomeia, no desenho das etiquetas do WhatsApp Business. Oito cores próprias, sem relação com estado, para que "Vermelho" nunca pareça erro.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Classificação livre do cliente: "Manutenção", "Aguardando boleto", "VIP síndico".</li><li>Multisseleção (etiqueta removível com ×).</li><li><code>--sistema</code> para rótulo do produto que não é estado: "Portal", "Importado".</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para estado (use estado), prioridade ou contagem.</li><li>Mais de 3 por linha: mostre 2 e "+3".</li><li>Na cor do cliente.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Substantivo curto, até 24 caracteres; acima disso corta com reticências e mostra inteiro na dica.</li><li>O cliente escolhe a cor numa paleta de 8, não em seletor livre.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Texto 5:1 ou mais sobre o fundo de cada cor, nos dois temas.</li><li>O × tem nome: "Remover Manutenção".</li></ul></div>
+  </div>
+  <template data-ex="Oito cores, sistema, removível e longa">
+    <div class="p1-col">
+      <div class="p1-linha-ex">
+        <span class="lc-etiqueta lc-etiqueta--1">Manutenção</span><span class="lc-etiqueta lc-etiqueta--2">Aguardando boleto</span><span class="lc-etiqueta lc-etiqueta--3">Novo cliente</span><span class="lc-etiqueta lc-etiqueta--4">Reserva</span>
+        <span class="lc-etiqueta lc-etiqueta--5">Assembleia</span><span class="lc-etiqueta lc-etiqueta--6">Obra</span><span class="lc-etiqueta lc-etiqueta--7">Jurídico</span><span class="lc-etiqueta lc-etiqueta--8">VIP síndico</span>
+      </div>
+      <div class="p1-linha-ex">
+        <span class="lc-etiqueta lc-etiqueta--sistema">Portal</span><span class="lc-etiqueta lc-etiqueta--sistema">Importado da planilha</span>
+        <span class="lc-etiqueta lc-etiqueta--2">Vazamento<button type="button" aria-label="Remover Vazamento"><i data-i="fechar"></i></button></span>
+        <span class="lc-etiqueta lc-etiqueta--4 lc-etiqueta--corta" data-dica="Reclamação de barulho fora do horário permitido"><span>Reclamação de barulho fora do horário permitido</span></span>
+        <span class="lc-etiqueta lc-etiqueta--1">Manutenção</span><span class="lc-legenda">+3</span>
+      </div>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-sec" id="contador" data-familia="Rótulos e identidade">
+  <h2>Contador e contagem</h2>
+  <p>Contador é o quadrado com número que pede atenção (não lidos, pendências). Contagem é o número em texto cinza ao lado de um nome ("Chamados 12"), que só informa.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Contador: itens que esperam a pessoa (7 conversas sem resposta).</li><li><code>--alerta</code>: algo vencido ou urgente.</li><li><code>--neutro</code>: total sem urgência no trilho.</li><li>Contagem: aba, cabeçalho de grupo, visão salva.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Pílula redonda ou na cor do cliente.</li><li>Contador com zero: some.</li><li>Contador para total de registros: use contagem.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Acima de 99, "99+".</li><li>Número com separador de milhar na contagem: "1.284".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>O link do trilho anuncia "Suporte, 7 conversas sem resposta".</li><li>Contagem vem no texto da aba: "Chamados, 12".</li></ul></div>
+  </div>
+  <template data-ex="Contadores e contagens" data-dens="tres">
+    <div class="p1-col">
+      <div class="p1-linha-ex"><span class="lc-contador">7</span><span class="lc-contador lc-contador--alerta">3</span><span class="lc-contador lc-contador--neutro">24</span><span class="lc-contador">99+</span><span class="lc-contador lc-contador--p">2</span></div>
+      <div class="p1-linha-ex"><button type="button" class="lc-btn lc-btn--discreto" aria-label="Notificações, 4 não lidas"><i data-i="sino"></i><span class="lc-contador lc-contador--p">4</span></button><span>Chamados <span class="lc-contagem">12</span></span><span>Unidades <span class="lc-contagem">1.284</span></span></div>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-sec" id="avatar" data-familia="Rótulos e identidade">
+  <h2>Avatar e presença</h2>
+  <p>Pessoa é a única forma redonda do sistema. Foto quando houver; sem foto, iniciais numa de oito cores escolhidas pelo nome (a mesma pessoa tem sempre a mesma cor). Presença é ponto + frase escrita.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Responsável, autor, participante, equipe.</li><li>Presença onde a pessoa decide se chama alguém: Home, Suporte, conversa interna.</li><li>Grupo (até 4 + "e mais 8") em reunião e turma.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para empresa, condomínio ou objeto: use ladrilho.</li><li>Avatar gigante decorativo no painel (crítica C1).</li><li>Presença sem frase.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Iniciais: primeira letra do primeiro e do último nome ("Ana Paula Ribeiro" vira AR).</li><li>Frase de presença: "Em atendimento, 3 conversas", "De férias até 10/10", "Em reunião até 11:00".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Avatar ao lado do nome: <code>aria-hidden="true"</code>.</li><li>Avatar sozinho: <code>role="img"</code> com o nome e a presença.</li><li>Ausente é anel vazio, não só cor mais clara.</li></ul></div>
+  </div>
+  <template data-ex="Tamanhos, cores, presença e grupo">
+    <div class="p1-col">
+      <div class="p1-linha-ex" style="align-items:flex-end">
+        <span class="lc-av lc-av--20 lc-av--c3" aria-hidden="true">MC</span><span class="lc-av lc-av--24 lc-av--c3" aria-hidden="true">MC</span><span class="lc-av lc-av--32 lc-av--c3" aria-hidden="true">MC</span><span class="lc-av lc-av--40 lc-av--c3" aria-hidden="true">MC</span><span class="lc-av lc-av--48 lc-av--c3" aria-hidden="true">MC</span><span class="lc-av lc-av--72 lc-av--c3" aria-hidden="true">MC</span><span class="lc-av lc-av--96 lc-av--c3" aria-hidden="true">MC</span>
+      </div>
+      <div class="p1-linha-ex"><span class="lc-av" aria-hidden="true">LA</span><span class="lc-av lc-av--c2" aria-hidden="true">BT</span><span class="lc-av lc-av--c3" aria-hidden="true">MC</span><span class="lc-av lc-av--c4" aria-hidden="true">RN</span><span class="lc-av lc-av--c5" aria-hidden="true">JS</span><span class="lc-av lc-av--c6" aria-hidden="true">AR</span><span class="lc-av lc-av--c7" aria-hidden="true">JR</span><span class="lc-av lc-av--c8" aria-hidden="true">CF</span></div>
+      <ul class="lc-lista" style="width:100%">
+        <li><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c5" role="img" aria-label="Letícia Araújo, disponível">LA<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-pessoa__nome">Letícia Araújo</span><span class="lc-pessoa__sub">Em atendimento, 3 conversas</span></span></span></li>
+        <li><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c2" role="img" aria-label="Bruno Tavares, em reunião">BT<span class="lc-presenca lc-presenca--reuniao"></span></span><span><span class="lc-pessoa__nome">Bruno Tavares</span><span class="lc-pessoa__sub">Em reunião até 11:00, renovação Jardim Botânico</span></span></span></li>
+        <li><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c4" role="img" aria-label="Rafael Nunes, ocupado">RN<span class="lc-presenca lc-presenca--ocupado"></span></span><span><span class="lc-pessoa__nome">Rafael Nunes</span><span class="lc-pessoa__sub">Não perturbe, vistoria no Bl C</span></span></span></li>
+        <li><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c7" role="img" aria-label="Juliana Reis, ausente">JR<span class="lc-presenca lc-presenca--ausente"></span></span><span><span class="lc-pessoa__nome">Juliana Reis</span><span class="lc-pessoa__sub">Consulta médica, volto às 14:00</span></span></span></li>
+        <li><span class="lc-pessoa"><span class="lc-av lc-av--32 lc-av--c6" role="img" aria-label="Ana Paula Ribeiro, desconectada">AR<span class="lc-presenca lc-presenca--off"></span></span><span><span class="lc-pessoa__nome">Ana Paula Ribeiro</span><span class="lc-pessoa__sub">De férias até 10/10</span></span></span></li>
+      </ul>
+      <div class="lc-av-grupo" role="img" aria-label="Participantes: Marina Costa, Bruno Tavares, Letícia Araújo, Rafael Nunes e mais 8"><span class="lc-av lc-av--24 lc-av--c3">MC</span><span class="lc-av lc-av--24 lc-av--c2">BT</span><span class="lc-av lc-av--24 lc-av--c5">LA</span><span class="lc-av lc-av--24 lc-av--c4">RN</span><span class="lc-av-grupo__mais">e mais 8</span></div>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-sec" id="ladrilho" data-familia="Rótulos e identidade">
+  <h2>Ladrilho e protocolo</h2>
+  <p>Ladrilho é a identidade quadrada de empresa, condomínio e objeto: ícone ou logo, nunca iniciais redondas. Protocolo é o número que a pessoa cita ao telefone, com botão de copiar.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Condomínio, administradora, fornecedor, equipamento, vazio.</li><li><code>--marca</code>: logo do cliente no trilho e no portal.</li><li>Protocolo: chamado, OS, contrato, boleto.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para pessoa (use avatar).</li><li>Protocolo para dado que ninguém cita ("Vaga 37", "Bl B"): é texto comum.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Protocolo: tipo + número com separador ("Chamado 4.812"), sem "#".</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>Ladrilho ao lado do nome é decorativo.</li><li>Copiar: "Copiar número do chamado 4.812"; o toast confirma.</li></ul></div>
+  </div>
+  <template data-ex="Ladrilhos e protocolos">
+    <div class="p1-col">
+      <div class="p1-linha-ex" style="align-items:flex-end"><span class="lc-ladrilho lc-ladrilho--24"><i data-i="condominio"></i></span><span class="lc-ladrilho"><i data-i="condominio"></i></span><span class="lc-ladrilho lc-ladrilho--40"><i data-i="condominio"></i></span><span class="lc-ladrilho lc-ladrilho--48"><i data-i="conjunto-de-predios"></i></span><span class="lc-ladrilho lc-ladrilho--64"><i data-i="elevador"></i></span><span class="lc-ladrilho lc-ladrilho--40 lc-ladrilho--marca" role="img" aria-label="Administradora Alpha">A</span><span class="lc-ladrilho lc-ladrilho--40"><i data-i="fornecedor"></i></span></div>
+      <span class="lc-pessoa"><span class="lc-ladrilho lc-ladrilho--40"><i data-i="condominio"></i></span><span><span class="lc-pessoa__nome">Cond. Parque das Águas</span><span class="lc-pessoa__sub">3 blocos, 184 unidades, Barra Funda</span></span></span>
+      <div class="p1-linha-ex"><span class="lc-protocolo"><span>Chamado</span>4.812<button type="button" aria-label="Copiar número do chamado 4.812" data-dica="Copiar" data-toast="Número 4.812 copiado."><i data-i="copiar" class="lc-ic--14"></i></button></span><span class="lc-protocolo"><span>OS</span>482</span><span class="lc-protocolo"><span>Contrato</span>CT-2024-0187</span></div>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-sec" id="carimbo" data-familia="Rótulos e identidade">
+  <h2>Carimbo</h2>
+  <p>A assinatura da V1: filete duplo e serifa para estado documental, aquele que vira registro com quem e quando. Aparece no boleto pago, na ata aprovada, na ciência do comunicado.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Pago, aprovado em assembleia, protocolado, ciente, emitido, cancelado, estornado, arquivado.</li><li>Uma vez por documento, no lugar onde o papel teria o carimbo.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Para estado de trabalho (aberto, em andamento): use estado.</li><li>Como selo decorativo em painel (crítica C1: "Protocolado" sob o avatar).</li><li>Repetido na mesma tela.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Palavra no particípio + <code>small</code> com quem e quando: "Marina Costa, 30/09/26 09:12".</li><li>Data curta dd/mm/aa e hora.</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>É texto: o leitor lê "Pago, Banco Itaú, 05/10/26 14:22".</li><li>Cor de tom de estado, 4,5:1 nos dois temas.</li></ul></div>
+  </div>
+  <template data-ex="Oito carimbos e o grande">
+    <div class="p1-col">
+      <div class="p1-linha-ex">
+        <span class="lc-carimbo lc-carimbo--pago">Pago<small>Itaú, 05/10/26 14:22</small></span>
+        <span class="lc-carimbo lc-carimbo--aprovado">Aprovado em assembleia<small>AGE de 15/10/26</small></span>
+        <span class="lc-carimbo lc-carimbo--protocolado">Protocolado<small>Prefeitura, 28/09/26</small></span>
+        <span class="lc-carimbo lc-carimbo--ciente">Ciente<small>Letícia Araújo, 30/09/26 09:12</small></span>
+      </div>
+      <div class="p1-linha-ex">
+        <span class="lc-carimbo lc-carimbo--emitido">Emitido<small>NF 12.408</small></span>
+        <span class="lc-carimbo lc-carimbo--cancelado">Cancelado<small>Bruno Tavares, 02/10/26</small></span>
+        <span class="lc-carimbo lc-carimbo--estornado">Estornado<small>R$ 312,00</small></span>
+        <span class="lc-carimbo lc-carimbo--arquivado">Arquivado</span>
+      </div>
+      <span class="lc-carimbo lc-carimbo--pago lc-carimbo--g">Pago<small>Pix, 05/10/26 14:22, Marina Costa</small></span>
+    </div>
+  </template>
+</section>
+
+<section class="lc-doc-sec" id="dupla-sublinha" data-familia="Rótulos e identidade">
+  <h2>Dupla sublinha</h2>
+  <p>O sinal do contador: duas linhas sob o valor que fecha a conta. Só em total consolidado (total, saldo, total do contrato). Subtotal leva uma linha. Valor negativo leva "−" além da cor.</p>
+  <div class="lc-doc-ficha">
+    <div><h3><i data-i="confirmar"></i>Quando usar</h3><ul><li>Total do rateio, saldo do mês, total mensal do contrato.</li></ul></div>
+    <div class="lc-doc-ficha--nao"><h3><i data-i="proibido"></i>Quando não usar</h3><ul><li>Em valor de linha, KPI ou preço solto.</li><li>Mais de um total duplo por quadro.</li></ul></div>
+    <div><h3><i data-i="editar"></i>Regras de conteúdo</h3><ul><li>Moeda com "R$ " e duas casas; negativo "− R$ 312,00" (sinal de menos, não hífen).</li></ul></div>
+    <div><h3><i data-i="contraste"></i>Acessibilidade</h3><ul><li>A linha de total tem rótulo "Total" na primeira célula; o leitor lê "Total, R$ 41.638,89".</li></ul></div>
+  </div>
+  <template data-ex="Demonstrativo do rateio de outubro">
+    <div class="lc-tabela-cont"><table class="lc-tabela"><caption class="lc-sr">Rateio de outubro, Cond. Parque das Águas</caption>
+      <thead><tr><th scope="col">Conta</th><th scope="col" class="lc-num">Valor</th></tr></thead>
+      <tbody><tr><td>Folha da portaria e zeladoria</td><td class="lc-num">R$ 22.410,00</td></tr><tr><td>Energia das áreas comuns</td><td class="lc-num">R$ 6.982,35</td></tr><tr><td>Água e esgoto</td><td class="lc-num">R$ 8.746,55</td></tr>
+      <tr><td>Subtotal ordinário</td><td class="lc-num"><span class="lc-subtotal">R$ 38.138,90</span></td></tr><tr><td>Fundo de reserva, 10%</td><td class="lc-num">R$ 3.813,89</td></tr><tr><td>Estorno de multa, Bl A 302</td><td class="lc-num"><span class="lc-valor-neg">− R$ 313,90</span></td></tr></tbody>
+      <tfoot><tr><td>Total do rateio</td><td class="lc-num"><span class="lc-total">R$ 41.638,89</span></td></tr></tfoot></table></div>
+  </template>
+</section>

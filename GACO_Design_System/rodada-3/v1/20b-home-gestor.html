@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Início do gestor</title>
+<meta name="description" content="Variação do Início para quem chefia: aprovações da equipe com ação no item, quem está fora e o mural.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .g-saud{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 var(--esp-5)}
+  .g-saud h1{font:var(--t-pagina);letter-spacing:var(--t-pagina-trk);margin:0}
+  .g-saud p{font:var(--t-pequeno);color:var(--texto-2)}
+  .g-cab{display:flex;align-items:center;gap:8px;padding:12px 16px 4px}
+  .g-cab h2{font:var(--t-subsecao);margin:0;flex:1}
+  .g-aprov{padding:0 16px 6px}
+  .g-dir h2{font:var(--t-subsecao);margin:0 0 6px;display:flex;gap:8px;align-items:center}
+  .g-dir h2 .lc-aux{margin-left:auto;font:var(--t-legenda);color:var(--texto-2);font-weight:400}
+  .g-dir+.g-dir{border-top:var(--borda-1);padding-top:var(--esp-5)}
+  .g-area{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 8px;padding:8px 0;border-top:var(--borda-1);font-size:13.5px}
+  .g-area:first-of-type{border-top:0}
+  .g-area small{grid-column:1/-1;font:var(--t-legenda);color:var(--texto-2)}
+  .g-inicio{grid-template-columns:minmax(360px,440px) minmax(0,1fr) minmax(240px,280px)}
+  @media (max-width:1279px){.g-inicio{grid-template-columns:minmax(320px,400px) minmax(0,1fr)}}
+  @media (max-width:899px){.g-inicio{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body data-moldura='{"modulo":"inicio","secao":"Mural","papel":"diretor","usuario":{"nome":"Ricardo Tavares","cargo":"Diretor de Operações","iniciais":"RT","cor":"lc-av--c7"},"contadores":{"suporte":12,"operacoes":4,"financeiro":2}}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+
+<details class="lc-nota-projeto" open>
+  <summary><b>Nota de projeto</b> Início de quem chefia: aprovações da equipe
+    <span class="lc-nota-projeto__serie"><a href="20-home.html">Início</a> <a href="20b-home-gestor.html" aria-current="page">Gestor</a> <a href="20c-home-primeiro-acesso.html">Primeiro acesso</a> <a href="20d-perfil.html">Perfil</a> <a href="20e-pessoas.html">Pessoas</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2>
+      <p>Quem chefia passa o dia destravando a equipe. A coluna da esquerda fica mais larga e vira a fila de aprovações: férias, reembolso, hora extra, compra, desconto e acesso, cada uma com o que importa para decidir na própria linha. Aprovar é um clique; recusar pede o motivo, que volta para a pessoa.</p>
+      <p>O mural continua no centro: o gestor também é colega. À direita, quem está fora esta semana e a cobertura por área, em frases.</p></section>
+    <section><h2>Fluxo</h2><ol>
+      <li>Cada pedido mostra quem, o quê, quanto, o saldo ou o limite e o prazo para decidir.</li>
+      <li>Aprovar: a linha muda para "Aprovado por você", a pessoa recebe aviso e o toast oferece Desfazer por 5 s.</li>
+      <li>Recusar: abre um modal pequeno com o motivo (obrigatório, até 280 caracteres). "Recusar pedido" fica à direita; Cancelar volta para a lista sem mudar nada.</li>
+      <li>"Ver detalhes" abre o pedido completo no módulo de origem (Cultura, Financeiro, Operações) e volta para cá pelo trilho ou pela seta do navegador, com a lista na mesma posição.</li>
+      <li>Selecionar vários (caixa à esquerda) troca o cabeçalho pela barra "3 selecionados, Aprovar todos".</li>
+    </ol></section>
+    <section><h2>Por que assim</h2>
+      <p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o Workday e o SAP SuccessFactors (caixa de aprovações na página inicial do gestor), o Slack com aprovação no próprio aviso e o Pipefy (aprovar com motivo obrigatório na recusa) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div>
+  <div class="lc-estados-tela" data-estados-para="tela-g">Ver estado:
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela">
+      <button type="button" aria-pressed="true" data-estado="dados">Com pedidos</button>
+      <button type="button" aria-pressed="false" data-estado="vazio">Sem pedidos</button>
+      <button type="button" aria-pressed="false" data-estado="permissao">Sem permissão de aprovar</button>
+    </div>
+  </div>
+</details>
+
+<div id="tela-g" data-estado="dados">
+<div class="g-saud"><h1>Bom dia, Ricardo</h1><p>Quinta-feira, 1º de outubro. 6 pedidos da sua equipe esperam decisão; 2 vencem hoje.</p></div>
+
+<div class="lc-inicio g-inicio">
+  <div class="lc-inicio__esq">
+    <section class="lc-caixa" aria-labelledby="ap-tit">
+      <div class="g-cab"><h2 id="ap-tit">Aprovações da equipe</h2><span class="lc-contagem">6 pedidos</span>
+        <span class="lc-ancora-menu"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Filtrar aprovações" aria-haspopup="menu" aria-expanded="false" data-abre="m-filtro-ap"><i data-i="filtrar"></i></button>
+        <div class="lc-menu" role="menu" id="m-filtro-ap" hidden><div class="lc-menu__titulo">Mostrar</div><button class="lc-menu__item" role="menuitemradio" aria-checked="true">Todos os pedidos</button><button class="lc-menu__item" role="menuitemradio" aria-checked="false">Só os que vencem hoje</button><button class="lc-menu__item" role="menuitemradio" aria-checked="false">Só valores</button><button class="lc-menu__item" role="menuitemradio" aria-checked="false">Só férias e ausências</button></div></span></div>
+      <div class="g-aprov" data-so-estado="dados">
+        <div class="lc-aprovacao"><span class="lc-av lc-av--32 lc-av--c4" aria-hidden="true">BN</span><span class="lc-aprovacao__o-que"><b>Beatriz Nogueira</b> pede férias de 12 a 23/10 (10 dias úteis)</span><span class="lc-aprovacao__det">Saldo depois: 8 dias. Cobertura: Márcio Tanaka já aceitou. <span class="lc-pv__prazo--hoje">Decidir hoje</span></span><span class="lc-aprovacao__acoes"><button class="lc-btn lc-btn--p" type="button" data-modal="m-recusar">Recusar</button><button class="lc-btn lc-btn--p" type="button" data-aprovar="Férias de Beatriz Nogueira aprovadas">Aprovar</button></span></div>
+        <div class="lc-aprovacao"><span class="lc-av lc-av--32 lc-av--c2" aria-hidden="true">CS</span><span class="lc-aprovacao__o-que"><b>Comercial</b> pede desconto de 8% para o <b>Residencial Jardim Botânico</b></span><span class="lc-aprovacao__det">De R$ 3.180,00 para R$ 2.925,60 por mês. Acima do limite do vendedor (5%). <span class="lc-pv__prazo--hoje">Proposta vence hoje</span></span><span class="lc-aprovacao__acoes"><button class="lc-btn lc-btn--p" type="button" data-modal="m-recusar">Recusar</button><button class="lc-btn lc-btn--p" type="button" data-aprovar="Desconto aprovado">Aprovar</button></span></div>
+        <div class="lc-aprovacao"><span class="lc-av lc-av--32 lc-av--c8" aria-hidden="true">RA</span><span class="lc-aprovacao__o-que"><b>Rogério Alves</b> pede compra de bomba reserva para o <b>Ed. Aurora</b>, R$ 3.480,00</span><span class="lc-aprovacao__det">3 orçamentos; escolhido o menor (Hidrotec). Sai do fundo de obras do condomínio. Até 05/10.</span><span class="lc-aprovacao__acoes"><button class="lc-btn lc-btn--p" type="button" data-modal="m-recusar">Recusar</button><button class="lc-btn lc-btn--p" type="button" data-aprovar="Compra aprovada e enviada ao Financeiro">Aprovar</button></span></div>
+        <div class="lc-aprovacao"><span class="lc-av lc-av--32 lc-av--c2" aria-hidden="true">MT</span><span class="lc-aprovacao__o-que"><b>Márcio Tanaka</b> lançou 6 h extras no plantão de 26/09</span><span class="lc-aprovacao__det">Vazamento no Vila Serena, das 20h às 2h. Banco de horas do mês: 9 h. Até 06/10.</span><span class="lc-aprovacao__acoes"><button class="lc-btn lc-btn--p" type="button" data-modal="m-recusar">Recusar</button><button class="lc-btn lc-btn--p" type="button" data-aprovar="Horas extras aprovadas">Aprovar</button></span></div>
+        <div class="lc-aprovacao"><span class="lc-av lc-av--32 lc-av--c8" aria-hidden="true">RA</span><span class="lc-aprovacao__o-que"><b>Rogério Alves</b> pede reembolso de combustível, R$ 214,50</span><span class="lc-aprovacao__det">4 vistorias na zona leste, 312 km. Nota fiscal anexa. Até 08/10.</span><span class="lc-aprovacao__acoes"><button class="lc-btn lc-btn--p" type="button" data-modal="m-recusar">Recusar</button><button class="lc-btn lc-btn--p" type="button" data-aprovar="Reembolso aprovado">Aprovar</button></span></div>
+        <div class="lc-aprovacao"><span class="lc-av lc-av--32 lc-av--c6" aria-hidden="true">JP</span><span class="lc-aprovacao__o-que"><b>Juliana Prado</b> pede acesso a <b>Financeiro, Boletos</b> (só leitura)</span><span class="lc-aprovacao__det">Para emitir 2ª via no atendimento. Pedido por Letícia Araújo.</span><span class="lc-aprovacao__acoes"><button class="lc-btn lc-btn--p" type="button" data-modal="m-recusar">Recusar</button><button class="lc-btn lc-btn--p" type="button" data-aprovar="Acesso liberado para Juliana Prado">Aprovar</button></span></div>
+      </div>
+      <div class="lc-vazio" data-so-estado="vazio" hidden style="padding:24px 16px"><span class="lc-ladrilho lc-ladrilho--40"><i data-i="pessoa-aprovada"></i></span><p class="lc-vazio__titulo">Nenhum pedido esperando você</p><p class="lc-vazio__texto">Os últimos 14 pedidos foram decididos em até um dia. O histórico fica em Cultura, Fluxos de aprovação.</p><div class="lc-grupo-btn"><a class="lc-btn lc-btn--p" href="#">Ver decididos</a></div></div>
+      <div data-so-estado="permissao" hidden style="padding:4px 16px 16px"><div class="lc-alerta lc-alerta--info"><i data-i="bloquear"></i><div class="lc-alerta__corpo"><b class="lc-alerta__titulo">Você vê os pedidos, mas não decide</b>Seu papel (Coordenação) acompanha as aprovações de Operações; quem aprova é Ricardo Tavares. Para mudar, fale com quem administra o sistema.<div class="lc-alerta__acoes"><a class="lc-btn lc-btn--p" href="#">Ver papéis e permissões</a></div></div></div></div>
+      <div class="lc-caixa__pe"><a class="lc-btn lc-btn--link" href="#">Todos os pedidos em Fluxos de aprovação</a></div>
+    </section>
+    <section class="lc-caixa" aria-labelledby="pv-g">
+      <div class="g-cab"><h2 id="pv-g">Também para você</h2></div>
+      <ul class="lc-pv" style="padding:0 16px 6px">
+        <li class="lc-pv__item"><span class="lc-pv__o-que"><b>2 OS</b> de preventiva atrasadas no Vila Serena</span><span class="lc-pv__prazo lc-pv__prazo--atrasado">Atrasadas desde 28/09</span><a class="lc-btn lc-btn--p lc-pv__acao" href="25-operacoes.html">Ver OS</a></li>
+        <li class="lc-pv__item"><span class="lc-pv__o-que">Ciência do comunicado de plantão: <b>17 pessoas</b> ainda não deram</span><span class="lc-pv__prazo">Até 02/10</span><button class="lc-btn lc-btn--p lc-pv__acao" type="button" data-toast="Lembrete enviado para 17 pessoas">Lembrar</button></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="lc-inicio__centro">
+    <section class="lc-caixa" aria-label="Publicar no mural"><div class="lc-publicar"><span class="lc-av lc-av--40 lc-av--c7" aria-hidden="true">RT</span><button type="button" class="lc-publicar__falso">Reconhecer alguém ou publicar para a equipe</button><div class="lc-publicar__acoes"><button class="lc-btn lc-btn--discreto lc-btn--p" type="button"><i data-i="reconhecimento"></i>Reconhecimento</button><button class="lc-btn lc-btn--discreto lc-btn--p" type="button"><i data-i="comunicado"></i>Comunicado</button></div></div></section>
+    <article class="lc-post lc-post--fixado" aria-labelledby="gp1">
+      <div class="lc-post__fixado"><i data-i="fixar"></i>Fixado por você até 05/10</div>
+      <div class="lc-post__cab"><span class="lc-av lc-av--40 lc-av--c7" aria-hidden="true">RT</span><div class="lc-post__quem"><b>Você</b> publicou um comunicado<span class="lc-post__meta">Hoje às 08:02, para toda a empresa</span></div><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Mais opções do comunicado"><i data-i="mais-opcoes"></i></button></div>
+      <div class="lc-post__corpo"><h3 class="lc-post__titulo" id="gp1">O plantão de fim de semana muda a partir de 03/10</h3><p>O plantão passa a ser por região. Quem atende a zona leste fica com o número de emergência aos sábados, das 8h às 20h.</p></div>
+      <div class="lc-ciencia"><span class="lc-estado lc-estado--aviso">Pede ciência até 02/10</span><span class="lc-ciencia__conta">31 de 48 deram ciência</span><button class="lc-btn lc-btn--p" type="button" data-toast="Lembrete enviado para 17 pessoas">Lembrar quem falta</button><button class="lc-btn lc-btn--p lc-btn--discreto" type="button">Ver a lista</button></div>
+    </article>
+    <div class="lc-evento-mural"><span class="lc-evento-mural__ic"><i data-i="aniversario"></i></span><div><b>Diego Ramos</b> e <b>Sônia Freitas</b> fazem aniversário hoje.<small>Sônia é da sua equipe de Portaria remota.</small></div><button class="lc-btn lc-btn--p" type="button" data-toast="Parabéns enviados">Dar parabéns</button></div>
+    <article class="lc-post"><div class="lc-post__cab"><span class="lc-av lc-av--40 lc-av--c5" aria-hidden="true">CL</span><div class="lc-post__quem"><b>Carlos Lima</b> reconheceu <b>Beatriz Nogueira</b><span class="lc-post__meta">Ontem às 17:40</span></div></div>
+      <div class="lc-post__corpo"><div class="lc-reconhece"><i data-i="medalha"></i><span>Valor da empresa: <span class="lc-reconhece__valor">Resolver de ponta a ponta</span></span></div><p>A Beatriz ficou até o técnico sair do Vila Serena na terça, com o portão da garagem travado e 40 carros esperando.</p></div>
+      <div class="lc-reacoes-resumo"><span class="lc-reacoes-resumo__pilha" aria-hidden="true"><span><i data-i="parabens"></i></span><span><i data-i="curtir"></i></span></span>Ana Paula, Diego e mais 12</div>
+      <div class="lc-post__acoes"><button type="button" aria-pressed="false"><i data-i="curtir"></i>Curtir</button><button type="button"><i data-i="comentario"></i>Comentar</button><button type="button"><i data-i="reconhecimento"></i>Reconhecer também</button></div></article>
+  </div>
+
+  <aside class="lc-inicio__dir" aria-label="Equipe">
+    <section class="g-dir" aria-labelledby="fora-tit"><h2 id="fora-tit">Fora esta semana <span class="lc-aux">3 pessoas</span></h2>
+      <ul class="lc-equipe">
+        <li><span class="lc-av lc-av--32 lc-av--c7" aria-hidden="true">FM<span class="lc-presenca lc-presenca--ausente"></span></span><span><span class="lc-equipe__nome">Felipe Moura</span><span class="lc-equipe__faz">Férias até 10/10, cobre: Ana Paula</span></span><span></span></li>
+        <li><span class="lc-av lc-av--32 lc-av--c3" aria-hidden="true">SF<span class="lc-presenca lc-presenca--off"></span></span><span><span class="lc-equipe__nome">Sônia Freitas</span><span class="lc-equipe__faz">Folga hoje</span></span><span></span></li>
+        <li><span class="lc-av lc-av--32 lc-av--c5" aria-hidden="true">GT<span class="lc-presenca lc-presenca--off"></span></span><span><span class="lc-equipe__nome">Gustavo Teles</span><span class="lc-equipe__faz">Atestado até 02/10</span></span><span></span></li>
+      </ul></section>
+    <section class="g-dir" aria-labelledby="cob-tit"><h2 id="cob-tit">Cobertura agora</h2>
+      <div class="g-area"><span>Atendimento</span><span class="lc-estado lc-estado--sucesso">5 de 7</span><small>12 conversas abertas, 1 com prazo vencido</small></div>
+      <div class="g-area"><span>Manutenção</span><span class="lc-estado lc-estado--aviso">2 de 4</span><small>2 em vistoria, 2 OS atrasadas</small></div>
+      <div class="g-area"><span>Portaria remota</span><span class="lc-estado lc-estado--sucesso">6 de 7</span><small>Turno da manhã completo</small></div>
+      <a class="lc-btn lc-btn--link" href="21f-supervisor.html" style="margin-top:6px">Abrir painel do suporte</a>
+    </section>
+  </aside>
+</div>
+</div>
+
+<div class="lc-sobreposicao" id="m-recusar" hidden>
+  <div class="lc-modal" role="dialog" aria-modal="true" aria-labelledby="mr-tit">
+    <div class="lc-modal__cab"><div style="flex:1"><h2 id="mr-tit">Recusar o pedido</h2><p>A pessoa recebe o motivo por aviso e pode pedir de novo.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" data-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+    <div class="lc-modal__corpo"><div class="lc-campo"><label class="lc-rotulo" for="mr-mot">Motivo <span class="lc-obrig" aria-hidden="true">*</span></label><textarea class="lc-area-texto" id="mr-mot" maxlength="280" aria-describedby="mr-aj">Outubro tem as três assembleias da zona leste; podemos ver a segunda quinzena de novembro?</textarea><p class="lc-ajuda" id="mr-aj">Até 280 caracteres. Seja específico: o que mudaria a sua resposta.</p></div></div>
+    <div class="lc-modal__pe"><button class="lc-btn" type="button" data-fechar>Cancelar</button><button class="lc-btn lc-btn--perigo" type="button" data-fechar data-toast="Pedido recusado. A pessoa recebeu o motivo." data-toast-desfazer>Recusar pedido</button></div>
+  </div>
+</div>
+
+<section class="lc-nota-a11y" aria-labelledby="a11y-g"><h2 id="a11y-g">Acessibilidade desta tela</h2><dl>
+  <dt>Ordem de foco</dt><dd>Moldura; saudação; Aprovações da equipe (filtro, depois cada pedido: Recusar, Aprovar); Também para você; mural; Fora esta semana; Cobertura agora.</dd>
+  <dt>O que é anunciado</dt><dd>Cada pedido como frase inteira com o prazo ("Beatriz Nogueira pede férias de 12 a 23/10, decidir hoje"); ao aprovar, "Aprovado. Desfazer disponível por 5 segundos"; o modal de recusa com o título e a descrição; a cobertura como "Atendimento, 5 de 7 disponíveis".</dd>
+  <dt>Nome do que é só ícone</dt><dd>Filtrar aprovações, Mais opções do comunicado, Fechar.</dd></dl></section>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+<script>
+document.addEventListener("click",function(e){
+  var b=e.target.closest("[data-aprovar]"); if(!b) return;
+  var l=b.closest(".lc-aprovacao"), ac=l.querySelector(".lc-aprovacao__acoes"), antes=ac.innerHTML;
+  l.classList.add("lc-aprovacao--feita"); ac.innerHTML='<span class="lc-estado lc-estado--sucesso">Aprovado por você</span>';
+  lcToast(b.getAttribute("data-aprovar"),{desfazer:function(){ac.innerHTML=antes;l.classList.remove("lc-aprovacao--feita");}});
+});
+</script>
+</body>
+</html>

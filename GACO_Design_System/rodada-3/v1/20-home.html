@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Início</title>
+<meta name="description" content="Início do sistema interno: cartão Eu com status, Para você com ação no item, mural da empresa e equipe com presença.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+  /* layout só desta tela */
+  .h-saudacao{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 var(--esp-5)}
+  .h-saudacao h1{font:var(--t-pagina);letter-spacing:var(--t-pagina-trk);margin:0}
+  .h-saudacao p{font:var(--t-pequeno);color:var(--texto-2)}
+  .h-pv-cab{display:flex;align-items:center;gap:8px;padding:12px 16px 0}
+  .h-pv-cab h2{font:var(--t-subsecao);margin:0;flex:1}
+  .h-pv .lc-abas{padding:0 8px;margin-top:4px}
+  .h-pv .lc-pv{padding:0 16px 4px}
+  .h-pv__pe{display:flex;gap:6px;padding:10px 16px 14px;border-top:var(--borda-1);flex-wrap:wrap}
+  .h-bloco-dir h2{font:var(--t-subsecao);margin:0;display:flex;align-items:center;gap:8px}
+  .h-bloco-dir h2 .lc-aux{margin-left:auto;font:var(--t-legenda);color:var(--texto-2);font-weight:400}
+  .h-bloco-dir{padding-top:2px}
+  .h-bloco-dir+.h-bloco-dir{border-top:var(--borda-1);padding-top:var(--esp-5)}
+  .h-reagir-pop{bottom:calc(100% + 6px);left:0}
+  .h-quem-pop{left:16px;top:calc(100% + 2px)}
+  .h-status-pop{left:16px;right:16px;top:calc(100% - 6px);min-width:0;width:auto}
+  .h-status-opcoes{display:flex;flex-direction:column;gap:2px;margin:8px 0}
+  .h-status-opcoes label{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:var(--raio-2);cursor:pointer;font-size:13.5px}
+  .h-status-opcoes label:hover{background:var(--sup-2)}
+  .h-status-opcoes input{accent-color:var(--texto-1)}
+  .h-esq-eu{position:relative}
+  .h-mais-antigos{display:flex;justify-content:center;padding:8px 0}
+  .h-erro{background:var(--sup-1);border:var(--borda-1);border-radius:var(--raio-3);padding:4px}
+  @media (max-width:639px){ .h-saudacao h1{font-size:22px} }
+</style>
+</head>
+<body data-moldura='{"modulo":"inicio","secao":"Mural","papel":"gerente-cs","usuario":{"nome":"Letícia Araújo","cargo":"Coordenadora de Relacionamento","iniciais":"LA","cor":"lc-av--c3"},"contadores":{"suporte":7,"cs":3,"academy":1}}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+
+<details class="lc-nota-projeto" open>
+  <summary><b>Nota de projeto</b> Início do colaborador, com dados
+    <span class="lc-nota-projeto__serie"><a href="20-home.html" aria-current="page">Início</a> <a href="20b-home-gestor.html">Gestor</a> <a href="20c-home-primeiro-acesso.html">Primeiro acesso</a> <a href="20d-perfil.html">Perfil</a> <a href="20e-pessoas.html">Pessoas</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2>
+      <p>É a primeira tela do dia. Mostra quem está logado e o que o trabalho real pede dela hoje, em frases com prazo e um botão cada. No centro, o mural da empresa: comunicado que pede ciência, reconhecimento, aniversários, quem chegou e quem concluiu curso. À direita, a equipe com presença e a agenda.</p>
+      <p>Nenhum indicador em cartão: número só aparece dentro de frase ("7 conversas esperando você").</p></section>
+    <section><h2>Fluxo</h2><ol>
+      <li>Status: clique no seu status, sob o nome, para trocar presença, texto e até quando. Salva ao escolher; a equipe vê na hora.</li>
+      <li>Para você: cada linha tem o verbo da ação à direita ("Aprovar", "Abrir conversas"). Feito, a linha risca e o toast oferece Desfazer por 5 s.</li>
+      <li>Publicar: o campo "Reconhecer alguém ou publicar" abre o modal. Tipo no topo (Publicação, Reconhecimento, Comunicado); Publicar no canto direito do rodapé; Esc ou Cancelar volta sem perder o rascunho.</li>
+      <li>Comunicado com ciência: "Li e estou ciente" vira carimbo com nome, data e hora; a contagem sobe.</li>
+      <li>Reagir: segure ou clique em Curtir para escolher a reação; "Ana Paula, Diego e mais 12" abre a lista nomeada.</li>
+    </ol></section>
+    <section><h2>Por que assim</h2>
+      <p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o LinkedIn (perfil à esquerda, mural no centro), o Workvivo e o Workplace (reconhecimento como publicação, reações nomeadas) e o Feedz e o Slack (comunicado com ciência; status com prazo) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div>
+  <div class="lc-estados-tela" data-estados-para="tela-home">Ver estado:
+    <div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela">
+      <button type="button" aria-pressed="true" data-estado="dados">Com dados</button>
+      <button type="button" aria-pressed="false" data-estado="carregando">Carregando</button>
+      <button type="button" aria-pressed="false" data-estado="erro">Mural com erro</button>
+      <button type="button" aria-pressed="false" data-estado="zerado">Para você zerado</button>
+    </div>
+    <span>Tema escuro: acrescente <code>?tema=escuro</code> ao endereço.</span>
+  </div>
+</details>
+
+<div id="tela-home" data-estado="dados">
+<div class="h-saudacao"><h1>Bom dia, Letícia</h1><p>Quinta-feira, 1º de outubro. O plantão de fim de semana muda no sábado.</p></div>
+
+<div class="lc-inicio">
+  <!-- ============ ESQUERDA: Eu + Para você ============ -->
+  <div class="lc-inicio__esq">
+    <section class="lc-eu h-esq-eu" aria-labelledby="eu-nome">
+      <div class="lc-eu__topo">
+        <span class="lc-av lc-av--48 lc-av--c3" aria-hidden="true">LA<span class="lc-presenca lc-presenca--on"></span></span>
+        <div><h2 class="lc-eu__nome" id="eu-nome"><a href="20d-perfil.html" style="color:inherit;text-decoration:none">Letícia Araújo</a></h2>
+          <div class="lc-eu__cargo">Coordenadora de Relacionamento<br>Relacionamento com Condomínios</div></div>
+      </div>
+      <button type="button" class="lc-status-pessoal" data-abre="pop-status" aria-expanded="false" aria-haspopup="dialog" aria-label="Seu status: Disponível, até 18h. Trocar status">
+        <span class="lc-status-pessoal__ponto" id="st-ponto"></span><span id="st-txt">Disponível</span><small id="st-ate">até 18h</small></button>
+      <div class="lc-popover h-status-pop" id="pop-status" role="dialog" aria-label="Seu status" hidden>
+        <div class="lc-popover__cab"><h3>Seu status</h3><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" data-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+        <div class="lc-popover__corpo">
+          <div class="h-status-opcoes" role="radiogroup" aria-label="Presença">
+            <label><input type="radio" name="st" value="on" checked><span class="lc-status-pessoal__ponto"></span>Disponível</label>
+            <label><input type="radio" name="st" value="reuniao"><span class="lc-status-pessoal__ponto lc-status-pessoal__ponto--reuniao"></span>Em reunião</label>
+            <label><input type="radio" name="st" value="ocupado"><span class="lc-status-pessoal__ponto lc-status-pessoal__ponto--ocupado"></span>Não perturbe</label>
+            <label><input type="radio" name="st" value="ausente"><span class="lc-status-pessoal__ponto lc-status-pessoal__ponto--ausente"></span>Ausente</label>
+          </div>
+          <div class="lc-campo"><label class="lc-rotulo" for="st-frase">O que você está fazendo <span class="lc-opcional">(opcional)</span></label>
+            <input class="lc-entrada" id="st-frase" maxlength="60" placeholder="Ex.: Em vistoria no Ed. Aurora"></div>
+          <div class="lc-campo" style="margin-top:10px"><label class="lc-rotulo" for="st-ate-sel">Até quando</label>
+            <select class="lc-selecao" id="st-ate-sel"><option>até 18h</option><option>por 1 hora</option><option>até amanhã</option><option>sem prazo</option></select></div>
+        </div>
+        <div class="lc-popover__pe"><button class="lc-btn lc-btn--discreto" type="button" data-fechar>Cancelar</button><button class="lc-btn" type="button" id="st-salvar">Salvar status</button></div>
+      </div>
+      <ul class="lc-eu__dados">
+        <li><i data-i="telefone"></i>Ramal 2041, (11) 97412-0831</li>
+        <li><i data-i="email"></i><span class="lc-reticencias">leticia.araujo@alpha.adm.br</span></li>
+        <li><i data-i="condominio"></i>Carteira: 63 condomínios, zona leste</li>
+        <li><i data-i="calendario"></i>Na Administradora Alpha desde mar/2021</li>
+      </ul>
+      <div class="lc-eu__acoes">
+        <button class="lc-btn lc-btn--p" type="button" data-modal="m-publicar" data-tipo="reconhecimento"><i data-i="reconhecimento"></i>Reconhecer</button>
+        <button class="lc-btn lc-btn--p" type="button" data-toast="Pedido de férias aberto em Cultura, RH" data-toast-neutro><i data-i="ferias"></i>Pedir férias</button>
+        <a class="lc-btn lc-btn--p lc-btn--discreto" href="20d-perfil.html">Meu perfil</a>
+      </div>
+    </section>
+
+    <section class="lc-caixa h-pv" aria-labelledby="pv-tit">
+      <div class="h-pv-cab"><h2 id="pv-tit">Para você</h2><span class="lc-contagem" id="pv-conta">5 itens</span></div>
+      <div class="lc-abas lc-abas--p" role="tablist" aria-label="Filtrar Para você">
+        <button role="tab" aria-selected="true" aria-controls="pv-tudo">Tudo <span class="lc-contagem">5</span></button>
+        <button role="tab" aria-selected="false" aria-controls="pv-mencoes">Menções <span class="lc-contagem">1</span></button>
+        <button role="tab" aria-selected="false" aria-controls="pv-aprov">Aprovações <span class="lc-contagem">1</span></button>
+        <button role="tab" aria-selected="false" aria-controls="pv-prazos">Prazos <span class="lc-contagem">3</span></button>
+      </div>
+      <div id="pv-tudo" role="tabpanel" aria-label="Tudo">
+        <ul class="lc-pv" data-so-estado="dados erro">
+          <li class="lc-pv__item"><span class="lc-pv__o-que"><b>7 conversas</b> esperando você; a mais antiga há 38 min</span><span class="lc-pv__prazo lc-pv__prazo--atrasado"><i data-i="prazo-estourado" class="lc-ic--14"></i>Prazo vencido em 1 conversa</span><a class="lc-btn lc-btn--p lc-pv__acao" href="21-suporte.html">Abrir conversas</a></li>
+          <li class="lc-pv__item"><span class="lc-pv__o-que">Parque das Águas espera a <b>proposta de portaria remota</b></span><span class="lc-pv__prazo lc-pv__prazo--hoje"><i data-i="relogio" class="lc-ic--14"></i>Hoje, até 17h</span><a class="lc-btn lc-btn--p lc-pv__acao" href="22b-cliente.html">Abrir cliente</a></li>
+          <li class="lc-pv__item"><span class="lc-pv__o-que"><b>Ricardo Tavares</b> pede sua ciência no comunicado do plantão</span><span class="lc-pv__prazo">Até 02/10</span><a class="lc-btn lc-btn--p lc-pv__acao" href="#post-plantao">Ler</a></li>
+          <li class="lc-pv__item"><span class="lc-pv__o-que">Reembolso de <b>Juliana Prado</b>, R$ 86,40 (táxi da vistoria)</span><span class="lc-pv__prazo">Aprovar até 06/10</span><button class="lc-btn lc-btn--p lc-pv__acao" type="button" data-feito="Reembolso de Juliana Prado aprovado">Aprovar</button></li>
+          <li class="lc-pv__item"><span class="lc-pv__o-que">Trabalho de <b>Legislação condominial</b>, Academy</span><span class="lc-pv__prazo">Entrega 03/10, 23h59</span><a class="lc-btn lc-btn--p lc-pv__acao" href="#">Continuar</a></li>
+        </ul>
+        <div data-so-estado="carregando" hidden style="padding:8px 16px 12px">
+          <span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><br>
+          <span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--curta"></span><br>
+          <span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span>
+        </div>
+        <div class="lc-vazio" data-so-estado="zerado" hidden style="padding:20px 16px 18px">
+          <span class="lc-ladrilho lc-ladrilho--40"><i data-i="feito"></i></span>
+          <p class="lc-vazio__titulo">Nada esperando por você</p>
+          <p class="lc-vazio__texto">Conversas, aprovações e prazos que forem seus aparecem aqui assim que chegarem. A última coisa resolvida foi a ciência do plantão, às 09:12.</p>
+        </div>
+      </div>
+      <div id="pv-mencoes" role="tabpanel" aria-label="Menções" hidden>
+        <ul class="lc-pv"><li class="lc-pv__item"><span class="lc-pv__o-que"><b>Rogério Alves</b> mencionou você no chamado 4.812: "Encanador confirmado às 11h, @Letícia avisa a síndica?"</span><span class="lc-pv__prazo">Há 20 min</span><a class="lc-btn lc-btn--p lc-pv__acao" href="21-suporte.html">Responder</a></li></ul>
+      </div>
+      <div id="pv-aprov" role="tabpanel" aria-label="Aprovações" hidden>
+        <ul class="lc-pv"><li class="lc-pv__item"><span class="lc-pv__o-que">Reembolso de <b>Juliana Prado</b>, R$ 86,40</span><span class="lc-pv__prazo">Aprovar até 06/10</span><button class="lc-btn lc-btn--p lc-pv__acao" type="button" data-feito="Reembolso de Juliana Prado aprovado">Aprovar</button></li></ul>
+      </div>
+      <div id="pv-prazos" role="tabpanel" aria-label="Prazos" hidden>
+        <ul class="lc-pv">
+          <li class="lc-pv__item"><span class="lc-pv__o-que">Proposta de portaria remota, Parque das Águas</span><span class="lc-pv__prazo lc-pv__prazo--hoje">Hoje, até 17h</span><a class="lc-btn lc-btn--p lc-pv__acao" href="22b-cliente.html">Abrir cliente</a></li>
+          <li class="lc-pv__item"><span class="lc-pv__o-que">Ciência do comunicado do plantão</span><span class="lc-pv__prazo">Até 02/10</span><a class="lc-btn lc-btn--p lc-pv__acao" href="#post-plantao">Ler</a></li>
+          <li class="lc-pv__item"><span class="lc-pv__o-que">Trabalho de Legislação condominial</span><span class="lc-pv__prazo">03/10, 23h59</span><a class="lc-btn lc-btn--p lc-pv__acao" href="#">Continuar</a></li>
+        </ul>
+      </div>
+      <div class="h-pv__pe"><a class="lc-btn lc-btn--link" href="#">Ver tudo o que é meu</a></div>
+    </section>
+  </div>
+
+  <!-- ============ CENTRO: mural ============ -->
+  <div class="lc-inicio__centro">
+    <section class="lc-caixa" aria-label="Publicar no mural">
+      <div class="lc-publicar">
+        <span class="lc-av lc-av--40 lc-av--c3" aria-hidden="true">LA</span>
+        <button type="button" class="lc-publicar__falso" data-modal="m-publicar">Reconhecer alguém ou publicar para a equipe</button>
+        <div class="lc-publicar__acoes">
+          <button class="lc-btn lc-btn--discreto lc-btn--p" type="button" data-modal="m-publicar"><i data-i="reconhecimento"></i>Reconhecimento</button>
+          <button class="lc-btn lc-btn--discreto lc-btn--p" type="button" data-modal="m-publicar"><i data-i="imagem"></i>Foto</button>
+          <button class="lc-btn lc-btn--discreto lc-btn--p" type="button" data-modal="m-publicar"><i data-i="comunicado"></i>Comunicado</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="lc-mural-filtro">
+      <div class="lc-seg lc-seg--p" role="group" aria-label="Mostrar no mural">
+        <button type="button" aria-pressed="true">Tudo</button><button type="button" aria-pressed="false">Comunicados</button><button type="button" aria-pressed="false">Reconhecimentos</button><button type="button" aria-pressed="false">Minha equipe</button>
+      </div>
+      <span class="lc-legenda">Mais recentes primeiro</span>
+    </div>
+
+    <!-- carregando -->
+    <div data-so-estado="carregando" hidden aria-busy="true" aria-label="Carregando o mural">
+      <div class="lc-post" style="padding:16px"><div class="lc-linha"><span class="lc-esqueleto lc-esqueleto--av" style="width:40px;height:40px"></span><div class="lc-cresce"><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--curta"></span></div></div><span class="lc-esqueleto lc-esqueleto--bloco" style="margin-top:14px"></span></div>
+      <div class="lc-post" style="padding:16px"><div class="lc-linha"><span class="lc-esqueleto lc-esqueleto--av" style="width:40px;height:40px"></span><div class="lc-cresce"><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--curta"></span></div></div><span class="lc-esqueleto lc-esqueleto--linha" style="margin-top:14px"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span></div>
+    </div>
+    <!-- erro -->
+    <div class="lc-alerta lc-alerta--perigo" role="alert" data-so-estado="erro" hidden><i data-i="erro"></i><div class="lc-alerta__corpo"><b class="lc-alerta__titulo">O mural não carregou</b>A conexão com o servidor caiu às 09:14. Para você, equipe e agenda continuam valendo; as publicações voltam quando a conexão voltar.<div class="lc-alerta__acoes"><button class="lc-btn lc-btn--p" type="button"><i data-i="atualizar"></i>Tentar de novo</button></div></div></div>
+
+    <div data-so-estado="dados zerado" id="mural">
+    <!-- comunicado com ciência, fixado -->
+    <article class="lc-post lc-post--fixado" id="post-plantao" aria-labelledby="p1-tit">
+      <div class="lc-post__fixado"><i data-i="fixar"></i>Fixado pela Diretoria até 05/10</div>
+      <div class="lc-post__cab">
+        <span class="lc-av lc-av--40 lc-av--c7" aria-hidden="true">RT</span>
+        <div class="lc-post__quem"><b>Ricardo Tavares</b> publicou um comunicado<span class="lc-post__meta">Diretor de Operações, hoje às 08:02, para toda a empresa</span></div>
+        <span class="lc-ancora-menu"><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Mais opções do comunicado" aria-haspopup="menu" aria-expanded="false" data-abre="menu-p1"><i data-i="mais-opcoes"></i></button>
+          <div class="lc-menu" role="menu" id="menu-p1" hidden><button class="lc-menu__item" role="menuitem" data-toast="Link copiado"><i data-i="copiar"></i>Copiar link</button><button class="lc-menu__item" role="menuitem" data-toast="Você não recebe mais avisos deste comunicado" data-toast-neutro><i data-i="sino-desligado"></i>Silenciar avisos</button><button class="lc-menu__item" role="menuitem"><i data-i="ver"></i>Ver quem deu ciência</button></div></span>
+      </div>
+      <div class="lc-post__corpo">
+        <h3 class="lc-post__titulo" id="p1-tit">O plantão de fim de semana muda a partir de 03/10</h3>
+        <p>O plantão passa a ser por região. Quem atende a zona leste (inclui o Parque das Águas e o Vila Serena) fica com o número de emergência aos sábados, das 8h às 20h. Domingo segue com a central. A escala de outubro está no anexo.</p>
+        <div class="lc-post__anexo"><i data-i="documento"></i><div><a href="#">Escala de plantão, outubro de 2026.pdf</a><small>PDF, 2 páginas, 148 KB</small></div></div>
+      </div>
+      <div class="lc-ciencia"><span class="lc-estado lc-estado--aviso">Pede ciência até 02/10</span><span class="lc-ciencia__conta" data-ciencia-conta="31" data-total="48">31 de 48 pessoas já deram ciência</span><button class="lc-btn" type="button" data-ciencia><i data-i="confirmar"></i>Li e estou ciente</button></div>
+    </article>
+
+    <!-- reconhecimento -->
+    <article class="lc-post" aria-labelledby="p2-quem">
+      <div class="lc-post__cab">
+        <span class="lc-av lc-av--40 lc-av--c5" aria-hidden="true">CL</span>
+        <div class="lc-post__quem" id="p2-quem"><b>Carlos Lima</b> reconheceu <b><a href="20d-perfil.html">Beatriz Nogueira</a></b><span class="lc-post__meta">Ontem às 17:40, para Relacionamento com Condomínios</span></div>
+        <button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Mais opções do reconhecimento"><i data-i="mais-opcoes"></i></button>
+      </div>
+      <div class="lc-post__corpo">
+        <div class="lc-reconhece"><i data-i="medalha"></i><span>Valor da empresa: <span class="lc-reconhece__valor">Resolver de ponta a ponta</span></span></div>
+        <p>A Beatriz ficou até o técnico sair do Vila Serena na terça, com o portão da garagem travado e 40 carros esperando. Ligou para cada morador que tinha reclamado. A síndica mandou elogio por escrito.</p>
+      </div>
+      <div class="lc-reacoes-resumo lc-post__ancora" style="position:relative">
+        <span class="lc-reacoes-resumo__pilha" aria-hidden="true"><span><i data-i="parabens"></i></span><span><i data-i="curtir"></i></span><span><i data-i="amei"></i></span></span>
+        <button class="lc-btn lc-btn--link" type="button" data-abre="pop-quem" aria-expanded="false" aria-haspopup="dialog" style="font-size:12.5px;color:var(--texto-2)"><span data-reacoes-txt>Ana Paula, Diego e mais 12</span></button>
+        <span style="margin-left:auto">3 comentários</span>
+        <div class="lc-popover h-quem-pop" id="pop-quem" role="dialog" aria-label="Quem reagiu" hidden>
+          <div class="lc-popover__cab"><h3>14 reações</h3><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" data-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+          <div class="lc-popover__corpo">
+            <div class="lc-abas lc-abas--p" role="tablist" aria-label="Por reação"><button role="tab" aria-selected="true" aria-controls="qr-todas">Todas 14</button><button role="tab" aria-selected="false" aria-controls="qr-par">Parabéns 9</button><button role="tab" aria-selected="false" aria-controls="qr-cur">Curtir 4</button></div>
+            <ul class="lc-quem-reagiu" id="qr-todas" role="tabpanel">
+              <li><span class="lc-av lc-av--24 lc-av--c4">AP</span>Ana Paula Souza<i data-i="parabens" aria-label="Parabéns"></i></li>
+              <li><span class="lc-av lc-av--24 lc-av--c2">DR</span>Diego Ramos<i data-i="parabens" aria-label="Parabéns"></i></li>
+              <li><span class="lc-av lc-av--24 lc-av--c6">JP</span>Juliana Prado<i data-i="amei" aria-label="Amei"></i></li>
+              <li><span class="lc-av lc-av--24 lc-av--c8">RA</span>Rogério Alves<i data-i="curtir" aria-label="Curtir"></i></li>
+              <li><span class="lc-av lc-av--24 lc-av--c7">RT</span>Ricardo Tavares<i data-i="parabens" aria-label="Parabéns"></i></li>
+              <li class="lc-legenda">e mais 9 pessoas</li>
+            </ul>
+            <ul class="lc-quem-reagiu" id="qr-par" role="tabpanel" hidden><li><span class="lc-av lc-av--24 lc-av--c4">AP</span>Ana Paula Souza</li><li><span class="lc-av lc-av--24 lc-av--c2">DR</span>Diego Ramos</li><li><span class="lc-av lc-av--24 lc-av--c7">RT</span>Ricardo Tavares</li></ul>
+            <ul class="lc-quem-reagiu" id="qr-cur" role="tabpanel" hidden><li><span class="lc-av lc-av--24 lc-av--c8">RA</span>Rogério Alves</li></ul>
+          </div>
+        </div>
+      </div>
+      <div class="lc-post__acoes">
+        <span class="lc-post__ancora" style="flex:1;display:flex">
+          <button type="button" data-reagir-abre aria-pressed="false" aria-haspopup="true" aria-expanded="false" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;height:40px;font:500 13px/1 var(--fonte-ui);color:inherit"><i data-i="curtir"></i>Curtir</button>
+          <div class="lc-reagir h-reagir-pop" role="menu" aria-label="Escolher reação" hidden style="position:absolute">
+            <button type="button" role="menuitem" data-i-nome="curtir"><i data-i="curtir"></i>Curtir</button><button type="button" role="menuitem" data-i-nome="parabens"><i data-i="parabens"></i>Parabéns</button><button type="button" role="menuitem" data-i-nome="amei"><i data-i="amei"></i>Amei</button><button type="button" role="menuitem" data-i-nome="genial"><i data-i="genial"></i>Genial</button><button type="button" role="menuitem" data-i-nome="apoio"><i data-i="apoio"></i>Apoio</button>
+          </div>
+        </span>
+        <button type="button" onclick="document.getElementById('c-p2').focus()"><i data-i="comentario"></i>Comentar</button>
+        <button type="button" data-modal="m-publicar"><i data-i="reconhecimento"></i>Reconhecer também</button>
+      </div>
+      <div class="lc-comentario"><span class="lc-av lc-av--32 lc-av--c6" aria-hidden="true">JP</span><div class="lc-comentario__bolha"><b>Juliana Prado</b> Merecido. Ela me mostrou o sistema inteiro no meu primeiro dia.<div class="lc-legenda" style="margin-top:2px">Ontem às 18:02 <button class="lc-btn lc-btn--link" type="button" style="font-size:12px;margin-left:8px">Responder</button></div></div></div>
+      <div class="lc-comentario"><span class="lc-av lc-av--32 lc-av--c2" aria-hidden="true">DR</span><div class="lc-comentario__bolha"><b>Diego Ramos</b> O síndico do Vila Serena comentou na reunião de ontem. Parabéns, Bia.<div class="lc-legenda" style="margin-top:2px">Hoje às 07:51</div></div></div>
+      <form class="lc-comentar" onsubmit="event.preventDefault();lcToast('Comentário publicado');this.reset()"><span class="lc-av lc-av--32 lc-av--c3" aria-hidden="true">LA</span><input class="lc-entrada" id="c-p2" placeholder="Escreva um comentário. Use @ para mencionar." aria-label="Comentar no reconhecimento de Beatriz Nogueira"><button class="lc-btn" type="submit">Comentar</button></form>
+    </article>
+
+    <div class="lc-evento-mural">
+      <span class="lc-evento-mural__ic"><i data-i="aniversario"></i></span>
+      <div><b>Diego Ramos</b> (Financeiro) e <b>Sônia Freitas</b> (Portaria remota) fazem aniversário hoje.<small>12 pessoas já deram parabéns</small></div>
+      <button class="lc-btn lc-btn--p" type="button" data-toast="Parabéns enviados para Diego e Sônia">Dar parabéns</button>
+    </div>
+
+    <article class="lc-post" aria-labelledby="p3-quem">
+      <div class="lc-post__cab">
+        <span class="lc-av lc-av--40 lc-av--c8" aria-hidden="true">RA</span>
+        <div class="lc-post__quem" id="p3-quem"><b>Rogério Alves</b><span class="lc-post__meta">Supervisor de Manutenção, ontem às 15:22, para toda a empresa</span></div>
+        <button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Mais opções da publicação"><i data-i="mais-opcoes"></i></button>
+      </div>
+      <div class="lc-post__corpo">
+        <p>Terminamos a troca das bombas de recalque do Ed. Aurora sem faltar água para ninguém: a troca foi feita das 23h às 4h, com aviso no portal e no elevador desde sexta. O checklist que usamos ficou no Academy, em Manutenção preventiva, para quem for fazer a mesma coisa no Jardim Botânico.</p>
+      </div>
+      <div class="lc-reacoes-resumo"><span class="lc-reacoes-resumo__pilha" aria-hidden="true"><span><i data-i="genial"></i></span><span><i data-i="curtir"></i></span></span><span data-reacoes-txt>Márcio, Carlos e mais 6</span><span style="margin-left:auto">Nenhum comentário</span></div>
+      <div class="lc-post__acoes">
+        <span class="lc-post__ancora" style="flex:1;display:flex">
+          <button type="button" data-reagir-abre aria-pressed="false" aria-haspopup="true" aria-expanded="false" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;height:40px;font:500 13px/1 var(--fonte-ui);color:inherit"><i data-i="curtir"></i>Curtir</button>
+          <div class="lc-reagir h-reagir-pop" role="menu" aria-label="Escolher reação" hidden style="position:absolute">
+            <button type="button" role="menuitem" data-i-nome="curtir"><i data-i="curtir"></i>Curtir</button><button type="button" role="menuitem" data-i-nome="parabens"><i data-i="parabens"></i>Parabéns</button><button type="button" role="menuitem" data-i-nome="amei"><i data-i="amei"></i>Amei</button><button type="button" role="menuitem" data-i-nome="genial"><i data-i="genial"></i>Genial</button><button type="button" role="menuitem" data-i-nome="apoio"><i data-i="apoio"></i>Apoio</button>
+          </div>
+        </span>
+        <button type="button"><i data-i="comentario"></i>Comentar</button>
+        <button type="button" data-toast="Link copiado"><i data-i="compartilhar"></i>Compartilhar</button>
+      </div>
+    </article>
+
+    <div class="lc-evento-mural">
+      <span class="lc-av lc-av--40 lc-av--c6" aria-hidden="true">JP</span>
+      <div><b>Juliana Prado</b> entrou na equipe de Atendimento como assistente.<small>Trabalhou três anos em portaria de condomínio. Começou na segunda, 28/09.</small></div>
+      <button class="lc-btn lc-btn--p" type="button" data-toast="Boas-vindas enviadas para Juliana">Dar boas-vindas</button>
+    </div>
+
+    <div class="lc-evento-mural">
+      <span class="lc-evento-mural__ic"><i data-i="certificado"></i></span>
+      <div><b>Márcio Tanaka</b> concluiu o curso <b>Assembleias, editais e atas</b> com nota 9,2.<small>Academy, turma T01 de 2026. Certificado emitido hoje.</small></div>
+      <button class="lc-btn lc-btn--p" type="button" data-toast="Parabéns enviados para Márcio">Parabenizar</button>
+    </div>
+
+    <div class="lc-evento-mural">
+      <span class="lc-evento-mural__ic"><i data-i="medalha"></i></span>
+      <div><b>Ana Paula Souza</b> completa 5 anos de Administradora Alpha.<small>Entrou como assistente de cobrança em 01/10/2021.</small></div>
+      <button class="lc-btn lc-btn--p" type="button" data-toast="Mensagem enviada para Ana Paula">Escrever para ela</button>
+    </div>
+
+    <article class="lc-post" aria-labelledby="p4-tit">
+      <div class="lc-post__cab">
+        <span class="lc-av lc-av--40 lc-av--c4" aria-hidden="true">MS</span>
+        <div class="lc-post__quem"><b>Mariana Sá</b> publicou um comunicado<span class="lc-post__meta">RH, 28/09 às 10:00, para toda a empresa</span></div>
+      </div>
+      <div class="lc-post__corpo"><h3 class="lc-post__titulo" id="p4-tit">Pesquisa de clima aberta até 09/10</h3><p>São 18 perguntas e leva cerca de 6 minutos. As respostas são anônimas; a área só vê o resultado quando houver pelo menos 5 respostas.</p></div>
+      <div class="lc-ciencia"><span class="lc-carimbo lc-carimbo--ciente">Ciente<small>Letícia Araújo, 28/09 às 10:14</small></span><span class="lc-ciencia__conta">44 de 48 pessoas já deram ciência</span></div>
+    </article>
+    <div class="h-mais-antigos"><button class="lc-btn" type="button">Mostrar publicações anteriores</button></div>
+    </div>
+  </div>
+
+  <!-- ============ DIREITA: equipe e agenda ============ -->
+  <aside class="lc-inicio__dir" aria-label="Equipe e agenda">
+    <section class="h-bloco-dir" aria-labelledby="eq-tit">
+      <h2 id="eq-tit">Minha equipe <span class="lc-aux">6 de 8 disponíveis</span></h2>
+      <ul class="lc-equipe" data-so-estado="dados erro zerado">
+        <li><span class="lc-av lc-av--32 lc-av--c4" aria-hidden="true">BN<span class="lc-presenca lc-presenca--ocupado"></span></span><span><a class="lc-equipe__nome" href="20d-perfil.html" style="color:inherit;text-decoration:none">Beatriz Nogueira</a><span class="lc-equipe__faz">Em atendimento, 3 conversas</span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Beatriz Nogueira"><i data-i="conversa"></i></button></li>
+        <li><span class="lc-av lc-av--32 lc-av--c5" aria-hidden="true">CL<span class="lc-presenca lc-presenca--reuniao"></span></span><span><span class="lc-equipe__nome">Carlos Lima</span><span class="lc-equipe__faz">Em reunião até 11h</span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Carlos Lima"><i data-i="conversa"></i></button></li>
+        <li><span class="lc-av lc-av--32 lc-av--c6" aria-hidden="true">JP<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-equipe__nome">Juliana Prado</span><span class="lc-equipe__faz">Disponível, primeira semana</span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Juliana Prado"><i data-i="conversa"></i></button></li>
+        <li><span class="lc-av lc-av--32 lc-av--c8" aria-hidden="true">RA<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-equipe__nome">Rogério Alves</span><span class="lc-equipe__faz">Em vistoria, Ed. Aurora</span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Rogério Alves"><i data-i="conversa"></i></button></li>
+        <li><span class="lc-av lc-av--32 lc-av--c2" aria-hidden="true">MT<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-equipe__nome">Márcio Tanaka</span><span class="lc-equipe__faz">Disponível</span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Márcio Tanaka"><i data-i="conversa"></i></button></li>
+        <li><span class="lc-av lc-av--32 lc-av--c4" aria-hidden="true">AP<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-equipe__nome">Ana Paula Souza</span><span class="lc-equipe__faz">Disponível</span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Ana Paula Souza"><i data-i="conversa"></i></button></li>
+        <li><span class="lc-av lc-av--32 lc-av--c7" aria-hidden="true">FM<span class="lc-presenca lc-presenca--ausente"></span></span><span><span class="lc-equipe__nome">Felipe Moura</span><span class="lc-equipe__faz">De férias até 10/10</span></span><span></span></li>
+        <li><span class="lc-av lc-av--32 lc-av--c3" aria-hidden="true">SF<span class="lc-presenca lc-presenca--off"></span></span><span><span class="lc-equipe__nome">Sônia Freitas</span><span class="lc-equipe__faz">Folga hoje, aniversário</span></span><span></span></li>
+      </ul>
+      <div data-so-estado="carregando" hidden><span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--curta"></span></div>
+      <a class="lc-btn lc-btn--link" href="20e-pessoas.html" style="margin-top:6px">Ver todas as pessoas</a>
+    </section>
+    <section class="h-bloco-dir" aria-labelledby="ag-tit">
+      <h2 id="ag-tit">Hoje <span class="lc-aux">quinta, 01/10</span></h2>
+      <ul class="lc-agenda">
+        <li><span class="lc-agenda__hora">09:30</span><span>Reunião com a síndica Marina Costa<span class="lc-agenda__sub">Parque das Águas, videochamada</span></span><button class="lc-btn lc-btn--p" type="button">Entrar</button></li>
+        <li class="lc-agora"><span class="lc-agenda__hora">11:00</span><span>1:1 com Carlos Lima<span class="lc-agenda__sub">Sala 3, agora</span></span><button class="lc-btn lc-btn--p" type="button">Preparar</button></li>
+        <li><span class="lc-agenda__hora">14:00</span><span>Prévia da assembleia de 14/10<span class="lc-agenda__sub">Conselho do Parque das Águas</span></span><a class="lc-btn lc-btn--p" href="22f-reuniao.html">Abrir</a></li>
+        <li><span class="lc-agenda__hora">19:00</span><span>Aula: Assembleias, editais e atas<span class="lc-agenda__sub">Academy, turma T02</span></span><button class="lc-btn lc-btn--p" type="button">Abrir</button></li>
+      </ul>
+    </section>
+  </aside>
+</div>
+</div>
+
+<!-- modal publicar -->
+<div class="lc-sobreposicao" id="m-publicar" hidden>
+  <div class="lc-modal lc-modal--largo" role="dialog" aria-modal="true" aria-labelledby="mp-tit">
+    <div class="lc-modal__cab"><div style="flex:1"><h2 id="mp-tit">Publicar no mural</h2><p>Quem vê: Relacionamento com Condomínios. Troque abaixo.</p></div><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" data-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+    <div class="lc-modal__corpo">
+      <div class="lc-seg lc-seg--bloco" role="group" aria-label="Tipo de publicação" style="margin-bottom:14px" id="mp-tipo">
+        <button type="button" aria-pressed="false" data-t="pub"><i data-i="comentario"></i>Publicação</button><button type="button" aria-pressed="true" data-t="rec"><i data-i="reconhecimento"></i>Reconhecimento</button><button type="button" aria-pressed="false" data-t="com"><i data-i="comunicado"></i>Comunicado</button>
+      </div>
+      <div class="lc-form-grade" style="--_cols:2">
+        <div class="lc-campo" data-mp="rec"><label class="lc-rotulo" for="mp-pessoa">Quem você quer reconhecer <span class="lc-obrig" aria-hidden="true">*</span></label><input class="lc-entrada" id="mp-pessoa" value="Beatriz Nogueira"></div>
+        <div class="lc-campo" data-mp="rec"><label class="lc-rotulo" for="mp-valor">Valor da empresa</label><select class="lc-selecao" id="mp-valor"><option>Resolver de ponta a ponta</option><option>Falar a verdade, com cuidado</option><option>Cuidar do condomínio como se fosse nosso</option></select></div>
+        <div class="lc-campo lc-inteiro" data-mp="com" hidden><label class="lc-rotulo" for="mp-titulo">Título <span class="lc-obrig" aria-hidden="true">*</span></label><input class="lc-entrada" id="mp-titulo" placeholder="Ex.: Novo horário da central aos domingos"></div>
+        <div class="lc-campo lc-inteiro"><label class="lc-rotulo" for="mp-texto">Texto</label><textarea class="lc-area-texto" id="mp-texto" rows="4">Fez a diferença no atendimento do Vila Serena na terça.</textarea></div>
+        <div class="lc-campo"><label class="lc-rotulo" for="mp-quem">Quem vê</label><select class="lc-selecao" id="mp-quem"><option>Relacionamento com Condomínios</option><option>Toda a empresa</option><option>Atendimento</option></select></div>
+        <div class="lc-campo" data-mp="com" hidden><label class="lc-rotulo" for="mp-ate">Pedir ciência até</label><input class="lc-entrada" type="date" id="mp-ate" value="2026-10-05"><p class="lc-ajuda">Quem não der ciência recebe lembrete um dia antes.</p></div>
+      </div>
+    </div>
+    <div class="lc-modal__pe"><span class="lc-modal__aux">Rascunho salvo às 09:21</span><button class="lc-btn" type="button" data-fechar>Cancelar</button><button class="lc-btn lc-btn--principal" type="button" data-fechar data-toast="Publicado no mural de Relacionamento com Condomínios" data-toast-desfazer>Publicar</button></div>
+  </div>
+</div>
+
+<section class="lc-nota-a11y" aria-labelledby="a11y-tit">
+  <h2 id="a11y-tit">Acessibilidade desta tela</h2>
+  <dl>
+    <dt>Ordem de foco</dt><dd>Pular para o conteúdo; trilho (Favoritos, módulos, Ajustes); barra do módulo (seções, pesquisa, ajuda, notificações, conta); saudação; cartão Eu (status, ações); Para você (abas, depois cada linha e o seu botão); Publicar; filtro do mural; cada publicação (mais opções, corpo, quem reagiu, Curtir, Comentar, campo de comentário); equipe; agenda.</dd>
+    <dt>O que é anunciado</dt><dd>Presença junto do nome ("Carlos Lima, em reunião até 11h"); "Seu status: Disponível, até 18h"; ao dar ciência, "Ciência registrada em 01/10 às 09:12" na região viva; ao aprovar no Para você, o toast com Desfazer; ao reagir, "Reação registrada: Parabéns"; as abas do Para você com a contagem.</dd>
+    <dt>Nome do que é só ícone</dt><dd>Mais opções do comunicado, Mais opções do reconhecimento, Fechar, Conversar com (nome da pessoa), reações no seletor (Curtir, Parabéns, Amei, Genial, Apoio), ícone de cada reação na lista de quem reagiu.</dd>
+  </dl>
+</section>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+<script>
+/* Só desta tela: status pessoal, Para você feito, tipo de publicação */
+(function(){
+  var cores={on:"",reuniao:"lc-status-pessoal__ponto--reuniao",ocupado:"lc-status-pessoal__ponto--ocupado",ausente:"lc-status-pessoal__ponto--ausente"}, nomes={on:"Disponível",reuniao:"Em reunião",ocupado:"Não perturbe",ausente:"Ausente"};
+  document.getElementById("st-salvar").addEventListener("click",function(){
+    var v=document.querySelector('input[name=st]:checked').value, f=document.getElementById("st-frase").value.trim(), a=document.getElementById("st-ate-sel").value;
+    document.getElementById("st-ponto").className="lc-status-pessoal__ponto "+cores[v];
+    document.getElementById("st-txt").textContent=f||nomes[v]; document.getElementById("st-ate").textContent=a==="sem prazo"?"":a;
+    document.querySelector(".lc-status-pessoal").setAttribute("aria-label","Seu status: "+(f||nomes[v])+", "+a+". Trocar status");
+    document.querySelector('[data-abre="pop-status"]').click(); lcToast("Status atualizado: "+(f||nomes[v]));
+  });
+  document.addEventListener("click",function(e){
+    var b=e.target.closest("[data-feito]"); if(!b) return;
+    var li=b.closest(".lc-pv__item"); li.classList.add("lc-pv__item--feito"); b.disabled=true; b.textContent="Feito";
+    lcToast(b.getAttribute("data-feito"),{desfazer:function(){li.classList.remove("lc-pv__item--feito");b.disabled=false;b.textContent="Aprovar";}});
+  });
+  document.getElementById("mp-tipo").addEventListener("click",function(e){
+    var b=e.target.closest("button"); if(!b) return; var t=b.getAttribute("data-t");
+    document.querySelectorAll("[data-mp]").forEach(function(x){ x.hidden = x.getAttribute("data-mp")!==t; });
+    document.getElementById("mp-tit").textContent = t==="com"?"Publicar comunicado":t==="rec"?"Reconhecer alguém":"Publicar no mural";
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal do morador, início</title>
+<meta name="description" content="Portal do cliente final na marca da administradora: início do morador com boleto do mês, chamados abertos, próximos passos e comunicados. Estados de carregando, vazio, erro e sem vínculo.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p5.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .p-inicio{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+  .p-inicio__col{display:flex;flex-direction:column;gap:20px;min-width:0}
+  @media (max-width:1023px){.p-inicio{grid-template-columns:minmax(0,1fr)}}
+  .p-chamado-mini{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;padding:12px 16px;border-top:var(--borda-1);text-decoration:none;color:var(--texto-1)}
+  .p-chamado-mini:hover{background:var(--sup-2);color:var(--texto-1);text-decoration:none}
+  .p-chamado-mini b{font-weight:600;font-size:14px}
+  .p-chamado-mini small{grid-column:1/-1;font:var(--t-legenda);color:var(--texto-2)}
+</style>
+</head>
+<body data-moldura='{"contexto":"portal","secao":"Início","papel":"morador","cliente":{"nome":"Administradora Alpha","sigla":"A"},"unidade":"Bloco B, apto 1204"}'>
+<main id="conteudo" class="lc-pagina">
+
+<section class="lc-ficha-tela" aria-label="Sobre esta tela">
+  <div class="lc-ficha-tela__nome"><b>Portal do morador: Início</b><span>Contexto portal, papel morador, marca Administradora Alpha. Computador e celular na mesma página.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>Em 10 segundos o morador sabe se deve alguma coisa, como está o problema que ele relatou e o que a administradora pediu a ele. Pagar o boleto do mês sai daqui em um toque (Pix copiado), sem abrir outra tela.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Entra no portal e cai no Início da unidade (a última usada, se tiver mais de uma).</li><li>Boleto do mês no topo: "Copiar código Pix" é o único botão principal; "Ver boleto" abre a composição.</li><li>Próximos passos: cada linha tem o verbo da ação à direita ("Votar", "Dar ciência") e leva direto ao lugar.</li><li>Chamados abertos à direita com o passo atual; "Abrir chamado" fica no cabeçalho e na aba Chamados.</li><li>Comunicado com ciência: "Li e estou ciente" vira carimbo com nome e hora, salvo na hora. Voltar é a aba Início (pé no celular, topo no computador).</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>os apps do Nubank e do Itaú abrem com "o que vence" e o Pix pronto; o TownSq e o portal da Superlógica mostram o que chegou para a unidade (encomenda, comunicado) antes de qualquer menu; e o iFood ensinou a acompanhar um pedido por passos com hora. Juntamos os três sem cartões iguais: a tela é uma lista do que pede ação, na ordem de urgência.</p></div>
+</section>
+
+<div class="lc-portal-cab">
+  <div class="lc-portal-cab__txt"><h1>Bloco B, apto 1204</h1><p>Cond. Parque das Águas, Rua Ministro Jesuíno Cardoso, 412, Vila Nova Conceição, São Paulo</p></div>
+  <div class="lc-grupo-btn"><a class="lc-btn" href="40h-portal-unidade.html"><i data-i="trocar-cliente"></i>Trocar unidade</a><a class="lc-btn lc-btn--secundario" href="40b-portal-chamados.html#novo"><i data-i="mais"></i>Abrir chamado</a></div>
+</div>
+
+<div class="p-inicio">
+  <div class="p-inicio__col">
+    <!-- boleto do mês -->
+    <section class="lc-boleto" aria-labelledby="bol-t">
+      <div class="lc-boleto__topo">
+        <div class="lc-boleto__ref">
+          <h2 id="bol-t">Condomínio de outubro</h2>
+          <p>Competência 10/2026, boleto 2026.10.1204</p>
+          <p class="lc-boleto__valor"><small>R$</small>1.284,37</p>
+          <div class="lc-boleto__vence"><span class="lc-estado lc-estado--aviso">Vence em 9 dias</span><span>Vencimento 10/10/2026, sexta-feira</span></div>
+        </div>
+      </div>
+      <div class="lc-boleto__acoes">
+        <div class="lc-pix">
+          <span class="lc-pix__rot"><i data-i="pix-copia-e-cola" class="lc-ic--14"></i>Pix copia e cola, válido até o vencimento</span>
+          <span class="lc-pix__cod" id="pix-cod">00020101021226900014br.gov.bcb.pix2568qrpix.alpha.com.br/v2/cobv/9f2a0c1e5d6b4a8f8b1204520400005303986540 51284.375802BR5925COND PARQUE DAS AGUAS6009SAO PAULO62070503***6304B7E1</span>
+          <button class="lc-btn lc-btn--principal" type="button" data-copiar="00020101021226900014br.gov.bcb.pix2568qrpix.alpha.com.br/v2/cobv/9f2a0c1e5d6b4a8f8b1204" data-toast="Código Pix copiado. Cole no app do seu banco."><i data-i="copiar"></i><span data-rot>Copiar código Pix</span></button>
+        </div>
+        <div class="lc-boleto__secundarias">
+          <a class="lc-btn" href="40c-portal-boletos.html"><i data-i="boleto"></i>Ver boleto e composição</a>
+          <button class="lc-btn" type="button" data-copiar="34191.79001 01043.510047 91020.150008 1 96210000128437" data-toast="Linha digitável copiada."><i data-i="codigo-de-barras"></i>Copiar linha digitável</button>
+          <button class="lc-btn" type="button" data-toast="PDF do boleto baixado."><i data-i="baixar"></i>Baixar PDF</button>
+        </div>
+      </div>
+      <div class="lc-boleto__pe">Taxa ordinária R$ 1.096,40, fundo de reserva R$ 109,64, rateio da obra da fachada (parcela 4 de 10) R$ 78,33. Pagamento por Pix compensa na hora; por boleto, em até 2 dias úteis.</div>
+    </section>
+
+    <!-- próximos passos -->
+    <section class="lc-caixa" aria-labelledby="pp-t">
+      <div class="lc-caixa__cab"><h2 id="pp-t">O que pedem da sua unidade</h2><span class="lc-aux">4 itens</span></div>
+      <div class="lc-caixa__corpo">
+        <ul class="lc-pv">
+          <li class="lc-pv__item"><span class="lc-pv__o-que"><b>Assembleia geral ordinária</b>, 16/10 às 19h30, salão de festas e online. Votação online abre em 14/10.</span><span class="lc-pv__prazo lc-pv__prazo--hoje"><i data-i="relogio" class="lc-ic--14"></i>Confirme presença até amanhã</span><a class="lc-btn lc-pv__acao" href="40e-portal-assembleias.html">Ver pauta</a></li>
+          <li class="lc-pv__item"><span class="lc-pv__o-que"><b>Limpeza da caixa d'água</b>: falta água no bloco B dia 08/10, das 8h às 14h.</span><span class="lc-pv__prazo">Comunicado de 29/09, pede ciência</span><a class="lc-btn lc-pv__acao" href="#comunicados">Ler e dar ciência</a></li>
+          <li class="lc-pv__item"><span class="lc-pv__o-que"><b>Encomenda na portaria</b>: Mercado Livre, 1 volume médio.</span><span class="lc-pv__prazo">Chegou ontem, 17:40. Retire com documento.</span><a class="lc-btn lc-pv__acao" href="40h-portal-unidade.html#encomendas">Ver retirada</a></li>
+          <li class="lc-pv__item"><span class="lc-pv__o-que"><b>Reserva do salão de festas</b>, sábado 18/10, das 12h às 18h.</span><span class="lc-pv__prazo">Pré-reserva. A taxa de R$ 180,00 entra no boleto de novembro.</span><a class="lc-btn lc-pv__acao" href="40d-portal-reservas.html">Ver reserva</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- comunicados -->
+    <section aria-labelledby="com-t" id="comunicados">
+      <div class="lc-linha lc-linha--entre" style="margin-bottom:10px"><h2 id="com-t" class="lc-t-secao">Comunicados da administradora</h2><a href="40f-portal-comunicados.html">Ver todos os comunicados</a></div>
+      <article class="lc-post">
+        <div class="lc-post__cab"><span class="lc-ladrilho lc-ladrilho--marca" data-marca-sigla>A</span><div class="lc-post__quem"><b>Administradora Alpha</b>, para o bloco B<span class="lc-post__meta">29/09/2026, 16:10, assinado por Marina Costa, síndica</span></div></div>
+        <div class="lc-post__corpo"><h3 class="lc-post__titulo">Limpeza e desinfecção da caixa d'água do bloco B</h3>
+          <p>Na quarta-feira, 08/10, a empresa Hidroclean fará a limpeza semestral da caixa d'água do bloco B. O abastecimento fica suspenso das 8h às 14h. Deixe as torneiras fechadas e reserve água para o período.</p>
+          <p>O laudo de potabilidade será publicado em Documentos até 15/10.</p></div>
+        <div class="lc-ciencia"><button class="lc-btn" type="button" data-ciente="Ana Souza, apto 1204"><i data-i="confirmar"></i>Li e estou ciente</button><span class="lc-ciencia__conta">31 de 48 unidades do bloco B deram ciência</span></div>
+      </article>
+      <article class="lc-post">
+        <div class="lc-post__cab"><span class="lc-ladrilho lc-ladrilho--marca" data-marca-sigla>A</span><div class="lc-post__quem"><b>Administradora Alpha</b>, para todo o condomínio<span class="lc-post__meta">22/09/2026, 10:02</span></div></div>
+        <div class="lc-post__corpo"><h3 class="lc-post__titulo">Novo horário da academia a partir de 01/10</h3><p>A academia passa a funcionar das 5h30 às 23h todos os dias. O uso continua com a biometria da portaria.</p></div>
+        <div class="lc-ciencia"><span class="lc-carimbo lc-carimbo--ciente">Ciente<small>Ana Souza, 22/09/26 19:44</small></span></div>
+      </article>
+    </section>
+  </div>
+
+  <div class="p-inicio__col">
+    <section class="lc-caixa" aria-labelledby="ch-t">
+      <div class="lc-caixa__cab"><h2 id="ch-t">Seus chamados abertos</h2><a class="lc-aux" href="40b-portal-chamados.html">Ver todos</a></div>
+      <a class="p-chamado-mini" href="40b-portal-chamados.html#conversa"><b>Vazamento no teto do banheiro</b><span class="lc-estado lc-estado--andamento">Técnico a caminho</span><small>Chamado 4.812, aberto hoje às 08:14. Hidráulica Souza chega até 11h.</small></a>
+      <a class="p-chamado-mini" href="40b-portal-chamados.html"><b>Lâmpada queimada na garagem, vaga 37</b><span class="lc-estado lc-estado--aviso">Responda</span><small>Chamado 4.790. A portaria perguntou se pode trocar na sua ausência.</small></a>
+    </section>
+
+    <section class="lc-caixa" aria-labelledby="at-t">
+      <div class="lc-caixa__cab"><h2 id="at-t">Fazer agora</h2></div>
+      <div class="lc-caixa__corpo"><div class="lc-atalhos">
+        <a class="lc-atalho" href="40c-portal-boletos.html#segunda-via"><i data-i="boleto"></i>2ª via de boleto</a>
+        <a class="lc-atalho" href="40d-portal-reservas.html"><i data-i="reserva"></i>Reservar área</a>
+        <a class="lc-atalho" href="40h-portal-unidade.html#visitante"><i data-i="visitante"></i>Autorizar visitante</a>
+        <a class="lc-atalho" href="40f-portal-comunicados.html#documentos"><i data-i="documento"></i>Documentos</a>
+      </div></div>
+    </section>
+
+    <section class="lc-caixa" aria-labelledby="ag-t">
+      <div class="lc-caixa__cab"><h2 id="ag-t">No condomínio esta semana</h2></div>
+      <div class="lc-caixa__corpo"><ul class="lc-agenda">
+        <li><span class="lc-data"><b>08</b><span>out</span></span><span>Falta de água no bloco B<span class="lc-agenda__sub">8h às 14h, limpeza da caixa</span></span><span></span></li>
+        <li><span class="lc-data"><b>10</b><span>out</span></span><span>Vencimento do condomínio<span class="lc-agenda__sub">R$ 1.284,37</span></span><span></span></li>
+        <li><span class="lc-data"><b>16</b><span>out</span></span><span>Assembleia geral ordinária<span class="lc-agenda__sub">19h30, salão e online</span></span><span></span></li>
+      </ul></div>
+    </section>
+
+    <section class="lc-caixa lc-caixa--poço" aria-labelledby="fale-t">
+      <div class="lc-caixa__corpo" style="padding-top:14px"><h2 id="fale-t" class="lc-t-subsecao">Falar com a administradora</h2>
+        <p class="lc-pequeno lc-cor-2" style="margin:4px 0 10px">Atendimento de segunda a sexta, das 8h às 18h. Urgência fora do horário: portaria, ramal 9.</p>
+        <div class="lc-grupo-btn"><a class="lc-btn" href="#"><i data-i="whatsapp"></i>WhatsApp (11) 3045-2210</a></div></div>
+    </section>
+  </div>
+</div>
+
+<div class="lc-ficha-a11y" aria-label="Acessibilidade desta tela">
+  <div><h3><i data-i="arrastar"></i>Ordem de foco</h3><ol><li>Pular para o conteúdo, topo (abas do portal, sino, conta)</li><li>Trocar unidade, Abrir chamado</li><li>Copiar código Pix, Ver boleto, Copiar linha digitável, Baixar PDF</li><li>Próximos passos, cada verbo na ordem da lista</li><li>Comunicados e "Li e estou ciente"</li><li>Coluna direita: chamados, atalhos, agenda, WhatsApp</li></ol></div>
+  <div><h3><i data-i="audio"></i>O que é anunciado</h3><ul><li>"Código Pix copiado. Cole no app do seu banco." em região viva educada (toast).</li><li>Ao dar ciência, o carimbo entra com <code>role="status"</code>: "Ciente, Ana Souza, apto 1204, data e hora".</li><li>Estado do boleto lido como texto: "Vence em 9 dias".</li></ul></div>
+  <div><h3><i data-i="ver"></i>Nome do que é só ícone</h3><ul><li>Sino: "Notificações". Avatar: "Sua conta".</li><li>No celular, a barra inferior tem rótulo visível em cada aba; "Mais" abre a gaveta "Menu".</li><li>Nenhum outro botão desta tela é só ícone.</li></ul></div>
+</div>
+
+<!-- ESTADOS -->
+<section class="lc-ficha-tela" aria-label="Estados do Início">
+  <div class="lc-ficha-tela__nome"><b>Estados do Início do portal</b><span>Carregando, tudo em dia, sem conexão e cadastro ainda não aprovado.</span></div>
+  <div><h2>O que esta tela resolve</h2><p>O morador nunca vê uma tela em branco nem um erro técnico. Cada estado diz o que aconteceu e qual é o próximo passo.</p></div>
+  <div><h2>Fluxo</h2><ol><li>Carregando: esqueleto com o formato do boleto e da lista, nunca girador sozinho.</li><li>Tudo em dia: o boleto pago vira carimbo e a lista some com uma frase.</li><li>Sem conexão: alerta com "Tentar de novo"; o último boleto baixado continua visível.</li><li>Sem vínculo: explica que a administradora aprova o cadastro e quando.</li></ol></div>
+  <div><h2>Resolvemos fazer assim porque</h2><p>o app do Itaú e o do Banco Inter mostram o esqueleto do extrato enquanto carregam, o Gmail diz "Tudo em dia" em vez de lista vazia, e o portal da Superlógica explica o cadastro pendente com o prazo de aprovação, o que diminui ligações para a administradora.</p></div>
+</section>
+<div class="lc-quadros">
+  <div class="lc-quadro-tela"><div class="lc-variacao" style="margin:12px 16px">Carregando</div><div style="padding:0 16px 16px" aria-busy="true" aria-label="Carregando o início">
+    <div class="lc-boleto" style="padding:16px 18px"><span class="lc-esqueleto lc-esqueleto--curta"></span><span class="lc-esqueleto lc-esqueleto--titulo" style="margin:10px 0"></span><span class="lc-esqueleto lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--bloco" style="height:44px;margin-top:14px"></span></div>
+    <div class="lc-caixa" style="margin-top:12px;padding:14px 16px"><span class="lc-esqueleto lc-esqueleto--linha"></span><span class="lc-esqueleto lc-esqueleto--linha lc-esqueleto--media"></span><span class="lc-esqueleto lc-esqueleto--linha"></span></div></div></div>
+  <div class="lc-quadro-tela"><div class="lc-variacao" style="margin:12px 16px">Tudo em dia</div><div style="padding:0 16px 16px">
+    <div class="lc-boleto"><div class="lc-boleto__topo"><div class="lc-boleto__ref"><h3>Condomínio de outubro</h3><p>R$ 1.284,37, vencimento 10/10/2026</p></div><span class="lc-carimbo lc-carimbo--pago">Pago<small>Pix, 02/10/26 07:51</small></span></div><div class="lc-boleto__pe">O próximo boleto sai em 25/10. Avisamos por e-mail e WhatsApp.</div></div>
+    <div class="lc-vazio" style="padding:20px 0 0"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="confirmar"></i></span><p class="lc-vazio__titulo">Nada pendente na sua unidade</p><p class="lc-vazio__texto">Sem chamados abertos, comunicados por ler ou encomendas na portaria.</p></div></div></div>
+  <div class="lc-quadro-tela"><div class="lc-variacao" style="margin:12px 16px">Sem conexão</div><div style="padding:0 16px 16px">
+    <div class="lc-alerta lc-alerta--perigo" role="alert"><i data-i="erro"></i><div class="lc-alerta__corpo"><span class="lc-alerta__titulo">Não conseguimos atualizar o portal</span>Seu celular está sem internet ou o sinal está fraco. O boleto abaixo é o último que você abriu, de 01/10 às 21:12.<div class="lc-alerta__acoes"><button class="lc-btn lc-btn--p" type="button"><i data-i="atualizar"></i>Tentar de novo</button></div></div></div>
+    <div class="lc-boleto" style="margin-top:12px"><div class="lc-boleto__topo"><div class="lc-boleto__ref"><h3>Condomínio de outubro</h3><p class="lc-boleto__valor" style="font-size:24px;line-height:30px"><small>R$</small>1.284,37</p><p>Vence 10/10/2026</p></div></div><div class="lc-boleto__acoes"><button class="lc-btn" type="button" aria-disabled="true"><i data-i="copiar"></i>Copiar código Pix</button><p class="lc-legenda">O Pix precisa de conexão para ser gerado de novo.</p></div></div></div></div>
+  <div class="lc-quadro-tela"><div class="lc-variacao" style="margin:12px 16px">Cadastro em aprovação</div><div style="padding:0 16px 16px">
+    <div class="lc-vazio" style="padding:16px 0"><span class="lc-ladrilho lc-ladrilho--48"><i data-i="aguardando"></i></span><p class="lc-vazio__titulo">A administradora está conferindo seu cadastro</p><p class="lc-vazio__texto">Você pediu acesso ao Bloco B, apto 1204 em 30/09 às 18:20. A Administradora Alpha confere com o síndico em até 2 dias úteis e avisa por e-mail. Enquanto isso, você já pode ler os comunicados gerais.</p><div class="lc-grupo-btn"><a class="lc-btn" href="40f-portal-comunicados.html">Ver comunicados</a><a class="lc-btn lc-btn--discreto" href="#">Corrigir dados do pedido</a></div></div></div></div>
+</div>
+<div class="lc-ficha-a11y" aria-label="Acessibilidade dos estados">
+  <div><h3>Ordem de foco</h3><p>Carregando: nada focável; a região tem <code>aria-busy="true"</code>. Erro: o foco vai para "Tentar de novo".</p></div>
+  <div><h3>O que é anunciado</h3><p>Erro com <code>role="alert"</code> uma vez. "Carregando o início" pelo rótulo da região. Carimbo "Pago, Pix, 02/10/26 07:51" lido como texto.</p></div>
+  <div><h3>Nome do que é só ícone</h3><p>Ícones dos estados vazios são decorativos (a frase ao lado diz tudo).</p></div>
+</div>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p5-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p5.js"></script>
+</body>
+</html>

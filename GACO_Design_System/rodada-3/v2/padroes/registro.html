@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cond. Parque das Águas, cliente</title>
+<script src="../sistema/marca.js"></script>
+<link rel="stylesheet" href="../sistema/tokens.css">
+<link rel="stylesheet" href="../sistema/base.css">
+<link rel="stylesheet" href="../sistema/componentes.css">
+<link rel="stylesheet" href="../sistema/extra-q2.css">
+<script src="../sistema/icones.js"></script>
+<script src="links.js"></script>
+<script src="../sistema/moldura.js" defer></script>
+<script src="../sistema/extra-q2.js" defer></script>
+<style>
+/* só disposição: registro estilo Lightning, 3 colunas */
+.reg{max-width:var(--cm-largura-registro);margin:0 auto;padding:12px var(--cm-grade-margem) 24px}
+.reg__path{background:var(--cm-camada-1);border:1px solid var(--cm-filete);border-top:0;padding:10px 14px 10px}
+.reg__colunas{display:grid;grid-template-columns:340px minmax(0,1fr) 300px;gap:12px;margin-top:12px;align-items:start}
+.reg__colunas>div{display:flex;flex-direction:column;gap:12px;min-width:0}
+.reg .cm-cabecalho-registro__topo{flex-wrap:wrap}
+.reg-rel li{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px dotted var(--cm-filete);font-size:13px}
+.reg-rel li:last-child{border-bottom:0}
+.reg-rel ul{list-style:none;margin:0;padding:0}
+.reg-rel small{color:var(--cm-texto-2);font-size:12px}
+.reg-form{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px}
+.reg-form .cm-campo--largo{grid-column:1/-1}
+.reg-sec-pe{display:flex;justify-content:flex-end;gap:6px;padding-top:10px;margin-top:10px;border-top:1px solid var(--cm-filete)}
+.reg .cm-compositor{border:1px solid var(--cm-filete);background:var(--cm-camada-1)}
+@media (max-width:1279px){.reg__colunas{grid-template-columns:320px minmax(0,1fr)}.reg__colunas>div:last-child{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}}
+@media (max-width:899px){.reg__colunas{grid-template-columns:1fr}.reg{padding:8px 12px 24px}.reg .cm-grupo-botoes{width:100%}}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+<div data-moldura='{"grupo":"CS","tela":"Clientes","papel":"CS","registro":"Cond. Parque das Águas","navegar":"14 de 63","usuario":{"nome":"Rafael Lima","iniciais":"RL","cargo":"CS sênior","presenca":"disponivel","tom":3},"sino":2}'></div>
+
+<main id="conteudo" class="reg" data-q2-form="cliente" data-q2-salvo="Cliente salvo.">
+  <header class="cm-cabecalho-registro">
+    <div class="cm-cabecalho-registro__topo">
+      <span class="cm-ladrilho"><i data-i="condominio"></i></span>
+      <div class="cm-cresce">
+        <span class="cm-cabecalho-registro__tipo">Cliente, condomínio residencial em Curitiba</span>
+        <h1 class="cm-cabecalho-registro__titulo"><span id="nome-registro">Cond. Parque das Águas</span> <span class="cm-plaqueta cm-plaqueta--g" id="contrato-registro">CT-2024-0187</span></h1>
+      </div>
+      <div class="cm-grupo-botoes cm-linha">
+        <button class="cm-botao" type="button" data-q2-tecla="m" data-q2-toast="Composição de e-mail aberta na coluna de atividade.|info"><i data-i="email"></i>Enviar e-mail</button>
+        <button class="cm-botao cm-botao--principal" type="button" data-q2-tecla="l" onclick="document.getElementById('aba-ligacao').click();document.getElementById('comp-texto').focus()"><i data-i="telefone"></i>Registrar contato</button>
+        <span class="cm-ancora">
+          <button class="cm-botao cm-botao--icone" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Mais ações" data-q2-abre="menu-mais" data-dica="Mais ações"><i data-i="mais-opcoes"></i></button>
+          <div class="cm-menu cm-menu--240 cm-flutuante" role="menu" id="menu-mais" hidden>
+            <button class="cm-menu__item" role="menuitem" type="button" data-q2-toast="Cópia criada: Cond. Parque das Águas (cópia), sem contatos e sem histórico.|sucesso|Abrir"><i data-i="duplicar"></i><span>Duplicar</span><span class="cm-menu__atalho"></span></button>
+            <button class="cm-menu__item" role="menuitem" type="button" data-q2-toast="Link copiado. Quem não tem acesso ao cliente vê um aviso, não os dados.|sucesso"><i data-i="vincular"></i><span>Copiar link</span><span class="cm-menu__atalho">Ctrl Shift C</span></button>
+            <button class="cm-menu__item" role="menuitem" type="button" data-q2-toast="Gerando PDF da ficha do cliente.|info"><i data-i="imprimir"></i><span>Imprimir ou PDF</span><span class="cm-menu__atalho">Ctrl P</span></button>
+            <button class="cm-menu__item" role="menuitem" type="button" data-q2-toast="Cliente arquivado. Sai das listas e da carteira, continua na busca.|sucesso|Desfazer"><i data-i="arquivar"></i><span>Arquivar</span><span></span></button>
+            <div class="cm-menu__sep"></div>
+            <button class="cm-menu__item cm-menu__item--perigo" role="menuitem" type="button" data-q2-modal="modal-excluir"><i data-i="excluir"></i><span>Excluir…</span><span></span></button>
+          </div>
+        </span>
+        <button class="cm-botao cm-botao--icone" type="button" aria-label="Histórico de alterações" data-dica="Histórico de alterações  H" data-q2-modal="painel-historico" data-q2-tecla="h"><i data-i="recentes"></i></button>
+      </div>
+    </div>
+    <dl class="cm-destaques">
+      <div><dt>Saúde</dt><dd><span class="cm-estado cm-estado--sucesso"><i data-i="sucesso"></i>82, boa</span></dd></div>
+      <div><dt>Plano</dt><dd>Completo, 312 unidades</dd></div>
+      <div><dt>Mensalidade</dt><dd class="cm-t-valor" data-q2-mostra="mensal">R$ 4.380,00</dd></div>
+      <div><dt>Renovação</dt><dd>em 106 dias, 14/01/2027</dd></div>
+      <div><dt>Último NPS</dt><dd>9, promotora</dd></div>
+      <div><dt>Responsável</dt><dd><span class="cm-avatar cm-avatar--p cm-avatar--3">RL</span>Rafael Lima</dd></div>
+    </dl>
+  </header>
+
+  <div class="reg__path">
+    <div class="cm-path">
+      <ol aria-label="Etapa do cliente">
+        <li class="is-feito"><button type="button" data-q2-modal="pop-etapa" aria-label="Implantação, concluída em 18/03/2024"><i data-i="marcar"></i>Implantação</button></li>
+        <li class="is-feito"><button type="button" aria-label="Adoção, concluída em 02/07/2024"><i data-i="marcar"></i>Adoção</button></li>
+        <li class="is-atual"><button type="button" aria-current="step">Expansão</button></li>
+        <li><button type="button" data-q2-modal="pop-etapa">Renovação</button></li>
+        <li><button type="button">Renovado</button></li>
+      </ol>
+      <button class="cm-botao" type="button" data-q2-modal="pop-etapa">Avançar para Renovação</button>
+      <span class="cm-ancora">
+        <button class="cm-botao cm-botao--discreto" type="button" aria-haspopup="menu" aria-expanded="false" data-q2-abre="menu-saida">Encerrar<i data-i="chevron-baixo"></i></button>
+        <div class="cm-menu cm-flutuante" role="menu" id="menu-saida" hidden>
+          <button class="cm-menu__item cm-menu__item--perigo" role="menuitem" type="button" data-q2-modal="modal-motivo"><i data-i="sair"></i><span>Marcar como perdido…</span><span></span></button>
+          <button class="cm-menu__item" role="menuitem" type="button" data-q2-modal="modal-motivo"><i data-i="pausado"></i><span>Pausar a jornada…</span><span></span></button>
+        </div>
+      </span>
+    </div>
+    <div class="cm-path__orientacao"><span><b>Há 12 dias em Expansão.</b></span><span><b>O que a etapa pede:</b> reunião de resultados até 30/10 e proposta para o Bloco C</span><span><b>Para avançar:</b> data da renovação e valor proposto</span></div>
+  </div>
+
+  <div class="reg__colunas">
+    <!-- coluna 1: detalhes, edição por campo e por seção -->
+    <div>
+      <section class="cm-cartao" aria-labelledby="t-contato">
+        <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-contato">Contato e endereço</h2></header>
+        <div class="cm-cartao__corpo">
+          <dl class="cm-ficha">
+            <div class="cm-ficha__linha" data-q2-campo data-tipo="tel"><dt>Telefone</dt><dd>(41) 3456-7788</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar telefone"><i data-i="editar"></i></button></div>
+            <div class="cm-ficha__linha" data-q2-campo><dt>E-mail</dt><dd>sindico@parquedasaguas.com.br</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar e-mail"><i data-i="editar"></i></button></div>
+            <div class="cm-ficha__linha" data-q2-campo><dt>Síndica</dt><dd>Marina Costa</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar síndica"><i data-i="editar"></i></button></div>
+            <div class="cm-ficha__linha" data-q2-campo><dt>Endereço</dt><dd>Rua Padre Anchieta, 2050, Bigorrilho</dd><button class="cm-ficha__lapis" type="button" aria-label="Editar endereço"><i data-i="editar"></i></button></div>
+            <div class="cm-ficha__linha" data-q2-campo data-q2-campo-acao data-opcoes="Rafael Lima|Carla Mendes|Bruno Teixeira"><dt>Responsável</dt><dd>Rafael Lima</dd><button class="cm-ficha__lapis" type="button" aria-label="Trocar responsável"><i data-i="atribuir"></i></button></div>
+            <div class="cm-ficha__linha is-leitura"><dt>Criado em</dt><dd>12/03/2024 <span class="cm-ficha__cadeado" title="Campo do sistema"><i data-i="bloquear" data-rotulo="Campo do sistema, não editável"></i></span></dd><span></span></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="cm-cartao" data-q2-secao data-q2-nome="Contrato e cobrança" aria-labelledby="t-contrato">
+        <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-contrato">Contrato e cobrança</h2><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q2-editar-secao><i data-i="editar"></i>Editar seção</button></header>
+        <div class="cm-cartao__corpo">
+          <dl class="cm-ficha" data-q2-secao-leitura>
+            <div class="cm-ficha__linha"><dt>Índice</dt><dd data-q2-mostra="indice">IGP-M</dd><span></span></div>
+            <div class="cm-ficha__linha"><dt>Mensalidade</dt><dd class="cm-t-valor" data-q2-mostra="mensal">R$ 4.380,00</dd><span></span></div>
+            <div class="cm-ficha__linha"><dt>Vencimento</dt><dd>todo dia <span data-q2-mostra="dia">10</span></dd><span></span></div>
+            <div class="cm-ficha__linha"><dt>Vigência</dt><dd>15/01/2025 a <span data-q2-mostra="fim">14/01/2027</span></dd><span></span></div>
+          </dl>
+          <div data-q2-secao-form hidden>
+            <div class="reg-form">
+              <div class="cm-campo"><label class="cm-campo__rotulo" for="s-indice">Índice</label><div class="cm-selecao"><select id="s-indice" data-q2-para="indice"><option>IGP-M</option><option>IPCA</option><option>INPC</option></select><i data-i="chevron-baixo"></i></div></div>
+              <div class="cm-campo"><label class="cm-campo__rotulo" for="s-mensal">Mensalidade <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada cm-entrada--moeda"><span class="cm-entrada__prefixo">R$</span><input id="s-mensal" inputmode="decimal" value="4.380,00" required data-q2-para="mensal"></div></div>
+              <div class="cm-campo"><label class="cm-campo__rotulo" for="s-dia">Dia do vencimento</label><div class="cm-entrada"><input id="s-dia" inputmode="numeric" value="10" data-q2-para="dia"></div></div>
+              <div class="cm-campo"><label class="cm-campo__rotulo" for="s-fim">Fim da vigência</label><div class="cm-entrada"><i data-i="calendario"></i><input id="s-fim" value="14/01/2027" placeholder="dd/mm/aaaa" data-q2-para="fim"></div></div>
+            </div>
+            <div class="reg-sec-pe"><span class="cm-cresce cm-t-legenda">Ctrl S salva a seção, Esc cancela.</span><button class="cm-botao cm-botao--p" type="button" data-q2-secao-cancelar>Cancelar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q2-secao-salvar>Salvar seção</button></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- coluna 2: atividade -->
+    <div>
+      <section class="cm-cartao" aria-labelledby="t-ativ">
+        <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-ativ">Atividade</h2><div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Mostrar"><button type="button" aria-pressed="true">Tudo</button><button type="button" aria-pressed="false">Contatos</button><button type="button" aria-pressed="false">Chamados</button></div></header>
+        <div class="cm-compositor" style="border-width:0 0 1px">
+          <div class="cm-abas cm-abas--p" role="tablist" data-q2-abas>
+            <button role="tab" type="button" aria-selected="true"><i data-i="nota-interna"></i>Nota</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1"><i data-i="email"></i>E-mail</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1" id="aba-ligacao"><i data-i="telefone"></i>Ligação</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1"><i data-i="lembrete"></i>Tarefa</button>
+          </div>
+          <div class="cm-compositor__caixa"><textarea id="comp-texto" aria-label="Escrever nota" placeholder="Escreva uma nota. @ menciona alguém da equipe." data-q2-ignora></textarea></div>
+          <div class="cm-compositor__barra"><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Anexar"><i data-i="anexar"></i></button><span class="cm-cresce cm-t-legenda">A nota fica só para a equipe.</span><button class="cm-botao cm-botao--principal cm-botao--p" type="button" data-q2-toast="Nota publicada na atividade.|sucesso">Publicar</button></div>
+        </div>
+        <ul class="cm-atividade">
+          <li class="cm-atividade__grupo" style="display:block;font-size:12px;font-weight:600;color:var(--cm-texto-2);padding:10px 12px 0">Próximos</li>
+          <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="assembleia"></i></span><div><div class="cm-atividade__titulo"><a href="#">Reunião de resultados com Marina Costa</a></div><div class="cm-atividade__desc">30/10 às 10:00, sala do conselho, levar o relatório de chamados do trimestre</div></div><span class="cm-atividade__quando">em 29 dias</span></li>
+          <li class="cm-atividade__grupo" style="display:block;font-size:12px;font-weight:600;color:var(--cm-texto-2);padding:10px 12px 0">Setembro</li>
+          <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="telefone"></i></span><div><div class="cm-atividade__titulo"><a href="#">Ligação com Marina Costa</a></div><div class="cm-atividade__desc">Combinaram vistoria da garagem na quinta. Ela quer incluir o Bloco C no contrato.</div></div><span class="cm-atividade__quando">ontem</span></li>
+          <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="chamado"></i></span><div><div class="cm-atividade__titulo"><a href="#">Chamado 48213 aberto pelo WhatsApp</a></div><div class="cm-atividade__desc">Vazamento no teto da garagem, vaga 37. Beatriz Nogueira atende.</div></div><span class="cm-atividade__quando">29/09</span></li>
+          <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="avaliacao"></i></span><div><div class="cm-atividade__titulo">NPS 9 de Marina Costa</div><div class="cm-atividade__desc">“Resolvem rápido, só falta o aplicativo avisar quando o técnico chega.”</div></div><span class="cm-atividade__quando">22/09</span></li>
+          <li><span class="cm-ladrilho cm-ladrilho--p"><i data-i="documento-editavel"></i></span><div><div class="cm-atividade__titulo">Reajuste de 5,48% aplicado pelo IGP-M</div><div class="cm-atividade__desc">Mensalidade de R$ 4.152,40 para R$ 4.380,00, por Carla Mendes</div></div><span class="cm-atividade__quando">15/09</span></li>
+        </ul>
+        <div class="cm-cartao__pe"><button class="cm-botao cm-botao--link" type="button" data-q2-toast="Mais 20 atividades carregadas, de agosto.|info">Carregar mais 20</button><span class="cm-empurra">20 de 148</span></div>
+      </section>
+    </div>
+
+    <!-- coluna 3: listas relacionadas -->
+    <div>
+      <section class="cm-cartao reg-rel" aria-labelledby="t-cont">
+        <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-cont">Contatos <span class="cm-contador">3</span></h2><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q2-modal="painel-criar"><i data-i="adicionar"></i>Adicionar</button></header>
+        <div class="cm-cartao__corpo"><ul>
+          <li><span>Marina Costa<br><small>Síndica, (41) 99812-4410</small></span><span class="cm-avatar cm-avatar--p">MC</span></li>
+          <li><span>Paulo Henrique Saldanha<br><small>Conselheiro fiscal</small></span><span class="cm-avatar cm-avatar--p cm-avatar--4">PS</span></li>
+          <li><span>Rosângela Duarte<br><small>Zeladora, portaria Bl A</small></span><span class="cm-avatar cm-avatar--p cm-avatar--5">RD</span></li>
+        </ul></div>
+      </section>
+      <section class="cm-cartao reg-rel" aria-labelledby="t-cham">
+        <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-cham">Chamados abertos <span class="cm-contador">2</span></h2><a class="cm-botao cm-botao--p cm-botao--discreto" href="console.html">Ver todos</a></header>
+        <div class="cm-cartao__corpo"><ul>
+          <li><span><a class="cm-link" href="console.html">48213, vazamento na garagem</a><br><small>Responde em 6 min</small></span><span class="cm-estado cm-estado--ponto cm-estado--aviso">Aberto</span></li>
+          <li><span><a class="cm-link" href="console.html">48190, portão do Bl B</a><br><small>OS 482 agendada para 02/10</small></span><span class="cm-estado cm-estado--ponto cm-estado--info">Aguardando OS</span></li>
+        </ul></div>
+      </section>
+      <section class="cm-cartao reg-rel" aria-labelledby="t-fin">
+        <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-fin">Financeiro</h2></header>
+        <div class="cm-cartao__corpo"><ul>
+          <li><span>Taxa de administração de setembro<br><small>R$ 4.380,00, pago em 10/09</small></span><span class="cm-estado cm-estado--ponto cm-estado--sucesso">Pago</span></li>
+          <li><span>Taxa de administração de outubro<br><small>vence em 10/10</small></span><span class="cm-estado cm-estado--ponto cm-estado--neutro">Em aberto</span></li>
+        </ul></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- barra de salvar: só aparece com alteração -->
+  <div class="cm-barra-salvar" role="region" aria-label="Alterações não salvas" data-q2-barra="cliente" hidden>
+    <div class="cm-barra-salvar__msg" data-q2-msg aria-live="polite"><b></b><span></span></div>
+    <button class="cm-botao cm-botao--discreto" type="button" data-q2-descartar>Descartar</button>
+    <div class="cm-dividido cm-ancora">
+      <button class="cm-botao cm-botao--principal" type="button" data-q2-salvar>Salvar <span class="cm-dividido__lembra"></span></button>
+      <button class="cm-botao cm-botao--principal" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Outras formas de salvar" data-q2-abre="menu-salvar"><i data-i="chevron-baixo"></i></button>
+      <div class="cm-menu cm-menu--240 cm-flutuante cm-flutuante--cima" role="menu" id="menu-salvar" data-q2-menu-de="cliente" hidden style="width:300px">
+        <button class="cm-menu__item" role="menuitemradio" type="button" data-q2-opcao="continuar"><i data-i="salvar"></i><span>Salvar e continuar aqui</span><span class="cm-menu__atalho">Ctrl S</span></button>
+        <button class="cm-menu__item" role="menuitemradio" type="button" data-q2-opcao="proximo"><i data-i="chevron-baixo"></i><span>Salvar e ir para o próximo<span class="cm-menu__desc">15 de 63, Residencial Jardim Botânico</span></span><span class="cm-menu__atalho">Ctrl Enter</span></button>
+        <button class="cm-menu__item" role="menuitemradio" type="button" data-q2-opcao="voltar"><i data-i="voltar"></i><span>Salvar e voltar à carteira<span class="cm-menu__desc">Renovam em 90 dias, linha 14</span></span><span></span></button>
+        <button class="cm-menu__item" role="menuitemradio" type="button" data-q2-opcao="novo"><i data-i="adicionar"></i><span>Salvar e criar outro cliente</span><span></span></button>
+        <div class="cm-menu__sep"></div>
+        <label class="cm-marcar" style="padding:6px 12px" data-q2-fica><input type="checkbox" checked data-q2-lembrar="cliente" data-q2-ignora><span class="cm-marcar__caixa"></span><span>Lembrar minha escolha<span class="cm-marcar__desc">O botão passa a dizer o que faz.</span></span></label>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- popover da etapa: o que ela pede -->
+<div class="cm-sobreposicao" id="pop-etapa" hidden>
+  <div class="cm-modal cm-modal--p" role="dialog" aria-modal="true" aria-labelledby="pe-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="pe-t">Mover para Renovação<span class="cm-modal__sub">A etapa pede dois campos. O resto continua como está.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" aria-label="Fechar" data-q2-fechar><i data-i="fechar"></i></button></div>
+    <div class="cm-modal__corpo cm-pilha">
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="pe-data">Data prevista da renovação</label><div class="cm-entrada"><i data-i="calendario"></i><input id="pe-data" value="14/01/2027"></div></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="pe-valor">Valor proposto por mês</label><div class="cm-entrada cm-entrada--moeda"><span class="cm-entrada__prefixo">R$</span><input id="pe-valor" inputmode="decimal" value="4.620,00"></div><p class="cm-campo__antes">Hoje: R$ 4.380,00</p></div>
+    </div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" id="pe-mover">Mover para Renovação</button></div>
+  </div>
+</div>
+
+<!-- motivo para sair do caminho feliz -->
+<div class="cm-sobreposicao" id="modal-motivo" hidden>
+  <div class="cm-modal cm-modal--p cm-modal--perigo" role="dialog" aria-modal="true" aria-labelledby="mm-t">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="mm-t">Marcar como perdido?<span class="cm-modal__sub">O cliente sai da carteira ativa. Dá para reabrir depois.</span></h2></div>
+    <div class="cm-modal__corpo cm-pilha">
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="mm-m">Motivo <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-selecao"><select id="mm-m"><option>Trocou de administradora</option><option>Preço</option><option>Condomínio extinto ou fundido</option><option>Outro</option></select><i data-i="chevron-baixo"></i></div></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="mm-d">O que aconteceu</label><textarea class="cm-area" id="mm-d" rows="3"></textarea></div>
+    </div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-fechar>Cancelar</button><button class="cm-botao cm-botao--perigo" type="button" data-q2-fechar data-q2-toast="Cliente marcado como perdido. Motivo: trocou de administradora.|sucesso|Desfazer">Marcar como perdido</button></div>
+  </div>
+</div>
+
+<!-- exclusão nível 2: tem vínculos -->
+<div class="cm-sobreposicao" id="modal-excluir" hidden>
+  <div class="cm-modal cm-modal--p cm-modal--perigo" role="alertdialog" aria-modal="true" aria-labelledby="me-t" aria-describedby="me-d">
+    <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="me-t">Excluir Cond. Parque das Águas?<span class="cm-modal__sub" id="me-d">Ele tem 3 contatos, 2 chamados abertos e 1 contrato vigente. Tudo vai junto para a lixeira por 30 dias.</span></h2></div>
+    <div class="cm-modal__corpo"><div class="cm-alerta cm-alerta--aviso"><i data-i="atencao"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">Atenção: os chamados abertos param de contar SLA.</span><span class="cm-alerta__desc">Se a intenção é encerrar o contrato, use Encerrar no caminho do cliente.</span></span></div></div>
+    <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q2-fechar autofocus>Cancelar</button><button class="cm-botao cm-botao--perigo-cheio" type="button" data-q2-fechar data-q2-toast="Cond. Parque das Águas foi para a lixeira. Restaurável até 31/10.|sucesso|Desfazer">Excluir cliente</button></div>
+  </div>
+</div>
+
+<!-- painel: criação rápida de contato -->
+<div id="painel-criar" hidden>
+  <aside class="cm-painel" role="dialog" aria-modal="true" aria-labelledby="pc-t">
+    <header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="pc-t">Novo contato</h2><span class="cm-t-legenda">em Cond. Parque das Águas</span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-empurra" type="button" aria-label="Fechar" data-q2-fechar><i data-i="fechar"></i></button></header>
+    <div class="cm-painel__corpo cm-pilha" style="padding:16px">
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="pc-n">Nome <span class="cm-campo__obrigatorio" aria-hidden="true">*</span></label><div class="cm-entrada"><input id="pc-n" autofocus></div></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="pc-p">Papel</label><div class="cm-selecao"><select id="pc-p"><option>Conselheiro</option><option>Subsíndico</option><option>Zelador</option><option>Morador</option></select><i data-i="chevron-baixo"></i></div></div>
+      <div class="cm-campo"><label class="cm-campo__rotulo" for="pc-t2">WhatsApp</label><div class="cm-entrada"><span class="cm-entrada__prefixo">+55</span><input id="pc-t2" type="tel" placeholder="(41) 98765-4321"></div></div>
+      <p class="cm-t-legenda">Faltou campo? <a class="cm-link" href="#">Abrir o formulário completo</a>, levando o que já foi digitado.</p>
+    </div>
+    <footer class="cm-painel__pe"><button class="cm-botao" type="button" data-q2-fechar>Cancelar</button><button class="cm-botao" type="button" data-q2-toast="Contato criado. Formulário limpo para o próximo.|sucesso">Criar e outro</button><button class="cm-botao cm-botao--principal" type="button" data-q2-fechar data-q2-toast="Contato criado em Cond. Parque das Águas.|sucesso|Abrir">Criar contato</button></footer>
+  </aside>
+</div>
+
+<!-- painel: histórico -->
+<div id="painel-historico" hidden>
+  <aside class="cm-painel" role="dialog" aria-modal="true" aria-labelledby="ph-t">
+    <header class="cm-painel__cabeca"><h2 class="cm-painel__titulo" id="ph-t">Histórico de alterações</h2><button class="cm-botao cm-botao--icone cm-botao--discreto cm-empurra" type="button" aria-label="Fechar" data-q2-fechar><i data-i="fechar"></i></button></header>
+    <div class="cm-painel__corpo" style="padding:12px 16px">
+      <ol class="cm-auditoria">
+        <li class="cm-auditoria__dia">Hoje</li>
+        <li><time>09:31</time><b>Rafael Lima</b> mudou o telefone: <del>(41) 3456-7700</del> → <ins>(41) 3456-7788</ins></li>
+        <li class="cm-auditoria__dia">15/09</li>
+        <li><time>14:02</time><b>Carla Mendes</b> mudou a mensalidade: <del>R$ 4.152,40</del> → <ins>R$ 4.380,00</ins></li>
+        <li><time>14:02</time><b>Sistema</b> aplicou o reajuste IGP-M de 5,48%</li>
+        <li class="cm-auditoria__dia">02/07/2024</li>
+        <li><time>10:15</time><b>Rafael Lima</b> mudou a etapa: <del>Adoção</del> → <ins>Expansão</ins></li>
+        <li class="is-criacao"><time>12/03/2024</time>Criado por <b>Bruno Teixeira</b> a partir do negócio ganho</li>
+      </ol>
+    </div>
+    <footer class="cm-painel__pe"><a class="cm-link" href="#">Ver no log de auditoria</a></footer>
+  </aside>
+</div>
+
+<script>
+/* só o que é desta tela: próximo/anterior entre os 63 clientes da visão e o Path */
+(function(){
+  var lista=[['Cond. Parque das Águas','CT-2024-0187'],['Residencial Jardim Botânico','CT-2023-0412'],['Edifício Solar do Batel','CT-2024-0033']],i=0,pos=14;
+  function ir(d){
+    var go=function(){i=(i+d+lista.length)%lista.length;pos+=d;document.getElementById('nome-registro').textContent=lista[i][0];document.getElementById('contrato-registro').textContent=lista[i][1];
+      var n=document.querySelector('.cm-navegar-registro b');if(n) n.textContent=pos+' de 63';var t=document.querySelector('.cm-trilha [aria-current="page"]');if(t) t.textContent=lista[i][0];
+      document.title=lista[i][0]+', cliente';cmQ2.toast('Abrindo '+pos+' de 63: '+lista[i][0]+'.','info')};
+    cmQ2.pedirSaida(go,d>0?'o próximo cliente':'o cliente anterior');
+  }
+  document.addEventListener('keydown',function(e){if(e.ctrlKey||e.metaKey||e.altKey||cmQ2.digitando(e)||document.querySelector('.cm-sobreposicao:not([hidden]),[id^="painel-"]:not([hidden])')) return;
+    if(e.key==='j'||e.key==='J'){e.preventDefault();ir(1)} if(e.key==='k'||e.key==='K'){e.preventDefault();ir(-1)}});
+  document.addEventListener('click',function(e){var b=e.target.closest('.cm-navegar-registro button');if(b){ir(b.getAttribute('aria-label').indexOf('Próximo')===0?1:-1)}});
+  var main=document.getElementById('conteudo');
+  main.addEventListener('q2:salvo',function(e){var op=e.detail.opcao;e.preventDefault();
+    if(op==='proximo'){cmQ2.toast('Cliente salvo.','sucesso');setTimeout(function(){ir(1)},200)}
+    else if(op==='voltar') cmQ2.toast('Cliente salvo. Voltando à carteira, linha 14 destacada.','sucesso');
+    else if(op==='novo') cmQ2.toast('Cliente salvo. Abrindo Novo cliente.','sucesso');
+    else cmQ2.toast('Cliente salvo.','sucesso');
+  });
+  document.getElementById('pe-mover').addEventListener('click',function(){
+    var li=document.querySelectorAll('.cm-path li');li[2].className='is-feito';li[2].querySelector('button').removeAttribute('aria-current');li[2].querySelector('button').innerHTML=cmIcone('marcar')+'Expansão';
+    li[3].className='is-atual';li[3].querySelector('button').setAttribute('aria-current','step');
+    document.querySelector('.cm-path>.cm-botao').textContent='Avançar para Renovado';
+    document.querySelector('.cm-path__orientacao').innerHTML='<span><b>Desde hoje em Renovação.</b></span><span><b>O que a etapa pede:</b> proposta assinada pela síndica e pelo conselho</span>';
+    cmQ2.fecharModal(this);cmQ2.toast('Etapa: Renovação. Valor proposto R$ 4.620,00.','sucesso','Desfazer');
+  });
+})();
+</script>
+</body>
+</html>

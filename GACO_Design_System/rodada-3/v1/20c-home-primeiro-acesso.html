@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Início, primeiro acesso</title>
+<meta name="description" content="Início vazio de quem acabou de entrar: primeiros passos em sequência, mural com a recepção e equipe.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+  .pa-saud h1{font:var(--t-pagina);letter-spacing:var(--t-pagina-trk);margin:0}
+  .pa-saud p{font:var(--t-pequeno);color:var(--texto-2);margin:4px 0 var(--esp-5);max-width:70ch}
+  .pa-cab{display:flex;align-items:center;gap:8px;padding:14px 16px 4px}
+  .pa-cab h2{font:var(--t-subsecao);margin:0;flex:1}
+  .pa-prog{display:flex;align-items:center;gap:10px;padding:4px 16px 8px;font:var(--t-legenda);color:var(--texto-2)}
+  .pa-prog .lc-progresso{flex:1}
+  .pa-passos{padding:0 16px 8px}
+  .pa-dir h2{font:var(--t-subsecao);margin:0 0 6px;display:flex;gap:8px}
+  .pa-dir h2 .lc-aux{margin-left:auto;font:var(--t-legenda);color:var(--texto-2);font-weight:400}
+  .pa-dir+.pa-dir{border-top:var(--borda-1);padding-top:var(--esp-5)}
+</style>
+</head>
+<body data-moldura='{"modulo":"inicio","secao":"Mural","papel":"atendente","usuario":{"nome":"Juliana Prado","cargo":"Assistente de atendimento","iniciais":"JP","cor":"lc-av--c6"},"contadores":{"academy":1}}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+
+<details class="lc-nota-projeto" open>
+  <summary><b>Nota de projeto</b> Início vazio, primeiro acesso
+    <span class="lc-nota-projeto__serie"><a href="20-home.html">Início</a> <a href="20b-home-gestor.html">Gestor</a> <a href="20c-home-primeiro-acesso.html" aria-current="page">Primeiro acesso</a> <a href="20d-perfil.html">Perfil</a> <a href="20e-pessoas.html">Pessoas</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2><p>Quem entrou ontem não tem conversa, prazo nem histórico. Em vez de quatro caixas vazias, o Início vira a lista de primeiros passos, em ordem, cada um com o botão que leva até ele. A equipe aparece com rosto e o que cada um faz; o mural mostra a própria recepção.</p><p>A lista some sozinha quando o último passo é concluído, e o Para você assume o lugar.</p></section>
+    <section><h2>Fluxo</h2><ol>
+      <li>O passo seguinte fica destacado; os concluídos riscam e mostram quando foram feitos.</li>
+      <li>O botão de cada passo leva à tela certa (perfil, política, curso). Ao voltar, o passo já aparece marcado.</li>
+      <li>"Pular por agora" existe só nos passos opcionais; os obrigatórios (políticas) não somem.</li>
+      <li>"Apresente-se" abre o modal de publicação com um texto inicial editável.</li>
+    </ol></section>
+    <section><h2>Por que assim</h2><p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o Asana e o Notion (lista de primeiros passos no lugar do conteúdo vazio), o Gupy e o Factorial (integração do colaborador com políticas obrigatórias) e o Slack (mensagem de boas-vindas no canal da equipe) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div>
+</details>
+
+<div class="pa-saud"><h1>Boas-vindas, Juliana</h1><p>Você entrou na equipe de Atendimento da Administradora Alpha em 28/09. Sua gestora é a Letícia Araújo. Abaixo, o que fazer nos primeiros dias, na ordem.</p></div>
+
+<div class="lc-inicio">
+  <div class="lc-inicio__esq">
+    <section class="lc-eu" aria-labelledby="eu-n">
+      <div class="lc-eu__topo"><span class="lc-av lc-av--48 lc-av--c6" aria-hidden="true">JP<span class="lc-presenca lc-presenca--on"></span></span><div><h2 class="lc-eu__nome" id="eu-n">Juliana Prado</h2><div class="lc-eu__cargo">Assistente de atendimento<br>Atendimento, zona leste</div></div></div>
+      <button type="button" class="lc-status-pessoal" aria-label="Seu status: Disponível. Trocar status"><span class="lc-status-pessoal__ponto"></span>Disponível<small>Primeira semana</small></button>
+      <ul class="lc-eu__dados"><li><i data-i="telefone"></i><span class="lc-cor-3">Ramal ainda não definido</span></li><li><i data-i="email"></i>juliana.prado@alpha.adm.br</li><li><i data-i="calendario"></i>Na Administradora Alpha desde 28/09/2026</li></ul>
+    </section>
+    <section class="lc-caixa" aria-labelledby="pv-vazio">
+      <div class="pa-cab"><h2 id="pv-vazio">Para você</h2></div>
+      <div class="lc-vazio" style="padding:8px 16px 18px"><p class="lc-vazio__texto">Ainda não há nada seu. Quando você assumir a primeira conversa, ela aparece aqui com o prazo de resposta.</p></div>
+    </section>
+  </div>
+
+  <div class="lc-inicio__centro">
+    <section class="lc-caixa" aria-labelledby="pp-tit">
+      <div class="pa-cab"><h2 id="pp-tit">Primeiros passos</h2><span class="lc-contagem">2 de 6</span></div>
+      <div class="pa-prog"><span class="lc-progresso" style="--_v:33%" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="6" aria-label="Primeiros passos concluídos"></span>2 de 6 concluídos</div>
+      <ol class="lc-boas-vindas pa-passos" role="list">
+        <li class="lc-feito"><span class="lc-boas-vindas__t">Ative seu acesso e crie a senha<small>Feito em 28/09 às 09:12</small></span><span class="lc-estado lc-estado--sucesso">Feito</span></li>
+        <li class="lc-feito"><span class="lc-boas-vindas__t">Coloque sua foto e o celular de contato<small>Feito em 28/09 às 09:20</small></span><span class="lc-estado lc-estado--sucesso">Feito</span></li>
+        <li><span class="lc-boas-vindas__t">Leia e dê ciência das 3 políticas obrigatórias<small>Código de conduta, LGPD no atendimento, Uso do WhatsApp da empresa. Cerca de 15 min.</small></span><a class="lc-btn lc-btn--principal lc-btn--p" href="#">Ler as políticas</a></li>
+        <li><span class="lc-boas-vindas__t">Faça o curso Primeiros passos no atendimento<small>Academy, 4 aulas de 20 min. Pede nota 7 para liberar a fila.</small></span><a class="lc-btn lc-btn--p" href="#">Abrir curso</a></li>
+        <li><span class="lc-boas-vindas__t">Acompanhe 5 atendimentos da Beatriz<small>Ela é a sua madrinha nesta semana. As conversas aparecem em modo leitura.</small></span><button class="lc-btn lc-btn--p" type="button">Ver conversas</button></li>
+        <li><span class="lc-boas-vindas__t">Apresente-se para a empresa <span class="lc-opcional">(opcional)</span><small>Uma publicação curta no mural: de onde você vem e no que pode ajudar.</small></span><span class="lc-grupo-btn"><button class="lc-btn lc-btn--p lc-btn--discreto" type="button">Pular por agora</button><button class="lc-btn lc-btn--p" type="button">Apresente-se</button></span></li>
+      </ol>
+    </section>
+
+    <article class="lc-post"><div class="lc-post__cab"><span class="lc-av lc-av--40 lc-av--c3" aria-hidden="true">LA</span><div class="lc-post__quem"><b>Letícia Araújo</b> deu boas-vindas a <b>você</b><span class="lc-post__meta">28/09 às 08:40, para Relacionamento com Condomínios</span></div></div>
+      <div class="lc-post__corpo"><p>Pessoal, a Juliana chega hoje para o Atendimento. Foram três anos em portaria de condomínio, então ela conhece o outro lado do balcão. A Bia é a madrinha nesta semana.</p></div>
+      <div class="lc-reacoes-resumo"><span class="lc-reacoes-resumo__pilha" aria-hidden="true"><span><i data-i="amei"></i></span><span><i data-i="curtir"></i></span></span>Beatriz, Carlos e mais 16<span style="margin-left:auto">9 comentários</span></div>
+      <div class="lc-post__acoes"><button type="button"><i data-i="curtir"></i>Curtir</button><button type="button"><i data-i="comentario"></i>Agradecer</button></div></article>
+    <div class="lc-evento-mural"><span class="lc-evento-mural__ic"><i data-i="aniversario"></i></span><div><b>Diego Ramos</b> e <b>Sônia Freitas</b> fazem aniversário hoje.<small>Diego é do Financeiro; Sônia, da Portaria remota.</small></div><button class="lc-btn lc-btn--p" type="button" data-toast="Parabéns enviados">Dar parabéns</button></div>
+    <p class="lc-legenda" style="text-align:center;padding:8px 0">O mural mostra as publicações a partir do seu primeiro dia. <a href="#">Ver as anteriores</a></p>
+  </div>
+
+  <aside class="lc-inicio__dir" aria-label="Equipe e agenda">
+    <section class="pa-dir" aria-labelledby="eq-pa"><h2 id="eq-pa">Sua equipe <span class="lc-aux">8 pessoas</span></h2>
+      <ul class="lc-equipe">
+        <li><span class="lc-av lc-av--32 lc-av--c3" aria-hidden="true">LA<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-equipe__nome">Letícia Araújo</span><span class="lc-equipe__faz">Sua gestora</span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Letícia Araújo"><i data-i="conversa"></i></button></li>
+        <li><span class="lc-av lc-av--32 lc-av--c4" aria-hidden="true">BN<span class="lc-presenca lc-presenca--ocupado"></span></span><span><span class="lc-equipe__nome">Beatriz Nogueira</span><span class="lc-equipe__faz">Sua madrinha, em atendimento</span></span><button class="lc-btn lc-btn--icone lc-btn--discreto lc-btn--p" type="button" aria-label="Conversar com Beatriz Nogueira"><i data-i="conversa"></i></button></li>
+        <li><span class="lc-av lc-av--32 lc-av--c5" aria-hidden="true">CL<span class="lc-presenca lc-presenca--reuniao"></span></span><span><span class="lc-equipe__nome">Carlos Lima</span><span class="lc-equipe__faz">Em reunião até 11h</span></span><span></span></li>
+        <li><span class="lc-av lc-av--32 lc-av--c2" aria-hidden="true">MT<span class="lc-presenca lc-presenca--on"></span></span><span><span class="lc-equipe__nome">Márcio Tanaka</span><span class="lc-equipe__faz">Disponível</span></span><span></span></li>
+      </ul><a class="lc-btn lc-btn--link" href="20e-pessoas.html">Ver a equipe inteira</a></section>
+    <section class="pa-dir" aria-labelledby="ag-pa"><h2 id="ag-pa">Hoje <span class="lc-aux">quinta, 01/10</span></h2>
+      <ul class="lc-agenda"><li><span class="lc-agenda__hora">10:00</span><span>Integração com o RH<span class="lc-agenda__sub">Sala 2, com Mariana Sá</span></span><span></span></li><li><span class="lc-agenda__hora">14:00</span><span>Acompanhar atendimento<span class="lc-agenda__sub">Com Beatriz Nogueira</span></span><span></span></li></ul></section>
+  </aside>
+</div>
+
+<section class="lc-nota-a11y" aria-labelledby="a11y-pa"><h2 id="a11y-pa">Acessibilidade desta tela</h2><dl>
+  <dt>Ordem de foco</dt><dd>Moldura; cartão Eu; Para você (texto do vazio); Primeiros passos (barra de progresso, cada passo e o seu botão); mural; equipe; agenda.</dd>
+  <dt>O que é anunciado</dt><dd>"Primeiros passos concluídos, 2 de 6" (barra de progresso com valor); cada passo concluído como "Feito em 28/09 às 09:12"; o passo opcional com "(opcional)" lido no nome.</dd>
+  <dt>Nome do que é só ícone</dt><dd>Conversar com (nome da pessoa).</dd></dl></section>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+</body>
+</html>

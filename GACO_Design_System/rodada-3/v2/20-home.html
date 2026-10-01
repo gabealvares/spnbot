@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-contexto="interno">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Início: duas variações</title>
+<script src="sistema/marca.js"></script>
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-q3.css">
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-q3.js"></script>
+<script src="sistema/moldura.js" defer></script>
+<style>
+/* só disposição desta tela */
+.q3-home{display:grid;gap:20px;align-items:start;padding-top:18px}
+.q3-home[data-v="a"]{grid-template-columns:272px minmax(0,1fr) minmax(0,1.12fr)}
+.q3-home[data-v="b"]{grid-template-columns:392px minmax(0,1fr) 288px}
+.q3-col{display:flex;flex-direction:column;gap:16px;min-width:0}
+.q3-cabeca{display:flex;align-items:center;gap:10px;margin-bottom:8px;min-height:32px;flex-wrap:wrap}
+.q3-cabeca h2{font-size:var(--cm-tipo-secao);line-height:var(--cm-tipo-secao-lh);font-weight:700;margin:0}
+.q3-cabeca .cm-t-legenda{margin-right:auto}
+.q3-home[data-v="b"] #b-pv .cm-pv-item{grid-template-columns:28px minmax(0,1fr)}
+.q3-home[data-v="b"] #b-pv .cm-pv-item__acoes{grid-column:2;justify-content:flex-start}
+.q3-home[data-v="b"] #b-pv .cm-ladrilho--p{width:28px}
+.q3-mural-lista{display:flex;flex-direction:column;gap:10px}
+.q3-mural-lista .cm-post+.cm-post{margin-top:0}
+.q3-tabela-post{margin-top:10px;border-top:1px solid var(--cm-filete)}
+.q3-aniv li{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dotted var(--cm-filete);font-size:13px}
+.q3-aniv li:last-child{border-bottom:0}
+.q3-aniv span.cm-cresce{min-width:0}
+.q3-aniv small{display:block;color:var(--cm-texto-2);font-size:12px}
+.q3-pv-abas{margin:0 0 -1px;padding:0 6px;border:1px solid var(--cm-filete);border-bottom:0;background:var(--cm-camada-1)}
+.q3-pv-abas .cm-empurra{align-self:center;margin-right:4px}
+@media (max-width:1279px){ .q3-home[data-v="a"]{grid-template-columns:248px minmax(0,1fr) minmax(0,1fr)} .q3-home[data-v="b"]{grid-template-columns:340px minmax(0,1fr) 260px} }
+@media (max-width:1099px){ .q3-home[data-v]{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} .q3-home[data-v] .q3-col:first-child{grid-column:1/-1} }
+@media (max-width:899px){
+  .q3-home[data-v]{display:flex;flex-direction:column}
+  .q3-col{display:contents}
+  #b-pv{order:1}#b-agenda{order:2}#b-mural{order:3}#b-voce{order:4}#b-equipe{order:5}#b-aniv{order:6}
+  .q3-home>.q3-col>*{width:100%}
+}
+</style>
+</head>
+<body>
+<a class="cm-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="cm-doc" aria-label="Sobre esta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__topo">
+   <p class="cm-doc__titulo">Início do colaborador, duas variações para escolher <small>Beatriz Nogueira, atendente N2 do Suporte, quinta-feira 01/10 às 09:41. Corrige o bloqueio da crítica C1: o mural ganhou largura real e o trabalho continua à mão.</small></p>
+   <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-recolher aria-expanded="true"><i data-i="ocultar"></i> Esconder explicação</button>
+  </div>
+  <div class="cm-doc__grade">
+   <section class="cm-doc__bloco"><h2>O que esta tela resolve</h2>
+    <p>A pessoa chega e vê, sem rolar, o que é dela (Para você, com o botão que resolve no próprio item), quem da equipe está por perto (presença no padrão Teams, com palavra) e o que a empresa está dizendo (mural com comunicado, reconhecimento, aniversário). Nenhum número de desempenho.</p>
+    <p><b>Variação A:</b> Para você no centro, mural largo à direita. <b>Variação B:</b> mural no centro, Para você à esquerda, mais largo que na V2. O dono escolhe uma, ou uma por papel.</p>
+   </section>
+   <section class="cm-doc__bloco"><h2>Fluxo</h2>
+    <ol>
+     <li>Abas de Para você (Tudo, Menções, Aprovações, Prazos) filtram no lugar; a contagem acompanha.</li>
+     <li>Cada item tem a ação à direita: "Aceitar" a troca de plantão some com o item e mostra o toast com "Desfazer" por 8 s.</li>
+     <li>"Li e estou ciente" no comunicado grava a ciência com data e hora; a caixa fica verde e o item sai de Para você.</li>
+     <li>Reações marcam e desmarcam; "Reconhecer" abre o publicador no modo reconhecimento.</li>
+     <li>Presença e recado mudam pelo seletor no bloco Você ou pelo avatar na barra de cima; volta pelo logo ou por G I.</li>
+    </ol>
+   </section>
+   <section class="cm-doc__bloco"><h2>Resolvemos fazer assim porque</h2>
+    <p>o Microsoft Teams e o Slack mostram presença com forma, cor e um recado escrito; o Workplace e o LinkedIn colocam o feed numa coluna de leitura de 560 a 640 px, que é a largura que o mural recebe aqui; e o monday.com (My Work) e o Linear Inbox tratam o que é seu como uma caixa de trabalho com ação em cada linha. A V2 tinha o mural em 300 px; agora ele tem entre 560 e 680 px nas duas variações.</p>
+   </section>
+  </div>
+  <div class="cm-doc__estados"><span>Ver:</span>
+   <div class="cm-segmentado cm-segmentado--p" role="group" aria-label="Variação e estado da tela">
+    <button type="button" data-q3-estado="a" aria-pressed="true">A: Para você no centro</button>
+    <button type="button" data-q3-estado="b" aria-pressed="false">B: mural no centro</button>
+    <button type="button" data-q3-estado="carregando" aria-pressed="false">Carregando</button>
+    <button type="button" data-q3-estado="erro" aria-pressed="false">Mural com erro</button>
+   </div>
+   <a class="cm-link" href="20d-home-gestor.html">Início do gestor</a>
+   <a class="cm-link" href="20e-primeiro-acesso.html">Primeiro acesso</a>
+  </div>
+  <nav class="cm-doc__paginas" aria-label="Telas desta parte" data-q3-paginas></nav>
+ </div>
+</header>
+
+<div data-moldura='{"tela":"Início","papel":"Atendimento","trilha":false,"sino":4,"usuario":{"nome":"Beatriz Nogueira","iniciais":"BN","cargo":"Atendente N2, Suporte","presenca":"disponivel","tom":2}}'></div>
+
+<main id="conteudo" class="cm-pagina">
+ <h1 class="cm-sr">Início</h1>
+ <div class="q3-home" id="home" data-v="a">
+  <div class="q3-col" id="col1"></div>
+  <div class="q3-col" id="col2"></div>
+  <div class="q3-col" id="col3"></div>
+ </div>
+
+ <!-- Blocos: a ordem dentro das colunas é montada pela variação (o DOM acompanha a ordem visual) -->
+ <div hidden id="blocos">
+
+ <!-- VOCÊ -->
+ <section class="cm-voce" id="b-voce" aria-label="Você">
+  <div data-se="a b erro">
+   <div class="cm-voce__topo">
+    <span class="cm-avatar cm-avatar--g cm-avatar--2">BN<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span>
+    <div class="cm-cresce"><div class="cm-voce__nome">Beatriz Nogueira</div><div class="cm-voce__cargo">Atendente N2, Suporte ao cliente</div></div>
+   </div>
+   <div class="cm-voce__status">
+    <div class="cm-ancora" style="display:flex">
+     <button class="cm-gatilho" type="button" aria-haspopup="menu" aria-expanded="false" data-q3-menu="m-presenca" aria-label="Presença: Disponível. Alterar"><span class="cm-presenca-texto"><span class="cm-presenca cm-presenca--disponivel"></span></span><span class="cm-gatilho__valor">Disponível</span><i data-i="chevron-baixo"></i></button>
+     <div class="cm-menu cm-flutuante" id="m-presenca" role="menu" hidden style="width:100%">
+      <button class="cm-menu__item" role="menuitemradio" aria-checked="true" type="button"><span class="cm-presenca-texto"><span class="cm-presenca cm-presenca--disponivel"></span></span><span>Disponível</span><span></span></button>
+      <button class="cm-menu__item" role="menuitemradio" aria-checked="false" type="button"><span class="cm-presenca-texto"><span class="cm-presenca cm-presenca--ocupado"></span></span><span>Ocupado</span><span></span></button>
+      <button class="cm-menu__item" role="menuitemradio" aria-checked="false" type="button"><span class="cm-presenca-texto"><span class="cm-presenca cm-presenca--nao-incomodar"></span></span><span>Não incomodar</span><span></span></button>
+      <button class="cm-menu__item" role="menuitemradio" aria-checked="false" type="button"><span class="cm-presenca-texto"><span class="cm-presenca cm-presenca--ausente"></span></span><span>Volto logo</span><span></span></button>
+      <div class="cm-menu__pe">Em atendimento é automático quando você abre uma conversa.</div>
+     </div>
+    </div>
+    <button class="cm-voce__recado" type="button" data-q3-toast="Recado salvo: some às 18h" data-q3-toast-tipo="info"><i data-i="editar"></i>Na fila do WhatsApp até 18h</button>
+   </div>
+   <dl class="cm-ficha">
+    <div class="cm-ficha__linha is-leitura"><dt>Ramal</dt><dd>2041</dd><span></span></div>
+    <div class="cm-ficha__linha is-leitura"><dt>Turno</dt><dd>9h às 18h, plantão sáb 04/10</dd><span></span></div>
+    <div class="cm-ficha__linha is-leitura"><dt>Gestora</dt><dd><a class="cm-link" href="20b-perfil.html">Juliana Prado</a></dd><span></span></div>
+   </dl>
+  </div>
+  <div data-se="carregando" aria-hidden="true"><div class="cm-linha"><span class="cm-esqueleto cm-esqueleto--avatar" style="width:48px;height:48px"></span><div class="cm-cresce"><span class="cm-esqueleto cm-esqueleto--linha" style="width:70%"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:50%"></span></div></div><span class="cm-esqueleto cm-esqueleto--bloco" style="height:60px;margin-top:12px"></span></div>
+ </section>
+
+ <!-- EQUIPE -->
+ <section class="cm-cartao" id="b-equipe" aria-labelledby="t-equipe">
+  <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-equipe">Suporte ao cliente</h2><a class="cm-link cm-t-legenda" href="20c-pessoas.html">Todas as pessoas</a></header>
+  <div data-se="a b erro">
+   <div class="cm-cartao__corpo" style="padding-bottom:8px">
+    <div class="cm-rostos">
+     <div class="cm-rostos__texto"><b>5 disponíveis agora</b>, de 8 na equipe</div>
+    </div>
+   </div>
+   <ul class="cm-equipe">
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--4">JP<span class="cm-presenca cm-presenca--ocupado" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Juliana Prado</a></span><span class="cm-equipe__status">Ocupada: síndica do Vila Serena até 11h</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Conversar com Juliana Prado"><i data-i="conversa"></i></button></li>
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--1">DR<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Diego Ramos</a></span><span class="cm-equipe__status">Disponível: ponte com a manutenção hoje</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Conversar com Diego Ramos"><i data-i="conversa"></i></button></li>
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--3">LM<span class="cm-presenca cm-presenca--em-atendimento" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Larissa Mendes</a></span><span class="cm-equipe__status">Em atendimento: 3 conversas</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Conversar com Larissa Mendes"><i data-i="conversa"></i></button></li>
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--5">RS<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Renata Sousa</a></span><span class="cm-equipe__status">Disponível: cobrindo a fila de e-mail</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Conversar com Renata Sousa"><i data-i="conversa"></i></button></li>
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--1">TA<span class="cm-presenca cm-presenca--disponivel" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Thiago Alves</a></span><span class="cm-equipe__status">Disponível: fila do portal</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Conversar com Thiago Alves"><i data-i="conversa"></i></button></li>
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--4">CT<span class="cm-presenca cm-presenca--ausente" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Camila Torres</a></span><span class="cm-equipe__status">Volto logo: consulta médica até 11h</span></span><button class="cm-botao cm-botao--icone cm-botao--discreto cm-botao--p" type="button" aria-label="Conversar com Camila Torres"><i data-i="conversa"></i></button></li>
+    <li><span class="cm-avatar cm-avatar--m cm-avatar--2">PH<span class="cm-presenca cm-presenca--offline" aria-hidden="true"></span></span><span><span class="cm-equipe__nome"><a href="20b-perfil.html">Paulo Henrique</a></span><span class="cm-equipe__status">De férias, volta em 06/10</span></span><span></span></li>
+   </ul>
+   <div class="cm-cartao__pe"><button class="cm-botao cm-botao--p" type="button"><i data-i="conversas"></i>Conversa da equipe</button><a class="cm-botao cm-botao--p cm-botao--discreto" href="20c-pessoas.html"><i data-i="organograma"></i>Organograma</a></div>
+  </div>
+  <div data-se="carregando" class="cm-cartao__corpo" aria-hidden="true"><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:80%"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:90%"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:60%"></span></div>
+ </section>
+
+ <!-- ANIVERSÁRIOS -->
+ <section class="cm-cartao" id="b-aniv" aria-labelledby="t-aniv">
+  <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-aniv">Esta semana na empresa</h2></header>
+  <ul class="cm-cartao__corpo q3-aniv" style="list-style:none;margin:0">
+   <li><i data-i="aniversario"></i><span class="cm-cresce">Larissa Mendes faz aniversário hoje<small>Suporte ao cliente</small></span><button class="cm-botao cm-botao--p" type="button" data-q3-toast="Parabéns enviado para a Larissa">Dar parabéns</button></li>
+   <li><i data-i="cracha"></i><span class="cm-cresce">Diego Ramos completa 3 anos de casa amanhã<small>Suporte ao cliente</small></span></li>
+   <li><i data-i="aniversario"></i><span class="cm-cresce">Sérgio Lima, sábado 04/10<small>Operações, zeladoria</small></span></li>
+  </ul>
+ </section>
+
+ <!-- PARA VOCÊ -->
+ <section id="b-pv" aria-labelledby="t-pv">
+  <div class="q3-cabeca"><h2 id="t-pv">Para você</h2><span class="cm-t-legenda">Quinta-feira, 1 de outubro</span>
+   <div class="cm-ancora cm-ancora--direita">
+    <button class="cm-botao cm-botao--p cm-botao--discreto" type="button" aria-haspopup="menu" aria-expanded="false" data-q3-menu="m-ordem"><i data-i="ordenar"></i>Por prazo</button>
+    <div class="cm-menu cm-flutuante" id="m-ordem" role="menu" hidden>
+     <button class="cm-menu__item cm-menu__item--sem-icone" role="menuitemradio" aria-checked="true" type="button"><span>Por prazo</span><span></span></button>
+     <button class="cm-menu__item cm-menu__item--sem-icone" role="menuitemradio" aria-checked="false" type="button"><span>Mais recentes</span><span></span></button>
+     <button class="cm-menu__item cm-menu__item--sem-icone" role="menuitemradio" aria-checked="false" type="button"><span>Por origem</span><span></span></button>
+    </div>
+   </div>
+  </div>
+  <div class="cm-abas q3-pv-abas" role="tablist" aria-label="Filtrar Para você" id="pv-abas">
+   <button role="tab" aria-selected="true" type="button" data-filtro="tudo">Tudo <span class="cm-contador cm-contador--novo" data-q3-pv-conta="pv-lista">6</span></button>
+   <button role="tab" aria-selected="false" type="button" data-filtro="mencao" tabindex="-1">Menções <span class="cm-contador">1</span></button>
+   <button role="tab" aria-selected="false" type="button" data-filtro="aprovacao" tabindex="-1">Aprovações <span class="cm-contador">1</span></button>
+   <button role="tab" aria-selected="false" type="button" data-filtro="prazo" tabindex="-1">Prazos <span class="cm-contador">3</span></button>
+  </div>
+  <div class="cm-pv" data-se="a b erro">
+   <div id="pv-lista">
+    <article class="cm-pv-item is-urgente" data-tipo="prazo">
+     <span class="cm-ladrilho cm-ladrilho--p"><i data-i="whatsapp"></i></span>
+     <div><div class="cm-pv-item__titulo"><a href="21-suporte.html">7 conversas esperando você no WhatsApp</a></div><div class="cm-pv-item__contexto">A mais antiga é da síndica Marina Costa, há 29 min: vazamento no teto da garagem do Parque das Águas.</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--aviso"><i data-i="atencao"></i>Atenção: responder em 6 min</span></div></div>
+     <div class="cm-pv-item__acoes"><a class="cm-botao cm-botao--p cm-botao--principal" href="21-suporte.html">Abrir a fila</a></div>
+    </article>
+    <article class="cm-pv-item is-vencido" data-tipo="prazo">
+     <span class="cm-ladrilho cm-ladrilho--p"><i data-i="telefone"></i></span>
+     <div><div class="cm-pv-item__titulo"><a href="21c-chamado.html">Retornar a Patrícia Nunes sobre o salão de festas</a></div><div class="cm-pv-item__contexto">Parque das Águas, Bl A Ap 804, pediu 18/10. A data conflita com a mudança do 302.</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--perigo"><i data-i="perigo"></i>Venceu às 09:37</span><span class="cm-t-legenda">há 4 min</span></div></div>
+     <div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button" data-q3-toast="Lembrete adiado para 11:00" data-q3-toast-tipo="info">Adiar</button><button class="cm-botao cm-botao--p" type="button" data-q3-concluir="Ligação registrada no chamado 48177"><i data-i="telefone"></i>Ligar</button></div>
+    </article>
+    <article class="cm-pv-item" data-tipo="mencao">
+     <span class="cm-ladrilho cm-ladrilho--p"><i data-i="mencao"></i></span>
+     <div><div class="cm-pv-item__titulo"><a href="21c-chamado.html">Juliana Prado mencionou você no chamado 48213</a></div><div class="cm-pv-item__contexto">"Corretiva urgente, sim. Já avisei o Diego. Se for junta de dilatação, pede laudo."</div><div class="cm-pv-item__prazo"><span class="cm-t-legenda">Hoje, 09:24, nota interna</span></div></div>
+     <div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p cm-botao--discreto" type="button" data-q3-concluir="Menção marcada como lida">Marcar como lida</button><a class="cm-botao cm-botao--p" href="21c-chamado.html">Responder</a></div>
+    </article>
+    <article class="cm-pv-item" data-tipo="aprovacao">
+     <span class="cm-ladrilho cm-ladrilho--p"><i data-i="troca"></i></span>
+     <div><div class="cm-pv-item__titulo">Diego Ramos quer trocar o plantão de sábado, 04/10</div><div class="cm-pv-item__contexto">Ele cobre o seu domingo, 12/10. A Juliana aprova depois do seu aceite.</div><div class="cm-pv-item__prazo"><span class="cm-estado cm-estado--neutro"><i data-i="pendente"></i>Responder até 12h</span></div></div>
+     <div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button" data-q3-concluir="Troca recusada. Diego foi avisado.">Recusar</button><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q3-concluir="Troca aceita. Foi para a aprovação da Juliana.">Aceitar</button></div>
+    </article>
+    <article class="cm-pv-item" data-tipo="prazo">
+     <span class="cm-ladrilho cm-ladrilho--p"><i data-i="ciencia"></i></span>
+     <div><div class="cm-pv-item__titulo">Comunicado pede sua ciência: novo horário do plantão</div><div class="cm-pv-item__contexto">Juliana Prado publicou ontem às 17:40. Vale a partir de 06/10.</div><div class="cm-pv-item__prazo"><span class="cm-t-legenda">Até sexta, 03/10</span></div></div>
+     <div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button" data-q3-concluir="Ciência registrada às 09:52">Li e estou ciente</button></div>
+    </article>
+    <article class="cm-pv-item" data-tipo="prazo">
+     <span class="cm-ladrilho cm-ladrilho--p"><i data-i="capelo"></i></span>
+     <div><div class="cm-pv-item__titulo">Entregar o estudo de caso da semana 5</div><div class="cm-pv-item__contexto">Atendimento ao síndico, vale 3,0 pontos. Rascunho salvo ontem às 22:10.</div><div class="cm-pv-item__prazo"><span class="cm-t-legenda">Sex 03/10, 23:59</span></div></div>
+     <div class="cm-pv-item__acoes"><button class="cm-botao cm-botao--p" type="button">Continuar</button></div>
+    </article>
+   </div>
+   <div class="cm-vazio" id="pv-vazio" hidden><i data-i="caixa-de-entrada"></i><p class="cm-vazio__titulo">Nada nesta aba</p><p class="cm-vazio__texto">Quando alguém pedir sua aprovação, aparece aqui com o botão que resolve.</p></div>
+   <div class="cm-pv__pe"><i data-i="sucesso"></i>4 itens concluídos hoje<button class="cm-botao cm-botao--link cm-botao--p cm-empurra" type="button">Mostrar</button></div>
+  </div>
+  <div class="cm-pv" data-se="carregando" aria-busy="true" aria-label="Carregando Para você">
+   <div class="cm-pv-item"><span class="cm-esqueleto" style="width:28px;height:28px"></span><div><span class="cm-esqueleto cm-esqueleto--linha" style="width:70%"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:90%"></span></div><span class="cm-esqueleto" style="width:80px;height:24px"></span></div>
+   <div class="cm-pv-item"><span class="cm-esqueleto" style="width:28px;height:28px"></span><div><span class="cm-esqueleto cm-esqueleto--linha" style="width:55%"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:80%"></span></div><span class="cm-esqueleto" style="width:80px;height:24px"></span></div>
+   <div class="cm-pv-item"><span class="cm-esqueleto" style="width:28px;height:28px"></span><div><span class="cm-esqueleto cm-esqueleto--linha" style="width:65%"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:70%"></span></div><span class="cm-esqueleto" style="width:80px;height:24px"></span></div>
+  </div>
+ </section>
+
+ <!-- AGENDA -->
+ <section class="cm-cartao" id="b-agenda" aria-labelledby="t-agenda">
+  <header class="cm-cartao__cabeca"><h2 class="cm-cartao__titulo" id="t-agenda">Agenda de hoje</h2><a class="cm-link cm-t-legenda" href="#">Abrir calendário</a></header>
+  <div class="cm-cartao__corpo" style="padding-top:2px;padding-bottom:4px">
+   <ul class="cm-agenda">
+    <li class="is-passado"><span class="cm-agenda__hora">09:00<small>15 min</small></span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">Passagem de turno da noite</span><span class="cm-agenda__sub">Sala virtual da equipe</span></span><span></span></li>
+    <li class="is-agora"><span class="cm-agenda__hora">10:00<small>15 min</small></span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">Daily do Suporte</span><span class="cm-agenda__sub">Começa em 19 min, Teams</span></span><button class="cm-botao cm-botao--p" type="button">Entrar</button></li>
+    <li><span class="cm-agenda__hora">14:00<small>50 min</small></span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">Aula ao vivo: quórum de assembleia</span><span class="cm-agenda__sub">Academy, turma 2026.2</span></span><span></span></li>
+    <li><span class="cm-agenda__hora">15:30<small>30 min</small></span><span class="cm-agenda__barra"></span><span><span class="cm-agenda__titulo">1:1 com Juliana Prado</span><span class="cm-agenda__sub">Plantões de outubro</span></span><button class="cm-botao cm-botao--p cm-botao--discreto" type="button">Preparar</button></li>
+   </ul>
+  </div>
+ </section>
+
+ <!-- MURAL -->
+ <section id="b-mural" aria-labelledby="t-mural">
+  <div class="q3-cabeca"><h2 id="t-mural">Mural</h2>
+   <div class="cm-abas cm-abas--p cm-abas--sem-linha cm-empurra" role="tablist" aria-label="Mural de quem">
+    <button role="tab" aria-selected="true" type="button">Minha equipe</button>
+    <button role="tab" aria-selected="false" type="button" tabindex="-1">Toda a empresa</button>
+    <button role="tab" aria-selected="false" type="button" tabindex="-1">Comunicados</button>
+   </div>
+  </div>
+  <div class="cm-publicar" style="margin-bottom:10px">
+   <span class="cm-avatar cm-avatar--m cm-avatar--2" aria-hidden="true">BN</span>
+   <button class="cm-publicar__campo" type="button">Escreva para a equipe do Suporte</button>
+   <button class="cm-botao cm-botao--p" type="button" data-q3-modal="modal-reconhecer"><i data-i="reconhecimento"></i>Reconhecer</button>
+  </div>
+  <div class="q3-mural-lista" data-se="a b">
+   <article class="cm-post">
+    <header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--4">JP</span><div><div class="cm-post__autor">Juliana Prado</div><div class="cm-post__sub">Gestora do Suporte ao cliente</div></div><span class="cm-post__quando">ontem, 17:40</span></header>
+    <div class="cm-post__tipo"><i data-i="comunicado"></i>Comunicado para Suporte ao cliente <span class="cm-post__fixado"><i data-i="fixar"></i>fixado</span></div>
+    <h3 class="cm-post__titulo">Novo horário do plantão a partir de 06/10</h3>
+    <p class="cm-post__corpo">O plantão de sábado passa a ser das 8h às 14h, com uma pessoa na fila do WhatsApp e outra no e-mail. Quem estiver escalado recebe a escala de outubro hoje à tarde. Trocas continuam pelo Início, com o aceite do colega.</p>
+    <div class="cm-ciencia"><span class="cm-ciencia__texto">14 de 22 confirmaram a leitura. Prazo: sexta, 03/10.</span><button class="cm-botao cm-botao--p cm-botao--principal" type="button" data-q3-ciencia>Li e estou ciente</button></div>
+   </article>
+   <article class="cm-post cm-post--reconhecimento">
+    <header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--4">JP</span><div><div class="cm-post__autor">Juliana Prado</div><div class="cm-post__sub">Gestora do Suporte ao cliente</div></div><span class="cm-post__quando">08:55</span></header>
+    <div class="cm-post__tipo"><i data-i="reconhecimento"></i>Reconhecimento</div>
+    <div class="cm-reconhecido"><span class="cm-avatar cm-avatar--g cm-avatar--1">DR</span><div><div class="cm-post__autor">Diego Ramos</div><div class="cm-post__sub">Dono do problema, do jeito que a gente combinou</div></div></div>
+    <h3 class="cm-post__titulo" style="margin-top:10px">Portão da Vila Serena destravado em 40 minutos</h3>
+    <p class="cm-post__corpo">Ligou para o síndico a cada etapa, acionou a Portec antes de o porteiro pedir e deixou a OS fechada com foto. Foi o que o Sr. Osvaldo elogiou na pesquisa de ontem.</p>
+    <div class="cm-post__pe"><div class="cm-reacoes"><button class="cm-reacao" type="button" aria-pressed="true"><i data-i="parabens"></i>Parabéns <span class="cm-reacao__n">6</span></button><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="curtir"></i>Curtir <span class="cm-reacao__n">3</span></button><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="genial"></i>Genial <span class="cm-reacao__n">1</span></button><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="apoio"></i>Apoio</button></div><button class="cm-botao cm-botao--p cm-botao--discreto cm-empurra" type="button"><i data-i="conversa"></i>2 comentários</button></div>
+    <div class="cm-reacoes__quem">Você, Larissa, Thiago e mais 7 reagiram</div>
+   </article>
+   <article class="cm-post">
+    <header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--empresa" data-marca-inicial>A</span><div><div class="cm-post__autor">Administradora Alpha</div><div class="cm-post__sub">Comunicação interna, para toda a empresa</div></div><span class="cm-post__quando">ontem, 11:02</span></header>
+    <h3 class="cm-post__titulo" style="margin-top:10px">Assembleias de outubro: 14 condomínios, 9 presenciais</h3>
+    <p class="cm-post__corpo">O Suporte recebe mais ligações na semana do edital. As cinco primeiras estão abaixo; a lista completa fica em Projetos.</p>
+    <table class="cm-tabela cm-tabela--simples q3-tabela-post">
+     <thead><tr><th>Data</th><th>Condomínio</th><th>Formato</th></tr></thead>
+     <tbody>
+      <tr><td>08/10, 19h30</td><td>Ed. Solar do Bosque</td><td>Presencial, salão de festas</td></tr>
+      <tr><td>14/10, 20h</td><td>Cond. Parque das Águas</td><td>Híbrida</td></tr>
+      <tr><td>16/10, 19h</td><td>Ed. Monte Azul</td><td>Virtual</td></tr>
+      <tr><td>21/10, 19h30</td><td>Jardim das Acácias</td><td>Presencial</td></tr>
+      <tr><td>23/10, 19h30</td><td>Res. Vila Serena</td><td>Presencial, edital publicado</td></tr>
+     </tbody>
+    </table>
+    <div class="cm-post__pe"><div class="cm-reacoes"><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="curtir"></i>Curtir <span class="cm-reacao__n">18</span></button><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="apoio"></i>Apoio <span class="cm-reacao__n">4</span></button></div></div>
+   </article>
+   <article class="cm-post">
+    <header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--3">LM</span><div><div class="cm-post__autor">Larissa Mendes faz aniversário hoje</div><div class="cm-post__sub">Suporte ao cliente, 4 anos de casa</div></div></header>
+    <div class="cm-post__pe"><button class="cm-botao cm-botao--p" type="button" data-q3-toast="Parabéns enviado para a Larissa"><i data-i="aniversario"></i>Dar parabéns</button><span class="cm-t-legenda">9 pessoas já deram</span></div>
+   </article>
+   <article class="cm-post">
+    <header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--1">TA</span><div><div class="cm-post__autor">Thiago Alves concluiu uma disciplina</div><div class="cm-post__sub">Academy</div></div><span class="cm-post__quando">ontem</span></header>
+    <p class="cm-post__corpo">Rotinas de portaria e controle de chaves, turma 2026.1, média 8,7. Certificado emitido.</p>
+    <div class="cm-post__pe"><div class="cm-reacoes"><button class="cm-reacao" type="button" aria-pressed="false"><i data-i="parabens"></i>Parabéns <span class="cm-reacao__n">3</span></button></div></div>
+   </article>
+   <article class="cm-post">
+    <header class="cm-post__cabeca"><span class="cm-avatar cm-avatar--m cm-avatar--5">RS</span><div><div class="cm-post__autor">Renata Sousa entrou na equipe</div><div class="cm-post__sub">Atendente N1, Suporte ao cliente</div></div><span class="cm-post__quando">segunda</span></header>
+    <p class="cm-post__corpo">Vem da central de portaria do Grupo Vértice e começa pela fila de e-mail. Senta ao lado do Thiago, no 7º andar.</p>
+    <div class="cm-post__pe"><button class="cm-botao cm-botao--p" type="button" data-q3-toast="Boas-vindas enviadas para a Renata">Dar boas-vindas</button></div>
+   </article>
+  </div>
+  <div data-se="carregando" class="q3-mural-lista" aria-busy="true" aria-label="Carregando mural">
+   <div class="cm-post"><div class="cm-linha"><span class="cm-esqueleto cm-esqueleto--avatar" style="width:32px;height:32px"></span><span class="cm-esqueleto" style="width:40%"></span></div><span class="cm-esqueleto cm-esqueleto--titulo" style="margin-top:14px;width:60%"></span><span class="cm-esqueleto cm-esqueleto--linha"></span><span class="cm-esqueleto cm-esqueleto--linha" style="width:85%"></span></div>
+   <div class="cm-post"><div class="cm-linha"><span class="cm-esqueleto cm-esqueleto--avatar" style="width:32px;height:32px"></span><span class="cm-esqueleto" style="width:30%"></span></div><span class="cm-esqueleto cm-esqueleto--bloco" style="margin-top:14px"></span></div>
+  </div>
+  <div data-se="erro">
+   <div class="cm-alerta cm-alerta--perigo"><i data-i="perigo"></i><span class="cm-alerta__texto"><span class="cm-alerta__titulo">O mural não carregou</span><span class="cm-alerta__desc">A conexão caiu às 09:40. Para você e a equipe continuam atualizados; só as publicações ficaram para trás.</span></span><span class="cm-alerta__acoes"><button class="cm-botao cm-botao--p" type="button" data-q3-estado="a">Tentar de novo</button></span></div>
+  </div>
+ </section>
+ </div>
+
+ <!-- modal: reconhecer -->
+ <div class="cm-sobreposicao" id="modal-reconhecer" hidden>
+  <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="t-rec">
+   <div class="cm-modal__cabeca"><h2 class="cm-modal__titulo" id="t-rec">Reconhecer alguém<span class="cm-modal__sub">Aparece no mural da equipe e no perfil da pessoa.</span></h2><button class="cm-botao cm-botao--icone cm-botao--discreto" type="button" data-q3-fechar aria-label="Fechar"><i data-i="fechar"></i></button></div>
+   <div class="cm-modal__corpo cm-pilha">
+    <div class="cm-campo"><label class="cm-campo__rotulo" for="rec-quem">Quem</label><div class="cm-entrada"><i data-i="pessoa"></i><input id="rec-quem" value="Diego Ramos" autofocus></div></div>
+    <div class="cm-campo"><span class="cm-campo__rotulo" id="rec-valor">Valor</span>
+     <div class="cm-opcoes-botao" role="group" aria-labelledby="rec-valor"><button type="button" aria-pressed="true">Dono do problema</button><button type="button" aria-pressed="false">Calma no urgente</button><button type="button" aria-pressed="false">Ensina quem chega</button></div></div>
+    <div class="cm-campo"><label class="cm-campo__rotulo" for="rec-texto">O que a pessoa fez</label><textarea class="cm-area" id="rec-texto">Assumiu a ponte com a Hidrotec no vazamento do Parque das Águas e avisou a síndica a cada etapa.</textarea><p class="cm-campo__ajuda">Conte o fato. O mural mostra o nome de quem reconheceu.</p></div>
+   </div>
+   <div class="cm-modal__pe"><button class="cm-botao" type="button" data-q3-fechar>Cancelar</button><button class="cm-botao cm-botao--principal" type="button" data-q3-fechar data-q3-toast="Reconhecimento publicado no mural da equipe">Publicar</button></div>
+  </div>
+ </div>
+</main>
+
+<footer class="cm-doc cm-doc--pe" aria-label="Acessibilidade desta tela">
+ <div class="cm-doc__dentro">
+  <div class="cm-doc__grade cm-doc__grade--pe">
+   <section class="cm-doc__bloco"><h2>Ordem de foco</h2><p>Pular para o conteúdo, barra de cima (pesquisa, sino, engrenagem, avatar), favoritos e grupos. Depois segue a ordem visual da variação escolhida. A: presença, recado, equipe, aniversários, abas de Para você, cada item (título, ações), agenda, mural (abas, publicar, cada post). B: Para você, agenda, mural, você, equipe, aniversários. O DOM é reordenado junto com a variação, então Tab nunca pula de coluna.</p></section>
+   <section class="cm-doc__bloco"><h2>O que é anunciado</h2><p>Cada item de Para você é um artigo com título, contexto, prazo em texto ("Venceu às 09:37, há 4 min") e o verbo da ação. Ao concluir, o toast diz o que aconteceu ("Troca aceita. Foi para a aprovação da Juliana.") numa região viva educada. Presença é lida em palavra ("Ocupada: síndica do Vila Serena até 11h"), nunca só pela cor. Esqueletos têm aria-busy e o nome do bloco.</p></section>
+   <section class="cm-doc__bloco"><h2>Só ícone</h2><p>"Conversar com Juliana Prado" (balão em cada pessoa), "Notificações, 4 novas", "Configuração", "Sua conta e presença: Disponível", "Fechar" no modal. Reações têm palavra e número; o ícone é decorativo.</p></section>
+  </div>
+ </div>
+</footer>
+
+<script>
+/* montagem das variações: move os blocos para as colunas na ordem visual */
+(function(){
+  var L={a:[['b-voce','b-equipe','b-aniv'],['b-pv','b-agenda'],['b-mural']],
+         b:[['b-pv','b-agenda'],['b-mural'],['b-voce','b-equipe','b-aniv']]};
+  function montar(v){var l=L[v]||L.a;var home=document.getElementById('home');home.setAttribute('data-v',L[v]?v:'a');
+    ['col1','col2','col3'].forEach(function(c,i){var col=document.getElementById(c);l[i].forEach(function(id){col.appendChild(document.getElementById(id))})})}
+  document.addEventListener('q3:estado',function(e){montar(e.detail)});
+  montar('a');
+  /* filtro das abas de Para você */
+  document.getElementById('pv-abas').addEventListener('click',function(e){var b=e.target.closest('[data-filtro]');if(!b) return;var f=b.getAttribute('data-filtro');var n=0;
+    [].forEach.call(document.querySelectorAll('#pv-lista .cm-pv-item'),function(it){var ok=f==='tudo'||it.getAttribute('data-tipo')===f;it.hidden=!ok;if(ok)n++});
+    document.getElementById('pv-vazio').hidden=n>0});
+})();
+</script>
+</body>
+</html>
