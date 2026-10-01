@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Segmento</title>
+<meta name="description" content="Segmento de público com regras em frase, contagem ao vivo e prévia de contatos.">
+<link rel="stylesheet" href="sistema/tokens.css">
+<link rel="stylesheet" href="sistema/base.css">
+<link rel="stylesheet" href="sistema/componentes.css">
+<link rel="stylesheet" href="sistema/extra-p3.css">
+<script src="sistema/marca.js"></script>
+<style>
+.sg-grade{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:var(--esp-8);align-items:start}
+.sg-grupo{border:var(--borda-1);background:var(--sup-1);padding:12px 14px;margin-bottom:10px}
+.sg-grupo__cab{display:flex;align-items:center;gap:8px;margin-bottom:8px;font:600 13px/18px var(--fonte-ui);color:var(--texto-2)}
+.sg-cond{display:grid;grid-template-columns:28px minmax(0,1fr) minmax(0,.8fr) minmax(0,1fr) auto;gap:8px;align-items:center;margin-bottom:8px}
+.sg-cond>span{font:600 12px/1 var(--fonte-ui);color:var(--texto-2);text-align:center}
+.sg-conta{position:sticky;top:12px;border:var(--borda-1);background:var(--sup-1);padding:16px}
+.sg-conta b{display:block;font:600 28px/1.1 var(--fonte-ui);font-variant-numeric:var(--num)}
+@media (max-width:1099px){.sg-grade{grid-template-columns:1fr}.sg-cond{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-moldura='{"papel": "marketing", "usuario": {"nome": "Patrícia Viana", "cargo": "Analista de marketing", "iniciais": "PV", "cor": "lc-av--c5"}, "contadores": {"academy": 1}, "modulo": "marketing", "secao": "Leads", "item": "Segmentação", "trilha": ["Segmentação", "Síndicos zona leste"]}'>
+<main id="conteudo" class="lc-pagina lc-pagina--larga">
+<details class="lc-nota-projeto" open>
+  <summary><b>Nota de projeto</b> Segmento<span class="lc-nota-projeto__serie"><a href="24-marketing.html">Campanhas</a> <a href="24b-marketing-campanha.html">Campanha</a> <a href="24c-marketing-segmento.html" aria-current="page">Segmento</a> <a href="24d-marketing-email.html">Editor de e-mail</a> <a href="24e-marketing-calendario.html">Calendário editorial</a></span></summary>
+  <div class="lc-nota-projeto__grade">
+    <section><h2>O que esta tela resolve</h2><p>Segmento é o público de uma campanha, descrito por regras e não por lista fixa: quem entrar na regra amanhã entra no segmento. A tela monta as regras em frases (campo, condição, valor), mostra quantos contatos batem enquanto se edita e uma prévia de quem são.</p></section>
+    <section><h2>Fluxo</h2><ol><li>Cada grupo junta condições com E; entre grupos vale E também ("todas estas e pelo menos uma destas").</li><li>Ao mudar uma condição, a contagem à direita atualiza em menos de 2 segundos e a barra de salvar aparece.</li><li>A prévia mostra 5 contatos de exemplo; "Ver todos" abre a lista completa.</li><li>Quem pediu para não receber e-mail nunca entra, mesmo batendo a regra (aparece a contagem de excluídos).</li></ol></section>
+    <section><h2>Por que assim</h2><p class="lc-nota-projeto__decisao">Resolvemos fazer assim porque o HubSpot (listas ativas com regras em frase), o RD Station e o Mailchimp (segmentação com contagem ao vivo) e o Intercom (grupos de condições E e OU) utilizam dessa forma. Enviamos para aprovação.</p></section>
+  </div><div class="lc-estados-tela" data-estados-para="tela-sg">Ver estado:<div class="lc-seg lc-seg--p" role="group" aria-label="Estado da tela"><button type="button" aria-pressed="true" data-estado="dados">Com dados</button><button type="button" aria-pressed="false" data-estado="zero">Ninguém bate</button></div></div>
+</details><div class="lc-cab-pagina"><div class="lc-cab-pagina__txt"><h1>Síndicos zona leste</h1><p class="lc-cab-pagina__desc">Segmento ativo, usado em 2 campanhas. Atualiza sozinho todo dia às 6h.</p></div><div class="lc-cab-pagina__acoes"><button class="lc-btn" type="button"><i data-i="duplicar"></i>Duplicar</button><button class="lc-btn" type="button"><i data-i="baixar"></i>Exportar</button></div></div>
+<div id="tela-sg" data-estado="dados"><div class="sg-grade"><div data-salvar="sg-barra" data-salvar-onde="no segmento">
+<div class="lc-campo" style="max-width:420px;margin-bottom:16px"><label class="lc-rotulo" for="sg-nome">Nome</label><input class="lc-entrada" id="sg-nome" value="Síndicos zona leste"></div>
+<div class="sg-grupo"><div class="sg-grupo__cab">Todas estas condições</div><div class="sg-cond"><span></span><select class="lc-selecao" aria-label="Campo"><option>Cargo</option></select><select class="lc-selecao" aria-label="Condição"><option>é qualquer um de</option></select><input class="lc-entrada" aria-label="Valor" value="Síndico, Conselheiro"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Remover condição Cargo"><i data-i="fechar"></i></button></div><div class="sg-cond"><span>E</span><select class="lc-selecao" aria-label="Campo"><option>Unidades do condomínio</option></select><select class="lc-selecao" aria-label="Condição"><option>é maior que</option></select><input class="lc-entrada" aria-label="Valor" value="80"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Remover condição Unidades do condomínio"><i data-i="fechar"></i></button></div><div class="sg-cond"><span>E</span><select class="lc-selecao" aria-label="Campo"><option>Região</option></select><select class="lc-selecao" aria-label="Condição"><option>é</option></select><input class="lc-entrada" aria-label="Valor" value="Zona leste, São Paulo"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Remover condição Região"><i data-i="fechar"></i></button></div><div class="sg-cond"><span>E</span><select class="lc-selecao" aria-label="Campo"><option>É cliente da Alpha</option></select><select class="lc-selecao" aria-label="Condição"><option>é</option></select><input class="lc-entrada" aria-label="Valor" value="Não"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Remover condição É cliente da Alpha"><i data-i="fechar"></i></button></div><button class="lc-btn lc-btn--p lc-btn--discreto" type="button"><i data-i="mais"></i>Condição</button></div>
+<div class="sg-grupo"><div class="sg-grupo__cab">E pelo menos uma destas</div><div class="sg-cond"><span></span><select class="lc-selecao" aria-label="Campo"><option>Abriu e-mail da Alpha</option></select><select class="lc-selecao" aria-label="Condição"><option>nos últimos</option></select><input class="lc-entrada" aria-label="Valor" value="180 dias"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Remover condição Abriu e-mail da Alpha"><i data-i="fechar"></i></button></div><div class="sg-cond"><span>OU</span><select class="lc-selecao" aria-label="Campo"><option>Visitou a página</option></select><select class="lc-selecao" aria-label="Condição"><option>contém</option></select><input class="lc-entrada" aria-label="Valor" value="/portaria-remota"><button class="lc-btn lc-btn--icone lc-btn--discreto" type="button" aria-label="Remover condição Visitou a página"><i data-i="fechar"></i></button></div><button class="lc-btn lc-btn--p lc-btn--discreto" type="button"><i data-i="mais"></i>Condição</button></div>
+<button class="lc-btn lc-btn--p" type="button"><i data-i="mais"></i>Novo grupo</button>
+<div class="lc-titulo-linha"><h2>Quem está no segmento</h2><span class="lc-legenda">5 de 1.214</span><a class="lc-btn lc-btn--link lc-btn--p" href="#">Ver todos</a></div>
+<div class="lc-tabela-cont" data-so-estado="dados"><table class="lc-tabela"><caption class="lc-sr">Prévia de contatos</caption><thead><tr><th scope="col">Nome</th><th scope="col">Cargo</th><th scope="col">Condomínio</th><th scope="col" class="lc-num">Unidades</th></tr></thead><tbody><tr><td>Sílvia Toledo</td><td>Síndica</td><td>Cond. Jardim das Acácias</td><td class="lc-num">320</td></tr><tr><td>Otávio Brandão</td><td>Síndico</td><td>Residencial Parque Imperial</td><td class="lc-num">540</td></tr><tr><td>Renato Dias</td><td>Conselheiro</td><td>Cond. Vila Formosa</td><td class="lc-num">144</td></tr><tr><td>Lúcia Faria</td><td>Conselheira</td><td>Ed. Torre Azul</td><td class="lc-num">88</td></tr><tr><td>Mauro Teixeira</td><td>Síndico</td><td>Residencial Aricanduva</td><td class="lc-num">260</td></tr></tbody></table></div>
+<div class="lc-vazio" data-so-estado="zero" hidden><span class="lc-ladrilho lc-ladrilho--48"><i data-i="segmento"></i></span><p class="lc-vazio__titulo">Ninguém bate com estas regras</p><p class="lc-vazio__texto">A condição 'Unidades maior que 800' deixa só 3 condomínios na zona leste, e nenhum deles tem síndico com e-mail. Tente 300.</p></div>
+</div>
+<aside class="sg-conta" aria-live="polite" aria-label="Tamanho do segmento"><span class="lc-legenda">Contatos neste segmento</span><b data-so-estado="dados">1.214</b><b data-so-estado="zero" hidden>0</b><p class="lc-pequeno lc-cor-2" style="margin-top:6px">412 condomínios. 86 contatos ficaram de fora porque pediram para não receber e-mail.</p>
+<hr class="lc-menu__sep" style="margin:12px 0"><dl class="lc-props lc-props--empilhado"><dt>Síndicos</dt><dd>431</dd><dt>Conselheiros</dt><dd>783</dd><dt>Usado em</dt><dd><a href="24b-marketing-campanha.html">Portaria remota, zona leste</a> e Webinar de assembleia virtual</dd></dl></aside></div></div>
+<div class="lc-barra-salvar" id="sg-barra" role="region" aria-label="Alterações não salvas" hidden><p class="lc-barra-salvar__msg"><i data-i="aviso"></i><span data-salvar-msg><b>1 alteração não salva</b></span></p><div class="lc-barra-salvar__acoes"><button class="lc-btn lc-btn--discreto" type="button" data-descartar>Descartar</button><button class="lc-btn lc-btn--principal" type="button" data-salvar-ok="Segmento salvo. As campanhas que usam ele já pegam a regra nova.">Salvar</button></div></div><section class="lc-nota-a11y" aria-labelledby="a11y-tit">
+  <h2 id="a11y-tit">Acessibilidade desta tela</h2>
+  <dl><dt>Ordem de foco</dt><dd>Pular para o conteúdo; trilho; barra do módulo; Duplicar, Exportar; nome; condições do grupo 1 (campo, condição, valor, remover); Condição; grupo 2; Novo grupo; prévia; contagem; barra de salvar.</dd><dt>O que é anunciado</dt><dd>A contagem é região viva educada ("1.214 contatos neste segmento"); cada condição lida como frase pelos rótulos; zero contatos como explicação, não só número.</dd><dt>Nome do que é só ícone</dt><dd>Remover condição (campo).</dd></dl>
+</section>
+</main>
+<script src="sistema/icones.js"></script>
+<script src="sistema/extra-p3-icones.js"></script>
+<script src="sistema/moldura.js"></script>
+<script src="sistema/extra-p3.js"></script>
+
+</body>
+</html>
