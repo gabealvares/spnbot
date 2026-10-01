@@ -557,14 +557,15 @@ function montar(el){
 function htmlBarraPortal(cfg){
   var cli = cfg.cliente||{nome:"Administradora Alpha",sigla:"A"};
   var pap = {morador:"Morador",sindico:"Síndico",conselheiro:"Conselheiro"}[cfg.papel]||"Morador";
+  var uP = cfg.usuario||({sindico:{iniciais:"MC",cor:"lc-av--c4"},conselheiro:{iniciais:"RF",cor:"lc-av--c5"}}[cfg.papel])||{iniciais:"AS",cor:"lc-av--c2"};
   return '<header class="lc-barra-modulo lc-barra-portal" style="grid-column:1/-1;background:var(--marca);color:var(--marca-txt);border-bottom:0">'+
     '<div class="lc-barra-modulo__nome" style="color:var(--marca-txt)"><span class="lc-topo-portal__logo" data-marca-sigla>'+esc(cli.sigla)+'</span><span data-marca-nome>'+esc(cli.nome)+'</span></div>'+
     '<nav aria-label="Portal" style="display:flex;min-width:0"><ul class="lc-secoes lc-secoes--portal" role="list">'+
     PORTAL.abas.filter(function(a){return a.t!=="Mais";}).concat((PORTAL.mais[cfg.papel]||PORTAL.mais.morador).slice(0,2).map(function(t){return {t:t};})).map(function(a){
       return '<li><a class="lc-secao" href="#"'+(cfg.secao===a.t?' aria-current="page"':'')+' style="color:var(--marca-txt)">'+esc(a.t)+'</a></li>'; }).join("")+'</ul></nav>'+
-    '<div class="lc-barra-modulo__fim"><span class="lc-unidade-portal" style="font-size:13px;opacity:.95;white-space:nowrap">'+esc(cfg.unidade||"Bloco B, apto 1204")+' · '+pap+'</span>'+
+    '<div class="lc-barra-modulo__fim"><span class="lc-unidade-portal" style="display:flex;flex-direction:column;align-items:flex-end;line-height:1.2;font-size:13px;white-space:nowrap"><b style="font-weight:600">'+esc(cfg.unidade||"Bloco B, apto 1204")+'</b><span style="font-size:12px;opacity:.9">'+pap+'</span></span>'+
     '<span style="position:relative;display:flex"><button type="button" class="lc-ib" data-acao="sino" aria-label="Notificações" style="color:var(--marca-txt)">'+ic("sino")+'</button></span>'+
-    '<span style="position:relative;display:flex"><button type="button" class="lc-ib" data-acao="conta" aria-label="Sua conta" style="color:var(--marca-txt)"><span class="lc-av lc-av--24 lc-av--c2">AS</span></button></span></div></header>';
+    '<span style="position:relative;display:flex"><button type="button" class="lc-ib" data-acao="conta" aria-label="Sua conta" style="color:var(--marca-txt)"><span class="lc-av lc-av--24 '+esc(uP.cor||"lc-av--c2")+'">'+esc(uP.iniciais||"AS")+'</span></button></span></div></header>';
 }
 
 window.LCMoldura = {MODULOS:MODULOS,ORDEM:ORDEM,PAPEIS:PAPEIS,PORTAL:PORTAL,SUPERADMIN:SUPERADMIN,montar:montar,abrirBusca:function(){abrirCmdk(document.activeElement);},fechar:fechar,resultadosCmdk:resultadosCmdk};
